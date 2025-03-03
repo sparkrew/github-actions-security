@@ -5,8 +5,7 @@ This repository contains a systematic study of security risks associated with Gi
 
 ## Repository Contents
 - **`biblio.md`** – A curated bibliography of research papers and blog posts analyzing GitHub Actions security.
-- **`dataset/`** – A collection of GitHub Actions workflows used for security analysis.
-- **`scripts/`** – Code for processing and analyzing workflows for security vulnerabilities.
+- **`tools.csv`** – A dataset listing security tools related to GitHub Actions analysis.
 
 ## Study Objective
 The objective of this study is to identify and analyze security risks in GitHub Actions workflows, focusing on:
