@@ -43,7 +43,7 @@ This article from GitHub's security blog discusses how **CodeQL**, GitHub’s st
 - **Better detection of logic-based attacks** (e.g., **TOCTOU exploits**).
 
 ### Related Security Tools
-- **CodeQL**
+- **CodeQL** ([GitHub Repo](https://github.com/github/codeql?tab=readme-ov-file#codeql))
 
 ---
 
