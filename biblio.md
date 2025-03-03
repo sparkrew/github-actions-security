@@ -129,3 +129,33 @@ This research provides a broad overview of **software supply chain security risk
 
 ### Related Security Tools
 - **SCA tools, SBOMs, OpenSSF Scorecard, SLSA, in-toto, TUF**
+
+---
+
+## GitHub’s Native Attestation Support
+
+[Read Article](https://github.com/INRIA/spoon/attestations)
+
+### Problem Addressed
+Ensuring that software artifacts in GitHub Actions are verifiable and haven’t been tampered with.
+
+### Key Takeaways
+GitHub provides a web UI ("Attestations" tab) and CLI command (`gh attestation verify`) for verifying artifact provenance. This helps prevent supply chain attacks.
+
+### Potential Improvements
+It is unclear how many repositories use attestations and whether GitHub provides a public transparency log for attestations.
+
+---
+
+## GitHub Attestation API
+
+[Read Article](https://docs.github.com/en/rest/users/attestations?apiVersion=2022-11-28)
+
+### Problem Addressed
+Enables developers to programmatically retrieve and verify artifact attestations.
+
+### Key Takeaways
+The API allows for automated verification of software artifacts, ensuring that only trusted artifacts are used in production.
+
+### Potential Improvements
+Fine-grained adoption statistics would help measure the real-world impact of this security feature.
