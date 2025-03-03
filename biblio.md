@@ -1,9 +1,84 @@
-Paper Title,Related Link,Problem Addressed,Key Takeaways,Potential Improvements,Introduced Tool
-The Monsters in Your Build Cache – GitHub Actions Cache Poisoning,https://adnanthekhan.com/2024/05/06/the-monsters-in-your-build-cache-github-actions-cache-poisoning/,"This blog post by Adnan Khan explores a security issue in GitHub Actions caching, where attackers can manipulate cache storage to replace legitimate cache entries, leading to privilege escalation and potential compromise of sensitive data.","The post provides an in-depth analysis of cache poisoning in CI/CD environments, including theoretical background and practical proof-of-concept attacks. It explains how attackers can exploit GitHub Actions caching, highlights real-world impacts on repositories like Angular and Mozilla MDN, and introduces the novel concept of Actions Cache Blasting.","The article thoroughly explains the attack but lacks detailed discussion on mitigation strategies. It could be improved by suggesting stricter cache validation, exploring ways GitHub could enhance security, and providing tools for maintainers to detect cache poisoning risks.",Cacheract
-How to secure your GitHub Actions workflows with CodeQL,https://github.blog/security/application-security/how-to-secure-your-github-actions-workflows-with-codeql/#results,"This article from GitHub’s security blog discusses how CodeQL has been enhanced to detect vulnerabilities in GitHub Actions workflows, focusing on workflow misconfigurations, untrusted data sources, and the use of taint tracking to improve security analysis.","The article highlights how GitHub Actions workflows are now analyzed as a structured language in CodeQL, enabling deeper security scanning. It explains how taint tracking follows the flow of untrusted data, how Bash script analysis detects shell command vulnerabilities, and how new queries help prevent cache poisoning attacks. The approach has been successfully applied to over 75 open-source projects, detecting 90+ security issues.","While CodeQL’s security enhancements are valuable, improvements could include expanding taint tracking for complex workflows involving multiple repositories, providing automated remediation suggestions, and improving detection of logic-based attacks such as TOCTOU vulnerabilities.",CodeQL
-GitHub’s Native Attestation Support (https://github.com/INRIA/spoon/attestations),https://github.com/INRIA/spoon/attestations,Ensuring that software artifacts in GitHub Actions are verifiable and haven’t been tampered with.,"GitHub provides a web UI (""Attestations"" tab) and CLI command (gh attestation verify) for verifying artifact provenance. This helps prevent supply chain attacks.",It is unclear how many repositories use attestations and whether GitHub provides a public transparency log for attestations.,
-GitHub Attestation API (https://docs.github.com/en/rest/users/attestations),https://docs.github.com/en/rest/users/attestations?apiVersion=2022-11-28,Enables developers to programmatically retrieve and verify artifact attestations.,"The API allows for automated verification of software artifacts, ensuring that only trusted artifacts are used in production.",Fine-grained adoption statistics would help measure the real-world impact of this security feature.,
-I'll think twice before using Github Actions again,https://ninkovic.dev/blog/2025/think-twice-before-using-github-actions,"This blog post highlights several usability and scalability issues in GitHub Actions, particularly for teams managing monorepos. Key concerns include the inefficiency of required checks, the complexity of YAML for workflow management, the lack of local testing support, and GitHub’s slow response to addressing long-standing usability issues. The author suggests that these limitations make alternative CI/CD solutions more viable.","GitHub Actions struggles with monorepos because required checks depend on specific workflow names rather than dynamically adjusting based on triggered jobs. YAML-based workflows require excessive conditional logic, making maintenance difficult. The inability to test workflows locally leads to inefficient debugging. Additionally, GitHub’s lack of response to usability concerns has led some users to consider alternatives like GitLab CI/CD, Jenkins, TeamCity, and Dagger, which offer better workflow flexibility.","GitHub Actions should allow required checks to dynamically adjust based on executed jobs, improve YAML syntax to reduce redundant logic, enable local workflow execution for easier debugging, and improve communication regarding its roadmap and feature development.","None directly mentioned, but alternative CI/CD solutions discussed include GitLab CI/CD, Jenkins, TeamCity, and Dagger."
-Exploring the Characteristics and Challenges in GitHub Actions and Its Ecosystem,https://gupea.ub.gu.se/bitstream/handle/2077/84480/CSE%2024-27%20KM%20SS.pdf?sequence=1&isAllowed=y,"This research paper investigates the challenges within the GitHub Actions ecosystem, focusing on key issues such as security vulnerabilities, dependency management, obsolescence, and breaking changes. It analyzes discussions from GitHub and Stack Overflow to highlight the most pressing concerns developers face when using GitHub Actions.","The study identifies security vulnerabilities as the most prevalent issue in the GitHub Actions ecosystem, followed by dependency issues, obsolescence, and breaking changes. It finds that larger and more complex repositories tend to rely on Marketplace Actions, whereas smaller or more security-conscious projects often prefer Local Actions. The paper also highlights the differences between GitHub Actions and traditional package management ecosystems, demonstrating that while similar issues exist, GitHub's ecosystem benefits from active maintenance and rapid issue resolution.","The study suggests further research into improving security mechanisms for Marketplace Actions, better dependency management practices, and automated solutions for detecting and mitigating breaking changes. It also recommends a deeper qualitative analysis of developer preferences regarding Local vs. Marketplace Actions and a comparison with other CI/CD systems like GitLab CI/CD and Travis CI.",
-On the Use of GitHub Actions in Software Development Repositories,https://orbi.umons.ac.be/bitstream/20.500.12907/43043/1/paper.pdf,"This research paper analyzes the adoption and usage patterns of GitHub Actions in 68K repositories, focusing on automation practices, action reuse, versioning strategies, and security concerns. It highlights how GitHub Actions has become the dominant CI/CD solution while facing issues related to dependency management, security vulnerabilities, and workflow maintenance.","The study finds that 43.9% of analyzed repositories use GitHub Actions, with workflows primarily triggered by push and pull request events. Reusable actions are widely adopted, especially those provided by GitHub, but they introduce potential security risks. The study also identifies a correlation between repository complexity and the preference for Marketplace Actions over locally maintained ones. Versioning practices are inconsistent, with many workflows failing to pin dependencies properly, increasing security risks.","The research suggests improving dependency versioning best practices to mitigate security risks, enhancing tooling for workflow management to reduce maintenance overhead, and conducting further research on the long-term evolution of the GitHub Actions ecosystem to address emerging challenges. It also calls for better security practices in reusable actions to minimize the risk of supply chain attacks.",
-Research Directions in Software Supply Chain Security,https://dl.acm.org/doi/pdf/10.1145/3714464,"This research paper explores the evolving threats in software supply chain security, categorizing them into three major attack vectors: vulnerabilities in code dependencies, compromised build infrastructure, and human-targeted attacks such as social engineering. It highlights how modern software development, heavily reliant on open-source components, is increasingly exploited by attackers who inject malicious code, infiltrate CI/CD pipelines, and manipulate developers to introduce security flaws.","The paper identifies code dependencies as a primary attack vector, with malicious or vulnerable packages being widely distributed through ecosystems like npm, PyPI, and Maven. It discusses attacks on build infrastructure, such as the SolarWinds breach, where attackers injected backdoors into software distributed to government and enterprise users. The research also emphasizes human factors, noting that developers are often the weakest link in the supply chain due to social engineering and compromised credentials. The study highlights industry and academic efforts, such as SCA tools, SBOMs, SLSA, in-toto, and TUF, to mitigate risks, but stresses that current solutions are not yet sufficient.","The paper suggests enhancing automated vulnerability detection to improve how dependencies are monitored and updated, developing better tools to analyze and secure build environments, and focusing on the human factor by strengthening identity verification and training against social engineering attacks. It also emphasizes the need for future research into securing AI-generated code and LLM-based development workflows, as these introduce new and largely unexplored risks.","SCA tools, SBOMs, OpenSSF Scorecard, SLSA, in-toto, TUF"
+# Bibliography of GitHub Actions Security Research
+
+## The Monsters in Your Build Cache – GitHub Actions Cache Poisoning
+**[Read Article](https://adnanthekhan.com/2024/05/06/the-monsters-in-your-build-cache-github-actions-cache-poisoning/)**
+
+### Problem Addressed
+This blog post by **Adnan Khan** explores a critical security issue in **GitHub Actions caching** and how attackers can manipulate it to gain unauthorized access to CI/CD workflows. The core issue is **cache poisoning**, allowing malicious actors to replace legitimate cache entries, leading to privilege escalation and exposure of sensitive data.
+
+### Key Takeaways
+- Detailed analysis of **GitHub Actions caching mechanisms** and potential attack vectors.
+- Step-by-step execution of cache poisoning attacks.
+- Highlights the **real-world impact** on projects like **Angular, Mozilla MDN, and Hyperledger Besu**.
+- Introduces the **Actions Cache Blasting attack** technique.
+
+### Potential Improvements
+- More focus on **prevention strategies** beyond attack demonstrations.
+- Recommendations on **how GitHub could enhance cache security**.
+- Provide **defensive tools** to help repository maintainers detect cache poisoning risks.
+
+### Related Security Tools
+- **Cacheract** ([GitHub Repo](https://github.com/adnanekhan/cacheract))
+
+---
+
+## How to Secure Your GitHub Actions Workflows with CodeQL
+**[Read Article](https://github.blog/security/application-security/how-to-secure-your-github-actions-workflows-with-codeql/#results)**
+
+### Problem Addressed
+This article from GitHub's security blog discusses how **CodeQL**, GitHub’s static analysis tool, has been enhanced to **detect vulnerabilities in GitHub Actions workflows**. It addresses workflow misconfigurations and **untrusted data flow risks** through **taint tracking analysis**.
+
+### Key Takeaways
+- **Taint tracking for untrusted data sources**, improving security scans.
+- **Introduces GitHub Actions as a structured language** in CodeQL.
+- **Supports Bash script analysis**, allowing security checks within shell commands.
+- **Detects cache poisoning vulnerabilities**, mitigating supply chain attacks.
+- Already in use to **secure 75+ major open-source projects** and detect **90+ vulnerabilities**.
+
+### Potential Improvements
+- Expanding taint tracking for **complex, multi-repo workflows**.
+- **Automated remediation suggestions** for detected issues.
+- Better detection of **logic-based attacks** (e.g., **TOCTOU exploits**).
+
+---
+
+## Now I'll Think Twice Before Using GitHub Actions Again
+**[Read Article](https://ninkovic.dev/blog/2025/think-twice-before-using-github-actions)**
+
+### Problem Addressed
+This blog post critiques **GitHub Actions' usability and scalability issues**, especially for **monorepos** and complex CI/CD pipelines. The author argues that GitHub Actions suffers from **inefficiencies, lack of local testing, and YAML complexity**, making alternative CI/CD solutions more attractive.
+
+### Key Takeaways
+- **Inefficient monorepo support**, causing merge conflicts.
+- **YAML complexity** leads to bloated workflows with excessive logic.
+- **No local testing support**, forcing developers to push untested changes.
+- **GitHub is slow to address usability concerns**, frustrating users.
+- Alternative CI/CD solutions like **GitLab CI/CD, Jenkins, TeamCity, and Dagger** provide better scalability.
+
+### Potential Improvements
+- **Dynamic required checks** for monorepos instead of workflow-based enforcement.
+- Improve **YAML syntax** to reduce conditional statements.
+- Enable **local execution of workflows** for debugging.
+- **Better communication on GitHub's roadmap** to address long-standing issues.
+
+### Related Security Tools
+- **GitLab CI/CD**, **Jenkins**, **TeamCity**, **Dagger** (as alternative CI/CD solutions)
+
+---
+
+## Research Directions in Software Supply Chain Security
+**[Read Article](https://dl.acm.org/doi/pdf/10.1145/3714464)**
+
+### Problem Addressed
+This research provides a broad overview of **software supply chain security risks**, categorizing **three major attack vectors**: **dependencies, build infrastructure, and human factors**.
+
+### Key Takeaways
+- **96% of software contains open-source dependencies**, making them a prime attack target.
+- **Build infrastructure is a major attack vector**, as seen in the **SolarWinds** and **Log4j** incidents.
+- **Social engineering targets developers**, leading to compromised credentials and injected backdoors.
+- Tools like **SCA scanners, SBOMs, and in-toto** are essential for mitigating risks.
+
+### Potential Improvements
+- **Better vulnerability intelligence** for dependencies.
+- **Enhanced analysis tools** for securing build environments.
+- **Stronger protection against social engineering in open-source development.**
