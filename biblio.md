@@ -2,7 +2,8 @@
 
 ## The Monsters in Your Build Cache – GitHub Actions Cache Poisoning
 
-[Read Article](https://adnanthekhan.com/2024/05/06/the-monsters-in-your-build-cache-github-actions-cache-poisoning/) [2024 (UPDATE 01/23/25), Blog Post] By Adnan Khan
+[Read Article](https://adnanthekhan.com/2024/05/06/the-monsters-in-your-build-cache-github-actions-cache-poisoning/) 
+[2024 (UPDATE 01/23/25), Blog Post] By **Adnan Khan**.
 
 ### Problem Addressed
 This blog post by **Adnan Khan** explores a critical security issue in **GitHub Actions caching** and how attackers can manipulate it to gain unauthorized access to CI/CD workflows. The core issue is **cache poisoning**, allowing malicious actors to replace legitimate cache entries, leading to privilege escalation and exposure of sensitive data.
@@ -23,7 +24,8 @@ The article thoroughly explains the attack but lacks detailed discussion on miti
 
 ## How to Secure Your GitHub Actions Workflows with CodeQL
 
-[Read Article](https://github.blog/security/application-security/how-to-secure-your-github-actions-workflows-with-codeql/#results) [Jan 9, 2025, GitHub Security Blog] By Alvaro Munoz
+[Read Article](https://github.blog/security/application-security/how-to-secure-your-github-actions-workflows-with-codeql/#results) 
+[Jan 9, 2025, GitHub Security Blog] By **Alvaro Munoz**.
 
 ### Problem Addressed
 This article from GitHub's security blog discusses how **CodeQL**, GitHub’s static analysis tool, has been enhanced to **detect vulnerabilities in GitHub Actions workflows**. It addresses workflow misconfigurations and **untrusted data flow risks** through **taint tracking analysis**.
@@ -45,7 +47,8 @@ While CodeQL’s security enhancements are valuable, improvements could include 
 
 ## I'll Think Twice Before Using GitHub Actions Again
 
-[Read Article](https://ninkovic.dev/blog/2025/think-twice-before-using-github-actions) [2025 (Update 30.01.2025), Blog Post] By Nemanja Ninković
+[Read Article](https://ninkovic.dev/blog/2025/think-twice-before-using-github-actions) 
+[2025 (Update 30.01.2025), Blog Post] By **Nemanja Ninković**.
 
 ### Problem Addressed
 This blog post critiques **GitHub Actions' usability and scalability issues**, especially for **monorepos** and complex CI/CD pipelines. The author argues that GitHub Actions suffers from **inefficiencies, lack of local testing, and YAML complexity**, making alternative CI/CD solutions more attractive.
@@ -64,7 +67,8 @@ GitHub Actions should allow required checks to dynamically adjust based on execu
 
 ## Exploring the Characteristics and Challenges in GitHub Actions and Its Ecosystem
 
-[Read Article](https://gupea.ub.gu.se/bitstream/handle/2077/84480/CSE%2024-27%20KM%20SS.pdf?sequence=1&isAllowed=y) (Jun 2024, Research Paper - University of Gothenburg) By Saif Sayed and Kardo Marof
+[Read Article](https://gupea.ub.gu.se/bitstream/handle/2077/84480/CSE%2024-27%20KM%20SS.pdf?sequence=1&isAllowed=y) 
+[Jun 2024, Research Paper - University of Gothenburg] By **Saif Sayed** and **Kardo Marof**.
 
 ### Problem Addressed
 This research explores the challenges within the **GitHub Actions ecosystem**, analyzing **997 discussion threads** and **4.1K repositories** to identify common issues like **security vulnerabilities, dependency problems, and workflow obsolescence**.
@@ -82,7 +86,8 @@ The study suggests further research into improving security mechanisms for Marke
 
 ## On the Use of GitHub Actions in Software Development Repositories
 
-[Read Article](https://orbi.umons.ac.be/bitstream/20.500.12907/43043/1/paper.pdf) [Oct 2022, Research Paper - University of Mons] By Alexandre Decan, Tom Mens, Pooya Rostami Mazrae and Mehdi Golzadeh
+[Read Article](https://orbi.umons.ac.be/bitstream/20.500.12907/43043/1/paper.pdf) 
+[Oct 2022, Research Paper - University of Mons] By **Alexandre Decan, Tom Mens, Pooya Rostami Mazrae** and **Mehdi Golzadeh**.
 
 ### Problem Addressed
 This empirical study analyzes **68K GitHub repositories**, showing **how GitHub Actions is adopted, which workflows are automated, and the security risks involved**.
@@ -100,7 +105,8 @@ The research suggests improving dependency versioning best practices to mitigate
 
 ## Research Directions in Software Supply Chain Security
 
-[Read Article](https://dl.acm.org/doi/pdf/10.1145/3714464) [2023, ACM Digital Library] 
+[Read Article](https://dl.acm.org/doi/pdf/10.1145/3714464) 
+[2023, ACM Digital Library] 
 
 ### Problem Addressed
 This research provides a broad overview of **software supply chain security risks**, categorizing **three major attack vectors**: **dependencies, build infrastructure, and human factors**.
@@ -121,7 +127,8 @@ The paper suggests enhancing automated vulnerability detection to improve how de
 
 ## GitHub’s Native Attestation Support
 
-[Read Article](https://github.com/INRIA/spoon/attestations) [2024 (UPDATE frequently), GitHub Documentation] By INRIA
+[Read Article](https://github.com/INRIA/spoon/attestations) 
+[2024 (UPDATE frequently), GitHub Documentation] By **INRIA**.
 
 ### Problem Addressed
 Ensuring that software artifacts in GitHub Actions are verifiable and haven’t been tampered with.
@@ -136,7 +143,8 @@ It is unclear how many repositories use attestations and whether GitHub provides
 
 ## GitHub Attestation API
 
-[Read Article](https://docs.github.com/en/rest/users/attestations?apiVersion=2022-11-28) [Nov 2022, GitHub API Documentation]
+[Read Article](https://docs.github.com/en/rest/users/attestations?apiVersion=2022-11-28) 
+[Nov 2022, GitHub API Documentation]
 
 ### Problem Addressed
 Enables developers to programmatically retrieve and verify artifact attestations.
