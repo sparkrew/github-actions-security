@@ -2,7 +2,7 @@
 
 ## The Monsters in Your Build Cache – GitHub Actions Cache Poisoning
 
-[Read Article](https://adnanthekhan.com/2024/05/06/the-monsters-in-your-build-cache-github-actions-cache-poisoning/) 
+[Read Article](https://adnanthekhan.com/2024/05/06/the-monsters-in-your-build-cache-github-actions-cache-poisoning/)  
 [2024 (UPDATE 01/23/25), Blog Post] By **Adnan Khan**.
 
 ### Problem Addressed
