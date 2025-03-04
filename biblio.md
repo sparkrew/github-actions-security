@@ -24,7 +24,7 @@ The article thoroughly explains the attack but lacks detailed discussion on miti
 
 ## How to Secure Your GitHub Actions Workflows with CodeQL
 
-[Read Article](https://github.blog/security/application-security/how-to-secure-your-github-actions-workflows-with-codeql/#results) 
+[Read Article](https://github.blog/security/application-security/how-to-secure-your-github-actions-workflows-with-codeql/#results)   
 [Jan 9, 2025, GitHub Security Blog] By **Alvaro Munoz**.
 
 ### Problem Addressed
@@ -47,7 +47,7 @@ While CodeQL’s security enhancements are valuable, improvements could include 
 
 ## I'll Think Twice Before Using GitHub Actions Again
 
-[Read Article](https://ninkovic.dev/blog/2025/think-twice-before-using-github-actions) 
+[Read Article](https://ninkovic.dev/blog/2025/think-twice-before-using-github-actions)   
 [2025 (Update 30.01.2025), Blog Post] By **Nemanja Ninković**.
 
 ### Problem Addressed
@@ -67,7 +67,7 @@ GitHub Actions should allow required checks to dynamically adjust based on execu
 
 ## Exploring the Characteristics and Challenges in GitHub Actions and Its Ecosystem
 
-[Read Article](https://gupea.ub.gu.se/bitstream/handle/2077/84480/CSE%2024-27%20KM%20SS.pdf?sequence=1&isAllowed=y) 
+[Read Article](https://gupea.ub.gu.se/bitstream/handle/2077/84480/CSE%2024-27%20KM%20SS.pdf?sequence=1&isAllowed=y)   
 [Jun 2024, Research Paper - University of Gothenburg] By **Saif Sayed** and **Kardo Marof**.
 
 ### Problem Addressed
@@ -86,7 +86,7 @@ The study suggests further research into improving security mechanisms for Marke
 
 ## On the Use of GitHub Actions in Software Development Repositories
 
-[Read Article](https://orbi.umons.ac.be/bitstream/20.500.12907/43043/1/paper.pdf) 
+[Read Article](https://orbi.umons.ac.be/bitstream/20.500.12907/43043/1/paper.pdf)   
 [Oct 2022, Research Paper - University of Mons] By **Alexandre Decan, Tom Mens, Pooya Rostami Mazrae** and **Mehdi Golzadeh**.
 
 ### Problem Addressed
@@ -105,7 +105,7 @@ The research suggests improving dependency versioning best practices to mitigate
 
 ## Research Directions in Software Supply Chain Security
 
-[Read Article](https://dl.acm.org/doi/pdf/10.1145/3714464) 
+[Read Article](https://dl.acm.org/doi/pdf/10.1145/3714464)   
 [2023, ACM Digital Library] 
 
 ### Problem Addressed
@@ -127,7 +127,7 @@ The paper suggests enhancing automated vulnerability detection to improve how de
 
 ## GitHub’s Native Attestation Support
 
-[Read Article](https://github.com/INRIA/spoon/attestations) 
+[Read Article](https://github.com/INRIA/spoon/attestations)   
 [2024 (UPDATE frequently), GitHub Documentation] By **INRIA**.
 
 ### Problem Addressed
@@ -143,7 +143,7 @@ It is unclear how many repositories use attestations and whether GitHub provides
 
 ## GitHub Attestation API
 
-[Read Article](https://docs.github.com/en/rest/users/attestations?apiVersion=2022-11-28) 
+[Read Article](https://docs.github.com/en/rest/users/attestations?apiVersion=2022-11-28)   
 [Nov 2022, GitHub API Documentation]
 
 ### Problem Addressed
