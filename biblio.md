@@ -80,7 +80,10 @@ This research explores the challenges within the **GitHub Actions ecosystem**, a
 - **Developers struggle with obsolescence**, as outdated actions impact build stability.
 
 ### Potential Improvements
-The study suggests further research into improving security mechanisms for Marketplace Actions, better dependency management practices, and automated solutions for detecting and mitigating breaking changes. It also recommends a deeper qualitative analysis of developer preferences regarding Local vs. Marketplace Actions and a comparison with other CI/CD systems like GitLab CI/CD and Travis CI.
+The study suggests further research into improving security mechanisms for Marketplace Actions, better dependency management practices, and automated solutions for detecting and mitigating breaking changes. It also recommends a deeper qualitative analysis of developer preferences regarding Local vs. Marketplace Actions and a comparison with other CI/CD systems like GitLab CI/CD and Travis CI.   
+
+### Related Dataset
+- [Zenodo Dataset](https://zenodo.org/records/11268782)
 
 ---
 
@@ -99,7 +102,10 @@ This empirical study analyzes **68K GitHub repositories**, showing **how GitHub 
 - **Security issues arise from unverified third-party actions**, exposing projects to potential threats.
 
 ### Potential Improvements
-The research suggests improving dependency versioning best practices to mitigate security risks, enhancing tooling for workflow management to reduce maintenance overhead, and conducting further research on the long-term evolution of the GitHub Actions ecosystem to address emerging challenges. It also calls for better security practices in reusable actions to minimize the risk of supply chain attacks.
+The research suggests improving dependency versioning best practices to mitigate security risks, enhancing tooling for workflow management to reduce maintenance overhead, and conducting further research on the long-term evolution of the GitHub Actions ecosystem to address emerging challenges. It also calls for better security practices in reusable actions to minimize the risk of supply chain attacks.   
+
+### Related Dataset
+- [Zenodo Dataset](https://doi.org/10.5281/zenodo.6634682)
 
 ---
 
