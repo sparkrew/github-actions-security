@@ -2,7 +2,7 @@
 
 ## The Monsters in Your Build Cache – GitHub Actions Cache Poisoning
 
-[Read Article](https://adnanthekhan.com/2024/05/06/the-monsters-in-your-build-cache-github-actions-cache-poisoning/)
+[Read Article](https://adnanthekhan.com/2024/05/06/the-monsters-in-your-build-cache-github-actions-cache-poisoning/) (2024, Blog Post)
 
 ### Problem Addressed
 This blog post by **Adnan Khan** explores a critical security issue in **GitHub Actions caching** and how attackers can manipulate it to gain unauthorized access to CI/CD workflows. The core issue is **cache poisoning**, allowing malicious actors to replace legitimate cache entries, leading to privilege escalation and exposure of sensitive data.
