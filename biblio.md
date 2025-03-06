@@ -68,7 +68,7 @@ GitHub Actions should allow required checks to dynamically adjust based on execu
 ## Exploring the Characteristics and Challenges in GitHub Actions and Its Ecosystem
 
 [Read Article](https://gupea.ub.gu.se/bitstream/handle/2077/84480/CSE%2024-27%20KM%20SS.pdf?sequence=1&isAllowed=y)   
-Jun 2024, Research Paper - University of Gothenburg By **Saif Sayed** and **Kardo Marof**.
+Jun 2024, BSc Thesis - University of Gothenburg By **Saif Sayed** and **Kardo Marof**.
 
 ### Problem Addressed
 This research explores the challenges within the **GitHub Actions ecosystem**, analyzing **997 discussion threads** and **4.1K repositories** to identify common issues like **security vulnerabilities, dependency problems, and workflow obsolescence**.
@@ -90,7 +90,7 @@ The study suggests further research into improving security mechanisms for Marke
 ## On the Use of GitHub Actions in Software Development Repositories
 
 [Read Article](https://orbi.umons.ac.be/bitstream/20.500.12907/43043/1/paper.pdf)   
-Oct 2022, Research Paper - University of Mons By **Alexandre Decan, Tom Mens, Pooya Rostami Mazrae** and **Mehdi Golzadeh**.
+Oct 2022, IEEE International Conference on Software Maintenance and Evolution - University of Mons By **Alexandre Decan, Tom Mens, Pooya Rostami Mazrae** and **Mehdi Golzadeh**.
 
 ### Problem Addressed
 This empirical study analyzes **68K GitHub repositories**, showing **how GitHub Actions is adopted, which workflows are automated, and the security risks involved**.
@@ -112,7 +112,7 @@ The research suggests improving dependency versioning best practices to mitigate
 ## Research Directions in Software Supply Chain Security
 
 [Read Article](https://dl.acm.org/doi/pdf/10.1145/3714464)   
-2023, ACM Digital Library  
+2023, ACM Transactions on Software Engineering and Methodology (TOSEM) By **Williams et al**.  
 
 ### Problem Addressed
 This research provides a broad overview of **software supply chain security risks**, categorizing **three major attack vectors**: **dependencies, build infrastructure, and human factors**.
