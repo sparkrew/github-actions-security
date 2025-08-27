@@ -1,0 +1,25 @@
+# Local env & cache
+.venv/
+.env
+.cache_ggshield/
+
+# Editors/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Notebooks & LaTeX
+.ipynb_checkpoints/
+*.aux *.bbl *.blg *.lof *.log *.lot *.out *.toc *.synctex.gz *.fdb_latexmk *.fls
+build/ _minted*/
+
+# Generated / heavy (kept local for now)
+tools_output/
+results/
+dataset/
+datasets/
+ground-truth-vulnerabilities/
+
+# Safety: ignore any workflows so they don't get staged by mistake
+.github/workflows/
