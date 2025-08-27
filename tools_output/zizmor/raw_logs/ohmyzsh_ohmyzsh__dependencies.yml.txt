@@ -1,0 +1,36 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/ohmyzsh_ohmyzsh__dependencies.yml:13:9
+   [1m[94m|[0m
+[1m[94m13 |[0m         - name: Checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m14 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m15 |[0m [1m[33m|[0m         with:
+[1m[94m16 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/ohmyzsh_ohmyzsh__dependencies.yml:8:3
+   [1m[94m|[0m
+[1m[94m 8 |[0m [1m[33m/[0m   check:
+[1m[94m 9 |[0m [1m[33m|[0m     name: Check for updates
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m35 |[0m [1m[33m|[0m           pip install -r .github/workflows/dependencies/requirements.txt
+[1m[94m36 |[0m [1m[33m|[0m           python3 .github/workflows/dependencies/updater.py
+   [1m[94m|[0m [1m[33m|[0m                                                            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________________________________________|[0m
+   [1m[94m|[0m                                                              [1m[33mthis job[0m
+   [1m[94m|[0m                                                              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/ohmyzsh_ohmyzsh__dependencies.yml:19:9
+   [1m[94m|[0m
+[1m[94m19 |[0m         uses: ohmyzsh/github-app-token@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m4[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m1[39m high

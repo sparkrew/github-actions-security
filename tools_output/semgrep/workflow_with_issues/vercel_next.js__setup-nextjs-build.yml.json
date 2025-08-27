@@ -1,0 +1,19 @@
+{
+  "workflow": "vercel_next.js__setup-nextjs-build.yml",
+  "tool": "semgrep",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "run-shell-injection": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "run-shell-injection",
+      "line": 50,
+      "code": "requires login",
+      "note": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+      "documentation": null
+    }
+  ]
+}

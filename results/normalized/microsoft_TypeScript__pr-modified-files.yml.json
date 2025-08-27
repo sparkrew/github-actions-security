@@ -1,0 +1,64 @@
+{
+  "workflow": "microsoft_TypeScript__pr-modified-files.yml",
+  "tools": {
+    "scorecard": {
+      "workflow": "microsoft_TypeScript__pr-modified-files.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "automatic-hardening-check"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_TypeScript__pr-modified-files.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "dangerous-triggers": 1,
+          "template-injection": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "dangerous-triggers",
+          "level": "error",
+          "message": "use of fundamentally insecure workflow trigger",
+          "workflow": "microsoft_TypeScript__pr-modified-files.yml",
+          "line": 2,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "trigger-permissions-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_TypeScript__pr-modified-files.yml",
+          "line": 38,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-check"
+        }
+      ]
+    }
+  }
+}

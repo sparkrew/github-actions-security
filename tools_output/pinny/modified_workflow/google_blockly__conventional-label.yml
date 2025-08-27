@@ -1,0 +1,15 @@
+name: conventional-release-labels
+jobs:
+label:
+runs-on: ubuntu-latest
+permissions:
+issues: write
+pull-requests: write
+steps:
+- uses: bcoe/conventional-release-labels@886f696738527c7be444262c327c89436dfb95a8 # bcoe/conventional-release-labels@v1
+with:
+type_labels:
+'{"feat": "PR: feature", "fix": "PR: fix", "breaking": "breaking
+change", "chore": "PR: chore", "docs": "PR: docs", "refactor": "PR:
+refactor", "revert": "PR: revert", "deprecate": "deprecation"}'
+ignored_types: '[]'

@@ -1,0 +1,34 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-native__monitor-new-issues.yml:17:9
+   [1m[94m|[0m
+[1m[94m17 |[0m         - name: Checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m18 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-native__monitor-new-issues.yml:13:3
+   [1m[94m|[0m
+[1m[94m13 |[0m [1m[33m/[0m   monitor-issues:
+[1m[94m14 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m44 |[0m [1m[33m|[0m           discord_id_type: "user"
+[1m[94m45 |[0m [1m[33m|[0m           discord_ids: "${{ env.oncall1 }},${{ env.oncall2 }}"
+   [1m[94m|[0m [1m[33m|[0m                                                               [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________________________________________________|[0m
+   [1m[94m|[0m                                                                 [1m[33mthis job[0m
+   [1m[94m|[0m                                                                 [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-native__monitor-new-issues.yml:35:9
+   [1m[94m|[0m
+[1m[94m35 |[0m         uses: react-native-community/repo-monitor@v1.0.1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m7[39m findings ([1m[93m4[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m1[39m high

@@ -1,0 +1,144 @@
+{
+  "workflow": "electron_electron__pipeline-segment-electron-test.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "electron_electron__pipeline-segment-electron-test.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "line": 77,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 115,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093",
+          "line": 145,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093",
+          "line": 150,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "line": 244,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "semgrep": {
+      "workflow": "electron_electron__pipeline-segment-electron-test.yml",
+      "tool": "semgrep",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "run-shell-injection": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "run-shell-injection",
+          "line": 147,
+          "code": "requires login",
+          "note": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+          "documentation": null,
+          "capability": "injection-check"
+        },
+        {
+          "rule": "run-shell-injection",
+          "line": 198,
+          "code": "requires login",
+          "note": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+          "documentation": null,
+          "capability": "injection-check"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "electron_electron__pipeline-segment-electron-test.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "automatic-hardening-check"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "electron_electron__pipeline-segment-electron-test.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 9,
+        "by_rule": {
+          "artipacked": 1,
+          "template-injection": 8
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "electron_electron__pipeline-segment-electron-test.yml",
+          "line": 121,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "electron_electron__pipeline-segment-electron-test.yml",
+          "line": 145,
+          "column": 7,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "electron_electron__pipeline-segment-electron-test.yml",
+          "line": 189,
+          "column": 7,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "injection-check"
+        }
+      ]
+    }
+  }
+}

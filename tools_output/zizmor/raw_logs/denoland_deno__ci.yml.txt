@@ -1,0 +1,169 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/denoland_deno__ci.yml:34:9
+   [1m[94m|[0m
+[1m[94m34 |[0m         - name: Clone repository
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m35 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m38 |[0m [1m[33m|[0m           submodules: false
+[1m[94m39 |[0m [1m[33m|[0m         if: github.event.pull_request.draft == true
+   [1m[94m|[0m [1m[33m|___________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/denoland_deno__ci.yml:152:9
+    [1m[94m|[0m
+[1m[94m152 |[0m         - name: Clone repository
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m153 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m156 |[0m [1m[33m|[0m           submodules: false
+[1m[94m157 |[0m [1m[33m|[0m         if: '!(matrix.skip)'
+    [1m[94m|[0m [1m[33m|____________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/denoland_deno__ci.yml:797:9
+    [1m[94m|[0m
+[1m[94m797 |[0m         - name: Clone repository
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m798 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m801 |[0m [1m[33m|[0m           submodules: false
+[1m[94m802 |[0m [1m[33m|[0m         if: '!(matrix.skip)'
+    [1m[94m|[0m [1m[33m|____________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+ [1m[94m-->[0m ../.github/workflows/denoland_deno__ci.yml:5:3
+  [1m[94m|[0m
+[1m[94m5 |[0m   contents: write
+  [1m[94m|[0m   [1m[91m^^^^^^^^^^^^^^^[0m [1m[91mcontents: write is overly broad at the workflow level[0m
+  [1m[94m|[0m
+  [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+ [1m[94m-->[0m ../.github/workflows/denoland_deno__ci.yml:6:3
+  [1m[94m|[0m
+[1m[94m6 |[0m   id-token: write
+  [1m[94m|[0m   [1m[91m^^^^^^^^^^^^^^^[0m [1m[91mid-token: write is overly broad at the workflow level[0m
+  [1m[94m|[0m
+  [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/denoland_deno__ci.yml:182:9
+    [1m[94m|[0m
+[1m[94m182 |[0m         uses: cirruslabs/cache@v4
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/denoland_deno__ci.yml:194:9
+    [1m[94m|[0m
+[1m[94m194 |[0m       - uses: dsherret/rust-toolchain-file@v1
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/denoland_deno__ci.yml:198:9
+    [1m[94m|[0m
+[1m[94m198 |[0m         uses: denoland/setup-deno@v2
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/denoland_deno__ci.yml:226:9
+    [1m[94m|[0m
+[1m[94m226 |[0m         uses: google-github-actions/auth@v2
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/denoland_deno__ci.yml:240:9
+    [1m[94m|[0m
+[1m[94m240 |[0m         uses: google-github-actions/setup-gcloud@v2
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/denoland_deno__ci.yml:251:9
+    [1m[94m|[0m
+[1m[94m251 |[0m         uses: google-github-actions/setup-gcloud@v2
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/denoland_deno__ci.yml:517:9
+    [1m[94m|[0m
+[1m[94m517 |[0m         uses: azure/login@v1
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/denoland_deno__ci.yml:530:9
+    [1m[94m|[0m
+[1m[94m530 |[0m         uses: azure/trusted-signing-action@v0
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/denoland_deno__ci.yml:739:9
+    [1m[94m|[0m
+[1m[94m739 |[0m         uses: softprops/action-gh-release@v0.1.15
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/denoland_deno__ci.yml:803:9
+    [1m[94m|[0m
+[1m[94m803 |[0m       - uses: dsherret/rust-toolchain-file@v1
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/denoland_deno__ci.yml:830:9
+    [1m[94m|[0m
+[1m[94m830 |[0m         uses: google-github-actions/auth@v2
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/denoland_deno__ci.yml:837:9
+    [1m[94m|[0m
+[1m[94m837 |[0m         uses: google-github-actions/setup-gcloud@v2
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#cache-poisoning\cache-poisoning]8;;\][0m: [1mruntime artifacts potentially vulnerable to a cache poisoning attack[0m
+   [1m[94m-->[0m ../.github/workflows/denoland_deno__ci.yml:7:1
+    [1m[94m|[0m
+[1m[94m  7 |[0m [1m[91m/[0m on:
+[1m[94m  8 |[0m [1m[91m|[0m   push:
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m 17 |[0m [1m[91m|[0m       - synchronize
+[1m[94m 18 |[0m [1m[91m|[0m       - ready_for_review
+    [1m[94m|[0m [1m[91m|________________________^[0m [1m[91mgenerally used when publishing artifacts generated at runtime[0m
+[1m[94m 19 |[0m   concurrency:
+[1m[94m...[0m
+[1m[94m400 |[0m         - name: Set up playwright cache
+[1m[94m401 |[0m           uses: actions/cache@v4
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcache enabled by default here[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m47[39m findings ([1m[93m29[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m3[39m medium, [31m15[39m high

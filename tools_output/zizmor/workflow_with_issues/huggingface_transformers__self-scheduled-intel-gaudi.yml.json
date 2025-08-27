@@ -1,0 +1,151 @@
+{
+  "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 15,
+    "by_rule": {
+      "artipacked": 4,
+      "excessive-permissions": 3,
+      "template-injection": 2,
+      "secrets-inherit": 3,
+      "unpinned-images": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+      "line": 42,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+      "line": 129,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+      "line": 198,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+      "line": 270,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+      "line": 72,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+      "line": 91,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+      "line": 323,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+      "line": 54,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+      "line": 54,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "secrets-inherit",
+      "level": "warning",
+      "message": "secrets unconditionally inherited by called workflow",
+      "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+      "line": 81,
+      "column": 5,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "secrets-inherit",
+      "level": "warning",
+      "message": "secrets unconditionally inherited by called workflow",
+      "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+      "line": 100,
+      "column": 5,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "secrets-inherit",
+      "level": "warning",
+      "message": "secrets unconditionally inherited by called workflow",
+      "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+      "line": 335,
+      "column": 5,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-images",
+      "level": "error",
+      "message": "unpinned image references",
+      "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+      "line": 120,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-images",
+      "level": "error",
+      "message": "unpinned image references",
+      "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+      "line": 189,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-images",
+      "level": "error",
+      "message": "unpinned image references",
+      "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+      "line": 261,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

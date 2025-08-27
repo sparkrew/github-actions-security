@@ -1,0 +1,17 @@
+name: Issue Needs Attention
+# This workflow is triggered on issue comments.
+on:
+issue_comment:
+types: created
+jobs:
+applyNeedsAttentionLabel:
+name: Apply Needs Attention Label
+runs-on: ubuntu-latest
+steps:
+- uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # actions/checkout@v2 | releases,850,v2.7.0
+- name: Apply Needs Attention Label
+uses: hramos/needs-attention@4d47f33c9b77fc9bf45670510c7847c382231317 # hramos/needs-attention@v1
+with:
+repo-token: ${{ secrets.GITHUB_TOKEN }}
+response-required-label: 'waiting-for-response'
+needs-attention-label: 'needs-triage'

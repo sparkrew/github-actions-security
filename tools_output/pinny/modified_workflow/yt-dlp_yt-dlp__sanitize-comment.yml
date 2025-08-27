@@ -1,0 +1,14 @@
+name: Sanitize comment
+on:
+issue_comment:
+types: [created, edited]
+permissions:
+issues: write
+jobs:
+sanitize-comment:
+name: Sanitize comment
+if: vars.SANITIZE_COMMENT && !github.event.issue.pull_request
+runs-on: ubuntu-latest
+steps:
+- name: Sanitize comment
+uses: yt-dlp/sanitize-comment@03c104edb0868647d789c4f1ea25c8f123c0cf67 # yt-dlp/sanitize-comment@v1 | main

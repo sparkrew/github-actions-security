@@ -1,0 +1,40 @@
+{
+  "workflow": "facebook_react-native__retry-workflow.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "excessive-permissions": 1,
+      "template-injection": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "facebook_react-native__retry-workflow.yml",
+      "line": 10,
+      "column": 5,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "facebook_react-native__retry-workflow.yml",
+      "line": 13,
+      "column": 15,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "facebook_react-native__retry-workflow.yml",
+      "line": 13,
+      "column": 15,
+      "note": "audit confidence \u2192 Low"
+    }
+  ]
+}

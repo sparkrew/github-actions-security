@@ -1,0 +1,35 @@
+name: Build Website
+on:
+push:
+paths:
+- 'website/**'
+branches:
+- master
+workflow_dispatch:
+# 任务
+jobs:
+build-and-deploy:
+# 服务器环境：最新版 Ubuntu
+runs-on: ubuntu-latest
+steps:
+# 拉取代码
+- uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0
+with:
+fetch-depth: 0
+- name: Install pnpm
+uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # pnpm/action-setup@v4
+- name: Use Node.js 16.x
+uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # actions/setup-node@v3 | releases,v3.9.1
+with:
+node-version: 16.x
+cache: 'pnpm'
+- run: pnpm install --filter=./website
+- run: cd website && pnpm build
+# 部署到 GitHub Pages
+- name: Deploy
+uses: JamesIves/github-pages-deploy-action@3dbacc7e69578703f91f077118b3475862cb09b8 # JamesIves/github-pages-deploy-action@4.1.0
+if: github.ref == 'refs/heads/master'
+with:
+BRANCH: gh-pages
+FOLDER: website/build
+clean-exclude: ice.png

@@ -1,0 +1,135 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_reusable.yml:156:9
+    [1m[94m|[0m
+[1m[94m156 |[0m         - uses: actions/checkout@v4
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m157 |[0m [1m[33m|[0m         with:
+[1m[94m158 |[0m [1m[33m|[0m           fetch-depth: 25
+[1m[94m159 |[0m [1m[33m|[0m
+[1m[94m160 |[0m [1m[33m|[0m       # local action -> needs to run after checkout
+    [1m[94m|[0m [1m[33m|___________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_reusable.yml:137:9
+    [1m[94m|[0m
+[1m[94m137 |[0m         - name: Normalize input step names into path key
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m138 |[0m           uses: actions/github-script@v7
+[1m[94m139 |[0m           id: var
+[1m[94m140 |[0m           with:
+[1m[94m141 |[0m [1m[91m/[0m           script: |
+[1m[94m142 |[0m [1m[91m|[0m             core.setOutput('input_step_key', '${{ inputs.stepName }}'.toLowerCase().replaceAll(/[/.]/g, '-').trim('-'));
+    [1m[94m|[0m [1m[91m|________________________________________________________________________________________________________________________^[0m [1m[91minputs.stepName may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_reusable.yml:144:9
+    [1m[94m|[0m
+[1m[94m144 |[0m       - run: fnm use --install-if-missing ${{ inputs.nodeVersion || env.NODE_LTS_VERSION }}
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+    [1m[94m|[0m         [1m[91m|[0m
+    [1m[94m|[0m         [1m[91mthis step[0m
+    [1m[94m|[0m         [1m[91minputs.nodeVersion may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_reusable.yml:145:9
+    [1m[94m|[0m
+[1m[94m145 |[0m       - run: fnm default ${{ inputs.nodeVersion || env.NODE_LTS_VERSION }}
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+    [1m[94m|[0m         [1m[91m|[0m
+    [1m[94m|[0m         [1m[91mthis step[0m
+    [1m[94m|[0m         [1m[91minputs.nodeVersion may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_reusable.yml:205:9
+    [1m[94m|[0m
+[1m[94m205 |[0m   [1m[94m...[0m - run: pnpm dlx turbo@${TURBO_VERSION} run build-native-${{ inputs.rustBuildProfile }} -v --env-mode loose --remote-cache-timeout 90 --summarize -- --target ${{ inputs.buildNativeTarget }}
+    [1m[94m|[0m  [1m[91m_______^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+    [1m[94m|[0m [1m[91m|[0m       [1m[91m|[0m
+    [1m[94m|[0m [1m[91m|[0m       [1m[91minputs.rustBuildProfile may expand into attacker-controllable code[0m
+[1m[94m206 |[0m [1m[91m|[0m [1m[94m...[0m   if: ${{ inputs.skipNativeBuild != 'yes' }}
+    [1m[94m|[0m [1m[91m|________________________________________________^[0m [1m[91mthis step[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_reusable.yml:205:9
+    [1m[94m|[0m
+[1m[94m205 |[0m   [1m[94m...[0m - run: pnpm dlx turbo@${TURBO_VERSION} run build-native-${{ inputs.rustBuildProfile }} -v --env-mode loose --remote-cache-timeout 90 --summarize -- --target ${{ inputs.buildNativeTarget }}
+    [1m[94m|[0m  [1m[91m_______^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+    [1m[94m|[0m [1m[91m|[0m       [1m[91m|[0m
+    [1m[94m|[0m [1m[91m|[0m       [1m[91minputs.buildNativeTarget may expand into attacker-controllable code[0m
+[1m[94m206 |[0m [1m[91m|[0m [1m[94m...[0m   if: ${{ inputs.skipNativeBuild != 'yes' }}
+    [1m[94m|[0m [1m[91m|________________________________________________^[0m [1m[91mthis step[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_reusable.yml:248:9
+    [1m[94m|[0m
+[1m[94m248 |[0m         - run: ${{ inputs.afterBuild }}
+    [1m[94m|[0m  [1m[91m_________^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+    [1m[94m|[0m [1m[91m|[0m         [1m[91m|[0m
+    [1m[94m|[0m [1m[91m|[0m         [1m[91minputs.afterBuild may expand into attacker-controllable code[0m
+[1m[94m249 |[0m [1m[91m|[0m         # defaults.run.shell sets a stronger options (`-leo pipefail`)
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m254 |[0m [1m[91m|[0m         shell: bash -le {0}
+[1m[94m255 |[0m [1m[91m|[0m         timeout-minutes: ${{ inputs.timeout_minutes }}
+    [1m[94m|[0m [1m[91m|______________________________________________________^[0m [1m[91mthis step[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_reusable.yml:271:9
+    [1m[94m|[0m
+[1m[94m271 |[0m         - name: Upload test report to datadog
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m272 |[0m           if: ${{ inputs.afterBuild && always() && !github.event.pull_request.head.repo.fork }}
+[1m[94m273 |[0m [1m[91m/[0m         run: |
+[1m[94m274 |[0m [1m[91m|[0m           # Add a `test.type` tag to distinguish between turbopack and next.js runs
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m288 |[0m [1m[91m|[0m               ./test/turbopack-test-junit-report
+[1m[94m289 |[0m [1m[91m|[0m           fi
+    [1m[94m|[0m [1m[91m|____________^[0m [1m[91minputs.stepName may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_reusable.yml:271:9
+    [1m[94m|[0m
+[1m[94m271 |[0m         - name: Upload test report to datadog
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m272 |[0m           if: ${{ inputs.afterBuild && always() && !github.event.pull_request.head.repo.fork }}
+[1m[94m273 |[0m [1m[91m/[0m         run: |
+[1m[94m274 |[0m [1m[91m|[0m           # Add a `test.type` tag to distinguish between turbopack and next.js runs
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m288 |[0m [1m[91m|[0m               ./test/turbopack-test-junit-report
+[1m[94m289 |[0m [1m[91m|[0m           fi
+    [1m[94m|[0m [1m[91m|____________^[0m [1m[91minputs.stepName may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_reusable.yml:174:9
+    [1m[94m|[0m
+[1m[94m174 |[0m         uses: taiki-e/install-action@nextest
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_reusable.yml:182:9
+    [1m[94m|[0m
+[1m[94m182 |[0m         uses: ijjk/rust-cache@turbo-cache-v1.0.8
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m22[39m findings ([1m[93m11[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m10[39m high

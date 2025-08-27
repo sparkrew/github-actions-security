@@ -1,0 +1,76 @@
+{
+  "workflow": "huggingface_transformers__self-push-amd.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        25,
+        120,
+        124,
+        200,
+        244,
+        295,
+        310,
+        331,
+        332
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__self-push-amd.yml:124",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__self-push-amd.yml:244",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__self-push-amd.yml:295",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__self-push-amd.yml:310",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__self-push-amd.yml:25",
+        "Warn: pipCommand not pinned by hash: .github/workflows/huggingface_transformers__self-push-amd.yml:120",
+        "Warn: pipCommand not pinned by hash: .github/workflows/huggingface_transformers__self-push-amd.yml:200",
+        "Warn: pipCommand not pinned by hash: .github/workflows/huggingface_transformers__self-push-amd.yml:331",
+        "Warn: pipCommand not pinned by hash: .github/workflows/huggingface_transformers__self-push-amd.yml:332",
+        "Info:   0 out of   5 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of   4 pipCommand dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 0,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1
+      ],
+      "raw_details": [
+        "Warn: no topLevel permission defined: .github/workflows/huggingface_transformers__self-push-amd.yml:1",
+        "Info: no jobLevel write permissions found"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

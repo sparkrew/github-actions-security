@@ -1,0 +1,37 @@
+{
+  "workflow": "yt-dlp_yt-dlp__release.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 1,
+      "job_all_secrets": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "306",
+      "column": "",
+      "job": "publish",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_call",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "job_all_secrets",
+      "line": "296",
+      "column": "",
+      "job": "publish",
+      "step": "",
+      "details": "",
+      "event_triggers": [
+        "workflow_call",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

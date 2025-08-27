@@ -1,0 +1,27 @@
+name: CI Pipeline
+on:
+push:
+branches:
+- "pull-request/[0-9]+"
+- main
+- release-*
+jobs:
+basic:
+uses: ./.github/workflows/basic-checks.yaml
+image:
+uses: ./.github/workflows/image.yaml
+needs:
+- basic
+secrets: inherit
+with:
+version: ${{ needs.basic.outputs.version }}
+build_multi_arch_images: ${{ github.ref_name == 'main' || startsWith(github.ref_name, 'release-') }}
+e2e-test:
+needs:
+- image
+- basic
+secrets: inherit
+uses: ./.github/workflows/e2e.yaml
+with:
+version: ${{ needs.basic.outputs.version }}
+golang_version: ${{ needs.basic.outputs.golang_version }}

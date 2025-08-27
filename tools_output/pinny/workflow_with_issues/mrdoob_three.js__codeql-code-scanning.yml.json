@@ -1,0 +1,32 @@
+{
+  "workflow": "mrdoob_three.js__codeql-code-scanning.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4",
+      "line": 25
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: github/codeql-action/init@ce28f5bb42b7a9f2c824e633a3f6ee835bab6858 # v3",
+      "line": 28
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: github/codeql-action/init@ce28f5bb42b7a9f2c824e633a3f6ee835bab6858 # github/codeql-action/init@ce28f5bb42b7a9f2c824e633a3f6ee835bab6858",
+      "line": 34
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: github/codeql-action/init@ce28f5bb42b7a9f2c824e633a3f6ee835bab6858 # github/codeql-action/init@ce28f5bb42b7a9f2c824e633a3f6ee835bab6858",
+      "line": 36
+    }
+  ]
+}

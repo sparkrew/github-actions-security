@@ -1,0 +1,69 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__rspack-update-tests-manifest.yml:16:9
+   [1m[94m|[0m
+[1m[94m16 |[0m         - name: Checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m17 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m20 |[0m [1m[33m|[0m           # See: https://docs.github.com/en/actions/security-guides/automatic-token-authentication#using-the-github_token-in-a-workflow
+[1m[94m21 |[0m [1m[33m|[0m           token: ${{ secrets.RELEASE_BOT_GITHUB_TOKEN }}
+   [1m[94m|[0m [1m[33m|________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__rspack-update-tests-manifest.yml:56:9
+   [1m[94m|[0m
+[1m[94m56 |[0m         - name: Checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m57 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m60 |[0m [1m[33m|[0m           # See: https://docs.github.com/en/actions/security-guides/automatic-token-authentication#using-the-github_token-in-a-workflow
+[1m[94m61 |[0m [1m[33m|[0m           token: ${{ secrets.RELEASE_BOT_GITHUB_TOKEN }}
+   [1m[94m|[0m [1m[33m|________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__rspack-update-tests-manifest.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m # A recurring workflow which updates the passing/failing/skipped integration tests for Turbopack.
+[1m[94m 2 |[0m [1m[33m|[0m name: Update Rspack test manifest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m85 |[0m [1m[33m|[0m           PR_TITLE: Update Rspack production test manifest
+[1m[94m86 |[0m [1m[33m|[0m           PR_BODY: This auto-generated PR updates the production integration test manifest used when testing Rspack.
+   [1m[94m|[0m [1m[33m|_____________________________________________________________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__rspack-update-tests-manifest.yml:11:3
+   [1m[94m|[0m
+[1m[94m11 |[0m [1m[33m/[0m   update_dev_manifest:
+[1m[94m12 |[0m [1m[33m|[0m     name: Update and upload Rspack development test manifest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m49 |[0m [1m[33m|[0m           PR_TITLE: Update Rspack development test manifest
+[1m[94m50 |[0m [1m[33m|[0m           PR_BODY: This auto-generated PR updates the development integration test manifest used when testing Rspack.
+   [1m[94m|[0m [1m[33m|[0m                                                                                                                     [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________________________________________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                                                       [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                                                       [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__rspack-update-tests-manifest.yml:51:3
+   [1m[94m|[0m
+[1m[94m51 |[0m [1m[33m/[0m   update_build_manifest:
+[1m[94m52 |[0m [1m[33m|[0m     name: Update and upload Rspack production test manifest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m85 |[0m [1m[33m|[0m           PR_TITLE: Update Rspack production test manifest
+[1m[94m86 |[0m [1m[33m|[0m           PR_BODY: This auto-generated PR updates the production integration test manifest used when testing Rspack.
+   [1m[94m|[0m [1m[33m|[0m                                                                                                                     [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________________________________________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                                                       [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                                                       [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m5[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m5[39m medium, [31m0[39m high

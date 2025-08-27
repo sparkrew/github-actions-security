@@ -1,0 +1,211 @@
+{
+  "workflow": "vercel_next.js__code_freeze.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "vercel_next.js__code_freeze.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-node@v4",
+          "pinned": "actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "line": 30
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "vercel_next.js__code_freeze.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | v4.4.0",
+          "line": 12
+        }
+      ]
+    },
+    "semgrep": {
+      "workflow": "vercel_next.js__code_freeze.yml",
+      "tool": "semgrep",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "run-shell-injection": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "run-shell-injection",
+          "line": 45,
+          "code": "requires login",
+          "note": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+          "documentation": null
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "vercel_next.js__code_freeze.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            30,
+            36
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/vercel_next.js__code_freeze.yml:30",
+            "Warn: npmCommand not pinned by hash: .github/workflows/vercel_next.js__code_freeze.yml:36",
+            "Info:   0 out of   1 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   1 npmCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          }
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          }
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/vercel_next.js__code_freeze.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          }
+        }
+      ]
+    },
+    "poutine": {
+      "workflow": "vercel_next.js__code_freeze.yml",
+      "tool": "poutine",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "injection": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "injection",
+          "line": "45",
+          "column": "",
+          "job": "start",
+          "step": "4",
+          "details": "Sources: github.event.inputs.type",
+          "event_triggers": [
+            "workflow_dispatch"
+          ]
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "vercel_next.js__code_freeze.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "line": 30,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v4`"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "vercel_next.js__code_freeze.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "excessive-permissions": 1,
+          "template-injection": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "vercel_next.js__code_freeze.yml",
+          "line": 24,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "vercel_next.js__code_freeze.yml",
+          "line": 45,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "vercel_next.js__code_freeze.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 2
+      },
+      "findings": [
+        {
+          "line": 12,
+          "column": 5,
+          "message": "expected \"inputs\" key for \"workflow_dispatch\" section but got \"secrets\" [syntax-check]"
+        },
+        {
+          "line": 27,
+          "column": 30,
+          "message": "property \"releasetype\" is not defined in object type {type: string} [expression]"
+        }
+      ]
+    }
+  }
+}

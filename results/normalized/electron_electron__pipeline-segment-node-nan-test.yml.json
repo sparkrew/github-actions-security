@@ -1,0 +1,357 @@
+{
+  "workflow": "electron_electron__pipeline-segment-node-nan-test.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "electron_electron__pipeline-segment-node-nan-test.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "unpinned-github-actions": 6
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 45,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093",
+          "line": 60,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093",
+          "line": 65,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 99,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093",
+          "line": 114,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093",
+          "line": 119,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "semgrep": {
+      "workflow": "electron_electron__pipeline-segment-node-nan-test.yml",
+      "tool": "semgrep",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "run-shell-injection": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "run-shell-injection",
+          "line": 59,
+          "code": "requires login",
+          "note": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+          "documentation": null,
+          "capability": "injection-check"
+        },
+        {
+          "rule": "run-shell-injection",
+          "line": 113,
+          "code": "requires login",
+          "note": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+          "documentation": null,
+          "capability": "injection-check"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "electron_electron__pipeline-segment-node-nan-test.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "automatic-hardening-check"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/electron_electron__pipeline-segment-node-nan-test.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "permissions-check"
+        }
+      ]
+    },
+    "poutine": {
+      "workflow": "electron_electron__pipeline-segment-node-nan-test.yml",
+      "tool": "poutine",
+      "summary": {
+        "total_findings": 10,
+        "by_rule": {
+          "untrusted_checkout_exec": 10
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "untrusted_checkout_exec",
+          "line": "74",
+          "column": "",
+          "job": "",
+          "step": "",
+          "details": "Detected usage of `bash`",
+          "event_triggers": [
+            "workflow_call"
+          ],
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "untrusted_checkout_exec",
+          "line": "128",
+          "column": "",
+          "job": "",
+          "step": "",
+          "details": "Detected usage of `bash`",
+          "event_triggers": [
+            "workflow_call"
+          ],
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "untrusted_checkout_exec",
+          "line": "76",
+          "column": "",
+          "job": "",
+          "step": "",
+          "details": "Detected usage of `unzip`",
+          "event_triggers": [
+            "workflow_call"
+          ],
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "untrusted_checkout_exec",
+          "line": "130",
+          "column": "",
+          "job": "",
+          "step": "",
+          "details": "Detected usage of `unzip`",
+          "event_triggers": [
+            "workflow_call"
+          ],
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "untrusted_checkout_exec",
+          "line": "57",
+          "column": "",
+          "job": "",
+          "step": "",
+          "details": "Detected usage of a Local GitHub Action at path: `./src/electron/.github/actions/install-build-tools`",
+          "event_triggers": [
+            "workflow_call"
+          ],
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "untrusted_checkout_exec",
+          "line": "111",
+          "column": "",
+          "job": "",
+          "step": "",
+          "details": "Detected usage of a Local GitHub Action at path: `./src/electron/.github/actions/install-build-tools`",
+          "event_triggers": [
+            "workflow_call"
+          ],
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "untrusted_checkout_exec",
+          "line": "62",
+          "column": "",
+          "job": "",
+          "step": "",
+          "details": "Detected usage of a Local GitHub Action at path: `./src/electron/.github/actions/install-dependencies`",
+          "event_triggers": [
+            "workflow_call"
+          ],
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "untrusted_checkout_exec",
+          "line": "116",
+          "column": "",
+          "job": "",
+          "step": "",
+          "details": "Detected usage of a Local GitHub Action at path: `./src/electron/.github/actions/install-dependencies`",
+          "event_triggers": [
+            "workflow_call"
+          ],
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "untrusted_checkout_exec",
+          "line": "55",
+          "column": "",
+          "job": "",
+          "step": "",
+          "details": "Detected usage of a Local GitHub Action at path: `./src/electron/.github/actions/set-chromium-cookie`",
+          "event_triggers": [
+            "workflow_call"
+          ],
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "untrusted_checkout_exec",
+          "line": "109",
+          "column": "",
+          "job": "",
+          "step": "",
+          "details": "Detected usage of a Local GitHub Action at path: `./src/electron/.github/actions/set-chromium-cookie`",
+          "event_triggers": [
+            "workflow_call"
+          ],
+          "capability": "artifact-Integrity-check"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "electron_electron__pipeline-segment-node-nan-test.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "artipacked": 2,
+          "template-injection": 4
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "electron_electron__pipeline-segment-node-nan-test.yml",
+          "line": 48,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "electron_electron__pipeline-segment-node-nan-test.yml",
+          "line": 102,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "electron_electron__pipeline-segment-node-nan-test.yml",
+          "line": 58,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "electron_electron__pipeline-segment-node-nan-test.yml",
+          "line": 58,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "electron_electron__pipeline-segment-node-nan-test.yml",
+          "line": 58,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "electron_electron__pipeline-segment-node-nan-test.yml",
+          "line": 112,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "electron_electron__pipeline-segment-node-nan-test.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 3
+      },
+      "findings": [
+        {
+          "line": 27,
+          "column": 18,
+          "message": "input \"gn-build-type\" of workflow_call event has the default value \"testing\", but it is also required. if an input is marked as required, its default value will never be used [events]",
+          "capability": "workflow_structural_check"
+        },
+        {
+          "line": 41,
+          "column": 14,
+          "message": "label \"electron-arc-linux-amd64-8core\" is unknown. available labels are \"windows-latest\", \"windows-latest-8-cores\", \"windows-2025\", \"windows-2022\", \"windows-2019\", \"ubuntu-latest\", \"ubuntu-latest-4-cores\", \"ubuntu-latest-8-cores\", \"ubuntu-latest-16-cores\", \"ubuntu-24.04\", \"ubuntu-24.04-arm\", \"ubuntu-22.04\", \"ubuntu-22.04-arm\", \"ubuntu-20.04\", \"macos-latest\", \"macos-latest-xl\", \"macos-latest-xlarge\", \"macos-latest-large\", \"macos-15-xlarge\", \"macos-15-large\", \"macos-15\", \"macos-14-xl\", \"macos-14-xlarge\", \"macos-14-large\", \"macos-14\", \"macos-13-xl\", \"macos-13-xlarge\", \"macos-13-large\", \"macos-13\", \"self-hosted\", \"x64\", \"arm\", \"arm64\", \"linux\", \"macos\", \"windows\". if it is a custom label for self-hosted runner, set list of labels in actionlint.yaml config file [runner-label]",
+          "capability": "workflow_structural_check"
+        },
+        {
+          "line": 95,
+          "column": 14,
+          "message": "label \"electron-arc-linux-amd64-4core\" is unknown. available labels are \"windows-latest\", \"windows-latest-8-cores\", \"windows-2025\", \"windows-2022\", \"windows-2019\", \"ubuntu-latest\", \"ubuntu-latest-4-cores\", \"ubuntu-latest-8-cores\", \"ubuntu-latest-16-cores\", \"ubuntu-24.04\", \"ubuntu-24.04-arm\", \"ubuntu-22.04\", \"ubuntu-22.04-arm\", \"ubuntu-20.04\", \"macos-latest\", \"macos-latest-xl\", \"macos-latest-xlarge\", \"macos-latest-large\", \"macos-15-xlarge\", \"macos-15-large\", \"macos-15\", \"macos-14-xl\", \"macos-14-xlarge\", \"macos-14-large\", \"macos-14\", \"macos-13-xl\", \"macos-13-xlarge\", \"macos-13-large\", \"macos-13\", \"self-hosted\", \"x64\", \"arm\", \"arm64\", \"linux\", \"macos\", \"windows\". if it is a custom label for self-hosted runner, set list of labels in actionlint.yaml config file [runner-label]",
+          "capability": "workflow_structural_check"
+        }
+      ]
+    }
+  }
+}

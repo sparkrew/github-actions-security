@@ -1,0 +1,17 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react__shared_close_direct_sync_branch_prs.yml:22:9
+   [1m[94m|[0m
+[1m[94m22 |[0m         - name: Close PR
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m23 |[0m           uses: actions/github-script@v7
+[1m[94m24 |[0m           with:
+[1m[94m25 |[0m [1m[91m/[0m           script: |
+[1m[94m26 |[0m [1m[91m|[0m             const owner = context.repo.owner;
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m41 |[0m [1m[91m|[0m               state: 'closed'
+[1m[94m42 |[0m [1m[91m|[0m             });
+   [1m[94m|[0m [1m[91m|________________^[0m [1m[91mgithub.event.pull_request.base.ref may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m3[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m0[39m medium, [31m1[39m high

@@ -1,0 +1,114 @@
+{
+  "workflow": "axios_axios__publish.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 11,
+    "by_rule": {
+      "artipacked": 2,
+      "excessive-permissions": 2,
+      "template-injection": 3,
+      "unpinned-uses": 4
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "axios_axios__publish.yml",
+      "line": 21,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "axios_axios__publish.yml",
+      "line": 67,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "axios_axios__publish.yml",
+      "line": 1,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "axios_axios__publish.yml",
+      "line": 63,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "info",
+      "message": "code injection via template expansion",
+      "workflow": "axios_axios__publish.yml",
+      "line": 59,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "axios_axios__publish.yml",
+      "line": 81,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "axios_axios__publish.yml",
+      "line": 81,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "axios_axios__publish.yml",
+      "line": 33,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "axios_axios__publish.yml",
+      "line": 36,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "axios_axios__publish.yml",
+      "line": 41,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "axios_axios__publish.yml",
+      "line": 51,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

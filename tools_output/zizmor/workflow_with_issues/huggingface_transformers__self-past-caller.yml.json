@@ -1,0 +1,49 @@
+{
+  "workflow": "huggingface_transformers__self-past-caller.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "excessive-permissions": 2,
+      "secrets-inherit": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "huggingface_transformers__self-past-caller.yml",
+      "line": 20,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "huggingface_transformers__self-past-caller.yml",
+      "line": 31,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "secrets-inherit",
+      "level": "warning",
+      "message": "secrets unconditionally inherited by called workflow",
+      "workflow": "huggingface_transformers__self-past-caller.yml",
+      "line": 22,
+      "column": 5,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "secrets-inherit",
+      "level": "warning",
+      "message": "secrets unconditionally inherited by called workflow",
+      "workflow": "huggingface_transformers__self-past-caller.yml",
+      "line": 33,
+      "column": 5,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

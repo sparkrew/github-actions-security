@@ -1,0 +1,32 @@
+{
+  "workflow": "microsoft_PowerToys__msstore-submissions.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: azure/login@a457da9ea143d694b1b9c7c869ebb04ebe844ef5 # azure/login@v2",
+      "line": 21
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # actions/setup-dotnet@v4 | v4.3.1",
+      "line": 36
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: microsoft/setup-msstore-cli@3b2ec9136230357ce9abc02b9d056626fb248d3f # microsoft/setup-msstore-cli@v1",
+      "line": 39
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: azure/cli@089eac9d8cc39f5d003e94f8b65efc51076c9cbd # azure/cli@v2",
+      "line": 41
+    }
+  ]
+}

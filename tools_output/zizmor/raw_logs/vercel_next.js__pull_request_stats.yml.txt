@@ -1,0 +1,64 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__pull_request_stats.yml:42:9
+   [1m[94m|[0m
+[1m[94m42 |[0m         - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m43 |[0m [1m[33m|[0m         with:
+[1m[94m44 |[0m [1m[33m|[0m           fetch-depth: 25
+   [1m[94m|[0m [1m[33m|_________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__pull_request_stats.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m on:
+[1m[94m 2 |[0m [1m[33m|[0m   pull_request:
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m59 |[0m [1m[33m|[0m       - uses: ./.github/actions/next-stats-action
+[1m[94m60 |[0m [1m[33m|[0m         if: ${{ steps.docs-change.outputs.DOCS_CHANGE == 'nope' }}
+   [1m[94m|[0m [1m[33m|___________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__pull_request_stats.yml:24:3
+   [1m[94m|[0m
+[1m[94m24 |[0m [1m[33m/[0m   build:
+[1m[94m25 |[0m [1m[33m|[0m     uses: ./.github/workflows/build_reusable.yml
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m29 |[0m [1m[33m|[0m       uploadSwcArtifact: 'yes'
+[1m[94m30 |[0m [1m[33m|[0m       uploadAnalyzerArtifacts: 'yes'
+   [1m[94m|[0m [1m[33m|[0m                                    [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________________|[0m
+   [1m[94m|[0m                                      [1m[33mthis job[0m
+   [1m[94m|[0m                                      [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__pull_request_stats.yml:32:3
+   [1m[94m|[0m
+[1m[94m32 |[0m [1m[33m/[0m   stats:
+[1m[94m33 |[0m [1m[33m|[0m     name: PR Stats
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m59 |[0m [1m[33m|[0m       - uses: ./.github/actions/next-stats-action
+[1m[94m60 |[0m [1m[33m|[0m         if: ${{ steps.docs-change.outputs.DOCS_CHANGE == 'nope' }}
+   [1m[94m|[0m [1m[33m|[0m                                                                   [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|___________________________________________________________________|[0m
+   [1m[94m|[0m                                                                     [1m[33mthis job[0m
+   [1m[94m|[0m                                                                     [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__pull_request_stats.yml:25:5
+   [1m[94m|[0m
+[1m[94m25 |[0m     uses: ./.github/workflows/build_reusable.yml
+   [1m[94m|[0m     [1m[33m--------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m26 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m6[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m5[39m medium, [31m0[39m high

@@ -1,0 +1,24 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-native__check-for-reproducer.yml:13:9
+   [1m[94m|[0m
+[1m[94m13 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-native__check-for-reproducer.yml:8:3
+   [1m[94m|[0m
+[1m[94m 8 |[0m [1m[33m/[0m   check-for-reproducer:
+[1m[94m 9 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m18 |[0m [1m[33m|[0m             const checkForReproducer = require('./.github/workflow-scripts/checkForReproducer.js')
+[1m[94m19 |[0m [1m[33m|[0m             await checkForReproducer(github, context)
+   [1m[94m|[0m [1m[33m|[0m                                                      [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________________________________________|[0m
+   [1m[94m|[0m                                                        [1m[33mthis job[0m
+   [1m[94m|[0m                                                        [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m3[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m0[39m high

@@ -1,0 +1,112 @@
+{
+  "workflow": "ollama_ollama__release.yaml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 9,
+    "by_rule": {
+      "unverified_script_exec": 1,
+      "known_vulnerability_in_build_component": 8
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": "213",
+      "column": "",
+      "job": "windows-build",
+      "step": "1",
+      "details": "Command: iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1')",
+      "event_triggers": [
+        "push"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "74",
+      "column": "",
+      "job": "darwin-sign",
+      "step": "2",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "78",
+      "column": "",
+      "job": "darwin-sign",
+      "step": "3",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "430",
+      "column": "",
+      "job": "docker-merge-push",
+      "step": "2",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "467",
+      "column": "",
+      "job": "release",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "471",
+      "column": "",
+      "job": "release",
+      "step": "2",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "475",
+      "column": "",
+      "job": "release",
+      "step": "3",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "268",
+      "column": "",
+      "job": "windows-sign",
+      "step": "3",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "273",
+      "column": "",
+      "job": "windows-sign",
+      "step": "4",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push"
+      ]
+    }
+  ]
+}

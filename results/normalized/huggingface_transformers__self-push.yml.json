@@ -1,0 +1,590 @@
+{
+  "workflow": "huggingface_transformers__self-push.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "huggingface_transformers__self-push.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 7,
+        "by_rule": {
+          "unpinned-github-actions": 7
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4",
+          "pinned": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "line": 101,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4",
+          "pinned": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "line": 233,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4",
+          "pinned": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "line": 348,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4",
+          "pinned": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "line": 458,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4",
+          "pinned": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "line": 568,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 616,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/download-artifact@v4",
+          "pinned": "actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093",
+          "line": 631,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "huggingface_transformers__self-push.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 7,
+        "by_rule": {
+          "unpinned-github-actions": 7
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+          "line": 92,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+          "line": 209,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+          "line": 310,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+          "line": 405,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+          "line": 500,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 544,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0",
+          "line": 557,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "huggingface_transformers__self-push.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            101,
+            233,
+            348,
+            458,
+            568,
+            616,
+            631,
+            649,
+            650
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__self-push.yml:101",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__self-push.yml:233",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__self-push.yml:348",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__self-push.yml:458",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__self-push.yml:568",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__self-push.yml:616",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__self-push.yml:631",
+            "Warn: pipCommand not pinned by hash: .github/workflows/huggingface_transformers__self-push.yml:649",
+            "Warn: pipCommand not pinned by hash: .github/workflows/huggingface_transformers__self-push.yml:650",
+            "Info:   0 out of   7 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   2 pipCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "automatic-hardening-check"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/huggingface_transformers__self-push.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "permissions-check"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "huggingface_transformers__self-push.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 7,
+        "by_rule": {
+          "unpinned-github-actions": 7
+        }
+      },
+      "findings": [
+        {
+          "line": 101,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 233,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 348,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 458,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 568,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 616,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 631,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/download-artifact@v4`",
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "huggingface_transformers__self-push.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 32,
+        "by_rule": {
+          "artipacked": 1,
+          "excessive-permissions": 7,
+          "dangerous-triggers": 1,
+          "template-injection": 14,
+          "github-env": 4,
+          "unpinned-images": 5
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 616,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 30,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 125,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 238,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 353,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 463,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 573,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "dangerous-triggers",
+          "level": "error",
+          "message": "use of fundamentally insecure workflow trigger",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 3,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "trigger-permissions-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 196,
+          "column": 9,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 196,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 196,
+          "column": 9,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 221,
+          "column": 9,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 221,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 226,
+          "column": 9,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 309,
+          "column": 9,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 309,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 309,
+          "column": 9,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 334,
+          "column": 9,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 334,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 341,
+          "column": 9,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 591,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 632,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "github-env",
+          "level": "error",
+          "message": "dangerous use of environment file",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 169,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "github-env",
+          "level": "error",
+          "message": "dangerous use of environment file",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 282,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "github-env",
+          "level": "error",
+          "message": "dangerous use of environment file",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 395,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "github-env",
+          "level": "error",
+          "message": "dangerous use of environment file",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 505,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "unpinned-images",
+          "level": "error",
+          "message": "unpinned image references",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 38,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "pinning-check"
+        },
+        {
+          "rule_id": "unpinned-images",
+          "level": "error",
+          "message": "unpinned image references",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 138,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "pinning-check"
+        },
+        {
+          "rule_id": "unpinned-images",
+          "level": "error",
+          "message": "unpinned image references",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 251,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "pinning-check"
+        },
+        {
+          "rule_id": "unpinned-images",
+          "level": "error",
+          "message": "unpinned image references",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 364,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "pinning-check"
+        },
+        {
+          "rule_id": "unpinned-images",
+          "level": "error",
+          "message": "unpinned image references",
+          "workflow": "huggingface_transformers__self-push.yml",
+          "line": 474,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "pinning-check"
+        }
+      ]
+    }
+  }
+}

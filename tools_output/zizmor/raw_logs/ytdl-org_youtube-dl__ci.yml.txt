@@ -1,0 +1,139 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/ytdl-org_youtube-dl__ci.yml:153:7
+    [1m[94m|[0m
+[1m[94m153 |[0m       - name: Checkout
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m154 |[0m [1m[33m|[0m       uses: actions/checkout@v3
+[1m[94m155 |[0m [1m[33m|[0m     #-------- Python 3 -----
+    [1m[94m|[0m [1m[33m|____________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/ytdl-org_youtube-dl__ci.yml:473:7
+    [1m[94m|[0m
+[1m[94m473 |[0m     - uses: actions/checkout@v3
+    [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/ytdl-org_youtube-dl__ci.yml:81:7
+    [1m[94m|[0m
+[1m[94m 81 |[0m       - name: Make version array
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m 82 |[0m         id: run
+[1m[94m 83 |[0m [1m[91m/[0m       run: |
+[1m[94m 84 |[0m [1m[91m|[0m         # Make a JSON Array from comma/space-separated string (no extra escaping)
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m102 |[0m [1m[91m|[0m         printf 'own-pip-versions=%s\n' \
+[1m[94m103 |[0m [1m[91m|[0m           "$(json_list 2.6, 2.7, 3.2, 3.3, 3.4, 3.5, 3.6)" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|______________________________________________________________________________^[0m [1m[91minputs.test-set may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/ytdl-org_youtube-dl__ci.yml:81:7
+    [1m[94m|[0m
+[1m[94m 81 |[0m       - name: Make version array
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m 82 |[0m         id: run
+[1m[94m 83 |[0m [1m[91m/[0m       run: |
+[1m[94m 84 |[0m [1m[91m|[0m         # Make a JSON Array from comma/space-separated string (no extra escaping)
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m102 |[0m [1m[91m|[0m         printf 'own-pip-versions=%s\n' \
+[1m[94m103 |[0m [1m[91m|[0m           "$(json_list 2.6, 2.7, 3.2, 3.3, 3.4, 3.5, 3.6)" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|______________________________________________________________________________^[0m [1m[91minputs.cpython-versions may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/ytdl-org_youtube-dl__ci.yml:169:7
+    [1m[94m|[0m
+[1m[94m169 |[0m       - name: Locate supported Python ${{ matrix.python-version }}
+    [1m[94m|[0m         [1m[94m----------------------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m170 |[0m         if: ${{ env.pythonLocation }}
+[1m[94m171 |[0m         shell: bash
+[1m[94m172 |[0m [1m[94m/[0m       run: |
+[1m[94m173 |[0m [1m[94m|[0m         echo "PYTHONHOME=${pythonLocation}" >> "$GITHUB_ENV"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m198 |[0m [1m[94m|[0m             'print(sys.path)' \
+[1m[94m199 |[0m [1m[94m|[0m             | ${expected} -
+    [1m[94m|[0m [1m[94m|___________________________-[0m [1m[94minfo: steps.setup-python.outputs.python-path may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/ytdl-org_youtube-dl__ci.yml:357:7
+    [1m[94m|[0m
+[1m[94m357 |[0m       - name: Set up supported Python ${{ matrix.python-version }} pip
+    [1m[94m|[0m         [1m[33m--------------------------------------------------------------[0m [1m[33mthis step[0m
+[1m[94m358 |[0m         if: ${{ (matrix.python-version != '3.2' && steps.setup-python.outputs.python-path) || matrix.python-version == '2.7' }}
+[1m[94m359 |[0m         # This step may run in either Linux or Windows
+[1m[94m360 |[0m         shell: bash
+[1m[94m361 |[0m [1m[33m/[0m       run: |
+[1m[94m362 |[0m [1m[33m|[0m         echo "$PATH"
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m367 |[0m [1m[33m|[0m           curl -L -O "https://bootstrap.pypa.io/pip/${get_pip}get-pip.py"; \
+[1m[94m368 |[0m [1m[33m|[0m           python get-pip.py; }
+    [1m[94m|[0m [1m[33m|______________________________-[0m [1m[33mmatrix.python-version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/ytdl-org_youtube-dl__ci.yml:407:7
+    [1m[94m|[0m
+[1m[94m407 |[0m       - name: Install nose for Python ${{ matrix.python-version }}
+    [1m[94m|[0m         [1m[33m----------------------------------------------------------[0m [1m[33mthis step[0m
+[1m[94m408 |[0m         if: ${{ (matrix.python-version != '3.2' && steps.setup-python.outputs.python-path) || (matrix.python-impl == 'cpython' && (ma[1m[94m...[0m
+[1m[94m409 |[0m         shell: bash
+[1m[94m410 |[0m [1m[33m/[0m       run: |
+[1m[94m411 |[0m [1m[33m|[0m         echo "$PATH"
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m417 |[0m [1m[33m|[0m         [ "$py3ver" -ge 9 ] && nose=pynose || nose=nose
+[1m[94m418 |[0m [1m[33m|[0m         $PIP -qq show $nose || $PIP install $nose
+    [1m[94m|[0m [1m[33m|_________________________________________________-[0m [1m[33mmatrix.python-version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/ytdl-org_youtube-dl__ci.yml:407:7
+    [1m[94m|[0m
+[1m[94m407 |[0m       - name: Install nose for Python ${{ matrix.python-version }}
+    [1m[94m|[0m         [1m[33m----------------------------------------------------------[0m [1m[33mthis step[0m
+[1m[94m408 |[0m         if: ${{ (matrix.python-version != '3.2' && steps.setup-python.outputs.python-path) || (matrix.python-impl == 'cpython' && (ma[1m[94m...[0m
+[1m[94m409 |[0m         shell: bash
+[1m[94m410 |[0m [1m[33m/[0m       run: |
+[1m[94m411 |[0m [1m[33m|[0m         echo "$PATH"
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m417 |[0m [1m[33m|[0m         [ "$py3ver" -ge 9 ] && nose=pynose || nose=nose
+[1m[94m418 |[0m [1m[33m|[0m         $PIP -qq show $nose || $PIP install $nose
+    [1m[94m|[0m [1m[33m|_________________________________________________-[0m [1m[33mmatrix.python-version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/ytdl-org_youtube-dl__ci.yml:434:7
+    [1m[94m|[0m
+[1m[94m434 |[0m       - name: Set up nosetest test
+    [1m[94m|[0m         [1m[33m--------------------------[0m [1m[33mthis step[0m
+[1m[94m435 |[0m         if: ${{ contains(needs.select.outputs.test-set, matrix.ytdl-test-set ) }}
+[1m[94m436 |[0m         shell: bash
+[1m[94m437 |[0m [1m[33m/[0m       run: |
+[1m[94m438 |[0m [1m[33m|[0m         # set PYTHON_VER
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m459 |[0m [1m[33m|[0m           '        self.assertIn(platform.python_implementation().lower(), (os.environ["PYTHON_IMPL"], self.ver[0]))' \
+[1m[94m460 |[0m [1m[33m|[0m           > test/test_python.py
+    [1m[94m|[0m [1m[33m|_______________________________-[0m [1m[33mmatrix.python-version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/ytdl-org_youtube-dl__ci.yml:161:7
+    [1m[94m|[0m
+[1m[94m161 |[0m       uses: ytdl-org/setup-python@v1
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m38[39m findings ([1m[93m28[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m6[39m medium, [31m3[39m high

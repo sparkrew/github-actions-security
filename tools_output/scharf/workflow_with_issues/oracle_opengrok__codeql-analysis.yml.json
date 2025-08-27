@@ -1,0 +1,37 @@
+{
+  "workflow": "oracle_opengrok__codeql-analysis.yml",
+  "tool": "scharf",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "unpinned-github-actions": 5
+    }
+  },
+  "findings": [
+    {
+      "line": 24,
+      "column": 13,
+      "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+    },
+    {
+      "line": 26,
+      "column": 13,
+      "message": "Unpinned GitHub Action: uses `actions/setup-java@v4`"
+    },
+    {
+      "line": 31,
+      "column": 20,
+      "message": "Unpinned GitHub Action: uses `codeql-action/init@v3`"
+    },
+    {
+      "line": 36,
+      "column": 20,
+      "message": "Unpinned GitHub Action: uses `codeql-action/autobuild@v3`"
+    },
+    {
+      "line": 39,
+      "column": 20,
+      "message": "Unpinned GitHub Action: uses `codeql-action/analyze@v3`"
+    }
+  ]
+}

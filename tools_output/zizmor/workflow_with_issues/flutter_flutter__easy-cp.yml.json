@@ -1,0 +1,77 @@
+{
+  "workflow": "flutter_flutter__easy-cp.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 7,
+    "by_rule": {
+      "dangerous-triggers": 1,
+      "template-injection": 3,
+      "github-env": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "dangerous-triggers",
+      "level": "error",
+      "message": "use of fundamentally insecure workflow trigger",
+      "workflow": "flutter_flutter__easy-cp.yml",
+      "line": 7,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "flutter_flutter__easy-cp.yml",
+      "line": 22,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "flutter_flutter__easy-cp.yml",
+      "line": 57,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "flutter_flutter__easy-cp.yml",
+      "line": 71,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "github-env",
+      "level": "error",
+      "message": "dangerous use of environment file",
+      "workflow": "flutter_flutter__easy-cp.yml",
+      "line": 23,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "github-env",
+      "level": "error",
+      "message": "dangerous use of environment file",
+      "workflow": "flutter_flutter__easy-cp.yml",
+      "line": 26,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "github-env",
+      "level": "error",
+      "message": "dangerous use of environment file",
+      "workflow": "flutter_flutter__easy-cp.yml",
+      "line": 30,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    }
+  ]
+}

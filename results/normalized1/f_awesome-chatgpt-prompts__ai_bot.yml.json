@@ -1,0 +1,217 @@
+{
+  "workflow": "f_awesome-chatgpt-prompts__ai_bot.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "f_awesome-chatgpt-prompts__ai_bot.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v3",
+          "pinned": "actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744",
+          "line": 28,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-node@v3",
+          "pinned": "actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610",
+          "line": 34,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/github-script@v6",
+          "pinned": "actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410",
+          "line": 614,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "f_awesome-chatgpt-prompts__ai_bot.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0",
+          "line": 25,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # actions/setup-node@v3 | releases,v3.9.1",
+          "line": 30,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # actions/github-script@v6",
+          "line": 536,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "f_awesome-chatgpt-prompts__ai_bot.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            28,
+            34,
+            40,
+            614
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/f_awesome-chatgpt-prompts__ai_bot.yml:28",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/f_awesome-chatgpt-prompts__ai_bot.yml:34",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/f_awesome-chatgpt-prompts__ai_bot.yml:614",
+            "Warn: npmCommand not pinned by hash: .github/workflows/f_awesome-chatgpt-prompts__ai_bot.yml:40",
+            "Info:   0 out of   3 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   1 npmCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "automatic-hardening-check"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            23
+          ],
+          "raw_details": [
+            "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/f_awesome-chatgpt-prompts__ai_bot.yml:23",
+            "Warn: no topLevel permission defined: .github/workflows/f_awesome-chatgpt-prompts__ai_bot.yml:1"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "permissions-check"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "f_awesome-chatgpt-prompts__ai_bot.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "line": 28,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v3`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 34,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v3`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 614,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/github-script@v6`",
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "f_awesome-chatgpt-prompts__ai_bot.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "f_awesome-chatgpt-prompts__ai_bot.yml",
+          "line": 28,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-Integrity-check"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "f_awesome-chatgpt-prompts__ai_bot.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 3
+      },
+      "findings": [
+        {
+          "line": 28,
+          "column": 15,
+          "message": "the runner of \"actions/checkout@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "workflow_structural_check"
+        },
+        {
+          "line": 34,
+          "column": 15,
+          "message": "the runner of \"actions/setup-node@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "workflow_structural_check"
+        },
+        {
+          "line": 614,
+          "column": 15,
+          "message": "the runner of \"actions/github-script@v6\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "workflow_structural_check"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,48 @@
+name: Issues pinner management
+on:
+issues:
+types:
+- "pinned"
+- "unpinned"
+permissions:
+# no checkouts/branching needed
+contents: none
+# needed by "action-add-labels / action-remove-labels" to CRUD labels
+issues: write
+# This allows a subsequently queued workflow run to interrupt/wait for previous runs
+concurrency:
+group: '${{ github.workflow }} @ ${{ github.event.issue.number || github.run_id }}'
+cancel-in-progress: false  # true: interrupt, false = wait for
+jobs:
+labeler:
+name: Pushpin labeler
+runs-on: ubuntu-latest
+steps:
+- name: Add pushpin label on pinning an issue
+id: if-pinned
+if: github.event.action == 'pinned'
+uses: actions-ecosystem/action-add-labels@18f1af5e3544586314bbe15c0273249c770b2daf # actions-ecosystem/action-add-labels@v1
+with:
+repo:   ${{ github.repository }}
+number: ${{ github.event.issue.number }}
+labels: |
+:pushpin: pinned
+- name: Remove pushpin label on unpinning an issue
+id: if-unpinned
+if: github.event.action == 'unpinned'
+uses: actions-ecosystem/action-remove-labels@2ce5d41b4b6aa8503e285553f75ed56e0a40bae0 # actions-ecosystem/action-remove-labels@v1 | v1.2.0
+with:
+repo:   ${{ github.repository }}
+number: ${{ github.event.issue.number }}
+labels: |
+:pushpin: pinned
+- name: GitHub reporter
+# run even previous steps fails
+if: always()
+run: |
+echo "$INPUT_SUMMARY"  >> $GITHUB_STEP_SUMMARY;
+env:
+INPUT_SUMMARY: ${{ format('Issue [\#{2}]({0}/{1}/issues/{2}) should be `{3}`.',
+github.server_url, github.repository,
+github.event.issue.number,
+github.event.action) }}

@@ -1,0 +1,3925 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "informationUri": "https://github.com/boostsecurityio/poutine",
+          "name": "poutine",
+          "rules": [
+            {
+              "id": "unverified_script_exec",
+              "name": "Unverified Script Execution",
+              "shortDescription": {
+                "text": "Unverified Script Execution"
+              },
+              "fullDescription": {
+                "text": "The pipeline executes a script or binary fetched from a remote\nserver without verifying its integrity."
+              },
+              "helpUri": "https://boostsecurityio.github.io/poutine/rules/unverified_script_exec",
+              "help": {
+                "text": "https://boostsecurityio.github.io/poutine/rules/unverified_script_exec",
+                "markdown": "## Description\n\nThe pipeline executes a script or binary fetched from a remote server without verifying its integrity. This pattern commonly appears in the form `curl $URL | bash` (referred as _curl pipe bash_) where a remote script is downloaded and executed in a subsequent command. Other commands may be used in place of `curl` to download the script, such as `wget` or `Invoke-WebRequest`, as well as other interpreters than `bash` such as `python`, `powershell`, `php`, etc.\n\nPiping `curl` into `bash` is a common way to quickly get started with a software on a development machine. Although this is convenient and generally safe to do when the script is sourced from a trusted domain, the likelihood of downloading a compromised script increases when the frequency of execution is higher, such as in a CI pipeline. For production build environments, executing remote scripts leave little to no control and visibility over the code that is being executed. This obscures the provenance of build dependencies and tamper with the build environment in unpredictable ways.\n\n## Remediation\n\n### Anti-Pattern\n\n```sh\ncurl https://git.io/get_helm.sh | bash\ncurl -Lo ./kind https://kind.sigs.k8s.io/dl/latest/kind-linux-amd64 \u0026\u0026 chmod +x ./kind\nbash \u003c(curl -s https://codecov.io/bash)\ndeno run --allow-all https://raw.githubusercontent.com/org/repo/main/ci.ts\niex ((New-Object System.Net.WebClient).DownloadString(\"https://get.pulumi.com/install.ps1\"))\niwr -useb get.scoop.sh | iex\n```\n\n### Prefer Using a Package Manager\n\nIf the script is meant to install software, consider installing it through a package manager operating system of the pipeline (`apt`, `apk`, `brew`, `rpm`, etc.).\nThe CI provider's plugin ecosystem (GitHub Actions, Gitlab CI/CD components) may already have a plugin that can install the software in a more robust way. Otherwise, consider using the software in a container image.\n\n### Download the Script From a Public Repository\n\nInstallation scripts that are hosted on a custom domain add unnecessary risks when sourcing the script. Often the custom domain simply redirects to a file hosted on a public repository.\n\nUsing a `HEAD` request with `curl` can be used to reveal the redirection URL:\n```sh\n$ curl -I https://get.rvm.io/ | grep -i location\nLocation: https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer\n```\n\nInstallation scripts that are hosted in a public repository benefit from publicly auditable events and a version control system that provides transparency on the script's history of changes. It also allows consumers of the script to download the file from a specific commit, providing an additional integrity measure that ensures the script does not change unexpectedly.\n\nInstead of downloading a script from a mutable reference, such as a branch or tag:\n```sh\ncurl -f https://raw.githubusercontent.com/anchore/grype/main/install.sh | bash\n```\n\nResolve the mutable reference to a commit SHA using `git ls-remote`:\n```sh\ngit ls-remote https://github.com/anchore/grype main\n239741f535c59d6e1b9faee61f64ebcf4361d2c5        refs/heads/main\n```\n\nThen, in a CI workflow, replace `main` with the commit SHA to execute the script from an immutable reference:\n```sh\ncurl -f https://raw.githubusercontent.com/anchore/grype/239741f535c59d6e1b9faee61f64ebcf4361d2c5/install.sh | bash\n```\n\n### Use `curl --fail`\n\nRemote servers can sometimes fail to properly serve a request and could return a response that is not the expected content. For example, in case of an intermittent server error, an HTML page may be returned instead of a bash script. Piping HTML into `bash` may have unintended consequences. By using curl's `--fail` option, it ensures the command does not output the response when the request fails, thus reducing the risk of executing unexpected content.\n\n```sh\n$ curl https://example.com/foo.sh | bash\nbash: line 1: syntax error near unexpected token `newline'\nbash: line 1: `\u003c?xml version=\"1.0\" encoding=\"iso-8859-1\"?\u003e'\n\n$ curl --fail https://example.com/foo.sh | bash\ncurl: (22) The requested URL returned error: 500\n```\n\n### Enforce Integrity With Checksum Verification\n\nTo ensure the content of the script does not change after it is included in a CI workflow, a checksum can be computed and verified before executing the script. This approach is best when used with remote scripts that are known to be immutable. Otherwise, the checksums will need to be updated each time the remote script changes.\n\nFirst, compute the digest of the script:\n```sh\n$ curl https://raw.githubusercontent.com/anchore/grype/239741f535c59d6e1b9faee61f64ebcf4361d2c5/install.sh | sha256sum\na8c6d3c0f110f7243bb379f9baf46b382a1b7704221a0d4591b810fe741176e3  -\n```\n\nThen, in a CI pipeline, the script should first be downloaded to file and then only be executed if the checksum matches the value computed earlier:\n```sh\ncurl -fo install.sh https://raw.githubusercontent.com/anchore/grype/239741f535c59d6e1b9faee61f64ebcf4361d2c5/install.sh\necho \"a8c6d3c0f110f7243bb379f9baf46b382a1b7704221a0d4591b810fe741176e3  install.sh\" | sha256sum -c \\\n  \u0026\u0026 bash install.sh\n```"
+              }
+            },
+            {
+              "id": "untrusted_checkout_exec",
+              "name": "Arbitrary Code Execution from Untrusted Code Changes",
+              "shortDescription": {
+                "text": "Arbitrary Code Execution from Untrusted Code Changes"
+              },
+              "fullDescription": {
+                "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+              },
+              "helpUri": "https://boostsecurityio.github.io/poutine/rules/untrusted_checkout_exec",
+              "help": {
+                "text": "https://boostsecurityio.github.io/poutine/rules/untrusted_checkout_exec",
+                "markdown": "## Description\n\nThe workflow appears to checkout untrusted code from a fork and uses a command that is known to allow code execution. \n\nUsing workflows with `pull_request_target` has the added benefit (as opposed to `pull_request`) of allowing access to secrets even in forked repositories. There can be good reasons to do so if you need to use API Keys to talk to some external services or want to interact with the GitHub API with `write` permissions. However, this comes at the cost of paying extra attention to the tools you use in your workflow.\n\nSo-called \"Living Off The Pipeline\" tools are common development tools (typically CLIs), commonly used in CI/CD pipelines that have lesser-known RCE-By-Design features (\"foot guns\") that can be abused to execute arbitrary code. These tools are often used to automate tasks such as compiling, testing, packaging, linting or scanning. The gotcha comes from the fact that many of those tools will consume unutrusted input from files on disk and when you checkout untrusted code from a fork, you are effectively allowing the attacker to control the input to those tools.\n\n## Remediation\n\n### GitHub Actions\n\n#### Recommended\n\n##### Using labels\n\nMake it mandatory to label the PR with a specific label before the workflow runs. This way, you can ensure that only PRs that are labeled with the specific label are allowed to run the workflow.\n\nAdding a label to a pull request can only be performed by users with write access to the repository. This means that the attacker would need to have write access to the repository to add the label to the pull request.\n\nIMPORTANT NOTE: The hypotethical `npm run lint` command used here, assumes that it will process files in the `untrusted` directory. If your actual tool is not designed to process files in a specific directory, you should consider using a different approach to prevent code execution.\n\nThe following example not only checks for the label, but is also coded defensively to run trusted linting scripts, despite needing access to secrets.\n\n```yaml\non:\n  pull_request_target:\n    branches: [main]\n    types: [labeled]\npermissions: {}\njobs:\n  lint:\n    runs-on: ubuntu-latest\n    if: github.event.label.name == 'safe-to-run'\n    permissions:\n      contents: read\n      pull-requests: write\n    steps:\n    - name: Checkout trusted code from protected branch\n      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1\n      with:\n        ref: main\n        persist-credentials: false\n        path: trusted\n    - name: Install trusted dependencies\n      working-directory: trusted\n      run: npm ci\n\n    - name: Checkout untrusted code\n      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1\n      with:\n        repository: ${{ github.event.pull_request.head.repo.full_name }}\n        ref: ${{ github.event.pull_request.head.sha }}\n        persist-credentials: false\n        path: untrusted\n    - name: Run linting script on untrusted code\n      id: untrusted-code-lint\n      working-directory: trusted\n      env:\n        LINTING_TOOL_API_KEY: ${{ secrets.LINTING_TOOL_API_KEY }}\n      run: |\n        RAND_DELIMITER=\"$(openssl rand -hex 16)\" # 128-bit random delimiter token\n        echo \"tainted\u003c\u003c${RAND_DELIMITER}\" \u003e\u003e \"${GITHUB_OUTPUT}\"\n        echo \"$(npm run lint --ignore-scripts $GITHUB_WORKSPACE/untrusted/)\" \u003e\u003e \"${GITHUB_OUTPUT}\"\n        echo \"${RAND_DELIMITER}\" \u003e\u003e \"${GITHUB_OUTPUT}\"\n    - name: Output linting results to Pull Request\n      uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1\n      env:\n        UNTRUSTED_CODE_TAINTED_LINT_RESULTS: ${{ steps.untrusted-code-lint.outputs.tainted }}\n      with:\n        script: |\n          const { UNTRUSTED_CODE_TAINTED_LINT_RESULTS } = process.env\n          github.rest.issues.createComment({\n              issue_number: context.issue.number,\n              owner: context.repo.owner,\n              repo: context.repo.repo,\n              body: `👋 Thanks for your contribution.\\nHere are the linting results:\\n${UNTRUSTED_CODE_TAINTED_LINT_RESULTS}`\n          })\n```\n\n##### Using environments\n\nYou should limit the number of simple Actions secrets and prefer the use environments to store secrets to restrict the execution of the workflow to specific environments. This way, you can ensure that only PRs that are targeting the specific environment are allowed to run the workflow. And you can configure the environment to be protected and require approval before the workflow runs.\n\nIMPORTANT NOTE: The hypotethical `npm run lint` command used here, assumes that it will process files in the `untrusted` directory. If your actual tool is not designed to process files in a specific directory, you should consider using a different approach to prevent code execution.\n\nThe following example is very similar to the previous, but uses environments and stores the `LINTING_TOOL_API_KEY` in the environment.\n\n```yaml\non:\n  pull_request_target:\n    branches: [main]\n    types: [opened, synchronize]\npermissions: {}\njobs:\n  lint:\n    runs-on: ubuntu-latest\n    environment: untrusted-pull-request-from-forks\n    permissions:\n      contents: read\n      pull-requests: write\n    steps:\n    - name: Checkout trusted code from protected branch\n      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1\n      with:\n        ref: main\n        persist-credentials: false\n        path: trusted\n    - name: Install trusted dependencies\n      working-directory: trusted\n      run: npm ci\n\n    - name: Checkout untrusted code\n      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1\n      with:\n        repository: ${{ github.event.pull_request.head.repo.full_name }}\n        ref: ${{ github.event.pull_request.head.sha }}\n        persist-credentials: false\n        path: untrusted\n    - name: Run linting script on untrusted code\n      id: untrusted-code-lint\n      working-directory: trusted\n      env:\n        LINTING_TOOL_API_KEY: ${{ secrets.LINTING_TOOL_API_KEY }}\n      run: |\n        RAND_DELIMITER=\"$(openssl rand -hex 16)\" # 128-bit random delimiter token\n        echo \"tainted\u003c\u003c${RAND_DELIMITER}\" \u003e\u003e \"${GITHUB_OUTPUT}\"\n        echo \"$(npm run lint --ignore-scripts $GITHUB_WORKSPACE/untrusted/)\" \u003e\u003e \"${GITHUB_OUTPUT}\"\n        echo \"${RAND_DELIMITER}\" \u003e\u003e \"${GITHUB_OUTPUT}\"\n    - name: Output linting results to Pull Request\n      uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1\n      env:\n        UNTRUSTED_CODE_TAINTED_LINT_RESULTS: ${{ steps.untrusted-code-lint.outputs.tainted }}\n      with:\n        script: |\n          const { UNTRUSTED_CODE_TAINTED_LINT_RESULTS } = process.env\n          github.rest.issues.createComment({\n              issue_number: context.issue.number,\n              owner: context.repo.owner,\n              repo: context.repo.repo,\n              body: `👋 Thanks for your contribution.\\nHere are the linting results:\\n${UNTRUSTED_CODE_TAINTED_LINT_RESULTS}`\n          })\n```\n\n#### Anti-Pattern\n\nThis example contains several things that could be improved to make the workflow more secure.\n\n```yaml\n# (1) Triggers on `pull_request_target`, no scoping to protected branch, no scoping to selected events\non: pull_request_target\n\n# (2) Using default permissions for automatic token\n\njobs:\n  lint:\n    runs-on: ubuntu-latest\n    # (3) Runs unconditionnally (no label, no environment)\n    steps:\n    - name: Checkout untrusted code\n      uses: actions/checkout@v4 # (4) Missing pinning\n      with:\n        repository: ${{ github.event.pull_request.head.repo.full_name }}\n        ref: ${{ github.event.pull_request.head.sha }}\n        # (5) Persisting credentials is not necessary - Though this is not a panacea, credentials can still be dumped from memory\n        # (6) Checking untrusted code in default workspace path - In this scenario, it's good to explicitely define the path with untrusted code\n    - name: Install dependencies\n      run: npm install # (7) Should use `npm ci` instead, this will allow attack to install any package\n    - name: Run linting script\n      id: lint\n      env:\n        LINTING_TOOL_API_KEY: ${{ secrets.LINTING_TOOL_API_KEY }}\n      run: |\n        echo \"results\u003c\u003cEOF\" \u003e\u003e \"${GITHUB_OUTPUT}\" # (8) Untrusted output could output more that just `results` because EOF delimiter is known to the attacker\n        echo \"$(npm run lint)\" \u003e\u003e \"${GITHUB_OUTPUT}\" # (9) RCE-by-design (npm will consume untrusted `package.json` and execute arbitrary code)\n        echo \"EOF\" \u003e\u003e \"${GITHUB_OUTPUT}\"\n    - name: Output linting results to Pull Request\n      uses: actions/github-script@v7 # (10) Missing pinning\n      with:\n        script: |\n          github.rest.issues.createComment({\n              issue_number: context.issue.number,\n              owner: context.repo.owner,\n              repo: context.repo.repo,\n              body: `👋 Thanks for your contribution.\\nHere are the linting results:\\n${{ steps.lint.outputs.results }}` // (11) Second-order Injection\n          })\n```\n\n### Azure DevOps\n\n#### Caveat\nFalse positives are likely given that static analysis of solely the pipeline file is not enough to confirm exploitability\n\n#### Recommended\n##### Azure DevOps Settings\nOrganization Setting:\n![img.png](img.png)\n\nAvoid activating the following settings to prevent issues:\n![img_1.png](img_1.png)\n\n### Pipeline As Code Tekton\n\n#### Anti-Pattern\n\n```yaml\napiVersion: tekton.dev/v1beta1\nkind: PipelineRun\nmetadata:\n  name: linters\n  annotations:\n    pipelinesascode.tekton.dev/on-event: \"[push, pull_request]\"\n    pipelinesascode.tekton.dev/on-target-branch: \"[*]\"\n    pipelinesascode.tekton.dev/task: \"[git-clone]\"\nspec:\n  params:\n    - name: repo_url\n      value: \"{{repo_url}}\"\n    - name: revision\n      value: \"{{revision}}\"\n  pipelineSpec:\n    params:\n      - name: repo_url\n      - name: revision\n    tasks:\n      - name: fetchit\n        displayName: \"Fetch git repository\"\n        params:\n          - name: url\n            value: $(params.repo_url)\n          - name: revision\n            value: $(params.revision)\n        taskRef:\n          name: git-clone\n        workspaces:\n          - name: output\n            workspace: source\n      - name: npm\n        displayName: \"NPM Install\"\n        runAfter:\n          - fetchit\n        taskSpec:\n          workspaces:\n            - name: source\n          steps:\n            - name: npm-install\n              image: node:16\n              workingDir: $(workspaces.source.path)\n              script: |\n                npm install\n...\n\n```\n\n\n\n## See Also\n- [Keeping your GitHub Actions and workflows secure Part 1: Preventing pwn requests](https://securitylab.github.com/research/github-actions-preventing-pwn-requests/)\n- [Erosion of Trust: Unmasking Supply Chain Vulnerabilities in the Terraform Registry](https://boostsecurity.io/blog/erosion-of-trust-unmasking-supply-chain-vulnerabilities-in-the-terraform-registry)\n- [The tale of a Supply Chain near-miss incident](https://boostsecurity.io/blog/the-tale-of-a-supply-chain-near-miss-incident)\n- [Living Off The Pipeline](https://boostsecurityio.github.io/lotp/)\n- https://learn.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops\u0026tabs=yaml#important-security-considerations\n- https://learn.microsoft.com/en-us/azure/devops/pipelines/security/misc?view=azure-devops#dont-provide-secrets-to-fork-builds"
+              }
+            },
+            {
+              "id": "known_vulnerability_in_build_component",
+              "name": "Build Component with a Known Vulnerability used",
+              "shortDescription": {
+                "text": "Build Component with a Known Vulnerability used"
+              },
+              "fullDescription": {
+                "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+              },
+              "helpUri": "https://boostsecurityio.github.io/poutine/rules/known_vulnerability_in_build_component",
+              "help": {
+                "text": "https://boostsecurityio.github.io/poutine/rules/known_vulnerability_in_build_component",
+                "markdown": "## Description\n\nA CI component was found to be vulnerable to a publicly known security vulnerability from the [Open Source Vulnerability Database (OSV)](https://osv.dev/)\n\n### GitHub Actions\n\nGitHub Actions workflows using third-party GitHub Actions with known vulnerabilities could compromise the security of the workflow and the repository.\n\n## Remediation\n\nUpgrade the affected component to a non-vulnerable version or remove the component from the workflow.\n\n## See Also\n- [GitHub Docs: Keeping your actions up to date with Dependabot](https://docs.github.com/en/code-security/dependabot/working-with-dependabot/keeping-your-actions-up-to-date-with-dependabot)\n- [GitHub Docs: Exporting a software bill of materials for your repository](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/exporting-a-software-bill-of-materials-for-your-repository)"
+              }
+            },
+            {
+              "id": "injection",
+              "name": "Injection with Arbitrary External Contributor Input",
+              "shortDescription": {
+                "text": "Injection with Arbitrary External Contributor Input"
+              },
+              "fullDescription": {
+                "text": "The pipeline contains an injection into bash or JavaScript with an expression\nthat can contain user input. Prefer placing the expression in an environment variable\ninstead of interpolating it directly into a script."
+              },
+              "helpUri": "https://boostsecurityio.github.io/poutine/rules/injection",
+              "help": {
+                "text": "https://boostsecurityio.github.io/poutine/rules/injection",
+                "markdown": "## Description\n\nThe pipeline contains an injection into bash or JavaScript with an expression that can contain user input. Prefer placing the expression in an environment variable instead of interpolating it directly into a script.\n\n## Remediation\n\n### GitHub Actions\n\n#### Recommended\n\n```yaml\non:\n  pull_request_target:\n    branches: [main]\n    types: [opened, synchronize]\n\npermissions: {}\n\njobs:\n  lint:\n    runs-on: ubuntu-latest\n    permissions:\n      pull-requests: write\n    steps:\n      - name: Validate pull request title and body\n        uses: actions/github-script@v60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1\n        env:\n          PR_TITLE: ${{ github.event.pull_request.title }}\n        with:\n          script: |\n            const { PR_TITLE } = process.env\n            github.rest.issues.createComment({\n                issue_number: context.issue.number,\n                owner: context.repo.owner,\n                repo: context.repo.repo,\n                body: `Your title (${PR_TITLE}) must match our expected format (\"BUG: Fix this now!!!\").`\n            })\n```\n\n#### Anti-Pattern\n\n```yaml\n# (1) Triggers on `pull_request_target`, no scoping to protected branch, no scoping to selected events\non: pull_request_target\n\npermissions: write-all # (2) Unnecessary permissions\n\njobs:\n  lint:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Debug\n        run: |\n          # (3) Bash injection\n          echo \"Title: ${{ github.event.pull_request.title }}\"\n          echo \"Body: ${{ github.event.pull_request.body }}\"\n      - name: Validate pull request title and body\n        uses: actions/github-script@v7 # (4) Missing pinning\n        with:\n          script: |\n            // (5) JavaScript injection\n            github.rest.issues.createComment({\n                issue_number: context.issue.number,\n                owner: context.repo.owner,\n                repo: context.repo.repo,\n                body: \"Your title (${{ github.event.pull_request.title}}) must match the expected format.\"\n            })\n```\n\n## Remediation\n\n### Pipeline as Code Tekton\n\n#### Anti-Pattern\n```yaml\napiVersion: tekton.dev/v1beta1\nkind: PipelineRun\nmetadata:\n  name: linters\n  annotations:\n    pipelinesascode.tekton.dev/on-event: \"[push, pull_request]\"\n    pipelinesascode.tekton.dev/on-target-branch: \"[*]\"\n    pipelinesascode.tekton.dev/task: \"[git-clone]\"\nspec:\n  params:\n    - name: repo_url\n      value: \"{{repo_url}}\"\n    - name: revision\n      value: \"{{revision}}\"\n  pipelineSpec:\n    params:\n      - name: repo_url\n      - name: revision\n    tasks:\n      - name: fetchit\n        displayName: \"Fetch git repository\"\n        params:\n          - name: url\n            value: $(params.repo_url)\n          - name: revision\n            value: $(params.revision)\n        taskRef:\n          name: git-clone\n        workspaces:\n          - name: output\n            workspace: source\n      - name: validate\n        displayName: \"Injecting body in script\"\n        runAfter:\n          - fetchit\n        taskSpec:\n          workspaces:\n            - name: source\n          steps:\n            - name: execute\n              image: some.registry/some-image\n              script: |\n                validate_pr \"{{body.pull_request.body}}\"\n...\n```\n\n## See Also\n- [Understanding the risk of script injections](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#understanding-the-risk-of-script-injections)\n- [Good practices for mitigating script injection attacks](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#good-practices-for-mitigating-script-injection-attacks)"
+              }
+            },
+            {
+              "id": "pr_runs_on_self_hosted",
+              "name": "Pull Request Runs on Self-Hosted GitHub Actions Runner",
+              "shortDescription": {
+                "text": "Pull Request Runs on Self-Hosted GitHub Actions Runner"
+              },
+              "fullDescription": {
+                "text": "This job runs on a self-hosted GitHub Actions runner in a workflow\nthat is triggered by a pull request event."
+              },
+              "helpUri": "https://boostsecurityio.github.io/poutine/rules/pr_runs_on_self_hosted",
+              "help": {
+                "text": "https://boostsecurityio.github.io/poutine/rules/pr_runs_on_self_hosted",
+                "markdown": "## Description\n\nThis job runs on a self-hosted GitHub Actions runner in a workflow that is triggered by a `pull_request` event (or other Pull Request related events). Using self-hosted runners in **Public repositories**, especially when processing events for `pull_request` events is considered highly risky as it allows external threats to **run arbitrary code** on that self-hosted runner compute instance. \n\nWhile the [\"Maximum access for pull requests from public forked repositories\"](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token) is `read`, meaning that secrets (either repo-level or organization-level) are not exposed immediately accessible to the pull request workflow, the attacker can still directly run arbitrary code, without leveraging any vulnerability. Then, if they can perform privilege escalation (most runners allow `sudo`), they may exfiltrate sensitive information from the runner, especially if the runner does not properly reset its state between jobs.\n\nThis risk occurs **as soon as** your GitHub Organization sets the GitHub Actions Runners configuration to allow self-hosted runners to be used in public repositories. You don't even need to have a workflow that explicitly uses a self-hosted runner in a public repository, the mere fact that the configuration allows it is enough to allow the attacker to exploit it. \n\nAt the moment, `poutine` looks for evidence of workflows explicitely using self-hosted runners, but we plan on improving this detection to also include the configuration of the GitHub Organization.\n\n## Remediation\n\n### GitHub Actions\n\n#### Recommended\n\nSet GitHub Organization **Runners** configuration to **Disabled**.\n\nIf you decide to allow and use self-hosted runners in public repositories, make sure to follow the [hardening guidelines](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#hardening-for-self-hosted-runners), knowing that is it critical to ensure that the runner is properly isolated from the rest of your infrastructure and state is cleared between jobs.\n\n#### Anti-Pattern\n\nHaving a GitHub Organization **Runners** configuration set to **All repositories** or to select some public repositories comes with the added responsbility of configuring your self-hosted runners pool in a way that is safe.\n\n## See Also\n- [Self-hosted runner security](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/about-self-hosted-runners#self-hosted-runner-security)\n- [Hardening for self-hosted runners](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#hardening-for-self-hosted-runners)\n- [Playing with fire - How we executed a critical supply chain attack on pytorch](https://johnstawinski.com/2024/01/11/playing-with-fire-how-we-executed-a-critical-supply-chain-attack-on-pytorch/)\n- [TensorFlow Supply Chain Compromise via Self-Hosted Runner Attack](https://www.praetorian.com/blog/tensorflow-supply-chain-compromise-via-self-hosted-runner-attack/)\n- [Gato - Github Attack TOOlkit](https://github.com/praetorian-inc/gato)"
+              }
+            },
+            {
+              "id": "default_permissions_on_risky_events",
+              "name": "Default permissions used on risky events",
+              "shortDescription": {
+                "text": "Default permissions used on risky events"
+              },
+              "fullDescription": {
+                "text": "The workflow and some of its jobs do not explicitely define permissions\nand the workflow triggers on events that are typically used to run builds from forks.\nBecause no permissions is set, the workflow inherits the default permissions\nconfigured on the repository or the organization."
+              },
+              "helpUri": "https://boostsecurityio.github.io/poutine/rules/default_permissions_on_risky_events",
+              "help": {
+                "text": "https://boostsecurityio.github.io/poutine/rules/default_permissions_on_risky_events",
+                "markdown": "## Description\n\nIf a GitHub Actions workflow does not declare permissions for its job, it inherits the default permissions configured in the GitHub Actions settings of the repository. For organizations created before February 2023, which is the case for a large number of important OSS projects and corporations, [the default permissions used to grant read-write access to the repository](https://github.blog/changelog/2023-02-02-github-actions-updating-the-default-github_token-permissions-to-read-only/) and even new repositories will inherit the permissions of the old, insecure defaults from the organization.\n\nWorkflows that trigger on events often related to pull requests from forks (`pull_request_target`, `issue_comment`) should ensure all jobs run with the minimum required permissions. This helps to ensure the workflow does not inadvertently expose a privileged token to untrusted code regardless of the default permissions set in the repository.\n\n## Remediation\n\nIn the affected worfklows, ensure that permissions are explicitely declared at the workflow level or at each job level.\n\nThe default workflow permissions can be configured to have no permissions to ensure that all jobs declare their permissions.\n```\non:\n  pull_request_target:\n    branches: [main]\n    types: [opened, synchronized]\n\npermissions: {} # Change the default job permissions to none\n\njobs:\n  pr-read:\n    runs-on: ubuntu-latest\n    permissions:\n      contents: read\n    steps:\n    - uses: actions/checkout@v4\n```\n\n\nWhen using workflow level permissions, ensure that the permissions are set to the minimum required for the workflow to function correctly. Increase the permissions only if necessary on a per-job basis.\n```\non:\n  pull_request_target:\n    branches: [main]\n    types: [opened, synchronized]\n\npermissions:\n  contents: read\n\njobs:\n  pr-read:\n    runs-on: ubuntu-latest\n    steps:\n    - uses: actions/checkout@v4\n  issues-write:\n    runs-on: ubuntu-latest\n    permissions:\n      issues: write\n    steps:\n    - uses: org/create-issue-action@v2\n```\n\n### Anti-Pattern\n\n```\non: pull_request_target\n\njobs:\n  build-pr:\n    runs-on: ubuntu-latest\n    steps:\n    - uses: actions/checkout@v4\n      with:\n        ref: ${{ github.event.pull_request.head.ref }}\n    - run: make\n```\n\n## See Also\n\n- [GitHub Actions: Assigning permissions to jobs](https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs)\n- [GitHub Actions: Setting the permissions of the `GITHUB_TOKEN` for your repository](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#setting-the-permissions-of-the-github_token-for-your-repository)"
+              }
+            }
+          ],
+          "semanticVersion": "0.18.0"
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": ".github/workflows/vitejs_vite__ci.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/remix-run_remix__deployments.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/github_codeql-action____test-proxy.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/vercel_next.js__build_reusable.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/tensorflow_tensorflow__update-rbe.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/vercel_next.js__test_examples.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/vercel_next.js__setup-nextjs-build.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/actions_setup-python__e2e-cache-freethreaded.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/actions_setup-python__e2e-cache.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/vercel_next.js__build_and_deploy.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/denoland_deno__promote_to_release.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/electron_electron__pipeline-segment-node-nan-test.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/pytorch_pytorch___binary-build-linux.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/electron_electron__pipeline-electron-docs-only.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/electron_electron__pipeline-electron-lint.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/hashicorp_terraform__equivalence-test-update.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/pytorch_pytorch___binary-test-linux.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/electron_electron__pipeline-segment-electron-build.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/electron_electron__pipeline-segment-electron-gn-check.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/withastro_astro__benchmark.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/vercel_next.js__pull_request_stats.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/tailwindlabs_tailwindcss__release-insiders.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/typescript-eslint_typescript-eslint__ci.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/github_codeql-action__debug-artifacts-safe.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/github_codeql-action__debug-artifacts-failure-safe.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/tailwindlabs_tailwindcss__release.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/vercel_next.js__test_e2e_deploy_release.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/facebook_react__devtools_regression_tests.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/rust-lang_rust__dependencies.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/remix-run_remix__stacks.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/tailwindlabs_tailwindcss__prepare-release.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/facebook_react__runtime_commit_artifacts.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/changed-files-vulnerability-without-hr.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/tj-actions-changed-files-incident.yaml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/changed-files-vulnerability-with-hr.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/tensorflow_tensorflow__release-branch-cherrypick.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/remix-run_remix__close-v2-issues.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/denoland_deno__start_release.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/denoland_deno__version_bump.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/vercel_next.js__trigger_release.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/pnpm_pnpm__update-latest.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/vercel_next.js__code_freeze.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/denoland_deno__npm_publish.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/facebook_hhvm__ubuntu.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/electron_electron__build.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/google_dagger__ci.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/pytorch_pytorch__lint-autoformat.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/pytorch_pytorch__build-magma-rocm-linux.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/pytorch_pytorch__lint.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/pytorch_pytorch__check-labels.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/pytorch_pytorch__build-magma-linux.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/pytorch_pytorch__build-almalinux-images.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/pytorch_pytorch__build-manywheel-images-s390x.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/microsoft_TypeScript__ci.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/github_docs__count-translation-corruptions.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/github_docs__index-general-search-pr.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/github_docs__generate-code-scanning-query-lists.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/github_docs__index-autocomplete-search.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/electron_electron__issue-commented.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/facebook_facebook-android-sdk__needs-attention.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/facebook_facebook-ios-sdk__needs-attention.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/hashicorp_terraform__issue-comment-created.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/NVIDIA_cutlass__labeler.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/PRTargetWorkflow.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/actions_cache__pr-opened-workflow.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/actions_starter-workflows__auto-assign.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/electron_electron__pull-request-labeled.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/facebook_react__compiler_discord_notify.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/facebook_react__runtime_discord_notify.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/facebook_react__shared_label_core_team_prs.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/typescript-eslint_typescript-eslint__semantic-breaking-change-pr.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/typescript-eslint_typescript-eslint__semantic-pr-titles.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/vercel_next.js__cancel.yml"
+          },
+          "length": -1
+        },
+        {
+          "location": {
+            "uri": ".github/workflows/withastro_astro__label.yml"
+          },
+          "length": -1
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "unverified_script_exec",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "The pipeline executes a script or binary fetched from a remote\nserver without verifying its integrity."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/vitejs_vite__ci.yml"
+                },
+                "region": {
+                  "startLine": 182,
+                  "endLine": 182
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "25bc33726b3a0afabf7ff1b0df4b94f66edaeae31aeb94e184f7d911e158710c"
+          }
+        },
+        {
+          "ruleId": "unverified_script_exec",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "The pipeline executes a script or binary fetched from a remote\nserver without verifying its integrity."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/remix-run_remix__deployments.yml"
+                },
+                "region": {
+                  "startLine": 216,
+                  "endLine": 216
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "f49e976bbb53fba9022ed78d812f47067e7d32300292dbe5566fd1c02153ba1f"
+          }
+        },
+        {
+          "ruleId": "unverified_script_exec",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "The pipeline executes a script or binary fetched from a remote\nserver without verifying its integrity."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/github_codeql-action____test-proxy.yml"
+                },
+                "region": {
+                  "startLine": 45,
+                  "endLine": 45
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "281759f7b9d367d803edc6806ac4ae76f9e67f90c4d02f40fc792241baecdd62"
+          }
+        },
+        {
+          "ruleId": "unverified_script_exec",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "The pipeline executes a script or binary fetched from a remote\nserver without verifying its integrity."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/vercel_next.js__build_reusable.yml"
+                },
+                "region": {
+                  "startLine": 126,
+                  "endLine": 126
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "1660512c2788ffdce6207475883a9fae3a2c2d5eb25ae6f7bfbf2fa84c31ce7f"
+          }
+        },
+        {
+          "ruleId": "unverified_script_exec",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "The pipeline executes a script or binary fetched from a remote\nserver without verifying its integrity."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/tensorflow_tensorflow__update-rbe.yml"
+                },
+                "region": {
+                  "startLine": 35,
+                  "endLine": 35
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "86750ab9584ed8cff48d18bb2be5de686dcdb8df105252f486e3a1ba2a78c007"
+          }
+        },
+        {
+          "ruleId": "unverified_script_exec",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "The pipeline executes a script or binary fetched from a remote\nserver without verifying its integrity."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/vercel_next.js__test_examples.yml"
+                },
+                "region": {
+                  "startLine": 50,
+                  "endLine": 50
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "4dad133fb2479d1a6c4fe6d884263a28185729da6f5f43d2b4ca180baecb39f0"
+          }
+        },
+        {
+          "ruleId": "unverified_script_exec",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "The pipeline executes a script or binary fetched from a remote\nserver without verifying its integrity."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/vercel_next.js__setup-nextjs-build.yml"
+                },
+                "region": {
+                  "startLine": 106,
+                  "endLine": 106
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "c6656a4ff62d22229800c63338ae65112a4f7de94a920709660b0b76f10d9319"
+          }
+        },
+        {
+          "ruleId": "unverified_script_exec",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "The pipeline executes a script or binary fetched from a remote\nserver without verifying its integrity."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/actions_setup-python__e2e-cache-freethreaded.yml"
+                },
+                "region": {
+                  "startLine": 71,
+                  "endLine": 71
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "2087ac863cfc8b0ec8ff312e2938fee63bbab9f05ba3c8aa42fee97162b8838a"
+          }
+        },
+        {
+          "ruleId": "unverified_script_exec",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "The pipeline executes a script or binary fetched from a remote\nserver without verifying its integrity."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/actions_setup-python__e2e-cache.yml"
+                },
+                "region": {
+                  "startLine": 96,
+                  "endLine": 96
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "2e9b8dd2e341cc31d2004754e8d4fafe2f45a37ec515ba7fe5504b3a76c7e8b8"
+          }
+        },
+        {
+          "ruleId": "unverified_script_exec",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "The pipeline executes a script or binary fetched from a remote\nserver without verifying its integrity."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/actions_setup-python__e2e-cache-freethreaded.yml"
+                },
+                "region": {
+                  "startLine": 162,
+                  "endLine": 162
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "632ac5137c1b605412c9540fd62e17f5becf7acc2a3f1c90a555b34642f478cb"
+          }
+        },
+        {
+          "ruleId": "unverified_script_exec",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "The pipeline executes a script or binary fetched from a remote\nserver without verifying its integrity."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/actions_setup-python__e2e-cache.yml"
+                },
+                "region": {
+                  "startLine": 234,
+                  "endLine": 234
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "77f2df9caa09c7daf9b47abb5c39c296fbed586706a321494ab9faa95fcd0189"
+          }
+        },
+        {
+          "ruleId": "unverified_script_exec",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "The pipeline executes a script or binary fetched from a remote\nserver without verifying its integrity."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/vercel_next.js__build_and_deploy.yml"
+                },
+                "region": {
+                  "startLine": 459,
+                  "endLine": 459
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "e6cc86b8f2fd95c548ffe3866d41b636728183cb037ed2d104a7e991549b4f69"
+          }
+        },
+        {
+          "ruleId": "unverified_script_exec",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "The pipeline executes a script or binary fetched from a remote\nserver without verifying its integrity."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/denoland_deno__promote_to_release.yml"
+                },
+                "region": {
+                  "startLine": 50,
+                  "endLine": 50
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "2e0109ab7ae9d78ebb565c0c8abdba4a97eed7eef0d034eff6da467f8ba53fcb"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-node-nan-test.yml"
+                },
+                "region": {
+                  "startLine": 74,
+                  "endLine": 74
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "bdf197fc2b0daaa2a00513b2b23dc841370c508e41ccdae43bbd464c60d12314"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-node-nan-test.yml"
+                },
+                "region": {
+                  "startLine": 128,
+                  "endLine": 128
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "f90db0173a7f8a0f7db89df6f8c8ab629aec34c9875f948dbad5f665b898309c"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/pytorch_pytorch___binary-build-linux.yml"
+                },
+                "region": {
+                  "startLine": 247,
+                  "endLine": 247
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "872afbcd821f7f88a7a389380014ad8b3a1c1ad9a9e014c130272010f5598075"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/vercel_next.js__setup-nextjs-build.yml"
+                },
+                "region": {
+                  "startLine": 82,
+                  "endLine": 82
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "86832a7e1c170c000927e103a7fc2ebe01d930505e90c8e85f7b87103e04e22c"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-node-nan-test.yml"
+                },
+                "region": {
+                  "startLine": 76,
+                  "endLine": 76
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "516dfd90307d8e145f2d8823728c0b942b6b1d831907d8638880a3120e3e8e0c"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-node-nan-test.yml"
+                },
+                "region": {
+                  "startLine": 130,
+                  "endLine": 130
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "e936da873d726e64cc74872457c358521e4ec4255292fc3c8df107f2700ec8cb"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-electron-docs-only.yml"
+                },
+                "region": {
+                  "startLine": 32,
+                  "endLine": 32
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "e4fbb6be61a5a2709cb768822ca7fe5db81cf873eb915edc45617714ec5e8803"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-electron-docs-only.yml"
+                },
+                "region": {
+                  "startLine": 32,
+                  "endLine": 32
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "e4fbb6be61a5a2709cb768822ca7fe5db81cf873eb915edc45617714ec5e8803"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-electron-lint.yml"
+                },
+                "region": {
+                  "startLine": 66,
+                  "endLine": 66
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "027b25b9f01487959b2eeeddecc8b53411675f41aff0193ebc1b669bfc02ea93"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-electron-lint.yml"
+                },
+                "region": {
+                  "startLine": 78,
+                  "endLine": 78
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "52ef971f69a8414e25aa0ff39ee121f2100ea45ccc1f4f00c75d04d0c860f46a"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/hashicorp_terraform__equivalence-test-update.yml"
+                },
+                "region": {
+                  "startLine": 61,
+                  "endLine": 61
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "bb92ada41e4a184c05db168a8748d3b6c9b7d365aed940fe1b28605efffba8d1"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/hashicorp_terraform__equivalence-test-update.yml"
+                },
+                "region": {
+                  "startLine": 53,
+                  "endLine": 53
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "99e063ef53ea93a023c0020f8fe662a0f11d21a7d3af83adb6343317a1c05d72"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/pytorch_pytorch___binary-test-linux.yml"
+                },
+                "region": {
+                  "startLine": 239,
+                  "endLine": 239
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "df80ada9f21673cb78ef27b2a33e9d55ebde823c8b6c9d59401a2f519ce09268"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/pytorch_pytorch___binary-build-linux.yml"
+                },
+                "region": {
+                  "startLine": 300,
+                  "endLine": 300
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "3e762c21637a4b79a35409433d2d3d9ed5b2f826eeeba9bb7426bd8efc5fc557"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/pytorch_pytorch___binary-test-linux.yml"
+                },
+                "region": {
+                  "startLine": 180,
+                  "endLine": 180
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "5c05f65f372dbc06c9e2dffd288b963a56c0f0abd6c88f7d6d40d13c76e5a40e"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/pytorch_pytorch___binary-build-linux.yml"
+                },
+                "region": {
+                  "startLine": 203,
+                  "endLine": 203
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "6fef1238b543cbf5e7524e582a7a7ca68c1b325a5469f6ba771ff33896e5b64d"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/pytorch_pytorch___binary-test-linux.yml"
+                },
+                "region": {
+                  "startLine": 229,
+                  "endLine": 229
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "678602c1455089d8ee4b7b30e63613d89ab42171ed82613aa7ba0f4a5a433492"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-electron-build.yml"
+                },
+                "region": {
+                  "startLine": 181,
+                  "endLine": 181
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "ed7e3ed5725e59309d7bac41dcdaf89cd58155adb25de7e5ee3b3b65df25f0be"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-electron-build.yml"
+                },
+                "region": {
+                  "startLine": 199,
+                  "endLine": 199
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "36f498faba26d41383fc49acbae7ca3c26c6f32c35692a02cbdcaf2225ba53be"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-electron-build.yml"
+                },
+                "region": {
+                  "startLine": 156,
+                  "endLine": 156
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "72027930c0a768e202e36d26ecf4d418700860f6a850666c49514d2201a1cb94"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-electron-build.yml"
+                },
+                "region": {
+                  "startLine": 99,
+                  "endLine": 99
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "f3210ff8e83c8fff805d671dc52b9210ea40cfd0f1a9f5df2f53309a5dc538a1"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-electron-build.yml"
+                },
+                "region": {
+                  "startLine": 178,
+                  "endLine": 178
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "9b8b3ffeb41a333f6d5c58cd8ad623b3ba43f229539e594c5e9bbcc893d5362a"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-node-nan-test.yml"
+                },
+                "region": {
+                  "startLine": 57,
+                  "endLine": 57
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "5bd63f7f2a4a82dc08d790c5bc31f7924ecbca32d1bebf7f36fffa22911aa026"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-electron-gn-check.yml"
+                },
+                "region": {
+                  "startLine": 72,
+                  "endLine": 72
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "2618c54a95542d2209ef4591ff9b1162462b34881c9819f7dae146cb9c0acedc"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-node-nan-test.yml"
+                },
+                "region": {
+                  "startLine": 111,
+                  "endLine": 111
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "0fe66286917c1c36748a06eaccb28a6a013392ae71e481171df17823d16476ae"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-electron-build.yml"
+                },
+                "region": {
+                  "startLine": 133,
+                  "endLine": 133
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "3342a5b5d2c4424e90f7da23c04cc345fbc10e6c1e0d2791267c4909797fe3fd"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-electron-docs-only.yml"
+                },
+                "region": {
+                  "startLine": 29,
+                  "endLine": 29
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "a030a5236b775ae701bf19533914b88518c614e104f7e11180c64e4965cc2dd1"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-electron-lint.yml"
+                },
+                "region": {
+                  "startLine": 32,
+                  "endLine": 32
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "3fa8a3adf5192420d8ccea0c216fee9efc15943a66ea65f49cd7876dd45c8deb"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-node-nan-test.yml"
+                },
+                "region": {
+                  "startLine": 62,
+                  "endLine": 62
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "6f1205d9e3a487e8f0d3b3719ed32895c85d8799e476501a60aba19d75537d5e"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-electron-build.yml"
+                },
+                "region": {
+                  "startLine": 111,
+                  "endLine": 111
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "a76b03ae9b7f528af69255da32d80e76b1918cad537d6a46e5e7f877749b2307"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-node-nan-test.yml"
+                },
+                "region": {
+                  "startLine": 116,
+                  "endLine": 116
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "968d62598123990f49b5e4df5e6ead126757dcbb4cf705f4f9f39c6fe7cf410f"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-electron-gn-check.yml"
+                },
+                "region": {
+                  "startLine": 120,
+                  "endLine": 120
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "7579c6969013fb25e96e381ad831c84d5736d2d41a96942a9fbd61c0f3bf1ab0"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-electron-gn-check.yml"
+                },
+                "region": {
+                  "startLine": 90,
+                  "endLine": 90
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "dfb7f41061743902e88ce317d0720f19918b6e2922296926a0e8059ad95a9421"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-electron-build.yml"
+                },
+                "region": {
+                  "startLine": 147,
+                  "endLine": 147
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "3f65a2dd8ad6792d9bffbb3e30407db46dece099ee4773c3ce45967e1f4fb15a"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-electron-gn-check.yml"
+                },
+                "region": {
+                  "startLine": 85,
+                  "endLine": 85
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "402accf7e1d3fdb1baf63c750a83c525d56e751cf83577cb5d80e3a960be0506"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-electron-build.yml"
+                },
+                "region": {
+                  "startLine": 142,
+                  "endLine": 142
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "b922bff3b5ee1ff9c56c656e8075a9f9773bf90d5e84af1daf306a62c8df5679"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-electron-lint.yml"
+                },
+                "region": {
+                  "startLine": 34,
+                  "endLine": 34
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "d43eeaed57bc03ed478cbe98836334812cb65fa6974623fbfbb7d2400d039431"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-node-nan-test.yml"
+                },
+                "region": {
+                  "startLine": 55,
+                  "endLine": 55
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "a16914a2cbbdf60e9ba08d91dba3ed328e38995acf335e01c288d77b9f1ad187"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-electron-gn-check.yml"
+                },
+                "region": {
+                  "startLine": 70,
+                  "endLine": 70
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "333d3fcfb23caae159de6186b72b1ac69cc84e363295bd8ef5cb1d894b086035"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-node-nan-test.yml"
+                },
+                "region": {
+                  "startLine": 109,
+                  "endLine": 109
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "c91bdfefa1448c0ac0fedf58048a19ccb7bc97a5d23a34114087ba6424d5a0df"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-electron-build.yml"
+                },
+                "region": {
+                  "startLine": 131,
+                  "endLine": 131
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "4dde27b7661dedf47761718cd5b3f858c69573ec6a6dd5c4d229553635e52818"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/withastro_astro__benchmark.yml"
+                },
+                "region": {
+                  "startLine": 40,
+                  "endLine": 40
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "beddddce44b5cb4fb548708585dccee9185f565be348d811b074c55127131e17"
+          }
+        },
+        {
+          "ruleId": "untrusted_checkout_exec",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "The workflow appears to checkout untrusted code from a fork\nand uses a command that is known to allow code execution."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pipeline-segment-electron-build.yml"
+                },
+                "region": {
+                  "startLine": 105,
+                  "endLine": 105
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "5d6d58921e004626f6a30f236370881f5717393632cacfbf494d3b0b1e55af3d"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/vercel_next.js__pull_request_stats.yml"
+                },
+                "region": {
+                  "startLine": 50,
+                  "endLine": 50
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "e1dabae68cb71e89a07e22fdf02c5259663f8920f599613fe3b4c34bf709c9d1"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/tailwindlabs_tailwindcss__release-insiders.yml"
+                },
+                "region": {
+                  "startLine": 262,
+                  "endLine": 262
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "3f8930fe70abff5999e0ba5b0d97651f1a89d482cf6e065106916a50f7827947"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/typescript-eslint_typescript-eslint__ci.yml"
+                },
+                "region": {
+                  "startLine": 271,
+                  "endLine": 271
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "ba3203f579bde20de4d56ee0210e0b3c590d456c76f125e1255ad7e36c0f9909"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/github_codeql-action__debug-artifacts-safe.yml"
+                },
+                "region": {
+                  "startLine": 70,
+                  "endLine": 70
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "fc91a059172ae673bccad99add89e916bbc6d3241c769555be017457a9417bcc"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/github_codeql-action__debug-artifacts-failure-safe.yml"
+                },
+                "region": {
+                  "startLine": 76,
+                  "endLine": 76
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "d46264f3552beaed347217ca15f01affd106719a8f2c1ede55e5be0220579545"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/vercel_next.js__build_and_deploy.yml"
+                },
+                "region": {
+                  "startLine": 520,
+                  "endLine": 520
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "06feea4b2ea5415ec7c09b417e241495f940d003de2a364e2866dd7bbd8acd0e"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/vercel_next.js__build_and_deploy.yml"
+                },
+                "region": {
+                  "startLine": 526,
+                  "endLine": 526
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "ce9ea59c74f07ae262ec073a14d8f45549089deb942cb4539de34c5ac091fba6"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/vercel_next.js__build_and_deploy.yml"
+                },
+                "region": {
+                  "startLine": 583,
+                  "endLine": 583
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "8fdf177a6abc0568ba56a553089fd3e5830669df7df512076463f78e5328210a"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/vercel_next.js__build_and_deploy.yml"
+                },
+                "region": {
+                  "startLine": 589,
+                  "endLine": 589
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "4a6f03ba0acd1ef226481da2b1ff64cf71ea2420d435b6e7e59842639e5bed7c"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/vercel_next.js__build_and_deploy.yml"
+                },
+                "region": {
+                  "startLine": 703,
+                  "endLine": 703
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "69a485ef5510e93da50e9e4e121956fcd906188d0b8ff3d0f435636183011f36"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/vercel_next.js__build_and_deploy.yml"
+                },
+                "region": {
+                  "startLine": 726,
+                  "endLine": 726
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "9ecf0ca18638134dd63507d28be648474c51c2b3ad77360ea9a28d29a3195801"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/tailwindlabs_tailwindcss__release.yml"
+                },
+                "region": {
+                  "startLine": 257,
+                  "endLine": 257
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "3e0b0503a66b1e439dadeb271fb6cf3afa13cea5e050200827f387c1c2949839"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/vercel_next.js__test_e2e_deploy_release.yml"
+                },
+                "region": {
+                  "startLine": 78,
+                  "endLine": 78
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "55c3d13ff97bcea53ef02893678e8e65b8823328dbdf11f748b2ff9c9f2192fd"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/facebook_react__devtools_regression_tests.yml"
+                },
+                "region": {
+                  "startLine": 82,
+                  "endLine": 82
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "b7f9e28b0defffa81fab5f5a4fcd82192099f098c12be5b43df029da8dde72bc"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/rust-lang_rust__dependencies.yml"
+                },
+                "region": {
+                  "startLine": 106,
+                  "endLine": 106
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "33fb20f170dda7a31fb8cf60e10a35c7eb4a711bed9403e0c6c7338af77b6e2c"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/rust-lang_rust__dependencies.yml"
+                },
+                "region": {
+                  "startLine": 110,
+                  "endLine": 110
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "0e881a7faf1db4d53d65d146411b906ec3cf6a9572fb766dcf560d9ca94a68d5"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/facebook_react__devtools_regression_tests.yml"
+                },
+                "region": {
+                  "startLine": 178,
+                  "endLine": 178
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "6cf65acda3f9e65a9feb232e855e403897567260a36614ff77d9aa463d9b2416"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/facebook_react__devtools_regression_tests.yml"
+                },
+                "region": {
+                  "startLine": 142,
+                  "endLine": 142
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "e52a273d0d7b098a545f9cbb9e1fffa57dceea19a772472f575c22a3c7e82152"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/vercel_next.js__setup-nextjs-build.yml"
+                },
+                "region": {
+                  "startLine": 70,
+                  "endLine": 70
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "278aa057ce8047701a4a36f445226e06d778d43392fe540ecc7cfc6b825b3b06"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/remix-run_remix__stacks.yml"
+                },
+                "region": {
+                  "startLine": 208,
+                  "endLine": 208
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "ca29620038d5cf5326016446784b2ef5e9d4a4a4e3e4c84c897fc35ed413fc42"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/remix-run_remix__stacks.yml"
+                },
+                "region": {
+                  "startLine": 85,
+                  "endLine": 85
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "6f751451523f5b3e540ef959ea7cf1df4d85b322b181f65dbc57a74f2b94ca61"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/remix-run_remix__stacks.yml"
+                },
+                "region": {
+                  "startLine": 125,
+                  "endLine": 125
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "c243b8b74a6b478507fc690b7381d235ceb7e8f89b4e63ea0ef7016fc898082d"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/remix-run_remix__stacks.yml"
+                },
+                "region": {
+                  "startLine": 165,
+                  "endLine": 165
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "cae344246cd2fe0a4c4a27b64e38e776e84976c90b331013fbffa2282d7b6117"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/denoland_deno__promote_to_release.yml"
+                },
+                "region": {
+                  "startLine": 155,
+                  "endLine": 155
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "c8b767648405c246428579109527dd4862e423eba3bdb8bffe6b01fd10261394"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/tailwindlabs_tailwindcss__prepare-release.yml"
+                },
+                "region": {
+                  "startLine": 265,
+                  "endLine": 265
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "a449b908d146d43404418ea314f159c055eaf9d5be4d26e33566c6f9bc20a982"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/facebook_react__runtime_commit_artifacts.yml"
+                },
+                "region": {
+                  "startLine": 312,
+                  "endLine": 312
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "d9c8effc851c4a8c7ce9d43aebb89dc4019566628ea0f679e9bfee303c903e67"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/facebook_react__runtime_commit_artifacts.yml"
+                },
+                "region": {
+                  "startLine": 221,
+                  "endLine": 221
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "18f60648a32a554cc63ce6cb41933be82fd37aed45856f82ecdfdabc3eec732d"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/facebook_react__runtime_commit_artifacts.yml"
+                },
+                "region": {
+                  "startLine": 109,
+                  "endLine": 109
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "0a4c9533576ed0140cb87f6e2c2d547d1710038c18988a8a8b420b752362b882"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/changed-files-vulnerability-without-hr.yml"
+                },
+                "region": {
+                  "startLine": 24,
+                  "endLine": 24
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "9a7ae2d5317bdad8388f050d25485c88244c013f64a3aff2ffcbe28974cc05a1"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/tj-actions-changed-files-incident.yaml"
+                },
+                "region": {
+                  "startLine": 29,
+                  "endLine": 29
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "7ede03d2c2b0f16647301781f5fee147b57f7ed1fbbd03c21039f3037b290802"
+          }
+        },
+        {
+          "ruleId": "known_vulnerability_in_build_component",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "The workflow or action depends on a GitHub Action with known vulnerabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/changed-files-vulnerability-with-hr.yml"
+                },
+                "region": {
+                  "startLine": 32,
+                  "endLine": 32
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "7165721dfe59a736fbc1a6df3bae52bd940d0b03315e34aecd00f607ad46f728"
+          }
+        },
+        {
+          "ruleId": "injection",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "The pipeline contains an injection into bash or JavaScript with an expression\nthat can contain user input. Prefer placing the expression in an environment variable\ninstead of interpolating it directly into a script."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/denoland_deno__promote_to_release.yml"
+                },
+                "region": {
+                  "startLine": 41,
+                  "endLine": 41
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "944b850e1436e8c15527ee8cb5d87273dba16bb569af6aa344404c9abaf1f966"
+          }
+        },
+        {
+          "ruleId": "injection",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "The pipeline contains an injection into bash or JavaScript with an expression\nthat can contain user input. Prefer placing the expression in an environment variable\ninstead of interpolating it directly into a script."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/denoland_deno__promote_to_release.yml"
+                },
+                "region": {
+                  "startLine": 151,
+                  "endLine": 151
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "4185897c8533815d63fda2a18b4ea8027837501a820685b98ce47cc1586e2d2d"
+          }
+        },
+        {
+          "ruleId": "injection",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "The pipeline contains an injection into bash or JavaScript with an expression\nthat can contain user input. Prefer placing the expression in an environment variable\ninstead of interpolating it directly into a script."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/tensorflow_tensorflow__release-branch-cherrypick.yml"
+                },
+                "region": {
+                  "startLine": 53,
+                  "endLine": 53
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "291106ad1966b3aee3abb1caf3428f959db76535df9c049a0ad459b635ab4a48"
+          }
+        },
+        {
+          "ruleId": "injection",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "The pipeline contains an injection into bash or JavaScript with an expression\nthat can contain user input. Prefer placing the expression in an environment variable\ninstead of interpolating it directly into a script."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/remix-run_remix__close-v2-issues.yml"
+                },
+                "region": {
+                  "startLine": 36,
+                  "endLine": 36
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "942ff50f704897eaeec3a44db5ec1fa265712f915984f19e57e7dad5aaa20bd2"
+          }
+        },
+        {
+          "ruleId": "injection",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "The pipeline contains an injection into bash or JavaScript with an expression\nthat can contain user input. Prefer placing the expression in an environment variable\ninstead of interpolating it directly into a script."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/denoland_deno__start_release.yml"
+                },
+                "region": {
+                  "startLine": 45,
+                  "endLine": 45
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "5fa01289f2eba23d11f15073547e74216c638373ed127e4817221d85da898175"
+          }
+        },
+        {
+          "ruleId": "injection",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "The pipeline contains an injection into bash or JavaScript with an expression\nthat can contain user input. Prefer placing the expression in an environment variable\ninstead of interpolating it directly into a script."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/denoland_deno__version_bump.yml"
+                },
+                "region": {
+                  "startLine": 48,
+                  "endLine": 48
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "fb984c7f96be0d0318eb8657582656fdf56eefe00320fd3fac3e3023d3e000ee"
+          }
+        },
+        {
+          "ruleId": "injection",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "The pipeline contains an injection into bash or JavaScript with an expression\nthat can contain user input. Prefer placing the expression in an environment variable\ninstead of interpolating it directly into a script."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/denoland_deno__promote_to_release.yml"
+                },
+                "region": {
+                  "startLine": 161,
+                  "endLine": 161
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "afdc45ebe8d540f4a821c5f8c1316f88d4fe1d6a49aaaa83e790dc9d1af26921"
+          }
+        },
+        {
+          "ruleId": "injection",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "The pipeline contains an injection into bash or JavaScript with an expression\nthat can contain user input. Prefer placing the expression in an environment variable\ninstead of interpolating it directly into a script."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/denoland_deno__promote_to_release.yml"
+                },
+                "region": {
+                  "startLine": 169,
+                  "endLine": 169
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "91311e8f3ac7cbc44fbd1586b1191129c528c9615aaeb7457406fbefc9293ec9"
+          }
+        },
+        {
+          "ruleId": "injection",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "The pipeline contains an injection into bash or JavaScript with an expression\nthat can contain user input. Prefer placing the expression in an environment variable\ninstead of interpolating it directly into a script."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/denoland_deno__promote_to_release.yml"
+                },
+                "region": {
+                  "startLine": 50,
+                  "endLine": 50
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "e55f31deeef735cdc1a8bf684ee938c77e125ea7b695e0dbd357e35b2767a92e"
+          }
+        },
+        {
+          "ruleId": "injection",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "The pipeline contains an injection into bash or JavaScript with an expression\nthat can contain user input. Prefer placing the expression in an environment variable\ninstead of interpolating it directly into a script."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/denoland_deno__promote_to_release.yml"
+                },
+                "region": {
+                  "startLine": 93,
+                  "endLine": 93
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "a8f547e8c207cab8601f87d6cc1d93ac89f915fea302705d57e8aa7f99095e7e"
+          }
+        },
+        {
+          "ruleId": "injection",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "The pipeline contains an injection into bash or JavaScript with an expression\nthat can contain user input. Prefer placing the expression in an environment variable\ninstead of interpolating it directly into a script."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/denoland_deno__promote_to_release.yml"
+                },
+                "region": {
+                  "startLine": 99,
+                  "endLine": 99
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "41e0b8c2da4789479df81a086834395d0485526206a67b66da346fed91012888"
+          }
+        },
+        {
+          "ruleId": "injection",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "The pipeline contains an injection into bash or JavaScript with an expression\nthat can contain user input. Prefer placing the expression in an environment variable\ninstead of interpolating it directly into a script."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/vercel_next.js__trigger_release.yml"
+                },
+                "region": {
+                  "startLine": 108,
+                  "endLine": 108
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "6080c53b65bcf24e4166c20af662fd1e9f0f4ab6cc9421ea7626eba1b8d40c57"
+          }
+        },
+        {
+          "ruleId": "injection",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "The pipeline contains an injection into bash or JavaScript with an expression\nthat can contain user input. Prefer placing the expression in an environment variable\ninstead of interpolating it directly into a script."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/pnpm_pnpm__update-latest.yml"
+                },
+                "region": {
+                  "startLine": 26,
+                  "endLine": 26
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "969b1b3f1101f9d88d470957b443d51d44995dc5c5cac2c2683272f0325d7d98"
+          }
+        },
+        {
+          "ruleId": "injection",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "The pipeline contains an injection into bash or JavaScript with an expression\nthat can contain user input. Prefer placing the expression in an environment variable\ninstead of interpolating it directly into a script."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/vercel_next.js__code_freeze.yml"
+                },
+                "region": {
+                  "startLine": 45,
+                  "endLine": 45
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "f7b4ba9495e54ded14f25a39c1ed1a6102041e2c7739c9c1615308d2ccf8fdbe"
+          }
+        },
+        {
+          "ruleId": "injection",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "The pipeline contains an injection into bash or JavaScript with an expression\nthat can contain user input. Prefer placing the expression in an environment variable\ninstead of interpolating it directly into a script."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/denoland_deno__npm_publish.yml"
+                },
+                "region": {
+                  "startLine": 45,
+                  "endLine": 45
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "723a53982709afea01c2594670f297bc3b61f8d3e6d9f59deb09289d22d5d1db"
+          }
+        },
+        {
+          "ruleId": "pr_runs_on_self_hosted",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "This job runs on a self-hosted GitHub Actions runner in a workflow\nthat is triggered by a pull request event."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/facebook_hhvm__ubuntu.yml"
+                },
+                "region": {
+                  "startLine": 29,
+                  "endLine": 29
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "5a84d8502b71e32d475ff4328063a42ba1c03a3d732963c756713147277c2739"
+          }
+        },
+        {
+          "ruleId": "pr_runs_on_self_hosted",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "This job runs on a self-hosted GitHub Actions runner in a workflow\nthat is triggered by a pull request event."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__build.yml"
+                },
+                "region": {
+                  "startLine": 123,
+                  "endLine": 123
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "cc9d2885d927f9203dfdb1223c392199aaeeffc7610ffd36eeb6a8107f25b005"
+          }
+        },
+        {
+          "ruleId": "pr_runs_on_self_hosted",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "This job runs on a self-hosted GitHub Actions runner in a workflow\nthat is triggered by a pull request event."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__build.yml"
+                },
+                "region": {
+                  "startLine": 95,
+                  "endLine": 95
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "5badfd37b19a2ddee2992184d1650575b13217ad12c53387e6fff86e0776974c"
+          }
+        },
+        {
+          "ruleId": "pr_runs_on_self_hosted",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "This job runs on a self-hosted GitHub Actions runner in a workflow\nthat is triggered by a pull request event."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__build.yml"
+                },
+                "region": {
+                  "startLine": 149,
+                  "endLine": 149
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "b5adb1a2c0d3a041052181019d920ddd7dae0265d9dc844cf3dae9d81820444a"
+          }
+        },
+        {
+          "ruleId": "pr_runs_on_self_hosted",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "This job runs on a self-hosted GitHub Actions runner in a workflow\nthat is triggered by a pull request event."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/google_dagger__ci.yml"
+                },
+                "region": {
+                  "startLine": 40,
+                  "endLine": 40
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "68ae2a273cb960351c9c3cfaba7ad38389770609d15c65b36a936d28b1172464"
+          }
+        },
+        {
+          "ruleId": "pr_runs_on_self_hosted",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "This job runs on a self-hosted GitHub Actions runner in a workflow\nthat is triggered by a pull request event."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/google_dagger__ci.yml"
+                },
+                "region": {
+                  "startLine": 48,
+                  "endLine": 48
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "aefcfe27bb374a1ce1d852d988cdd0ba2d9954ee9ce80b4ea14d3ac18600881e"
+          }
+        },
+        {
+          "ruleId": "pr_runs_on_self_hosted",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "This job runs on a self-hosted GitHub Actions runner in a workflow\nthat is triggered by a pull request event."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/pytorch_pytorch__lint-autoformat.yml"
+                },
+                "region": {
+                  "startLine": 12,
+                  "endLine": 12
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "46ba14bb51c02697b4965e2cd51cb4a4b3bd2a5238f89dc1f963fd951157e7a9"
+          }
+        },
+        {
+          "ruleId": "pr_runs_on_self_hosted",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "This job runs on a self-hosted GitHub Actions runner in a workflow\nthat is triggered by a pull request event."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/pytorch_pytorch__build-magma-rocm-linux.yml"
+                },
+                "region": {
+                  "startLine": 32,
+                  "endLine": 32
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "8143fb238f4bf54b42e4dc0b8180a0df229b55d255d3e1b00510e9ce1957a5af"
+          }
+        },
+        {
+          "ruleId": "pr_runs_on_self_hosted",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "This job runs on a self-hosted GitHub Actions runner in a workflow\nthat is triggered by a pull request event."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/pytorch_pytorch__lint.yml"
+                },
+                "region": {
+                  "startLine": 204,
+                  "endLine": 204
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "5d51e389d9afec507406dd3da46bc7107cbce54610221b2aec54561ff4d89aaa"
+          }
+        },
+        {
+          "ruleId": "pr_runs_on_self_hosted",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "This job runs on a self-hosted GitHub Actions runner in a workflow\nthat is triggered by a pull request event."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/pytorch_pytorch__check-labels.yml"
+                },
+                "region": {
+                  "startLine": 38,
+                  "endLine": 38
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "1089a223f304d2d910c2e2daad2007d3b156b9ba574486e1e6a73e41d1dc8f54"
+          }
+        },
+        {
+          "ruleId": "pr_runs_on_self_hosted",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "This job runs on a self-hosted GitHub Actions runner in a workflow\nthat is triggered by a pull request event."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/pytorch_pytorch__build-magma-linux.yml"
+                },
+                "region": {
+                  "startLine": 32,
+                  "endLine": 32
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "fdcbc0d185718ba2406979390e2505990181ed51d41a5b9cfbeb244ad662795b"
+          }
+        },
+        {
+          "ruleId": "pr_runs_on_self_hosted",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "This job runs on a self-hosted GitHub Actions runner in a workflow\nthat is triggered by a pull request event."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/pytorch_pytorch__build-almalinux-images.yml"
+                },
+                "region": {
+                  "startLine": 36,
+                  "endLine": 36
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "54bf10a342deb2c392110bd98f2a00259a3b27dc52b8f1b4960271655b1430a6"
+          }
+        },
+        {
+          "ruleId": "pr_runs_on_self_hosted",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "This job runs on a self-hosted GitHub Actions runner in a workflow\nthat is triggered by a pull request event."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/pytorch_pytorch__build-manywheel-images-s390x.yml"
+                },
+                "region": {
+                  "startLine": 35,
+                  "endLine": 35
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "371f58421b662b7b34f43d8a20c538c8a2e382b1758a9f528016d8ea89f86e49"
+          }
+        },
+        {
+          "ruleId": "pr_runs_on_self_hosted",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "This job runs on a self-hosted GitHub Actions runner in a workflow\nthat is triggered by a pull request event."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/pytorch_pytorch__lint.yml"
+                },
+                "region": {
+                  "startLine": 99,
+                  "endLine": 99
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "f602d1ea6f47155605f96a91360dd7bc3534c3b69c4965f013aabeabaa3cd7e1"
+          }
+        },
+        {
+          "ruleId": "pr_runs_on_self_hosted",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "This job runs on a self-hosted GitHub Actions runner in a workflow\nthat is triggered by a pull request event."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/microsoft_TypeScript__ci.yml"
+                },
+                "region": {
+                  "startLine": 74,
+                  "endLine": 74
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "75cc8251f49eb8a03b53105694196ae3d35cf363d6d2f599daf1f3033a34b27a"
+          }
+        },
+        {
+          "ruleId": "pr_runs_on_self_hosted",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "This job runs on a self-hosted GitHub Actions runner in a workflow\nthat is triggered by a pull request event."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/vercel_next.js__pull_request_stats.yml"
+                },
+                "region": {
+                  "startLine": 37,
+                  "endLine": 37
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "6ca86a5ff4a4bf307708401b6c6d46886befe20208b8021108f93cc14bd7b5c9"
+          }
+        },
+        {
+          "ruleId": "pr_runs_on_self_hosted",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "This job runs on a self-hosted GitHub Actions runner in a workflow\nthat is triggered by a pull request event."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/vercel_next.js__build_and_deploy.yml"
+                },
+                "region": {
+                  "startLine": 438,
+                  "endLine": 438
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "a7444029eda22f82d6f4e7bf1c0f73df215eba5a30c70f874fb556b829cb15f2"
+          }
+        },
+        {
+          "ruleId": "pr_runs_on_self_hosted",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "This job runs on a self-hosted GitHub Actions runner in a workflow\nthat is triggered by a pull request event."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/vercel_next.js__build_and_deploy.yml"
+                },
+                "region": {
+                  "startLine": 692,
+                  "endLine": 692
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "3a8fe6da30336eae933bbdf2b94705faf88eb993a2bd1b71210509e485f0c243"
+          }
+        },
+        {
+          "ruleId": "pr_runs_on_self_hosted",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "This job runs on a self-hosted GitHub Actions runner in a workflow\nthat is triggered by a pull request event."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/github_docs__count-translation-corruptions.yml"
+                },
+                "region": {
+                  "startLine": 24,
+                  "endLine": 24
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "7f43c50ab4510bc027752ba286f52acca7a62970ef48f50f1987dfaa00cc191a"
+          }
+        },
+        {
+          "ruleId": "pr_runs_on_self_hosted",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "This job runs on a self-hosted GitHub Actions runner in a workflow\nthat is triggered by a pull request event."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/github_docs__index-general-search-pr.yml"
+                },
+                "region": {
+                  "startLine": 36,
+                  "endLine": 36
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "76906709c2856518b40d2249bf03ca2433090774541485206278d9bc598d4bf8"
+          }
+        },
+        {
+          "ruleId": "pr_runs_on_self_hosted",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "This job runs on a self-hosted GitHub Actions runner in a workflow\nthat is triggered by a pull request event."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/github_docs__generate-code-scanning-query-lists.yml"
+                },
+                "region": {
+                  "startLine": 32,
+                  "endLine": 32
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "984297e2a2fe9eb6a75237977a9484853a9083366bc6164ed99394a0ea103592"
+          }
+        },
+        {
+          "ruleId": "pr_runs_on_self_hosted",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "This job runs on a self-hosted GitHub Actions runner in a workflow\nthat is triggered by a pull request event."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/github_docs__index-autocomplete-search.yml"
+                },
+                "region": {
+                  "startLine": 23,
+                  "endLine": 23
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "3f07276f8b65d6d9f3a9d95b38a9f7a843f5ca6a5efd839ef68ba5750f3acd32"
+          }
+        },
+        {
+          "ruleId": "default_permissions_on_risky_events",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "The workflow and some of its jobs do not explicitely define permissions\nand the workflow triggers on events that are typically used to run builds from forks.\nBecause no permissions is set, the workflow inherits the default permissions\nconfigured on the repository or the organization."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__issue-commented.yml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "endLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "c72ccffee241eed853f040c80ff62c9badbc1fe379bae7afbeeeb1493f4c0cfd"
+          }
+        },
+        {
+          "ruleId": "default_permissions_on_risky_events",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "The workflow and some of its jobs do not explicitely define permissions\nand the workflow triggers on events that are typically used to run builds from forks.\nBecause no permissions is set, the workflow inherits the default permissions\nconfigured on the repository or the organization."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/facebook_facebook-android-sdk__needs-attention.yml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "endLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "b7ff0ed1a1f1649fc15d2df2478ee975ac40b3d9553e32498013c9441c9a45d2"
+          }
+        },
+        {
+          "ruleId": "default_permissions_on_risky_events",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "The workflow and some of its jobs do not explicitely define permissions\nand the workflow triggers on events that are typically used to run builds from forks.\nBecause no permissions is set, the workflow inherits the default permissions\nconfigured on the repository or the organization."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/facebook_facebook-ios-sdk__needs-attention.yml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "endLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "cf0681ef724c9c3a806073d45344d270a9c9e7c683fb9e6e64dd4e2569943acd"
+          }
+        },
+        {
+          "ruleId": "default_permissions_on_risky_events",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "The workflow and some of its jobs do not explicitely define permissions\nand the workflow triggers on events that are typically used to run builds from forks.\nBecause no permissions is set, the workflow inherits the default permissions\nconfigured on the repository or the organization."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/hashicorp_terraform__issue-comment-created.yml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "endLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "092099dced30bd04238161e0427468299e917a55cc5aed8ff5c8854bd1111357"
+          }
+        },
+        {
+          "ruleId": "default_permissions_on_risky_events",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "The workflow and some of its jobs do not explicitely define permissions\nand the workflow triggers on events that are typically used to run builds from forks.\nBecause no permissions is set, the workflow inherits the default permissions\nconfigured on the repository or the organization."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/NVIDIA_cutlass__labeler.yml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "endLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "05db2ffcc2bcc7f55747deb5af4d9409f7709a253969728e3976eb04e6cc96a3"
+          }
+        },
+        {
+          "ruleId": "default_permissions_on_risky_events",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "The workflow and some of its jobs do not explicitely define permissions\nand the workflow triggers on events that are typically used to run builds from forks.\nBecause no permissions is set, the workflow inherits the default permissions\nconfigured on the repository or the organization."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/PRTargetWorkflow.yml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "endLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "8c17fd35777629314a0380b23d3c0ed02215021fe5fe349d4a6e4d173a80be78"
+          }
+        },
+        {
+          "ruleId": "default_permissions_on_risky_events",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "The workflow and some of its jobs do not explicitely define permissions\nand the workflow triggers on events that are typically used to run builds from forks.\nBecause no permissions is set, the workflow inherits the default permissions\nconfigured on the repository or the organization."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/actions_cache__pr-opened-workflow.yml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "endLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "067955b76e020a82db21734d81cb75686ed4c0c9a54f78224d4dc8c638213682"
+          }
+        },
+        {
+          "ruleId": "default_permissions_on_risky_events",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "The workflow and some of its jobs do not explicitely define permissions\nand the workflow triggers on events that are typically used to run builds from forks.\nBecause no permissions is set, the workflow inherits the default permissions\nconfigured on the repository or the organization."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/actions_starter-workflows__auto-assign.yml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "endLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "48f5001677f3bdfa3428ddad49d17249489ce327b137dd58439f55a2b9399118"
+          }
+        },
+        {
+          "ruleId": "default_permissions_on_risky_events",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "The workflow and some of its jobs do not explicitely define permissions\nand the workflow triggers on events that are typically used to run builds from forks.\nBecause no permissions is set, the workflow inherits the default permissions\nconfigured on the repository or the organization."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/electron_electron__pull-request-labeled.yml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "endLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "3aa6a1cc7cabe16722782fe281d7a21ca73f2165b6ceee02ef49ae2f1e7b731f"
+          }
+        },
+        {
+          "ruleId": "default_permissions_on_risky_events",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "The workflow and some of its jobs do not explicitely define permissions\nand the workflow triggers on events that are typically used to run builds from forks.\nBecause no permissions is set, the workflow inherits the default permissions\nconfigured on the repository or the organization."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/facebook_react__compiler_discord_notify.yml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "endLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "946ca1d1582591636fdd7ca43b25075bd71e17edd99c32401907cd732fdcaf8e"
+          }
+        },
+        {
+          "ruleId": "default_permissions_on_risky_events",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "The workflow and some of its jobs do not explicitely define permissions\nand the workflow triggers on events that are typically used to run builds from forks.\nBecause no permissions is set, the workflow inherits the default permissions\nconfigured on the repository or the organization."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/facebook_react__runtime_discord_notify.yml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "endLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "49617fbb71617886901c88c282d92994272e1ec0753ee43ee9c587138c1b63ee"
+          }
+        },
+        {
+          "ruleId": "default_permissions_on_risky_events",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "The workflow and some of its jobs do not explicitely define permissions\nand the workflow triggers on events that are typically used to run builds from forks.\nBecause no permissions is set, the workflow inherits the default permissions\nconfigured on the repository or the organization."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/facebook_react__shared_label_core_team_prs.yml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "endLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "4c49de9cc00412755c3ac486b3a6f27b17ff7301cfd8c7beeb3ca592038ee020"
+          }
+        },
+        {
+          "ruleId": "default_permissions_on_risky_events",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "The workflow and some of its jobs do not explicitely define permissions\nand the workflow triggers on events that are typically used to run builds from forks.\nBecause no permissions is set, the workflow inherits the default permissions\nconfigured on the repository or the organization."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/typescript-eslint_typescript-eslint__semantic-breaking-change-pr.yml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "endLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "71cc8ea35e3a54a043e76ef14d4f5868d21ff61d99f830535a31c87e1939bd1f"
+          }
+        },
+        {
+          "ruleId": "default_permissions_on_risky_events",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "The workflow and some of its jobs do not explicitely define permissions\nand the workflow triggers on events that are typically used to run builds from forks.\nBecause no permissions is set, the workflow inherits the default permissions\nconfigured on the repository or the organization."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/typescript-eslint_typescript-eslint__semantic-pr-titles.yml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "endLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "a64ec772daaf98edcd79b372433b3a2d0abe6413884d38b108d1b2582d98b305"
+          }
+        },
+        {
+          "ruleId": "default_permissions_on_risky_events",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "The workflow and some of its jobs do not explicitely define permissions\nand the workflow triggers on events that are typically used to run builds from forks.\nBecause no permissions is set, the workflow inherits the default permissions\nconfigured on the repository or the organization."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/vercel_next.js__cancel.yml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "endLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "23f7cc4b6619d918602ebf6a1a533bfd118aca25785a390a91e451079347149d"
+          }
+        },
+        {
+          "ruleId": "default_permissions_on_risky_events",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "The workflow and some of its jobs do not explicitely define permissions\nand the workflow triggers on events that are typically used to run builds from forks.\nBecause no permissions is set, the workflow inherits the default permissions\nconfigured on the repository or the organization."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": ".github/workflows/withastro_astro__label.yml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "endLine": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "primaryLocationLineHash": "fd285b1b132adc27872d135c614c60c751bb5cfb2efb679d29f29f65b3e2bf62"
+          }
+        }
+      ],
+      "versionControlProvenance": [
+        {
+          "branch": "main",
+          "repositoryUri": "https://github.com/Madjda32-del/github-actions-security",
+          "revisionId": "7d86adc998e9f8b07562d938b469db119a60f6db"
+        }
+      ],
+      "properties": {
+        "purl": "pkg:github/madjda32-del/github-actions-security"
+      }
+    }
+  ]
+}

@@ -1,0 +1,371 @@
+name: Build
+on: [push, pull_request]
+env:
+  GCS_BUCKET: autobuilds.grr-response.com
+  GCS_BUCKET_OPENAPI: autobuilds-grr-openapi
+  DOCKER_REPOSITORY: ghcr.io/google/grr
+jobs:
+  test-devenv:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: check_deps
+        run: |
+          sudo apt-get update && sudo apt-get install -y podman curl jq
+          sudo usermod --add-subuids 500000-565535 --add-subgids 500000-565535 "${USER}"
+          devenv/devenv.sh check_deps
+      - name: start
+        run: |
+          devenv/devenv.sh start
+          OK=false
+          for attempt in $(seq 20); do
+            curl -su admin:admin http://localhost:4280/api/clients |
+              sed 1d |
+              jq -r ".items[].value.client_id.value" |
+              egrep -e "^C[.][0-9a-f]{16}\$" && { OK=true; break; }
+            echo "attempt ${attempt}: devenv not ready"
+            sleep 10
+          done
+          [[ $OK = true ]]
+
+  test-ubuntu:
+    runs-on: ubuntu-22.04
+    env:
+      CHROME_DEB: google-chrome-stable_current_amd64.deb
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install
+        run: |
+          free -hmw
+          lscpu
+          sudo apt install -y python3-dev python3-pip python3-venv python3-mysqldb
+          if [[ -z "$(type google-chrome 2>/dev/null)" ]]; then
+            wget "https://dl.google.com/linux/direct/${CHROME_DEB}" && sudo apt install -y "./${CHROME_DEB}";
+          fi
+          python3 -m venv --system-site-packages "${HOME}/INSTALL"
+          travis/install.sh
+      - name: Test
+        run: |
+          source "${HOME}/INSTALL/bin/activate"
+          pip install pytest-xdist==2.2.1 pytest==6.2.5
+          # We have 4 vCPUs available, but only use 3 here to avoid timeouts like
+          # https://ci.appveyor.com/project/grr/grr-ia94e/builds/20483467/messages ,
+          # which happen when tests stall.
+          pytest --verbose -n 3 grr/ --ignore grr/server/grr_response_server/gui/selenium_tests/ --ignore grr/client/grr_response_client/client_actions/windows/
+          # jsTree tests seem to fail on Chrome 71 headless due to https://github.com/GoogleChrome/puppeteer/issues/3463
+          if [ $(google-chrome --version | grep -Eo " [0-9]{1,3}") != "71" ]; then (cd grr/server/grr_response_server/gui/static/ && npm run gulp test); fi
+
+  build-openapi:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install
+        run: |
+          sudo apt install -y python3-dev python3-pip python3-venv python3-mysqldb
+          python3 -m venv --system-site-packages "${HOME}/INSTALL"
+          travis/install.sh
+      - name: Build
+        run: |
+          source "${HOME}/INSTALL/bin/activate"
+          mkdir -p _openapi_artifacts/openapi_description
+          mkdir -p _openapi_artifacts/documentation
+          travis/build_api_documentation.sh "_openapi_artifacts/openapi_description/openapi_description.json" "_openapi_artifacts/documentation/openapi_documentation.html"
+          ls -la _openapi_artifacts/*
+      - name: Upload OpenAPI to GitHub artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: openapi
+          path: _openapi_artifacts/
+          retention-days: 1
+
+  build-ubuntu:
+    runs-on: ubuntu-22.04
+    env:
+      GCS_TAG: ubuntu_64bit
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+      - name: Set up
+        run: |
+          sudo apt install fakeroot debhelper libffi-dev libssl-dev
+          pip install virtualenv
+          virtualenv "${HOME}/INSTALL"
+      - name: Build
+        run: |
+          travis/install_client_builder.sh
+          travis/build_templates.sh
+          ls -la gcs_upload_dir
+      - name: Upload installers to GitHub artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ubuntu-installers
+          path: gcs_upload_dir/
+          retention-days: 1
+
+  build-osx:
+    runs-on: macos-13
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+      - name: Set up
+        run: |
+          pip install --upgrade setuptools virtualenv
+          virtualenv "${HOME}/INSTALL"
+      - name: Build installers
+        run: |
+          travis/install_client_builder.sh
+          travis/build_templates.sh
+          ls -la gcs_upload_dir
+      - name: Upload installers to GitHub artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: osx-installers
+          path: gcs_upload_dir/
+          retention-days: 1
+
+  build-centos:
+    runs-on: ubuntu-22.04
+    env:
+      GCS_TAG: centos_64bit
+      DOCKER_IMG: grrdocker/centos7-python39
+      DOCKER_CONTAINER: centos_64bit_container
+      DOCKER_USER: grrbot
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build installers
+        run: |
+          docker run -dit \
+            --volume "${PWD}:/mnt/grr" \
+            --workdir /mnt/grr \
+            --env DOCKER_USER="${DOCKER_USER}" \
+            --env TRAVIS_OS_NAME="linux" \
+            --name "${DOCKER_CONTAINER}" \
+            "${DOCKER_IMG}"
+          # Using `bash -l` here and below to make sure devtools
+          # (including the C++ 14 compatible compiler) are properly
+          # registered in the environment variables.
+          docker exec "${DOCKER_CONTAINER}" bash -l travis/set_up_test_user.sh
+          docker exec --user "${DOCKER_USER}" "${DOCKER_CONTAINER}" bash -l -c '/usr/local/bin/python3.9 -m venv "/home/${DOCKER_USER}/INSTALL"'
+          docker exec --user "${DOCKER_USER}" "${DOCKER_CONTAINER}" bash -l travis/install_client_builder.sh
+          docker exec --user "${DOCKER_USER}" "${DOCKER_CONTAINER}" bash -l travis/build_templates.sh
+          docker exec "${DOCKER_CONTAINER}" rpm -vih gcs_upload_dir/*.rpm
+          ls -la gcs_upload_dir
+      - name: Upload installers to GitHub artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: centos-installers
+          path: gcs_upload_dir/
+          retention-days: 1
+
+  build-windows:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+      - name: Build installers
+        shell: bash
+        run: |
+          set -ex
+          pip install virtualenv wheel
+          python -u appveyor/windows_templates/build_windows_templates.py --grr_src=$GITHUB_WORKSPACE --output_dir=$GITHUB_WORKSPACE/output --test_repack_install
+          mkdir -p gcs_upload_dir
+          mv -v output*/* gcs_upload_dir
+          ls -la gcs_upload_dir
+      - name: Upload installers to GitHub artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-installers
+          path: gcs_upload_dir/
+          retention-days: 1
+
+  build-docker-image:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: 'read'
+    needs:
+      - build-centos
+      - build-ubuntu
+      - build-osx
+      - build-windows
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download installers from GitHub artifacts
+        id: download
+        uses: actions/download-artifact@v4
+        with:
+          pattern: '*installer*'
+          path: _installers
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.DOCKER_REPOSITORY }}
+      - name: Build and export
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile
+          # Temporarily add a `testing`-tag to identify this image
+          # for testing, tag is removed again before uploading to
+          # github container registry.
+          tags: |
+            ${{ env.DOCKER_REPOSITORY }}:testing
+            ${{ steps.meta.outputs.tags }}
+          outputs: type=docker,dest=/tmp/grr_base_image.tar
+      - name: Upload docker image
+        uses: actions/upload-artifact@v4
+        with:
+          name: grr_base_image
+          path: /tmp/grr_base_image.tar
+          retention-days: 3
+
+  docker-compose-e2e-test:
+    permissions:
+      contents: 'read'
+    runs-on: ubuntu-22.04
+    needs:
+      - build-docker-image
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: grr_base_image
+          path: /tmp
+      - name: Load image
+        run: |
+          docker load --input /tmp/grr_base_image.tar
+      - name: Start docker compose stack
+        shell: bash
+        run: |
+          docker_config_files/init_certs.sh
+          docker compose \
+            -f compose.yaml \
+            -f compose.testing.yaml \
+            up -d --wait
+      - name: Test
+        shell: bash
+        run: |
+          docker compose exec grr-client bash /configs/client/create_fake_user.sh
+          docker run \
+            --add-host=host.docker.internal:host-gateway \
+            -v $(pwd):/github_workspace \
+            -v ./docker_config_files:/configs \
+            -w /github_workspace \
+            --entrypoint appveyor/e2e_tests/run_docker_compose_e2e_test.sh \
+            ${{ env.DOCKER_REPOSITORY }}:testing \
+            $(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' grr-client)
+      - name: Dump docker compose log output
+        if: always()
+        shell: bash
+        run: |
+          docker compose logs > /tmp/docker_compose_test.log
+      - name: Upload docker compose logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker_commpose_test_logs
+          path: /tmp/docker_compose_test.log
+          retention-days: 3
+      - name: Stop the docker compose stack
+        if: always()
+        shell: bash
+        run: |
+          docker compose down --volumes
+
+  push-docker-image:
+    if: ${{ github.event_name == 'push' }}
+    env:
+      REGISTRY: ghcr.io
+    permissions:
+      packages: write
+      contents: write
+    runs-on: ubuntu-22.04
+    needs:
+      - test-ubuntu
+      - docker-compose-e2e-test
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: grr_base_image
+          path: /tmp
+      - name: Load image
+        run: |
+          docker load --input /tmp/grr_base_image.tar
+      - name: Login to GitHub Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Push Docker image
+        run: |
+          # Remove the tag used to identify the image for testing again.
+          docker rmi ${{ env.DOCKER_REPOSITORY }}:testing
+          docker push --all-tags ${{ env.DOCKER_REPOSITORY }}
+
+  upload-artifacts:
+    if: ${{ github.event_name == 'push' }}
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    runs-on: ubuntu-22.04
+    needs:
+      - docker-compose-e2e-test
+      - test-ubuntu
+      - build-centos
+      - build-ubuntu
+      - build-osx
+      - build-windows
+      - build-openapi
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download installers from GitHub artifacts
+        id: download
+        uses: actions/download-artifact@v4
+        with:
+          path: _artifacts
+      - run: |
+          ls -la _artifacts/*/
+          COMMIT_TIME=$(git show -s --date='format-local:%Y-%m-%dT%H:%M:%SZ' --format="%cd" $GITHUB_SHA)
+          OUTPUT_DIR=gcs_upload_dir/${COMMIT_TIME}_${GITHUB_SHA}/
+          echo "OUTPUT_DIR=$OUTPUT_DIR" >> $GITHUB_ENV
+          mkdir -p $OUTPUT_DIR/centos/
+          mv -v _artifacts/centos-installers/* $OUTPUT_DIR/centos
+          mkdir -p $OUTPUT_DIR/ubuntu/
+          mv -v _artifacts/ubuntu-installers/* $OUTPUT_DIR/ubuntu
+          mkdir -p $OUTPUT_DIR/osx/
+          mv -v _artifacts/osx-installers/* $OUTPUT_DIR/osx
+          mkdir -p $OUTPUT_DIR/windows/
+          mv -v _artifacts/windows-installers/* $OUTPUT_DIR/windows
+      - name: Authenticate
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+          export_environment_variables: true
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1.1.0
+      - name: Upload installers to GCS
+        uses: google-github-actions/upload-cloud-storage@v1.0.0
+        with:
+          path: gcs_upload_dir/
+          destination: ${{ env.GCS_BUCKET }}
+          # Omit `path` (e.g. /home/runner/deploy/) in final GCS path.
+          parent: false
+      - name: Upload OpenAPI to GCS
+        uses: google-github-actions/upload-cloud-storage@v1.0.0
+        with:
+          path: _artifacts/openapi/
+          destination: ${{ env.GCS_BUCKET_OPENAPI }}
+          # Omit `path` (e.g. /home/runner/deploy/) in final GCS path.
+          parent: false

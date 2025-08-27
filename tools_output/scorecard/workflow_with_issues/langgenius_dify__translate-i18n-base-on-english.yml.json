@@ -1,0 +1,66 @@
+{
+  "workflow": "langgenius_dify__translate-i18n-base-on-english.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        16,
+        35,
+        42,
+        58
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/langgenius_dify__translate-i18n-base-on-english.yml:16",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/langgenius_dify__translate-i18n-base-on-english.yml:35",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/langgenius_dify__translate-i18n-base-on-english.yml:42",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/langgenius_dify__translate-i18n-base-on-english.yml:58",
+        "Info:   0 out of   2 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of   2 third-party GitHubAction dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 0,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1
+      ],
+      "raw_details": [
+        "Warn: no topLevel permission defined: .github/workflows/langgenius_dify__translate-i18n-base-on-english.yml:1",
+        "Info: no jobLevel write permissions found"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

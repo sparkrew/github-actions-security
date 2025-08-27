@@ -1,0 +1,20 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/langchain-ai_langchain___test_pydantic.yml:33:9
+   [1m[94m|[0m
+[1m[94m33 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/langchain-ai_langchain___test_pydantic.yml:44:9
+   [1m[94m|[0m
+[1m[94m44 |[0m       - name: Overwrite pydantic version
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m45 |[0m         shell: bash
+[1m[94m46 |[0m         run: VIRTUAL_ENV=.venv uv pip install pydantic~=${{ inputs.pydantic-version }}
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91minputs.pydantic-version may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m5[39m findings ([1m[93m3[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m1[39m high

@@ -1,0 +1,28 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_TypeScript__pr-modified-files.yml:2:1
+   [1m[94m|[0m
+[1m[94m 2 |[0m [1m[91m/[0m on:
+[1m[94m 3 |[0m [1m[91m|[0m   # For security reasons, we have to use pull_request_target here.
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m12 |[0m [1m[91m|[0m # We only ever need one of these running on a single PR.
+[1m[94m13 |[0m [1m[91m|[0m # Just let the newest one complete if there are multiple running.
+   [1m[94m|[0m [1m[91m|_________________________________________________________________^[0m [1m[91mpull_request_target is almost always used insecurely[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_TypeScript__pr-modified-files.yml:38:9
+   [1m[94m|[0m
+[1m[94m38 |[0m         - name: Check if PR author is in pr_owners.txt
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m39 |[0m           id: pr_owner
+[1m[94m40 |[0m [1m[91m/[0m         run: |
+[1m[94m41 |[0m [1m[91m|[0m           curl -s https://raw.githubusercontent.com/microsoft/TypeScript/main/.github/pr_owners.txt > pr_owners.txt
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m45 |[0m [1m[91m|[0m             echo "pr_owner=false" >> "$GITHUB_OUTPUT"
+[1m[94m46 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|____________^[0m [1m[91mgithub.event.pull_request.user.login may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m12[39m findings ([1m[93m10[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m0[39m medium, [31m2[39m high

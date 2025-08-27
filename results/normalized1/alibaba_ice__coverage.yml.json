@@ -1,0 +1,286 @@
+{
+  "workflow": "alibaba_ice__coverage.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "alibaba_ice__coverage.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v3",
+          "pinned": "actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744",
+          "line": 36,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-node@v3",
+          "pinned": "actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610",
+          "line": 40,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "pnpm/action-setup@v4",
+          "pinned": "pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda",
+          "line": 45,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/cache@v3",
+          "pinned": "actions/cache@2f8e54208210a422b2efd51efaa6bd6d7ca8920f",
+          "line": 52,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "codecov/codecov-action@v3",
+          "pinned": "codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457",
+          "line": 64,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "alibaba_ice__coverage.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0",
+          "line": 31,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # actions/setup-node@v3 | releases,v3.9.1",
+          "line": 35,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # pnpm/action-setup@v4",
+          "line": 40,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/cache@2f8e54208210a422b2efd51efaa6bd6d7ca8920f # actions/cache@v3 | v3.4.3-working,v3.4.3",
+          "line": 47,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457 # codecov/codecov-action@v3 | v3",
+          "line": 59,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "alibaba_ice__coverage.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            36,
+            40,
+            45,
+            52,
+            64
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/alibaba_ice__coverage.yml:36",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/alibaba_ice__coverage.yml:40",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/alibaba_ice__coverage.yml:45",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/alibaba_ice__coverage.yml:52",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/alibaba_ice__coverage.yml:64",
+            "Info:   0 out of   3 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   2 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "automatic-hardening-check"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            27,
+            29
+          ],
+          "raw_details": [
+            "Warn: jobLevel 'checks' permission set to 'write': .github/workflows/alibaba_ice__coverage.yml:27",
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/alibaba_ice__coverage.yml:29",
+            "Warn: no topLevel permission defined: .github/workflows/alibaba_ice__coverage.yml:1"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "permissions-check"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "alibaba_ice__coverage.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "line": 36,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v3`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 40,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v3`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 45,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `pnpm/action-setup@v4`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 52,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/cache@v3`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 64,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `codecov/codecov-action@v3`",
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "alibaba_ice__coverage.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "artipacked": 1,
+          "unpinned-uses": 2
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "alibaba_ice__coverage.yml",
+          "line": 36,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "alibaba_ice__coverage.yml",
+          "line": 45,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "pinning-check"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "alibaba_ice__coverage.yml",
+          "line": 64,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "alibaba_ice__coverage.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 4
+      },
+      "findings": [
+        {
+          "line": 36,
+          "column": 15,
+          "message": "the runner of \"actions/checkout@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "workflow_structural_check"
+        },
+        {
+          "line": 40,
+          "column": 15,
+          "message": "the runner of \"actions/setup-node@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "workflow_structural_check"
+        },
+        {
+          "line": 52,
+          "column": 15,
+          "message": "the runner of \"actions/cache@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "workflow_structural_check"
+        },
+        {
+          "line": 64,
+          "column": 15,
+          "message": "the runner of \"codecov/codecov-action@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "workflow_structural_check"
+        }
+      ]
+    }
+  }
+}

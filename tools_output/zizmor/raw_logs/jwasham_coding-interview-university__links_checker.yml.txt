@@ -1,0 +1,75 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/jwasham_coding-interview-university__links_checker.yml:19:9
+   [1m[94m|[0m
+[1m[94m19 |[0m       - uses: actions/checkout@v3
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/jwasham_coding-interview-university__links_checker.yml:12:3
+   [1m[94m|[0m
+[1m[94m12 |[0m [1m[33m/[0m   link_checker:
+[1m[94m13 |[0m [1m[33m|[0m     name: Check links and create automated issue if needed
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m84 |[0m [1m[33m|[0m         with:
+[1m[94m85 |[0m [1m[33m|[0m           issue-number: ${{ steps.last_issue.outputs.issue_number }}
+   [1m[94m|[0m [1m[33m|[0m                                                                     [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________________________________________________________________|[0m
+   [1m[94m|[0m                                                                       [1m[33mthis job[0m
+   [1m[94m|[0m                                                                       [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/jwasham_coding-interview-university__links_checker.yml:44:9
+   [1m[94m|[0m
+[1m[94m44 |[0m       - name: Lychee's exit code
+   [1m[94m|[0m         [1m[94m------------------------[0m [1m[94minfo: this step[0m
+[1m[94m45 |[0m         ## https://github.com/lycheeverse/lychee#exit-codes
+[1m[94m46 |[0m         run: echo Lychee exit with ${{ steps.lychee.outputs.exit_code }}
+   [1m[94m|[0m         [1m[94m----------------------------------------------------------------[0m [1m[94minfo: steps.lychee.outputs.exit_code may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/jwasham_coding-interview-university__links_checker.yml:23:9
+   [1m[94m|[0m
+[1m[94m23 |[0m         uses: lycheeverse/lychee-action@v1.4.1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/jwasham_coding-interview-university__links_checker.yml:49:9
+   [1m[94m|[0m
+[1m[94m49 |[0m         uses: micalevisk/last-issue-action@v1.2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/jwasham_coding-interview-university__links_checker.yml:61:9
+   [1m[94m|[0m
+[1m[94m61 |[0m         uses: peter-evans/create-issue-from-file@v4
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/jwasham_coding-interview-university__links_checker.yml:72:9
+   [1m[94m|[0m
+[1m[94m72 |[0m         uses: peter-evans/create-issue-from-file@v4
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/jwasham_coding-interview-university__links_checker.yml:83:9
+   [1m[94m|[0m
+[1m[94m83 |[0m         uses: peter-evans/close-issue@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m10[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m2[39m medium, [31m5[39m high

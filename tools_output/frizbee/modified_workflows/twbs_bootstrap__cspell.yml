@@ -1,0 +1,36 @@
+name: cspell
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+env:
+  FORCE_COLOR: 2
+
+permissions:
+  contents: read
+
+jobs:
+  cspell:
+    permissions:
+      # allow streetsidesoftware/cspell-action to fetch files for commits and PRs
+      contents: read
+      pull-requests: read
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          persist-credentials: false
+
+      - name: Run cspell
+        uses: streetsidesoftware/cspell-action@69543c3f9f14d4fcc6004c7bee03c4d366f11d64 # v7
+        with:
+          config: ".cspell.json"
+          files: "**/*.{md,mdx}"
+          inline: error
+          incremental_files_only: false

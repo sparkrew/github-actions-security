@@ -1,0 +1,33 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_vscode__no-package-lock-changes.yml:38:9
+   [1m[94m|[0m
+[1m[94m38 |[0m   [1m[94m...[0m - name: Set control output variable
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m39 |[0m   [1m[94m...[0m   id: control
+[1m[94m40 |[0m   [1m[94m...[0m   if: ${{ steps.lockfile_check.outputs.lockfiles_modified == 'true' && github.event.pull_request.user.login != 'Copilot' }}
+[1m[94m41 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m42 |[0m [1m[91m|[0m [1m[94m...[0m     echo "user: ${{ github.event.pull_request.user.login }}"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m45 |[0m [1m[91m|[0m [1m[94m...[0m     echo "should_run: ${{ !contains(fromJson('["admin", "maintain", "write"]'), fromJson(steps.get_permissions.outputs.data).permission) }}"
+[1m[94m46 |[0m [1m[91m|[0m [1m[94m...[0m     echo "should_run=${{ !contains(fromJson('["admin", "maintain", "write"]'), fromJson(steps.get_permissions.outputs.data).permission) && github.event.pull_request.user.login != 'dependabot[bot]' }}" >> $GITHUB_OUTPUT
+   [1m[94m|[0m [1m[91m|______________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.pull_request.user.login may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_vscode__no-package-lock-changes.yml:38:9
+   [1m[94m|[0m
+[1m[94m38 |[0m   [1m[94m...[0m - name: Set control output variable
+   [1m[94m|[0m         [1m[94m---------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m39 |[0m   [1m[94m...[0m   id: control
+[1m[94m40 |[0m   [1m[94m...[0m   if: ${{ steps.lockfile_check.outputs.lockfiles_modified == 'true' && github.event.pull_request.user.login != 'Copilot' }}
+[1m[94m41 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m42 |[0m [1m[94m|[0m [1m[94m...[0m     echo "user: ${{ github.event.pull_request.user.login }}"
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m45 |[0m [1m[94m|[0m [1m[94m...[0m     echo "should_run: ${{ !contains(fromJson('["admin", "maintain", "write"]'), fromJson(steps.get_permissions.outputs.data).permission) }}"
+[1m[94m46 |[0m [1m[94m|[0m [1m[94m...[0m     echo "should_run=${{ !contains(fromJson('["admin", "maintain", "write"]'), fromJson(steps.get_permissions.outputs.data).permission) && github.event.pull_request.user.login != 'dependabot[bot]' }}" >> $GITHUB_OUTPUT
+   [1m[94m|[0m [1m[94m|______________________________________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: fromJson(steps.get_permissions.outputs.data).permission may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m7[39m findings ([1m[93m5[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m0[39m medium, [31m1[39m high

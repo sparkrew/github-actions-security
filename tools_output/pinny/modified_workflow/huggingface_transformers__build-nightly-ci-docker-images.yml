@@ -1,0 +1,63 @@
+name: Build docker images (Nightly CI)
+on:
+workflow_call:
+push:
+branches:
+- build_nightly_ci_docker_image*
+concurrency:
+group: docker-images-builds
+cancel-in-progress: false
+jobs:
+latest-with-torch-nightly-docker:
+name: "Nightly PyTorch + Stable TensorFlow"
+runs-on:
+group: aws-general-8-plus
+steps:
+-
+name: Set up Docker Buildx
+uses: docker/setup-buildx-action@885d1462b80bc1c1c7f0b00334ad271f09369c55 # docker/setup-buildx-action@v2 | releases,v2.10.0
+-
+name: Check out code
+uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2
+-
+name: Login to DockerHub
+uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc # docker/login-action@v2 | releases,v2.2.0
+with:
+username: ${{ secrets.DOCKERHUB_USERNAME }}
+password: ${{ secrets.DOCKERHUB_PASSWORD }}
+-
+name: Build and push
+uses: docker/build-push-action@1104d471370f9806843c095c1db02b5a90c5f8b6 # docker/build-push-action@v3 | releases,v3.3.1
+with:
+context: ./docker/transformers-all-latest-gpu
+build-args: |
+REF=main
+PYTORCH=pre
+push: true
+tags: huggingface/transformers-all-latest-torch-nightly-gpu
+nightly-torch-deepspeed-docker:
+name: "Nightly PyTorch + DeepSpeed"
+runs-on:
+group: aws-g4dn-2xlarge-cache
+steps:
+-
+name: Set up Docker Buildx
+uses: docker/setup-buildx-action@885d1462b80bc1c1c7f0b00334ad271f09369c55 # docker/setup-buildx-action@v2 | releases,v2.10.0
+-
+name: Check out code
+uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2
+-
+name: Login to DockerHub
+uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc # docker/login-action@v2 | releases,v2.2.0
+with:
+username: ${{ secrets.DOCKERHUB_USERNAME }}
+password: ${{ secrets.DOCKERHUB_PASSWORD }}
+-
+name: Build and push
+uses: docker/build-push-action@1104d471370f9806843c095c1db02b5a90c5f8b6 # docker/build-push-action@v3 | releases,v3.3.1
+with:
+context: ./docker/transformers-pytorch-deepspeed-nightly-gpu
+build-args: |
+REF=main
+push: true
+tags: huggingface/transformers-pytorch-deepspeed-nightly-gpu

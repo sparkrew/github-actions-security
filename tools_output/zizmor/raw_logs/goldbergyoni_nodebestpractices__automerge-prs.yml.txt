@@ -1,0 +1,24 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/goldbergyoni_nodebestpractices__automerge-prs.yml:21:3
+   [1m[94m|[0m
+[1m[94m21 |[0m [1m[33m/[0m   automerge:
+[1m[94m22 |[0m [1m[33m|[0m     runs-on: ubuntu-20.04
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m32 |[0m [1m[33m|[0m           MERGE_RETRY_SLEEP: "10000"
+[1m[94m33 |[0m [1m[33m|[0m           MERGE_DELETE_BRANCH: "true"
+   [1m[94m|[0m [1m[33m|[0m                                      [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________________________|[0m
+   [1m[94m|[0m                                        [1m[33mthis job[0m
+   [1m[94m|[0m                                        [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/goldbergyoni_nodebestpractices__automerge-prs.yml:25:9
+   [1m[94m|[0m
+[1m[94m25 |[0m         uses: "pascalgn/automerge-action@v0.15.5"
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m3[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m1[39m high

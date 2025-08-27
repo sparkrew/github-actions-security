@@ -1,0 +1,497 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:45:9
+   [1m[94m|[0m
+[1m[94m45 |[0m         - name: Checkout repository
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m46 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:144:9
+    [1m[94m|[0m
+[1m[94m144 |[0m         - name: Checkout repository
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m145 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+    [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:246:9
+    [1m[94m|[0m
+[1m[94m246 |[0m         - name: Checkout repository
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m247 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+    [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:349:9
+    [1m[94m|[0m
+[1m[94m349 |[0m         - name: Checkout repository
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m350 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+    [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: Create and publish Docker images with specific build args
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m641 |[0m [1m[33m|[0m         run: |
+[1m[94m642 |[0m [1m[33m|[0m           docker buildx imagetools inspect ${{ env.FULL_IMAGE_NAME }}:${{ steps.meta.outputs.version }}
+    [1m[94m|[0m [1m[33m|________________________________________________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:422:3
+    [1m[94m|[0m
+[1m[94m422 |[0m [1m[33m/[0m   merge-main-images:
+[1m[94m423 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m473 |[0m [1m[33m|[0m         run: |
+[1m[94m474 |[0m [1m[33m|[0m           docker buildx imagetools inspect ${{ env.FULL_IMAGE_NAME }}:${{ steps.meta.outputs.version }}
+    [1m[94m|[0m [1m[33m|[0m                                                                                                       [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_______________________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                         [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                         [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:476:3
+    [1m[94m|[0m
+[1m[94m476 |[0m [1m[33m/[0m   merge-cuda-images:
+[1m[94m477 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m529 |[0m [1m[33m|[0m         run: |
+[1m[94m530 |[0m [1m[33m|[0m           docker buildx imagetools inspect ${{ env.FULL_IMAGE_NAME }}:${{ steps.meta.outputs.version }}
+    [1m[94m|[0m [1m[33m|[0m                                                                                                       [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_______________________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                         [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                         [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:532:3
+    [1m[94m|[0m
+[1m[94m532 |[0m [1m[33m/[0m   merge-cuda126-images:
+[1m[94m533 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m585 |[0m [1m[33m|[0m         run: |
+[1m[94m586 |[0m [1m[33m|[0m           docker buildx imagetools inspect ${{ env.FULL_IMAGE_NAME }}:${{ steps.meta.outputs.version }}
+    [1m[94m|[0m [1m[33m|[0m                                                                                                       [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_______________________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                         [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                         [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:588:3
+    [1m[94m|[0m
+[1m[94m588 |[0m [1m[33m/[0m   merge-ollama-images:
+[1m[94m589 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m641 |[0m [1m[33m|[0m         run: |
+[1m[94m642 |[0m [1m[33m|[0m           docker buildx imagetools inspect ${{ env.FULL_IMAGE_NAME }}:${{ steps.meta.outputs.version }}
+    [1m[94m|[0m [1m[33m|[0m                                                                                                        [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|________________________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                          [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                          [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:101:9
+    [1m[94m|[0m
+[1m[94m101 |[0m         - name: Export digest
+    [1m[94m|[0m           [1m[94m-------------------[0m [1m[94minfo: this step[0m
+[1m[94m102 |[0m [1m[94m/[0m         run: |
+[1m[94m103 |[0m [1m[94m|[0m           mkdir -p /tmp/digests
+[1m[94m104 |[0m [1m[94m|[0m           digest="${{ steps.build.outputs.digest }}"
+[1m[94m105 |[0m [1m[94m|[0m           touch "/tmp/digests/${digest#sha256:}"
+    [1m[94m|[0m [1m[94m|________________________________________________-[0m [1m[94minfo: steps.build.outputs.digest may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:203:9
+    [1m[94m|[0m
+[1m[94m203 |[0m         - name: Export digest
+    [1m[94m|[0m           [1m[94m-------------------[0m [1m[94minfo: this step[0m
+[1m[94m204 |[0m [1m[94m/[0m         run: |
+[1m[94m205 |[0m [1m[94m|[0m           mkdir -p /tmp/digests
+[1m[94m206 |[0m [1m[94m|[0m           digest="${{ steps.build.outputs.digest }}"
+[1m[94m207 |[0m [1m[94m|[0m           touch "/tmp/digests/${digest#sha256:}"
+    [1m[94m|[0m [1m[94m|________________________________________________-[0m [1m[94minfo: steps.build.outputs.digest may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:306:9
+    [1m[94m|[0m
+[1m[94m306 |[0m         - name: Export digest
+    [1m[94m|[0m           [1m[94m-------------------[0m [1m[94minfo: this step[0m
+[1m[94m307 |[0m [1m[94m/[0m         run: |
+[1m[94m308 |[0m [1m[94m|[0m           mkdir -p /tmp/digests
+[1m[94m309 |[0m [1m[94m|[0m           digest="${{ steps.build.outputs.digest }}"
+[1m[94m310 |[0m [1m[94m|[0m           touch "/tmp/digests/${digest#sha256:}"
+    [1m[94m|[0m [1m[94m|________________________________________________-[0m [1m[94minfo: steps.build.outputs.digest may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:408:9
+    [1m[94m|[0m
+[1m[94m408 |[0m         - name: Export digest
+    [1m[94m|[0m           [1m[94m-------------------[0m [1m[94minfo: this step[0m
+[1m[94m409 |[0m [1m[94m/[0m         run: |
+[1m[94m410 |[0m [1m[94m|[0m           mkdir -p /tmp/digests
+[1m[94m411 |[0m [1m[94m|[0m           digest="${{ steps.build.outputs.digest }}"
+[1m[94m412 |[0m [1m[94m|[0m           touch "/tmp/digests/${digest#sha256:}"
+    [1m[94m|[0m [1m[94m|________________________________________________-[0m [1m[94minfo: steps.build.outputs.digest may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:472:9
+    [1m[94m|[0m
+[1m[94m472 |[0m         - name: Inspect image
+    [1m[94m|[0m           [1m[94m-------------------[0m [1m[94minfo: this step[0m
+[1m[94m473 |[0m [1m[94m/[0m         run: |
+[1m[94m474 |[0m [1m[94m|[0m           docker buildx imagetools inspect ${{ env.FULL_IMAGE_NAME }}:${{ steps.meta.outputs.version }}
+    [1m[94m|[0m [1m[94m|_______________________________________________________________________________________________________-[0m [1m[94minfo: steps.meta.outputs.version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:528:9
+    [1m[94m|[0m
+[1m[94m528 |[0m         - name: Inspect image
+    [1m[94m|[0m           [1m[94m-------------------[0m [1m[94minfo: this step[0m
+[1m[94m529 |[0m [1m[94m/[0m         run: |
+[1m[94m530 |[0m [1m[94m|[0m           docker buildx imagetools inspect ${{ env.FULL_IMAGE_NAME }}:${{ steps.meta.outputs.version }}
+    [1m[94m|[0m [1m[94m|_______________________________________________________________________________________________________-[0m [1m[94minfo: steps.meta.outputs.version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:584:9
+    [1m[94m|[0m
+[1m[94m584 |[0m         - name: Inspect image
+    [1m[94m|[0m           [1m[94m-------------------[0m [1m[94minfo: this step[0m
+[1m[94m585 |[0m [1m[94m/[0m         run: |
+[1m[94m586 |[0m [1m[94m|[0m           docker buildx imagetools inspect ${{ env.FULL_IMAGE_NAME }}:${{ steps.meta.outputs.version }}
+    [1m[94m|[0m [1m[94m|_______________________________________________________________________________________________________-[0m [1m[94minfo: steps.meta.outputs.version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:640:9
+    [1m[94m|[0m
+[1m[94m640 |[0m         - name: Inspect image
+    [1m[94m|[0m           [1m[94m-------------------[0m [1m[94minfo: this step[0m
+[1m[94m641 |[0m [1m[94m/[0m         run: |
+[1m[94m642 |[0m [1m[94m|[0m           docker buildx imagetools inspect ${{ env.FULL_IMAGE_NAME }}:${{ steps.meta.outputs.version }}
+    [1m[94m|[0m [1m[94m|________________________________________________________________________________________________________-[0m [1m[94minfo: steps.meta.outputs.version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:49:9
+   [1m[94m|[0m
+[1m[94m49 |[0m         uses: docker/setup-qemu-action@v3
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:52:9
+   [1m[94m|[0m
+[1m[94m52 |[0m         uses: docker/setup-buildx-action@v3
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:55:9
+   [1m[94m|[0m
+[1m[94m55 |[0m         uses: docker/login-action@v3
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:63:9
+   [1m[94m|[0m
+[1m[94m63 |[0m         uses: docker/metadata-action@v5
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:77:9
+   [1m[94m|[0m
+[1m[94m77 |[0m         uses: docker/metadata-action@v5
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:88:9
+   [1m[94m|[0m
+[1m[94m88 |[0m         uses: docker/build-push-action@v5
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:148:9
+    [1m[94m|[0m
+[1m[94m148 |[0m         uses: docker/setup-qemu-action@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:151:9
+    [1m[94m|[0m
+[1m[94m151 |[0m         uses: docker/setup-buildx-action@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:154:9
+    [1m[94m|[0m
+[1m[94m154 |[0m         uses: docker/login-action@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:162:9
+    [1m[94m|[0m
+[1m[94m162 |[0m         uses: docker/metadata-action@v5
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:178:9
+    [1m[94m|[0m
+[1m[94m178 |[0m         uses: docker/metadata-action@v5
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:189:9
+    [1m[94m|[0m
+[1m[94m189 |[0m         uses: docker/build-push-action@v5
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:250:9
+    [1m[94m|[0m
+[1m[94m250 |[0m         uses: docker/setup-qemu-action@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:253:9
+    [1m[94m|[0m
+[1m[94m253 |[0m         uses: docker/setup-buildx-action@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:256:9
+    [1m[94m|[0m
+[1m[94m256 |[0m         uses: docker/login-action@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:264:9
+    [1m[94m|[0m
+[1m[94m264 |[0m         uses: docker/metadata-action@v5
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:280:9
+    [1m[94m|[0m
+[1m[94m280 |[0m         uses: docker/metadata-action@v5
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:291:9
+    [1m[94m|[0m
+[1m[94m291 |[0m         uses: docker/build-push-action@v5
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:353:9
+    [1m[94m|[0m
+[1m[94m353 |[0m         uses: docker/setup-qemu-action@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:356:9
+    [1m[94m|[0m
+[1m[94m356 |[0m         uses: docker/setup-buildx-action@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:359:9
+    [1m[94m|[0m
+[1m[94m359 |[0m         uses: docker/login-action@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:367:9
+    [1m[94m|[0m
+[1m[94m367 |[0m         uses: docker/metadata-action@v5
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:383:9
+    [1m[94m|[0m
+[1m[94m383 |[0m         uses: docker/metadata-action@v5
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:394:9
+    [1m[94m|[0m
+[1m[94m394 |[0m         uses: docker/build-push-action@v5
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:443:9
+    [1m[94m|[0m
+[1m[94m443 |[0m         uses: docker/setup-buildx-action@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:446:9
+    [1m[94m|[0m
+[1m[94m446 |[0m         uses: docker/login-action@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:454:9
+    [1m[94m|[0m
+[1m[94m454 |[0m         uses: docker/metadata-action@v5
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:497:9
+    [1m[94m|[0m
+[1m[94m497 |[0m         uses: docker/setup-buildx-action@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:500:9
+    [1m[94m|[0m
+[1m[94m500 |[0m         uses: docker/login-action@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:508:9
+    [1m[94m|[0m
+[1m[94m508 |[0m         uses: docker/metadata-action@v5
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:553:9
+    [1m[94m|[0m
+[1m[94m553 |[0m         uses: docker/setup-buildx-action@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:556:9
+    [1m[94m|[0m
+[1m[94m556 |[0m         uses: docker/login-action@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:564:9
+    [1m[94m|[0m
+[1m[94m564 |[0m         uses: docker/metadata-action@v5
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:609:9
+    [1m[94m|[0m
+[1m[94m609 |[0m         uses: docker/setup-buildx-action@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:612:9
+    [1m[94m|[0m
+[1m[94m612 |[0m         uses: docker/login-action@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/open-webui_open-webui__docker-build.yaml:620:9
+    [1m[94m|[0m
+[1m[94m620 |[0m         uses: docker/metadata-action@v5
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m73[39m findings ([1m[93m20[39m suppressed[0m): 0 unknown, [35m8[39m informational, [36m0[39m low, [33m9[39m medium, [31m36[39m high

@@ -1,0 +1,31 @@
+{
+  "workflow": "langgenius_dify__api-tests.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "excessive-permissions": 1,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "langgenius_dify__api-tests.yml",
+      "line": 17,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "langgenius_dify__api-tests.yml",
+      "line": 81,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

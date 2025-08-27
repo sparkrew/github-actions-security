@@ -1,0 +1,75 @@
+name: Build and Push OCI CLI Image
+on:
+workflow_dispatch:
+schedule:
+- cron: '30 0 * * 3'  # Tuesday@17h30 Pacific = Wednesday@00h30 UTC
+push:
+branches: [ "main" ]
+paths:
+- 'OracleCloudInfrastructuree/oci-cli/*'
+- '.github/workflows/build-and-push-oci-cli-image.yml'
+pull_request:
+paths:
+- 'OracleCloudInfrastructuree/oci-cli/*'
+- '.github/workflows/build-and-push-oci-cli-image.yml'
+branches: [ "main" ]
+env:
+IMAGE_NAME: oci-cli
+jobs:
+build:
+runs-on: ubuntu-latest
+permissions:
+contents: read
+packages: write
+steps:
+- name: Checkout repository
+uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2
+- name: Set up QEMU
+uses: docker/setup-qemu-action@29109295f81e9208d7d86ff1c6c12d2833863392 # docker/setup-qemu-action@v3 | v3.6.0
+- name: Setup Docker BuildX
+uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435 # docker/setup-buildx-action@v3 | master,v3.11.1
+- name: Lowercase repository owner
+id: repo-owner
+run: |
+echo "repo-owner=$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_OUTPUT"
+- name: Log into GitHub Container Registry
+if: github.event_name != 'pull_request'
+uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # docker/login-action@v3 | v3.4.0
+with:
+registry: ghcr.io
+username: ${{ github.actor }}
+password: ${{ secrets.GITHUB_TOKEN }}
+- name: Generate container image metadata
+id: meta
+uses: docker/metadata-action@902fa8ec7d6ecbf8d84d538b9b233a880e428804 # docker/metadata-action@v5 | v5.7.0
+with:
+images: ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/${{ env.IMAGE_NAME }}
+flavor: |
+latest=true
+labels: |
+provider=${REPO_OWNER}
+issues=https://github.com/${{ steps.repo-owner.outputs.repo-owner }}/docker-images/issues
+org.opencontainers.image.licenses=UPL-1.0
+org.opencontainers.image.vendor=${REPO_OWNER}
+org.opencontainers.image.title=OCI CLI
+org.opencontainers.image.description=Oracle Cloud Infrastructure Command Line Interface
+org.opencontainers.image.source=https://github.com/oracle/docker-images/tree/main/OracleCloudInfrastructure/oci-cli
+org.opencontainers.image.documentation=https://docs.oracle.com/en-us/iaas/Content/API/Concepts/cliconcepts.htm
+org.opencontainers.image.url=https://github.com/${{ steps.repo-owner.outputs.repo-owner }}/docker-images/pkgs/container/oci-cli
+org.opencontainers.image.base.name=ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/oci-cli:latest
+tags: |
+type=schedule,pattern={{date 'YYYYMMDD'}}
+type=sha
+- name: Build and push image
+id: build-and-push
+uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # docker/build-push-action@v6 | master,v6.18.0
+with:
+build-args: |
+BUILDTIME=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}
+VERSION=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}
+REVISION=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.revision'] }}
+context: ./OracleCloudInfrastructure/oci-cli/
+push: ${{ github.event_name != 'pull_request' }}
+platforms: linux/amd64, linux/arm64
+tags: ${{ steps.meta.outputs.tags }}
+labels: ${{ steps.meta.outputs.labels }}

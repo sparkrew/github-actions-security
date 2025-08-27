@@ -1,0 +1,27 @@
+{
+  "workflow": "freeCodeCamp_freeCodeCamp__docker-docr-cleanup.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: digitalocean/action-doctl@0e7c88a2988e3a39f018289c5a1b90d460a62ffc # digitalocean/action-doctl@v2",
+      "line": 20
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: raisedadead/action-docr-cleanup@62b968c928fbb2dbce8b0caf11c0391f0921ea46 # v1",
+      "line": 26
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "#       uses: digitalocean/action-doctl@0e7c88a2988e3a39f018289c5a1b90d460a62ffc # digitalocean/action-doctl@v2",
+      "line": 39
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-caller.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: Self-hosted runner (scheduled)
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m112 |[0m [1m[33m|[0m       report_repo_id: hf-internal-testing/transformers_daily_ci
+[1m[94m113 |[0m [1m[33m|[0m     secrets: inherit
+    [1m[94m|[0m [1m[33m|_____________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-caller.yml:32:3
+   [1m[94m|[0m
+[1m[94m32 |[0m [1m[33m/[0m   setup:
+[1m[94m33 |[0m [1m[33m|[0m     name: Setup
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m45 |[0m [1m[33m|[0m           name: setup_values
+[1m[94m46 |[0m [1m[33m|[0m           path: setup_values
+   [1m[94m|[0m [1m[33m|[0m                            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________|[0m
+   [1m[94m|[0m                              [1m[33mthis job[0m
+   [1m[94m|[0m                              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-caller.yml:48:3
+   [1m[94m|[0m
+[1m[94m48 |[0m [1m[33m/[0m   model-ci:
+[1m[94m49 |[0m [1m[33m|[0m     name: Model CI
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m56 |[0m [1m[33m|[0m       report_repo_id: hf-internal-testing/transformers_daily_ci
+[1m[94m57 |[0m [1m[33m|[0m     secrets: inherit
+   [1m[94m|[0m [1m[33m|[0m                    [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________|[0m
+   [1m[94m|[0m                      [1m[33mthis job[0m
+   [1m[94m|[0m                      [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-caller.yml:59:3
+   [1m[94m|[0m
+[1m[94m59 |[0m [1m[33m/[0m   torch-pipeline:
+[1m[94m60 |[0m [1m[33m|[0m     name: Torch pipeline CI
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m67 |[0m [1m[33m|[0m       report_repo_id: hf-internal-testing/transformers_daily_ci
+[1m[94m68 |[0m [1m[33m|[0m     secrets: inherit
+   [1m[94m|[0m [1m[33m|[0m                    [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________|[0m
+   [1m[94m|[0m                      [1m[33mthis job[0m
+   [1m[94m|[0m                      [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-caller.yml:70:3
+   [1m[94m|[0m
+[1m[94m70 |[0m [1m[33m/[0m   example-ci:
+[1m[94m71 |[0m [1m[33m|[0m     name: Example CI
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m78 |[0m [1m[33m|[0m       report_repo_id: hf-internal-testing/transformers_daily_ci
+[1m[94m79 |[0m [1m[33m|[0m     secrets: inherit
+   [1m[94m|[0m [1m[33m|[0m                    [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________|[0m
+   [1m[94m|[0m                      [1m[33mthis job[0m
+   [1m[94m|[0m                      [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-caller.yml:81:3
+   [1m[94m|[0m
+[1m[94m81 |[0m [1m[33m/[0m   trainer-fsdp-ci:
+[1m[94m82 |[0m [1m[33m|[0m     name: Trainer/FSDP CI
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m89 |[0m [1m[33m|[0m       report_repo_id: hf-internal-testing/transformers_daily_ci
+[1m[94m90 |[0m [1m[33m|[0m     secrets: inherit
+   [1m[94m|[0m [1m[33m|[0m                    [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________|[0m
+   [1m[94m|[0m                      [1m[33mthis job[0m
+   [1m[94m|[0m                      [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-caller.yml:92:3
+    [1m[94m|[0m
+[1m[94m 92 |[0m [1m[33m/[0m   deepspeed-ci:
+[1m[94m 93 |[0m [1m[33m|[0m     name: DeepSpeed CI
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m101 |[0m [1m[33m|[0m       report_repo_id: hf-internal-testing/transformers_daily_ci
+[1m[94m102 |[0m [1m[33m|[0m     secrets: inherit
+    [1m[94m|[0m [1m[33m|[0m                    [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________|[0m
+    [1m[94m|[0m                      [1m[33mthis job[0m
+    [1m[94m|[0m                      [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-caller.yml:104:3
+    [1m[94m|[0m
+[1m[94m104 |[0m [1m[33m/[0m   quantization-ci:
+[1m[94m105 |[0m [1m[33m|[0m     name: Quantization CI
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m112 |[0m [1m[33m|[0m       report_repo_id: hf-internal-testing/transformers_daily_ci
+[1m[94m113 |[0m [1m[33m|[0m     secrets: inherit
+    [1m[94m|[0m [1m[33m|[0m                     [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_____________________|[0m
+    [1m[94m|[0m                       [1m[33mthis job[0m
+    [1m[94m|[0m                       [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-caller.yml:36:9
+   [1m[94m|[0m
+[1m[94m36 |[0m         - name: Setup
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m37 |[0m [1m[91m/[0m         run: |
+[1m[94m38 |[0m [1m[91m|[0m           mkdir "setup_values"
+[1m[94m39 |[0m [1m[91m|[0m           echo "${{ inputs.prev_workflow_run_id || env.prev_workflow_run_id }}" > "setup_values/prev_workflow_run_id.txt"
+[1m[94m40 |[0m [1m[91m|[0m           echo "${{ inputs.other_workflow_run_id || env.other_workflow_run_id }}" > "setup_values/other_workflow_run_id.txt"
+   [1m[94m|[0m [1m[91m|____________________________________________________________________________________________________________________________^[0m [1m[91minputs.prev_workflow_run_id may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-caller.yml:36:9
+   [1m[94m|[0m
+[1m[94m36 |[0m         - name: Setup
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m37 |[0m [1m[91m/[0m         run: |
+[1m[94m38 |[0m [1m[91m|[0m           mkdir "setup_values"
+[1m[94m39 |[0m [1m[91m|[0m           echo "${{ inputs.prev_workflow_run_id || env.prev_workflow_run_id }}" > "setup_values/prev_workflow_run_id.txt"
+[1m[94m40 |[0m [1m[91m|[0m           echo "${{ inputs.other_workflow_run_id || env.other_workflow_run_id }}" > "setup_values/other_workflow_run_id.txt"
+   [1m[94m|[0m [1m[91m|____________________________________________________________________________________________________________________________^[0m [1m[91minputs.other_workflow_run_id may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-caller.yml:50:5
+   [1m[94m|[0m
+[1m[94m50 |[0m     uses: ./.github/workflows/self-scheduled.yml
+   [1m[94m|[0m     [1m[33m--------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m51 |[0m     with:
+[1m[94m...[0m
+[1m[94m56 |[0m       report_repo_id: hf-internal-testing/transformers_daily_ci
+[1m[94m57 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-caller.yml:61:5
+   [1m[94m|[0m
+[1m[94m61 |[0m     uses: ./.github/workflows/self-scheduled.yml
+   [1m[94m|[0m     [1m[33m--------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m62 |[0m     with:
+[1m[94m...[0m
+[1m[94m67 |[0m       report_repo_id: hf-internal-testing/transformers_daily_ci
+[1m[94m68 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-caller.yml:72:5
+   [1m[94m|[0m
+[1m[94m72 |[0m     uses: ./.github/workflows/self-scheduled.yml
+   [1m[94m|[0m     [1m[33m--------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m73 |[0m     with:
+[1m[94m...[0m
+[1m[94m78 |[0m       report_repo_id: hf-internal-testing/transformers_daily_ci
+[1m[94m79 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-caller.yml:83:5
+   [1m[94m|[0m
+[1m[94m83 |[0m     uses: ./.github/workflows/self-scheduled.yml
+   [1m[94m|[0m     [1m[33m--------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m84 |[0m     with:
+[1m[94m...[0m
+[1m[94m89 |[0m       report_repo_id: hf-internal-testing/transformers_daily_ci
+[1m[94m90 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-caller.yml:94:5
+    [1m[94m|[0m
+[1m[94m 94 |[0m     uses: ./.github/workflows/self-scheduled.yml
+    [1m[94m|[0m     [1m[33m--------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m 95 |[0m     with:
+[1m[94m...[0m
+[1m[94m101 |[0m       report_repo_id: hf-internal-testing/transformers_daily_ci
+[1m[94m102 |[0m     secrets: inherit
+    [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-caller.yml:106:5
+    [1m[94m|[0m
+[1m[94m106 |[0m     uses: ./.github/workflows/self-scheduled.yml
+    [1m[94m|[0m     [1m[33m--------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m107 |[0m     with:
+[1m[94m...[0m
+[1m[94m112 |[0m       report_repo_id: hf-internal-testing/transformers_daily_ci
+[1m[94m113 |[0m     secrets: inherit
+    [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m18[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m14[39m medium, [31m2[39m high

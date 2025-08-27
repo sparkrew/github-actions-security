@@ -1,0 +1,138 @@
+{
+  "workflow": "yt-dlp_yt-dlp__core.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "yt-dlp_yt-dlp__core.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 54
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-python@v5",
+          "pinned": "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "line": 56
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "yt-dlp_yt-dlp__core.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 52
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # actions/setup-python@v5 | v5.6.0",
+          "line": 54
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "yt-dlp_yt-dlp__core.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            54,
+            56
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/yt-dlp_yt-dlp__core.yml:54",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/yt-dlp_yt-dlp__core.yml:56",
+            "Info:   0 out of   2 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          }
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          }
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "yt-dlp_yt-dlp__core.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "line": 54,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+        },
+        {
+          "line": 56,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v5`"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "yt-dlp_yt-dlp__core.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "yt-dlp_yt-dlp__core.yml",
+          "line": 54,
+          "column": 7,
+          "note": "audit confidence \u2192 Low"
+        }
+      ]
+    }
+  }
+}

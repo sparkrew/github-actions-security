@@ -1,0 +1,37 @@
+{
+  "workflow": "excalidraw_excalidraw__publish-docker.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "unpinned-github-actions": 5
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0",
+      "line": 11
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc # docker/login-action@v2 | releases,v2.2.0",
+      "line": 13
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/setup-qemu-action@29109295f81e9208d7d86ff1c6c12d2833863392 # docker/setup-qemu-action@v3 | v3.6.0",
+      "line": 18
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435 # docker/setup-buildx-action@v3 | master,v3.11.1",
+      "line": 20
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/build-push-action@ca052bb54ab0790a636c9b5f226502c73d547a25 # docker/build-push-action@v5 | releases,v5.4.0",
+      "line": 22
+    }
+  ]
+}

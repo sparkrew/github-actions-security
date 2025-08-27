@@ -1,0 +1,27 @@
+{
+  "workflow": "IBM_sarama__apidiff.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5 # v5.5.0",
+      "line": 28
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2",
+      "line": 36
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2",
+      "line": 45
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "workflow": "Significant-Gravitas_AutoGPT__classic-benchmark-ci.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 6,
+    "by_rule": {
+      "artipacked": 2,
+      "excessive-permissions": 2,
+      "unpinned-uses": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "Significant-Gravitas_AutoGPT__classic-benchmark-ci.yml",
+      "line": 44,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "Significant-Gravitas_AutoGPT__classic-benchmark-ci.yml",
+      "line": 116,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "Significant-Gravitas_AutoGPT__classic-benchmark-ci.yml",
+      "line": 1,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "Significant-Gravitas_AutoGPT__classic-benchmark-ci.yml",
+      "line": 108,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "Significant-Gravitas_AutoGPT__classic-benchmark-ci.yml",
+      "line": 98,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "Significant-Gravitas_AutoGPT__classic-benchmark-ci.yml",
+      "line": 103,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

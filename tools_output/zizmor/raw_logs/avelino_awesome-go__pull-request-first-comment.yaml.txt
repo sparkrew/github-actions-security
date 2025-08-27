@@ -1,0 +1,19 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+ [1m[94m-->[0m ../.github/workflows/avelino_awesome-go__pull-request-first-comment.yaml:3:1
+  [1m[94m|[0m
+[1m[94m3 |[0m [1m[91m/[0m on:
+[1m[94m4 |[0m [1m[91m|[0m   pull_request_target:
+[1m[94m5 |[0m [1m[91m|[0m     types: [opened]
+  [1m[94m|[0m [1m[91m|___________________^[0m [1m[91mpull_request_target is almost always used insecurely[0m
+  [1m[94m|[0m
+  [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/avelino_awesome-go__pull-request-first-comment.yaml:18:9
+   [1m[94m|[0m
+[1m[94m18 |[0m         uses: peter-evans/create-or-update-comment@v3
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m3[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m0[39m medium, [31m2[39m high

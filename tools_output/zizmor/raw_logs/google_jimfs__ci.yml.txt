@@ -1,0 +1,88 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_jimfs__ci.yml:33:9
+   [1m[94m|[0m
+[1m[94m33 |[0m         - name: 'Check out repository'
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m34 |[0m [1m[33m|[0m         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+   [1m[94m|[0m [1m[33m|_______________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_jimfs__ci.yml:60:9
+   [1m[94m|[0m
+[1m[94m60 |[0m         - name: 'Check out repository'
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m61 |[0m [1m[33m|[0m         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+   [1m[94m|[0m [1m[33m|_______________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_jimfs__ci.yml:89:9
+   [1m[94m|[0m
+[1m[94m89 |[0m         - name: 'Check out repository'
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m90 |[0m [1m[33m|[0m         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+   [1m[94m|[0m [1m[33m|_______________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_jimfs__ci.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: CI
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m105 |[0m [1m[33m|[0m           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+[1m[94m106 |[0m [1m[33m|[0m         run: ./util/update_snapshot_docs.sh
+    [1m[94m|[0m [1m[33m|____________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_jimfs__ci.yml:12:3
+   [1m[94m|[0m
+[1m[94m12 |[0m [1m[33m/[0m   test:
+[1m[94m13 |[0m [1m[33m|[0m     name: "JDK ${{ matrix.java }} on ${{ matrix.os }}"
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m51 |[0m [1m[33m|[0m         shell: bash
+[1m[94m52 |[0m [1m[33m|[0m         run: mvn -B verify -U -Dmaven.javadoc.skip=true
+   [1m[94m|[0m [1m[33m|[0m                                                       [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________________________________________|[0m
+   [1m[94m|[0m                                                         [1m[33mthis job[0m
+   [1m[94m|[0m                                                         [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_jimfs__ci.yml:54:3
+   [1m[94m|[0m
+[1m[94m54 |[0m [1m[33m/[0m   publish_snapshot:
+[1m[94m55 |[0m [1m[33m|[0m     name: 'Publish snapshot'
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m80 |[0m [1m[33m|[0m           CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
+[1m[94m81 |[0m [1m[33m|[0m         run: mvn -B clean source:jar javadoc:jar deploy -DskipTests=true
+   [1m[94m|[0m [1m[33m|[0m                                                                        [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                          [1m[33mthis job[0m
+   [1m[94m|[0m                                                                          [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_jimfs__ci.yml:83:3
+    [1m[94m|[0m
+[1m[94m 83 |[0m [1m[33m/[0m   generate_docs:
+[1m[94m 84 |[0m [1m[33m|[0m     name: 'Generate latest docs'
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m105 |[0m [1m[33m|[0m           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+[1m[94m106 |[0m [1m[33m|[0m         run: ./util/update_snapshot_docs.sh
+    [1m[94m|[0m [1m[33m|[0m                                            [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________________________________|[0m
+    [1m[94m|[0m                                              [1m[33mthis job[0m
+    [1m[94m|[0m                                              [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m7[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m7[39m medium, [31m0[39m high

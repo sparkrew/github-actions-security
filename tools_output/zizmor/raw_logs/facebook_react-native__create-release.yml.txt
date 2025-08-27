@@ -1,0 +1,54 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-native__create-release.yml:24:9
+   [1m[94m|[0m
+[1m[94m24 |[0m         - name: Checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m25 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m28 |[0m [1m[33m|[0m           fetch-depth: 0
+[1m[94m29 |[0m [1m[33m|[0m           fetch-tags: 'true'
+   [1m[94m|[0m [1m[33m|____________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-native__create-release.yml:21:3
+   [1m[94m|[0m
+[1m[94m21 |[0m [1m[33m/[0m   create_release:
+[1m[94m22 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m55 |[0m [1m[33m|[0m           is-latest-on-npm: ${{ inputs.is-latest-on-npm }}
+[1m[94m56 |[0m [1m[33m|[0m           dry-run: ${{ inputs.dry-run }}
+   [1m[94m|[0m [1m[33m|[0m                                         [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_________________________________________|[0m
+   [1m[94m|[0m                                           [1m[33mthis job[0m
+   [1m[94m|[0m                                           [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-native__create-release.yml:39:9
+   [1m[94m|[0m
+[1m[94m39 |[0m       - name: Print output
+   [1m[94m|[0m         [1m[94m------------------[0m [1m[94minfo: this step[0m
+[1m[94m40 |[0m         run: echo "ON_STABLE_BRANCH ${{steps.check_stable_branch.outputs.ON_STABLE_BRANCH}}"
+   [1m[94m|[0m         [1m[94m------------------------------------------------------------------------------------[0m [1m[94minfo: steps.check_stable_branch.outputs.ON_STABLE_BRANCH may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-native__create-release.yml:41:9
+   [1m[94m|[0m
+[1m[94m41 |[0m         - name: Check if tag already exists
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m42 |[0m           id: check_if_tag_exists
+[1m[94m43 |[0m [1m[91m/[0m         run: |
+[1m[94m44 |[0m [1m[91m|[0m           TAG="v${{ inputs.version }}"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m48 |[0m [1m[91m|[0m             echo "TAG_EXISTS=true" >> $GITHUB_OUTPUT
+[1m[94m49 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|____________^[0m [1m[91minputs.version may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m7[39m findings ([1m[93m3[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m2[39m medium, [31m1[39m high

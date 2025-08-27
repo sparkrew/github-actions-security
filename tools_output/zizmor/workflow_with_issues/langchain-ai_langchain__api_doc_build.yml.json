@@ -1,0 +1,59 @@
+{
+  "workflow": "langchain-ai_langchain__api_doc_build.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "artipacked": 2,
+      "excessive-permissions": 1,
+      "unpinned-uses": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "langchain-ai_langchain__api_doc_build.yml",
+      "line": 16,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "langchain-ai_langchain__api_doc_build.yml",
+      "line": 19,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "error",
+      "message": "overly broad permissions",
+      "workflow": "langchain-ai_langchain__api_doc_build.yml",
+      "line": 11,
+      "column": 3,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "langchain-ai_langchain__api_doc_build.yml",
+      "line": 27,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "langchain-ai_langchain__api_doc_build.yml",
+      "line": 104,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

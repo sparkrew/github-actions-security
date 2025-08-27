@@ -1,0 +1,32 @@
+{
+  "workflow": "NVIDIA_k8s-device-plugin__code_scanning.yaml",
+  "tool": "scharf",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "line": 34,
+      "column": 13,
+      "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+    },
+    {
+      "line": 37,
+      "column": 13,
+      "message": "Unpinned GitHub Action: uses `actions/setup-go@v5`"
+    },
+    {
+      "line": 42,
+      "column": 20,
+      "message": "Unpinned GitHub Action: uses `codeql-action/init@v3`"
+    },
+    {
+      "line": 52,
+      "column": 20,
+      "message": "Unpinned GitHub Action: uses `codeql-action/analyze@v3`"
+    }
+  ]
+}

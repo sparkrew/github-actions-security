@@ -1,0 +1,58 @@
+{
+  "workflow": "open-webui_open-webui__format-build-frontend.yaml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "artipacked": 2,
+      "excessive-permissions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "open-webui_open-webui__format-build-frontend.yaml",
+      "line": 26,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "open-webui_open-webui__format-build-frontend.yaml",
+      "line": 53,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "open-webui_open-webui__format-build-frontend.yaml",
+      "line": 1,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "open-webui_open-webui__format-build-frontend.yaml",
+      "line": 22,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "open-webui_open-webui__format-build-frontend.yaml",
+      "line": 49,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    }
+  ]
+}

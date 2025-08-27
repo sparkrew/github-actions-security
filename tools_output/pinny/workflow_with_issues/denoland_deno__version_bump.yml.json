@@ -1,0 +1,27 @@
+{
+  "workflow": "denoland_deno__version_bump.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+      "line": 30
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: dsherret/rust-toolchain-file@3551321aa44dd44a0393eb3b6bdfbc5d25ecf621 # dsherret/rust-toolchain-file@v1 | main",
+      "line": 34
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: denoland/setup-deno@e95548e56dfa95d4e1a28d6f422fafe75c4c26fb # denoland/setup-deno@v2 | v2.0.3",
+      "line": 36
+    }
+  ]
+}

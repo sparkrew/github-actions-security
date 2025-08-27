@@ -1,0 +1,36 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-native__test-libraries-on-nightlies.yml:59:9
+   [1m[94m|[0m
+[1m[94m59 |[0m         - name: Checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m60 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-native__test-libraries-on-nightlies.yml:88:9
+   [1m[94m|[0m
+[1m[94m88 |[0m         - name: Checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m89 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-native__test-libraries-on-nightlies.yml:69:9
+   [1m[94m|[0m
+[1m[94m69 |[0m         - name: Save outcome
+   [1m[94m|[0m           [1m[94m------------------[0m [1m[94minfo: this step[0m
+[1m[94m70 |[0m           id: save-outcome
+[1m[94m71 |[0m           if: always()
+[1m[94m72 |[0m [1m[94m/[0m         run: |
+[1m[94m73 |[0m [1m[94m|[0m           LIB_FOLDER=$(echo "${{matrix.library}}"  | tr ' ' '_' | tr '/' '_')
+[1m[94m74 |[0m [1m[94m|[0m           echo "${{matrix.library}}: ${{steps.run-test.outcome}}" > "/tmp/$LIB_FOLDER-${{ matrix.platform }}-outcome"
+[1m[94m75 |[0m [1m[94m|[0m           echo "lib_folder=$LIB_FOLDER" >> $GITHUB_OUTPUT
+   [1m[94m|[0m [1m[94m|_________________________________________________________-[0m [1m[94minfo: steps.run-test.outcome may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m12[39m findings ([1m[93m9[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m2[39m medium, [31m0[39m high

@@ -1,0 +1,24 @@
+{
+  "workflow": "axios_axios__publish.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "injection": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "injection",
+      "line": "84",
+      "column": "",
+      "job": "notify",
+      "step": "4",
+      "details": "Sources: github.event.inputs.tag || github.event.release.tag_name",
+      "event_triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+name: site-deploy
+on:
+push:
+branches:
+- "main"
+permissions:
+contents: read #  to fetch code (actions/checkout)
+jobs:
+build:
+name: Make and Deploy site
+runs-on: ubuntu-latest
+environment: netlify
+container: golang:latest
+steps:
+- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2
+- name: Get dependencies
+run: go get -v -t -d ./...
+- name: Make awesome-go.com
+run: go run .
+- name: Setup node
+uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | v4.4.0
+with:
+node-version: 20
+- name: deploy awesome-go.com
+uses: nwtgck/actions-netlify@4cbaf4c08f1a7bfa537d6113472ef4424e4eb654 # nwtgck/actions-netlify@v3.0
+with:
+publish-dir: "./out"
+production-branch: main
+production-deploy: true
+enable-pull-request-comment: false
+enable-commit-comment: false
+enable-commit-status: false
+overwrites-pull-request-comment: false
+env:
+NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+timeout-minutes: 1

@@ -1,0 +1,250 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__docker-build-push.yml:78:9
+   [1m[94m|[0m
+[1m[94m78 |[0m         - name: Checkout code
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m79 |[0m [1m[33m|[0m         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+[1m[94m80 |[0m [1m[33m|[0m         with:
+[1m[94m81 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__docker-build-push.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m # This workflow is used to build and push the Docker image for n8n
+[1m[94m  2 |[0m [1m[33m|[0m # - build-and-push-docker: This builds on both an ARM64 and AMD64 runner so the builds are native to the platform. Uses blacksmith [1m[94m...[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m331 |[0m [1m[33m|[0m     secrets:
+[1m[94m332 |[0m [1m[33m|[0m       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    [1m[94m|[0m [1m[33m|__________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__docker-build-push.yml:56:3
+    [1m[94m|[0m
+[1m[94m 56 |[0m [1m[33m/[0m   build-and-push-docker:
+[1m[94m 57 |[0m [1m[33m|[0m     strategy:
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m238 |[0m [1m[33m|[0m           push: ${{ steps.context.outputs.push_enabled }}
+[1m[94m239 |[0m [1m[33m|[0m           tags: ${{ steps.determine-tags.outputs.tags }}
+    [1m[94m|[0m [1m[33m|[0m                                                        [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|________________________________________________________|[0m
+    [1m[94m|[0m                                                          [1m[33mthis job[0m
+    [1m[94m|[0m                                                          [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__docker-build-push.yml:241:3
+    [1m[94m|[0m
+[1m[94m241 |[0m [1m[33m/[0m   create_multi_arch_manifest:
+[1m[94m242 |[0m [1m[33m|[0m     name: Create Multi-Arch Manifest
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m318 |[0m [1m[33m|[0m             ${MANIFEST_TAG}-amd64 \
+[1m[94m319 |[0m [1m[33m|[0m             ${MANIFEST_TAG}-arm64
+    [1m[94m|[0m [1m[33m|[0m                                 [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_________________________________|[0m
+    [1m[94m|[0m                                   [1m[33mthis job[0m
+    [1m[94m|[0m                                   [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__docker-build-push.yml:321:3
+    [1m[94m|[0m
+[1m[94m321 |[0m [1m[33m/[0m   security-scan:
+[1m[94m322 |[0m [1m[33m|[0m     name: Security Scan
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m331 |[0m [1m[33m|[0m     secrets:
+[1m[94m332 |[0m [1m[33m|[0m       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    [1m[94m|[0m [1m[33m|[0m                                                          [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|__________________________________________________________|[0m
+    [1m[94m|[0m                                                            [1m[33mthis job[0m
+    [1m[94m|[0m                                                            [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__docker-build-push.yml:104:9
+    [1m[94m|[0m
+[1m[94m104 |[0m         - name: Determine build context values
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m105 |[0m           id: context
+[1m[94m106 |[0m [1m[91m/[0m         run: |
+[1m[94m107 |[0m [1m[91m|[0m           if [[ "${{ github.event_name }}" == "schedule" ]]; then
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m138 |[0m [1m[91m|[0m             echo "push_enabled=false" >> $GITHUB_OUTPUT
+[1m[94m139 |[0m [1m[91m|[0m           fi
+    [1m[94m|[0m [1m[91m|____________^[0m [1m[91minputs.release_type may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__docker-build-push.yml:104:9
+    [1m[94m|[0m
+[1m[94m104 |[0m         - name: Determine build context values
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m105 |[0m           id: context
+[1m[94m106 |[0m [1m[91m/[0m         run: |
+[1m[94m107 |[0m [1m[91m|[0m           if [[ "${{ github.event_name }}" == "schedule" ]]; then
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m138 |[0m [1m[91m|[0m             echo "push_enabled=false" >> $GITHUB_OUTPUT
+[1m[94m139 |[0m [1m[91m|[0m           fi
+    [1m[94m|[0m [1m[91m|____________^[0m [1m[91minputs.n8n_version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__docker-build-push.yml:104:9
+    [1m[94m|[0m
+[1m[94m104 |[0m         - name: Determine build context values
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m105 |[0m           id: context
+[1m[94m106 |[0m [1m[91m/[0m         run: |
+[1m[94m107 |[0m [1m[91m|[0m           if [[ "${{ github.event_name }}" == "schedule" ]]; then
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m138 |[0m [1m[91m|[0m             echo "push_enabled=false" >> $GITHUB_OUTPUT
+[1m[94m139 |[0m [1m[91m|[0m           fi
+    [1m[94m|[0m [1m[91m|____________^[0m [1m[91minputs.push_enabled may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__docker-build-push.yml:104:9
+    [1m[94m|[0m
+[1m[94m104 |[0m         - name: Determine build context values
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m105 |[0m           id: context
+[1m[94m106 |[0m [1m[91m/[0m         run: |
+[1m[94m107 |[0m [1m[91m|[0m           if [[ "${{ github.event_name }}" == "schedule" ]]; then
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m138 |[0m [1m[91m|[0m             echo "push_enabled=false" >> $GITHUB_OUTPUT
+[1m[94m139 |[0m [1m[91m|[0m           fi
+    [1m[94m|[0m [1m[91m|____________^[0m [1m[91minputs.release_type may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__docker-build-push.yml:104:9
+    [1m[94m|[0m
+[1m[94m104 |[0m         - name: Determine build context values
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m105 |[0m           id: context
+[1m[94m106 |[0m [1m[91m/[0m         run: |
+[1m[94m107 |[0m [1m[91m|[0m           if [[ "${{ github.event_name }}" == "schedule" ]]; then
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m138 |[0m [1m[91m|[0m             echo "push_enabled=false" >> $GITHUB_OUTPUT
+[1m[94m139 |[0m [1m[91m|[0m           fi
+    [1m[94m|[0m [1m[91m|____________^[0m [1m[91mgithub.ref_name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__docker-build-push.yml:104:9
+    [1m[94m|[0m
+[1m[94m104 |[0m         - name: Determine build context values
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m105 |[0m           id: context
+[1m[94m106 |[0m [1m[91m/[0m         run: |
+[1m[94m107 |[0m [1m[91m|[0m           if [[ "${{ github.event_name }}" == "schedule" ]]; then
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m138 |[0m [1m[91m|[0m             echo "push_enabled=false" >> $GITHUB_OUTPUT
+[1m[94m139 |[0m [1m[91m|[0m           fi
+    [1m[94m|[0m [1m[91m|____________^[0m [1m[91minputs.push_to_registry may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__docker-build-push.yml:104:9
+    [1m[94m|[0m
+[1m[94m104 |[0m         - name: Determine build context values
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m105 |[0m           id: context
+[1m[94m106 |[0m [1m[91m/[0m         run: |
+[1m[94m107 |[0m [1m[91m|[0m           if [[ "${{ github.event_name }}" == "schedule" ]]; then
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m138 |[0m [1m[91m|[0m             echo "push_enabled=false" >> $GITHUB_OUTPUT
+[1m[94m139 |[0m [1m[91m|[0m           fi
+    [1m[94m|[0m [1m[91m|____________^[0m [1m[91minputs.release_type may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__docker-build-push.yml:141:9
+    [1m[94m|[0m
+[1m[94m141 |[0m         - name: Determine Docker tags
+    [1m[94m|[0m           [1m[94m---------------------------[0m [1m[94minfo: this step[0m
+[1m[94m142 |[0m           id: determine-tags
+[1m[94m143 |[0m [1m[94m/[0m         run: |
+[1m[94m144 |[0m [1m[94m|[0m           RELEASE_TYPE="${{ steps.context.outputs.release_type }}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m206 |[0m [1m[94m|[0m           echo "dockerhub_platform_tag=${DOCKER_TAGS_FOR_PUSH}" >> $GITHUB_OUTPUT
+[1m[94m207 |[0m [1m[94m|[0m           echo "primary_ghcr_manifest_tag=${PRIMARY_GHCR_MANIFEST_TAG_VALUE}" >> $GITHUB_OUTPUT
+    [1m[94m|[0m [1m[94m|_______________________________________________________________________________________________-[0m [1m[94minfo: steps.context.outputs.release_type may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__docker-build-push.yml:141:9
+    [1m[94m|[0m
+[1m[94m141 |[0m         - name: Determine Docker tags
+    [1m[94m|[0m           [1m[94m---------------------------[0m [1m[94minfo: this step[0m
+[1m[94m142 |[0m           id: determine-tags
+[1m[94m143 |[0m [1m[94m/[0m         run: |
+[1m[94m144 |[0m [1m[94m|[0m           RELEASE_TYPE="${{ steps.context.outputs.release_type }}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m206 |[0m [1m[94m|[0m           echo "dockerhub_platform_tag=${DOCKER_TAGS_FOR_PUSH}" >> $GITHUB_OUTPUT
+[1m[94m207 |[0m [1m[94m|[0m           echo "primary_ghcr_manifest_tag=${PRIMARY_GHCR_MANIFEST_TAG_VALUE}" >> $GITHUB_OUTPUT
+    [1m[94m|[0m [1m[94m|_______________________________________________________________________________________________-[0m [1m[94minfo: steps.context.outputs.n8n_version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__docker-build-push.yml:265:9
+    [1m[94m|[0m
+[1m[94m265 |[0m         - name: Reconstruct Docker Hub Primary Tag
+    [1m[94m|[0m           [1m[94m----------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m266 |[0m           id: reconstruct_dockerhub_tag
+[1m[94m267 |[0m [1m[94m/[0m         run: |
+[1m[94m268 |[0m [1m[94m|[0m           RELEASE_TYPE="${{ needs.build-and-push-docker.outputs.release_type }}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m291 |[0m [1m[94m|[0m             echo "::notice::No Docker Hub primary tag to reconstruct for release type '$RELEASE_TYPE' and version '$N8N_VERSION'. S[1m[94m...[0m
+[1m[94m292 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: needs.build-and-push-docker.outputs.release_type may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__docker-build-push.yml:265:9
+    [1m[94m|[0m
+[1m[94m265 |[0m         - name: Reconstruct Docker Hub Primary Tag
+    [1m[94m|[0m           [1m[94m----------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m266 |[0m           id: reconstruct_dockerhub_tag
+[1m[94m267 |[0m [1m[94m/[0m         run: |
+[1m[94m268 |[0m [1m[94m|[0m           RELEASE_TYPE="${{ needs.build-and-push-docker.outputs.release_type }}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m291 |[0m [1m[94m|[0m             echo "::notice::No Docker Hub primary tag to reconstruct for release type '$RELEASE_TYPE' and version '$N8N_VERSION'. S[1m[94m...[0m
+[1m[94m292 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: needs.build-and-push-docker.outputs.n8n_version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__docker-build-push.yml:294:9
+    [1m[94m|[0m
+[1m[94m294 |[0m         - name: Create GHCR multi-arch manifest
+    [1m[94m|[0m           [1m[94m-------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m295 |[0m           if: needs.build-and-push-docker.outputs.primary_ghcr_manifest_tag != ''
+[1m[94m296 |[0m [1m[94m/[0m         run: |
+[1m[94m297 |[0m [1m[94m|[0m           MANIFEST_TAG="${{ needs.build-and-push-docker.outputs.primary_ghcr_manifest_tag }}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m304 |[0m [1m[94m|[0m             ${MANIFEST_TAG}-amd64 \
+[1m[94m305 |[0m [1m[94m|[0m             ${MANIFEST_TAG}-arm64
+    [1m[94m|[0m [1m[94m|_________________________________-[0m [1m[94minfo: needs.build-and-push-docker.outputs.primary_ghcr_manifest_tag may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m40[39m findings ([1m[93m23[39m suppressed[0m): 0 unknown, [35m5[39m informational, [36m0[39m low, [33m5[39m medium, [31m7[39m high

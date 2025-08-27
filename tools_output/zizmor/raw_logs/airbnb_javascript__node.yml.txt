@@ -1,0 +1,191 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/airbnb_javascript__node.yml:42:9
+   [1m[94m|[0m
+[1m[94m42 |[0m       - uses: actions/checkout@v2
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/airbnb_javascript__node.yml:77:9
+   [1m[94m|[0m
+[1m[94m77 |[0m       - uses: actions/checkout@v2
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/airbnb_javascript__node.yml:109:9
+    [1m[94m|[0m
+[1m[94m109 |[0m       - uses: actions/checkout@v2
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/airbnb_javascript__node.yml:142:9
+    [1m[94m|[0m
+[1m[94m142 |[0m       - uses: actions/checkout@v2
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/airbnb_javascript__node.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: 'Tests: node.js'
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m162 |[0m [1m[33m|[0m     steps:
+[1m[94m163 |[0m [1m[33m|[0m       - run: 'echo tests completed'
+    [1m[94m|[0m [1m[33m|____________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/airbnb_javascript__node.yml:6:3
+   [1m[94m|[0m
+[1m[94m 6 |[0m [1m[33m/[0m   matrix:
+[1m[94m 7 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m15 |[0m [1m[33m|[0m           type: 'majors'
+[1m[94m16 |[0m [1m[33m|[0m           preset: '^12 || ^14 || ^16 || >= 17'
+   [1m[94m|[0m [1m[33m|[0m                                              [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________________________________|[0m
+   [1m[94m|[0m                                                [1m[33mthis job[0m
+   [1m[94m|[0m                                                [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/airbnb_javascript__node.yml:18:3
+   [1m[94m|[0m
+[1m[94m18 |[0m [1m[33m/[0m   base:
+[1m[94m19 |[0m [1m[33m|[0m     needs: [matrix]
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m52 |[0m [1m[33m|[0m       - run: npm run travis
+[1m[94m53 |[0m [1m[33m|[0m       - uses: codecov/codecov-action@v2
+   [1m[94m|[0m [1m[33m|[0m                                       [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________________________|[0m
+   [1m[94m|[0m                                         [1m[33mthis job[0m
+   [1m[94m|[0m                                         [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/airbnb_javascript__node.yml:55:3
+   [1m[94m|[0m
+[1m[94m55 |[0m [1m[33m/[0m   react:
+[1m[94m56 |[0m [1m[33m|[0m     needs: [matrix]
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m89 |[0m [1m[33m|[0m       - run: npm run travis
+[1m[94m90 |[0m [1m[33m|[0m       - uses: codecov/codecov-action@v2
+   [1m[94m|[0m [1m[33m|[0m                                       [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________________________|[0m
+   [1m[94m|[0m                                         [1m[33mthis job[0m
+   [1m[94m|[0m                                         [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/airbnb_javascript__node.yml:92:3
+    [1m[94m|[0m
+[1m[94m 92 |[0m [1m[33m/[0m   prepublish-base:
+[1m[94m 93 |[0m [1m[33m|[0m     name: 'prepublish tests (base config)'
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m120 |[0m [1m[33m|[0m       - run: npm run prepublishOnly
+[1m[94m121 |[0m [1m[33m|[0m       - run: npm run posttravis
+    [1m[94m|[0m [1m[33m|[0m                               [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_______________________________|[0m
+    [1m[94m|[0m                                 [1m[33mthis job[0m
+    [1m[94m|[0m                                 [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/airbnb_javascript__node.yml:123:3
+    [1m[94m|[0m
+[1m[94m123 |[0m [1m[33m/[0m   prepublish-react:
+[1m[94m124 |[0m [1m[33m|[0m     name: 'prepublish tests (react config)'
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m155 |[0m [1m[33m|[0m       - run: npm run prepublishOnly
+[1m[94m156 |[0m [1m[33m|[0m       - run: npm run posttravis
+    [1m[94m|[0m [1m[33m|[0m                               [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_______________________________|[0m
+    [1m[94m|[0m                                 [1m[33mthis job[0m
+    [1m[94m|[0m                                 [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/airbnb_javascript__node.yml:158:3
+    [1m[94m|[0m
+[1m[94m158 |[0m [1m[33m/[0m   node:
+[1m[94m159 |[0m [1m[33m|[0m     name: 'node 10+'
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m162 |[0m [1m[33m|[0m     steps:
+[1m[94m163 |[0m [1m[33m|[0m       - run: 'echo tests completed'
+    [1m[94m|[0m [1m[33m|[0m                                    [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________________________|[0m
+    [1m[94m|[0m                                      [1m[33mthis job[0m
+    [1m[94m|[0m                                      [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/airbnb_javascript__node.yml:11:9
+   [1m[94m|[0m
+[1m[94m11 |[0m       - uses: ljharb/actions/node/matrix@main
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/airbnb_javascript__node.yml:43:9
+   [1m[94m|[0m
+[1m[94m43 |[0m       - uses: ljharb/actions/node/install@main
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/airbnb_javascript__node.yml:53:9
+   [1m[94m|[0m
+[1m[94m53 |[0m       - uses: codecov/codecov-action@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/airbnb_javascript__node.yml:78:9
+   [1m[94m|[0m
+[1m[94m78 |[0m       - uses: ljharb/actions/node/install@main
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/airbnb_javascript__node.yml:90:9
+   [1m[94m|[0m
+[1m[94m90 |[0m       - uses: codecov/codecov-action@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/airbnb_javascript__node.yml:110:9
+    [1m[94m|[0m
+[1m[94m110 |[0m       - uses: ljharb/actions/node/install@main
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/airbnb_javascript__node.yml:143:9
+    [1m[94m|[0m
+[1m[94m143 |[0m       - uses: ljharb/actions/node/install@main
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m20[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m11[39m medium, [31m7[39m high

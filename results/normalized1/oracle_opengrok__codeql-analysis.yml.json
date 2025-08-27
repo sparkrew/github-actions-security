@@ -1,0 +1,224 @@
+{
+  "workflow": "oracle_opengrok__codeql-analysis.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "oracle_opengrok__codeql-analysis.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 24,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-java@v4",
+          "pinned": "actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00",
+          "line": 26,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/init@v3",
+          "pinned": "github/codeql-action/init@181d5eefc20863364f96762470ba6f862bdef56b",
+          "line": 31,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/autobuild@v3",
+          "pinned": "github/codeql-action/autobuild@181d5eefc20863364f96762470ba6f862bdef56b",
+          "line": 36,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/analyze@v3",
+          "pinned": "github/codeql-action/analyze@181d5eefc20863364f96762470ba6f862bdef56b",
+          "line": 39,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "oracle_opengrok__codeql-analysis.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 20,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # actions/setup-java@v4 | v4.7.1",
+          "line": 22,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@d6bbdef45e766d081b84a2def353b0055f728d3e # github/codeql-action/init@v3",
+          "line": 27,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@d6bbdef45e766d081b84a2def353b0055f728d3e # github/codeql-action/init@v3",
+          "line": 31,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@d6bbdef45e766d081b84a2def353b0055f728d3e # github/codeql-action/init@v3",
+          "line": 33,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "oracle_opengrok__codeql-analysis.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            24,
+            26,
+            31,
+            36,
+            39
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/oracle_opengrok__codeql-analysis.yml:24",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/oracle_opengrok__codeql-analysis.yml:26",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/oracle_opengrok__codeql-analysis.yml:31",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/oracle_opengrok__codeql-analysis.yml:36",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/oracle_opengrok__codeql-analysis.yml:39",
+            "Info:   0 out of   5 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/oracle_opengrok__codeql-analysis.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "permissions-check"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "oracle_opengrok__codeql-analysis.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "line": 24,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 26,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/setup-java@v4`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 31,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/init@v3`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 36,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/autobuild@v3`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 39,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/analyze@v3`",
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "oracle_opengrok__codeql-analysis.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "artipacked": 1,
+          "excessive-permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "oracle_opengrok__codeql-analysis.yml",
+          "line": 23,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "oracle_opengrok__codeql-analysis.yml",
+          "line": 13,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        }
+      ]
+    }
+  }
+}

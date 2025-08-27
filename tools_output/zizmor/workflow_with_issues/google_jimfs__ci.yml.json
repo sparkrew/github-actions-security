@@ -1,0 +1,76 @@
+{
+  "workflow": "google_jimfs__ci.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 7,
+    "by_rule": {
+      "artipacked": 3,
+      "excessive-permissions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "google_jimfs__ci.yml",
+      "line": 33,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "google_jimfs__ci.yml",
+      "line": 60,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "google_jimfs__ci.yml",
+      "line": 89,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "google_jimfs__ci.yml",
+      "line": 1,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "google_jimfs__ci.yml",
+      "line": 12,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "google_jimfs__ci.yml",
+      "line": 54,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "google_jimfs__ci.yml",
+      "line": 83,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    }
+  ]
+}

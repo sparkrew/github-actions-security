@@ -1,0 +1,65 @@
+name: End-to-end Tests
+on:
+workflow_call:
+inputs:
+version:
+required: true
+type: string
+golang_version:
+required: true
+type: string
+secrets:
+AWS_ACCESS_KEY_ID:
+required: true
+AWS_SECRET_ACCESS_KEY:
+required: true
+AWS_SSH_KEY:
+required: true
+SLACK_BOT_TOKEN:
+required: true
+SLACK_CHANNEL_ID:
+required: true
+jobs:
+e2e-tests:
+runs-on: linux-amd64-cpu4
+steps:
+- name: Check out code
+uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2
+- name: Install Go
+uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5 # actions/setup-go@v5 | v5.5.0
+with:
+go-version: ${{ inputs.golang_version }}
+- name: Set up Holodeck
+uses: NVIDIA/holodeck@aa690b0cb42dffed4a0fa304a9ea896787955214 # NVIDIA/holodeck@v0.2.12
+with:
+aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+aws_ssh_key: ${{ secrets.AWS_SSH_KEY }}
+holodeck_config: "tests/e2e/infra/aws.yaml"
+- name: Run e2e tests
+env:
+KUBECONFIG: ${{ github.workspace }}/kubeconfig
+E2E_IMAGE_REPO: ghcr.io/nvidia/k8s-device-plugin
+E2E_IMAGE_TAG: ${{ inputs.version }}-ubi9
+LOG_ARTIFACTS: ${{ github.workspace }}/e2e_logs
+run: |
+make test-e2e
+- name: Archive test logs
+if: ${{ failure() }}
+uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2
+with:
+name: e2e-test-logs
+path: ./e2e_logs/
+retention-days: 15
+- name: Send Slack alert notification
+id: slack
+if: false
+uses: slackapi/slack-github-action@b0fa283ad8fea605de13dc3f449259339835fc52 # slackapi/slack-github-action@v2.1.0 | release
+env:
+SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+SUMMARY_URL: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
+with:
+channel-id: ${{ secrets.SLACK_CHANNEL_ID }}
+slack-message: |
+:x: On repository ${{ github.repository }} the Workflow *${{ github.workflow }}* has failed.
+Details: ${{ env.SUMMARY_URL }}

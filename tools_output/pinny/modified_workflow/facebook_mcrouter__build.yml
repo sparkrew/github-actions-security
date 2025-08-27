@@ -1,0 +1,22 @@
+name: build
+on:
+push:
+branches:
+- main
+- github_action
+pull_request:
+branches:
+- main
+jobs:
+build:
+runs-on: ubuntu-24.04
+steps:
+- name: Checkout code
+uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2
+- name: Build dependencies
+run: |
+./mcrouter/scripts/install_ubuntu_24.04.sh "$(pwd)"/mcrouter-install deps
+- name: Build mcrouter
+run: |
+mkdir -p "$(pwd)"/mcrouter-install/install
+./mcrouter/scripts/install_ubuntu_24.04.sh "$(pwd)"/mcrouter-install mcrouter

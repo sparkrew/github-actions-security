@@ -1,0 +1,159 @@
+{
+  "workflow": "krahets_hello-algo__dart.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "krahets_hello-algo__dart.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 26,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "dart-lang/setup-dart@v1",
+          "pinned": "dart-lang/setup-dart@e51d8e571e22473a2ddebf0ef8a2123f0ab2c02c",
+          "line": 28,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "krahets_hello-algo__dart.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 21,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: dart-lang/setup-dart@e51d8e571e22473a2ddebf0ef8a2123f0ab2c02c # dart-lang/setup-dart@v1 | v1.7.1",
+          "line": 23,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "krahets_hello-algo__dart.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            26,
+            28
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/krahets_hello-algo__dart.yml:26",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/krahets_hello-algo__dart.yml:28",
+            "Info:   0 out of   1 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   1 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "automatic-hardening-check"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "krahets_hello-algo__dart.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "line": 26,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 28,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `dart-lang/setup-dart@v1`",
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "krahets_hello-algo__dart.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "artipacked": 1,
+          "unpinned-uses": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "krahets_hello-algo__dart.yml",
+          "line": 26,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "krahets_hello-algo__dart.yml",
+          "line": 28,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "pinning-check"
+        }
+      ]
+    }
+  }
+}

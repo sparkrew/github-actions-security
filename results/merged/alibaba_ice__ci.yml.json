@@ -1,0 +1,236 @@
+{
+  "workflow": "alibaba_ice__ci.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "alibaba_ice__ci.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v3",
+          "pinned": "actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744",
+          "line": 18
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-node@v3",
+          "pinned": "actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610",
+          "line": 20
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "pnpm/action-setup@v4",
+          "pinned": "pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda",
+          "line": 25
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/cache@v3",
+          "pinned": "actions/cache@2f8e54208210a422b2efd51efaa6bd6d7ca8920f",
+          "line": 32
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "alibaba_ice__ci.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0",
+          "line": 15
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # actions/setup-node@v3 | releases,v3.9.1",
+          "line": 17
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # pnpm/action-setup@v4",
+          "line": 22
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/cache@2f8e54208210a422b2efd51efaa6bd6d7ca8920f # actions/cache@v3 | v3.4.3-working,v3.4.3",
+          "line": 29
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "alibaba_ice__ci.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            18,
+            20,
+            25,
+            32
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/alibaba_ice__ci.yml:18",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/alibaba_ice__ci.yml:20",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/alibaba_ice__ci.yml:25",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/alibaba_ice__ci.yml:32",
+            "Info:   0 out of   3 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   1 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          }
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          }
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/alibaba_ice__ci.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          }
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "alibaba_ice__ci.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "line": 18,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v3`"
+        },
+        {
+          "line": 20,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v3`"
+        },
+        {
+          "line": 25,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `pnpm/action-setup@v4`"
+        },
+        {
+          "line": 32,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/cache@v3`"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "alibaba_ice__ci.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "artipacked": 1,
+          "excessive-permissions": 1,
+          "unpinned-uses": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "alibaba_ice__ci.yml",
+          "line": 17,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "alibaba_ice__ci.yml",
+          "line": 9,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "alibaba_ice__ci.yml",
+          "line": 25,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "alibaba_ice__ci.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 3
+      },
+      "findings": [
+        {
+          "line": 18,
+          "column": 15,
+          "message": "the runner of \"actions/checkout@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]"
+        },
+        {
+          "line": 20,
+          "column": 15,
+          "message": "the runner of \"actions/setup-node@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]"
+        },
+        {
+          "line": 32,
+          "column": 15,
+          "message": "the runner of \"actions/cache@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,296 @@
+{
+  "workflow": "NVIDIA_k8s-device-plugin__publish-helm.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "NVIDIA_k8s-device-plugin__publish-helm.yaml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "azure/setup-helm@v4.3.0",
+          "pinned": "azure/setup-helm@b9e51907a09c216f16ebe8536097933489208112",
+          "line": 31,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 36,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "azure/setup-helm@v4.3.0",
+          "pinned": "azure/setup-helm@b9e51907a09c216f16ebe8536097933489208112",
+          "line": 61,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "NVIDIA_k8s-device-plugin__publish-helm.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: azure/setup-helm@b9e51907a09c216f16ebe8536097933489208112 # azure/setup-helm@v4.3.0 | releases",
+          "line": 14,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 18,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: azure/setup-helm@b9e51907a09c216f16ebe8536097933489208112 # azure/setup-helm@v4.3.0 | releases",
+          "line": 39,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "NVIDIA_k8s-device-plugin__publish-helm.yaml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            31,
+            36,
+            61
+          ],
+          "raw_details": [
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_k8s-device-plugin__publish-helm.yaml:31",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_k8s-device-plugin__publish-helm.yaml:36",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_k8s-device-plugin__publish-helm.yaml:61",
+            "Info:   0 out of   1 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   2 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "automatic-hardening-check"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/NVIDIA_k8s-device-plugin__publish-helm.yaml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "permissions-check"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "NVIDIA_k8s-device-plugin__publish-helm.yaml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "line": 31,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `azure/setup-helm@v4.3.0`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 36,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 61,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `azure/setup-helm@v4.3.0`",
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "NVIDIA_k8s-device-plugin__publish-helm.yaml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 10,
+        "by_rule": {
+          "artipacked": 1,
+          "excessive-permissions": 4,
+          "template-injection": 2,
+          "unpinned-uses": 2,
+          "secrets-inherit": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "NVIDIA_k8s-device-plugin__publish-helm.yaml",
+          "line": 35,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "NVIDIA_k8s-device-plugin__publish-helm.yaml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "NVIDIA_k8s-device-plugin__publish-helm.yaml",
+          "line": 24,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "NVIDIA_k8s-device-plugin__publish-helm.yaml",
+          "line": 52,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "NVIDIA_k8s-device-plugin__publish-helm.yaml",
+          "line": 56,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "NVIDIA_k8s-device-plugin__publish-helm.yaml",
+          "line": 40,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "NVIDIA_k8s-device-plugin__publish-helm.yaml",
+          "line": 65,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "NVIDIA_k8s-device-plugin__publish-helm.yaml",
+          "line": 31,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "pinning-check"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "NVIDIA_k8s-device-plugin__publish-helm.yaml",
+          "line": 61,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "pinning-check"
+        },
+        {
+          "rule_id": "secrets-inherit",
+          "level": "warning",
+          "message": "secrets unconditionally inherited by called workflow",
+          "workflow": "NVIDIA_k8s-device-plugin__publish-helm.yaml",
+          "line": 53,
+          "column": 5,
+          "note": "audit confidence \u2192 High",
+          "capability": "secrets-check"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "NVIDIA_k8s-device-plugin__publish-helm.yaml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 1
+      },
+      "findings": [
+        {
+          "line": 53,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/deploy-to-pages.yaml\": open /home/huawei/github-actions-security/.github/workflows/deploy-to-pages.yaml: no such file or directory [workflow-call]",
+          "capability": "workflow_structural_check"
+        }
+      ]
+    }
+  }
+}

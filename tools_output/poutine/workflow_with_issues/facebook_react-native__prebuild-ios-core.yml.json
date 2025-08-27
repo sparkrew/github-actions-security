@@ -1,0 +1,56 @@
+{
+  "workflow": "facebook_react-native__prebuild-ios-core.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 4
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "41",
+      "column": "",
+      "job": "build-rn-slice",
+      "step": "5",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "69",
+      "column": "",
+      "job": "build-rn-slice",
+      "step": "7",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "157",
+      "column": "",
+      "job": "compose-xcframework",
+      "step": "5",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "164",
+      "column": "",
+      "job": "compose-xcframework",
+      "step": "6",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    }
+  ]
+}

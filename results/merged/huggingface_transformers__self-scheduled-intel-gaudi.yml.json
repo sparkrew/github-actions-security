@@ -1,0 +1,431 @@
+{
+  "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 8,
+        "by_rule": {
+          "unpinned-github-actions": 8
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 43
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-python@v5",
+          "pinned": "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "line": 48
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 130
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4",
+          "pinned": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "line": 174
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 199
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4",
+          "pinned": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "line": 246
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 271
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4",
+          "pinned": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "line": 318
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 8,
+        "by_rule": {
+          "unpinned-github-actions": 8
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 40
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # actions/setup-python@v5 | v5.6.0",
+          "line": 44
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 119
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+          "line": 155
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 179
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+          "line": 218
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 242
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+          "line": 281
+        }
+      ]
+    },
+    "semgrep": {
+      "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+      "tool": "semgrep",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "run-shell-injection": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "run-shell-injection",
+          "line": 56,
+          "code": "requires login",
+          "note": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+          "documentation": null
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            43,
+            48,
+            130,
+            174,
+            199,
+            246,
+            271,
+            318
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:130",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:174",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:199",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:246",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:271",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:318",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:43",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:48",
+            "Info:   0 out of   8 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          }
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          }
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          }
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 8,
+        "by_rule": {
+          "unpinned-github-actions": 8
+        }
+      },
+      "findings": [
+        {
+          "line": 43,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+        },
+        {
+          "line": 48,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v5`"
+        },
+        {
+          "line": 130,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+        },
+        {
+          "line": 174,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`"
+        },
+        {
+          "line": 199,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+        },
+        {
+          "line": 246,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`"
+        },
+        {
+          "line": 271,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+        },
+        {
+          "line": 318,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 15,
+        "by_rule": {
+          "artipacked": 4,
+          "excessive-permissions": 3,
+          "template-injection": 2,
+          "secrets-inherit": 3,
+          "unpinned-images": 3
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+          "line": 42,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+          "line": 129,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+          "line": 198,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+          "line": 270,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+          "line": 72,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+          "line": 91,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+          "line": 323,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+          "line": 54,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+          "line": 54,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "secrets-inherit",
+          "level": "warning",
+          "message": "secrets unconditionally inherited by called workflow",
+          "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+          "line": 81,
+          "column": 5,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "secrets-inherit",
+          "level": "warning",
+          "message": "secrets unconditionally inherited by called workflow",
+          "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+          "line": 100,
+          "column": 5,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "secrets-inherit",
+          "level": "warning",
+          "message": "secrets unconditionally inherited by called workflow",
+          "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+          "line": 335,
+          "column": 5,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "unpinned-images",
+          "level": "error",
+          "message": "unpinned image references",
+          "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+          "line": 120,
+          "column": 7,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "unpinned-images",
+          "level": "error",
+          "message": "unpinned image references",
+          "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+          "line": 189,
+          "column": 7,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "unpinned-images",
+          "level": "error",
+          "message": "unpinned image references",
+          "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+          "line": 261,
+          "column": 7,
+          "note": "audit confidence \u2192 High"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "huggingface_transformers__self-scheduled-intel-gaudi.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 2
+      },
+      "findings": [
+        {
+          "line": 81,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/model_jobs_intel_gaudi.yml\": open /home/huawei/github-actions-security/.github/workflows/model_jobs_intel_gaudi.yml: no such file or directory [expression]"
+        },
+        {
+          "line": 335,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/slack-report.yml\": open /home/huawei/github-actions-security/.github/workflows/slack-report.yml: no such file or directory [workflow-call]"
+        }
+      ]
+    }
+  }
+}

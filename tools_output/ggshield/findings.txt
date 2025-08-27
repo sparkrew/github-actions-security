@@ -1,0 +1,19 @@
+ 
+> .github/workflows/Significant-Gravitas_AutoGPT__platform-frontend-ci.yml: 1 secret detected
+
+>> Secret detected: Generic High Entropy Secret
+   Validity: No Checker
+   Occurrences: 1
+   Known by GitGuardian dashboard: NO
+   Incident URL: N/A
+   Secret SHA: 38fef6a0bdf06c7a6893c238ccf7505c22357066ba6d16e8bc3f35db48eb5e62
+   Secret in Secrets Manager: False
+   Detector documentation: https://docs.gitguardian.com/secrets-detection/secrets-detection-engine/detectors/generics/generic_high_entropy_secret
+
+85 |         uses: chromaui/action@latest
+86 |         with:
+87 |           projectToken: chpt************c9c8
+                             |______apikey______|
+88 |           onlyChanged: true
+89 |           workingDir: autogpt_platform/frontend
+

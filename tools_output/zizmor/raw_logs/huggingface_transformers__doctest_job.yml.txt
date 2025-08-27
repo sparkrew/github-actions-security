@@ -1,0 +1,52 @@
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__doctest_job.yml:52:9
+   [1m[94m|[0m
+[1m[94m52 |[0m         - name: Get doctest files
+   [1m[94m|[0m           [1m[94m-----------------------[0m [1m[94minfo: this step[0m
+[1m[94m53 |[0m           working-directory: /transformers
+[1m[94m54 |[0m [1m[94m/[0m         run: |
+[1m[94m55 |[0m [1m[94m|[0m           echo "${{ toJson(fromJson(inputs.job_splits)[matrix.split_keys]) }}" > doc_tests.txt
+[1m[94m56 |[0m [1m[94m|[0m           cat doc_tests.txt
+   [1m[94m|[0m [1m[94m|___________________________-[0m [1m[94minfo: fromJson(inputs.job_splits)[matrix.split_keys] may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__doctest_job.yml:58:9
+   [1m[94m|[0m
+[1m[94m58 |[0m         - name: Set `split_keys`
+   [1m[94m|[0m           [1m[33m----------------------[0m [1m[33mthis step[0m
+[1m[94m59 |[0m           shell: bash
+[1m[94m60 |[0m [1m[33m/[0m         run: |
+[1m[94m61 |[0m [1m[33m|[0m           echo "${{ matrix.split_keys }}"
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m64 |[0m [1m[33m|[0m           echo "split_keys"
+[1m[94m65 |[0m [1m[33m|[0m           echo "split_keys=$split_keys" >> $GITHUB_ENV
+   [1m[94m|[0m [1m[33m|______________________________________________________-[0m [1m[33mmatrix.split_keys may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__doctest_job.yml:58:9
+   [1m[94m|[0m
+[1m[94m58 |[0m         - name: Set `split_keys`
+   [1m[94m|[0m           [1m[33m----------------------[0m [1m[33mthis step[0m
+[1m[94m59 |[0m           shell: bash
+[1m[94m60 |[0m [1m[33m/[0m         run: |
+[1m[94m61 |[0m [1m[33m|[0m           echo "${{ matrix.split_keys }}"
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m64 |[0m [1m[33m|[0m           echo "split_keys"
+[1m[94m65 |[0m [1m[33m|[0m           echo "split_keys=$split_keys" >> $GITHUB_ENV
+   [1m[94m|[0m [1m[33m|______________________________________________________-[0m [1m[33mmatrix.split_keys may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__doctest_job.yml:33:7
+   [1m[94m|[0m
+[1m[94m33 |[0m       image: huggingface/transformers-all-latest-gpu
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is unpinned[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m13[39m findings ([1m[93m9[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m2[39m medium, [31m1[39m high

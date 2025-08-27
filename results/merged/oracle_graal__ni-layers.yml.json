@@ -1,0 +1,279 @@
+{
+  "workflow": "oracle_graal__ni-layers.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "oracle_graal__ni-layers.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "unpinned-github-actions": 6
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 66
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4",
+          "pinned": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "line": 77
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-python@v5",
+          "pinned": "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "line": 82
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 102
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-java@v4",
+          "pinned": "actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00",
+          "line": 111
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-python@v5",
+          "pinned": "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "line": 116
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "oracle_graal__ni-layers.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 7,
+        "by_rule": {
+          "unpinned-github-actions": 7
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 23
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+          "line": 34
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # actions/setup-python@v5 | v5.6.0",
+          "line": 39
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 58
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/download-artifact@95815c38cf2ff2164869cbab79da8d1f422bc89e # v4.2.1",
+          "line": 60
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # actions/setup-java@v4 | v4.7.1",
+          "line": 67
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # actions/setup-python@v5 | v5.6.0",
+          "line": 72
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "oracle_graal__ni-layers.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 1,
+          "reason": "dependency not pinned by hash detected -- score normalized to 1",
+          "lines": [
+            66,
+            77,
+            82,
+            102,
+            111,
+            116
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/oracle_graal__ni-layers.yml:66",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/oracle_graal__ni-layers.yml:77",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/oracle_graal__ni-layers.yml:82",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/oracle_graal__ni-layers.yml:102",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/oracle_graal__ni-layers.yml:111",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/oracle_graal__ni-layers.yml:116",
+            "Info:   1 out of   7 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          }
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          }
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/oracle_graal__ni-layers.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          }
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "oracle_graal__ni-layers.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "unpinned-github-actions": 6
+        }
+      },
+      "findings": [
+        {
+          "line": 66,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+        },
+        {
+          "line": 77,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`"
+        },
+        {
+          "line": 82,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v5`"
+        },
+        {
+          "line": 102,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+        },
+        {
+          "line": 111,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-java@v4`"
+        },
+        {
+          "line": 116,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v5`"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "oracle_graal__ni-layers.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "artipacked": 2,
+          "excessive-permissions": 3,
+          "template-injection": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "oracle_graal__ni-layers.yml",
+          "line": 65,
+          "column": 7,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "oracle_graal__ni-layers.yml",
+          "line": 101,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "oracle_graal__ni-layers.yml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "oracle_graal__ni-layers.yml",
+          "line": 58,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "oracle_graal__ni-layers.yml",
+          "line": 119,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "oracle_graal__ni-layers.yml",
+          "line": 119,
+          "column": 9,
+          "note": "audit confidence \u2192 Medium"
+        }
+      ]
+    }
+  }
+}

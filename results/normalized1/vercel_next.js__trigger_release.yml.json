@@ -1,0 +1,239 @@
+{
+  "workflow": "vercel_next.js__trigger_release.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "vercel_next.js__trigger_release.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-node@v4",
+          "pinned": "actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "line": 54,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/cache@v4",
+          "pinned": "actions/cache@5a3ec84eff668545956fd18022155c47e93e2684",
+          "line": 94,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "vercel_next.js__trigger_release.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | v4.4.0",
+          "line": 18,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # actions/cache@v4 | v4.2.3",
+          "line": 49,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "semgrep": {
+      "workflow": "vercel_next.js__trigger_release.yml",
+      "tool": "semgrep",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "run-shell-injection": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "run-shell-injection",
+          "line": 108,
+          "code": "requires login",
+          "note": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+          "documentation": null,
+          "capability": "injection-check"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "vercel_next.js__trigger_release.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            54,
+            87,
+            94
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/vercel_next.js__trigger_release.yml:54",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/vercel_next.js__trigger_release.yml:94",
+            "Warn: npmCommand not pinned by hash: .github/workflows/vercel_next.js__trigger_release.yml:87",
+            "Info:   0 out of   2 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   1 npmCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "automatic-hardening-check"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/vercel_next.js__trigger_release.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "permissions-check"
+        }
+      ]
+    },
+    "poutine": {
+      "workflow": "vercel_next.js__trigger_release.yml",
+      "tool": "poutine",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "injection": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "injection",
+          "line": "108",
+          "column": "",
+          "job": "start",
+          "step": "12",
+          "details": "Sources: github.event.inputs.releaseType || 'canary' github.event.inputs.semverType",
+          "event_triggers": [
+            "schedule",
+            "workflow_dispatch"
+          ],
+          "capability": "injection-check"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "vercel_next.js__trigger_release.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "line": 54,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v4`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 94,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/cache@v4`",
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "vercel_next.js__trigger_release.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "excessive-permissions": 1,
+          "template-injection": 2
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "vercel_next.js__trigger_release.yml",
+          "line": 42,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "vercel_next.js__trigger_release.yml",
+          "line": 108,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-check"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "vercel_next.js__trigger_release.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 1
+      },
+      "findings": [
+        {
+          "line": 30,
+          "column": 5,
+          "message": "expected \"inputs\" key for \"workflow_dispatch\" section but got \"secrets\" [syntax-check]",
+          "capability": "workflow_structural_check"
+        }
+      ]
+    }
+  }
+}

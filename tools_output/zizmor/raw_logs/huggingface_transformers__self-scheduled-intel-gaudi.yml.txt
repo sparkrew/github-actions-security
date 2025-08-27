@@ -1,0 +1,187 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:42:9
+   [1m[94m|[0m
+[1m[94m42 |[0m         - name: Checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m43 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m44 |[0m [1m[33m|[0m         with:
+[1m[94m45 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:129:9
+    [1m[94m|[0m
+[1m[94m129 |[0m         - name: Checkout
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m130 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m131 |[0m [1m[33m|[0m         with:
+[1m[94m132 |[0m [1m[33m|[0m           fetch-depth: 0
+    [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:198:9
+    [1m[94m|[0m
+[1m[94m198 |[0m         - name: Checkout
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m199 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m200 |[0m [1m[33m|[0m         with:
+[1m[94m201 |[0m [1m[33m|[0m           fetch-depth: 0
+    [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:270:9
+    [1m[94m|[0m
+[1m[94m270 |[0m         - name: Checkout
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m271 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m272 |[0m [1m[33m|[0m         with:
+[1m[94m273 |[0m [1m[33m|[0m           fetch-depth: 0
+    [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:72:3
+   [1m[94m|[0m
+[1m[94m72 |[0m [1m[33m/[0m   run_models_gpu:
+[1m[94m73 |[0m [1m[33m|[0m     if: ${{ inputs.job == 'run_models_gpu' }}
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m88 |[0m [1m[33m|[0m
+[1m[94m89 |[0m [1m[33m|[0m     secrets: inherit
+   [1m[94m|[0m [1m[33m|[0m                    [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________|[0m
+   [1m[94m|[0m                      [1m[33mthis job[0m
+   [1m[94m|[0m                      [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:91:3
+    [1m[94m|[0m
+[1m[94m 91 |[0m [1m[33m/[0m   run_trainer_and_fsdp_gpu:
+[1m[94m 92 |[0m [1m[33m|[0m     if: ${{ inputs.job == 'run_trainer_and_fsdp_gpu' }}
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m107 |[0m [1m[33m|[0m
+[1m[94m108 |[0m [1m[33m|[0m     secrets: inherit
+    [1m[94m|[0m [1m[33m|[0m                    [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________|[0m
+    [1m[94m|[0m                      [1m[33mthis job[0m
+    [1m[94m|[0m                      [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:323:3
+    [1m[94m|[0m
+[1m[94m323 |[0m [1m[33m/[0m   send_results:
+[1m[94m324 |[0m [1m[33m|[0m     name: Slack Report
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m344 |[0m [1m[33m|[0m
+[1m[94m345 |[0m [1m[33m|[0m     secrets: inherit
+    [1m[94m|[0m [1m[33m|[0m                     [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_____________________|[0m
+    [1m[94m|[0m                       [1m[33mthis job[0m
+    [1m[94m|[0m                       [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:54:9
+   [1m[94m|[0m
+[1m[94m54 |[0m           name: Identify models to test
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m55 |[0m           working-directory: tests
+[1m[94m56 |[0m [1m[91m/[0m         run: |
+[1m[94m57 |[0m [1m[91m|[0m           if [ "${{ inputs.job }}" = "run_models_gpu" ]; then
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m62 |[0m [1m[91m|[0m             echo "slice_ids=[0, 1]" >> $GITHUB_OUTPUT
+[1m[94m63 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|____________^[0m [1m[91minputs.job may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:54:9
+   [1m[94m|[0m
+[1m[94m54 |[0m           name: Identify models to test
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m55 |[0m           working-directory: tests
+[1m[94m56 |[0m [1m[91m/[0m         run: |
+[1m[94m57 |[0m [1m[91m|[0m           if [ "${{ inputs.job }}" = "run_models_gpu" ]; then
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m62 |[0m [1m[91m|[0m             echo "slice_ids=[0, 1]" >> $GITHUB_OUTPUT
+[1m[94m63 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|____________^[0m [1m[91minputs.job may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:81:5
+   [1m[94m|[0m
+[1m[94m81 |[0m     uses: ./.github/workflows/model_jobs_intel_gaudi.yml
+   [1m[94m|[0m     [1m[33m----------------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m82 |[0m     with:
+[1m[94m...[0m
+[1m[94m88 |[0m
+[1m[94m89 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:100:5
+    [1m[94m|[0m
+[1m[94m100 |[0m     uses: ./.github/workflows/model_jobs_intel_gaudi.yml
+    [1m[94m|[0m     [1m[33m----------------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m101 |[0m     with:
+[1m[94m...[0m
+[1m[94m107 |[0m
+[1m[94m108 |[0m     secrets: inherit
+    [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:335:5
+    [1m[94m|[0m
+[1m[94m335 |[0m     uses: ./.github/workflows/slack-report.yml
+    [1m[94m|[0m     [1m[33m------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m336 |[0m     with:
+[1m[94m...[0m
+[1m[94m344 |[0m
+[1m[94m345 |[0m     secrets: inherit
+    [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:120:7
+    [1m[94m|[0m
+[1m[94m120 |[0m       image: vault.habana.ai/gaudi-docker/1.21.1/ubuntu22.04/habanalabs/pytorch-installer-2.6.0:latest
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is pinned to latest[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:189:7
+    [1m[94m|[0m
+[1m[94m189 |[0m       image: vault.habana.ai/gaudi-docker/1.21.1/ubuntu22.04/habanalabs/pytorch-installer-2.6.0:latest
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is pinned to latest[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml:261:7
+    [1m[94m|[0m
+[1m[94m261 |[0m       image: vault.habana.ai/gaudi-docker/1.21.1/ubuntu22.04/habanalabs/pytorch-installer-2.6.0:latest
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is pinned to latest[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m42[39m findings ([1m[93m27[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m10[39m medium, [31m5[39m high

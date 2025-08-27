@@ -1,0 +1,45 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react__devtools_regression_tests.yml:27:9
+   [1m[94m|[0m
+[1m[94m27 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react__devtools_regression_tests.yml:64:9
+   [1m[94m|[0m
+[1m[94m64 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__devtools_regression_tests.yml:126:9
+    [1m[94m|[0m
+[1m[94m126 |[0m       - uses: actions/checkout@v4
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__devtools_regression_tests.yml:162:9
+    [1m[94m|[0m
+[1m[94m162 |[0m       - uses: actions/checkout@v4
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react__devtools_regression_tests.yml:46:9
+   [1m[94m|[0m
+[1m[94m46 |[0m   [1m[94m...[0m - name: Download react-devtools artifacts for base revision
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m47 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m48 |[0m [1m[91m|[0m [1m[94m...[0m     git fetch origin main
+[1m[94m49 |[0m [1m[91m|[0m [1m[94m...[0m     GH_TOKEN=${{ github.token }} scripts/release/download-experimental-build.js --commit=${{ inputs.commit_sha || '$(git rev-parse origin/main)' }}
+   [1m[94m|[0m [1m[91m|_______________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.commit_sha may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m11[39m findings ([1m[93m6[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m4[39m medium, [31m1[39m high

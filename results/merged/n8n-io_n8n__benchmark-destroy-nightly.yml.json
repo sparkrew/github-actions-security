@@ -1,0 +1,97 @@
+{
+  "workflow": "n8n-io_n8n__benchmark-destroy-nightly.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "n8n-io_n8n__benchmark-destroy-nightly.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1",
+          "line": 18
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: azure/login@6c251865b4e6290e7b78be643ea2d005bc51f69a # v2.1.1",
+          "line": 20
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0",
+          "line": 25
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "n8n-io_n8n__benchmark-destroy-nightly.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 5,
+          "reason": "dependency not pinned by hash detected -- score normalized to 5",
+          "lines": [
+            38
+          ],
+          "raw_details": [
+            "Warn: npmCommand not pinned by hash: .github/workflows/n8n-io_n8n__benchmark-destroy-nightly.yml:38",
+            "Info:   2 out of   2 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   1 out of   1 third-party GitHubAction dependencies pinned",
+            "Info:   0 out of   1 npmCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          }
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          }
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "n8n-io_n8n__benchmark-destroy-nightly.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "n8n-io_n8n__benchmark-destroy-nightly.yml",
+          "line": 22,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        }
+      ]
+    }
+  }
+}

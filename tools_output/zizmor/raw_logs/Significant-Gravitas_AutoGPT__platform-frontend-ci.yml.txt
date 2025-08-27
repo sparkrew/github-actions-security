@@ -1,0 +1,128 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Significant-Gravitas_AutoGPT__platform-frontend-ci.yml:25:9
+   [1m[94m|[0m
+[1m[94m25 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Significant-Gravitas_AutoGPT__platform-frontend-ci.yml:45:9
+   [1m[94m|[0m
+[1m[94m45 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Significant-Gravitas_AutoGPT__platform-frontend-ci.yml:69:9
+   [1m[94m|[0m
+[1m[94m69 |[0m         - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m70 |[0m [1m[33m|[0m         with:
+[1m[94m71 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/Significant-Gravitas_AutoGPT__platform-frontend-ci.yml:100:9
+    [1m[94m|[0m
+[1m[94m100 |[0m         - name: Checkout repository
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m101 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m102 |[0m [1m[33m|[0m         with:
+[1m[94m103 |[0m [1m[33m|[0m           submodules: recursive
+    [1m[94m|[0m [1m[33m|_______________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Significant-Gravitas_AutoGPT__platform-frontend-ci.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: AutoGPT Platform - Frontend CI
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m155 |[0m [1m[33m|[0m           path: playwright-report/
+[1m[94m156 |[0m [1m[33m|[0m           retention-days: 30
+    [1m[94m|[0m [1m[33m|_____________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Significant-Gravitas_AutoGPT__platform-frontend-ci.yml:21:3
+   [1m[94m|[0m
+[1m[94m21 |[0m [1m[33m/[0m   lint:
+[1m[94m22 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m38 |[0m [1m[33m|[0m       - name: Run lint
+[1m[94m39 |[0m [1m[33m|[0m         run: pnpm lint
+   [1m[94m|[0m [1m[33m|[0m                      [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________|[0m
+   [1m[94m|[0m                        [1m[33mthis job[0m
+   [1m[94m|[0m                        [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Significant-Gravitas_AutoGPT__platform-frontend-ci.yml:41:3
+   [1m[94m|[0m
+[1m[94m41 |[0m [1m[33m/[0m   type-check:
+[1m[94m42 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m61 |[0m [1m[33m|[0m       - name: Run tsc check
+[1m[94m62 |[0m [1m[33m|[0m         run: pnpm type-check
+   [1m[94m|[0m [1m[33m|[0m                            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________|[0m
+   [1m[94m|[0m                              [1m[33mthis job[0m
+   [1m[94m|[0m                              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Significant-Gravitas_AutoGPT__platform-frontend-ci.yml:64:3
+   [1m[94m|[0m
+[1m[94m64 |[0m [1m[33m/[0m   chromatic:
+[1m[94m65 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m89 |[0m [1m[33m|[0m           workingDir: autogpt_platform/frontend
+[1m[94m90 |[0m [1m[33m|[0m           token: ${{ secrets.GITHUB_TOKEN }}
+   [1m[94m|[0m [1m[33m|[0m                                            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________________________|[0m
+   [1m[94m|[0m                                              [1m[33mthis job[0m
+   [1m[94m|[0m                                              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Significant-Gravitas_AutoGPT__platform-frontend-ci.yml:92:3
+    [1m[94m|[0m
+[1m[94m 92 |[0m [1m[33m/[0m   test:
+[1m[94m 93 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m155 |[0m [1m[33m|[0m           path: playwright-report/
+[1m[94m156 |[0m [1m[33m|[0m           retention-days: 30
+    [1m[94m|[0m [1m[33m|[0m                             [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_____________________________|[0m
+    [1m[94m|[0m                               [1m[33mthis job[0m
+    [1m[94m|[0m                               [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Significant-Gravitas_AutoGPT__platform-frontend-ci.yml:85:9
+   [1m[94m|[0m
+[1m[94m85 |[0m         uses: chromaui/action@latest
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Significant-Gravitas_AutoGPT__platform-frontend-ci.yml:114:9
+    [1m[94m|[0m
+[1m[94m114 |[0m         uses: jlumbroso/free-disk-space@main
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m13[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m9[39m medium, [31m2[39m high

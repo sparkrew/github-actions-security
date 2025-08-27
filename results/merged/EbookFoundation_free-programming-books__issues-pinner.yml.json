@@ -1,0 +1,147 @@
+{
+  "workflow": "EbookFoundation_free-programming-books__issues-pinner.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "EbookFoundation_free-programming-books__issues-pinner.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions-ecosystem/action-add-labels@v1",
+          "pinned": "actions-ecosystem/action-add-labels@18f1af5e3544586314bbe15c0273249c770b2daf",
+          "line": 38
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions-ecosystem/action-remove-labels@v1",
+          "pinned": "actions-ecosystem/action-remove-labels@2ce5d41b4b6aa8503e285553f75ed56e0a40bae0",
+          "line": 48
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "EbookFoundation_free-programming-books__issues-pinner.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions-ecosystem/action-add-labels@18f1af5e3544586314bbe15c0273249c770b2daf # actions-ecosystem/action-add-labels@v1",
+          "line": 24
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions-ecosystem/action-remove-labels@2ce5d41b4b6aa8503e285553f75ed56e0a40bae0 # actions-ecosystem/action-remove-labels@v1 | v1.2.0",
+          "line": 33
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "EbookFoundation_free-programming-books__issues-pinner.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            38,
+            48
+          ],
+          "raw_details": [
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/EbookFoundation_free-programming-books__issues-pinner.yml:38",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/EbookFoundation_free-programming-books__issues-pinner.yml:48",
+            "Info:   0 out of   2 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          }
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          }
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "EbookFoundation_free-programming-books__issues-pinner.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "line": 38,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions-ecosystem/action-add-labels@v1`"
+        },
+        {
+          "line": 48,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions-ecosystem/action-remove-labels@v1`"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "EbookFoundation_free-programming-books__issues-pinner.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-uses": 2
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "EbookFoundation_free-programming-books__issues-pinner.yml",
+          "line": 38,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "EbookFoundation_free-programming-books__issues-pinner.yml",
+          "line": 48,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        }
+      ]
+    }
+  }
+}

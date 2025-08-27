@@ -1,0 +1,299 @@
+{
+  "workflow": "rust-lang_rust__ci.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "rust-lang_rust__ci.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 59
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 127
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4",
+          "pinned": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "line": 258
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 320
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "rust-lang_rust__ci.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 47
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: Swatinem/rust-cache@9d47c6ad4b02e050fd481d890b2ea34778fd09d6 # v2.7.8",
+          "line": 52
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 113
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+          "line": 216
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 272
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "rust-lang_rust__ci.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 5,
+          "reason": "dependency not pinned by hash detected -- score normalized to 5",
+          "lines": [
+            59,
+            112,
+            123,
+            127,
+            135,
+            142,
+            148,
+            157,
+            160,
+            163,
+            166,
+            169,
+            172,
+            175,
+            178,
+            181,
+            184,
+            187,
+            190,
+            193,
+            196,
+            206,
+            209,
+            212,
+            215,
+            220,
+            225,
+            230,
+            249,
+            252,
+            258,
+            266,
+            278,
+            300,
+            320
+          ],
+          "raw_details": [
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:112",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:123",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:135",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:142",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:148",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:157",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:160",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:163",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:166",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:169",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:172",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:175",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:178",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:181",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:184",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:187",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:190",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:193",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:196",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:206",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:209",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:212",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:215",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:220",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:225",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:230",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:249",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:252",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:266",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:278",
+            "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:300",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/rust-lang_rust__ci.yml:320",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/rust-lang_rust__ci.yml:59",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/rust-lang_rust__ci.yml:127",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/rust-lang_rust__ci.yml:258",
+            "Info:   0 out of   4 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   1 out of   1 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          }
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          }
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            27,
+            28
+          ],
+          "raw_details": [
+            "Info: topLevel 'contents' permission set to 'read': .github/workflows/rust-lang_rust__ci.yml:27",
+            "Warn: topLevel 'packages' permission set to 'write': .github/workflows/rust-lang_rust__ci.yml:28",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          }
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "rust-lang_rust__ci.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "line": 59,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+        },
+        {
+          "line": 127,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+        },
+        {
+          "line": 258,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`"
+        },
+        {
+          "line": 320,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "rust-lang_rust__ci.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "artipacked": 3,
+          "excessive-permissions": 1,
+          "template-injection": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "rust-lang_rust__ci.yml",
+          "line": 58,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "rust-lang_rust__ci.yml",
+          "line": 126,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "rust-lang_rust__ci.yml",
+          "line": 319,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "error",
+          "message": "overly broad permissions",
+          "workflow": "rust-lang_rust__ci.yml",
+          "line": 28,
+          "column": 3,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "rust-lang_rust__ci.yml",
+          "line": 326,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        }
+      ]
+    }
+  }
+}

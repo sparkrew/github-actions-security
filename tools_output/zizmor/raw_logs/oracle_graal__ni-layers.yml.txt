@@ -1,0 +1,118 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/oracle_graal__ni-layers.yml:65:7
+   [1m[94m|[0m
+[1m[94m65 |[0m       - name: Checkout oracle/graal
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m66 |[0m [1m[33m|[0m       uses: actions/checkout@v4
+   [1m[94m|[0m [1m[33m|_______________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_graal__ni-layers.yml:101:9
+    [1m[94m|[0m
+[1m[94m101 |[0m         - name: Checkout oracle/graal
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m102 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+    [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_graal__ni-layers.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m #
+[1m[94m  2 |[0m [1m[33m|[0m # Copyright (c) 2024, 2024, Oracle and/or its affiliates. All rights reserved.
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m120 |[0m [1m[33m|[0m         run: |
+[1m[94m121 |[0m [1m[33m|[0m             python3 ${{ env.LIBRARY_METADATA_PATH }}/build_native_image_layer.py ${{ env.GRAALVM_HOME }}/bin/native-image "${{ matrix.coordinates }}"
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/oracle_graal__ni-layers.yml:58:3
+   [1m[94m|[0m
+[1m[94m58 |[0m [1m[33m/[0m   build-graalvm-and-populate-matrix:
+[1m[94m59 |[0m [1m[33m|[0m     name: Build GraalVM and populate matrix
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m86 |[0m [1m[33m|[0m       id: set-matrix
+[1m[94m87 |[0m [1m[33m|[0m       run: python3 ${{ env.LIBRARY_METADATA_PATH }}/build_native_image_layer.py ${{ env.LIBRARY_METADATA_PATH }}/
+   [1m[94m|[0m [1m[33m|[0m                                                                                                                 [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_________________________________________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                                                   [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                                                   [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_graal__ni-layers.yml:89:3
+    [1m[94m|[0m
+[1m[94m 89 |[0m [1m[33m/[0m   test-native-image-layer-build:
+[1m[94m 90 |[0m [1m[33m|[0m     name: ${{ matrix.coordinates }}
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m120 |[0m [1m[33m|[0m         run: |
+[1m[94m121 |[0m [1m[33m|[0m             python3 ${{ env.LIBRARY_METADATA_PATH }}/build_native_image_layer.py ${{ env.GRAALVM_HOME }}/bin/native-image "${{ matrix.coordinates }}"
+    [1m[94m|[0m [1m[33m|[0m                                                                                                                                                      [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                                                                        [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                                                                        [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/oracle_graal__ni-layers.yml:85:7
+   [1m[94m|[0m
+[1m[94m85 |[0m     - name: Populate matrix
+   [1m[94m|[0m       [1m[96m---------------------[0m [1m[96mhelp: this step[0m
+[1m[94m86 |[0m       id: set-matrix
+[1m[94m87 |[0m       run: python3 ${{ env.LIBRARY_METADATA_PATH }}/build_native_image_layer.py ${{ env.LIBRARY_METADATA_PATH }}/
+   [1m[94m|[0m       [1m[96m-----------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.LIBRARY_METADATA_PATH may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/oracle_graal__ni-layers.yml:85:7
+   [1m[94m|[0m
+[1m[94m85 |[0m     - name: Populate matrix
+   [1m[94m|[0m       [1m[96m---------------------[0m [1m[96mhelp: this step[0m
+[1m[94m86 |[0m       id: set-matrix
+[1m[94m87 |[0m       run: python3 ${{ env.LIBRARY_METADATA_PATH }}/build_native_image_layer.py ${{ env.LIBRARY_METADATA_PATH }}/
+   [1m[94m|[0m       [1m[96m-----------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.LIBRARY_METADATA_PATH may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_graal__ni-layers.yml:119:9
+    [1m[94m|[0m
+[1m[94m119 |[0m   [1m[94m...[0m - name: Build layer
+    [1m[94m|[0m         [1m[96m-----------------[0m [1m[96mhelp: this step[0m
+[1m[94m120 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m121 |[0m [1m[96m|[0m [1m[94m...[0m       python3 ${{ env.LIBRARY_METADATA_PATH }}/build_native_image_layer.py ${{ env.GRAALVM_HOME }}/bin/native-image "${{ matrix.coordinates }}"
+    [1m[94m|[0m [1m[96m|____________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.LIBRARY_METADATA_PATH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_graal__ni-layers.yml:119:9
+    [1m[94m|[0m
+[1m[94m119 |[0m   [1m[94m...[0m - name: Build layer
+    [1m[94m|[0m         [1m[96m-----------------[0m [1m[96mhelp: this step[0m
+[1m[94m120 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m121 |[0m [1m[96m|[0m [1m[94m...[0m       python3 ${{ env.LIBRARY_METADATA_PATH }}/build_native_image_layer.py ${{ env.GRAALVM_HOME }}/bin/native-image "${{ matrix.coordinates }}"
+    [1m[94m|[0m [1m[96m|____________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.GRAALVM_HOME may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_graal__ni-layers.yml:119:9
+    [1m[94m|[0m
+[1m[94m119 |[0m   [1m[94m...[0m - name: Build layer
+    [1m[94m|[0m         [1m[33m-----------------[0m [1m[33mthis step[0m
+[1m[94m120 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m121 |[0m [1m[33m|[0m [1m[94m...[0m       python3 ${{ env.LIBRARY_METADATA_PATH }}/build_native_image_layer.py ${{ env.GRAALVM_HOME }}/bin/native-image "${{ matrix.coordinates }}"
+    [1m[94m|[0m [1m[33m|____________________________________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.coordinates may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m15[39m findings ([1m[93m5[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m4[39m low, [33m6[39m medium, [31m0[39m high

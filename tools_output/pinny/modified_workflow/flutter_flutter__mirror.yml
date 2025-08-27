@@ -1,0 +1,9 @@
+name: Mirror master branch to main branch
+steps:
+- name: Mirror action step
+id: mirror
+uses: google/mirror-branch-action@30c52ee21f5d3bd7fb28b95501c11aae7f17eebb
+with:
+github-token: ${{ secrets.FLUTTERMIRRORINGBOT_TOKEN }}
+source: 'master'
+dest: 'main'

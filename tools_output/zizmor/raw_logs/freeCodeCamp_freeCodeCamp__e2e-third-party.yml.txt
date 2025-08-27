@@ -1,0 +1,113 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__e2e-third-party.yml:21:9
+   [1m[94m|[0m
+[1m[94m21 |[0m         - name: Checkout Source Files
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m22 |[0m [1m[33m|[0m         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+[1m[94m23 |[0m [1m[33m|[0m         with:
+[1m[94m24 |[0m [1m[33m|[0m           submodules: 'recursive'
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__e2e-third-party.yml:26:9
+   [1m[94m|[0m
+[1m[94m26 |[0m         - name: Checkout client-config
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m27 |[0m [1m[33m|[0m         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+[1m[94m28 |[0m [1m[33m|[0m         with:
+[1m[94m29 |[0m [1m[33m|[0m           repository: freeCodeCamp/client-config
+[1m[94m30 |[0m [1m[33m|[0m           path: client-config
+   [1m[94m|[0m [1m[33m|_____________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__e2e-third-party.yml:68:9
+   [1m[94m|[0m
+[1m[94m68 |[0m         - name: Checkout Source Files
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m69 |[0m [1m[33m|[0m         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+[1m[94m70 |[0m [1m[33m|[0m         with:
+[1m[94m71 |[0m [1m[33m|[0m           submodules: 'recursive'
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__e2e-third-party.yml:111:9
+    [1m[94m|[0m
+[1m[94m111 |[0m         - name: Checkout Source Files
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m112 |[0m [1m[33m|[0m         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+    [1m[94m|[0m [1m[33m|________________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__e2e-third-party.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: CI - E2E - 3rd party donation tests
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m169 |[0m [1m[33m|[0m           path: playwright/reporter
+[1m[94m170 |[0m [1m[33m|[0m           retention-days: 7
+    [1m[94m|[0m [1m[33m|____________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__e2e-third-party.yml:14:3
+   [1m[94m|[0m
+[1m[94m14 |[0m [1m[33m/[0m   build-client:
+[1m[94m15 |[0m [1m[33m|[0m     name: Build Client
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m61 |[0m [1m[33m|[0m           name: client-artifact
+[1m[94m62 |[0m [1m[33m|[0m           path: client-artifact.tar
+   [1m[94m|[0m [1m[33m|[0m                                   [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|___________________________________|[0m
+   [1m[94m|[0m                                     [1m[33mthis job[0m
+   [1m[94m|[0m                                     [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__e2e-third-party.yml:64:3
+   [1m[94m|[0m
+[1m[94m64 |[0m [1m[33m/[0m   build-api:
+[1m[94m65 |[0m [1m[33m|[0m     name: Build API (Container)
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m85 |[0m [1m[33m|[0m           name: api-artifact
+[1m[94m86 |[0m [1m[33m|[0m           path: api-artifact.tar
+   [1m[94m|[0m [1m[33m|[0m                                [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________________________|[0m
+   [1m[94m|[0m                                  [1m[33mthis job[0m
+   [1m[94m|[0m                                  [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__e2e-third-party.yml:88:3
+    [1m[94m|[0m
+[1m[94m 88 |[0m [1m[33m/[0m   playwright-run-api:
+[1m[94m 89 |[0m [1m[33m|[0m     name: Run Playwright 3rd Party Donation Tests
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m169 |[0m [1m[33m|[0m           path: playwright/reporter
+[1m[94m170 |[0m [1m[33m|[0m           retention-days: 7
+    [1m[94m|[0m [1m[33m|[0m                            [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________________|[0m
+    [1m[94m|[0m                              [1m[33mthis job[0m
+    [1m[94m|[0m                              [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+   [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__e2e-third-party.yml:103:9
+    [1m[94m|[0m
+[1m[94m103 |[0m         image: mailhog/mailhog
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is unpinned[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m18[39m findings ([1m[93m9[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m8[39m medium, [31m1[39m high

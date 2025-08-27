@@ -1,0 +1,505 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:62:9
+   [1m[94m|[0m
+[1m[94m62 |[0m         - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m63 |[0m [1m[33m|[0m         with:
+[1m[94m64 |[0m [1m[33m|[0m           fetch-depth: "0"
+[1m[94m65 |[0m [1m[33m|[0m           ref: "refs/pull/${{needs.get-pr-number.outputs.PR_NUMBER}}/merge"
+   [1m[94m|[0m [1m[33m|___________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:102:9
+    [1m[94m|[0m
+[1m[94m102 |[0m         - uses: actions/checkout@v4
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m103 |[0m [1m[33m|[0m         with:
+[1m[94m104 |[0m [1m[33m|[0m           fetch-depth: "0"
+[1m[94m105 |[0m [1m[33m|[0m           ref: "refs/pull/${{needs.get-pr-number.outputs.PR_NUMBER}}/merge"
+    [1m[94m|[0m [1m[33m|___________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:12:1
+   [1m[94m|[0m
+[1m[94m12 |[0m permissions: read-all
+   [1m[94m|[0m [1m[33m---------------------[0m [1m[33muses read-all permissions[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:36:9
+   [1m[94m|[0m
+[1m[94m36 |[0m         - name: Get PR number
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m37 |[0m           shell: bash
+[1m[94m38 |[0m [1m[91m/[0m         run: |
+[1m[94m39 |[0m [1m[91m|[0m           if [[ "${{ github.event.issue.number }}" != "" && "${{ github.event.issue.pull_request }}" != "" ]]; then
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m42 |[0m [1m[91m|[0m             echo "PR_NUMBER=" >> $GITHUB_ENV
+[1m[94m43 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|____________^[0m [1m[91mgithub.event.issue.pull_request may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:144:9
+    [1m[94m|[0m
+[1m[94m144 |[0m         - name: Reply to the comment
+    [1m[94m|[0m           [1m[94m--------------------------[0m [1m[94minfo: this step[0m
+[1m[94m145 |[0m           env:
+[1m[94m...[0m
+[1m[94m148 |[0m             BODY: "\n\nmodels: ${{ needs.get-tests.outputs.models }}\nquantizations: ${{ needs.get-tests.outputs.quantizations }}"
+[1m[94m149 |[0m [1m[94m/[0m         run: |
+[1m[94m150 |[0m [1m[94m|[0m           gh api \
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m154 |[0m [1m[94m|[0m             repos/${{ github.repository }}/issues/${{ needs.get-pr-number.outputs.PR_NUMBER }}/comments \
+[1m[94m155 |[0m [1m[94m|[0m             -f "body=This comment contains run-slow, running the specified jobs: ${{ env.BODY }} ..."
+    [1m[94m|[0m [1m[94m|_____________________________________________________________________________________________________-[0m [1m[94minfo: needs.get-pr-number.outputs.PR_NUMBER may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:144:9
+    [1m[94m|[0m
+[1m[94m144 |[0m         - name: Reply to the comment
+    [1m[94m|[0m           [1m[96m--------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m145 |[0m           env:
+[1m[94m...[0m
+[1m[94m148 |[0m             BODY: "\n\nmodels: ${{ needs.get-tests.outputs.models }}\nquantizations: ${{ needs.get-tests.outputs.quantizations }}"
+[1m[94m149 |[0m [1m[96m/[0m         run: |
+[1m[94m150 |[0m [1m[96m|[0m           gh api \
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m154 |[0m [1m[96m|[0m             repos/${{ github.repository }}/issues/${{ needs.get-pr-number.outputs.PR_NUMBER }}/comments \
+[1m[94m155 |[0m [1m[96m|[0m             -f "body=This comment contains run-slow, running the specified jobs: ${{ env.BODY }} ..."
+    [1m[94m|[0m [1m[96m|_____________________________________________________________________________________________________-[0m [1m[96mhelp: env.BODY may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:165:9
+    [1m[94m|[0m
+[1m[94m165 |[0m         - name: Create Run
+    [1m[94m|[0m           [1m[94m----------------[0m [1m[94minfo: this step[0m
+[1m[94m166 |[0m           id: create_run
+[1m[94m...[0m
+[1m[94m171 |[0m             GITHUB_RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+[1m[94m172 |[0m [1m[94m/[0m         run: |
+[1m[94m173 |[0m [1m[94m|[0m           gh api \
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m177 |[0m [1m[94m|[0m             repos/${{ github.repository }}/statuses/${{ needs.get-sha.outputs.PR_HEAD_SHA }} \
+[1m[94m178 |[0m [1m[94m|[0m             -f "target_url=$GITHUB_RUN_URL" -f "state=pending" -f "description=Slow CI job" -f "context=pytest/custom-tests"
+    [1m[94m|[0m [1m[94m|____________________________________________________________________________________________________________________________-[0m [1m[94minfo: needs.get-sha.outputs.PR_HEAD_SHA may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:195:9
+    [1m[94m|[0m
+[1m[94m195 |[0m         - name: Echo input and matrix info
+    [1m[94m|[0m           [1m[33m--------------------------------[0m [1m[33mthis step[0m
+[1m[94m196 |[0m           shell: bash
+[1m[94m197 |[0m [1m[33m/[0m         run: |
+[1m[94m198 |[0m [1m[33m|[0m           echo "${{ matrix.folders }}"
+    [1m[94m|[0m [1m[33m|______________________________________-[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:200:9
+    [1m[94m|[0m
+[1m[94m200 |[0m         - name: Echo folder ${{ matrix.folders }}
+    [1m[94m|[0m           [1m[33m---------------------------------------[0m [1m[33mthis step[0m
+[1m[94m201 |[0m           shell: bash
+[1m[94m202 |[0m           # For folders like `models/bert`, set an env. var. (`matrix_folders`) to `models_bert`, which will be used to
+[1m[94m203 |[0m           # set the artifact folder names (because the character `/` is not allowed).
+[1m[94m204 |[0m [1m[33m/[0m         run: |
+[1m[94m205 |[0m [1m[33m|[0m           echo "${{ matrix.folders }}"
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m208 |[0m [1m[33m|[0m           echo "$matrix_folders"
+[1m[94m209 |[0m [1m[33m|[0m           echo "matrix_folders=$matrix_folders" >> $GITHUB_ENV
+    [1m[94m|[0m [1m[33m|______________________________________________________________-[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:200:9
+    [1m[94m|[0m
+[1m[94m200 |[0m         - name: Echo folder ${{ matrix.folders }}
+    [1m[94m|[0m           [1m[33m---------------------------------------[0m [1m[33mthis step[0m
+[1m[94m201 |[0m           shell: bash
+[1m[94m202 |[0m           # For folders like `models/bert`, set an env. var. (`matrix_folders`) to `models_bert`, which will be used to
+[1m[94m203 |[0m           # set the artifact folder names (because the character `/` is not allowed).
+[1m[94m204 |[0m [1m[33m/[0m         run: |
+[1m[94m205 |[0m [1m[33m|[0m           echo "${{ matrix.folders }}"
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m208 |[0m [1m[33m|[0m           echo "$matrix_folders"
+[1m[94m209 |[0m [1m[33m|[0m           echo "matrix_folders=$matrix_folders" >> $GITHUB_ENV
+    [1m[94m|[0m [1m[33m|______________________________________________________________-[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:211:9
+    [1m[94m|[0m
+[1m[94m211 |[0m         - name: Checkout to PR merge commit
+    [1m[94m|[0m           [1m[94m---------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m212 |[0m           working-directory: /transformers
+[1m[94m213 |[0m [1m[94m/[0m         run: |
+[1m[94m214 |[0m [1m[94m|[0m           git fetch origin refs/pull/${{ needs.get-pr-number.outputs.PR_NUMBER }}/merge:refs/remotes/pull/${{ needs.get-pr-number.o[1m[94m...[0m
+[1m[94m215 |[0m [1m[94m|[0m           git checkout refs/remotes/pull/${{ needs.get-pr-number.outputs.PR_NUMBER }}/merge
+[1m[94m216 |[0m [1m[94m|[0m           git log -1 --format=%H
+    [1m[94m|[0m [1m[94m|________________________________-[0m [1m[94minfo: needs.get-pr-number.outputs.PR_NUMBER may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:211:9
+    [1m[94m|[0m
+[1m[94m211 |[0m         - name: Checkout to PR merge commit
+    [1m[94m|[0m           [1m[94m---------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m212 |[0m           working-directory: /transformers
+[1m[94m213 |[0m [1m[94m/[0m         run: |
+[1m[94m214 |[0m [1m[94m|[0m           git fetch origin refs/pull/${{ needs.get-pr-number.outputs.PR_NUMBER }}/merge:refs/remotes/pull/${{ needs.get-pr-number.o[1m[94m...[0m
+[1m[94m215 |[0m [1m[94m|[0m           git checkout refs/remotes/pull/${{ needs.get-pr-number.outputs.PR_NUMBER }}/merge
+[1m[94m216 |[0m [1m[94m|[0m           git log -1 --format=%H
+    [1m[94m|[0m [1m[94m|________________________________-[0m [1m[94minfo: needs.get-pr-number.outputs.PR_NUMBER may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:211:9
+    [1m[94m|[0m
+[1m[94m211 |[0m         - name: Checkout to PR merge commit
+    [1m[94m|[0m           [1m[94m---------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m212 |[0m           working-directory: /transformers
+[1m[94m213 |[0m [1m[94m/[0m         run: |
+[1m[94m214 |[0m [1m[94m|[0m           git fetch origin refs/pull/${{ needs.get-pr-number.outputs.PR_NUMBER }}/merge:refs/remotes/pull/${{ needs.get-pr-number.o[1m[94m...[0m
+[1m[94m215 |[0m [1m[94m|[0m           git checkout refs/remotes/pull/${{ needs.get-pr-number.outputs.PR_NUMBER }}/merge
+[1m[94m216 |[0m [1m[94m|[0m           git log -1 --format=%H
+    [1m[94m|[0m [1m[94m|________________________________-[0m [1m[94minfo: needs.get-pr-number.outputs.PR_NUMBER may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:261:9
+    [1m[94m|[0m
+[1m[94m261 |[0m   [1m[94m...[0m - name: Run all tests on GPU
+    [1m[94m|[0m         [1m[33m--------------------------[0m [1m[33mthis step[0m
+[1m[94m262 |[0m   [1m[94m...[0m   working-directory: /transformers
+[1m[94m263 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m264 |[0m [1m[33m|[0m [1m[94m...[0m     export CUDA_VISIBLE_DEVICES="$(python3 utils/set_cuda_devices_for_ci.py --test_folder ${{ matrix.folders }})"
+[1m[94m265 |[0m [1m[33m|[0m [1m[94m...[0m     echo $CUDA_VISIBLE_DEVICES
+[1m[94m266 |[0m [1m[33m|[0m [1m[94m...[0m     python3 -m pytest -v -rsfE --make-reports=${{ env.machine_type }}_run_models_gpu_${{ matrix.folders }}_test_reports tests/${{ matrix.folders }}
+    [1m[94m|[0m [1m[33m|_______________________________________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:261:9
+    [1m[94m|[0m
+[1m[94m261 |[0m   [1m[94m...[0m - name: Run all tests on GPU
+    [1m[94m|[0m         [1m[33m--------------------------[0m [1m[33mthis step[0m
+[1m[94m262 |[0m   [1m[94m...[0m   working-directory: /transformers
+[1m[94m263 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m264 |[0m [1m[33m|[0m [1m[94m...[0m     export CUDA_VISIBLE_DEVICES="$(python3 utils/set_cuda_devices_for_ci.py --test_folder ${{ matrix.folders }})"
+[1m[94m265 |[0m [1m[33m|[0m [1m[94m...[0m     echo $CUDA_VISIBLE_DEVICES
+[1m[94m266 |[0m [1m[33m|[0m [1m[94m...[0m     python3 -m pytest -v -rsfE --make-reports=${{ env.machine_type }}_run_models_gpu_${{ matrix.folders }}_test_reports tests/${{ matrix.folders }}
+    [1m[94m|[0m [1m[33m|_______________________________________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:261:9
+    [1m[94m|[0m
+[1m[94m261 |[0m   [1m[94m...[0m - name: Run all tests on GPU
+    [1m[94m|[0m         [1m[33m--------------------------[0m [1m[33mthis step[0m
+[1m[94m262 |[0m   [1m[94m...[0m   working-directory: /transformers
+[1m[94m263 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m264 |[0m [1m[33m|[0m [1m[94m...[0m     export CUDA_VISIBLE_DEVICES="$(python3 utils/set_cuda_devices_for_ci.py --test_folder ${{ matrix.folders }})"
+[1m[94m265 |[0m [1m[33m|[0m [1m[94m...[0m     echo $CUDA_VISIBLE_DEVICES
+[1m[94m266 |[0m [1m[33m|[0m [1m[94m...[0m     python3 -m pytest -v -rsfE --make-reports=${{ env.machine_type }}_run_models_gpu_${{ matrix.folders }}_test_reports tests/${{ matrix.folders }}
+    [1m[94m|[0m [1m[33m|_______________________________________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:268:9
+    [1m[94m|[0m
+[1m[94m268 |[0m       - name: Failure short reports
+    [1m[94m|[0m         [1m[33m---------------------------[0m [1m[33mthis step[0m
+[1m[94m269 |[0m         if: ${{ failure() }}
+[1m[94m270 |[0m         continue-on-error: true
+[1m[94m271 |[0m         run: cat /transformers/reports/${{ env.machine_type }}_run_models_gpu_${{ matrix.folders }}_test_reports/failures_short.txt
+    [1m[94m|[0m         [1m[33m---------------------------------------------------------------------------------------------------------------------------[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:273:9
+    [1m[94m|[0m
+[1m[94m273 |[0m         - name: Make sure report directory exists
+    [1m[94m|[0m           [1m[33m---------------------------------------[0m [1m[33mthis step[0m
+[1m[94m274 |[0m           shell: bash
+[1m[94m275 |[0m [1m[33m/[0m         run: |
+[1m[94m276 |[0m [1m[33m|[0m           mkdir -p /transformers/reports/${{ env.machine_type }}_run_models_gpu_${{ matrix.folders }}_test_reports
+[1m[94m277 |[0m [1m[33m|[0m           echo "hello" > /transformers/reports/${{ env.machine_type }}_run_models_gpu_${{ matrix.folders }}_test_reports/hello.txt
+[1m[94m278 |[0m [1m[33m|[0m           echo "${{ env.machine_type }}_run_models_gpu_${{ matrix.folders }}_test_reports"
+    [1m[94m|[0m [1m[33m|__________________________________________________________________________________________-[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:273:9
+    [1m[94m|[0m
+[1m[94m273 |[0m         - name: Make sure report directory exists
+    [1m[94m|[0m           [1m[33m---------------------------------------[0m [1m[33mthis step[0m
+[1m[94m274 |[0m           shell: bash
+[1m[94m275 |[0m [1m[33m/[0m         run: |
+[1m[94m276 |[0m [1m[33m|[0m           mkdir -p /transformers/reports/${{ env.machine_type }}_run_models_gpu_${{ matrix.folders }}_test_reports
+[1m[94m277 |[0m [1m[33m|[0m           echo "hello" > /transformers/reports/${{ env.machine_type }}_run_models_gpu_${{ matrix.folders }}_test_reports/hello.txt
+[1m[94m278 |[0m [1m[33m|[0m           echo "${{ env.machine_type }}_run_models_gpu_${{ matrix.folders }}_test_reports"
+    [1m[94m|[0m [1m[33m|__________________________________________________________________________________________-[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:273:9
+    [1m[94m|[0m
+[1m[94m273 |[0m         - name: Make sure report directory exists
+    [1m[94m|[0m           [1m[33m---------------------------------------[0m [1m[33mthis step[0m
+[1m[94m274 |[0m           shell: bash
+[1m[94m275 |[0m [1m[33m/[0m         run: |
+[1m[94m276 |[0m [1m[33m|[0m           mkdir -p /transformers/reports/${{ env.machine_type }}_run_models_gpu_${{ matrix.folders }}_test_reports
+[1m[94m277 |[0m [1m[33m|[0m           echo "hello" > /transformers/reports/${{ env.machine_type }}_run_models_gpu_${{ matrix.folders }}_test_reports/hello.txt
+[1m[94m278 |[0m [1m[33m|[0m           echo "${{ env.machine_type }}_run_models_gpu_${{ matrix.folders }}_test_reports"
+    [1m[94m|[0m [1m[33m|__________________________________________________________________________________________-[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:302:9
+    [1m[94m|[0m
+[1m[94m302 |[0m         - name: Echo folder ${{ matrix.folders }}
+    [1m[94m|[0m           [1m[33m---------------------------------------[0m [1m[33mthis step[0m
+[1m[94m303 |[0m           shell: bash
+[1m[94m304 |[0m [1m[33m/[0m         run: |
+[1m[94m305 |[0m [1m[33m|[0m           echo "${{ matrix.folders }}"
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m308 |[0m [1m[33m|[0m           echo "$matrix_folders"
+[1m[94m309 |[0m [1m[33m|[0m           echo "matrix_folders=$matrix_folders" >> $GITHUB_ENV
+    [1m[94m|[0m [1m[33m|______________________________________________________________-[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:302:9
+    [1m[94m|[0m
+[1m[94m302 |[0m         - name: Echo folder ${{ matrix.folders }}
+    [1m[94m|[0m           [1m[33m---------------------------------------[0m [1m[33mthis step[0m
+[1m[94m303 |[0m           shell: bash
+[1m[94m304 |[0m [1m[33m/[0m         run: |
+[1m[94m305 |[0m [1m[33m|[0m           echo "${{ matrix.folders }}"
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m308 |[0m [1m[33m|[0m           echo "$matrix_folders"
+[1m[94m309 |[0m [1m[33m|[0m           echo "matrix_folders=$matrix_folders" >> $GITHUB_ENV
+    [1m[94m|[0m [1m[33m|______________________________________________________________-[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:311:9
+    [1m[94m|[0m
+[1m[94m311 |[0m         - name: Checkout to PR merge commit
+    [1m[94m|[0m           [1m[94m---------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m312 |[0m           working-directory: /transformers
+[1m[94m313 |[0m [1m[94m/[0m         run: |
+[1m[94m314 |[0m [1m[94m|[0m           git fetch origin refs/pull/${{ needs.get-pr-number.outputs.PR_NUMBER }}/merge:refs/remotes/pull/${{ needs.get-pr-number.o[1m[94m...[0m
+[1m[94m315 |[0m [1m[94m|[0m           git checkout refs/remotes/pull/${{ needs.get-pr-number.outputs.PR_NUMBER }}/merge
+[1m[94m316 |[0m [1m[94m|[0m           git log -1 --format=%H
+    [1m[94m|[0m [1m[94m|________________________________-[0m [1m[94minfo: needs.get-pr-number.outputs.PR_NUMBER may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:311:9
+    [1m[94m|[0m
+[1m[94m311 |[0m         - name: Checkout to PR merge commit
+    [1m[94m|[0m           [1m[94m---------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m312 |[0m           working-directory: /transformers
+[1m[94m313 |[0m [1m[94m/[0m         run: |
+[1m[94m314 |[0m [1m[94m|[0m           git fetch origin refs/pull/${{ needs.get-pr-number.outputs.PR_NUMBER }}/merge:refs/remotes/pull/${{ needs.get-pr-number.o[1m[94m...[0m
+[1m[94m315 |[0m [1m[94m|[0m           git checkout refs/remotes/pull/${{ needs.get-pr-number.outputs.PR_NUMBER }}/merge
+[1m[94m316 |[0m [1m[94m|[0m           git log -1 --format=%H
+    [1m[94m|[0m [1m[94m|________________________________-[0m [1m[94minfo: needs.get-pr-number.outputs.PR_NUMBER may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:311:9
+    [1m[94m|[0m
+[1m[94m311 |[0m         - name: Checkout to PR merge commit
+    [1m[94m|[0m           [1m[94m---------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m312 |[0m           working-directory: /transformers
+[1m[94m313 |[0m [1m[94m/[0m         run: |
+[1m[94m314 |[0m [1m[94m|[0m           git fetch origin refs/pull/${{ needs.get-pr-number.outputs.PR_NUMBER }}/merge:refs/remotes/pull/${{ needs.get-pr-number.o[1m[94m...[0m
+[1m[94m315 |[0m [1m[94m|[0m           git checkout refs/remotes/pull/${{ needs.get-pr-number.outputs.PR_NUMBER }}/merge
+[1m[94m316 |[0m [1m[94m|[0m           git log -1 --format=%H
+    [1m[94m|[0m [1m[94m|________________________________-[0m [1m[94minfo: needs.get-pr-number.outputs.PR_NUMBER may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:360:9
+    [1m[94m|[0m
+[1m[94m360 |[0m   [1m[94m...[0m - name: Run quantization tests on GPU
+    [1m[94m|[0m         [1m[33m-----------------------------------[0m [1m[33mthis step[0m
+[1m[94m361 |[0m   [1m[94m...[0m   working-directory: /transformers
+[1m[94m362 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m363 |[0m [1m[33m|[0m [1m[94m...[0m     python3 -m pytest -v --make-reports=${{ env.machine_type }}_run_quantization_torch_gpu_${{ matrix.folders }}_test_reports tests/${{ matrix.folders }}
+    [1m[94m|[0m [1m[33m|_____________________________________________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:360:9
+    [1m[94m|[0m
+[1m[94m360 |[0m   [1m[94m...[0m - name: Run quantization tests on GPU
+    [1m[94m|[0m         [1m[33m-----------------------------------[0m [1m[33mthis step[0m
+[1m[94m361 |[0m   [1m[94m...[0m   working-directory: /transformers
+[1m[94m362 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m363 |[0m [1m[33m|[0m [1m[94m...[0m     python3 -m pytest -v --make-reports=${{ env.machine_type }}_run_quantization_torch_gpu_${{ matrix.folders }}_test_reports tests/${{ matrix.folders }}
+    [1m[94m|[0m [1m[33m|_____________________________________________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:365:9
+    [1m[94m|[0m
+[1m[94m365 |[0m [1m[94m...[0m - name: Failure short reports
+    [1m[94m|[0m       [1m[33m---------------------------[0m [1m[33mthis step[0m
+[1m[94m366 |[0m [1m[94m...[0m   if: ${{ failure() }}
+[1m[94m367 |[0m [1m[94m...[0m   continue-on-error: true
+[1m[94m368 |[0m [1m[94m...[0m   run: cat /transformers/reports/${{ env.machine_type }}_run_quantization_torch_gpu_${{ matrix.folders }}_test_reports/failures_short.txt
+    [1m[94m|[0m       [1m[33m---------------------------------------------------------------------------------------------------------------------------------------[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:370:9
+    [1m[94m|[0m
+[1m[94m370 |[0m         - name: Make sure report directory exists
+    [1m[94m|[0m           [1m[33m---------------------------------------[0m [1m[33mthis step[0m
+[1m[94m371 |[0m           shell: bash
+[1m[94m372 |[0m [1m[33m/[0m         run: |
+[1m[94m373 |[0m [1m[33m|[0m           mkdir -p /transformers/reports/${{ env.machine_type }}_run_quantization_gpu_${{ matrix.folders }}_test_reports
+[1m[94m374 |[0m [1m[33m|[0m           echo "hello" > /transformers/reports/${{ env.machine_type }}_run_quantization_gpu_${{ matrix.folders }}_test_reports/hell[1m[94m...[0m
+[1m[94m375 |[0m [1m[33m|[0m           echo "${{ env.machine_type }}_run_quantization_gpu_${{ matrix.folders }}_test_reports"
+    [1m[94m|[0m [1m[33m|________________________________________________________________________________________________-[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:370:9
+    [1m[94m|[0m
+[1m[94m370 |[0m         - name: Make sure report directory exists
+    [1m[94m|[0m           [1m[33m---------------------------------------[0m [1m[33mthis step[0m
+[1m[94m371 |[0m           shell: bash
+[1m[94m372 |[0m [1m[33m/[0m         run: |
+[1m[94m373 |[0m [1m[33m|[0m           mkdir -p /transformers/reports/${{ env.machine_type }}_run_quantization_gpu_${{ matrix.folders }}_test_reports
+[1m[94m374 |[0m [1m[33m|[0m           echo "hello" > /transformers/reports/${{ env.machine_type }}_run_quantization_gpu_${{ matrix.folders }}_test_reports/hell[1m[94m...[0m
+[1m[94m375 |[0m [1m[33m|[0m           echo "${{ env.machine_type }}_run_quantization_gpu_${{ matrix.folders }}_test_reports"
+    [1m[94m|[0m [1m[33m|________________________________________________________________________________________________-[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:370:9
+    [1m[94m|[0m
+[1m[94m370 |[0m         - name: Make sure report directory exists
+    [1m[94m|[0m           [1m[33m---------------------------------------[0m [1m[33mthis step[0m
+[1m[94m371 |[0m           shell: bash
+[1m[94m372 |[0m [1m[33m/[0m         run: |
+[1m[94m373 |[0m [1m[33m|[0m           mkdir -p /transformers/reports/${{ env.machine_type }}_run_quantization_gpu_${{ matrix.folders }}_test_reports
+[1m[94m374 |[0m [1m[33m|[0m           echo "hello" > /transformers/reports/${{ env.machine_type }}_run_quantization_gpu_${{ matrix.folders }}_test_reports/hell[1m[94m...[0m
+[1m[94m375 |[0m [1m[33m|[0m           echo "${{ env.machine_type }}_run_quantization_gpu_${{ matrix.folders }}_test_reports"
+    [1m[94m|[0m [1m[33m|________________________________________________________________________________________________-[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:396:9
+    [1m[94m|[0m
+[1m[94m396 |[0m         - name: Get `run_models_gpu` job status
+    [1m[94m|[0m           [1m[94m-------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m397 |[0m [1m[94m/[0m         run: |
+[1m[94m398 |[0m [1m[94m|[0m           echo "${{ needs.run_models_gpu.result }}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m404 |[0m [1m[94m|[0m             echo "STATUS=failure" >> $GITHUB_ENV
+[1m[94m405 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: needs.run_models_gpu.result may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:396:9
+    [1m[94m|[0m
+[1m[94m396 |[0m         - name: Get `run_models_gpu` job status
+    [1m[94m|[0m           [1m[94m-------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m397 |[0m [1m[94m/[0m         run: |
+[1m[94m398 |[0m [1m[94m|[0m           echo "${{ needs.run_models_gpu.result }}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m404 |[0m [1m[94m|[0m             echo "STATUS=failure" >> $GITHUB_ENV
+[1m[94m405 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: needs.run_quantization_torch_gpu.result may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:407:9
+    [1m[94m|[0m
+[1m[94m407 |[0m         - name: Update PR commit statuses
+    [1m[94m|[0m           [1m[94m-------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m408 |[0m [1m[94m/[0m         run: |
+[1m[94m409 |[0m [1m[94m|[0m           echo "${{ needs.run_models_gpu.result }}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m415 |[0m [1m[94m|[0m             repos/${{ github.repository }}/statuses/${{ needs.get-sha.outputs.PR_HEAD_SHA }} \
+[1m[94m416 |[0m [1m[94m|[0m             -f "target_url=$GITHUB_RUN_URL" -f "state=${{ env.STATUS }}" -f "description=Slow CI job" -f "context=pytest/custom-tests"
+    [1m[94m|[0m [1m[94m|_______________________________________________________________________________________________________________________________________-[0m [1m[94minfo: needs.run_models_gpu.result may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:407:9
+    [1m[94m|[0m
+[1m[94m407 |[0m         - name: Update PR commit statuses
+    [1m[94m|[0m           [1m[94m-------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m408 |[0m [1m[94m/[0m         run: |
+[1m[94m409 |[0m [1m[94m|[0m           echo "${{ needs.run_models_gpu.result }}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m415 |[0m [1m[94m|[0m             repos/${{ github.repository }}/statuses/${{ needs.get-sha.outputs.PR_HEAD_SHA }} \
+[1m[94m416 |[0m [1m[94m|[0m             -f "target_url=$GITHUB_RUN_URL" -f "state=${{ env.STATUS }}" -f "description=Slow CI job" -f "context=pytest/custom-tests"
+    [1m[94m|[0m [1m[94m|_______________________________________________________________________________________________________________________________________-[0m [1m[94minfo: needs.get-sha.outputs.PR_HEAD_SHA may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:192:7
+    [1m[94m|[0m
+[1m[94m192 |[0m       image: huggingface/transformers-all-latest-gpu
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is unpinned[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-comment-ci.yml:299:7
+    [1m[94m|[0m
+[1m[94m299 |[0m       image: huggingface/transformers-quantization-latest-gpu
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is unpinned[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m103[39m findings ([1m[93m66[39m suppressed[0m): 0 unknown, [35m12[39m informational, [36m1[39m low, [33m21[39m medium, [31m3[39m high

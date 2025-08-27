@@ -1,0 +1,32 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_TypeScript__twoslash-repros.yaml:51:9
+   [1m[94m|[0m
+[1m[94m51 |[0m         - if: ${{ github.event.inputs.bisect }}
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m52 |[0m [1m[33m|[0m         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+[1m[94m53 |[0m [1m[33m|[0m         with:
+[1m[94m54 |[0m [1m[33m|[0m           filter: blob:none # https://github.blog/2020-12-21-get-up-to-speed-with-partial-clone-and-shallow-clone/
+[1m[94m55 |[0m [1m[33m|[0m           fetch-depth: 0 # Default is 1; need to set to 0 to get the benefits of blob:none.
+   [1m[94m|[0m [1m[33m|___________________________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_TypeScript__twoslash-repros.yaml:56:9
+   [1m[94m|[0m
+[1m[94m56 |[0m         - if: ${{ !github.event.inputs.bisect }}
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m57 |[0m [1m[33m|[0m         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+   [1m[94m|[0m [1m[33m|________________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_TypeScript__twoslash-repros.yaml:61:9
+   [1m[94m|[0m
+[1m[94m61 |[0m       - uses: microsoft/TypeScript-Twoslash-Repro-Action@master
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m3[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m1[39m high

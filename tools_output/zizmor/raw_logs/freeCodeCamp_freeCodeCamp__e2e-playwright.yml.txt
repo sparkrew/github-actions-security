@@ -1,0 +1,126 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__e2e-playwright.yml:27:9
+   [1m[94m|[0m
+[1m[94m27 |[0m         - name: Checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m28 |[0m [1m[33m|[0m         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+[1m[94m29 |[0m [1m[33m|[0m         with:
+[1m[94m30 |[0m [1m[33m|[0m           submodules: 'recursive'
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__e2e-playwright.yml:43:9
+   [1m[94m|[0m
+[1m[94m43 |[0m         - name: Checkout client-config
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m44 |[0m [1m[33m|[0m         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+[1m[94m45 |[0m [1m[33m|[0m         with:
+[1m[94m46 |[0m [1m[33m|[0m           repository: freeCodeCamp/client-config
+[1m[94m47 |[0m [1m[33m|[0m           path: client-config
+   [1m[94m|[0m [1m[33m|_____________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__e2e-playwright.yml:82:9
+   [1m[94m|[0m
+[1m[94m82 |[0m         - name: Checkout Source Files
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m83 |[0m [1m[33m|[0m         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+[1m[94m84 |[0m [1m[33m|[0m         with:
+[1m[94m85 |[0m [1m[33m|[0m           submodules: 'recursive'
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__e2e-playwright.yml:118:9
+    [1m[94m|[0m
+[1m[94m118 |[0m         - name: Checkout Source Files
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m119 |[0m [1m[33m|[0m         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+    [1m[94m|[0m [1m[33m|____________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__e2e-playwright.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: CI - E2E - Playwright
+[1m[94m  2 |[0m [1m[33m|[0m on:
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m177 |[0m [1m[33m|[0m           path: playwright/reporter
+[1m[94m178 |[0m [1m[33m|[0m           retention-days: 7
+    [1m[94m|[0m [1m[33m|____________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__e2e-playwright.yml:19:3
+   [1m[94m|[0m
+[1m[94m19 |[0m [1m[33m/[0m   build-client:
+[1m[94m20 |[0m [1m[33m|[0m     name: Build Client
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m74 |[0m [1m[33m|[0m           name: webpack-stats
+[1m[94m75 |[0m [1m[33m|[0m           path: client/public/stats.json
+   [1m[94m|[0m [1m[33m|[0m                                        [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________________________________|[0m
+   [1m[94m|[0m                                          [1m[33mthis job[0m
+   [1m[94m|[0m                                          [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__e2e-playwright.yml:77:3
+    [1m[94m|[0m
+[1m[94m 77 |[0m [1m[33m/[0m   build-api:
+[1m[94m 78 |[0m [1m[33m|[0m     name: Build API (Container)
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m 99 |[0m [1m[33m|[0m           name: api-artifact
+[1m[94m100 |[0m [1m[33m|[0m           path: api-artifact.tar
+    [1m[94m|[0m [1m[33m|[0m                                [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|________________________________|[0m
+    [1m[94m|[0m                                  [1m[33mthis job[0m
+    [1m[94m|[0m                                  [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__e2e-playwright.yml:102:3
+    [1m[94m|[0m
+[1m[94m102 |[0m [1m[33m/[0m   playwright-run:
+[1m[94m103 |[0m [1m[33m|[0m     name: Run Playwright Tests
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m177 |[0m [1m[33m|[0m           path: playwright/reporter
+[1m[94m178 |[0m [1m[33m|[0m           retention-days: 7
+    [1m[94m|[0m [1m[33m|[0m                            [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________________|[0m
+    [1m[94m|[0m                              [1m[33mthis job[0m
+    [1m[94m|[0m                              [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+  [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__e2e-playwright.yml:2:1
+   [1m[94m|[0m
+[1m[94m 2 |[0m [1m[91m/[0m on:
+[1m[94m 3 |[0m [1m[91m|[0m   workflow_dispatch:
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m11 |[0m [1m[91m|[0m       - 'main'
+[1m[94m12 |[0m [1m[91m|[0m       - 'temp-**' # Temporary branches allowed on Upstream
+   [1m[94m|[0m [1m[91m|__________________________________________________________^[0m [1m[91mworkflow_run is almost always used insecurely[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#github-env\github-env]8;;\][0m: [1mdangerous use of environment file[0m
+   [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__e2e-playwright.yml:115:9
+    [1m[94m|[0m
+[1m[94m115 |[0m [1m[91m/[0m         run: |
+[1m[94m116 |[0m [1m[91m|[0m           echo "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
+    [1m[94m|[0m [1m[91m|________________________________________________________________________^[0m [1m[91mwrite to GITHUB_ENV may allow code execution[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m12[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m8[39m medium, [31m2[39m high

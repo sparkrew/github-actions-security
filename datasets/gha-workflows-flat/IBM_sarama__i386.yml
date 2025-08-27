@@ -1,0 +1,47 @@
+name: i386
+on:
+  merge_group:
+  push:
+    branches:
+    - main
+    paths-ignore:
+    - '**/*.md'
+  pull_request:
+    branches:
+    - "**"
+    paths-ignore:
+    - '**/*.md'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
+
+permissions:
+  contents: read  # for actions/checkout to fetch code
+
+env:
+  # Use the Go toolchain installed by setup-go
+  GOTOOLCHAIN: local
+
+jobs:
+  atomicalign:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
+      pull-requests: read  # for golangci/golangci-lint-action to fetch pull requests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      with:
+        persist-credentials: false
+    - name: Setup Go
+      uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5 # v5.5.0
+      with:
+        go-version: stable
+    - name: staticcheck
+      env:
+        GOARCH: 386
+        GOFLAGS: -tags=functional
+      run: |
+          git clone --depth=1 https://github.com/dominikh/go-tools /tmp/go-tools
+          ( cd /tmp/go-tools/cmd/staticcheck && go build -o /tmp/staticcheck )
+          /tmp/staticcheck -checks SA1027 ./...

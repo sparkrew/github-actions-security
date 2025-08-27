@@ -1,0 +1,58 @@
+{
+  "workflow": "oracle_graal__reachability-metadata.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "artipacked": 3,
+      "template-injection": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "oracle_graal__reachability-metadata.yml",
+      "line": 66,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "oracle_graal__reachability-metadata.yml",
+      "line": 82,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "oracle_graal__reachability-metadata.yml",
+      "line": 87,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "warning",
+      "message": "code injection via template expansion",
+      "workflow": "oracle_graal__reachability-metadata.yml",
+      "line": 121,
+      "column": 9,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "warning",
+      "message": "code injection via template expansion",
+      "workflow": "oracle_graal__reachability-metadata.yml",
+      "line": 133,
+      "column": 9,
+      "note": "audit confidence \u2192 Medium"
+    }
+  ]
+}

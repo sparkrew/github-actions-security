@@ -1,0 +1,36 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__cancel.yml:9:3
+   [1m[94m|[0m
+[1m[94m 9 |[0m [1m[33m/[0m   cancel:
+[1m[94m10 |[0m [1m[33m|[0m     name: 'Cancel Previous Runs'
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m16 |[0m [1m[33m|[0m           workflow_id: 444921, 444987, 57419851
+[1m[94m17 |[0m [1m[33m|[0m           access_token: ${{ github.token }}
+   [1m[94m|[0m [1m[33m|[0m                                            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________________________|[0m
+   [1m[94m|[0m                                              [1m[33mthis job[0m
+   [1m[94m|[0m                                              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+ [1m[94m-->[0m ../.github/workflows/vercel_next.js__cancel.yml:2:1
+  [1m[94m|[0m
+[1m[94m2 |[0m [1m[91m/[0m on:
+[1m[94m3 |[0m [1m[91m|[0m   pull_request_target:
+[1m[94m4 |[0m [1m[91m|[0m     types:
+[1m[94m5 |[0m [1m[91m|[0m       - edited
+[1m[94m6 |[0m [1m[91m|[0m       - synchronize
+  [1m[94m|[0m [1m[91m|___________________^[0m [1m[91mpull_request_target is almost always used insecurely[0m
+  [1m[94m|[0m
+  [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__cancel.yml:14:9
+   [1m[94m|[0m
+[1m[94m14 |[0m       - uses: styfle/cancel-workflow-action@0.12.1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m4[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m2[39m high

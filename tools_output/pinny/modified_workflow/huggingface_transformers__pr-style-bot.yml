@@ -1,0 +1,14 @@
+name: Style Bot
+on:
+issue_comment:
+types: [created]
+permissions:
+pull-requests: write
+jobs:
+style:
+uses: huggingface/huggingface_hub/.github/workflows/style-bot-action.yml@9d258315ce580c74366cee5ae492f22111ce3cdd # huggingface/huggingface_hub/.github/workflows/style-bot-action.yml@main
+with:
+python_quality_dependencies: "[quality]"
+style_command_type: "default"
+secrets:
+bot_token: ${{ secrets.HF_STYLE_BOT_ACTION }}

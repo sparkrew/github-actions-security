@@ -1,0 +1,31 @@
+{
+  "workflow": "yt-dlp_yt-dlp__release-master.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "unpinned-uses": 1,
+      "secrets-inherit": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "yt-dlp_yt-dlp__release-master.yml",
+      "line": 45,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "secrets-inherit",
+      "level": "warning",
+      "message": "secrets unconditionally inherited by called workflow",
+      "workflow": "yt-dlp_yt-dlp__release-master.yml",
+      "line": 21,
+      "column": 5,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

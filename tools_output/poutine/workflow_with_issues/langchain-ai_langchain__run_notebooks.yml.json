@@ -1,0 +1,24 @@
+{
+  "workflow": "langchain-ai_langchain__run_notebooks.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "injection": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "injection",
+      "line": "57",
+      "column": "",
+      "job": "build",
+      "step": "6",
+      "details": "Sources: github.event.inputs.working-directory || 'all'",
+      "event_triggers": [
+        "workflow_dispatch",
+        "schedule"
+      ]
+    }
+  ]
+}

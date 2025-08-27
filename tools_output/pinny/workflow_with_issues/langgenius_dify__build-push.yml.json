@@ -1,0 +1,57 @@
+{
+  "workflow": "langgenius_dify__build-push.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 9,
+    "by_rule": {
+      "unpinned-github-actions": 9
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # docker/login-action@v3 | v3.4.0",
+      "line": 47
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/setup-qemu-action@29109295f81e9208d7d86ff1c6c12d2833863392 # docker/setup-qemu-action@v3 | v3.6.0",
+      "line": 52
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435 # docker/setup-buildx-action@v3 | master,v3.11.1",
+      "line": 54
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/metadata-action@902fa8ec7d6ecbf8d84d538b9b233a880e428804 # docker/metadata-action@v5 | v5.7.0",
+      "line": 57
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # docker/build-push-action@v6 | master,v6.18.0",
+      "line": 62
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+      "line": 79
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0",
+      "line": 100
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # docker/login-action@v3 | v3.4.0",
+      "line": 106
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/metadata-action@902fa8ec7d6ecbf8d84d538b9b233a880e428804 # docker/metadata-action@v5 | v5.7.0",
+      "line": 112
+    }
+  ]
+}

@@ -1,0 +1,424 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:616:9
+    [1m[94m|[0m
+[1m[94m616 |[0m         - uses: actions/checkout@v4
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m617 |[0m [1m[33m|[0m         # To avoid failure when multiple commits are merged into `main` in a short period of time.
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m620 |[0m [1m[33m|[0m         with:
+[1m[94m621 |[0m [1m[33m|[0m           fetch-depth: 20
+    [1m[94m|[0m [1m[33m|_________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: Self-hosted runner (push)
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m651 |[0m [1m[33m|[0m           pip show slack_sdk
+[1m[94m652 |[0m [1m[33m|[0m           python utils/notification_service.py "${{ needs.setup.outputs.matrix }}"
+    [1m[94m|[0m [1m[33m|___________________________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:30:3
+    [1m[94m|[0m
+[1m[94m 30 |[0m [1m[33m/[0m   setup:
+[1m[94m 31 |[0m [1m[33m|[0m     name: Setup
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m122 |[0m [1m[33m|[0m           echo "matrix=$keys" >> $GITHUB_OUTPUT
+[1m[94m123 |[0m [1m[33m|[0m           echo "test_map=$test_map" >> $GITHUB_OUTPUT
+    [1m[94m|[0m [1m[33m|[0m                                                     [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_____________________________________________________|[0m
+    [1m[94m|[0m                                                       [1m[33mthis job[0m
+    [1m[94m|[0m                                                       [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:125:3
+    [1m[94m|[0m
+[1m[94m125 |[0m [1m[33m/[0m   run_tests_single_gpu:
+[1m[94m126 |[0m [1m[33m|[0m     name: Model tests
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m235 |[0m [1m[33m|[0m           name: ${{ env.machine_type }}_run_all_tests_gpu_${{ env.matrix_folders }}_test_reports
+[1m[94m236 |[0m [1m[33m|[0m           path: /transformers/reports/${{ env.machine_type }}_tests_gpu_${{ matrix.folders }}
+    [1m[94m|[0m [1m[33m|[0m                                                                                             [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_____________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                               [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                               [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:238:3
+    [1m[94m|[0m
+[1m[94m238 |[0m [1m[33m/[0m   run_tests_multi_gpu:
+[1m[94m239 |[0m [1m[33m|[0m     name: Model tests
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m350 |[0m [1m[33m|[0m           name: ${{ env.machine_type }}_run_all_tests_gpu_${{ env.matrix_folders }}_test_reports
+[1m[94m351 |[0m [1m[33m|[0m           path: /transformers/reports/${{ env.machine_type }}_tests_gpu_${{ matrix.folders }}
+    [1m[94m|[0m [1m[33m|[0m                                                                                             [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_____________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                               [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                               [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:353:3
+    [1m[94m|[0m
+[1m[94m353 |[0m [1m[33m/[0m   run_tests_torch_cuda_extensions_single_gpu:
+[1m[94m354 |[0m [1m[33m|[0m     name: Torch CUDA extension tests
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m460 |[0m [1m[33m|[0m           name: ${{ env.machine_type }}_run_torch_cuda_extensions_gpu_test_reports
+[1m[94m461 |[0m [1m[33m|[0m           path: /workspace/transformers/reports/${{ env.machine_type }}_run_torch_cuda_extensions_gpu_test_reports
+    [1m[94m|[0m [1m[33m|[0m                                                                                                                  [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|__________________________________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                                    [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                                    [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:463:3
+    [1m[94m|[0m
+[1m[94m463 |[0m [1m[33m/[0m   run_tests_torch_cuda_extensions_multi_gpu:
+[1m[94m464 |[0m [1m[33m|[0m     name: Torch CUDA extension tests
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m570 |[0m [1m[33m|[0m           name: ${{ env.machine_type }}_run_torch_cuda_extensions_gpu_test_reports
+[1m[94m571 |[0m [1m[33m|[0m           path: /workspace/transformers/reports/${{ env.machine_type }}_run_torch_cuda_extensions_gpu_test_reports
+    [1m[94m|[0m [1m[33m|[0m                                                                                                                  [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|__________________________________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                                    [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                                    [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:573:3
+    [1m[94m|[0m
+[1m[94m573 |[0m [1m[33m/[0m   send_results:
+[1m[94m574 |[0m [1m[33m|[0m     name: Send results to webhook
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m651 |[0m [1m[33m|[0m           pip show slack_sdk
+[1m[94m652 |[0m [1m[33m|[0m           python utils/notification_service.py "${{ needs.setup.outputs.matrix }}"
+    [1m[94m|[0m [1m[33m|[0m                                                                                   [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|___________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                     [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                     [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:3:1
+   [1m[94m|[0m
+[1m[94m 3 |[0m [1m[91m/[0m on:
+[1m[94m 4 |[0m [1m[91m|[0m   workflow_run:
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m17 |[0m [1m[91m|[0m       - "utils/**"
+[1m[94m18 |[0m [1m[91m|[0m   repository_dispatch:
+   [1m[94m|[0m [1m[91m|______________________^[0m [1m[91mworkflow_run is almost always used insecurely[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:196:9
+    [1m[94m|[0m
+[1m[94m196 |[0m         - name: Echo folder ${{ matrix.folders }}
+    [1m[94m|[0m           [1m[33m---------------------------------------[0m [1m[33mthis step[0m
+[1m[94m197 |[0m           shell: bash
+[1m[94m198 |[0m           # For folders like `models/bert`, set an env. var. (`matrix_folders`) to `models_bert`, which will be used to
+[1m[94m199 |[0m           # set the artifact folder names (because the character `/` is not allowed).
+[1m[94m200 |[0m [1m[33m/[0m         run: |
+[1m[94m201 |[0m [1m[33m|[0m           echo "${{ matrix.folders }}"
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m205 |[0m [1m[33m|[0m           echo "$matrix_folders"
+[1m[94m206 |[0m [1m[33m|[0m           echo "matrix_folders=$matrix_folders" >> $GITHUB_ENV
+    [1m[94m|[0m [1m[33m|______________________________________________________________-[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:196:9
+    [1m[94m|[0m
+[1m[94m196 |[0m         - name: Echo folder ${{ matrix.folders }}
+    [1m[94m|[0m           [1m[94m---------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m197 |[0m           shell: bash
+[1m[94m198 |[0m           # For folders like `models/bert`, set an env. var. (`matrix_folders`) to `models_bert`, which will be used to
+[1m[94m199 |[0m           # set the artifact folder names (because the character `/` is not allowed).
+[1m[94m200 |[0m [1m[94m/[0m         run: |
+[1m[94m201 |[0m [1m[94m|[0m           echo "${{ matrix.folders }}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m205 |[0m [1m[94m|[0m           echo "$matrix_folders"
+[1m[94m206 |[0m [1m[94m|[0m           echo "matrix_folders=$matrix_folders" >> $GITHUB_ENV
+    [1m[94m|[0m [1m[94m|______________________________________________________________-[0m [1m[94minfo: fromJson(needs.setup.outputs.test_map)[matrix.folders] may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:196:9
+    [1m[94m|[0m
+[1m[94m196 |[0m         - name: Echo folder ${{ matrix.folders }}
+    [1m[94m|[0m           [1m[33m---------------------------------------[0m [1m[33mthis step[0m
+[1m[94m197 |[0m           shell: bash
+[1m[94m198 |[0m           # For folders like `models/bert`, set an env. var. (`matrix_folders`) to `models_bert`, which will be used to
+[1m[94m199 |[0m           # set the artifact folder names (because the character `/` is not allowed).
+[1m[94m200 |[0m [1m[33m/[0m         run: |
+[1m[94m201 |[0m [1m[33m|[0m           echo "${{ matrix.folders }}"
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m205 |[0m [1m[33m|[0m           echo "$matrix_folders"
+[1m[94m206 |[0m [1m[33m|[0m           echo "matrix_folders=$matrix_folders" >> $GITHUB_ENV
+    [1m[94m|[0m [1m[33m|______________________________________________________________-[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:221:9
+    [1m[94m|[0m
+[1m[94m221 |[0m   [1m[94m...[0m - name: Run all non-slow selected tests on GPU
+    [1m[94m|[0m         [1m[33m--------------------------------------------[0m [1m[33mthis step[0m
+[1m[94m222 |[0m   [1m[94m...[0m   working-directory: /transformers
+[1m[94m223 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m224 |[0m [1m[33m|[0m [1m[94m...[0m     python3 -m pytest -n 2 --dist=loadfile -v --make-reports=${{ env.machine_type }}_tests_gpu_${{ matrix.folders }} ${{ fromJson(needs.setup.outputs.test_map)[matrix.folders] }}
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:221:9
+    [1m[94m|[0m
+[1m[94m221 |[0m   [1m[94m...[0m - name: Run all non-slow selected tests on GPU
+    [1m[94m|[0m         [1m[94m--------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m222 |[0m   [1m[94m...[0m   working-directory: /transformers
+[1m[94m223 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m224 |[0m [1m[94m|[0m [1m[94m...[0m     python3 -m pytest -n 2 --dist=loadfile -v --make-reports=${{ env.machine_type }}_tests_gpu_${{ matrix.folders }} ${{ fromJson(needs.setup.outputs.test_map)[matrix.folders] }}
+    [1m[94m|[0m [1m[94m|______________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: fromJson(needs.setup.outputs.test_map)[matrix.folders] may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:226:9
+    [1m[94m|[0m
+[1m[94m226 |[0m       - name: Failure short reports
+    [1m[94m|[0m         [1m[33m---------------------------[0m [1m[33mthis step[0m
+[1m[94m227 |[0m         if: ${{ failure() }}
+[1m[94m228 |[0m         continue-on-error: true
+[1m[94m229 |[0m         run: cat /transformers/reports/${{ env.machine_type }}_tests_gpu_${{ matrix.folders }}/failures_short.txt
+    [1m[94m|[0m         [1m[33m---------------------------------------------------------------------------------------------------------[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:309:9
+    [1m[94m|[0m
+[1m[94m309 |[0m         - name: Echo folder ${{ matrix.folders }}
+    [1m[94m|[0m           [1m[33m---------------------------------------[0m [1m[33mthis step[0m
+[1m[94m310 |[0m           shell: bash
+[1m[94m311 |[0m           # For folders like `models/bert`, set an env. var. (`matrix_folders`) to `models_bert`, which will be used to
+[1m[94m312 |[0m           # set the artifact folder names (because the character `/` is not allowed).
+[1m[94m313 |[0m [1m[33m/[0m         run: |
+[1m[94m314 |[0m [1m[33m|[0m           echo "${{ matrix.folders }}"
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m318 |[0m [1m[33m|[0m           echo "$matrix_folders"
+[1m[94m319 |[0m [1m[33m|[0m           echo "matrix_folders=$matrix_folders" >> $GITHUB_ENV
+    [1m[94m|[0m [1m[33m|______________________________________________________________-[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:309:9
+    [1m[94m|[0m
+[1m[94m309 |[0m         - name: Echo folder ${{ matrix.folders }}
+    [1m[94m|[0m           [1m[94m---------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m310 |[0m           shell: bash
+[1m[94m311 |[0m           # For folders like `models/bert`, set an env. var. (`matrix_folders`) to `models_bert`, which will be used to
+[1m[94m312 |[0m           # set the artifact folder names (because the character `/` is not allowed).
+[1m[94m313 |[0m [1m[94m/[0m         run: |
+[1m[94m314 |[0m [1m[94m|[0m           echo "${{ matrix.folders }}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m318 |[0m [1m[94m|[0m           echo "$matrix_folders"
+[1m[94m319 |[0m [1m[94m|[0m           echo "matrix_folders=$matrix_folders" >> $GITHUB_ENV
+    [1m[94m|[0m [1m[94m|______________________________________________________________-[0m [1m[94minfo: fromJson(needs.setup.outputs.test_map)[matrix.folders] may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:309:9
+    [1m[94m|[0m
+[1m[94m309 |[0m         - name: Echo folder ${{ matrix.folders }}
+    [1m[94m|[0m           [1m[33m---------------------------------------[0m [1m[33mthis step[0m
+[1m[94m310 |[0m           shell: bash
+[1m[94m311 |[0m           # For folders like `models/bert`, set an env. var. (`matrix_folders`) to `models_bert`, which will be used to
+[1m[94m312 |[0m           # set the artifact folder names (because the character `/` is not allowed).
+[1m[94m313 |[0m [1m[33m/[0m         run: |
+[1m[94m314 |[0m [1m[33m|[0m           echo "${{ matrix.folders }}"
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m318 |[0m [1m[33m|[0m           echo "$matrix_folders"
+[1m[94m319 |[0m [1m[33m|[0m           echo "matrix_folders=$matrix_folders" >> $GITHUB_ENV
+    [1m[94m|[0m [1m[33m|______________________________________________________________-[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:334:9
+    [1m[94m|[0m
+[1m[94m334 |[0m   [1m[94m...[0m - name: Run all non-slow selected tests on GPU
+    [1m[94m|[0m         [1m[33m--------------------------------------------[0m [1m[33mthis step[0m
+[1m[94m335 |[0m   [1m[94m...[0m   env:
+[1m[94m336 |[0m   [1m[94m...[0m     MKL_SERVICE_FORCE_INTEL: 1
+[1m[94m337 |[0m   [1m[94m...[0m   working-directory: /transformers
+[1m[94m338 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m339 |[0m [1m[33m|[0m [1m[94m...[0m     python3 -m pytest -n 2 --dist=loadfile -v --make-reports=${{ env.machine_type }}_tests_gpu_${{ matrix.folders }} ${{ fromJson(needs.setup.outputs.test_map)[matrix.folders] }}
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:334:9
+    [1m[94m|[0m
+[1m[94m334 |[0m   [1m[94m...[0m - name: Run all non-slow selected tests on GPU
+    [1m[94m|[0m         [1m[94m--------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m335 |[0m   [1m[94m...[0m   env:
+[1m[94m336 |[0m   [1m[94m...[0m     MKL_SERVICE_FORCE_INTEL: 1
+[1m[94m337 |[0m   [1m[94m...[0m   working-directory: /transformers
+[1m[94m338 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m339 |[0m [1m[94m|[0m [1m[94m...[0m     python3 -m pytest -n 2 --dist=loadfile -v --make-reports=${{ env.machine_type }}_tests_gpu_${{ matrix.folders }} ${{ fromJson(needs.setup.outputs.test_map)[matrix.folders] }}
+    [1m[94m|[0m [1m[94m|______________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: fromJson(needs.setup.outputs.test_map)[matrix.folders] may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:341:9
+    [1m[94m|[0m
+[1m[94m341 |[0m       - name: Failure short reports
+    [1m[94m|[0m         [1m[33m---------------------------[0m [1m[33mthis step[0m
+[1m[94m342 |[0m         if: ${{ failure() }}
+[1m[94m343 |[0m         continue-on-error: true
+[1m[94m344 |[0m         run: cat /transformers/reports/${{ env.machine_type }}_tests_gpu_${{ matrix.folders }}/failures_short.txt
+    [1m[94m|[0m         [1m[33m---------------------------------------------------------------------------------------------------------[0m [1m[33mmatrix.folders may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:591:9
+    [1m[94m|[0m
+[1m[94m591 |[0m         - name: Preliminary job status
+    [1m[94m|[0m           [1m[94m----------------------------[0m [1m[94minfo: this step[0m
+[1m[94m592 |[0m           shell: bash
+[1m[94m593 |[0m           # For the meaning of these environment variables, see the job `Setup`
+[1m[94m594 |[0m [1m[94m/[0m         run: |
+[1m[94m595 |[0m [1m[94m|[0m           echo "Setup status: ${{ needs.setup.result }}"
+    [1m[94m|[0m [1m[94m|________________________________________________________-[0m [1m[94minfo: needs.setup.result may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:632:9
+    [1m[94m|[0m
+[1m[94m632 |[0m         - name: Send message to Slack
+    [1m[94m|[0m           [1m[94m---------------------------[0m [1m[94minfo: this step[0m
+[1m[94m633 |[0m           env:
+[1m[94m...[0m
+[1m[94m647 |[0m           # `models/bert` to `models_bert` is required, as the artifact names use `_` instead of `/`.
+[1m[94m648 |[0m [1m[94m/[0m         run: |
+[1m[94m649 |[0m [1m[94m|[0m           pip install huggingface_hub
+[1m[94m650 |[0m [1m[94m|[0m           pip install slack_sdk
+[1m[94m651 |[0m [1m[94m|[0m           pip show slack_sdk
+[1m[94m652 |[0m [1m[94m|[0m           python utils/notification_service.py "${{ needs.setup.outputs.matrix }}"
+    [1m[94m|[0m [1m[94m|___________________________________________________________________________________-[0m [1m[94minfo: needs.setup.outputs.matrix may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#github-env\github-env]8;;\][0m: [1mdangerous use of environment file[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:169:9
+    [1m[94m|[0m
+[1m[94m169 |[0m [1m[91m/[0m         run: |
+[1m[94m170 |[0m [1m[91m|[0m           echo "${{ matrix.machine_type }}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m180 |[0m [1m[91m|[0m           echo "$machine_type"
+[1m[94m181 |[0m [1m[91m|[0m           echo "machine_type=$machine_type" >> $GITHUB_ENV
+    [1m[94m|[0m [1m[91m|__________________________________________________________^[0m [1m[91mwrite to GITHUB_ENV may allow code execution[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#github-env\github-env]8;;\][0m: [1mdangerous use of environment file[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:282:9
+    [1m[94m|[0m
+[1m[94m282 |[0m [1m[91m/[0m         run: |
+[1m[94m283 |[0m [1m[91m|[0m           echo "${{ matrix.machine_type }}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m293 |[0m [1m[91m|[0m           echo "$machine_type"
+[1m[94m294 |[0m [1m[91m|[0m           echo "machine_type=$machine_type" >> $GITHUB_ENV
+    [1m[94m|[0m [1m[91m|__________________________________________________________^[0m [1m[91mwrite to GITHUB_ENV may allow code execution[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#github-env\github-env]8;;\][0m: [1mdangerous use of environment file[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:395:9
+    [1m[94m|[0m
+[1m[94m395 |[0m [1m[91m/[0m         run: |
+[1m[94m396 |[0m [1m[91m|[0m           echo "${{ matrix.machine_type }}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m406 |[0m [1m[91m|[0m           echo "$machine_type"
+[1m[94m407 |[0m [1m[91m|[0m           echo "machine_type=$machine_type" >> $GITHUB_ENV
+    [1m[94m|[0m [1m[91m|__________________________________________________________^[0m [1m[91mwrite to GITHUB_ENV may allow code execution[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#github-env\github-env]8;;\][0m: [1mdangerous use of environment file[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:505:9
+    [1m[94m|[0m
+[1m[94m505 |[0m [1m[91m/[0m         run: |
+[1m[94m506 |[0m [1m[91m|[0m           echo "${{ matrix.machine_type }}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m516 |[0m [1m[91m|[0m           echo "$machine_type"
+[1m[94m517 |[0m [1m[91m|[0m           echo "machine_type=$machine_type" >> $GITHUB_ENV
+    [1m[94m|[0m [1m[91m|__________________________________________________________^[0m [1m[91mwrite to GITHUB_ENV may allow code execution[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:38:7
+   [1m[94m|[0m
+[1m[94m38 |[0m       image: huggingface/transformers-all-latest-gpu-push-ci
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is unpinned[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:138:7
+    [1m[94m|[0m
+[1m[94m138 |[0m       image: huggingface/transformers-all-latest-gpu-push-ci
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is unpinned[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:251:7
+    [1m[94m|[0m
+[1m[94m251 |[0m       image: huggingface/transformers-all-latest-gpu-push-ci
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is unpinned[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:364:7
+    [1m[94m|[0m
+[1m[94m364 |[0m       image: huggingface/transformers-pytorch-deepspeed-latest-gpu-push-ci
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is unpinned[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push.yml:474:7
+    [1m[94m|[0m
+[1m[94m474 |[0m       image: huggingface/transformers-pytorch-deepspeed-latest-gpu-push-ci
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is unpinned[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m99[39m findings ([1m[93m67[39m suppressed[0m): 0 unknown, [35m6[39m informational, [36m0[39m low, [33m16[39m medium, [31m10[39m high

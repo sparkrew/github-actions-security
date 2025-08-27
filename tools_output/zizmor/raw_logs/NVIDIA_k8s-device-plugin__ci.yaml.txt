@@ -1,0 +1,77 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_k8s-device-plugin__ci.yaml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m # Copyright 2025 NVIDIA CORPORATION
+[1m[94m 2 |[0m [1m[33m|[0m #
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m44 |[0m [1m[33m|[0m       version: ${{ needs.basic.outputs.version }}
+[1m[94m45 |[0m [1m[33m|[0m       golang_version: ${{ needs.basic.outputs.golang_version }}
+   [1m[94m|[0m [1m[33m|________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_k8s-device-plugin__ci.yaml:25:3
+   [1m[94m|[0m
+[1m[94m25 |[0m [1m[33m/[0m   basic:
+[1m[94m26 |[0m [1m[33m|[0m     uses: ./.github/workflows/basic-checks.yaml
+   [1m[94m|[0m [1m[33m|[0m                                               [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________________________________|[0m
+   [1m[94m|[0m                                                 [1m[33mthis job[0m
+   [1m[94m|[0m                                                 [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_k8s-device-plugin__ci.yaml:28:3
+   [1m[94m|[0m
+[1m[94m28 |[0m [1m[33m/[0m   image:
+[1m[94m29 |[0m [1m[33m|[0m     uses: ./.github/workflows/image.yaml
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m34 |[0m [1m[33m|[0m       version: ${{ needs.basic.outputs.version }}
+[1m[94m35 |[0m [1m[33m|[0m       build_multi_arch_images: ${{ github.ref_name == 'main' || startsWith(github.ref_name, 'release-') }}
+   [1m[94m|[0m [1m[33m|[0m                                                                                                          [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|__________________________________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                                            [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                                            [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_k8s-device-plugin__ci.yaml:37:3
+   [1m[94m|[0m
+[1m[94m37 |[0m [1m[33m/[0m   e2e-test:
+[1m[94m38 |[0m [1m[33m|[0m     needs:
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m44 |[0m [1m[33m|[0m       version: ${{ needs.basic.outputs.version }}
+[1m[94m45 |[0m [1m[33m|[0m       golang_version: ${{ needs.basic.outputs.golang_version }}
+   [1m[94m|[0m [1m[33m|[0m                                                                [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________________________________________________________|[0m
+   [1m[94m|[0m                                                                  [1m[33mthis job[0m
+   [1m[94m|[0m                                                                  [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_k8s-device-plugin__ci.yaml:29:5
+   [1m[94m|[0m
+[1m[94m29 |[0m     uses: ./.github/workflows/image.yaml
+   [1m[94m|[0m     [1m[33m------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m30 |[0m     needs:
+[1m[94m31 |[0m     - basic
+[1m[94m32 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_k8s-device-plugin__ci.yaml:42:5
+   [1m[94m|[0m
+[1m[94m41 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+[1m[94m42 |[0m     uses: ./.github/workflows/e2e.yaml
+   [1m[94m|[0m     [1m[33m----------------------------------[0m [1m[33mthis reusable workflow[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m6[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m6[39m medium, [31m0[39m high

@@ -1,0 +1,17 @@
+name: Lint
+on: pull_request
+jobs:
+lint:
+runs-on: ubuntu-latest
+steps:
+- uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # actions/checkout@v2 | releases,850,v2.7.0
+- name: Setup Node.js 18.x
+uses: actions/setup-node@7c12f8017d5436eb855f1ed4399f037a36fbd9e8 # actions/setup-node@v2 | releases,v2.5.2
+with:
+node-version: 18.x
+- name: Install and lint
+run: |
+yarn install
+yarn test:other
+yarn test:code
+yarn test:typecheck

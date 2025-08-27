@@ -1,0 +1,68 @@
+{
+  "workflow": "nodejs_node__label-pr.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "nodejs_node__label-pr.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: nodejs/node-pr-labeler@d4cf1b8b9f23189c37917000e5e17e796c770a6b  # v1",
+          "line": 11
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "nodejs_node__label-pr.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          }
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "nodejs_node__label-pr.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "dangerous-triggers": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "dangerous-triggers",
+          "level": "error",
+          "message": "use of fundamentally insecure workflow trigger",
+          "workflow": "nodejs_node__label-pr.yml",
+          "line": 3,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium"
+        }
+      ]
+    }
+  }
+}

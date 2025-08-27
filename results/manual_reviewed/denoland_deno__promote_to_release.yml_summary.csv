@@ -1,0 +1,50 @@
+tool,capability,line,column,message,verdict
+frizbee,pinning-check,30,N/A,actions/checkout@v4,TP
+frizbee,pinning-check,36,N/A,denoland/setup-deno@v2,TP
+frizbee,pinning-check,65,N/A,azure/login@v1,TP
+frizbee,pinning-check,73,N/A,azure/trusted-signing-action@v0,TP
+frizbee,pinning-check,104,N/A,actions/upload-artifact@v4,TP
+frizbee,pinning-check,119,N/A,actions/checkout@v4,TP
+frizbee,pinning-check,125,N/A,google-github-actions/auth@v1,TP
+frizbee,pinning-check,133,N/A,google-github-actions/setup-gcloud@v1,TP
+frizbee,pinning-check,138,N/A,denoland/setup-deno@v2,TP
+frizbee,pinning-check,155,N/A,actions/download-artifact@v4,TP
+pinny,pinning-check,36,N/A,denoland/setup-deno@v2,TP
+pinny,pinning-check,138,N/A,denoland/setup-deno@v2,TP
+semgrep,injection-check,41,N/A,"Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: ""$ENVVAR"".",TP
+semgrep,injection-check,50,N/A,"Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: ""$ENVVAR"".",TP
+semgrep,injection-check,93,N/A,"Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: ""$ENVVAR"".",TP
+semgrep,injection-check,99,N/A,"Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: ""$ENVVAR"".",TP
+semgrep,injection-check,151,N/A,"Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: ""$ENVVAR"".",TP
+semgrep,injection-check,161,N/A,"Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: ""$ENVVAR"".",TP
+semgrep,injection-check,169,N/A,"Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: ""$ENVVAR"".",TP
+scorecard,pinning-check,N/A,N/A,dependency not pinned by hash detected -- score normalized to 0,TP
+scorecard,automatic-hardening-check,N/A,N/A,no SAST tool detected,TP
+scorecard,permissions-check,N/A,N/A,detected GitHub workflow tokens with excessive permissions,TP
+poutine,injection-check,50,N/A,Command: deno install -A -n patchver https://deno.land/x/patchver@0.2.0/cli.ts,TP
+poutine,known_vulnerability-check,155,N/A,Package: actions/download-artifact,TP
+poutine,injection-check,41,N/A,Sources: github.event.inputs.commitHash,TP
+poutine,injection-check,151,N/A,Sources: github.event.inputs.commitHash github.event.inputs.releaseKind,TP
+poutine,injection-check,161,N/A,Sources: github.event.inputs.releaseKind,TP
+poutine,injection-check,169,N/A,Sources: github.event.inputs.releaseKind,TP
+poutine,injection-check,50,N/A,Sources: github.event.inputs.releaseKind,TP
+poutine,injection-check,93,N/A,Sources: github.event.inputs.releaseKind,TP
+poutine,injection-check,99,N/A,Sources: github.event.inputs.releaseKind,TP
+scharf,pinning-check,30,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+scharf,pinning-check,36,15,Unpinned GitHub Action: uses `denoland/setup-deno@v2`,TP
+scharf,pinning-check,51,57,Unpinned GitHub Action: uses `x/patchver@0.2.0`,TP
+scharf,pinning-check,65,15,Unpinned GitHub Action: uses `azure/login@v1`,TP
+scharf,pinning-check,73,15,Unpinned GitHub Action: uses `azure/trusted-signing-action@v0`,TP
+scharf,pinning-check,104,15,Unpinned GitHub Action: uses `actions/upload-artifact@v4`,TP
+scharf,pinning-check,119,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+scharf,pinning-check,125,15,Unpinned GitHub Action: uses `google-github-actions/auth@v1`,TP
+scharf,pinning-check,133,15,Unpinned GitHub Action: uses `google-github-actions/setup-gcloud@v1`,TP
+scharf,pinning-check,138,15,Unpinned GitHub Action: uses `denoland/setup-deno@v2`,TP
+scharf,pinning-check,155,15,Unpinned GitHub Action: uses `actions/download-artifact@v4`,TP
+zizmor,artifact-Integrity-check,29,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,artifact-Integrity-check,118,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,permissions-check,1,1,overly broad permissions,FP
+zizmor,permissions-check,138,9,overly broad permissions,FP
+actionlint,pinning-check,65,15,"the runner of ""azure/login@v1"" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",TP
+actionlint,pinning-check,125,15,"the runner of ""google-github-actions/auth@v1"" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",TP
+actionlint,pinning-check,133,15,"the runner of ""google-github-actions/setup-gcloud@v1"" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",TP

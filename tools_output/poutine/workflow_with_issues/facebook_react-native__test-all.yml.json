@@ -1,0 +1,195 @@
+{
+  "workflow": "facebook_react-native__test-all.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 14,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 9,
+      "pr_runs_on_self_hosted": 5
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "515",
+      "column": "",
+      "job": "test_android_helloworld",
+      "step": "2",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch",
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "520",
+      "column": "",
+      "job": "test_android_helloworld",
+      "step": "3",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch",
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "446",
+      "column": "",
+      "job": "test_e2e_android_rntester",
+      "step": "3",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch",
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "328",
+      "column": "",
+      "job": "test_e2e_android_templateapp",
+      "step": "4",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch",
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "333",
+      "column": "",
+      "job": "test_e2e_android_templateapp",
+      "step": "5",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch",
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "207",
+      "column": "",
+      "job": "test_e2e_ios_rntester",
+      "step": "2",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch",
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "248",
+      "column": "",
+      "job": "test_e2e_ios_templateapp",
+      "step": "5",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch",
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "253",
+      "column": "",
+      "job": "test_e2e_ios_templateapp",
+      "step": "6",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch",
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "260",
+      "column": "",
+      "job": "test_e2e_ios_templateapp",
+      "step": "8",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch",
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": "492",
+      "column": "",
+      "job": "test_android_helloworld",
+      "step": "",
+      "details": "runs-on: 4-core-ubuntu",
+      "event_triggers": [
+        "workflow_dispatch",
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": "432",
+      "column": "",
+      "job": "test_e2e_android_rntester",
+      "step": "",
+      "details": "runs-on: 4-core-ubuntu",
+      "event_triggers": [
+        "workflow_dispatch",
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": "309",
+      "column": "",
+      "job": "test_e2e_android_templateapp",
+      "step": "",
+      "details": "runs-on: 4-core-ubuntu",
+      "event_triggers": [
+        "workflow_dispatch",
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": "411",
+      "column": "",
+      "job": "build_android",
+      "step": "",
+      "details": "runs-on: 8-core-ubuntu",
+      "event_triggers": [
+        "workflow_dispatch",
+        "pull_request",
+        "push"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": "462",
+      "column": "",
+      "job": "build_npm_package",
+      "step": "",
+      "details": "runs-on: 8-core-ubuntu",
+      "event_triggers": [
+        "workflow_dispatch",
+        "pull_request",
+        "push"
+      ]
+    }
+  ]
+}

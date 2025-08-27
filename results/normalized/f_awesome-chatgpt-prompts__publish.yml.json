@@ -1,0 +1,240 @@
+{
+  "workflow": "f_awesome-chatgpt-prompts__publish.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "f_awesome-chatgpt-prompts__publish.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v3",
+          "pinned": "actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744",
+          "line": 14,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "ruby/setup-ruby@v1",
+          "pinned": "ruby/setup-ruby@a4effe49ee8ee5b8b5091268c473a4628afb5651",
+          "line": 17,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "peaceiris/actions-gh-pages@v3",
+          "pinned": "peaceiris/actions-gh-pages@373f7f263a76c20808c831209c920827a82a2847",
+          "line": 36,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "f_awesome-chatgpt-prompts__publish.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0",
+          "line": 11,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: ruby/setup-ruby@a9bfc2ecf3dd40734a9418f89a7e9d484c32b990 # ruby/setup-ruby@v1 | master,v1.248.0",
+          "line": 13,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: peaceiris/actions-gh-pages@373f7f263a76c20808c831209c920827a82a2847 # peaceiris/actions-gh-pages@v3",
+          "line": 28,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "f_awesome-chatgpt-prompts__publish.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            14,
+            17,
+            36
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/f_awesome-chatgpt-prompts__publish.yml:14",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/f_awesome-chatgpt-prompts__publish.yml:17",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/f_awesome-chatgpt-prompts__publish.yml:36",
+            "Info:   0 out of   1 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   2 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "automatic-hardening-check"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/f_awesome-chatgpt-prompts__publish.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "permissions-check"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "f_awesome-chatgpt-prompts__publish.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "line": 14,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v3`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 17,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `ruby/setup-ruby@v1`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 36,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `peaceiris/actions-gh-pages@v3`",
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "f_awesome-chatgpt-prompts__publish.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "artipacked": 1,
+          "excessive-permissions": 1,
+          "unpinned-uses": 2
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "f_awesome-chatgpt-prompts__publish.yml",
+          "line": 13,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "f_awesome-chatgpt-prompts__publish.yml",
+          "line": 9,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "f_awesome-chatgpt-prompts__publish.yml",
+          "line": 17,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "pinning-check"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "f_awesome-chatgpt-prompts__publish.yml",
+          "line": 36,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "f_awesome-chatgpt-prompts__publish.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 2
+      },
+      "findings": [
+        {
+          "line": 14,
+          "column": 15,
+          "message": "the runner of \"actions/checkout@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "workflow_structural_check"
+        },
+        {
+          "line": 36,
+          "column": 15,
+          "message": "the runner of \"peaceiris/actions-gh-pages@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "workflow_structural_check"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,177 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_releases_from_npm_manual.yml:65:9
+   [1m[94m|[0m
+[1m[94m65 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_releases_from_npm_manual.yml:86:9
+   [1m[94m|[0m
+[1m[94m86 |[0m           name: 'Prepare ${{ inputs.only_packages }} from NPM'
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m87 |[0m [1m[91m/[0m         run: |
+[1m[94m88 |[0m [1m[91m|[0m           scripts/release/prepare-release-from-npm.js \
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m92 |[0m [1m[91m|[0m             --publishVersion=${{ inputs.version_to_publish }} \
+[1m[94m93 |[0m [1m[91m|[0m             --onlyPackages=${{ inputs.only_packages }}
+   [1m[94m|[0m [1m[91m|______________________________________________________^[0m [1m[91minputs.version_to_promote may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_releases_from_npm_manual.yml:86:9
+   [1m[94m|[0m
+[1m[94m86 |[0m           name: 'Prepare ${{ inputs.only_packages }} from NPM'
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m87 |[0m [1m[91m/[0m         run: |
+[1m[94m88 |[0m [1m[91m|[0m           scripts/release/prepare-release-from-npm.js \
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m92 |[0m [1m[91m|[0m             --publishVersion=${{ inputs.version_to_publish }} \
+[1m[94m93 |[0m [1m[91m|[0m             --onlyPackages=${{ inputs.only_packages }}
+   [1m[94m|[0m [1m[91m|______________________________________________________^[0m [1m[91minputs.version_to_publish may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_releases_from_npm_manual.yml:86:9
+   [1m[94m|[0m
+[1m[94m86 |[0m           name: 'Prepare ${{ inputs.only_packages }} from NPM'
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m87 |[0m [1m[91m/[0m         run: |
+[1m[94m88 |[0m [1m[91m|[0m           scripts/release/prepare-release-from-npm.js \
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m92 |[0m [1m[91m|[0m             --publishVersion=${{ inputs.version_to_publish }} \
+[1m[94m93 |[0m [1m[91m|[0m             --onlyPackages=${{ inputs.only_packages }}
+   [1m[94m|[0m [1m[91m|______________________________________________________^[0m [1m[91minputs.only_packages may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_releases_from_npm_manual.yml:95:9
+    [1m[94m|[0m
+[1m[94m 95 |[0m           name: 'Prepare all packages EXCEPT ${{ inputs.skip_packages }} from NPM'
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m 96 |[0m [1m[91m/[0m         run: |
+[1m[94m 97 |[0m [1m[91m|[0m           scripts/release/prepare-release-from-npm.js \
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m101 |[0m [1m[91m|[0m             --publishVersion=${{ inputs.version_to_publish }} \
+[1m[94m102 |[0m [1m[91m|[0m             --skipPackages=${{ inputs.skip_packages }}
+    [1m[94m|[0m [1m[91m|______________________________________________________^[0m [1m[91minputs.version_to_promote may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_releases_from_npm_manual.yml:95:9
+    [1m[94m|[0m
+[1m[94m 95 |[0m           name: 'Prepare all packages EXCEPT ${{ inputs.skip_packages }} from NPM'
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m 96 |[0m [1m[91m/[0m         run: |
+[1m[94m 97 |[0m [1m[91m|[0m           scripts/release/prepare-release-from-npm.js \
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m101 |[0m [1m[91m|[0m             --publishVersion=${{ inputs.version_to_publish }} \
+[1m[94m102 |[0m [1m[91m|[0m             --skipPackages=${{ inputs.skip_packages }}
+    [1m[94m|[0m [1m[91m|______________________________________________________^[0m [1m[91minputs.version_to_publish may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_releases_from_npm_manual.yml:95:9
+    [1m[94m|[0m
+[1m[94m 95 |[0m           name: 'Prepare all packages EXCEPT ${{ inputs.skip_packages }} from NPM'
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m 96 |[0m [1m[91m/[0m         run: |
+[1m[94m 97 |[0m [1m[91m|[0m           scripts/release/prepare-release-from-npm.js \
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m101 |[0m [1m[91m|[0m             --publishVersion=${{ inputs.version_to_publish }} \
+[1m[94m102 |[0m [1m[91m|[0m             --skipPackages=${{ inputs.skip_packages }}
+    [1m[94m|[0m [1m[91m|______________________________________________________^[0m [1m[91minputs.skip_packages may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_releases_from_npm_manual.yml:106:9
+    [1m[94m|[0m
+[1m[94m106 |[0m           name: 'Publish ${{ inputs.only_packages }}'
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m107 |[0m [1m[91m/[0m         run: |
+[1m[94m108 |[0m [1m[91m|[0m           scripts/release/publish.js \
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m112 |[0m [1m[91m|[0m             --onlyPackages=${{ inputs.only_packages }} ${{ (inputs.dry && '') || '\'}}
+[1m[94m113 |[0m [1m[91m|[0m             ${{ inputs.dry && '--dry' || '' }}
+    [1m[94m|[0m [1m[91m|______________________________________________^[0m [1m[91minputs.tags may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_releases_from_npm_manual.yml:106:9
+    [1m[94m|[0m
+[1m[94m106 |[0m           name: 'Publish ${{ inputs.only_packages }}'
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m107 |[0m [1m[91m/[0m         run: |
+[1m[94m108 |[0m [1m[91m|[0m           scripts/release/publish.js \
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m112 |[0m [1m[91m|[0m             --onlyPackages=${{ inputs.only_packages }} ${{ (inputs.dry && '') || '\'}}
+[1m[94m113 |[0m [1m[91m|[0m             ${{ inputs.dry && '--dry' || '' }}
+    [1m[94m|[0m [1m[91m|______________________________________________^[0m [1m[91minputs.version_to_publish may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_releases_from_npm_manual.yml:106:9
+    [1m[94m|[0m
+[1m[94m106 |[0m           name: 'Publish ${{ inputs.only_packages }}'
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m107 |[0m [1m[91m/[0m         run: |
+[1m[94m108 |[0m [1m[91m|[0m           scripts/release/publish.js \
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m112 |[0m [1m[91m|[0m             --onlyPackages=${{ inputs.only_packages }} ${{ (inputs.dry && '') || '\'}}
+[1m[94m113 |[0m [1m[91m|[0m             ${{ inputs.dry && '--dry' || '' }}
+    [1m[94m|[0m [1m[91m|______________________________________________^[0m [1m[91minputs.only_packages may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_releases_from_npm_manual.yml:115:9
+    [1m[94m|[0m
+[1m[94m115 |[0m           name: 'Publish all packages EXCEPT ${{ inputs.skip_packages }}'
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m116 |[0m [1m[91m/[0m         run: |
+[1m[94m117 |[0m [1m[91m|[0m           scripts/release/publish.js \
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m121 |[0m [1m[91m|[0m             --skipPackages=${{ inputs.skip_packages }} ${{ (inputs.dry && '') || '\'}}
+[1m[94m122 |[0m [1m[91m|[0m             ${{ inputs.dry && '--dry' || '' }}
+    [1m[94m|[0m [1m[91m|______________________________________________^[0m [1m[91minputs.tags may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_releases_from_npm_manual.yml:115:9
+    [1m[94m|[0m
+[1m[94m115 |[0m           name: 'Publish all packages EXCEPT ${{ inputs.skip_packages }}'
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m116 |[0m [1m[91m/[0m         run: |
+[1m[94m117 |[0m [1m[91m|[0m           scripts/release/publish.js \
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m121 |[0m [1m[91m|[0m             --skipPackages=${{ inputs.skip_packages }} ${{ (inputs.dry && '') || '\'}}
+[1m[94m122 |[0m [1m[91m|[0m             ${{ inputs.dry && '--dry' || '' }}
+    [1m[94m|[0m [1m[91m|______________________________________________^[0m [1m[91minputs.version_to_publish may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_releases_from_npm_manual.yml:115:9
+    [1m[94m|[0m
+[1m[94m115 |[0m           name: 'Publish all packages EXCEPT ${{ inputs.skip_packages }}'
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m116 |[0m [1m[91m/[0m         run: |
+[1m[94m117 |[0m [1m[91m|[0m           scripts/release/publish.js \
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m121 |[0m [1m[91m|[0m             --skipPackages=${{ inputs.skip_packages }} ${{ (inputs.dry && '') || '\'}}
+[1m[94m122 |[0m [1m[91m|[0m             ${{ inputs.dry && '--dry' || '' }}
+    [1m[94m|[0m [1m[91m|______________________________________________^[0m [1m[91minputs.skip_packages may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m29[39m findings ([1m[93m16[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m12[39m high

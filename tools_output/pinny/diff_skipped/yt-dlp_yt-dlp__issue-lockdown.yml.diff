@@ -1,0 +1,39 @@
+--- yt-dlp_yt-dlp__issue-lockdown.yml (original)
++++ yt-dlp_yt-dlp__issue-lockdown.yml (modified)
+@@ -1,21 +1,19 @@
+ name: Issue Lockdown
+ on:
+-  issues:
+-    types: [opened]
+-
++issues:
++types: [opened]
+ permissions:
+-  issues: write
+-
++issues: write
+ jobs:
+-  lockdown:
+-    name: Issue Lockdown
+-    if: vars.ISSUE_LOCKDOWN
+-    runs-on: ubuntu-latest
+-    steps:
+-      - name: "Lock new issue"
+-        env:
+-          GH_TOKEN: ${{ github.token }}
+-          ISSUE_NUMBER: ${{ github.event.issue.number }}
+-          REPOSITORY: ${{ github.repository }}
+-        run: |
+-          gh issue lock "${ISSUE_NUMBER}" -R "${REPOSITORY}"
++lockdown:
++name: Issue Lockdown
++if: vars.ISSUE_LOCKDOWN
++runs-on: ubuntu-latest
++steps:
++- name: "Lock new issue"
++env:
++GH_TOKEN: ${{ github.token }}
++ISSUE_NUMBER: ${{ github.event.issue.number }}
++REPOSITORY: ${{ github.repository }}
++run: |
++gh issue lock "${ISSUE_NUMBER}" -R "${REPOSITORY}"

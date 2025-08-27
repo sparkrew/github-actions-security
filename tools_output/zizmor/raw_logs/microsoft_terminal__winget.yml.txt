@@ -1,0 +1,30 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_terminal__winget.yml:14:3
+   [1m[94m|[0m
+[1m[94m14 |[0m [1m[33m/[0m   publish:
+[1m[94m15 |[0m [1m[33m|[0m     runs-on: windows-latest # Action can only run on Windows
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m26 |[0m [1m[33m|[0m           & curl.exe -JLO https://aka.ms/wingetcreate/latest
+[1m[94m27 |[0m [1m[33m|[0m           & .\wingetcreate.exe update $wingetPackage -s -v $version -u $wingetRelevantAsset.browser_download_url
+   [1m[94m|[0m [1m[33m|[0m                                                                                                                 [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_________________________________________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                                                   [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                                                   [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_terminal__winget.yml:17:9
+   [1m[94m|[0m
+[1m[94m17 |[0m         - name: Publish Windows Terminal ${{ github.event.release.prerelease && 'Preview' || 'Stable' }}
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m18 |[0m [1m[91m/[0m         run: |
+[1m[94m19 |[0m [1m[91m|[0m           $assets = '${{ toJSON(github.event.release.assets) }}' | ConvertFrom-Json
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m26 |[0m [1m[91m|[0m           & curl.exe -JLO https://aka.ms/wingetcreate/latest
+[1m[94m27 |[0m [1m[91m|[0m           & .\wingetcreate.exe update $wingetPackage -s -v $version -u $wingetRelevantAsset.browser_download_url
+   [1m[94m|[0m [1m[91m|_________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.release.assets may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m5[39m findings ([1m[93m3[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m1[39m high

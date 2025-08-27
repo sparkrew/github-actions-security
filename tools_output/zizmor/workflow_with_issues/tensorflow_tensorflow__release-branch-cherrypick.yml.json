@@ -1,0 +1,49 @@
+{
+  "workflow": "tensorflow_tensorflow__release-branch-cherrypick.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "artipacked": 1,
+      "template-injection": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "tensorflow_tensorflow__release-branch-cherrypick.yml",
+      "line": 47,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "tensorflow_tensorflow__release-branch-cherrypick.yml",
+      "line": 51,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "tensorflow_tensorflow__release-branch-cherrypick.yml",
+      "line": 51,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "tensorflow_tensorflow__release-branch-cherrypick.yml",
+      "line": 51,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

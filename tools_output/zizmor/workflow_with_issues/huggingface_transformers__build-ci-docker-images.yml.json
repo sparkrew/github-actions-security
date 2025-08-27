@@ -1,0 +1,86 @@
+{
+  "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 8,
+    "by_rule": {
+      "artipacked": 1,
+      "excessive-permissions": 3,
+      "unpinned-uses": 4
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+      "line": 47,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+      "line": 1,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+      "line": 22,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+      "line": 66,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+      "line": 45,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+      "line": 51,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+      "line": 57,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+      "line": 72,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

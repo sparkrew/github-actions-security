@@ -1,0 +1,96 @@
+{
+  "workflow": "tensorflow_tensorflow__update-rbe.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "tensorflow_tensorflow__update-rbe.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2",
+          "line": 13
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8",
+          "line": 113
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "tensorflow_tensorflow__update-rbe.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          }
+        }
+      ]
+    },
+    "poutine": {
+      "workflow": "tensorflow_tensorflow__update-rbe.yml",
+      "tool": "poutine",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unverified_script_exec": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "unverified_script_exec",
+          "line": "35",
+          "column": "",
+          "job": "rbe",
+          "step": "1",
+          "details": "Command: curl -s --head \"https://gcr.io/v2/tensorflow-sigs/build/manifests/$2\" | egrep -o \"sh",
+          "event_triggers": [
+            "workflow_dispatch"
+          ]
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "tensorflow_tensorflow__update-rbe.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "tensorflow_tensorflow__update-rbe.yml",
+          "line": 32,
+          "column": 7,
+          "note": "audit confidence \u2192 Low"
+        }
+      ]
+    }
+  }
+}

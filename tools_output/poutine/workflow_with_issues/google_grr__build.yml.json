@@ -1,0 +1,60 @@
+{
+  "workflow": "google_grr__build.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 4
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "200",
+      "column": "",
+      "job": "build-docker-image",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "239",
+      "column": "",
+      "job": "docker-compose-e2e-test",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "298",
+      "column": "",
+      "job": "push-docker-image",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "335",
+      "column": "",
+      "job": "upload-artifacts",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    }
+  ]
+}

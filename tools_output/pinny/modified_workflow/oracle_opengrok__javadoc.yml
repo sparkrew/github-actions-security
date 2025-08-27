@@ -1,0 +1,42 @@
+name: Upload javadocs to Github pages
+on:
+push:
+branches:
+- master
+paths:
+- opengrok-indexer/**
+- opengrok-web/**
+- suggester/**
+- plugins/**
+- .github/workflows/javadoc.yml
+- dev/javadoc.sh
+jobs:
+ubuntu:
+runs-on: ubuntu-latest
+steps:
+- name: Checkout master branch
+uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2
+- name: Set up JDK
+uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # actions/setup-java@v4 | v4.7.1
+with:
+distribution: 'oracle'
+java-version: '21'
+- name: Cache Maven packages
+uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # actions/cache@v4 | v4.2.3
+with:
+path: ~/.m2
+key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+restore-keys: ${{ runner.os }}-m2
+- name: Checkout gh-pages branch
+if: github.repository == 'oracle/opengrok'
+uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2
+with:
+ref: gh-pages
+path: gh-pages
+- name: Refresh Javadoc
+env:
+OPENGROK_REPO_SLUG: ${{ github.repository }}
+OPENGROK_PULL_REQUEST: ${{ github.head_ref }}
+OPENGROK_REF: ${{ github.ref }}
+OPENGROK_BUILD_DIR: ${{ github.workspace }}
+run: ./dev/javadoc.sh

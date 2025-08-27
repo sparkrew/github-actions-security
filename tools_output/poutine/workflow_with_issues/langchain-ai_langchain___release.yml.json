@@ -1,0 +1,60 @@
+{
+  "workflow": "langchain-ai_langchain___release.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 4
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "481",
+      "column": "",
+      "job": "mark-release",
+      "step": "2",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_call",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "216",
+      "column": "",
+      "job": "pre-release-checks",
+      "step": "2",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_call",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "442",
+      "column": "",
+      "job": "publish",
+      "step": "2",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_call",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "375",
+      "column": "",
+      "job": "test-prior-published-packages-against-new-core",
+      "step": "3",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_call",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

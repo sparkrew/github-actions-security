@@ -1,0 +1,32 @@
+{
+  "workflow": "alibaba_ice__website.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0",
+      "line": 16
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # pnpm/action-setup@v4",
+      "line": 20
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # actions/setup-node@v3 | releases,v3.9.1",
+      "line": 22
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: JamesIves/github-pages-deploy-action@3dbacc7e69578703f91f077118b3475862cb09b8 # JamesIves/github-pages-deploy-action@4.1.0",
+      "line": 30
+    }
+  ]
+}

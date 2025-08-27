@@ -1,0 +1,27 @@
+{
+  "workflow": "alibaba_tengine__ci-arm64.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0",
+      "line": 17
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0",
+      "line": 19
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: uraimo/run-on-arch-action@aa8e672a03e10b403401927ea2ceda57e1b68ac3 # uraimo/run-on-arch-action@v3",
+      "line": 24
+    }
+  ]
+}

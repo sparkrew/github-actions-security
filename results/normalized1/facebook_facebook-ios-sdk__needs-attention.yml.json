@@ -1,0 +1,227 @@
+{
+  "workflow": "facebook_facebook-ios-sdk__needs-attention.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "facebook_facebook-ios-sdk__needs-attention.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v2",
+          "pinned": "actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5",
+          "line": 12,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "hramos/needs-attention@v1",
+          "pinned": "hramos/needs-attention@4d47f33c9b77fc9bf45670510c7847c382231317",
+          "line": 14,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "facebook_facebook-ios-sdk__needs-attention.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # actions/checkout@v2 | releases,850,v2.7.0",
+          "line": 11,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: hramos/needs-attention@4d47f33c9b77fc9bf45670510c7847c382231317 # hramos/needs-attention@v1",
+          "line": 13,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "facebook_facebook-ios-sdk__needs-attention.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            12,
+            14
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_facebook-ios-sdk__needs-attention.yml:12",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/facebook_facebook-ios-sdk__needs-attention.yml:14",
+            "Info:   0 out of   1 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   1 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "automatic-hardening-check"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/facebook_facebook-ios-sdk__needs-attention.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "permissions-check"
+        }
+      ]
+    },
+    "poutine": {
+      "workflow": "facebook_facebook-ios-sdk__needs-attention.yml",
+      "tool": "poutine",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "default_permissions_on_risky_events": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "default_permissions_on_risky_events",
+          "line": "",
+          "column": "",
+          "job": "",
+          "step": "",
+          "details": "",
+          "event_triggers": [
+            "issue_comment"
+          ],
+          "capability": "permissions-check"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "facebook_facebook-ios-sdk__needs-attention.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "line": 12,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v2`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 14,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `hramos/needs-attention@v1`",
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "facebook_facebook-ios-sdk__needs-attention.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "artipacked": 1,
+          "excessive-permissions": 1,
+          "unpinned-uses": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "facebook_facebook-ios-sdk__needs-attention.yml",
+          "line": 12,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "facebook_facebook-ios-sdk__needs-attention.yml",
+          "line": 8,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "facebook_facebook-ios-sdk__needs-attention.yml",
+          "line": 14,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "facebook_facebook-ios-sdk__needs-attention.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 1
+      },
+      "findings": [
+        {
+          "line": 12,
+          "column": 15,
+          "message": "the runner of \"actions/checkout@v2\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "workflow_structural_check"
+        }
+      ]
+    }
+  }
+}

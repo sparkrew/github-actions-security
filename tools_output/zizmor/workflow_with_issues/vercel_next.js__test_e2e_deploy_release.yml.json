@@ -1,0 +1,68 @@
+{
+  "workflow": "vercel_next.js__test_e2e_deploy_release.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 6,
+    "by_rule": {
+      "artipacked": 1,
+      "excessive-permissions": 4,
+      "secrets-inherit": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "vercel_next.js__test_e2e_deploy_release.yml",
+      "line": 41,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "vercel_next.js__test_e2e_deploy_release.yml",
+      "line": 1,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "vercel_next.js__test_e2e_deploy_release.yml",
+      "line": 26,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "vercel_next.js__test_e2e_deploy_release.yml",
+      "line": 52,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "vercel_next.js__test_e2e_deploy_release.yml",
+      "line": 69,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "secrets-inherit",
+      "level": "warning",
+      "message": "secrets unconditionally inherited by called workflow",
+      "workflow": "vercel_next.js__test_e2e_deploy_release.yml",
+      "line": 55,
+      "column": 5,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "workflow": "mrdoob_three.js__codeql-code-scanning.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "name": "Token-Permissions",
+      "score": 9,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "details": null,
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

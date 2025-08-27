@@ -1,0 +1,120 @@
+{
+  "workflow": "facebook_react__shared_close_direct_sync_branch_prs.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "facebook_react__shared_close_direct_sync_branch_prs.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/github-script@v7",
+          "pinned": "actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea",
+          "line": 23
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "facebook_react__shared_close_direct_sync_branch_prs.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # actions/github-script@v7",
+          "line": 19
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "facebook_react__shared_close_direct_sync_branch_prs.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            23
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_react__shared_close_direct_sync_branch_prs.yml:23",
+            "Info:   0 out of   1 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          }
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          }
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "facebook_react__shared_close_direct_sync_branch_prs.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "line": 23,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/github-script@v7`"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "facebook_react__shared_close_direct_sync_branch_prs.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "template-injection": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "facebook_react__shared_close_direct_sync_branch_prs.yml",
+          "line": 22,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        }
+      ]
+    }
+  }
+}

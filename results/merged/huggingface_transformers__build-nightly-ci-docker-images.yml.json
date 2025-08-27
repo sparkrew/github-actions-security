@@ -1,0 +1,395 @@
+{
+  "workflow": "huggingface_transformers__build-nightly-ci-docker-images.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "huggingface_transformers__build-nightly-ci-docker-images.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 8,
+        "by_rule": {
+          "unpinned-github-actions": 8
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/setup-buildx-action@v2",
+          "pinned": "docker/setup-buildx-action@885d1462b80bc1c1c7f0b00334ad271f09369c55",
+          "line": 21
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 24
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/login-action@v2",
+          "pinned": "docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc",
+          "line": 27
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/build-push-action@v3",
+          "pinned": "docker/build-push-action@1104d471370f9806843c095c1db02b5a90c5f8b6",
+          "line": 33
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/setup-buildx-action@v2",
+          "pinned": "docker/setup-buildx-action@885d1462b80bc1c1c7f0b00334ad271f09369c55",
+          "line": 49
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 52
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/login-action@v2",
+          "pinned": "docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc",
+          "line": 55
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/build-push-action@v3",
+          "pinned": "docker/build-push-action@1104d471370f9806843c095c1db02b5a90c5f8b6",
+          "line": 61
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "huggingface_transformers__build-nightly-ci-docker-images.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 8,
+        "by_rule": {
+          "unpinned-github-actions": 8
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/setup-buildx-action@885d1462b80bc1c1c7f0b00334ad271f09369c55 # docker/setup-buildx-action@v2 | releases,v2.10.0",
+          "line": 18
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 21
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc # docker/login-action@v2 | releases,v2.2.0",
+          "line": 24
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/build-push-action@1104d471370f9806843c095c1db02b5a90c5f8b6 # docker/build-push-action@v3 | releases,v3.3.1",
+          "line": 30
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/setup-buildx-action@885d1462b80bc1c1c7f0b00334ad271f09369c55 # docker/setup-buildx-action@v2 | releases,v2.10.0",
+          "line": 45
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 48
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc # docker/login-action@v2 | releases,v2.2.0",
+          "line": 51
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/build-push-action@1104d471370f9806843c095c1db02b5a90c5f8b6 # docker/build-push-action@v3 | releases,v3.3.1",
+          "line": 57
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "huggingface_transformers__build-nightly-ci-docker-images.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            21,
+            24,
+            27,
+            33,
+            49,
+            52,
+            55,
+            61
+          ],
+          "raw_details": [
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-nightly-ci-docker-images.yml:21",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-nightly-ci-docker-images.yml:24",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-nightly-ci-docker-images.yml:27",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-nightly-ci-docker-images.yml:33",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-nightly-ci-docker-images.yml:49",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-nightly-ci-docker-images.yml:52",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-nightly-ci-docker-images.yml:55",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-nightly-ci-docker-images.yml:61",
+            "Info:   0 out of   2 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   6 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          }
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          }
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/huggingface_transformers__build-nightly-ci-docker-images.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          }
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "huggingface_transformers__build-nightly-ci-docker-images.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 8,
+        "by_rule": {
+          "unpinned-github-actions": 8
+        }
+      },
+      "findings": [
+        {
+          "line": 21,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/setup-buildx-action@v2`"
+        },
+        {
+          "line": 24,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+        },
+        {
+          "line": 27,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/login-action@v2`"
+        },
+        {
+          "line": 33,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/build-push-action@v3`"
+        },
+        {
+          "line": 49,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/setup-buildx-action@v2`"
+        },
+        {
+          "line": 52,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+        },
+        {
+          "line": 55,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/login-action@v2`"
+        },
+        {
+          "line": 61,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/build-push-action@v3`"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "huggingface_transformers__build-nightly-ci-docker-images.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 11,
+        "by_rule": {
+          "artipacked": 2,
+          "excessive-permissions": 3,
+          "unpinned-uses": 6
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "huggingface_transformers__build-nightly-ci-docker-images.yml",
+          "line": 23,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "huggingface_transformers__build-nightly-ci-docker-images.yml",
+          "line": 51,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "huggingface_transformers__build-nightly-ci-docker-images.yml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "huggingface_transformers__build-nightly-ci-docker-images.yml",
+          "line": 14,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "huggingface_transformers__build-nightly-ci-docker-images.yml",
+          "line": 42,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "huggingface_transformers__build-nightly-ci-docker-images.yml",
+          "line": 21,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "huggingface_transformers__build-nightly-ci-docker-images.yml",
+          "line": 27,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "huggingface_transformers__build-nightly-ci-docker-images.yml",
+          "line": 33,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "huggingface_transformers__build-nightly-ci-docker-images.yml",
+          "line": 49,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "huggingface_transformers__build-nightly-ci-docker-images.yml",
+          "line": 55,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "huggingface_transformers__build-nightly-ci-docker-images.yml",
+          "line": 61,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "huggingface_transformers__build-nightly-ci-docker-images.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 6
+      },
+      "findings": [
+        {
+          "line": 21,
+          "column": 15,
+          "message": "the runner of \"docker/setup-buildx-action@v2\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]"
+        },
+        {
+          "line": 27,
+          "column": 15,
+          "message": "the runner of \"docker/login-action@v2\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]"
+        },
+        {
+          "line": 33,
+          "column": 15,
+          "message": "the runner of \"docker/build-push-action@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]"
+        },
+        {
+          "line": 49,
+          "column": 15,
+          "message": "the runner of \"docker/setup-buildx-action@v2\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]"
+        },
+        {
+          "line": 55,
+          "column": 15,
+          "message": "the runner of \"docker/login-action@v2\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]"
+        },
+        {
+          "line": 61,
+          "column": 15,
+          "message": "the runner of \"docker/build-push-action@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]"
+        }
+      ]
+    }
+  }
+}

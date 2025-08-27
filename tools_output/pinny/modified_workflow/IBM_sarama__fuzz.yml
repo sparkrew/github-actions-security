@@ -1,0 +1,37 @@
+name: Fuzzing
+on:
+merge_group:
+push:
+branches:
+- main
+paths-ignore:
+- '**/*.md'
+pull_request:
+branches:
+- "**"
+paths-ignore:
+- '**/*.md'
+concurrency:
+group: ${{ github.workflow }}-${{ github.ref }}
+cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
+permissions:
+contents: read  # for actions/checkout to fetch code
+env:
+# Use the Go toolchain installed by setup-go
+GOTOOLCHAIN: local
+jobs:
+test:
+name: Fuzz
+runs-on: ubuntu-latest
+env:
+GOFLAGS: -trimpath
+steps:
+- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+with:
+persist-credentials: false
+- name: Setup Go
+uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5 # v5.5.0
+with:
+go-version: stable
+- name: Run any fuzzing tests
+run: go test -list . | grep '^Fuzz' | parallel 'go test -v -run=^{}$ -fuzz=^{}$ -fuzztime=5m'

@@ -1,0 +1,61 @@
+{
+  "workflow": "electron_electron__non-maintainer-dependency-change.yml",
+  "tools": {
+    "scorecard": {
+      "workflow": "electron_electron__non-maintainer-dependency-change.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          }
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "electron_electron__non-maintainer-dependency-change.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "dangerous-triggers": 1,
+          "template-injection": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "dangerous-triggers",
+          "level": "error",
+          "message": "use of fundamentally insecure workflow trigger",
+          "workflow": "electron_electron__non-maintainer-dependency-change.yml",
+          "line": 3,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "electron_electron__non-maintainer-dependency-change.yml",
+          "line": 31,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        }
+      ]
+    }
+  }
+}

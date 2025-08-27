@@ -1,0 +1,28 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__test_examples.yml:30:9
+   [1m[94m|[0m
+[1m[94m30 |[0m         - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m31 |[0m [1m[33m|[0m         with:
+[1m[94m32 |[0m [1m[33m|[0m           fetch-depth: 25
+[1m[94m33 |[0m [1m[33m|[0m       # https://github.com/actions/virtual-environments/issues/1187
+   [1m[94m|[0m [1m[33m|___________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__test_examples.yml:17:3
+   [1m[94m|[0m
+[1m[94m17 |[0m [1m[33m/[0m   testExamples:
+[1m[94m18 |[0m [1m[33m|[0m     # Don't execute using cron on forks
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m50 |[0m [1m[33m|[0m       - run: docker run --rm -v $(pwd):/work mcr.microsoft.com/playwright:v1.35.1-focal /bin/bash -c "cd /work && curl -s https://in[1m[94m...[0m
+[1m[94m51 |[0m [1m[33m|[0m         name: Run test/examples
+   [1m[94m|[0m [1m[33m|[0m                                [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________________________|[0m
+   [1m[94m|[0m                                  [1m[33mthis job[0m
+   [1m[94m|[0m                                  [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m4[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m0[39m high

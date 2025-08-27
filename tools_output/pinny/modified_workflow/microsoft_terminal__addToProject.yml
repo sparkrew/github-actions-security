@@ -1,0 +1,19 @@
+name: Add triaged bugs & tasks to project board
+# https://github.com/actions/add-to-project
+on:
+issues:
+types:
+- labeled
+- unlabeled
+permissions: {}
+jobs:
+add-to-project:
+name: Add issue to project
+runs-on: ubuntu-latest
+steps:
+- uses: actions/add-to-project@244f685bbc3b7adfa8466e08b698b5577571133e # actions/add-to-project@v1.0.2 | 592
+with:
+project-url: https://github.com/orgs/microsoft/projects/159
+github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
+labeled: Issue-Feature, Needs-Triage, Needs-Author-Feedback, Issue-Scenario
+label-operator: NOT

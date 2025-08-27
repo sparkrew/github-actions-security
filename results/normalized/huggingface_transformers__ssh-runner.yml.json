@@ -1,0 +1,348 @@
+{
+  "workflow": "huggingface_transformers__ssh-runner.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "huggingface_transformers__ssh-runner.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: huggingface/tailscale-action@d99fa4a204b564e285a9baf73140f4168726b7d5 # huggingface/tailscale-action@main",
+          "line": 95,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "semgrep": {
+      "workflow": "huggingface_transformers__ssh-runner.yml",
+      "tool": "semgrep",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "run-shell-injection": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "run-shell-injection",
+          "line": 36,
+          "code": "requires login",
+          "note": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+          "documentation": null,
+          "capability": "injection-check"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "huggingface_transformers__ssh-runner.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            98,
+            107
+          ],
+          "raw_details": [
+            "Info: Possibly incomplete results: error parsing shell code: invalid parameter name: .github/workflows/huggingface_transformers__ssh-runner.yml:98",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__ssh-runner.yml:107",
+            "Info:   0 out of   1 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "automatic-hardening-check"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/huggingface_transformers__ssh-runner.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "permissions-check"
+        }
+      ]
+    },
+    "poutine": {
+      "workflow": "huggingface_transformers__ssh-runner.yml",
+      "tool": "poutine",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "injection": 1,
+          "job_all_secrets": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "injection",
+          "line": "36",
+          "column": "",
+          "job": "get_runner",
+          "step": "0",
+          "details": "Sources: github.event.inputs.num_gpus github.event.inputs.runner_type",
+          "event_triggers": [
+            "workflow_dispatch"
+          ],
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "job_all_secrets",
+          "line": "55",
+          "column": "",
+          "job": "ssh_runner",
+          "step": "",
+          "details": "",
+          "event_triggers": [
+            "workflow_dispatch"
+          ],
+          "capability": "secrets-check"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "huggingface_transformers__ssh-runner.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "line": 107,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `huggingface/tailscale-action@main`",
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "huggingface_transformers__ssh-runner.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 17,
+        "by_rule": {
+          "excessive-permissions": 3,
+          "template-injection": 10,
+          "unpinned-uses": 1,
+          "overprovisioned-secrets": 2,
+          "unpinned-images": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "huggingface_transformers__ssh-runner.yml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "huggingface_transformers__ssh-runner.yml",
+          "line": 28,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "huggingface_transformers__ssh-runner.yml",
+          "line": 55,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__ssh-runner.yml",
+          "line": 34,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__ssh-runner.yml",
+          "line": 34,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__ssh-runner.yml",
+          "line": 34,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__ssh-runner.yml",
+          "line": 34,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__ssh-runner.yml",
+          "line": 34,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__ssh-runner.yml",
+          "line": 34,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__ssh-runner.yml",
+          "line": 34,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__ssh-runner.yml",
+          "line": 34,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__ssh-runner.yml",
+          "line": 85,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "huggingface_transformers__ssh-runner.yml",
+          "line": 85,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "huggingface_transformers__ssh-runner.yml",
+          "line": 107,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "pinning-check"
+        },
+        {
+          "rule_id": "overprovisioned-secrets",
+          "level": "warning",
+          "message": "excessively provisioned secrets",
+          "workflow": "huggingface_transformers__ssh-runner.yml",
+          "line": 100,
+          "column": 17,
+          "note": "audit confidence \u2192 High",
+          "capability": "secrets-check"
+        },
+        {
+          "rule_id": "overprovisioned-secrets",
+          "level": "warning",
+          "message": "excessively provisioned secrets",
+          "workflow": "huggingface_transformers__ssh-runner.yml",
+          "line": 101,
+          "column": 32,
+          "note": "audit confidence \u2192 High",
+          "capability": "secrets-check"
+        },
+        {
+          "rule_id": "unpinned-images",
+          "level": "error",
+          "message": "unpinned image references",
+          "workflow": "huggingface_transformers__ssh-runner.yml",
+          "line": 61,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "pinning-check"
+        }
+      ]
+    }
+  }
+}

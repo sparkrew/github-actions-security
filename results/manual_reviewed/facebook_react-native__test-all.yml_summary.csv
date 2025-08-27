@@ -1,0 +1,140 @@
+tool,capability,line,column,message,verdict
+frizbee,pinning-check,50,N/A,actions/checkout@v4,TP
+frizbee,pinning-check,65,N/A,actions/checkout@v4,TP
+frizbee,pinning-check,89,N/A,actions/checkout@v4,TP
+frizbee,pinning-check,111,N/A,actions/checkout@v4,TP
+frizbee,pinning-check,137,N/A,actions/checkout@v4,TP
+frizbee,pinning-check,157,N/A,actions/checkout@v4,TP
+frizbee,pinning-check,179,N/A,actions/checkout@v4,TP
+frizbee,pinning-check,203,N/A,actions/checkout@v4,TP
+frizbee,pinning-check,207,N/A,actions/download-artifact@v4,TP
+frizbee,pinning-check,236,N/A,actions/checkout@v4,TP
+frizbee,pinning-check,244,N/A,ruby/setup-ruby@v1,TP
+frizbee,pinning-check,248,N/A,actions/download-artifact@v4,TP
+frizbee,pinning-check,253,N/A,actions/download-artifact@v4,TP
+frizbee,pinning-check,260,N/A,actions/download-artifact@v4,TP
+frizbee,pinning-check,317,N/A,actions/checkout@v4,TP
+frizbee,pinning-check,323,N/A,actions/setup-java@v2,TP
+frizbee,pinning-check,328,N/A,actions/download-artifact@v4,TP
+frizbee,pinning-check,333,N/A,actions/download-artifact@v4,TP
+frizbee,pinning-check,384,N/A,actions/checkout@v4,TP
+frizbee,pinning-check,403,N/A,actions/checkout@v4,TP
+frizbee,pinning-check,422,N/A,actions/checkout@v4,TP
+frizbee,pinning-check,440,N/A,actions/checkout@v4,TP
+frizbee,pinning-check,446,N/A,actions/download-artifact@v4,TP
+frizbee,pinning-check,483,N/A,actions/checkout@v4,TP
+frizbee,pinning-check,511,N/A,actions/checkout@v4,TP
+frizbee,pinning-check,515,N/A,actions/download-artifact@v4.1.3,TP
+frizbee,pinning-check,520,N/A,actions/download-artifact@v4.1.3,TP
+frizbee,pinning-check,543,N/A,actions/upload-artifact@v4.3.4,TP
+frizbee,pinning-check,558,N/A,actions/checkout@v4,TP
+frizbee,pinning-check,583,N/A,actions/checkout@v4,TP
+frizbee,pinning-check,599,N/A,actions/checkout@v4,TP
+frizbee,pinning-check,611,N/A,actions/checkout@v4,TP
+frizbee,pinning-check,632,N/A,actions/checkout@v4,TP
+pinny,pinning-check,244,N/A,ruby/setup-ruby@v1,TP 
+semgrep,injection-check,26,N/A,"Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: ""$ENVVAR"".",TP
+scorecard,pinning-check,N/A,N/A,dependency not pinned by hash detected -- score normalized to 0,TP
+scorecard,automatic-hardening-check,N/A,N/A,no SAST tool detected,TP
+scorecard,permissions-check,N/A,N/A,detected GitHub workflow tokens with excessive permissions,FP
+poutine,known_vulnerability-check,515,N/A,Package: actions/download-artifact,FP
+poutine,known_vulnerability-check,520,N/A,Package: actions/download-artifact,FP
+poutine,known_vulnerability-check,446,N/A,Package: actions/download-artifact,TP
+poutine,known_vulnerability-check,328,N/A,Package: actions/download-artifact,TP
+poutine,known_vulnerability-check,333,N/A,Package: actions/download-artifact,TP
+poutine,known_vulnerability-check,207,N/A,Package: actions/download-artifact,TP
+poutine,known_vulnerability-check,248,N/A,Package: actions/download-artifact,TP
+poutine,known_vulnerability-check,253,N/A,Package: actions/download-artifact,TP
+poutine,known_vulnerability-check,260,N/A,Package: actions/download-artifact,TP
+poutine,trigger-permissions-check,492,N/A,runs-on: 4-core-ubuntu,TP
+poutine,trigger-permissions-check,432,N/A,runs-on: 4-core-ubuntu,TP
+poutine,trigger-permissions-check,309,N/A,runs-on: 4-core-ubuntu,TP
+poutine,trigger-permissions-check,411,N/A,runs-on: 8-core-ubuntu,TP
+poutine,trigger-permissions-check,462,N/A,runs-on: 8-core-ubuntu,TP
+scharf,pinning-check,50,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+scharf,pinning-check,65,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+scharf,pinning-check,89,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+scharf,pinning-check,111,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+scharf,pinning-check,137,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+scharf,pinning-check,157,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+scharf,pinning-check,179,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+scharf,pinning-check,203,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+scharf,pinning-check,207,15,Unpinned GitHub Action: uses `actions/download-artifact@v4`,TP
+scharf,pinning-check,236,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+scharf,pinning-check,244,15,Unpinned GitHub Action: uses `ruby/setup-ruby@v1`,TP
+scharf,pinning-check,248,15,Unpinned GitHub Action: uses `actions/download-artifact@v4`,TP
+scharf,pinning-check,253,15,Unpinned GitHub Action: uses `actions/download-artifact@v4`,TP
+scharf,pinning-check,260,15,Unpinned GitHub Action: uses `actions/download-artifact@v4`,TP
+scharf,pinning-check,317,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+scharf,pinning-check,323,15,Unpinned GitHub Action: uses `actions/setup-java@v2`,TP
+scharf,pinning-check,328,15,Unpinned GitHub Action: uses `actions/download-artifact@v4`,TP
+scharf,pinning-check,333,15,Unpinned GitHub Action: uses `actions/download-artifact@v4`,TP
+scharf,pinning-check,384,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+scharf,pinning-check,403,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+scharf,pinning-check,422,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+scharf,pinning-check,440,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+scharf,pinning-check,446,15,Unpinned GitHub Action: uses `actions/download-artifact@v4`,TP
+scharf,pinning-check,483,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+scharf,pinning-check,511,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+scharf,pinning-check,515,15,Unpinned GitHub Action: uses `actions/download-artifact@v4.1.3`,TP
+scharf,pinning-check,520,15,Unpinned GitHub Action: uses `actions/download-artifact@v4.1.3`,TP
+scharf,pinning-check,543,15,Unpinned GitHub Action: uses `actions/upload-artifact@v4.3.4`,TP
+scharf,pinning-check,558,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+scharf,pinning-check,583,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+scharf,pinning-check,599,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+scharf,pinning-check,611,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+scharf,pinning-check,632,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+zizmor,artifact-Integrity-check,49,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,artifact-Integrity-check,64,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,artifact-Integrity-check,88,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,artifact-Integrity-check,110,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,artifact-Integrity-check,136,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,artifact-Integrity-check,156,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,artifact-Integrity-check,178,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,artifact-Integrity-check,202,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,artifact-Integrity-check,235,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,artifact-Integrity-check,316,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,artifact-Integrity-check,383,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,artifact-Integrity-check,402,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,artifact-Integrity-check,421,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,artifact-Integrity-check,439,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,artifact-Integrity-check,482,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,artifact-Integrity-check,510,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,artifact-Integrity-check,557,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,artifact-Integrity-check,582,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,artifact-Integrity-check,598,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,artifact-Integrity-check,610,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,artifact-Integrity-check,631,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,permissions-check,1,1,overly broad permissions,FP
+zizmor,permissions-check,17,3,overly broad permissions,FP
+zizmor,permissions-check,40,3,overly broad permissions,FP
+zizmor,permissions-check,58,3,overly broad permissions,FP
+zizmor,permissions-check,72,3,overly broad permissions,FP
+zizmor,permissions-check,98,3,overly broad permissions,FP
+zizmor,permissions-check,119,3,overly broad permissions,FP
+zizmor,permissions-check,123,3,overly broad permissions,FP
+zizmor,permissions-check,128,3,overly broad permissions,FP
+zizmor,permissions-check,145,3,overly broad permissions,FP
+zizmor,permissions-check,165,3,overly broad permissions,FP
+zizmor,permissions-check,189,3,overly broad permissions,FP
+zizmor,permissions-check,223,3,overly broad permissions,FP
+zizmor,permissions-check,307,3,overly broad permissions,FP
+zizmor,permissions-check,376,3,overly broad permissions,FP
+zizmor,permissions-check,391,3,overly broad permissions,FP
+zizmor,permissions-check,410,3,overly broad permissions,FP
+zizmor,permissions-check,430,3,overly broad permissions,FP
+zizmor,permissions-check,461,3,overly broad permissions,FP
+zizmor,permissions-check,491,3,overly broad permissions,FP
+zizmor,permissions-check,549,3,overly broad permissions,FP
+zizmor,permissions-check,566,3,overly broad permissions,FP
+zizmor,permissions-check,591,3,overly broad permissions,FP
+zizmor,permissions-check,605,3,overly broad permissions,FP
+zizmor,permissions-check,244,9,overly broad permissions,FP
+zizmor,secrets-check,120,5,secrets unconditionally inherited by called workflow,TP
+zizmor,secrets-check,495,7,secrets unconditionally inherited by called workflow,FP
+actionlint,workflow_structural_check,309,14,"label ""4-core-ubuntu"" is unknown. available labels are ""windows-latest"", ""windows-latest-8-cores"", ""windows-2025"", ""windows-2022"", ""windows-2019"", ""ubuntu-latest"", ""ubuntu-latest-4-cores"", ""ubuntu-latest-8-cores"", ""ubuntu-latest-16-cores"", ""ubuntu-24.04"", ""ubuntu-24.04-arm"", ""ubuntu-22.04"", ""ubuntu-22.04-arm"", ""ubuntu-20.04"", ""macos-latest"", ""macos-latest-xl"", ""macos-latest-xlarge"", ""macos-latest-large"", ""macos-15-xlarge"", ""macos-15-large"", ""macos-15"", ""macos-14-xl"", ""macos-14-xlarge"", ""macos-14-large"", ""macos-14"", ""macos-13-xl"", ""macos-13-xlarge"", ""macos-13-large"", ""macos-13"", ""self-hosted"", ""x64"", ""arm"", ""arm64"", ""linux"", ""macos"", ""windows"". if it is a custom label for self-hosted runner, set list of labels in actionlint.yaml config file [runner-label]",TP
+actionlint,pinning-check,323,15,"the runner of ""actions/setup-java@v2"" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",TP
+actionlint,workflow_structural_check,411,14,"label ""8-core-ubuntu"" is unknown. available labels are ""windows-latest"", ""windows-latest-8-cores"", ""windows-2025"", ""windows-2022"", ""windows-2019"", ""ubuntu-latest"", ""ubuntu-latest-4-cores"", ""ubuntu-latest-8-cores"", ""ubuntu-latest-16-cores"", ""ubuntu-24.04"", ""ubuntu-24.04-arm"", ""ubuntu-22.04"", ""ubuntu-22.04-arm"", ""ubuntu-20.04"", ""macos-latest"", ""macos-latest-xl"", ""macos-latest-xlarge"", ""macos-latest-large"", ""macos-15-xlarge"", ""macos-15-large"", ""macos-15"", ""macos-14-xl"", ""macos-14-xlarge"", ""macos-14-large"", ""macos-14"", ""macos-13-xl"", ""macos-13-xlarge"", ""macos-13-large"", ""macos-13"", ""self-hosted"", ""x64"", ""arm"", ""arm64"", ""linux"", ""macos"", ""windows"". if it is a custom label for self-hosted runner, set list of labels in actionlint.yaml config file [runner-label]",TP
+actionlint,workflow_structural_check,432,14,"label ""4-core-ubuntu"" is unknown. available labels are ""windows-latest"", ""windows-latest-8-cores"", ""windows-2025"", ""windows-2022"", ""windows-2019"", ""ubuntu-latest"", ""ubuntu-latest-4-cores"", ""ubuntu-latest-8-cores"", ""ubuntu-latest-16-cores"", ""ubuntu-24.04"", ""ubuntu-24.04-arm"", ""ubuntu-22.04"", ""ubuntu-22.04-arm"", ""ubuntu-20.04"", ""macos-latest"", ""macos-latest-xl"", ""macos-latest-xlarge"", ""macos-latest-large"", ""macos-15-xlarge"", ""macos-15-large"", ""macos-15"", ""macos-14-xl"", ""macos-14-xlarge"", ""macos-14-large"", ""macos-14"", ""macos-13-xl"", ""macos-13-xlarge"", ""macos-13-large"", ""macos-13"", ""self-hosted"", ""x64"", ""arm"", ""arm64"", ""linux"", ""macos"", ""windows"". if it is a custom label for self-hosted runner, set list of labels in actionlint.yaml config file [runner-label]",TP
+actionlint,workflow_structural_check,462,14,"label ""8-core-ubuntu"" is unknown. available labels are ""windows-latest"", ""windows-latest-8-cores"", ""windows-2025"", ""windows-2022"", ""windows-2019"", ""ubuntu-latest"", ""ubuntu-latest-4-cores"", ""ubuntu-latest-8-cores"", ""ubuntu-latest-16-cores"", ""ubuntu-24.04"", ""ubuntu-24.04-arm"", ""ubuntu-22.04"", ""ubuntu-22.04-arm"", ""ubuntu-20.04"", ""macos-latest"", ""macos-latest-xl"", ""macos-latest-xlarge"", ""macos-latest-large"", ""macos-15-xlarge"", ""macos-15-large"", ""macos-15"", ""macos-14-xl"", ""macos-14-xlarge"", ""macos-14-large"", ""macos-14"", ""macos-13-xl"", ""macos-13-xlarge"", ""macos-13-large"", ""macos-13"", ""self-hosted"", ""x64"", ""arm"", ""arm64"", ""linux"", ""macos"", ""windows"". if it is a custom label for self-hosted runner, set list of labels in actionlint.yaml config file [runner-label]",TP
+actionlint,workflow_structural_check,492,14,"label ""4-core-ubuntu"" is unknown. available labels are ""windows-latest"", ""windows-latest-8-cores"", ""windows-2025"", ""windows-2022"", ""windows-2019"", ""ubuntu-latest"", ""ubuntu-latest-4-cores"", ""ubuntu-latest-8-cores"", ""ubuntu-latest-16-cores"", ""ubuntu-24.04"", ""ubuntu-24.04-arm"", ""ubuntu-22.04"", ""ubuntu-22.04-arm"", ""ubuntu-20.04"", ""macos-latest"", ""macos-latest-xl"", ""macos-latest-xlarge"", ""macos-latest-large"", ""macos-15-xlarge"", ""macos-15-large"", ""macos-15"", ""macos-14-xl"", ""macos-14-xlarge"", ""macos-14-large"", ""macos-14"", ""macos-13-xl"", ""macos-13-xlarge"", ""macos-13-large"", ""macos-13"", ""self-hosted"", ""x64"", ""arm"", ""arm64"", ""linux"", ""macos"", ""windows"". if it is a custom label for self-hosted runner, set list of labels in actionlint.yaml config file [runner-label]",TP

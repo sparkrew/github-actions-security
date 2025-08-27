@@ -1,0 +1,67 @@
+{
+  "workflow": "electron_electron__pipeline-electron-build-and-test-and-nan.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 6,
+    "by_rule": {
+      "excessive-permissions": 3,
+      "secrets-inherit": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "electron_electron__pipeline-electron-build-and-test-and-nan.yml",
+      "line": 63,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "electron_electron__pipeline-electron-build-and-test-and-nan.yml",
+      "line": 75,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "electron_electron__pipeline-electron-build-and-test-and-nan.yml",
+      "line": 84,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "secrets-inherit",
+      "level": "warning",
+      "message": "secrets unconditionally inherited by called workflow",
+      "workflow": "electron_electron__pipeline-electron-build-and-test-and-nan.yml",
+      "line": 64,
+      "column": 5,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "secrets-inherit",
+      "level": "warning",
+      "message": "secrets unconditionally inherited by called workflow",
+      "workflow": "electron_electron__pipeline-electron-build-and-test-and-nan.yml",
+      "line": 76,
+      "column": 5,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "secrets-inherit",
+      "level": "warning",
+      "message": "secrets unconditionally inherited by called workflow",
+      "workflow": "electron_electron__pipeline-electron-build-and-test-and-nan.yml",
+      "line": 85,
+      "column": 5,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

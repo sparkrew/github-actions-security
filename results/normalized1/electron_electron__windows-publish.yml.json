@@ -1,0 +1,192 @@
+{
+  "workflow": "electron_electron__windows-publish.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "electron_electron__windows-publish.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 37,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "electron_electron__windows-publish.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "automatic-hardening-check"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/electron_electron__windows-publish.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "permissions-check"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "electron_electron__windows-publish.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 9,
+        "by_rule": {
+          "artipacked": 1,
+          "excessive-permissions": 5,
+          "secrets-inherit": 3
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "electron_electron__windows-publish.yml",
+          "line": 38,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "electron_electron__windows-publish.yml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "electron_electron__windows-publish.yml",
+          "line": 22,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "electron_electron__windows-publish.yml",
+          "line": 49,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "electron_electron__windows-publish.yml",
+          "line": 63,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "electron_electron__windows-publish.yml",
+          "line": 77,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "secrets-inherit",
+          "level": "warning",
+          "message": "secrets unconditionally inherited by called workflow",
+          "workflow": "electron_electron__windows-publish.yml",
+          "line": 50,
+          "column": 5,
+          "note": "audit confidence \u2192 High",
+          "capability": "secrets-check"
+        },
+        {
+          "rule_id": "secrets-inherit",
+          "level": "warning",
+          "message": "secrets unconditionally inherited by called workflow",
+          "workflow": "electron_electron__windows-publish.yml",
+          "line": 64,
+          "column": 5,
+          "note": "audit confidence \u2192 High",
+          "capability": "secrets-check"
+        },
+        {
+          "rule_id": "secrets-inherit",
+          "level": "warning",
+          "message": "secrets unconditionally inherited by called workflow",
+          "workflow": "electron_electron__windows-publish.yml",
+          "line": 78,
+          "column": 5,
+          "note": "audit confidence \u2192 High",
+          "capability": "secrets-check"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "electron_electron__windows-publish.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 2
+      },
+      "findings": [
+        {
+          "line": 23,
+          "column": 14,
+          "message": "label \"electron-arc-linux-amd64-32core\" is unknown. available labels are \"windows-latest\", \"windows-latest-8-cores\", \"windows-2025\", \"windows-2022\", \"windows-2019\", \"ubuntu-latest\", \"ubuntu-latest-4-cores\", \"ubuntu-latest-8-cores\", \"ubuntu-latest-16-cores\", \"ubuntu-24.04\", \"ubuntu-24.04-arm\", \"ubuntu-22.04\", \"ubuntu-22.04-arm\", \"ubuntu-20.04\", \"macos-latest\", \"macos-latest-xl\", \"macos-latest-xlarge\", \"macos-latest-large\", \"macos-15-xlarge\", \"macos-15-large\", \"macos-15\", \"macos-14-xl\", \"macos-14-xlarge\", \"macos-14-large\", \"macos-14\", \"macos-13-xl\", \"macos-13-xlarge\", \"macos-13-large\", \"macos-13\", \"self-hosted\", \"x64\", \"arm\", \"arm64\", \"linux\", \"macos\", \"windows\". if it is a custom label for self-hosted runner, set list of labels in actionlint.yaml config file [runner-label]",
+          "capability": "workflow_structural_check"
+        },
+        {
+          "line": 78,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/pipeline-segment-electron-build.yml\": open /home/huawei/github-actions-security/.github/workflows/pipeline-segment-electron-build.yml: no such file or directory [workflow-call]",
+          "capability": "workflow_structural_check"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,29 @@
+name: Lint
+on:
+push:
+branches:
+- main
+pull_request:
+workflow_dispatch:
+env:
+FORCE_COLOR: 2
+NODE: 22
+permissions:
+contents: read
+jobs:
+lint:
+runs-on: ubuntu-latest
+steps:
+- name: Clone repository
+uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2
+with:
+persist-credentials: false
+- name: Set up Node.js
+uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | v4.4.0
+with:
+node-version: "${{ env.NODE }}"
+cache: npm
+- name: Install npm dependencies
+run: npm ci
+- name: Lint
+run: npm run lint

@@ -1,0 +1,214 @@
+{
+  "workflow": "huggingface_transformers__self-scheduled.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 22,
+    "by_rule": {
+      "artipacked": 1,
+      "excessive-permissions": 4,
+      "template-injection": 8,
+      "secrets-inherit": 4,
+      "unpinned-images": 5
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "huggingface_transformers__self-scheduled.yml",
+      "line": 462,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "huggingface_transformers__self-scheduled.yml",
+      "line": 106,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "huggingface_transformers__self-scheduled.yml",
+      "line": 124,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "huggingface_transformers__self-scheduled.yml",
+      "line": 496,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "huggingface_transformers__self-scheduled.yml",
+      "line": 523,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-scheduled.yml",
+      "line": 83,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-scheduled.yml",
+      "line": 83,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-scheduled.yml",
+      "line": 363,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "warning",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-scheduled.yml",
+      "line": 391,
+      "column": 9,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "warning",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-scheduled.yml",
+      "line": 391,
+      "column": 9,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "warning",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-scheduled.yml",
+      "line": 438,
+      "column": 9,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "warning",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-scheduled.yml",
+      "line": 438,
+      "column": 9,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "warning",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-scheduled.yml",
+      "line": 443,
+      "column": 9,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "secrets-inherit",
+      "level": "warning",
+      "message": "secrets unconditionally inherited by called workflow",
+      "workflow": "huggingface_transformers__self-scheduled.yml",
+      "line": 115,
+      "column": 5,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "secrets-inherit",
+      "level": "warning",
+      "message": "secrets unconditionally inherited by called workflow",
+      "workflow": "huggingface_transformers__self-scheduled.yml",
+      "line": 133,
+      "column": 5,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "secrets-inherit",
+      "level": "warning",
+      "message": "secrets unconditionally inherited by called workflow",
+      "workflow": "huggingface_transformers__self-scheduled.yml",
+      "line": 509,
+      "column": 5,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "secrets-inherit",
+      "level": "warning",
+      "message": "secrets unconditionally inherited by called workflow",
+      "workflow": "huggingface_transformers__self-scheduled.yml",
+      "line": 527,
+      "column": 5,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-images",
+      "level": "error",
+      "message": "unpinned image references",
+      "workflow": "huggingface_transformers__self-scheduled.yml",
+      "line": 57,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-images",
+      "level": "error",
+      "message": "unpinned image references",
+      "workflow": "huggingface_transformers__self-scheduled.yml",
+      "line": 152,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-images",
+      "level": "error",
+      "message": "unpinned image references",
+      "workflow": "huggingface_transformers__self-scheduled.yml",
+      "line": 220,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-images",
+      "level": "error",
+      "message": "unpinned image references",
+      "workflow": "huggingface_transformers__self-scheduled.yml",
+      "line": 289,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-images",
+      "level": "error",
+      "message": "unpinned image references",
+      "workflow": "huggingface_transformers__self-scheduled.yml",
+      "line": 388,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

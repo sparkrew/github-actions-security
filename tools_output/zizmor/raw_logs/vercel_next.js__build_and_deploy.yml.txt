@@ -1,0 +1,275 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_and_deploy.yml:37:9
+   [1m[94m|[0m
+[1m[94m37 |[0m         - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m38 |[0m [1m[33m|[0m         with:
+[1m[94m39 |[0m [1m[33m|[0m           fetch-depth: 1
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_and_deploy.yml:101:9
+    [1m[94m|[0m
+[1m[94m101 |[0m         - uses: actions/checkout@v4
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m102 |[0m [1m[33m|[0m         with:
+[1m[94m103 |[0m [1m[33m|[0m           fetch-depth: 25
+    [1m[94m|[0m [1m[33m|_________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_and_deploy.yml:319:9
+    [1m[94m|[0m
+[1m[94m319 |[0m         - uses: actions/checkout@v4
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m320 |[0m [1m[33m|[0m         with:
+[1m[94m321 |[0m [1m[33m|[0m           # crates/napi/build.rs uses git-describe to find the most recent git tag. It's okay if
+[1m[94m322 |[0m [1m[33m|[0m           # this fails, but fetch with enough depth that we're likely to find a recent tag.
+[1m[94m323 |[0m [1m[33m|[0m           fetch-depth: 100
+    [1m[94m|[0m [1m[33m|__________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_and_deploy.yml:450:9
+    [1m[94m|[0m
+[1m[94m450 |[0m       - uses: actions/checkout@v4
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_and_deploy.yml:649:9
+    [1m[94m|[0m
+[1m[94m649 |[0m       - uses: actions/checkout@v3
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_and_deploy.yml:682:9
+    [1m[94m|[0m
+[1m[94m682 |[0m         - uses: actions/checkout@v4
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m683 |[0m [1m[33m|[0m         with:
+[1m[94m684 |[0m [1m[33m|[0m           fetch-depth: 25
+    [1m[94m|[0m [1m[33m|_________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_and_deploy.yml:719:9
+    [1m[94m|[0m
+[1m[94m719 |[0m         - uses: actions/checkout@v4
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m720 |[0m [1m[33m|[0m         with:
+[1m[94m721 |[0m [1m[33m|[0m           fetch-depth: 25
+    [1m[94m|[0m [1m[33m|_________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_and_deploy.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m # Update all mentions of this name in vercel-packages when changing.
+[1m[94m  2 |[0m [1m[33m|[0m name: build-and-deploy
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m761 |[0m [1m[33m|[0m
+[1m[94m762 |[0m [1m[33m|[0m           npx @datadog/datadog-ci@2.23.1 metric --no-fail --level pipeline $BYTESIZE
+    [1m[94m|[0m [1m[33m|_____________________________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_and_deploy.yml:29:3
+   [1m[94m|[0m
+[1m[94m29 |[0m [1m[33m/[0m   deploy-target:
+[1m[94m30 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m77 |[0m [1m[33m|[0m       - name: Print deploy target
+[1m[94m78 |[0m [1m[33m|[0m         run: echo "Deploy target is '${{ steps.deploy-target.outputs.value }}'"
+   [1m[94m|[0m [1m[33m|[0m                                                                               [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                 [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                 [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_and_deploy.yml:80:3
+    [1m[94m|[0m
+[1m[94m 80 |[0m [1m[33m/[0m   build:
+[1m[94m 81 |[0m [1m[33m|[0m     if: ${{ needs.deploy-target.outputs.value != 'skipped' }}
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m128 |[0m [1m[33m|[0m
+[1m[94m129 |[0m [1m[33m|[0m   # Build binaries for publishing
+    [1m[94m|[0m [1m[33m|[0m                                 [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_________________________________|[0m
+    [1m[94m|[0m                                   [1m[33mthis job[0m
+    [1m[94m|[0m                                   [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_and_deploy.yml:130:3
+    [1m[94m|[0m
+[1m[94m130 |[0m [1m[33m/[0m   build-native:
+[1m[94m131 |[0m [1m[33m|[0m     if: ${{ needs.deploy-target.outputs.value != 'skipped' }}
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m432 |[0m [1m[33m|[0m           name: turbo-run-summary-${{ matrix.settings.target }}
+[1m[94m433 |[0m [1m[33m|[0m           path: .turbo/runs
+    [1m[94m|[0m [1m[33m|[0m                           [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|___________________________|[0m
+    [1m[94m|[0m                             [1m[33mthis job[0m
+    [1m[94m|[0m                             [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_and_deploy.yml:435:3
+    [1m[94m|[0m
+[1m[94m435 |[0m [1m[33m/[0m   build-wasm:
+[1m[94m436 |[0m [1m[33m|[0m     if: ${{ needs.deploy-target.outputs.value != 'skipped' }}
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m487 |[0m [1m[33m|[0m           name: wasm-binaries-${{matrix.target}}
+[1m[94m488 |[0m [1m[33m|[0m           path: crates/wasm/pkg-*
+    [1m[94m|[0m [1m[33m|[0m                                 [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_________________________________|[0m
+    [1m[94m|[0m                                   [1m[33mthis job[0m
+    [1m[94m|[0m                                   [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_and_deploy.yml:490:3
+    [1m[94m|[0m
+[1m[94m490 |[0m [1m[33m/[0m   deploy-tarball:
+[1m[94m491 |[0m [1m[33m|[0m     if: ${{ needs.deploy-target.outputs.value != 'production' }}
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m547 |[0m [1m[33m|[0m           name: preview-tarballs
+[1m[94m548 |[0m [1m[33m|[0m           path: ${{ runner.temp }}/preview-tarballs/*
+    [1m[94m|[0m [1m[33m|[0m                                                     [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_____________________________________________________|[0m
+    [1m[94m|[0m                                                       [1m[33mthis job[0m
+    [1m[94m|[0m                                                       [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_and_deploy.yml:675:3
+    [1m[94m|[0m
+[1m[94m675 |[0m [1m[33m/[0m   deployExamples:
+[1m[94m676 |[0m [1m[33m|[0m     if: ${{ needs.deploy-target.outputs.value != 'automated-preview' }}
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m697 |[0m [1m[33m|[0m           VERCEL_API_TOKEN: ${{ secrets.VERCEL_API_TOKEN }}
+[1m[94m698 |[0m [1m[33m|[0m           DEPLOY_ENVIRONMENT: production
+    [1m[94m|[0m [1m[33m|[0m                                        [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|________________________________________|[0m
+    [1m[94m|[0m                                          [1m[33mthis job[0m
+    [1m[94m|[0m                                          [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_and_deploy.yml:700:3
+    [1m[94m|[0m
+[1m[94m700 |[0m [1m[33m/[0m   buildPassed:
+[1m[94m701 |[0m [1m[33m|[0m     needs: ['deploy-target', 'build', 'build-wasm', 'build-native']
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m706 |[0m [1m[33m|[0m       - run: exit 1
+[1m[94m707 |[0m [1m[33m|[0m         if: ${{ always() && (contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')) }}
+    [1m[94m|[0m [1m[33m|[0m                                                                                                             [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_____________________________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                               [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                               [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_and_deploy.yml:709:3
+    [1m[94m|[0m
+[1m[94m709 |[0m [1m[33m/[0m   releaseStats:
+[1m[94m710 |[0m [1m[33m|[0m     name: Release Stats
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m734 |[0m [1m[33m|[0m           PR_STATS_COMMENT_TOKEN: ${{ secrets.PR_STATS_COMMENT_TOKEN }}
+[1m[94m735 |[0m [1m[33m|[0m           NEXT_SKIP_NATIVE_POSTINSTALL: 1
+    [1m[94m|[0m [1m[33m|[0m                                         [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_________________________________________|[0m
+    [1m[94m|[0m                                           [1m[33mthis job[0m
+    [1m[94m|[0m                                           [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_and_deploy.yml:737:3
+    [1m[94m|[0m
+[1m[94m737 |[0m [1m[33m/[0m   upload_turbopack_bytesize:
+[1m[94m738 |[0m [1m[33m|[0m     if: ${{ needs.deploy-target.outputs.value != 'automated-preview'}}
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m761 |[0m [1m[33m|[0m
+[1m[94m762 |[0m [1m[33m|[0m           npx @datadog/datadog-ci@2.23.1 metric --no-fail --level pipeline $BYTESIZE
+    [1m[94m|[0m [1m[33m|[0m                                                                                     [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_____________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                       [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                       [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_and_deploy.yml:50:9
+   [1m[94m|[0m
+[1m[94m50 |[0m         - name: Determine deploy target
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m51 |[0m           # 'force-preview' performs a full preview build but only if acknowledged i.e. workflow_dispatch
+[1m[94m...[0m
+[1m[94m54 |[0m           id: deploy-target
+[1m[94m55 |[0m [1m[91m/[0m         run: |
+[1m[94m56 |[0m [1m[91m|[0m           # TODO: Remove the new release check once the new release workflow is fully replaced.
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m75 |[0m [1m[91m|[0m             echo "value=automated-preview" >> $GITHUB_OUTPUT
+[1m[94m76 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|____________^[0m [1m[91mgithub.ref may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_and_deploy.yml:77:9
+   [1m[94m|[0m
+[1m[94m77 |[0m       - name: Print deploy target
+   [1m[94m|[0m         [1m[94m-------------------------[0m [1m[94minfo: this step[0m
+[1m[94m78 |[0m         run: echo "Deploy target is '${{ steps.deploy-target.outputs.value }}'"
+   [1m[94m|[0m         [1m[94m-----------------------------------------------------------------------[0m [1m[94minfo: steps.deploy-target.outputs.value may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_and_deploy.yml:681:9
+    [1m[94m|[0m
+[1m[94m681 |[0m       - run: echo '${{ needs.deploy-target.outputs.value }}'
+    [1m[94m|[0m         [1m[94m----------------------------------------------------[0m
+    [1m[94m|[0m         [1m[94m|[0m
+    [1m[94m|[0m         [1m[94minfo: this step[0m
+    [1m[94m|[0m         [1m[94minfo: needs.deploy-target.outputs.value may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_and_deploy.yml:351:9
+    [1m[94m|[0m
+[1m[94m351 |[0m         uses: ijjk/rust-cache@turbo-cache-v1.0.8
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__build_and_deploy.yml:617:9
+    [1m[94m|[0m
+[1m[94m617 |[0m         uses: changesets/action@v1
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m46[39m findings ([1m[93m24[39m suppressed[0m): 0 unknown, [35m2[39m informational, [36m0[39m low, [33m17[39m medium, [31m3[39m high

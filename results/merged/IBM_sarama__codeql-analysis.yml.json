@@ -1,0 +1,42 @@
+{
+  "workflow": "IBM_sarama__codeql-analysis.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "IBM_sarama__codeql-analysis.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2",
+          "line": 34
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@ff0a06e83cb2de871e5a09832bc6a81e7276941f # v3.28.18",
+          "line": 38
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5 # v5.5.0",
+          "line": 42
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@ff0a06e83cb2de871e5a09832bc6a81e7276941f # github/codeql-action/init@ff0a06e83cb2de871e5a09832bc6a81e7276941f",
+          "line": 46
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@ff0a06e83cb2de871e5a09832bc6a81e7276941f # github/codeql-action/init@ff0a06e83cb2de871e5a09832bc6a81e7276941f",
+          "line": 48
+        }
+      ]
+    }
+  }
+}

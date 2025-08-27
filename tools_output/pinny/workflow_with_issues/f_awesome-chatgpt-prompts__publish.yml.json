@@ -1,0 +1,27 @@
+{
+  "workflow": "f_awesome-chatgpt-prompts__publish.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0",
+      "line": 11
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: ruby/setup-ruby@a9bfc2ecf3dd40734a9418f89a7e9d484c32b990 # ruby/setup-ruby@v1 | master,v1.248.0",
+      "line": 13
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: peaceiris/actions-gh-pages@373f7f263a76c20808c831209c920827a82a2847 # peaceiris/actions-gh-pages@v3",
+      "line": 28
+    }
+  ]
+}

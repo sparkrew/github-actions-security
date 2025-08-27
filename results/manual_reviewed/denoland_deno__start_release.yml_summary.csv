@@ -1,0 +1,13 @@
+tool,capability,line,column,message,verdict
+frizbee,pinning-check,34,N/A,actions/checkout@v4,TP
+frizbee,pinning-check,37,N/A,denoland/setup-deno@v2,TP
+pinny,pinning-check,37,N/A,denoland/setup-deno@v2,TP
+semgrep,injection-check,45,N/A,"Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: ""$ENVVAR"".",TP
+scorecard,pinning-check,N/A,N/A,dependency not pinned by hash detected -- score normalized to 0,TP
+scorecard,automatic-hardening-check,N/A,N/A,no SAST tool detected,TP
+scorecard,permissions-check,N/A,N/A,detected GitHub workflow tokens with excessive permissions,FP
+poutine,injection-check,45,N/A,Sources: github.event.inputs.releaseKind,TP
+scharf,pinning-check,34,15,Unpinned GitHub Action: uses `actions/checkout@v4`,TP
+scharf,pinning-check,37,15,Unpinned GitHub Action: uses `denoland/setup-deno@v2`,TP
+zizmor,artifact-Integrity-check,33,9,credential persistence through GitHub Actions artifacts,FP
+zizmor,permissions-check,37,9,overly broad permissions,FP

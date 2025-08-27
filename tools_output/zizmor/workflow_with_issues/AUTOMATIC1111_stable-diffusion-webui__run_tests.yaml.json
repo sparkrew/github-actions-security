@@ -1,0 +1,31 @@
+{
+  "workflow": "AUTOMATIC1111_stable-diffusion-webui__run_tests.yaml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "artipacked": 1,
+      "excessive-permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "AUTOMATIC1111_stable-diffusion-webui__run_tests.yaml",
+      "line": 13,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "AUTOMATIC1111_stable-diffusion-webui__run_tests.yaml",
+      "line": 8,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    }
+  ]
+}

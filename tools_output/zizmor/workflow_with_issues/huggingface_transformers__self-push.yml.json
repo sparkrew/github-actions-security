@@ -1,0 +1,305 @@
+{
+  "workflow": "huggingface_transformers__self-push.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 32,
+    "by_rule": {
+      "artipacked": 1,
+      "excessive-permissions": 7,
+      "dangerous-triggers": 1,
+      "template-injection": 14,
+      "github-env": 4,
+      "unpinned-images": 5
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 616,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 1,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 30,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 125,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 238,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 353,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 463,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 573,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "dangerous-triggers",
+      "level": "error",
+      "message": "use of fundamentally insecure workflow trigger",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 3,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "warning",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 196,
+      "column": 9,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "info",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 196,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "warning",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 196,
+      "column": 9,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "warning",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 221,
+      "column": 9,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "info",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 221,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "warning",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 226,
+      "column": 9,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "warning",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 309,
+      "column": 9,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "info",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 309,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "warning",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 309,
+      "column": 9,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "warning",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 334,
+      "column": 9,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "info",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 334,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "warning",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 341,
+      "column": 9,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "info",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 591,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "info",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 632,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "github-env",
+      "level": "error",
+      "message": "dangerous use of environment file",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 169,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "github-env",
+      "level": "error",
+      "message": "dangerous use of environment file",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 282,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "github-env",
+      "level": "error",
+      "message": "dangerous use of environment file",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 395,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "github-env",
+      "level": "error",
+      "message": "dangerous use of environment file",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 505,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-images",
+      "level": "error",
+      "message": "unpinned image references",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 38,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-images",
+      "level": "error",
+      "message": "unpinned image references",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 138,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-images",
+      "level": "error",
+      "message": "unpinned image references",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 251,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-images",
+      "level": "error",
+      "message": "unpinned image references",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 364,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-images",
+      "level": "error",
+      "message": "unpinned image references",
+      "workflow": "huggingface_transformers__self-push.yml",
+      "line": 474,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

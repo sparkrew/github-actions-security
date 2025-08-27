@@ -1,0 +1,130 @@
+{
+  "workflow": "rust-lang_rust__ci.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 5,
+      "reason": "dependency not pinned by hash detected -- score normalized to 5",
+      "lines": [
+        59,
+        112,
+        123,
+        127,
+        135,
+        142,
+        148,
+        157,
+        160,
+        163,
+        166,
+        169,
+        172,
+        175,
+        178,
+        181,
+        184,
+        187,
+        190,
+        193,
+        196,
+        206,
+        209,
+        212,
+        215,
+        220,
+        225,
+        230,
+        249,
+        252,
+        258,
+        266,
+        278,
+        300,
+        320
+      ],
+      "raw_details": [
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:112",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:123",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:135",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:142",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:148",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:157",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:160",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:163",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:166",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:169",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:172",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:175",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:178",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:181",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:184",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:187",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:190",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:193",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:196",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:206",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:209",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:212",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:215",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:220",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:225",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:230",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:249",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:252",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:266",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:278",
+        "Info: Possibly incomplete results: error parsing job operating system: .github/workflows/rust-lang_rust__ci.yml:300",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/rust-lang_rust__ci.yml:320",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/rust-lang_rust__ci.yml:59",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/rust-lang_rust__ci.yml:127",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/rust-lang_rust__ci.yml:258",
+        "Info:   0 out of   4 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   1 out of   1 third-party GitHubAction dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 0,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        27,
+        28
+      ],
+      "raw_details": [
+        "Info: topLevel 'contents' permission set to 'read': .github/workflows/rust-lang_rust__ci.yml:27",
+        "Warn: topLevel 'packages' permission set to 'write': .github/workflows/rust-lang_rust__ci.yml:28",
+        "Info: no jobLevel write permissions found"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

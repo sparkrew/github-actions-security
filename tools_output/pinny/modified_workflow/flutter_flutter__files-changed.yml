@@ -1,0 +1,31 @@
+name: Generate Changed Files JSON
+on:
+pull_request:
+types:
+- opened
+- synchronize
+jobs:
+generate-json:
+runs-on: ubuntu-latest
+steps:
+- name: Checkout code
+uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2
+- name: Fetch base commit and origin/master
+# Fetch what to compare the commit against
+run: |
+git fetch --no-tags --prune --depth=1 origin ${{ github.event.pull_request.base.sha }}
+git fetch --no-tags --prune --depth=1 origin master
+echo "FLUTTER_PREBUILT_ENGINE_VERSION=${{ github.event.pull_request.base.sha }}" >> "$GITHUB_ENV"
+- name: Initialize Dart SDK
+# This downloads the version of the Dart SDK for the current platform.
+run: |
+./bin/dart --version
+cd dev/tools && ../../bin/dart pub get
+- name: Write changed files to a JSON file
+run: |
+./bin/dart run dev/tools/bin/get_files_changed.dart --since="${{ github.event.pull_request.base.sha }}" > changed_files.json
+- name: Upload artifact
+uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2
+with:
+name: changed-files
+path: changed_files.json

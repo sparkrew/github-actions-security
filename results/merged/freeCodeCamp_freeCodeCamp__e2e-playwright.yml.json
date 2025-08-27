@@ -1,0 +1,282 @@
+{
+  "workflow": "freeCodeCamp_freeCodeCamp__e2e-playwright.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "freeCodeCamp_freeCodeCamp__e2e-playwright.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4",
+          "pinned": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "line": 173
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "freeCodeCamp_freeCodeCamp__e2e-playwright.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 13,
+        "by_rule": {
+          "unpinned-github-actions": 13
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4",
+          "line": 25
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4",
+          "line": 29
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4",
+          "line": 33
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4",
+          "line": 38
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.1",
+          "line": 55
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.1",
+          "line": 60
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4",
+          "line": 69
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.1",
+          "line": 80
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4",
+          "line": 99
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/download-artifact@c850b930e6ba138125429b7e5c93fc707a7f8427 # v4.1.4",
+          "line": 101
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4",
+          "line": 111
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4",
+          "line": 115
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+          "line": 140
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "freeCodeCamp_freeCodeCamp__e2e-playwright.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 9,
+          "reason": "dependency not pinned by hash detected -- score normalized to 9",
+          "lines": [
+            173
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/freeCodeCamp_freeCodeCamp__e2e-playwright.yml:173",
+            "Info:  10 out of  11 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   2 out of   2 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          }
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          }
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/freeCodeCamp_freeCodeCamp__e2e-playwright.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          }
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "freeCodeCamp_freeCodeCamp__e2e-playwright.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "line": 173,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "freeCodeCamp_freeCodeCamp__e2e-playwright.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 10,
+        "by_rule": {
+          "artipacked": 4,
+          "excessive-permissions": 4,
+          "dangerous-triggers": 1,
+          "github-env": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "freeCodeCamp_freeCodeCamp__e2e-playwright.yml",
+          "line": 27,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "freeCodeCamp_freeCodeCamp__e2e-playwright.yml",
+          "line": 43,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "freeCodeCamp_freeCodeCamp__e2e-playwright.yml",
+          "line": 82,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "freeCodeCamp_freeCodeCamp__e2e-playwright.yml",
+          "line": 118,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "freeCodeCamp_freeCodeCamp__e2e-playwright.yml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "freeCodeCamp_freeCodeCamp__e2e-playwright.yml",
+          "line": 19,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "freeCodeCamp_freeCodeCamp__e2e-playwright.yml",
+          "line": 77,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "freeCodeCamp_freeCodeCamp__e2e-playwright.yml",
+          "line": 102,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "dangerous-triggers",
+          "level": "error",
+          "message": "use of fundamentally insecure workflow trigger",
+          "workflow": "freeCodeCamp_freeCodeCamp__e2e-playwright.yml",
+          "line": 2,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "github-env",
+          "level": "error",
+          "message": "dangerous use of environment file",
+          "workflow": "freeCodeCamp_freeCodeCamp__e2e-playwright.yml",
+          "line": 115,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        }
+      ]
+    }
+  }
+}

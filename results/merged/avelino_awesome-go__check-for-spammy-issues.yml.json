@@ -1,0 +1,147 @@
+{
+  "workflow": "avelino_awesome-go__check-for-spammy-issues.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "avelino_awesome-go__check-for-spammy-issues.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "balevine/mark-as-spam@v1.0",
+          "pinned": "balevine/mark-as-spam@9f9b68e6eaf35c84c5487b397182e792920039ba",
+          "line": 12
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "avelino_awesome-go__check-for-spammy-issues.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: balevine/mark-as-spam@9f9b68e6eaf35c84c5487b397182e792920039ba # balevine/mark-as-spam@v1.0 | production",
+          "line": 11
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "avelino_awesome-go__check-for-spammy-issues.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            12
+          ],
+          "raw_details": [
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/avelino_awesome-go__check-for-spammy-issues.yml:12",
+            "Info:   0 out of   1 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          }
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          }
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/avelino_awesome-go__check-for-spammy-issues.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          }
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "avelino_awesome-go__check-for-spammy-issues.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "line": 12,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `balevine/mark-as-spam@v1.0`"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "avelino_awesome-go__check-for-spammy-issues.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "excessive-permissions": 1,
+          "unpinned-uses": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "avelino_awesome-go__check-for-spammy-issues.yml",
+          "line": 7,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "avelino_awesome-go__check-for-spammy-issues.yml",
+          "line": 12,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        }
+      ]
+    }
+  }
+}

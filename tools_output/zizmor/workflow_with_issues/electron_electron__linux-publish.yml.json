@@ -1,0 +1,95 @@
+{
+  "workflow": "electron_electron__linux-publish.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 9,
+    "by_rule": {
+      "artipacked": 1,
+      "excessive-permissions": 5,
+      "secrets-inherit": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "electron_electron__linux-publish.yml",
+      "line": 33,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "electron_electron__linux-publish.yml",
+      "line": 1,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "electron_electron__linux-publish.yml",
+      "line": 21,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "electron_electron__linux-publish.yml",
+      "line": 41,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "electron_electron__linux-publish.yml",
+      "line": 57,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "electron_electron__linux-publish.yml",
+      "line": 73,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "secrets-inherit",
+      "level": "warning",
+      "message": "secrets unconditionally inherited by called workflow",
+      "workflow": "electron_electron__linux-publish.yml",
+      "line": 42,
+      "column": 5,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "secrets-inherit",
+      "level": "warning",
+      "message": "secrets unconditionally inherited by called workflow",
+      "workflow": "electron_electron__linux-publish.yml",
+      "line": 58,
+      "column": 5,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "secrets-inherit",
+      "level": "warning",
+      "message": "secrets unconditionally inherited by called workflow",
+      "workflow": "electron_electron__linux-publish.yml",
+      "line": 74,
+      "column": 5,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

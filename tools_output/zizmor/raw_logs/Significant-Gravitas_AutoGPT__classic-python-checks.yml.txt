@@ -1,0 +1,120 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Significant-Gravitas_AutoGPT__classic-python-checks.yml:35:9
+   [1m[94m|[0m
+[1m[94m35 |[0m         - name: Checkout repository
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m36 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Significant-Gravitas_AutoGPT__classic-python-checks.yml:70:9
+   [1m[94m|[0m
+[1m[94m70 |[0m         - name: Checkout repository
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m71 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m72 |[0m [1m[33m|[0m         with:
+[1m[94m73 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/Significant-Gravitas_AutoGPT__classic-python-checks.yml:122:9
+    [1m[94m|[0m
+[1m[94m122 |[0m         - name: Checkout repository
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m123 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m124 |[0m [1m[33m|[0m         with:
+[1m[94m125 |[0m [1m[33m|[0m           fetch-depth: 0
+    [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Significant-Gravitas_AutoGPT__classic-python-checks.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: Classic - Python checks
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m150 |[0m [1m[33m|[0m         run: poetry run pyright
+[1m[94m151 |[0m [1m[33m|[0m         working-directory: classic/${{ matrix.sub-package }}
+    [1m[94m|[0m [1m[33m|_____________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Significant-Gravitas_AutoGPT__classic-python-checks.yml:32:3
+   [1m[94m|[0m
+[1m[94m32 |[0m [1m[33m/[0m   get-changed-parts:
+[1m[94m33 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m55 |[0m [1m[33m|[0m     outputs:
+[1m[94m56 |[0m [1m[33m|[0m       changed-parts: ${{ steps.changes-in.outputs.changes }}
+   [1m[94m|[0m [1m[33m|[0m                                                            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________________________________________|[0m
+   [1m[94m|[0m                                                              [1m[33mthis job[0m
+   [1m[94m|[0m                                                              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Significant-Gravitas_AutoGPT__classic-python-checks.yml:58:3
+    [1m[94m|[0m
+[1m[94m 58 |[0m [1m[33m/[0m   lint:
+[1m[94m 59 |[0m [1m[33m|[0m     needs: get-changed-parts
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m107 |[0m [1m[33m|[0m         run: poetry run flake8 .
+[1m[94m108 |[0m [1m[33m|[0m         working-directory: classic/${{ matrix.sub-package }}
+    [1m[94m|[0m [1m[33m|[0m                                                            [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________________________________________________|[0m
+    [1m[94m|[0m                                                              [1m[33mthis job[0m
+    [1m[94m|[0m                                                              [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Significant-Gravitas_AutoGPT__classic-python-checks.yml:110:3
+    [1m[94m|[0m
+[1m[94m110 |[0m [1m[33m/[0m   types:
+[1m[94m111 |[0m [1m[33m|[0m     needs: get-changed-parts
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m150 |[0m [1m[33m|[0m         run: poetry run pyright
+[1m[94m151 |[0m [1m[33m|[0m         working-directory: classic/${{ matrix.sub-package }}
+    [1m[94m|[0m [1m[33m|[0m                                                             [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_____________________________________________________________|[0m
+    [1m[94m|[0m                                                               [1m[33mthis job[0m
+    [1m[94m|[0m                                                               [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Significant-Gravitas_AutoGPT__classic-python-checks.yml:91:9
+   [1m[94m|[0m
+[1m[94m91 |[0m       - name: Install Python dependencies
+   [1m[94m|[0m         [1m[33m---------------------------------[0m [1m[33mthis step[0m
+[1m[94m92 |[0m         run: poetry -C classic/${{ matrix.sub-package }} install
+   [1m[94m|[0m         [1m[33m--------------------------------------------------------[0m [1m[33mmatrix.sub-package may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Significant-Gravitas_AutoGPT__classic-python-checks.yml:143:9
+    [1m[94m|[0m
+[1m[94m143 |[0m       - name: Install Python dependencies
+    [1m[94m|[0m         [1m[33m---------------------------------[0m [1m[33mthis step[0m
+[1m[94m144 |[0m         run: poetry -C classic/${{ matrix.sub-package }} install
+    [1m[94m|[0m         [1m[33m--------------------------------------------------------[0m [1m[33mmatrix.sub-package may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Significant-Gravitas_AutoGPT__classic-python-checks.yml:40:9
+   [1m[94m|[0m
+[1m[94m40 |[0m         uses: dorny/paths-filter@v3
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m12[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m9[39m medium, [31m1[39m high

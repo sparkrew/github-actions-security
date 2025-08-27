@@ -1,0 +1,48 @@
+{
+  "workflow": "facebook_react__devtools_regression_tests.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "82",
+      "column": "",
+      "job": "build_devtools_and_process_artifacts",
+      "step": "5",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "schedule",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "178",
+      "column": "",
+      "job": "run_devtools_e2e_tests_for_versions",
+      "step": "4",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "schedule",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "142",
+      "column": "",
+      "job": "run_devtools_tests_for_versions",
+      "step": "4",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "schedule",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

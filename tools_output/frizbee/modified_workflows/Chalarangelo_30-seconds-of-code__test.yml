@@ -1,0 +1,23 @@
+name: Run tests
+permissions:
+  contents: read
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  js_tests:
+    name: 'Node.js ${{ matrix.node-version }} tests'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22.14.0]
+    steps:
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: npm test

@@ -1,0 +1,111 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__release-publish.yml:23:9
+   [1m[94m|[0m
+[1m[94m23 |[0m         - name: Checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m24 |[0m [1m[33m|[0m         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+[1m[94m25 |[0m [1m[33m|[0m         with:
+[1m[94m26 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__release-publish.yml:113:9
+    [1m[94m|[0m
+[1m[94m113 |[0m       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+    [1m[94m|[0m         [1m[33m------------------------------------------------------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__release-publish.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: 'Release: Publish'
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m167 |[0m [1m[33m|[0m   #         git push origin master
+[1m[94m168 |[0m [1m[33m|[0m   #         git push origin :${{github.event.pull_request.base.ref}}
+    [1m[94m|[0m [1m[33m|_____________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__release-publish.yml:72:3
+   [1m[94m|[0m
+[1m[94m72 |[0m [1m[33m/[0m   publish-to-docker-hub:
+[1m[94m73 |[0m [1m[33m|[0m     name: Publish to DockerHub
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m78 |[0m [1m[33m|[0m       release_type: stable
+[1m[94m79 |[0m [1m[33m|[0m     secrets: inherit
+   [1m[94m|[0m [1m[33m|[0m                    [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________|[0m
+   [1m[94m|[0m                      [1m[33mthis job[0m
+   [1m[94m|[0m                      [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__release-publish.yml:102:3
+    [1m[94m|[0m
+[1m[94m102 |[0m [1m[33m/[0m   create-sentry-release:
+[1m[94m103 |[0m [1m[33m|[0m     name: Create a Sentry Release
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m141 |[0m [1m[33m|[0m           version: n8n@${{ needs.publish-to-npm.outputs.release }}
+[1m[94m142 |[0m [1m[33m|[0m           sourcemaps: packages/core/dist packages/workflow/dist packages/@n8n/task-runner/dist
+    [1m[94m|[0m [1m[33m|[0m                                                                                              [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__release-publish.yml:144:3
+    [1m[94m|[0m
+[1m[94m144 |[0m [1m[33m/[0m   trigger-release-note:
+[1m[94m145 |[0m [1m[33m|[0m     name: Trigger a release note
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m167 |[0m [1m[33m|[0m   #         git push origin master
+[1m[94m168 |[0m [1m[33m|[0m   #         git push origin :${{github.event.pull_request.base.ref}}
+    [1m[94m|[0m [1m[33m|[0m                                                                     [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_____________________________________________________________________|[0m
+    [1m[94m|[0m                                                                       [1m[33mthis job[0m
+    [1m[94m|[0m                                                                       [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__release-publish.yml:62:9
+   [1m[94m|[0m
+[1m[94m62 |[0m       - name: Publish to NPM
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m63 |[0m         run: pnpm publish -r --publish-branch ${{github.event.pull_request.base.ref}} --access public --tag rc --no-git-checks
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mgithub.event.pull_request.base.ref may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__release-publish.yml:150:9
+    [1m[94m|[0m
+[1m[94m150 |[0m [1m[94m...[0m - name: Trigger a release note
+    [1m[94m|[0m       [1m[94m----------------------------[0m [1m[94minfo: this step[0m
+[1m[94m151 |[0m [1m[94m...[0m   run: curl -u docsWorkflows:${{ secrets.N8N_WEBHOOK_DOCS_PASSWORD }} --request GET 'https://internal.users.n8n.cloud/webhook/trigger-release-note' --header 'Content-Type:application/json' --data '{"version":"${{ needs.publish-to-npm.outputs.release }}"}'
+    [1m[94m|[0m       [1m[94m-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[94minfo: needs.publish-to-npm.outputs.release may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__release-publish.yml:75:5
+   [1m[94m|[0m
+[1m[94m75 |[0m     uses: ./.github/workflows/docker-build-push.yml
+   [1m[94m|[0m     [1m[33m-----------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m76 |[0m     with:
+[1m[94m77 |[0m       n8n_version: ${{ needs.publish-to-npm.outputs.release }}
+[1m[94m78 |[0m       release_type: stable
+[1m[94m79 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m14[39m findings ([1m[93m5[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m7[39m medium, [31m1[39m high

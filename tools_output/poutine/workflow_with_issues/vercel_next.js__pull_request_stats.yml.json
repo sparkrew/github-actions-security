@@ -1,0 +1,35 @@
+{
+  "workflow": "vercel_next.js__pull_request_stats.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 1,
+      "pr_runs_on_self_hosted": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "50",
+      "column": "",
+      "job": "stats",
+      "step": "2",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "pull_request"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": "37",
+      "column": "",
+      "job": "stats",
+      "step": "",
+      "details": "runs-on: self-hosted, linux, x64, metal",
+      "event_triggers": [
+        "pull_request"
+      ]
+    }
+  ]
+}

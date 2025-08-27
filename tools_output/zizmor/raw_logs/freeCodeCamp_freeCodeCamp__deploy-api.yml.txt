@@ -1,0 +1,109 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__deploy-api.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: CD - Deploy - API
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m224 |[0m [1m[33m|[0m           MACHINE_IP=$(tailscale ip -4 $TS_MACHINE_NAME)
+[1m[94m225 |[0m [1m[33m|[0m           ssh $TS_USERNAME@$MACHINE_IP "$REMOTE_SCRIPT"
+    [1m[94m|[0m [1m[33m|________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__deploy-api.yml:16:3
+   [1m[94m|[0m
+[1m[94m16 |[0m [1m[33m/[0m   setup-jobs:
+[1m[94m17 |[0m [1m[33m|[0m     name: Setup Jobs
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m42 |[0m [1m[33m|[0m               ;;
+[1m[94m43 |[0m [1m[33m|[0m           esac
+   [1m[94m|[0m [1m[33m|[0m              [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________|[0m
+   [1m[94m|[0m                [1m[33mthis job[0m
+   [1m[94m|[0m                [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__deploy-api.yml:45:3
+   [1m[94m|[0m
+[1m[94m45 |[0m [1m[33m/[0m   build:
+[1m[94m46 |[0m [1m[33m|[0m     name: Build & Push
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m51 |[0m [1m[33m|[0m       app: api
+[1m[94m52 |[0m [1m[33m|[0m     secrets: inherit
+   [1m[94m|[0m [1m[33m|[0m                    [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________|[0m
+   [1m[94m|[0m                      [1m[33mthis job[0m
+   [1m[94m|[0m                      [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__deploy-api.yml:25:9
+   [1m[94m|[0m
+[1m[94m25 |[0m         - name: Setup
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m26 |[0m           id: setup
+[1m[94m27 |[0m [1m[91m/[0m         run: |
+[1m[94m28 |[0m [1m[91m|[0m           BRANCH="${{ github.ref_name }}"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m42 |[0m [1m[91m|[0m               ;;
+[1m[94m43 |[0m [1m[91m|[0m           esac
+   [1m[94m|[0m [1m[91m|______________^[0m [1m[91mgithub.ref_name may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__deploy-api.yml:25:9
+   [1m[94m|[0m
+[1m[94m25 |[0m         - name: Setup
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m26 |[0m           id: setup
+[1m[94m27 |[0m [1m[91m/[0m         run: |
+[1m[94m28 |[0m [1m[91m|[0m           BRANCH="${{ github.ref_name }}"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m42 |[0m [1m[91m|[0m               ;;
+[1m[94m43 |[0m [1m[91m|[0m           esac
+   [1m[94m|[0m [1m[91m|______________^[0m [1m[91minputs.api_log_lvl may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__deploy-api.yml:25:9
+   [1m[94m|[0m
+[1m[94m25 |[0m         - name: Setup
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m26 |[0m           id: setup
+[1m[94m27 |[0m [1m[91m/[0m         run: |
+[1m[94m28 |[0m [1m[91m|[0m           BRANCH="${{ github.ref_name }}"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m42 |[0m [1m[91m|[0m               ;;
+[1m[94m43 |[0m [1m[91m|[0m           esac
+   [1m[94m|[0m [1m[91m|______________^[0m [1m[91minputs.api_log_lvl may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__deploy-api.yml:68:9
+   [1m[94m|[0m
+[1m[94m68 |[0m         uses: tailscale/github-action@v3
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__deploy-api.yml:48:5
+   [1m[94m|[0m
+[1m[94m48 |[0m     uses: ./.github/workflows/docker-docr.yml
+   [1m[94m|[0m     [1m[33m-----------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m49 |[0m     with:
+[1m[94m50 |[0m       site_tld: ${{ needs.setup-jobs.outputs.site_tld }}
+[1m[94m51 |[0m       app: api
+[1m[94m52 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m11[39m findings ([1m[93m3[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m4[39m medium, [31m4[39m high

@@ -1,0 +1,35 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+  [1m[94m-->[0m ../.github/workflows/langgenius_dify__deploy-rag-dev.yml:6:1
+   [1m[94m|[0m
+[1m[94m 6 |[0m [1m[91m/[0m on:
+[1m[94m 7 |[0m [1m[91m|[0m   workflow_run:
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m11 |[0m [1m[91m|[0m     types:
+[1m[94m12 |[0m [1m[91m|[0m       - completed
+   [1m[94m|[0m [1m[91m|_________________^[0m [1m[91mworkflow_run is almost always used insecurely[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/langgenius_dify__deploy-rag-dev.yml:21:9
+   [1m[94m|[0m
+[1m[94m21 |[0m         - name: Deploy to server
+   [1m[94m|[0m           [1m[94m----------------------[0m [1m[94minfo: this step[0m
+[1m[94m22 |[0m           uses: appleboy/ssh-action@v0.1.8
+[1m[94m...[0m
+[1m[94m26 |[0m             key: ${{ secrets.SSH_PRIVATE_KEY }}
+[1m[94m27 |[0m [1m[94m/[0m           script: |
+[1m[94m28 |[0m [1m[94m|[0m             ${{ vars.SSH_SCRIPT || secrets.SSH_SCRIPT }}
+   [1m[94m|[0m [1m[94m|_________________________________________________________-[0m [1m[94minfo: vars.SSH_SCRIPT may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/langgenius_dify__deploy-rag-dev.yml:22:9
+   [1m[94m|[0m
+[1m[94m22 |[0m         uses: appleboy/ssh-action@v0.1.8
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m4[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m0[39m medium, [31m2[39m high

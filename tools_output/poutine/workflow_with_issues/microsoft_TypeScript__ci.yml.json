@@ -1,0 +1,24 @@
+{
+  "workflow": "microsoft_TypeScript__ci.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": "74",
+      "column": "",
+      "job": "coverage",
+      "step": "",
+      "details": "runs-on: self-hosted, 1ES.Pool=TypeScript-1ES-GitHub-Large, 1ES.ImageOverride=mariner-2.0",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    }
+  ]
+}

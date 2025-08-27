@@ -1,0 +1,460 @@
+{
+  "workflow": "ytdl-org_youtube-dl__ci.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "ytdl-org_youtube-dl__ci.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 8,
+        "by_rule": {
+          "unpinned-github-actions": 8
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v3",
+          "pinned": "actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744",
+          "line": 154,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "ytdl-org/setup-python@v1",
+          "pinned": "ytdl-org/setup-python@721f2cd130736a528673de59e74be6fb0d0a8784",
+          "line": 161,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/cache@v3",
+          "pinned": "actions/cache@2f8e54208210a422b2efd51efaa6bd6d7ca8920f",
+          "line": 210,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/cache@v3",
+          "pinned": "actions/cache@2f8e54208210a422b2efd51efaa6bd6d7ca8920f",
+          "line": 263,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-java@v3",
+          "pinned": "actions/setup-java@17f84c3641ba7b8f6deff6309fc4c864478f5d62",
+          "line": 318,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/cache@v3",
+          "pinned": "actions/cache@2f8e54208210a422b2efd51efaa6bd6d7ca8920f",
+          "line": 331,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v3",
+          "pinned": "actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744",
+          "line": 473,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-python@v4",
+          "pinned": "actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c",
+          "line": 475,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "ytdl-org_youtube-dl__ci.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 8,
+        "by_rule": {
+          "unpinned-github-actions": 8
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0",
+          "line": 149,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: ytdl-org/setup-python@721f2cd130736a528673de59e74be6fb0d0a8784 # ytdl-org/setup-python@v1 | v1.3.1",
+          "line": 156,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/cache@2f8e54208210a422b2efd51efaa6bd6d7ca8920f # actions/cache@v3 | v3.4.3-working,v3.4.3",
+          "line": 205,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/cache@2f8e54208210a422b2efd51efaa6bd6d7ca8920f # actions/cache@v3 | v3.4.3-working,v3.4.3",
+          "line": 258,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-java@17f84c3641ba7b8f6deff6309fc4c864478f5d62 # actions/setup-java@v3 | releases,v3.14.1",
+          "line": 313,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/cache@2f8e54208210a422b2efd51efaa6bd6d7ca8920f # actions/cache@v3 | v3.4.3-working,v3.4.3",
+          "line": 326,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0",
+          "line": 468,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # actions/setup-python@v4 | restore-v4-release,v4.9.1",
+          "line": 470,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "semgrep": {
+      "workflow": "ytdl-org_youtube-dl__ci.yml",
+      "tool": "semgrep",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "run-shell-injection": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "run-shell-injection",
+          "line": 83,
+          "code": "requires login",
+          "note": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+          "documentation": null,
+          "capability": "injection-check"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "ytdl-org_youtube-dl__ci.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            154,
+            161,
+            210,
+            263,
+            318,
+            331,
+            361,
+            473,
+            475,
+            480
+          ],
+          "raw_details": [
+            "Info: Possibly incomplete results: error parsing shell code: invalid parameter name: .github/workflows/ytdl-org_youtube-dl__ci.yml:361",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ytdl-org_youtube-dl__ci.yml:154",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ytdl-org_youtube-dl__ci.yml:161",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ytdl-org_youtube-dl__ci.yml:210",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ytdl-org_youtube-dl__ci.yml:263",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ytdl-org_youtube-dl__ci.yml:318",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ytdl-org_youtube-dl__ci.yml:331",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ytdl-org_youtube-dl__ci.yml:473",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ytdl-org_youtube-dl__ci.yml:475",
+            "Warn: pipCommand not pinned by hash: .github/workflows/ytdl-org_youtube-dl__ci.yml:480",
+            "Info:   0 out of   7 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   1 third-party GitHubAction dependencies pinned",
+            "Info:   0 out of   1 pipCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "automatic-hardening-check"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "ytdl-org_youtube-dl__ci.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 9,
+        "by_rule": {
+          "unpinned-github-actions": 9
+        }
+      },
+      "findings": [
+        {
+          "line": 154,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v3`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 159,
+          "column": 21,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v4`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 161,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `ytdl-org/setup-python@v1`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 210,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/cache@v3`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 263,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/cache@v3`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 318,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/setup-java@v3`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 331,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/cache@v3`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 473,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v3`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 475,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v4`",
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "ytdl-org_youtube-dl__ci.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 10,
+        "by_rule": {
+          "artipacked": 2,
+          "template-injection": 7,
+          "unpinned-uses": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "ytdl-org_youtube-dl__ci.yml",
+          "line": 153,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "ytdl-org_youtube-dl__ci.yml",
+          "line": 473,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "ytdl-org_youtube-dl__ci.yml",
+          "line": 81,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "ytdl-org_youtube-dl__ci.yml",
+          "line": 81,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "ytdl-org_youtube-dl__ci.yml",
+          "line": 169,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "ytdl-org_youtube-dl__ci.yml",
+          "line": 357,
+          "column": 7,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "ytdl-org_youtube-dl__ci.yml",
+          "line": 407,
+          "column": 7,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "ytdl-org_youtube-dl__ci.yml",
+          "line": 407,
+          "column": 7,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "ytdl-org_youtube-dl__ci.yml",
+          "line": 434,
+          "column": 7,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "ytdl-org_youtube-dl__ci.yml",
+          "line": 161,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "ytdl-org_youtube-dl__ci.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 9
+      },
+      "findings": [
+        {
+          "line": 16,
+          "column": 5,
+          "message": "unexpected key \"inputs\" for \"push\" section. expected one of \"branches\", \"branches-ignore\", \"paths\", \"paths-ignore\", \"tags\", \"tags-ignore\", \"types\", \"workflows\" [syntax-check]",
+          "capability": "workflow_structural_check"
+        },
+        {
+          "line": 25,
+          "column": 5,
+          "message": "unexpected key \"inputs\" for \"pull_request\" section. expected one of \"branches\", \"branches-ignore\", \"paths\", \"paths-ignore\", \"tags\", \"tags-ignore\", \"types\", \"workflows\" [syntax-check]",
+          "capability": "workflow_structural_check"
+        },
+        {
+          "line": 154,
+          "column": 13,
+          "message": "the runner of \"actions/checkout@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "workflow_structural_check"
+        },
+        {
+          "line": 210,
+          "column": 13,
+          "message": "the runner of \"actions/cache@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "workflow_structural_check"
+        },
+        {
+          "line": 263,
+          "column": 13,
+          "message": "the runner of \"actions/cache@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "workflow_structural_check"
+        },
+        {
+          "line": 318,
+          "column": 13,
+          "message": "the runner of \"actions/setup-java@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "workflow_structural_check"
+        },
+        {
+          "line": 331,
+          "column": 13,
+          "message": "the runner of \"actions/cache@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "workflow_structural_check"
+        },
+        {
+          "line": 473,
+          "column": 13,
+          "message": "the runner of \"actions/checkout@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "workflow_structural_check"
+        },
+        {
+          "line": 475,
+          "column": 13,
+          "message": "the runner of \"actions/setup-python@v4\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "workflow_structural_check"
+        }
+      ]
+    }
+  }
+}

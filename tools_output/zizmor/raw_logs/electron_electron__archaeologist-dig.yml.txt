@@ -1,0 +1,84 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__archaeologist-dig.yml:11:9
+   [1m[94m|[0m
+[1m[94m11 |[0m         - name: Checkout Electron
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m12 |[0m [1m[33m|[0m         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.0.2
+[1m[94m13 |[0m [1m[33m|[0m         with:
+[1m[94m14 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__archaeologist-dig.yml:7:4
+   [1m[94m|[0m
+[1m[94m 7 |[0m [1m[33m/[0m    archaeologist-dig:
+[1m[94m 8 |[0m [1m[33m|[0m     name: Archaeologist Dig
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m64 |[0m [1m[33m|[0m           fi
+[1m[94m65 |[0m [1m[33m|[0m         working-directory: ./electron/artifacts
+   [1m[94m|[0m [1m[33m|[0m                                                [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________________________________________|[0m
+   [1m[94m|[0m                                                  [1m[33mthis job[0m
+   [1m[94m|[0m                                                  [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__archaeologist-dig.yml:19:9
+   [1m[94m|[0m
+[1m[94m19 |[0m         - name: Setting Up Dig Site
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m20 |[0m [1m[91m/[0m         run: |
+[1m[94m21 |[0m [1m[91m|[0m           echo "remote: ${{ github.event.pull_request.head.repo.clone_url }}"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m30 |[0m [1m[91m|[0m           echo  ${{ github.event.pull_request.head.sha }} > .dig-new
+[1m[94m31 |[0m [1m[91m|[0m           cp .dig-old artifacts
+   [1m[94m|[0m [1m[91m|_______________________________^[0m [1m[91mgithub.event.pull_request.head.repo.clone_url may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__archaeologist-dig.yml:19:9
+   [1m[94m|[0m
+[1m[94m19 |[0m         - name: Setting Up Dig Site
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m20 |[0m [1m[91m/[0m         run: |
+[1m[94m21 |[0m [1m[91m|[0m           echo "remote: ${{ github.event.pull_request.head.repo.clone_url }}"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m30 |[0m [1m[91m|[0m           echo  ${{ github.event.pull_request.head.sha }} > .dig-new
+[1m[94m31 |[0m [1m[91m|[0m           cp .dig-old artifacts
+   [1m[94m|[0m [1m[91m|_______________________________^[0m [1m[91mgithub.event.pull_request.base.ref may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__archaeologist-dig.yml:19:9
+   [1m[94m|[0m
+[1m[94m19 |[0m         - name: Setting Up Dig Site
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m20 |[0m [1m[91m/[0m         run: |
+[1m[94m21 |[0m [1m[91m|[0m           echo "remote: ${{ github.event.pull_request.head.repo.clone_url }}"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m30 |[0m [1m[91m|[0m           echo  ${{ github.event.pull_request.head.sha }} > .dig-new
+[1m[94m31 |[0m [1m[91m|[0m           cp .dig-old artifacts
+   [1m[94m|[0m [1m[91m|_______________________________^[0m [1m[91mgithub.event.pull_request.head.repo.clone_url may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__archaeologist-dig.yml:19:9
+   [1m[94m|[0m
+[1m[94m19 |[0m         - name: Setting Up Dig Site
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m20 |[0m [1m[91m/[0m         run: |
+[1m[94m21 |[0m [1m[91m|[0m           echo "remote: ${{ github.event.pull_request.head.repo.clone_url }}"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m30 |[0m [1m[91m|[0m           echo  ${{ github.event.pull_request.head.sha }} > .dig-new
+[1m[94m31 |[0m [1m[91m|[0m           cp .dig-old artifacts
+   [1m[94m|[0m [1m[91m|_______________________________^[0m [1m[91mgithub.event.pull_request.base.ref may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m14[39m findings ([1m[93m8[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m4[39m high

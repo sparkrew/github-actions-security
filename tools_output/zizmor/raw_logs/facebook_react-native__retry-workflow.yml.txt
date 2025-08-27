@@ -1,0 +1,46 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-native__retry-workflow.yml:10:5
+   [1m[94m|[0m
+[1m[94m10 |[0m [1m[33m/[0m     rerun:
+[1m[94m11 |[0m [1m[33m|[0m         runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m18 |[0m [1m[33m|[0m                   gh run watch ${{ inputs.run_id }} > /dev/null 2>&1
+[1m[94m19 |[0m [1m[33m|[0m                   gh run rerun ${{ inputs.run_id }} --failed
+   [1m[94m|[0m [1m[33m|[0m                                                             [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________________________________________________________|[0m
+   [1m[94m|[0m                                                               [1m[33mthis job[0m
+   [1m[94m|[0m                                                               [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-native__retry-workflow.yml:13:15
+   [1m[94m|[0m
+[1m[94m13 |[0m               - name: rerun ${{ inputs.run_id }}
+   [1m[94m|[0m                 [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m14 |[0m                 env:
+[1m[94m15 |[0m                     GH_REPO: ${{ github.repository }}
+[1m[94m16 |[0m                     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+[1m[94m17 |[0m [1m[91m/[0m               run: |
+[1m[94m18 |[0m [1m[91m|[0m                   gh run watch ${{ inputs.run_id }} > /dev/null 2>&1
+[1m[94m19 |[0m [1m[91m|[0m                   gh run rerun ${{ inputs.run_id }} --failed
+   [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.run_id may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-native__retry-workflow.yml:13:15
+   [1m[94m|[0m
+[1m[94m13 |[0m               - name: rerun ${{ inputs.run_id }}
+   [1m[94m|[0m                 [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m14 |[0m                 env:
+[1m[94m15 |[0m                     GH_REPO: ${{ github.repository }}
+[1m[94m16 |[0m                     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+[1m[94m17 |[0m [1m[91m/[0m               run: |
+[1m[94m18 |[0m [1m[91m|[0m                   gh run watch ${{ inputs.run_id }} > /dev/null 2>&1
+[1m[94m19 |[0m [1m[91m|[0m                   gh run rerun ${{ inputs.run_id }} --failed
+   [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.run_id may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m6[39m findings ([1m[93m3[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m2[39m high

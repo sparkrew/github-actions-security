@@ -1,0 +1,24 @@
+{
+  "workflow": "denoland_deno__npm_publish.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "injection": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "injection",
+      "line": "45",
+      "column": "",
+      "job": "build",
+      "step": "4",
+      "details": "Sources: github.event.inputs.version",
+      "event_triggers": [
+        "workflow_dispatch",
+        "release"
+      ]
+    }
+  ]
+}

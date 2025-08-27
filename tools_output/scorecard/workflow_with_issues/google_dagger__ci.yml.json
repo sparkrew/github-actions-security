@@ -1,0 +1,90 @@
+{
+  "workflow": "google_dagger__ci.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        27,
+        34,
+        43,
+        51,
+        58,
+        65,
+        72,
+        84,
+        102,
+        124,
+        132,
+        134,
+        143,
+        150,
+        185,
+        202
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_dagger__ci.yml:58",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_dagger__ci.yml:102",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_dagger__ci.yml:124",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_dagger__ci.yml:132",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_dagger__ci.yml:134",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_dagger__ci.yml:143",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_dagger__ci.yml:150",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_dagger__ci.yml:27",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_dagger__ci.yml:34",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_dagger__ci.yml:43",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_dagger__ci.yml:65",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_dagger__ci.yml:72",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_dagger__ci.yml:84",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_dagger__ci.yml:185",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_dagger__ci.yml:202",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_dagger__ci.yml:51",
+        "Info:   0 out of  16 GitHub-owned GitHubAction dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 0,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1,
+        121
+      ],
+      "raw_details": [
+        "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/google_dagger__ci.yml:121",
+        "Warn: no topLevel permission defined: .github/workflows/google_dagger__ci.yml:1"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

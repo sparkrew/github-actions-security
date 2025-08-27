@@ -1,0 +1,285 @@
+{
+  "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/setup-buildx-action@v3",
+          "pinned": "docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435",
+          "line": 45
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 48
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/login-action@v3",
+          "pinned": "docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772",
+          "line": 51
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/build-push-action@v5",
+          "pinned": "docker/build-push-action@ca052bb54ab0790a636c9b5f226502c73d547a25",
+          "line": 57
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435 # docker/setup-buildx-action@v3 | master,v3.11.1",
+          "line": 37
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 40
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # docker/login-action@v3 | v3.4.0",
+          "line": 43
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/build-push-action@ca052bb54ab0790a636c9b5f226502c73d547a25 # docker/build-push-action@v5 | releases,v5.4.0",
+          "line": 49
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: huggingface/hf-workflows/.github/actions/post-slack@b5b9e1ae139ff95d1ebd3c14531e231e780ca345 # huggingface/hf-workflows/.github/actions/post-slack@main",
+          "line": 63
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "Dangerous-Workflow": 1,
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Dangerous-Workflow",
+          "score": 0,
+          "reason": "dangerous workflow patterns detected",
+          "lines": [
+            35
+          ],
+          "raw_details": [
+            "Warn: script injection with untrusted input 'contains(github.event.head_commit.message, '[build-ci-image]')': .github/workflows/huggingface_transformers__build-ci-docker-images.yml:35"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#dangerous-workflow",
+            "short": "Determines if the project's GitHub Action workflows avoid dangerous patterns."
+          }
+        },
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            45,
+            48,
+            51,
+            57,
+            72
+          ],
+          "raw_details": [
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-ci-docker-images.yml:45",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-ci-docker-images.yml:48",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-ci-docker-images.yml:51",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-ci-docker-images.yml:57",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-ci-docker-images.yml:72",
+            "Info:   0 out of   1 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   4 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          }
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          }
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/huggingface_transformers__build-ci-docker-images.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          }
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "line": 45,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/setup-buildx-action@v3`"
+        },
+        {
+          "line": 48,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+        },
+        {
+          "line": 51,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/login-action@v3`"
+        },
+        {
+          "line": 57,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/build-push-action@v5`"
+        },
+        {
+          "line": 72,
+          "column": 48,
+          "message": "Unpinned GitHub Action: uses `actions/post-slack@main`"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 8,
+        "by_rule": {
+          "artipacked": 1,
+          "excessive-permissions": 3,
+          "unpinned-uses": 4
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+          "line": 47,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+          "line": 22,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+          "line": 66,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+          "line": 45,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+          "line": 51,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+          "line": 57,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+          "line": 72,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        }
+      ]
+    }
+  }
+}

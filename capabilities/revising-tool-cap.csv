@@ -1,0 +1,131 @@
+tool_name,capability,description,group
+actionlint,unexpected-keys,Detects unknown or unsupported keys used in the workflow file,workflow_structural_validation
+actionlint,missing-required-or-duplicate-keys,Detects missing required keys or duplicate key declarations in the workflow,workflow_structural_validation
+actionlint,empty-mapping,Detects empty mappings where values are expected in the workflow structure,workflow_structural_validation
+actionlint,unexpected-mapping-values,Detects mapping values that do not match the expected format,workflow_structural_validation
+actionlint,syntax-check-expression,Detects expressions with invalid syntax in conditional or evaluated fields,control-flow-validation
+actionlint,type-check-expression,Detects expressions with incompatible or invalid data types,control-flow-validation
+actionlint,contexts-and-builtin-functions,Detects usage of unknown or invalid contexts and functions in expressions,workflow_structural_validation
+actionlint,contextual-step-object,Detects invalid access to the steps context outside of its allowed scope,workflow_structural_validation
+actionlint,contextual-matrix-object,Detects misuse of matrix context fields in non-matrix jobs or expressions,workflow_structural_validation
+actionlint,contextual-needs-object,Detects invalid usage of the needs context for accessing outputs across jobs,workflow_structural_validation
+actionlint,comparison-type-checks,Detects comparisons between incompatible data types in expressions,control-flow-validation
+actionlint,shellcheck-integration,Detects shell script issues in run steps using shellcheck analysis,workflow_structural_validation
+actionlint,pyflakes-integration,Detects Python syntax issues in run steps using pyflakes analysis,workflow_structural_validation
+actionlint,untrusted-inputs,Detects use of untrusted user input directly in shell commands,injection_and_execution_risks
+actionlint,job-dependencies-validation,Detects invalid or misconfigured job dependencies using needs,workflow_structural_validation
+actionlint,matrix-values,Detects malformed or invalid matrix configuration values,workflow_structural_validation
+actionlint,webhook-events-validation,Detects misconfigured or unknown webhook event triggers,workflow_structural_validation
+actionlint,workflow-dispatch-validation,Detects invalid input definitions or parameters in workflow_dispatch,workflow_structural_validation
+actionlint,glob-pattern-syntax,Detects incorrect glob pattern syntax in filters or paths,workflow_structural_validation
+actionlint,cron-syntax-check,Detects invalid cron expressions used in schedule triggers,workflow_structural_validation
+actionlint,runner-label-validation,Detects invalid or non-existent runner labels in the runs-on field,workflow_structural_validation
+actionlint,action-format-check,Detects incorrect action reference format in uses field,workflow_structural_validation
+actionlint,local-action-inputs-validation,Detects missing or invalid inputs for locally defined actions,workflow_structural_validation
+actionlint,popular-action-inputs-validation,Detects incorrect or incomplete inputs for well-known third-party actions,workflow_structural_validation
+actionlint,outdated-popular-actions-detection,Detects usage of unpinned or outdated versions of popular actions,pinning_and_dependency_control
+actionlint,shell-name-validation,Detects invalid or unsupported shell names used in run steps,workflow_structural_validation
+actionlint,job-step-id-uniqueness,Detects duplicate step IDs within the same job,workflow_structural_validation
+actionlint,hardcoded-credentials,Detects hardcoded secrets such as tokens or passwords in the workflow,secrets_exposure
+actionlint,env-var-names,Detects invalid or misformatted environment variable names,workflow_structural_validation
+actionlint,permissions-validation,Detects missing or over-permissive values in the permissions field,permissions_scope_validation
+actionlint,reusable-workflow-validation,Detects invalid structure or input configuration in reusable workflows,workflow_structural_validation
+actionlint,id-naming-convention,Detects identifiers that do not follow valid naming conventions,workflow_structural_validation
+actionlint,context-and-function-availability,Detects use of unavailable contexts or functions in workflow expressions,workflow_structural_validation
+actionlint,deprecated-workflow-commands,Detects usage of deprecated workflow command syntax,injection_and_execution_risks
+actionlint,always-true-if-condition,Detects conditions that always evaluate to true regardless of context,control-flow-validation
+actionlint,action-metadata-syntax,Detects invalid syntax in action metadata files such as action.yml,workflow_structural_validation
+codeql,EnvPathInjectionCritical,Detects critical injection through untrusted values used in environment PATH variables,injection_and_execution_risks
+codeql,EnvPathInjectionMedium,Detects medium-severity injection through untrusted values used in environment PATH variables,injection_and_execution_risks
+codeql,EnvVarInjectionCritical,Detects critical injection through untrusted values used in environment variables,injection_and_execution_risks
+codeql,EnvVarInjectionMedium,Detects medium-severity injection through untrusted values used in environment variables,injection_and_execution_risks
+codeql,CodeInjectionCritical,Detects critical code injection using untrusted inputs in command execution contexts,injection_and_execution_risks
+codeql,CodeInjectionMedium,Detects medium-severity code injection using untrusted inputs in command execution contexts,injection_and_execution_risks
+codeql,UseOfKnownVulnerableAction,Detects usage of GitHub Actions with known publicly disclosed vulnerabilities,known_vulnerability_exposure
+codeql,MissingActionsPermissions,Detects actions that are missing explicit permission declarations,permissions_scope_validation
+codeql,ImproperAccessControl,Detects workflows or jobs with incorrectly configured permission scopes,permissions_scope_validation
+codeql,ExcessiveSecretsExposure,Detects unnecessary exposure of secrets to jobs or steps that do not require them,secrets_exposure
+codeql,SecretsInArtifacts,Detects secrets included in uploaded artifacts during workflow execution,secrets_exposure
+codeql,UnmaskedSecretExposure,Detects secrets that may be exposed in logs or outputs without masking,secrets_exposure
+codeql,CachePoisoningViaCodeInjection,Detects cache poisoning by injecting malicious data through workflow commands,supply_chain_and_artifact_risks
+codeql,CachePoisoningViaDirectCache,Detects direct writes to the cache that could be manipulated,supply_chain_and_artifact_risks
+codeql,CachePoisoningViaPoisonableStep,Detects workflow steps that can alter the cache with unsafe content,supply_chain_and_artifact_risks
+codeql,UntrustedCheckoutTOCTOUCritical,Detects race conditions when checking out untrusted code with critical impact,supply_chain_and_artifact_risks
+codeql,UntrustedCheckoutTOCTOUHigh,Detects race conditions when checking out untrusted code with high impact,supply_chain_and_artifact_risks
+codeql,ExpressionIsAlwaysTrueCritical,Detects expressions that always evaluate to true which may indicate a logic flaw,control-flow-validation
+codeql,ExpressionIsAlwaysTrueHigh,Detects expressions that always evaluate to true which may indicate a logic flaw,control-flow-validation
+codeql,ArtifactPoisoningCritical,Detects critical tampering of artifacts through untrusted input during workflow execution,supply_chain_and_artifact_risks
+codeql,ArtifactPoisoningMedium,Detects medium-severity tampering of artifacts through untrusted input during workflow execution,supply_chain_and_artifact_risks
+codeql,UnpinnedActionsTag,Detects use of GitHub Actions without pinning to a specific version or commit,pinning_and_dependency_control
+codeql,UntrustedCheckoutCritical,Detects checkout of untrusted code with critical impact on workflow security,supply_chain_and_artifact_risks
+codeql,UntrustedCheckoutHigh,Detects checkout of untrusted code with high impact on workflow security,supply_chain_and_artifact_risks
+codeql,UntrustedCheckoutMedium,Detects checkout of untrusted code with medium impact on workflow security,supply_chain_and_artifact_risks
+frizbee,unpinned-github-actions,Detects usage of GitHub Actions that are not pinned to a specific version or commit,pinning_and_dependency_control
+frizbee,unpinned-container-images,Detects container images in workflows that are not pinned to a specific digest or tag,pinning_and_dependency_control
+frizbee,unpinned-dockerfiles,Detects base images in Dockerfiles that are not pinned to a specific version or digest,pinning_and_dependency_control
+frizbee,unpinned-kubernetes-images,Detects container images in Kubernetes configuration files that are not pinned,pinning_and_dependency_control
+frizbee,unpinned-docker-compose-images,Detects unpinned container images used in Docker Compose service definitions,pinning_and_dependency_control
+ghast,untrusted-context-usage,Detects usage of untrusted context values in shell commands or expressions,injection_and_execution_risks
+ghast,secret-usage-in-run,Detects usage of secrets directly in run steps where they may be exposed,secrets_exposure
+ghast,workflow-permissions-missing,Detects workflows that do not define any top-level permissions,permissions_scope_validation
+ghast,job-permissions-missing,Detects jobs that do not declare specific permission scopes,permissions_scope_validation
+ghast,no-permissions-declared,Detects workflows that entirely lack a permissions configuration,permissions_scope_validation
+ghast,workflow-outdated,Detects workflows using outdated or deprecated syntax or configuration,pinning_and_dependency_control
+ghast,no-pinning-of-actions,Detects third-party actions used without a fixed version or commit,pinning_and_dependency_control
+ggshield,secret-detection,Detects hardcoded secrets such as tokens or passwords in workflow files,secrets_exposure
+pinny,unpinned-github-actions,Detects usage of GitHub Actions without a pinned version or commit hash,pinning_and_dependency_control
+pinny,unpinned-dockerfile-images,Detects Dockerfile base images that are not pinned to a specific tag or digest,pinning_and_dependency_control
+poutine,debug_enabled,Detects usage of debug mode or debug flags in workflows that may expose sensitive information,injection_and_execution_risks
+poutine,default_permissions_on_risky_events,Detects workflows triggered by risky events that use default permissions without explicit restriction,permissions_scope_validation
+poutine,github_action_from_unverified_creator_used,Detects usage of GitHub Actions created by unverified or untrusted authors,trigger_and_actor_safety
+poutine,if_always_true,Detects if conditions that always evaluate to true which may indicate a logic flaw,control-flow-validation
+poutine,injection,Detects untrusted input used in command execution or shell contexts,injection_and_execution_risks
+poutine,job_all_secrets,Detects jobs that receive all repository secrets regardless of actual usage,secrets_exposure
+poutine,known_vulnerability_in_build_component,Detects build components with known vulnerabilities included in the workflow,known_vulnerability_exposure
+poutine,known_vulnerability_in_build_platform,Detects use of vulnerable build environments or base platforms,known_vulnerability_exposure
+poutine,pr_runs_on_self_hosted,Detects workflows triggered by pull requests that run on self-hosted runners,trigger_and_actor_safety
+poutine,unpinnable_action,Detects usage of GitHub Actions that cannot be pinned to a specific version or commit,pinning_and_dependency_control
+poutine,untrusted_checkout_exec,Detects execution of code from a repository after an untrusted checkout,supply_chain_and_artifact_risks
+poutine,unverified_script_exec,Detects scripts executed in workflows that do not come from a verified or trusted source,injection_and_execution_risks
+scharf,unpinned-github-actions,Detects GitHub Actions used without pinning to a specific version or commit hash,pinning_and_dependency_control
+scorecard,dangerous-workflow,Detects workflows that use high-risk triggers or unsafe configurations,trigger_and_actor_safety
+scorecard,token-permissions,Detects workflows that use overly broad GitHub token permissions,permissions_scope_validation
+scorecard,ci-tests,Detects absence of continuous integration tests in the workflow,security_practice_enforcement
+scorecard,pinned-dependencies,Detects dependencies that are not pinned to fixed versions ,pinning_and_dependency_control
+scorecard,sast,Detects workflows that do not include static application security testing,security_practice_enforcement
+secure-repo,minimum-token-permissions,Detects workflows that do not restrict token permissions to the minimum required,permissions_scope_validation
+secure-repo,add-harden-runner,Detects missing hardened runner configurations and adds them to the workflow,security_practice_enforcement
+secure-repo,pin-actions-to-sha,Detects GitHub Actions that are not pinned to a specific commit SHA,pinning_and_dependency_control
+secure-repo,pin-docker-image-digests,Detects Docker images that are not pinned using digests,pinning_and_dependency_control
+secure-repo,add-dependabot-config,Detects absence of Dependabot configuration and adds a default configuration file,security_practice_enforcement
+secure-repo,add-codeql-workflow,Detects absence of a CodeQL analysis workflow and adds a default workflow file,security_practice_enforcement
+secure-repo,add-dependency-review-workflow,Detects absence of a dependency review workflow and adds it to the repository,security_practice_enforcement
+secure-repo,add-ossf-scorecard-workflow,Detects absence of an OpenSSF Scorecard workflow and adds the recommended configuration,security_practice_enforcement
+semgrep,allowed-unsecure-commands,Detects use of commands known to be insecure in run steps,injection_and_execution_risks
+semgrep,pull-request-target-code-checkout,Detects unsafe use of pull_request_target with code checkout from untrusted sources,trigger_and_actor_safety
+semgrep,run-shell-injection,Detects shell commands in run steps that are vulnerable to injection,injection_and_execution_risks
+trivy,secret-detection,Detects secrets hardcoded into workflow files,secrets_exposure
+trivy,misconfiguration-detection,Detects structural or logical misconfigurations in workflow definitions,workflow_structural_validation
+zizmor,artipacked,Detects artifacts that are packed or generated in a way that could be tampered with,supply_chain_and_artifact_risks
+zizmor,bot-conditions,Detects conditions in workflows that give control to automated or bot accounts,trigger_and_actor_safety
+zizmor,cache-poisoning,Detects workflows that allow injection of malicious data into the build cache,supply_chain_and_artifact_risks
+zizmor,dangerous-triggers,Detects use of triggers that can be exploited by untrusted actors or forks,trigger_and_actor_safety
+zizmor,excessive-permissions,Detects workflows that request more GitHub token permissions than necessary,permissions_scope_validation
+zizmor,forbidden-uses,Detects usage of actions or patterns that are explicitly disallowed or banned,pinning_and_dependency_control
+zizmor,github-env,Detects unsafe manipulation of the GitHub environment file in workflows,injection_and_execution_risks
+zizmor,hardcoded-container-credentials,Detects container steps that include hardcoded secrets or access tokens,secrets_exposure
+zizmor,impostor-commit,Detects commits that may have been forged or submitted under a misleading identity,pinning_and_dependency_control
+zizmor,insecure-commands,Detects shell commands that introduce security risks through unsafe patterns,injection_and_execution_risks
+zizmor,known-vulnerable-actions,Detects use of GitHub Actions that are publicly known to have security vulnerabilities,known_vulnerability_exposure
+zizmor,obfuscation,Detects intentionally unclear or obfuscated logic in the workflow structure,workflow_structural_validation
+zizmor,overprovisioned-secrets,Detects secrets made available to steps or jobs that do not need them,secrets_exposure
+zizmor,ref-confusion,Detects ambiguous or misleading references to branches or tags in workflows,pinning_and_dependency_control
+zizmor,secrets-inherit,Detects secrets that are implicitly passed to reusable workflows or unscoped steps,secrets_exposure
+zizmor,self-hosted-runner,Detects workflows that run on self-hosted runners which may not be fully trusted,trigger_and_actor_safety
+zizmor,stale-action-refs,Detects references to actions that are outdated or no longer maintained,pinning_and_dependency_control
+zizmor,template-injection,Detects unsafe use of templates that can be manipulated to inject code,injection_and_execution_risks
+zizmor,unpinned-images,Detects container images used without being pinned to a specific tag or digest,pinning_and_dependency_control
+zizmor,unpinned-uses,Detects actions that are referenced without a pinned version or commit,pinning_and_dependency_control
+zizmor,unredacted-secrets,Detects secrets that are not masked and may appear in logs or output,secrets_exposure
+zizmor,unsound-contains,Detects expressions using contains that may behave unexpectedly or unsafely,control-flow-validation
+zizmor,use-trusted-publishing,Detects workflows that do not enforce trusted publishing practices,security_practice_enforcement

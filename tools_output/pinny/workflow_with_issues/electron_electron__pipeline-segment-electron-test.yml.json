@@ -1,0 +1,37 @@
+{
+  "workflow": "electron_electron__pipeline-segment-electron-test.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "unpinned-github-actions": 5
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+      "line": 77
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+      "line": 115
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093",
+      "line": 145
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093",
+      "line": 150
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+      "line": 244
+    }
+  ]
+}

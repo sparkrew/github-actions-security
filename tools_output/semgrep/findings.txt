@@ -1,0 +1,1245 @@
+                     
+                     
+┌───────────────────┐
+│ 105 Code Findings │
+└───────────────────┘
+                                                             
+  [36m[22m[24m  .github/workflows/axios_axios__labeler.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           26┆ run: |
+           27┆     echo "Using PR number: ${{ github.event.inputs.prs || github.event.pull_request.number
+               }}"                                                                                       
+           28┆     echo "pr=${{ github.event.inputs.prs || github.event.pull_request.number }}" >>
+               $GITHUB_OUTPUT                                                                     
+           29┆
+                                                            
+  [36m[22m[24m  .github/workflows/axios_axios__notify.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           51┆ run: node ./bin/actions/notify_published.js --tag ${{ github.event.inputs.tag ||
+               github.event.release.tag_name }}                                                
+                                                             
+  [36m[22m[24m  .github/workflows/axios_axios__npm-tag.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           28┆ run: npm dist-tag add axios@${{ github.event.inputs.version }} ${{ github.event.inputs.tag
+               }}                                                                                        
+                                                             
+  [36m[22m[24m  .github/workflows/axios_axios__publish.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           84┆ run: node ./bin/actions/notify_published.js --tag ${{ github.event.inputs.tag ||
+               github.event.release.tag_name }}                                                
+                                                                   
+  [36m[22m[24m  .github/workflows/denoland_deno__npm_publish.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           45┆ run: ./tools/release/npm/build.ts ${{ github.event.inputs.version }} --publish
+                                                                          
+  [36m[22m[24m  .github/workflows/denoland_deno__promote_to_release.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           41┆ run: |
+           42┆   $CANARY_URL="https://dl.deno.land/canary/${{github.event.inputs.commitHash}}"
+           43┆   Invoke-WebRequest -Uri "$CANARY_URL/deno-x86_64-pc-windows-msvc.zip" -OutFile "deno-
+               windows.zip"                                                                          
+           44┆   Invoke-WebRequest -Uri "$CANARY_URL/denort-x86_64-pc-windows-msvc.zip" -OutFile "denort-
+               windows.zip"                                                                              
+           45┆   Expand-Archive -Path "deno-windows.zip" -DestinationPath "."
+           46┆   Expand-Archive -Path "denort-windows.zip" -DestinationPath "."
+           47┆
+            ⋮┆----------------------------------------
+           50┆ run: |
+           51┆   deno install -A -n patchver https://deno.land/x/patchver@0.2.0/cli.ts
+           52┆   $CHANNEL="${{github.event.inputs.releaseKind}}"
+           53┆   # Patch deno.exe
+           54┆   Move-Item -Path "deno.exe" -Destination "deno_original.exe"
+           55┆   patchver "deno_original.exe" "deno.exe" $CHANNEL
+           56┆   # Patch denort.exe
+           57┆   Move-Item -Path "denort.exe" -Destination "denort_original.exe"
+           58┆   patchver "denort_original.exe" "denort.exe" $CHANNEL
+           59┆
+             [hid 4 additional lines, adjust with --max-lines-per-finding] 
+           93┆ run: |
+           94┆   $SignTool = Get-ChildItem -Path "C:\Program Files*\Windows Kits\*\bin\*\x64\signtool.exe"
+               -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1                            
+           95┆   $SignToolPath = $SignTool.FullName
+           96┆   & $SignToolPath verify /pa /v "deno-x86_64-pc-windows-
+               msvc-${{github.event.inputs.releaseKind}}.exe"          
+           97┆
+            ⋮┆----------------------------------------
+           99┆ run: |
+          100┆   Compress-Archive -Path "deno-x86_64-pc-windows-                                       
+               msvc-${{github.event.inputs.releaseKind}}.exe" -DestinationPath "deno-x86_64-pc-windows-
+               msvc.zip" -Force                                                                        
+          101┆   Compress-Archive -Path "denort-x86_64-pc-windows-                                       
+               msvc-${{github.event.inputs.releaseKind}}.exe" -DestinationPath "denort-x86_64-pc-windows-
+               msvc.zip" -Force                                                                          
+          102┆
+            ⋮┆----------------------------------------
+          151┆ run: |
+          152┆   deno run -A ./tools/release/promote_to_release.ts ${{github.event.inputs.releaseKind}}
+               ${{github.event.inputs.commitHash}}                                                     
+          153┆
+            ⋮┆----------------------------------------
+          161┆ run: |
+          162┆   # Unzip a binary to get the version
+          163┆   unzip -o deno-x86_64-apple-darwin.zip
+          164┆   DENO_VERSION=$(./deno -V | cut -d ' ' -f 2 | cut -d '+' -f 1)
+          165┆   echo "v${DENO_VERSION}" > release-${{github.event.inputs.releaseKind}}-latest.txt
+          166┆   rm -f ./deno
+          167┆
+            ⋮┆----------------------------------------
+          169┆ run: |
+          170┆   gsutil -h "Cache-Control: public, max-age=3600" cp ./*.zip                             
+               gs://dl.deno.land/release/$(cat release-${{github.event.inputs.releaseKind}}-latest.txt)/
+          171┆   gsutil -h "Cache-Control: no-cache" cp                                 
+               release-${{github.event.inputs.releaseKind}}-latest.txt                  
+               gs://dl.deno.land/release-${{github.event.inputs.releaseKind}}-latest.txt
+                                                                     
+  [36m[22m[24m  .github/workflows/denoland_deno__start_release.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           45┆ run: ./tools/release/00_start_release.ts --${{github.event.inputs.releaseKind}}
+                                                                    
+  [36m[22m[24m  .github/workflows/denoland_deno__version_bump.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           48┆ run: |
+           49┆   git remote add upstream https://github.com/denoland/deno
+           50┆   ./tools/release/01_bump_crate_versions.ts --${{github.event.inputs.releaseKind}}
+           51┆
+                                                                 
+  [36m[22m[24m  .github/workflows/electron_electron__build.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           65┆ run: |
+           66┆   if [ -z "${{ inputs.build-image-sha }}" ]; then
+           67┆     echo "build-image-sha=424eedbf277ad9749ffa9219068aa72ed4a5e373" >> "$GITHUB_OUTPUT"
+           68┆   else
+           69┆     echo "build-image-sha=${{ inputs.build-image-sha }}" >> "$GITHUB_OUTPUT"
+           70┆   fi
+           71┆   echo "docs-only=${{ steps.filter.outputs.docs == 'true' && steps.filter.outputs.src ==
+               'false' }}" >> "$GITHUB_OUTPUT"                                                         
+           72┆
+                                                                                           
+  [36m[22m[24m  .github/workflows/electron_electron__pipeline-segment-electron-build.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+          117┆ run: |
+          118┆   if [ "${{ inputs.target-arch  }}" = "arm" ]; then
+          119┆     if [ "${{ inputs.is-release  }}" = true ]; then
+          120┆       GN_EXTRA_ARGS='target_cpu="arm" build_tflite_with_xnnpack=false symbol_level=1'
+          121┆     else
+          122┆       GN_EXTRA_ARGS='target_cpu="arm" build_tflite_with_xnnpack=false'
+          123┆     fi
+          124┆   elif [ "${{ inputs.target-arch }}" = "arm64" ]; then
+          125┆     GN_EXTRA_ARGS='target_cpu="arm64" fatal_linker_warnings=false
+               enable_linux_installer=false'                                    
+          126┆   elif [ "${{ inputs.is-asan }}" = true ]; then
+             [hid 3 additional lines, adjust with --max-lines-per-finding] 
+          162┆ run: |
+          163┆   e init -f --root=$(pwd) --out=Default ${{ inputs.gn-build-type }} --import ${{ inputs.gn-
+               build-type }} --target-cpu ${{ inputs.target-arch }}                                       
+            ⋮┆----------------------------------------
+          174┆ run: |
+          175┆   echo "NUMBER_OF_NINJA_PROCESSES=${{ inputs.target-platform != 'macos' && '300' || '200'
+               }}" >> $GITHUB_ENV                                                                       
+                                                                                              
+  [36m[22m[24m  .github/workflows/electron_electron__pipeline-segment-electron-gn-check.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           94┆ run: |
+           95┆   echo "solutions=[{'name':'src/electron','url':None,'deps_file':'DEPS','custom_vars':{'pro
+               cess_deps':False},'managed':False}]" > tmpgclient                                          
+           96┆   if [ "${{ inputs.target-platform }}" = "win" ]; then
+           97┆     echo "solutions=[{'name':'src/electron','url':None,'deps_file':'DEPS','custom_vars':{'p
+               rocess_deps':False,'install_sysroot':False,'checkout_win':True},'managed':False}]" >       
+               tmpgclient                                                                                 
+           98┆     echo "target_os=['win']" >> tmpgclient
+           99┆   fi
+          100┆   e d gclient runhooks --gclientfile=tmpgclient
+          101┆
+          102┆   # Fix VS Toolchain
+          103┆   if [ "${{ inputs.target-platform }}" = "win" ]; then
+             [hid 3 additional lines, adjust with --max-lines-per-finding] 
+          126┆ run: |
+          127┆   for target_cpu in ${{ inputs.target-archs }}
+          128┆   do
+          129┆     e init -f --root=$(pwd) --out=Default ${{ inputs.gn-build-type }} --import ${{
+               inputs.gn-build-type }} --target-cpu $target_cpu                                  
+          130┆     cd src
+          131┆     export GN_EXTRA_ARGS="target_cpu=\"$target_cpu\""
+          132┆     if [ "${{ inputs.target-platform }}" = "linux" ]; then
+          133┆       if [ "$target_cpu" = "arm" ]; then
+          134┆         export GN_EXTRA_ARGS="$GN_EXTRA_ARGS build_tflite_with_xnnpack=false"
+          135┆       elif [ "$target_cpu" = "arm64" ]; then
+             [hid 19 additional lines, adjust with --max-lines-per-finding] 
+                                                                                          
+  [36m[22m[24m  .github/workflows/electron_electron__pipeline-segment-electron-test.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+          147┆ run: |
+          148┆   echo "ARTIFACT_KEY=${{ matrix.build-type }}_${{ inputs.target-arch }}_asan" >>
+               $GITHUB_ENV                                                                     
+          149┆   echo "DISABLE_CRASH_REPORTER_TESTS=true" >> $GITHUB_ENV
+          150┆   echo "IS_ASAN=true" >> $GITHUB_ENV
+            ⋮┆----------------------------------------
+          198┆ run: |
+          199┆   cd src/electron
+          200┆   export ELECTRON_TEST_RESULTS_DIR=`pwd`/junit
+          201┆   # Get which tests are on this shard
+          202┆   tests_files=$(node script/split-tests ${{ matrix.shard }} ${{ inputs.target-platform ==
+               'linux' && 3 || 2 }})                                                                    
+          203┆
+          204┆   # Run tests
+          205┆   if [ "${{ inputs.target-platform }}" != "linux" ]; then
+          206┆     echo "About to start tests"
+          207┆     if [ "${{ inputs.target-platform }}" = "win" ]; then
+             [hid 29 additional lines, adjust with --max-lines-per-finding] 
+                                                                                          
+  [36m[22m[24m  .github/workflows/electron_electron__pipeline-segment-node-nan-test.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           59┆ run: |
+           60┆   e init -f --root=$(pwd) --out=Default ${{ inputs.gn-build-type }} --import ${{ inputs.gn-
+               build-type }} --target-cpu ${{ inputs.target-arch }}                                       
+            ⋮┆----------------------------------------
+          113┆ run: |
+          114┆   e init -f --root=$(pwd) --out=Default ${{ inputs.gn-build-type }}
+                                                                            
+  [36m[22m[24m  .github/workflows/facebook_create-react-app__e2e-base.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           35┆ run: ${{ inputs.testScript }}
+                                                                              
+  [36m[22m[24m  .github/workflows/facebook_react-native__create-release.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           43┆ run: |
+           44┆   TAG="v${{ inputs.version }}"
+           45┆   TAG_EXISTS=$(git tag -l "$TAG")
+           46┆   if [[ -n "$TAG_EXISTS" ]]; then
+           47┆     echo "Version tag already exists!"
+           48┆     echo "TAG_EXISTS=true" >> $GITHUB_OUTPUT
+           49┆   fi
+                                                                              
+  [36m[22m[24m  .github/workflows/facebook_react-native__retry-workflow.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           17┆ run: |
+           18┆     gh run watch ${{ inputs.run_id }} > /dev/null 2>&1
+           19┆     gh run rerun ${{ inputs.run_id }} --failed
+                                                                        
+  [36m[22m[24m  .github/workflows/facebook_react-native__test-all.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           26┆ run: |
+           27┆   if [[ $EVENT_NAME == "schedule" ]]; then
+           28┆     echo "Setting release type to nightly"
+           29┆     echo "RELEASE_TYPE=nightly" >> $GITHUB_OUTPUT
+           30┆   elif [[ $EVENT_NAME == "push" && $REF == refs/tags/v* ]]; then
+           31┆     echo "Setting release type to release"
+           32┆     echo "RELEASE_TYPE=release" >> $GITHUB_OUTPUT
+           33┆   else
+           34┆     echo "Setting release type to dry-run"
+           35┆     echo "RELEASE_TYPE=dry-run" >> $GITHUB_OUTPUT
+             [hid 4 additional lines, adjust with --max-lines-per-finding] 
+                                                                             
+  [36m[22m[24m  .github/workflows/facebook_react__compiler_prereleases.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           59┆ run: |
+           60┆   cp ./scripts/release/ci-npmrc ~/.npmrc
+           61┆   scripts/release/publish.js --frfr --ci --versionName=${{ inputs.version_name }} --tag=${{
+               inputs.dist_tag }} ${{ inputs.tag_version && format('--tagVersion={0}', inputs.tag_version)
+               || '' }}                                                                                   
+                                                                                  
+  [36m[22m[24m  .github/workflows/facebook_react__devtools_regression_tests.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           47┆ run: |
+           48┆   git fetch origin main
+           49┆   GH_TOKEN=${{ github.token }} scripts/release/download-experimental-build.js --commit=${{
+               inputs.commit_sha || '$(git rev-parse origin/main)' }}                                    
+                                                                                 
+  [36m[22m[24m  .github/workflows/facebook_react__runtime_commit_artifacts.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           54┆ run: |
+           55┆   GH_TOKEN=${{ github.token }} scripts/release/download-experimental-build.js --commit=${{
+               inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }}                  
+            ⋮┆----------------------------------------
+          181┆ run: |
+          182┆   echo ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} >>
+               ./compiled/facebook-www/REVISION                                                      
+          183┆   cp ./compiled/facebook-www/REVISION ./compiled/facebook-www/REVISION_TRANSFORMS
+          184┆   echo ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} >>  
+               ./compiled-rn/facebook-fbsource/xplat/js/react-native-github/Libraries/Renderer/REVISION
+            ⋮┆----------------------------------------
+          284┆ run: |
+          285┆   git fetch origin --quiet
+          286┆   git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }}
+               --no-patch --pretty=format:"%B"                                                        
+            ⋮┆----------------------------------------
+          289┆ run: |
+          290┆   git config --global user.email "${{ format('{0}@users.noreply.github.com',
+               github.triggering_actor) }}"                                                
+          291┆   git config --global user.name "${{ github.triggering_actor }}"
+          292┆
+          293┆   git fetch origin --quiet
+          294┆   git commit -m "$(git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha ||
+               github.sha }} --no-patch --pretty=format:'%B%n%nDiffTrain build for [${{ inputs.commit_sha
+               || github.event.workflow_run.head_sha || github.sha                                       
+               }}](https://github.com/facebook/react/commit/${{ inputs.commit_sha ||                     
+               github.event.workflow_run.head_sha || github.sha}})')" || echo "No changes to commit"     
+            ⋮┆----------------------------------------
+          458┆ run: |
+          459┆   git fetch origin --quiet
+          460┆   git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }}
+               --no-patch --pretty=format:"%B"                                                        
+            ⋮┆----------------------------------------
+          463┆ run: |
+          464┆   git config --global user.email "${{ format('{0}@users.noreply.github.com',
+               github.triggering_actor) }}"                                                
+          465┆   git config --global user.name "${{ github.triggering_actor }}"
+          466┆
+          467┆   git fetch origin --quiet
+          468┆   git commit -m "$(git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha ||
+               github.sha }} --no-patch --pretty=format:'%B%n%nDiffTrain build for [${{ inputs.commit_sha
+               || github.event.workflow_run.head_sha || github.sha                                       
+               }}](https://github.com/facebook/react/commit/${{ inputs.commit_sha ||                     
+               github.event.workflow_run.head_sha || github.sha}})')" || echo "No changes to commit"     
+                                                                            
+  [36m[22m[24m  .github/workflows/facebook_react__runtime_prereleases.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           76┆ - run: |
+           77┆     GH_TOKEN=${{ secrets.GH_TOKEN }} scripts/release/prepare-release-from-ci.js --skipTests
+               -r ${{ inputs.release_channel }} --commit=${{ inputs.commit_sha }}                         
+            ⋮┆----------------------------------------
+           82┆ run: |
+           83┆   scripts/release/publish.js \
+           84┆     --ci \
+           85┆     --skipTests \
+           86┆     --tags=${{ inputs.dist_tag }} \
+           87┆     --onlyPackages=${{ inputs.only_packages }} ${{ (inputs.dry && '') || '\'}}
+           88┆     ${{ inputs.dry && '--dry' || '' }}
+            ⋮┆----------------------------------------
+           91┆ run: |
+           92┆   scripts/release/publish.js \
+           93┆     --ci \
+           94┆     --skipTests \
+           95┆     --tags=${{ inputs.dist_tag }} \
+           96┆     --skipPackages=${{ inputs.skip_packages }} ${{ (inputs.dry && '') || '\'}}
+           97┆     ${{ inputs.dry && '--dry' || '' }}
+            ⋮┆----------------------------------------
+          100┆ run: |
+          101┆   scripts/release/publish.js \
+          102┆     --ci \
+          103┆     --tags=${{ inputs.dist_tag }} ${{ (inputs.dry && '') || '\'}}
+          104┆     ${{ inputs.dry && '--dry' || '' }}
+                                                                                         
+  [36m[22m[24m  .github/workflows/facebook_react__runtime_releases_from_npm_manual.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           87┆ run: |
+           88┆   scripts/release/prepare-release-from-npm.js \
+           89┆     --ci \
+           90┆     --skipTests \
+           91┆     --version=${{ inputs.version_to_promote }} \
+           92┆     --publishVersion=${{ inputs.version_to_publish }} \
+           93┆     --onlyPackages=${{ inputs.only_packages }}
+            ⋮┆----------------------------------------
+           96┆ run: |
+           97┆   scripts/release/prepare-release-from-npm.js \
+           98┆     --ci \
+           99┆     --skipTests \
+          100┆     --version=${{ inputs.version_to_promote }} \
+          101┆     --publishVersion=${{ inputs.version_to_publish }} \
+          102┆     --skipPackages=${{ inputs.skip_packages }}
+            ⋮┆----------------------------------------
+          107┆ run: |
+          108┆   scripts/release/publish.js \
+          109┆     --ci \
+          110┆     --tags=${{ inputs.tags }} \
+          111┆     --publishVersion=${{ inputs.version_to_publish }} \
+          112┆     --onlyPackages=${{ inputs.only_packages }} ${{ (inputs.dry && '') || '\'}}
+          113┆     ${{ inputs.dry && '--dry' || '' }}
+            ⋮┆----------------------------------------
+          116┆ run: |
+          117┆   scripts/release/publish.js \
+          118┆     --ci \
+          119┆     --tags=${{ inputs.tags }} \
+          120┆     --publishVersion=${{ inputs.version_to_publish }} \
+          121┆     --skipPackages=${{ inputs.skip_packages }} ${{ (inputs.dry && '') || '\'}}
+          122┆     ${{ inputs.dry && '--dry' || '' }}
+                                                                              
+  [36m[22m[24m  .github/workflows/freeCodeCamp_freeCodeCamp__deploy-api.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           27┆ run: |
+           28┆   BRANCH="${{ github.ref_name }}"
+           29┆   echo "Current branch: $BRANCH"
+           30┆   case "$BRANCH" in
+           31┆     "prod-current")
+           32┆       echo "site_tld=org" >> $GITHUB_OUTPUT
+           33┆       echo "tgt_env_short=prd" >> $GITHUB_OUTPUT
+           34┆       echo "tgt_env_long=production" >> $GITHUB_OUTPUT
+           35┆       echo "api_log_lvl=${{ inputs.api_log_lvl || 'info' }}" >> $GITHUB_OUTPUT
+           36┆       ;;
+             [hid 8 additional lines, adjust with --max-lines-per-finding] 
+                                                                               
+  [36m[22m[24m  .github/workflows/freeCodeCamp_freeCodeCamp__docker-docr.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           55┆ run: |
+           56┆   docker build \
+           57┆     --tag registry.digitalocean.com/${{ secrets.DOCR_NAME }}/${{ inputs.site_tld
+               }}/learn-${{ inputs.app }}:$tagname \                                           
+           58┆     --tag registry.digitalocean.com/${{ secrets.DOCR_NAME }}/${{ inputs.site_tld
+               }}/learn-${{ inputs.app }}:latest \                                             
+           59┆     --file docker/${{ inputs.app }}/Dockerfile .
+           60┆
+            ⋮┆----------------------------------------
+           70┆ run: |
+           71┆   docker push registry.digitalocean.com/${{ secrets.DOCR_NAME }}/${{ inputs.site_tld
+               }}/learn-${{ inputs.app }}:$tagname                                                 
+           72┆   docker push registry.digitalocean.com/${{ secrets.DOCR_NAME }}/${{ inputs.site_tld
+               }}/learn-${{ inputs.app }}:latest                                                   
+                                                                                     
+  [36m[22m[24m  .github/workflows/huggingface_transformers__check_failed_tests.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           56┆ run: |
+           57┆   if [ -f ci_results_${{ inputs.job }}/new_failures.json ]; then
+           58┆     echo "`ci_results_${{ inputs.job }}/new_failures.json` exists, continue ..."
+           59┆     echo "process=true" >> $GITHUB_ENV
+           60┆   else
+           61┆     echo "`ci_results_${{ inputs.job }}/new_failures.json` doesn't exist, abort."
+           62┆     echo "process=false" >> $GITHUB_ENV
+           63┆   fi
+           64┆
+            ⋮┆----------------------------------------
+          101┆ run: git fetch && git checkout ${{ inputs.start_sha }}
+            ⋮┆----------------------------------------
+          127┆ run: python3 utils/check_bad_commit.py --start_commit ${{ inputs.start_sha }} --end_commit
+               ${{ env.END_SHA }} --file ci_results_${{ inputs.job }}/new_failures.json --output_file    
+               new_failures_with_bad_commit.json                                                         
+            ⋮┆----------------------------------------
+          139┆ run: |
+          140┆   git checkout ${{ inputs.start_sha }}
+          141┆
+            ⋮┆----------------------------------------
+          173┆ run: |
+          174┆   pip install slack_sdk
+          175┆   echo "title=$(python3 -c 'import sys; sys.path.append("utils"); from                     
+               utils.notification_service import job_to_test_map; ci_event = "${{ inputs.ci_event }}"; job
+               = "${{ inputs.job }}"; test_name = job_to_test_map[job]; title = f"New failed tests of     
+               {ci_event}" + ":" + f" {test_name}"; print(title)')" >> $GITHUB_ENV                        
+          176┆
+                                                                             
+  [36m[22m[24m  .github/workflows/huggingface_transformers__model_jobs.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           55┆ run: |
+           56┆   echo "${{ inputs.folder_slices }}"
+           57┆   echo "${{ matrix.folders }}"
+           58┆   echo "${{ toJson(fromJson(inputs.folder_slices)[inputs.slice_id]) }}"
+           59┆
+            ⋮┆----------------------------------------
+          107┆ run: |
+          108┆   echo "${{ inputs.machine_type }}"
+          109┆
+          110┆   if [ "${{ inputs.machine_type }}" = "aws-g4dn-4xlarge-cache" ]; then
+          111┆     machine_type=single-gpu
+          112┆   elif [ "${{ inputs.machine_type }}" = "aws-g4dn-12xlarge-cache" ]; then
+          113┆     machine_type=multi-gpu
+          114┆   else
+          115┆     machine_type=${{ inputs.machine_type }}
+          116┆   fi
+             [hid 4 additional lines, adjust with --max-lines-per-finding] 
+          123┆ run: python3 -m pytest -rsfE -v --make-reports=${{ env.machine_type }}_${{                 
+               inputs.report_name_prefix }}_${{ matrix.folders }}_test_reports tests/${{ matrix.folders }}
+            ⋮┆----------------------------------------
+          128┆ run: cat /transformers/reports/${{ env.machine_type }}_${{ inputs.report_name_prefix }}_${{
+               matrix.folders }}_test_reports/failures_short.txt                                          
+            ⋮┆----------------------------------------
+          132┆ run: |
+          133┆   mkdir -p /transformers/reports/${{ env.machine_type }}_${{ inputs.report_name_prefix
+               }}_${{ matrix.folders }}_test_reports                                                 
+          134┆   echo "hello" > /transformers/reports/${{ env.machine_type }}_${{       
+               inputs.report_name_prefix }}_${{ matrix.folders }}_test_reports/hello.txt
+          135┆   echo "${{ env.machine_type }}_${{ inputs.report_name_prefix }}_${{ matrix.folders
+               }}_test_reports"                                                                   
+          136┆
+                                                                                         
+  [36m[22m[24m  .github/workflows/huggingface_transformers__model_jobs_intel_gaudi.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           54┆ run: |
+           55┆   echo "${{ inputs.folder_slices }}"
+           56┆   echo "${{ matrix.folders }}"
+           57┆   echo "${{ toJson(fromJson(inputs.folder_slices)[inputs.slice_id]) }}"
+           58┆
+            ⋮┆----------------------------------------
+           91┆ run: |
+           92┆   if [ "${{ inputs.machine_type }}" = "1gaudi" ]; then
+           93┆     machine_type=single-gpu
+           94┆   elif [ "${{ inputs.machine_type }}" = "2gaudi" ]; then
+           95┆     machine_type=multi-gpu
+           96┆   else
+           97┆     machine_type=${{ inputs.machine_type }}
+           98┆   fi
+           99┆   echo "machine_type=$machine_type" >> $GITHUB_ENV
+          100┆
+            ⋮┆----------------------------------------
+          102┆ run: python3 -m pytest -v --make-reports=${{ env.machine_type }}_${{                       
+               inputs.report_name_prefix }}_${{ matrix.folders }}_test_reports tests/${{ matrix.folders }}
+            ⋮┆----------------------------------------
+          107┆ run: cat reports/${{ env.machine_type }}_${{ inputs.report_name_prefix }}_${{
+               matrix.folders }}_test_reports/failures_short.txt                            
+            ⋮┆----------------------------------------
+          111┆ run: |
+          112┆   mkdir -p reports/${{ env.machine_type }}_${{ inputs.report_name_prefix }}_${{
+               matrix.folders }}_test_reports                                                 
+          113┆   echo "hello" > reports/${{ env.machine_type }}_${{ inputs.report_name_prefix }}_${{
+               matrix.folders }}_test_reports/hello.txt                                             
+          114┆   echo "${{ env.machine_type }}_${{ inputs.report_name_prefix }}_${{ matrix.folders
+               }}_test_reports"                                                                   
+          115┆
+                                                                                        
+  [36m[22m[24m  .github/workflows/huggingface_transformers__self-scheduled-caller.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           37┆ run: |
+           38┆   mkdir "setup_values"
+           39┆   echo "${{ inputs.prev_workflow_run_id || env.prev_workflow_run_id }}" >
+               "setup_values/prev_workflow_run_id.txt"                                  
+           40┆   echo "${{ inputs.other_workflow_run_id || env.other_workflow_run_id }}" >
+               "setup_values/other_workflow_run_id.txt"                                   
+           41┆
+                                                                                             
+  [36m[22m[24m  .github/workflows/huggingface_transformers__self-scheduled-intel-gaudi.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           56┆ run: |
+           57┆   if [ "${{ inputs.job }}" = "run_models_gpu" ]; then
+           58┆     echo "folder_slices=$(python3 ../utils/split_model_tests.py --num_splits ${{
+               env.NUM_SLICES }})" >> $GITHUB_OUTPUT                                           
+           59┆     echo "slice_ids=$(python3 -c 'd = list(range(${{ env.NUM_SLICES }})); print(d)')" >>
+               $GITHUB_OUTPUT                                                                          
+           60┆   elif [ "${{ inputs.job }}" = "run_trainer_and_fsdp_gpu" ]; then
+           61┆     echo "folder_slices=[['trainer'], ['fsdp']]" >> $GITHUB_OUTPUT
+           62┆     echo "slice_ids=[0, 1]" >> $GITHUB_OUTPUT
+           63┆   fi
+           64┆
+                                                                                 
+  [36m[22m[24m  .github/workflows/huggingface_transformers__self-scheduled.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           85┆ run: |
+           86┆   if [ "${{ inputs.job }}" = "run_models_gpu" ]; then
+           87┆     echo "folder_slices=$(python3 ../utils/split_model_tests.py --num_splits ${{
+               env.NUM_SLICES }})" >> $GITHUB_OUTPUT                                           
+           88┆     echo "slice_ids=$(python3 -c 'd = list(range(${{ env.NUM_SLICES }})); print(d)')" >>
+               $GITHUB_OUTPUT                                                                          
+           89┆     echo "runner_map=$(python3 ../utils/get_runner_map.py)" >> $GITHUB_OUTPUT
+           90┆   elif [ "${{ inputs.job }}" = "run_trainer_and_fsdp_gpu" ]; then
+           91┆     echo "folder_slices=[['trainer'], ['fsdp']]" >> $GITHUB_OUTPUT
+           92┆     echo "slice_ids=[0, 1]" >> $GITHUB_OUTPUT
+           93┆   fi
+           94┆
+            ⋮┆----------------------------------------
+          366┆ run: cat ${{ inputs.working-directory-prefix }}/transformers/reports/${{ env.machine_type
+               }}_run_torch_cuda_extensions_gpu_test_reports/failures_short.txt                         
+                                                                               
+  [36m[22m[24m  .github/workflows/huggingface_transformers__slack-report.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           40┆ run: |
+           41┆   echo "Setup status: ${{ inputs.setup_status }}"
+           42┆
+            ⋮┆----------------------------------------
+           78┆ run: |
+           79┆   pip install huggingface_hub
+           80┆   pip install slack_sdk
+           81┆   pip show slack_sdk
+           82┆   if [ "${{ inputs.quantization_matrix }}" != "" ]; then
+           83┆     python utils/notification_service.py "${{ inputs.quantization_matrix }}"
+           84┆   else
+           85┆     python utils/notification_service.py "${{ inputs.folder_slices }}"
+           86┆   fi
+           87┆
+                                                                             
+  [36m[22m[24m  .github/workflows/huggingface_transformers__ssh-runner.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           36┆ run: |
+           37┆   if [[ "${{ github.event.inputs.num_gpus }}" == "single" && "${{
+               github.event.inputs.runner_type }}" == "t4" ]]; then             
+           38┆     echo "RUNNER=aws-g4dn-4xlarge-cache" >> $GITHUB_ENV
+           39┆   elif [[ "${{ github.event.inputs.num_gpus }}" == "multi" && "${{
+               github.event.inputs.runner_type }}" == "t4" ]]; then              
+           40┆     echo "RUNNER=aws-g4dn-12xlarge-cache" >> $GITHUB_ENV
+           41┆   elif [[ "${{ github.event.inputs.num_gpus }}" == "single" && "${{
+               github.event.inputs.runner_type }}" == "a10" ]]; then              
+           42┆     echo "RUNNER=aws-g5-4xlarge-cache" >> $GITHUB_ENV
+           43┆   elif [[ "${{ github.event.inputs.num_gpus }}" == "multi" && "${{
+               github.event.inputs.runner_type }}" == "a10" ]]; then             
+           44┆     echo "RUNNER=aws-g5-12xlarge-cache" >> $GITHUB_ENV
+           45┆   else
+             [hid 3 additional lines, adjust with --max-lines-per-finding] 
+                                                                               
+  [36m[22m[24m  .github/workflows/langchain-ai_langchain___test_pydantic.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           46┆ run: VIRTUAL_ENV=.venv uv pip install pydantic~=${{ inputs.pydantic-version }}
+                                                                              
+  [36m[22m[24m  .github/workflows/langchain-ai_langchain__run_notebooks.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           57┆ run: |
+           58┆   uv run python docs/scripts/prepare_notebooks_for_ci.py --comment-install-cells --working-
+               directory ${{ github.event.inputs.working-directory || 'all' }}                            
+           59┆
+                                                                  
+  [36m[22m[24m  .github/workflows/microsoft_TypeScript__lkg.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           24┆ - run: |
+           25┆     if [[ ! "${{ inputs.branch_name }}" =~ ^release- ]]; then
+           26┆       echo "Branch name must start with 'release-'"
+           27┆       exit 1
+           28┆     fi
+           29┆
+                                                                                  
+  [36m[22m[24m  .github/workflows/microsoft_TypeScript__new-release-branch.yaml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           66┆ - run: |
+           67┆     git checkout -b ${{ inputs.branch_name }}
+           68┆     sed -i -e 's/"version": ".*"/"version": "${{ inputs.package_version }}"/g' package.json
+           69┆     sed -i -e 's/const versionMajorMinor = ".*"/const versionMajorMinor = "${{
+               inputs.core_major_minor }}"/g' src/compiler/corePublic.ts                     
+           70┆     sed -i -e 's/const versionMajorMinor = ".*"/const versionMajorMinor = "${{
+               inputs.core_major_minor }}"/g' tests/baselines/reference/api/typescript.d.ts  
+           71┆     sed -i -e 's/const version\(: string\)\{0,1\} = .*;/const version = "${{
+               inputs.package_version }}" as string;/g' src/compiler/corePublic.ts         
+           72┆     npm ci
+           73┆     npm install # update package-lock.json to ensure the version bump is included
+           74┆     npx hereby LKG
+           75┆     npm test
+             [hid 10 additional lines, adjust with --max-lines-per-finding] 
+                                                                           
+  [36m[22m[24m  .github/workflows/microsoft_TypeScript__set-version.yaml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           71┆ - run: |
+           72┆     sed -i -e 's/"version": ".*"/"version": "${{ inputs.package_version }}"/g' package.json
+           73┆     sed -i -e 's/const versionMajorMinor = ".*"/const versionMajorMinor = "${{
+               inputs.core_major_minor }}"/g' src/compiler/corePublic.ts                     
+           74┆     sed -i -e 's/const versionMajorMinor = ".*"/const versionMajorMinor = "${{
+               inputs.core_major_minor }}"/g' tests/baselines/reference/api/typescript.d.ts  
+           75┆     sed -i -e 's/const version\(: string\)\{0,1\} = .*;/const version = "${{
+               inputs.package_version }}" as string;/g' src/compiler/corePublic.ts         
+           76┆     npm ci
+           77┆     npm install # update package-lock.json to ensure the version bump is included
+           78┆     npx hereby LKG
+           79┆     npm test
+           80┆     git diff
+             [hid 9 additional lines, adjust with --max-lines-per-finding] 
+                                                                      
+  [36m[22m[24m  .github/workflows/n8n-io_n8n__docker-build-push.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+          106┆ run: |
+          107┆   if [[ "${{ github.event_name }}" == "schedule" ]]; then
+          108┆     echo "release_type=nightly" >> $GITHUB_OUTPUT
+          109┆     echo "n8n_version=snapshot" >> $GITHUB_OUTPUT
+          110┆     echo "push_enabled=true" >> $GITHUB_OUTPUT
+          111┆   elif [[ "${{ github.event_name }}" == "workflow_call" ]]; then
+          112┆     echo "release_type=${{ inputs.release_type }}" >> $GITHUB_OUTPUT
+          113┆     echo "n8n_version=${{ inputs.n8n_version }}" >> $GITHUB_OUTPUT
+          114┆     echo "push_enabled=${{ inputs.push_enabled }}" >> $GITHUB_OUTPUT
+          115┆   elif [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+             [hid 25 additional lines, adjust with --max-lines-per-finding] 
+                                                              
+  [36m[22m[24m  .github/workflows/n8n-io_n8n__e2e-flaky.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           64┆ run: pnpm run debug:flaky:e2e "${{ github.event.inputs.test_name }}" ${{
+               github.event.inputs.burn_count }}                                       
+                                                                 
+  [36m[22m[24m  .github/workflows/n8n-io_n8n__e2e-reusable.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           64┆ run: |
+           65┆   if [ -n "${{ inputs.pr_number }}" ]; then
+           66┆     echo "value=refs/pull/${{ inputs.pr_number }}/head" >> $GITHUB_OUTPUT
+           67┆   else
+           68┆     echo "value=${{ inputs.branch }}" >> $GITHUB_OUTPUT
+           69┆   fi
+                                                              
+  [36m[22m[24m  .github/workflows/n8n-io_n8n__e2e-tests.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           38┆ run: |
+           39┆   [[ "${{github.event.inputs.start-url}}" != "" ]] && curl -v -X POST -d 'url=${{
+               github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}' 
+               ${{github.event.inputs.start-url}} || echo ""                                    
+            ⋮┆----------------------------------------
+           68┆ run: |
+           69┆   [[ "${{github.event.inputs.success-url}}" != "" ]] && curl -v
+               ${{github.event.inputs.success-url}} || echo ""                
+                                                                      
+  [36m[22m[24m  .github/workflows/n8n-io_n8n__release-create-pr.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           59┆ run: |
+           60┆   git push -f origin refs/remotes/origin/${{ github.event.inputs.base-branch
+               }}:refs/heads/release/${{ env.NEXT_RELEASE }}                               
+           61┆
+                                                                            
+  [36m[22m[24m  .github/workflows/n8n-io_n8n__release-push-to-channel.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           30┆ run: |
+           31┆   input_version="${{ github.event.inputs.version }}"
+           32┆   version_regex='^[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.-]+)?$'
+           33┆
+           34┆   if [[ "$input_version" =~ $version_regex ]]; then
+           35┆     echo "Version format is valid: $input_version"
+           36┆     echo "version=$input_version" >> $GITHUB_OUTPUT
+           37┆   else
+           38┆     echo "::error::Invalid version format provided: '$input_version'. Must match regex
+               '$version_regex'."                                                                    
+           39┆     exit 1
+             [hid 2 additional lines, adjust with --max-lines-per-finding] 
+                                                                                 
+  [36m[22m[24m  .github/workflows/n8n-io_n8n__security-trivy-scan-callable.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           28┆ run: |
+           29┆   docker pull ${{ inputs.image_ref }}
+           30┆
+                                                                                        
+  [36m[22m[24m  .github/workflows/oracle_docker-images__build-and-push-dev-images.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           59┆ run: |
+           60┆   IFS=", " read -r -a ol_list <<< "${{ github.event.inputs.ol || env.ol}}"
+           61┆   IFS=", " read -r -a lang_list <<< "${{ github.event.inputs.lang || env.lang}}"
+           62┆   changes=$(mktemp)
+           63┆   # workflow is only set in the workflow_dispatch event payload
+           64┆   workflow="${{ github.event.workflow }}"
+           65┆   if [[ -z ${workflow} ]]; then
+           66┆     # Push event - retrieve list of changed files
+           67┆     git diff --name-only '${{ github.event.before }}..${{ github.event.after }}' >
+               "${changes}"                                                                      
+           68┆     if grep -q build-and-push-dev-images.yml "${changes}"; then
+             [hid 50 additional lines, adjust with --max-lines-per-finding] 
+                                                                                         
+  [36m[22m[24m  .github/workflows/tensorflow_tensorflow__release-branch-cherrypick.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           53┆ run: |
+           54┆     git config --global user.name "TensorFlow Release Automation"
+           55┆     git config --global user.email "jenkins@tensorflow.org"
+           56┆     git fetch origin master
+           57┆     git cherry-pick ${{ github.event.inputs.git_commit }}
+           58┆     echo "SHORTSHA=$(git log -1 ${{ github.event.inputs.git_commit }} --format="%h")" >>
+               "$GITHUB_OUTPUT"                                                                        
+           59┆     echo "TITLE=$(git log -1 ${{ github.event.inputs.git_commit }} --format="%s")" >>
+               "$GITHUB_OUTPUT"                                                                     
+                                                                       
+  [36m[22m[24m  .github/workflows/vercel_next.js__build_reusable.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+          144┆ - run: fnm use --install-if-missing ${{ inputs.nodeVersion || env.NODE_LTS_VERSION }}
+            ⋮┆----------------------------------------
+          145┆ - run: fnm default ${{ inputs.nodeVersion || env.NODE_LTS_VERSION }}
+            ⋮┆----------------------------------------
+          205┆ - run: pnpm dlx turbo@${TURBO_VERSION} run build-native-${{ inputs.rustBuildProfile }} -v
+               --env-mode loose --remote-cache-timeout 90 --summarize -- --target ${{                   
+               inputs.buildNativeTarget }}                                                              
+            ⋮┆----------------------------------------
+          248┆ - run: ${{ inputs.afterBuild }}
+            ⋮┆----------------------------------------
+          273┆ run: |
+          274┆   # Add a `test.type` tag to distinguish between turbopack and next.js runs
+          275┆   # Add a `nextjs.test_session.name` tag to help identify the job
+          276┆   if [ -d ./test/test-junit-report ]; then
+          277┆     pnpm dlx @datadog/datadog-ci@2.45.1 junit upload \
+          278┆       --service nextjs \
+          279┆       --tags test.type:nextjs \
+          280┆       --tags test_session.name:"${{ inputs.stepName }}" \
+          281┆       ./test/test-junit-report
+          282┆   fi
+             [hid 8 additional lines, adjust with --max-lines-per-finding] 
+                                                                    
+  [36m[22m[24m  .github/workflows/vercel_next.js__code_freeze.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           45┆ - run: node ./scripts/code-freeze.js --type ${{ github.event.inputs.type }}
+                                                                                   
+  [36m[22m[24m  .github/workflows/vercel_next.js__integration_tests_reusable.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           62┆ run: |
+           63┆   printf 'e2e=[%s]\n' \
+           64┆     "$(seq -s, 1 ${{ inputs.e2e_groups }})" | \
+           65┆     tee -a "$GITHUB_OUTPUT"
+           66┆   printf 'integration=[%s]\n' \
+           67┆     "$(seq -s, 1 ${{ inputs.integration_groups }})" | \
+           68┆     tee -a "$GITHUB_OUTPUT"
+                                                                           
+  [36m[22m[24m  .github/workflows/vercel_next.js__setup-nextjs-build.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           50┆ run: |
+           51┆   echo "NEXTJS_VERSION=${{ inputs.version != '' && inputs.version ||
+               env.NEXJS_LATEST_VERSION }}" >> $GITHUB_ENV                         
+           52┆
+                                                                        
+  [36m[22m[24m  .github/workflows/vercel_next.js__trigger_release.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+          108┆ - run: node ./scripts/start-release.js --release-type ${{ github.event.inputs.releaseType
+               || 'canary' }} --semver-type ${{ github.event.inputs.semverType }}                       
+                                                                     
+  [36m[22m[24m  .github/workflows/vercel_next.js__update_react.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           54┆ run: pnpm sync-react --actor "${{ github.actor }}" --commit --create-pull --version "${{
+               inputs.version }}"                                                                      
+                                                             
+  [36m[22m[24m  .github/workflows/yt-dlp_yt-dlp__build.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+          101┆ run: |
+          102┆   echo "origin=${{ inputs.origin == 'current repo' && github.repository || inputs.origin
+               }}" | tee "$GITHUB_OUTPUT"                                                              
+          103┆
+            ⋮┆----------------------------------------
+          119┆ run: |
+          120┆   python devscripts/update-version.py -c "${{ inputs.channel }}" -r "${{
+               needs.process.outputs.origin }}" "${{ inputs.version }}"                
+          121┆   python devscripts/update_changelog.py -vv
+          122┆   python devscripts/make_lazy_extractors.py
+            ⋮┆----------------------------------------
+          213┆ run: |
+          214┆   cd repo
+          215┆   python3.9 devscripts/install_deps.py -o --include build
+          216┆   python3.9 devscripts/install_deps.py --include pyinstaller  # Cached versions may be out
+               of date                                                                                   
+          217┆   python3.9 devscripts/update-version.py -c "${{ inputs.channel }}" -r "${{
+               needs.process.outputs.origin }}" "${{ inputs.version }}"                   
+          218┆   python3.9 devscripts/make_lazy_extractors.py
+          219┆   python3.9 -m bundle.pyinstaller
+          220┆
+          221┆   if ${{ vars.UPDATE_TO_VERIFICATION && 'true' || 'false' }}; then
+          222┆     arch="${{ (matrix.architecture == 'armv7' && 'armv7l') || matrix.architecture }}"
+             [hid 8 additional lines, adjust with --max-lines-per-finding] 
+          301┆ run: |
+          302┆   python3 devscripts/update-version.py -c "${{ inputs.channel }}" -r "${{
+               needs.process.outputs.origin }}" "${{ inputs.version }}"                 
+          303┆   python3 devscripts/make_lazy_extractors.py
+            ⋮┆----------------------------------------
+          371┆ run: |
+          372┆   python3 devscripts/update-version.py -c "${{ inputs.channel }}" -r "${{
+               needs.process.outputs.origin }}" "${{ inputs.version }}"                 
+          373┆   python3 devscripts/make_lazy_extractors.py
+            ⋮┆----------------------------------------
+          414┆ run: |
+          415┆   python devscripts/update-version.py -c "${{ inputs.channel }}" -r "${{
+               needs.process.outputs.origin }}" "${{ inputs.version }}"                
+          416┆   python devscripts/make_lazy_extractors.py
+            ⋮┆----------------------------------------
+          463┆ run: |
+          464┆   python devscripts/update-version.py -c "${{ inputs.channel }}" -r "${{
+               needs.process.outputs.origin }}" "${{ inputs.version }}"                
+          465┆   python devscripts/make_lazy_extractors.py
+                                                               
+  [36m[22m[24m  .github/workflows/yt-dlp_yt-dlp__release.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           80┆ run: |
+           81┆   cat << EOF
+           82┆   ::group::Inputs
+           83┆   prerelease=${{ inputs.prerelease }}
+           84┆   source=${{ inputs.source }}
+           85┆   target=${{ inputs.target }}
+           86┆   version=${{ inputs.version }}
+           87┆   ::endgroup::
+           88┆   EOF
+           89┆   IFS='@' read -r source_repo source_tag <<<"${{ inputs.source }}"
+             [hid 8 additional lines, adjust with --max-lines-per-finding] 
+          105┆ run: |
+          106┆   # unholy bash monstrosity (sincere apologies)
+          107┆   fallback_token () {
+          108┆     if ${{ !secrets.ARCHIVE_REPO_TOKEN }}; then
+          109┆       echo "::error::Repository access secret ${target_repo_token^^} not found"
+          110┆       exit 1
+          111┆     fi
+          112┆     target_repo_token=ARCHIVE_REPO_TOKEN
+          113┆     return 0
+          114┆   }
+             [hid 70 additional lines, adjust with --max-lines-per-finding] 
+          385┆ run: |
+          386┆   title="${{ github.repository == 'yt-dlp/yt-dlp' && 'yt-dlp ' || '' }}"
+          387┆   title+="${{ env.target_tag != env.version && format('{0} ', env.target_tag) || '' }}"
+          388┆   gh release create \
+          389┆     --notes-file ${{ inputs.prerelease && 'PRERELEASE_NOTES' || 'RELEASE_NOTES' }} \
+          390┆     --target ${{ env.head_sha }} \
+          391┆     --title "${title}${{ env.version }}" \
+          392┆     ${{ inputs.prerelease && '--prerelease' || '' }} \
+          393┆     ${{ env.target_tag }} \
+          394┆     artifact/*
+                                                                
+  [36m[22m[24m  .github/workflows/ytdl-org_youtube-dl__ci.yml[0m
+   ❯❯❱ yaml.github-actions.security.run-shell-injection.run-shell-injection
+          Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an  
+          attacker to inject their own code into the runner. This would allow them to steal secrets and code. 
+          `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use
+          an intermediate environment variable with `env:` to store the data and use the environment variable 
+          in the `run:` script. Be sure to use double-quotes the environment variable, like this: "$ENVVAR".  
+          Details: https://sg.run/pkzk                                                                        
+                                                                                                              
+           83┆ run: |
+           84┆   # Make a JSON Array from comma/space-separated string (no extra escaping)
+           85┆   json_list() { \
+           86┆     ret=""; IFS="${IFS},"; set -- $*; \
+           87┆     for a in "$@"; do \
+           88┆       ret=$(printf '%s"%s"' "${ret}${ret:+, }" "$a"); \
+           89┆     done; \
+           90┆     printf '[%s]' "$ret"; }
+           91┆   tests="${{ inputs.test-set || env.test-set }}"
+           92┆   [ $tests = both ] && tests="core download"
+             [hid 12 additional lines, adjust with --max-lines-per-finding] 
+

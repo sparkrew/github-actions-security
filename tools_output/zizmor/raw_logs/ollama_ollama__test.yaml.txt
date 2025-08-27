@@ -1,0 +1,192 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/ollama_ollama__test.yaml:26:9
+   [1m[94m|[0m
+[1m[94m26 |[0m         - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m27 |[0m [1m[33m|[0m         with:
+[1m[94m28 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/ollama_ollama__test.yaml:58:9
+   [1m[94m|[0m
+[1m[94m58 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/ollama_ollama__test.yaml:133:9
+    [1m[94m|[0m
+[1m[94m133 |[0m       - uses: actions/checkout@v4
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/ollama_ollama__test.yaml:149:9
+    [1m[94m|[0m
+[1m[94m149 |[0m       - uses: actions/checkout@v4
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/ollama_ollama__test.yaml:162:9
+    [1m[94m|[0m
+[1m[94m162 |[0m         - name: checkout
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m163 |[0m [1m[33m|[0m         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # 4.2.2
+    [1m[94m|[0m [1m[33m|_______________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/ollama_ollama__test.yaml:240:9
+    [1m[94m|[0m
+[1m[94m240 |[0m       - uses: actions/checkout@v4
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/ollama_ollama__test.yaml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: test
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m243 |[0m [1m[33m|[0m           make -f Makefile.sync clean checkout apply-patches sync
+[1m[94m244 |[0m [1m[33m|[0m           git diff --compact-summary --exit-code
+    [1m[94m|[0m [1m[33m|________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/ollama_ollama__test.yaml:21:3
+   [1m[94m|[0m
+[1m[94m21 |[0m [1m[33m/[0m   changes:
+[1m[94m22 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m38 |[0m [1m[33m|[0m
+[1m[94m39 |[0m [1m[33m|[0m           echo changed=$(changed 'llama/llama.cpp/**/*' 'ml/backend/ggml/ggml/**/*') | tee -a $GITHUB_OUTPUT
+   [1m[94m|[0m [1m[33m|[0m                                                                                                            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                                              [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                                              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/ollama_ollama__test.yaml:41:3
+   [1m[94m|[0m
+[1m[94m41 |[0m [1m[33m/[0m   linux:
+[1m[94m42 |[0m [1m[33m|[0m     needs: [changes]
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m70 |[0m [1m[33m|[0m           cmake --preset ${{ matrix.preset }} ${{ matrix.flags }}
+[1m[94m71 |[0m [1m[33m|[0m           cmake --build --preset ${{ matrix.preset }} --parallel
+   [1m[94m|[0m [1m[33m|[0m                                                                [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________________________________________________________|[0m
+   [1m[94m|[0m                                                                  [1m[33mthis job[0m
+   [1m[94m|[0m                                                                  [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/ollama_ollama__test.yaml:73:3
+    [1m[94m|[0m
+[1m[94m 73 |[0m [1m[33m/[0m   windows:
+[1m[94m 74 |[0m [1m[33m|[0m     needs: [changes]
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m143 |[0m [1m[33m|[0m         env:
+[1m[94m144 |[0m [1m[33m|[0m           CMAKE_GENERATOR: Ninja
+    [1m[94m|[0m [1m[33m|[0m                                [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|________________________________|[0m
+    [1m[94m|[0m                                  [1m[33mthis job[0m
+    [1m[94m|[0m                                  [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/ollama_ollama__test.yaml:146:3
+    [1m[94m|[0m
+[1m[94m146 |[0m [1m[33m/[0m   go_mod_tidy:
+[1m[94m147 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m150 |[0m [1m[33m|[0m       - name: check that 'go mod tidy' is clean
+[1m[94m151 |[0m [1m[33m|[0m         run: go mod tidy --diff || (echo "Please run 'go mod tidy'." && exit 1)
+    [1m[94m|[0m [1m[33m|[0m                                                                               [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_______________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                 [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                 [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/ollama_ollama__test.yaml:153:3
+    [1m[94m|[0m
+[1m[94m153 |[0m [1m[33m/[0m   test:
+[1m[94m154 |[0m [1m[33m|[0m     strategy:
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m234 |[0m [1m[33m|[0m           # cached changes (e.g. path above changes).
+[1m[94m235 |[0m [1m[33m|[0m           key: ${{ github.job }}-${{ runner.os }}-${{ matrix.goarch }}-${{ matrix.buildflags }}-go-3-${{ hashFiles('**/go.sum') }}-${{ github.run_id }}
+    [1m[94m|[0m [1m[33m|[0m                                                                                                                                                       [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_______________________________________________________________________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                                                                         [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                                                                         [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/ollama_ollama__test.yaml:237:3
+    [1m[94m|[0m
+[1m[94m237 |[0m [1m[33m/[0m   patches:
+[1m[94m238 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m243 |[0m [1m[33m|[0m           make -f Makefile.sync clean checkout apply-patches sync
+[1m[94m244 |[0m [1m[33m|[0m           git diff --compact-summary --exit-code
+    [1m[94m|[0m [1m[33m|[0m                                                [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|________________________________________________|[0m
+    [1m[94m|[0m                                                  [1m[33mthis job[0m
+    [1m[94m|[0m                                                  [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/ollama_ollama__test.yaml:100:9
+    [1m[94m|[0m
+[1m[94m100 |[0m           name: Install CUDA ${{ matrix.cuda-version }}
+    [1m[94m|[0m           [1m[94m---------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m101 |[0m [1m[94m/[0m         run: |
+[1m[94m102 |[0m [1m[94m|[0m           $ErrorActionPreference = "Stop"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m108 |[0m [1m[94m|[0m           $cudaPath = (Resolve-Path "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\*").path
+[1m[94m109 |[0m [1m[94m|[0m           echo "$cudaPath\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+    [1m[94m|[0m [1m[94m|___________________________________________________________________________________________-[0m [1m[94minfo: steps.cache-install.outputs.cache-hit may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/ollama_ollama__test.yaml:111:9
+    [1m[94m|[0m
+[1m[94m111 |[0m           name: Install ROCm ${{ matrix.rocm-version }}
+    [1m[94m|[0m           [1m[94m---------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m112 |[0m [1m[94m/[0m         run: |
+[1m[94m113 |[0m [1m[94m|[0m           $ErrorActionPreference = "Stop"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m124 |[0m [1m[94m|[0m           echo "HIP_PLATFORM=amd" | Out-File -FilePath $env:GITHUB_ENV -Append
+[1m[94m125 |[0m [1m[94m|[0m           echo "CMAKE_PREFIX_PATH=$hipPath" | Out-File -FilePath $env:GITHUB_ENV -Append
+    [1m[94m|[0m [1m[94m|________________________________________________________________________________________-[0m [1m[94minfo: steps.cache-install.outputs.cache-hit may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/ollama_ollama__test.yaml:213:9
+    [1m[94m|[0m
+[1m[94m213 |[0m       - uses: golangci/golangci-lint-action@v6
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m31[39m findings ([1m[93m15[39m suppressed[0m): 0 unknown, [35m2[39m informational, [36m0[39m low, [33m13[39m medium, [31m1[39m high

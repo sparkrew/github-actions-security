@@ -1,0 +1,262 @@
+{
+  "workflow": "n8n-io_n8n__release-publish.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "n8n-io_n8n__release-publish.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 10,
+        "by_rule": {
+          "unpinned-github-actions": 10
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1",
+          "line": 22,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0",
+          "line": 25,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/cache/save@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0",
+          "line": 38,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: ncipollo/release-action@440c8c1cb0ed28b9f43e4d1d670870f059653174 # v1",
+          "line": 77,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1",
+          "line": 94,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/cache/save@1bd1e32a3bdc45362d1e726936510720a7c30a57 # actions/cache/save@1bd1e32a3bdc45362d1e726936510720a7c30a57",
+          "line": 96,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: getsentry/action-release@e769183448303de84c5a06aaaddf9da7be26d6c7 # v1.7.0",
+          "line": 101,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: getsentry/action-release@e769183448303de84c5a06aaaddf9da7be26d6c7 # v1.7.0",
+          "line": 108,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: getsentry/action-release@e769183448303de84c5a06aaaddf9da7be26d6c7 # v1.7.0",
+          "line": 115,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "#     - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11",
+          "line": 135,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "n8n-io_n8n__release-publish.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 8,
+          "reason": "dependency not pinned by hash detected -- score normalized to 8",
+          "lines": [
+            34
+          ],
+          "raw_details": [
+            "Warn: npmCommand not pinned by hash: .github/workflows/n8n-io_n8n__release-publish.yml:34",
+            "Info:   5 out of   5 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   4 out of   4 third-party GitHubAction dependencies pinned",
+            "Info:   0 out of   1 npmCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "automatic-hardening-check"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            89
+          ],
+          "raw_details": [
+            "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/n8n-io_n8n__release-publish.yml:89",
+            "Warn: no topLevel permission defined: .github/workflows/n8n-io_n8n__release-publish.yml:1"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "permissions-check"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "n8n-io_n8n__release-publish.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 9,
+        "by_rule": {
+          "artipacked": 2,
+          "excessive-permissions": 4,
+          "template-injection": 2,
+          "secrets-inherit": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "n8n-io_n8n__release-publish.yml",
+          "line": 23,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "n8n-io_n8n__release-publish.yml",
+          "line": 113,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "n8n-io_n8n__release-publish.yml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "n8n-io_n8n__release-publish.yml",
+          "line": 72,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "n8n-io_n8n__release-publish.yml",
+          "line": 102,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "n8n-io_n8n__release-publish.yml",
+          "line": 144,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "n8n-io_n8n__release-publish.yml",
+          "line": 62,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "n8n-io_n8n__release-publish.yml",
+          "line": 150,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "secrets-inherit",
+          "level": "warning",
+          "message": "secrets unconditionally inherited by called workflow",
+          "workflow": "n8n-io_n8n__release-publish.yml",
+          "line": 75,
+          "column": 5,
+          "note": "audit confidence \u2192 High",
+          "capability": "secrets-check"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "n8n-io_n8n__release-publish.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 1
+      },
+      "findings": [
+        {
+          "line": 75,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/docker-build-push.yml\": open /home/huawei/github-actions-security/.github/workflows/docker-build-push.yml: no such file or directory [workflow-call]",
+          "capability": "workflow_structural_check"
+        }
+      ]
+    }
+  }
+}

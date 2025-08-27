@@ -1,0 +1,12 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+ [1m[94m-->[0m ../.github/workflows/flutter_flutter__labeler.yml:6:1
+  [1m[94m|[0m
+[1m[94m6 |[0m [1m[91m/[0m on:
+[1m[94m7 |[0m [1m[91m|[0m - pull_request_target
+[1m[94m8 |[0m [1m[91m|[0m
+[1m[94m9 |[0m [1m[91m|[0m # Declare default permissions as read only.
+  [1m[94m|[0m [1m[91m|___________________________________________^[0m [1m[91mpull_request_target is almost always used insecurely[0m
+  [1m[94m|[0m
+  [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m2[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m0[39m medium, [31m1[39m high

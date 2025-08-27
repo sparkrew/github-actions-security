@@ -1,0 +1,25 @@
+name: JavaScript
+on:
+push:
+branches: ['main']
+paths: ['codes/javascript/**/*.js']
+pull_request:
+branches: ['main']
+paths: ['codes/javascript/**/*.js']
+workflow_dispatch:
+jobs:
+build:
+runs-on: ${{ matrix.os }}
+strategy:
+matrix:
+os: [ubuntu-latest, macos-latest, windows-latest]
+steps:
+- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2
+- uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | v4.4.0
+with:
+node-version: 20.x
+- uses: denoland/setup-deno@11b63cf76cfcafb4e43f97b6cad24d8e8438f62d # denoland/setup-deno@v1 | v1.5.2
+with:
+deno-version: v1.x
+- name: Run JavaScript Code
+run: deno run -A codes/javascript/test_all.js

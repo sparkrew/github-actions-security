@@ -1,0 +1,96 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push-caller.yml:22:11
+   [1m[94m|[0m
+[1m[94m22 |[0m           - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m___________-[0m
+[1m[94m23 |[0m [1m[33m|[0m           with: 
+[1m[94m24 |[0m [1m[33m|[0m             fetch-depth: "2"
+   [1m[94m|[0m [1m[33m|____________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push-caller.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m # Used to trigger self-push CI
+[1m[94m 2 |[0m [1m[33m|[0m name: Self-hosted runner (push-caller)
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m53 |[0m [1m[33m|[0m       - name: Trigger push CI via workflow_run
+[1m[94m54 |[0m [1m[33m|[0m         run: echo "Trigger push CI via workflow_run"
+   [1m[94m|[0m [1m[33m|_____________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push-caller.yml:16:3
+   [1m[94m|[0m
+[1m[94m16 |[0m [1m[33m/[0m   check-for-setup:
+[1m[94m17 |[0m [1m[33m|[0m       runs-on: ubuntu-22.04
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m36 |[0m [1m[33m|[0m               fi
+[1m[94m37 |[0m [1m[33m|[0m             done
+   [1m[94m|[0m [1m[33m|[0m                [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________|[0m
+   [1m[94m|[0m                  [1m[33mthis job[0m
+   [1m[94m|[0m                  [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push-caller.yml:39:3
+   [1m[94m|[0m
+[1m[94m39 |[0m [1m[33m/[0m   build-docker-containers:
+[1m[94m40 |[0m [1m[33m|[0m     needs: check-for-setup
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m44 |[0m [1m[33m|[0m       image_postfix: "-push-ci"
+[1m[94m45 |[0m [1m[33m|[0m     secrets: inherit
+   [1m[94m|[0m [1m[33m|[0m                    [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________|[0m
+   [1m[94m|[0m                      [1m[33mthis job[0m
+   [1m[94m|[0m                      [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push-caller.yml:47:3
+   [1m[94m|[0m
+[1m[94m47 |[0m [1m[33m/[0m   run_push_ci:
+[1m[94m48 |[0m [1m[33m|[0m     name: Trigger Push CI
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m53 |[0m [1m[33m|[0m       - name: Trigger push CI via workflow_run
+[1m[94m54 |[0m [1m[33m|[0m         run: echo "Trigger push CI via workflow_run"
+   [1m[94m|[0m [1m[33m|[0m                                                     [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________________________________________________|[0m
+   [1m[94m|[0m                                                       [1m[33mthis job[0m
+   [1m[94m|[0m                                                       [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push-caller.yml:30:11
+   [1m[94m|[0m
+[1m[94m30 |[0m           - name: Was setup changed 
+   [1m[94m|[0m             [1m[94m-----------------------[0m [1m[94minfo: this step[0m
+[1m[94m31 |[0m             id: was_changed
+[1m[94m32 |[0m [1m[94m/[0m           run: |
+[1m[94m33 |[0m [1m[94m|[0m             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m36 |[0m [1m[94m|[0m               fi
+[1m[94m37 |[0m [1m[94m|[0m             done
+   [1m[94m|[0m [1m[94m|________________-[0m [1m[94minfo: steps.changed-files.outputs.all_changed_files may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-push-caller.yml:42:5
+   [1m[94m|[0m
+[1m[94m42 |[0m     uses: ./.github/workflows/build-docker-images.yml
+   [1m[94m|[0m     [1m[33m-------------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m43 |[0m     with:
+[1m[94m44 |[0m       image_postfix: "-push-ci"
+[1m[94m45 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m8[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m6[39m medium, [31m0[39m high

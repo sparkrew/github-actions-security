@@ -1,0 +1,31 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+  [1m[94m-->[0m ../.github/workflows/EbookFoundation_free-programming-books__detect-conflicting-prs.yml:3:1
+   [1m[94m|[0m
+[1m[94m 3 |[0m [1m[91m/[0m on:
+[1m[94m 4 |[0m [1m[91m|[0m   workflow_dispatch:              # manually
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m 9 |[0m [1m[91m|[0m     types:
+[1m[94m10 |[0m [1m[91m|[0m       - synchronize               #   pushing more commits
+   [1m[94m|[0m [1m[91m|__________________________________________________________^[0m [1m[91mpull_request_target is almost always used insecurely[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/EbookFoundation_free-programming-books__detect-conflicting-prs.yml:46:9
+   [1m[94m|[0m
+[1m[94m46 |[0m       - name: Print outputs
+   [1m[94m|[0m         [1m[94m-------------------[0m [1m[94minfo: this step[0m
+[1m[94m47 |[0m         run: echo ${{ join(steps.pr-labeler.outputs.*, ',') }}
+   [1m[94m|[0m         [1m[94m------------------------------------------------------[0m [1m[94minfo: steps.pr-labeler.outputs.* may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/EbookFoundation_free-programming-books__detect-conflicting-prs.yml:32:9
+   [1m[94m|[0m
+[1m[94m32 |[0m         uses: eps1lon/actions-label-merge-conflict@v3.0.3
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m5[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m0[39m medium, [31m2[39m high

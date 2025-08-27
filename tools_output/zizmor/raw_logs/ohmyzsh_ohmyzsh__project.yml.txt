@@ -1,0 +1,87 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+ [1m[94m-->[0m ../.github/workflows/ohmyzsh_ohmyzsh__project.yml:2:1
+  [1m[94m|[0m
+[1m[94m2 |[0m [1m[91m/[0m on:
+[1m[94m3 |[0m [1m[91m|[0m   issues:
+[1m[94m4 |[0m [1m[91m|[0m     types: [opened, reopened]
+[1m[94m5 |[0m [1m[91m|[0m   pull_request_target:
+[1m[94m6 |[0m [1m[91m|[0m     types: [opened, reopened, synchronize]
+  [1m[94m|[0m [1m[91m|__________________________________________^[0m [1m[91mpull_request_target is almost always used insecurely[0m
+  [1m[94m|[0m
+  [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/ohmyzsh_ohmyzsh__project.yml:25:9
+   [1m[94m|[0m
+[1m[94m25 |[0m       - name: Store app token
+   [1m[94m|[0m         [1m[94m---------------------[0m [1m[94minfo: this step[0m
+[1m[94m26 |[0m         run: echo "GH_TOKEN=${{ steps.generate_token.outputs.token }}" >> "$GITHUB_ENV"
+   [1m[94m|[0m         [1m[94m-------------------------------------------------------------------------------[0m [1m[94minfo: steps.generate_token.outputs.token may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/ohmyzsh_ohmyzsh__project.yml:21:9
+   [1m[94m|[0m
+[1m[94m21 |[0m         uses: ohmyzsh/github-app-token@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#github-env\github-env]8;;\][0m: [1mdangerous use of environment file[0m
+  [1m[94m-->[0m ../.github/workflows/ohmyzsh_ohmyzsh__project.yml:26:9
+   [1m[94m|[0m
+[1m[94m26 |[0m         run: echo "GH_TOKEN=${{ steps.generate_token.outputs.token }}" >> "$GITHUB_ENV"
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mwrite to GITHUB_ENV may allow code execution[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#github-env\github-env]8;;\][0m: [1mdangerous use of environment file[0m
+  [1m[94m-->[0m ../.github/workflows/ohmyzsh_ohmyzsh__project.yml:31:9
+   [1m[94m|[0m
+[1m[94m31 |[0m [1m[91m/[0m         run: |
+[1m[94m32 |[0m [1m[91m|[0m           # Get Project data
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m54 |[0m [1m[91m|[0m           THEME_FIELD_ID=$(jq '.data.organization.projectV2.fields.nodes[] | select(.name == "Theme") | .id' project_data.json)
+[1m[94m55 |[0m [1m[91m|[0m           EOF
+   [1m[94m|[0m [1m[91m|_____________^[0m [1m[91mwrite to GITHUB_ENV may allow code execution[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#github-env\github-env]8;;\][0m: [1mdangerous use of environment file[0m
+  [1m[94m-->[0m ../.github/workflows/ohmyzsh_ohmyzsh__project.yml:60:9
+   [1m[94m|[0m
+[1m[94m60 |[0m [1m[91m/[0m         run: |
+[1m[94m61 |[0m [1m[91m|[0m           item_id="$(gh api graphql -f query='
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m70 |[0m [1m[91m|[0m
+[1m[94m71 |[0m [1m[91m|[0m           echo "ITEM_ID=$item_id" >> $GITHUB_ENV
+   [1m[94m|[0m [1m[91m|________________________________________________^[0m [1m[91mwrite to GITHUB_ENV may allow code execution[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#github-env\github-env]8;;\][0m: [1mdangerous use of environment file[0m
+   [1m[94m-->[0m ../.github/workflows/ohmyzsh_ohmyzsh__project.yml:75:9
+    [1m[94m|[0m
+[1m[94m 75 |[0m [1m[91m/[0m         run: |
+[1m[94m 76 |[0m [1m[91m|[0m           touch plugins.list themes.list
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m103 |[0m [1m[91m|[0m             echo "THEME=$(cat themes.list)" >> $GITHUB_ENV
+[1m[94m104 |[0m [1m[91m|[0m           fi
+    [1m[94m|[0m [1m[91m|____________^[0m [1m[91mwrite to GITHUB_ENV may allow code execution[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#github-env\github-env]8;;\][0m: [1mdangerous use of environment file[0m
+   [1m[94m-->[0m ../.github/workflows/ohmyzsh_ohmyzsh__project.yml:75:9
+    [1m[94m|[0m
+[1m[94m 75 |[0m [1m[91m/[0m         run: |
+[1m[94m 76 |[0m [1m[91m|[0m           touch plugins.list themes.list
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m103 |[0m [1m[91m|[0m             echo "THEME=$(cat themes.list)" >> $GITHUB_ENV
+[1m[94m104 |[0m [1m[91m|[0m           fi
+    [1m[94m|[0m [1m[91m|____________^[0m [1m[91mwrite to GITHUB_ENV may allow code execution[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m11[39m findings ([1m[93m3[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m0[39m medium, [31m7[39m high

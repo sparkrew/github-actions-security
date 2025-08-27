@@ -1,0 +1,78 @@
+{
+  "workflow": "alibaba_ice__canary.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 7,
+    "by_rule": {
+      "artipacked": 2,
+      "excessive-permissions": 3,
+      "unpinned-uses": 1,
+      "cache-poisoning": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "alibaba_ice__canary.yml",
+      "line": 16,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "alibaba_ice__canary.yml",
+      "line": 35,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "alibaba_ice__canary.yml",
+      "line": 1,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "alibaba_ice__canary.yml",
+      "line": 9,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "alibaba_ice__canary.yml",
+      "line": 24,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "alibaba_ice__canary.yml",
+      "line": 39,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "cache-poisoning",
+      "level": "error",
+      "message": "runtime artifacts potentially vulnerable to a cache poisoning attack",
+      "workflow": "alibaba_ice__canary.yml",
+      "line": 3,
+      "column": 1,
+      "note": "audit confidence \u2192 Low"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__security-trivy-scan-callable.yml:24:9
+   [1m[94m|[0m
+[1m[94m24 |[0m         - name: Checkout code
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m25 |[0m [1m[33m|[0m         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+   [1m[94m|[0m [1m[33m|________________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__security-trivy-scan-callable.yml:21:3
+    [1m[94m|[0m
+[1m[94m 21 |[0m [1m[33m/[0m   security_scan:
+[1m[94m 22 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m122 |[0m [1m[33m|[0m
+[1m[94m123 |[0m [1m[33m|[0m             :point_right: <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Scan Results>
+    [1m[94m|[0m [1m[33m|[0m                                                                                                                                  [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|__________________________________________________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                                                    [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                                                    [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__security-trivy-scan-callable.yml:27:9
+   [1m[94m|[0m
+[1m[94m27 |[0m         - name: Pull Docker image
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m28 |[0m [1m[91m/[0m         run: |
+[1m[94m29 |[0m [1m[91m|[0m           docker pull ${{ inputs.image_ref }}
+   [1m[94m|[0m [1m[91m|_____________________________________________^[0m [1m[91minputs.image_ref may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m5[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m1[39m high

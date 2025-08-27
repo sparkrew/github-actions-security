@@ -1,0 +1,259 @@
+{
+  "workflow": "freeCodeCamp_freeCodeCamp__deploy-client.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "freeCodeCamp_freeCodeCamp__deploy-client.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "tailscale/github-action@v3",
+          "pinned": "tailscale/github-action@84a3f23bb4d843bcf4da6cf824ec1be473daf4de",
+          "line": 137,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "freeCodeCamp_freeCodeCamp__deploy-client.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4",
+          "line": 83,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4",
+          "line": 87,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4",
+          "line": 91,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: tailscale/github-action@84a3f23bb4d843bcf4da6cf824ec1be473daf4de # tailscale/github-action@v3 | v3.2.3",
+          "line": 127,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "freeCodeCamp_freeCodeCamp__deploy-client.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 6,
+          "reason": "dependency not pinned by hash detected -- score normalized to 6",
+          "lines": [
+            137
+          ],
+          "raw_details": [
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/freeCodeCamp_freeCodeCamp__deploy-client.yml:137",
+            "Info:   2 out of   2 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   1 out of   2 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "automatic-hardening-check"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            77,
+            78
+          ],
+          "raw_details": [
+            "Warn: jobLevel 'deployments' permission set to 'write': .github/workflows/freeCodeCamp_freeCodeCamp__deploy-client.yml:77",
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/freeCodeCamp_freeCodeCamp__deploy-client.yml:78",
+            "Warn: no topLevel permission defined: .github/workflows/freeCodeCamp_freeCodeCamp__deploy-client.yml:1"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "permissions-check"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "freeCodeCamp_freeCodeCamp__deploy-client.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "line": 137,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `tailscale/github-action@v3`",
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "freeCodeCamp_freeCodeCamp__deploy-client.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 10,
+        "by_rule": {
+          "artipacked": 1,
+          "excessive-permissions": 2,
+          "template-injection": 6,
+          "unpinned-uses": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "freeCodeCamp_freeCodeCamp__deploy-client.yml",
+          "line": 86,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "freeCodeCamp_freeCodeCamp__deploy-client.yml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "freeCodeCamp_freeCodeCamp__deploy-client.yml",
+          "line": 7,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "freeCodeCamp_freeCodeCamp__deploy-client.yml",
+          "line": 16,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "freeCodeCamp_freeCodeCamp__deploy-client.yml",
+          "line": 102,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "freeCodeCamp_freeCodeCamp__deploy-client.yml",
+          "line": 102,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "freeCodeCamp_freeCodeCamp__deploy-client.yml",
+          "line": 102,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "freeCodeCamp_freeCodeCamp__deploy-client.yml",
+          "line": 102,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "freeCodeCamp_freeCodeCamp__deploy-client.yml",
+          "line": 161,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "freeCodeCamp_freeCodeCamp__deploy-client.yml",
+          "line": 137,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "pinning-check"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,410 @@
+{
+  "workflow": "axios_axios__publish.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "axios_axios__publish.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 7,
+        "by_rule": {
+          "unpinned-github-actions": 7
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 21
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-node@v4",
+          "pinned": "actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "line": 26
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "ffurrer2/extract-release-notes@v2",
+          "pinned": "ffurrer2/extract-release-notes@cae32133495112d23e3569ad04fef240ba4e7bc8",
+          "line": 36
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "rickstaa/action-create-tag@v1",
+          "pinned": "rickstaa/action-create-tag@a1c7777fcb2fee4f19b0f283ba888afa11678b72",
+          "line": 41
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "ncipollo/release-action@v1",
+          "pinned": "ncipollo/release-action@bcfe5470707e8832e12347755757cec0eb3c22af",
+          "line": 51
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 67
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-node@v4",
+          "pinned": "actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "line": 75
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "axios_axios__publish.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 8,
+        "by_rule": {
+          "unpinned-github-actions": 8
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 21
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | v4.4.0",
+          "line": 26
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: martinbeentjes/npm-get-version-action@3cf273023a0dda27efcd3164bdfb51908dd46a5b # martinbeentjes/npm-get-version-action@main | v1.3.1",
+          "line": 33
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: ffurrer2/extract-release-notes@cae32133495112d23e3569ad04fef240ba4e7bc8 # ffurrer2/extract-release-notes@v2",
+          "line": 36
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: rickstaa/action-create-tag@a1c7777fcb2fee4f19b0f283ba888afa11678b72 # rickstaa/action-create-tag@v1",
+          "line": 41
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: ncipollo/release-action@bcfe5470707e8832e12347755757cec0eb3c22af # ncipollo/release-action@v1 | main,v1.18.0",
+          "line": 51
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 67
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | v4.4.0",
+          "line": 75
+        }
+      ]
+    },
+    "semgrep": {
+      "workflow": "axios_axios__publish.yml",
+      "tool": "semgrep",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "run-shell-injection": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "run-shell-injection",
+          "line": 84,
+          "code": "requires login",
+          "note": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+          "documentation": null
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "axios_axios__publish.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 3,
+          "reason": "dependency not pinned by hash detected -- score normalized to 3",
+          "lines": [
+            21,
+            26,
+            33,
+            36,
+            41,
+            51,
+            67,
+            75
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/axios_axios__publish.yml:21",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/axios_axios__publish.yml:26",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/axios_axios__publish.yml:33",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/axios_axios__publish.yml:36",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/axios_axios__publish.yml:41",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/axios_axios__publish.yml:51",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/axios_axios__publish.yml:67",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/axios_axios__publish.yml:75",
+            "Info:   0 out of   4 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   4 third-party GitHubAction dependencies pinned",
+            "Info:   2 out of   2 npmCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          }
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          }
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            15
+          ],
+          "raw_details": [
+            "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/axios_axios__publish.yml:15",
+            "Warn: no topLevel permission defined: .github/workflows/axios_axios__publish.yml:1"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          }
+        }
+      ]
+    },
+    "poutine": {
+      "workflow": "axios_axios__publish.yml",
+      "tool": "poutine",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "injection": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "injection",
+          "line": "84",
+          "column": "",
+          "job": "notify",
+          "step": "4",
+          "details": "Sources: github.event.inputs.tag || github.event.release.tag_name",
+          "event_triggers": [
+            "pull_request",
+            "workflow_dispatch"
+          ]
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "axios_axios__publish.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 8,
+        "by_rule": {
+          "unpinned-github-actions": 8
+        }
+      },
+      "findings": [
+        {
+          "line": 21,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+        },
+        {
+          "line": 26,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v4`"
+        },
+        {
+          "line": 33,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `martinbeentjes/npm-get-version-action@main`"
+        },
+        {
+          "line": 36,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `ffurrer2/extract-release-notes@v2`"
+        },
+        {
+          "line": 41,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `rickstaa/action-create-tag@v1`"
+        },
+        {
+          "line": 51,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `ncipollo/release-action@v1`"
+        },
+        {
+          "line": 67,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+        },
+        {
+          "line": 75,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v4`"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "axios_axios__publish.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 11,
+        "by_rule": {
+          "artipacked": 2,
+          "excessive-permissions": 2,
+          "template-injection": 3,
+          "unpinned-uses": 4
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "axios_axios__publish.yml",
+          "line": 21,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "axios_axios__publish.yml",
+          "line": 67,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "axios_axios__publish.yml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "axios_axios__publish.yml",
+          "line": 63,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "axios_axios__publish.yml",
+          "line": 59,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "axios_axios__publish.yml",
+          "line": 81,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "axios_axios__publish.yml",
+          "line": 81,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "axios_axios__publish.yml",
+          "line": 33,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "axios_axios__publish.yml",
+          "line": 36,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "axios_axios__publish.yml",
+          "line": 41,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "axios_axios__publish.yml",
+          "line": 51,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "axios_axios__publish.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 1
+      },
+      "findings": [
+        {
+          "line": 84,
+          "column": 63,
+          "message": "property \"tag\" is not defined in object type {} [expression]"
+        }
+      ]
+    }
+  }
+}

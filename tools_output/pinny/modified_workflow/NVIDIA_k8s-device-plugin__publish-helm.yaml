@@ -1,0 +1,46 @@
+name: Publish Helm Chart
+on:
+release:
+types:
+- published
+jobs:
+update-helm-charts:
+name: Update gh-pages branch helm charts and index
+runs-on: ubuntu-latest
+env:
+HELM_REPO_PATH: releases/helm-${{ github.event.release.tag_name }}/
+steps:
+- name: Install Helm
+uses: azure/setup-helm@b9e51907a09c216f16ebe8536097933489208112 # azure/setup-helm@v4.3.0 | releases
+with:
+version: 3.14.4
+- name: Check out repo
+uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2
+with:
+fetch-depth: 0
+- name: Update helm index
+env:
+GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+run: |
+git config user.name "Github Actions"
+git config user.email "no-reply@github.com"
+./hack/update-helm-index.sh --helm-repo-path $HELM_REPO_PATH --version ${{ github.event.release.tag_name }}
+- name: Push updated Helm charts and index to gh-pages branch
+run: |
+git -C $HELM_REPO_PATH push https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages
+publish-helm-repo:
+uses: ./.github/workflows/deploy-to-pages.yaml
+secrets: inherit
+check-helm-repo:
+name: Checks for updated Helm repo
+runs-on: ubuntu-latest
+steps:
+- name: Install Helm
+uses: azure/setup-helm@b9e51907a09c216f16ebe8536097933489208112 # azure/setup-helm@v4.3.0 | releases
+with:
+version: 3.14.4
+- name: Check help repo
+run: |
+helm repo add nvdp https://nvidia.github.io/k8s-device-plugin
+helm repo update
+helm search repo nvdp --version ${{ github.event.release.tag_name }} --fail-on-no-result

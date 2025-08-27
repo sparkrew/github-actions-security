@@ -1,0 +1,439 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:39:9
+   [1m[94m|[0m
+[1m[94m39 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:79:9
+   [1m[94m|[0m
+[1m[94m79 |[0m         - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m80 |[0m [1m[33m|[0m         with:
+[1m[94m81 |[0m [1m[33m|[0m           ref: builds/facebook-www
+   [1m[94m|[0m [1m[33m|__________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:92:9
+   [1m[94m|[0m
+[1m[94m92 |[0m         - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m93 |[0m [1m[33m|[0m         with:
+[1m[94m94 |[0m [1m[33m|[0m           ref: builds/facebook-fbsource
+   [1m[94m|[0m [1m[33m|_______________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:102:9
+    [1m[94m|[0m
+[1m[94m102 |[0m       - uses: actions/checkout@v4
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:216:9
+    [1m[94m|[0m
+[1m[94m216 |[0m         - uses: actions/checkout@v4
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m217 |[0m [1m[33m|[0m         with:
+[1m[94m218 |[0m [1m[33m|[0m           ref: builds/facebook-www
+    [1m[94m|[0m [1m[33m|__________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:307:9
+    [1m[94m|[0m
+[1m[94m307 |[0m         - uses: actions/checkout@v4
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m308 |[0m [1m[33m|[0m         with:
+[1m[94m309 |[0m [1m[33m|[0m           ref: builds/facebook-fbsource
+    [1m[94m|[0m [1m[33m|_______________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:3:1
+   [1m[94m|[0m
+[1m[94m 3 |[0m [1m[91m/[0m on:
+[1m[94m 4 |[0m [1m[91m|[0m   workflow_run:
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m22 |[0m [1m[91m|[0m         default: false
+[1m[94m23 |[0m [1m[91m|[0m         type: boolean
+   [1m[94m|[0m [1m[91m|_____________________^[0m [1m[91mworkflow_run is almost always used insecurely[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:53:9
+   [1m[94m|[0m
+[1m[94m53 |[0m   [1m[94m...[0m - name: Download artifacts for base revision
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m54 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m55 |[0m [1m[91m|[0m [1m[94m...[0m     GH_TOKEN=${{ github.token }} scripts/release/download-experimental-build.js --commit=${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }}
+   [1m[94m|[0m [1m[91m|_________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.commit_sha may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:53:9
+   [1m[94m|[0m
+[1m[94m53 |[0m   [1m[94m...[0m - name: Download artifacts for base revision
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m54 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m55 |[0m [1m[91m|[0m [1m[94m...[0m     GH_TOKEN=${{ github.token }} scripts/release/download-experimental-build.js --commit=${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }}
+   [1m[94m|[0m [1m[91m|_________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.workflow_run.head_sha may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:180:9
+    [1m[94m|[0m
+[1m[94m180 |[0m   [1m[94m...[0m - name: Add REVISION files
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m181 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m182 |[0m [1m[91m|[0m [1m[94m...[0m     echo ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} >> ./compiled/facebook-www/REVISION
+[1m[94m183 |[0m [1m[91m|[0m [1m[94m...[0m     cp ./compiled/facebook-www/REVISION ./compiled/facebook-www/REVISION_TRANSFORMS
+[1m[94m184 |[0m [1m[91m|[0m [1m[94m...[0m     echo ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} >> ./compiled-rn/facebook-fbsource/xplat/js/react-native-github/Libraries/Renderer/REVISION
+    [1m[94m|[0m [1m[91m|_____________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.commit_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:180:9
+    [1m[94m|[0m
+[1m[94m180 |[0m   [1m[94m...[0m - name: Add REVISION files
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m181 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m182 |[0m [1m[91m|[0m [1m[94m...[0m     echo ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} >> ./compiled/facebook-www/REVISION
+[1m[94m183 |[0m [1m[91m|[0m [1m[94m...[0m     cp ./compiled/facebook-www/REVISION ./compiled/facebook-www/REVISION_TRANSFORMS
+[1m[94m184 |[0m [1m[91m|[0m [1m[94m...[0m     echo ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} >> ./compiled-rn/facebook-fbsource/xplat/js/react-native-github/Libraries/Renderer/REVISION
+    [1m[94m|[0m [1m[91m|_____________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.workflow_run.head_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:180:9
+    [1m[94m|[0m
+[1m[94m180 |[0m   [1m[94m...[0m - name: Add REVISION files
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m181 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m182 |[0m [1m[91m|[0m [1m[94m...[0m     echo ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} >> ./compiled/facebook-www/REVISION
+[1m[94m183 |[0m [1m[91m|[0m [1m[94m...[0m     cp ./compiled/facebook-www/REVISION ./compiled/facebook-www/REVISION_TRANSFORMS
+[1m[94m184 |[0m [1m[91m|[0m [1m[94m...[0m     echo ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} >> ./compiled-rn/facebook-fbsource/xplat/js/react-native-github/Libraries/Renderer/REVISION
+    [1m[94m|[0m [1m[91m|_____________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.commit_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:180:9
+    [1m[94m|[0m
+[1m[94m180 |[0m   [1m[94m...[0m - name: Add REVISION files
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m181 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m182 |[0m [1m[91m|[0m [1m[94m...[0m     echo ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} >> ./compiled/facebook-www/REVISION
+[1m[94m183 |[0m [1m[91m|[0m [1m[94m...[0m     cp ./compiled/facebook-www/REVISION ./compiled/facebook-www/REVISION_TRANSFORMS
+[1m[94m184 |[0m [1m[91m|[0m [1m[94m...[0m     echo ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} >> ./compiled-rn/facebook-fbsource/xplat/js/react-native-github/Libraries/Renderer/REVISION
+    [1m[94m|[0m [1m[91m|_____________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.workflow_run.head_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:282:9
+    [1m[94m|[0m
+[1m[94m282 |[0m         - name: Check commit message
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m283 |[0m           if: inputs.dry_run
+[1m[94m284 |[0m [1m[91m/[0m         run: |
+[1m[94m285 |[0m [1m[91m|[0m           git fetch origin --quiet
+[1m[94m286 |[0m [1m[91m|[0m           git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} --no-patch --pretty=format:"%B"
+    [1m[94m|[0m [1m[91m|_______________________________________________________________________________________________________________________________^[0m [1m[91minputs.commit_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:282:9
+    [1m[94m|[0m
+[1m[94m282 |[0m         - name: Check commit message
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m283 |[0m           if: inputs.dry_run
+[1m[94m284 |[0m [1m[91m/[0m         run: |
+[1m[94m285 |[0m [1m[91m|[0m           git fetch origin --quiet
+[1m[94m286 |[0m [1m[91m|[0m           git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} --no-patch --pretty=format:"%B"
+    [1m[94m|[0m [1m[91m|_______________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.workflow_run.head_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:287:9
+    [1m[94m|[0m
+[1m[94m287 |[0m   [1m[94m...[0m - name: Commit changes to branch
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m288 |[0m   [1m[94m...[0m   if: inputs.force == true || steps.check_should_commit.outputs.should_commit == 'true'
+[1m[94m289 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m290 |[0m [1m[91m|[0m [1m[94m...[0m     git config --global user.email "${{ format('{0}@users.noreply.github.com', github.triggering_actor) }}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m293 |[0m [1m[91m|[0m [1m[94m...[0m     git fetch origin --quiet
+[1m[94m294 |[0m [1m[91m|[0m [1m[94m...[0m     git commit -m "$(git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} --no-patch --pretty=format:'%B%n%nDiffTrain build for [${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }}](https://github.com/facebook/react/commit/${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha}})')" || echo "No changes to commit"
+    [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.triggering_actor may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:287:9
+    [1m[94m|[0m
+[1m[94m287 |[0m   [1m[94m...[0m - name: Commit changes to branch
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m288 |[0m   [1m[94m...[0m   if: inputs.force == true || steps.check_should_commit.outputs.should_commit == 'true'
+[1m[94m289 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m290 |[0m [1m[91m|[0m [1m[94m...[0m     git config --global user.email "${{ format('{0}@users.noreply.github.com', github.triggering_actor) }}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m293 |[0m [1m[91m|[0m [1m[94m...[0m     git fetch origin --quiet
+[1m[94m294 |[0m [1m[91m|[0m [1m[94m...[0m     git commit -m "$(git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} --no-patch --pretty=format:'%B%n%nDiffTrain build for [${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }}](https://github.com/facebook/react/commit/${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha}})')" || echo "No changes to commit"
+    [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.triggering_actor may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:287:9
+    [1m[94m|[0m
+[1m[94m287 |[0m   [1m[94m...[0m - name: Commit changes to branch
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m288 |[0m   [1m[94m...[0m   if: inputs.force == true || steps.check_should_commit.outputs.should_commit == 'true'
+[1m[94m289 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m290 |[0m [1m[91m|[0m [1m[94m...[0m     git config --global user.email "${{ format('{0}@users.noreply.github.com', github.triggering_actor) }}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m293 |[0m [1m[91m|[0m [1m[94m...[0m     git fetch origin --quiet
+[1m[94m294 |[0m [1m[91m|[0m [1m[94m...[0m     git commit -m "$(git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} --no-patch --pretty=format:'%B%n%nDiffTrain build for [${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }}](https://github.com/facebook/react/commit/${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha}})')" || echo "No changes to commit"
+    [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.commit_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:287:9
+    [1m[94m|[0m
+[1m[94m287 |[0m   [1m[94m...[0m - name: Commit changes to branch
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m288 |[0m   [1m[94m...[0m   if: inputs.force == true || steps.check_should_commit.outputs.should_commit == 'true'
+[1m[94m289 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m290 |[0m [1m[91m|[0m [1m[94m...[0m     git config --global user.email "${{ format('{0}@users.noreply.github.com', github.triggering_actor) }}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m293 |[0m [1m[91m|[0m [1m[94m...[0m     git fetch origin --quiet
+[1m[94m294 |[0m [1m[91m|[0m [1m[94m...[0m     git commit -m "$(git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} --no-patch --pretty=format:'%B%n%nDiffTrain build for [${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }}](https://github.com/facebook/react/commit/${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha}})')" || echo "No changes to commit"
+    [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.workflow_run.head_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:287:9
+    [1m[94m|[0m
+[1m[94m287 |[0m   [1m[94m...[0m - name: Commit changes to branch
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m288 |[0m   [1m[94m...[0m   if: inputs.force == true || steps.check_should_commit.outputs.should_commit == 'true'
+[1m[94m289 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m290 |[0m [1m[91m|[0m [1m[94m...[0m     git config --global user.email "${{ format('{0}@users.noreply.github.com', github.triggering_actor) }}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m293 |[0m [1m[91m|[0m [1m[94m...[0m     git fetch origin --quiet
+[1m[94m294 |[0m [1m[91m|[0m [1m[94m...[0m     git commit -m "$(git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} --no-patch --pretty=format:'%B%n%nDiffTrain build for [${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }}](https://github.com/facebook/react/commit/${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha}})')" || echo "No changes to commit"
+    [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.commit_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:287:9
+    [1m[94m|[0m
+[1m[94m287 |[0m   [1m[94m...[0m - name: Commit changes to branch
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m288 |[0m   [1m[94m...[0m   if: inputs.force == true || steps.check_should_commit.outputs.should_commit == 'true'
+[1m[94m289 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m290 |[0m [1m[91m|[0m [1m[94m...[0m     git config --global user.email "${{ format('{0}@users.noreply.github.com', github.triggering_actor) }}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m293 |[0m [1m[91m|[0m [1m[94m...[0m     git fetch origin --quiet
+[1m[94m294 |[0m [1m[91m|[0m [1m[94m...[0m     git commit -m "$(git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} --no-patch --pretty=format:'%B%n%nDiffTrain build for [${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }}](https://github.com/facebook/react/commit/${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha}})')" || echo "No changes to commit"
+    [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.workflow_run.head_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:287:9
+    [1m[94m|[0m
+[1m[94m287 |[0m   [1m[94m...[0m - name: Commit changes to branch
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m288 |[0m   [1m[94m...[0m   if: inputs.force == true || steps.check_should_commit.outputs.should_commit == 'true'
+[1m[94m289 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m290 |[0m [1m[91m|[0m [1m[94m...[0m     git config --global user.email "${{ format('{0}@users.noreply.github.com', github.triggering_actor) }}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m293 |[0m [1m[91m|[0m [1m[94m...[0m     git fetch origin --quiet
+[1m[94m294 |[0m [1m[91m|[0m [1m[94m...[0m     git commit -m "$(git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} --no-patch --pretty=format:'%B%n%nDiffTrain build for [${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }}](https://github.com/facebook/react/commit/${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha}})')" || echo "No changes to commit"
+    [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.commit_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:287:9
+    [1m[94m|[0m
+[1m[94m287 |[0m   [1m[94m...[0m - name: Commit changes to branch
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m288 |[0m   [1m[94m...[0m   if: inputs.force == true || steps.check_should_commit.outputs.should_commit == 'true'
+[1m[94m289 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m290 |[0m [1m[91m|[0m [1m[94m...[0m     git config --global user.email "${{ format('{0}@users.noreply.github.com', github.triggering_actor) }}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m293 |[0m [1m[91m|[0m [1m[94m...[0m     git fetch origin --quiet
+[1m[94m294 |[0m [1m[91m|[0m [1m[94m...[0m     git commit -m "$(git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} --no-patch --pretty=format:'%B%n%nDiffTrain build for [${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }}](https://github.com/facebook/react/commit/${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha}})')" || echo "No changes to commit"
+    [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.workflow_run.head_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:456:9
+    [1m[94m|[0m
+[1m[94m456 |[0m         - name: Check commit message
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m457 |[0m           if: inputs.dry_run
+[1m[94m458 |[0m [1m[91m/[0m         run: |
+[1m[94m459 |[0m [1m[91m|[0m           git fetch origin --quiet
+[1m[94m460 |[0m [1m[91m|[0m           git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} --no-patch --pretty=format:"%B"
+    [1m[94m|[0m [1m[91m|_______________________________________________________________________________________________________________________________^[0m [1m[91minputs.commit_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:456:9
+    [1m[94m|[0m
+[1m[94m456 |[0m         - name: Check commit message
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m457 |[0m           if: inputs.dry_run
+[1m[94m458 |[0m [1m[91m/[0m         run: |
+[1m[94m459 |[0m [1m[91m|[0m           git fetch origin --quiet
+[1m[94m460 |[0m [1m[91m|[0m           git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} --no-patch --pretty=format:"%B"
+    [1m[94m|[0m [1m[91m|_______________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.workflow_run.head_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:461:9
+    [1m[94m|[0m
+[1m[94m461 |[0m   [1m[94m...[0m - name: Commit changes to branch
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m462 |[0m   [1m[94m...[0m   if: inputs.force == true || steps.check_should_commit.outputs.should_commit == 'true'
+[1m[94m463 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m464 |[0m [1m[91m|[0m [1m[94m...[0m     git config --global user.email "${{ format('{0}@users.noreply.github.com', github.triggering_actor) }}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m467 |[0m [1m[91m|[0m [1m[94m...[0m     git fetch origin --quiet
+[1m[94m468 |[0m [1m[91m|[0m [1m[94m...[0m     git commit -m "$(git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} --no-patch --pretty=format:'%B%n%nDiffTrain build for [${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }}](https://github.com/facebook/react/commit/${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha}})')" || echo "No changes to commit"
+    [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.triggering_actor may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:461:9
+    [1m[94m|[0m
+[1m[94m461 |[0m   [1m[94m...[0m - name: Commit changes to branch
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m462 |[0m   [1m[94m...[0m   if: inputs.force == true || steps.check_should_commit.outputs.should_commit == 'true'
+[1m[94m463 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m464 |[0m [1m[91m|[0m [1m[94m...[0m     git config --global user.email "${{ format('{0}@users.noreply.github.com', github.triggering_actor) }}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m467 |[0m [1m[91m|[0m [1m[94m...[0m     git fetch origin --quiet
+[1m[94m468 |[0m [1m[91m|[0m [1m[94m...[0m     git commit -m "$(git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} --no-patch --pretty=format:'%B%n%nDiffTrain build for [${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }}](https://github.com/facebook/react/commit/${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha}})')" || echo "No changes to commit"
+    [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.triggering_actor may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:461:9
+    [1m[94m|[0m
+[1m[94m461 |[0m   [1m[94m...[0m - name: Commit changes to branch
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m462 |[0m   [1m[94m...[0m   if: inputs.force == true || steps.check_should_commit.outputs.should_commit == 'true'
+[1m[94m463 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m464 |[0m [1m[91m|[0m [1m[94m...[0m     git config --global user.email "${{ format('{0}@users.noreply.github.com', github.triggering_actor) }}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m467 |[0m [1m[91m|[0m [1m[94m...[0m     git fetch origin --quiet
+[1m[94m468 |[0m [1m[91m|[0m [1m[94m...[0m     git commit -m "$(git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} --no-patch --pretty=format:'%B%n%nDiffTrain build for [${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }}](https://github.com/facebook/react/commit/${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha}})')" || echo "No changes to commit"
+    [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.commit_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:461:9
+    [1m[94m|[0m
+[1m[94m461 |[0m   [1m[94m...[0m - name: Commit changes to branch
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m462 |[0m   [1m[94m...[0m   if: inputs.force == true || steps.check_should_commit.outputs.should_commit == 'true'
+[1m[94m463 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m464 |[0m [1m[91m|[0m [1m[94m...[0m     git config --global user.email "${{ format('{0}@users.noreply.github.com', github.triggering_actor) }}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m467 |[0m [1m[91m|[0m [1m[94m...[0m     git fetch origin --quiet
+[1m[94m468 |[0m [1m[91m|[0m [1m[94m...[0m     git commit -m "$(git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} --no-patch --pretty=format:'%B%n%nDiffTrain build for [${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }}](https://github.com/facebook/react/commit/${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha}})')" || echo "No changes to commit"
+    [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.workflow_run.head_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:461:9
+    [1m[94m|[0m
+[1m[94m461 |[0m   [1m[94m...[0m - name: Commit changes to branch
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m462 |[0m   [1m[94m...[0m   if: inputs.force == true || steps.check_should_commit.outputs.should_commit == 'true'
+[1m[94m463 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m464 |[0m [1m[91m|[0m [1m[94m...[0m     git config --global user.email "${{ format('{0}@users.noreply.github.com', github.triggering_actor) }}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m467 |[0m [1m[91m|[0m [1m[94m...[0m     git fetch origin --quiet
+[1m[94m468 |[0m [1m[91m|[0m [1m[94m...[0m     git commit -m "$(git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} --no-patch --pretty=format:'%B%n%nDiffTrain build for [${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }}](https://github.com/facebook/react/commit/${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha}})')" || echo "No changes to commit"
+    [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.commit_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:461:9
+    [1m[94m|[0m
+[1m[94m461 |[0m   [1m[94m...[0m - name: Commit changes to branch
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m462 |[0m   [1m[94m...[0m   if: inputs.force == true || steps.check_should_commit.outputs.should_commit == 'true'
+[1m[94m463 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m464 |[0m [1m[91m|[0m [1m[94m...[0m     git config --global user.email "${{ format('{0}@users.noreply.github.com', github.triggering_actor) }}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m467 |[0m [1m[91m|[0m [1m[94m...[0m     git fetch origin --quiet
+[1m[94m468 |[0m [1m[91m|[0m [1m[94m...[0m     git commit -m "$(git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} --no-patch --pretty=format:'%B%n%nDiffTrain build for [${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }}](https://github.com/facebook/react/commit/${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha}})')" || echo "No changes to commit"
+    [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.workflow_run.head_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:461:9
+    [1m[94m|[0m
+[1m[94m461 |[0m   [1m[94m...[0m - name: Commit changes to branch
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m462 |[0m   [1m[94m...[0m   if: inputs.force == true || steps.check_should_commit.outputs.should_commit == 'true'
+[1m[94m463 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m464 |[0m [1m[91m|[0m [1m[94m...[0m     git config --global user.email "${{ format('{0}@users.noreply.github.com', github.triggering_actor) }}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m467 |[0m [1m[91m|[0m [1m[94m...[0m     git fetch origin --quiet
+[1m[94m468 |[0m [1m[91m|[0m [1m[94m...[0m     git commit -m "$(git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} --no-patch --pretty=format:'%B%n%nDiffTrain build for [${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }}](https://github.com/facebook/react/commit/${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha}})')" || echo "No changes to commit"
+    [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.commit_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react__runtime_commit_artifacts.yml:461:9
+    [1m[94m|[0m
+[1m[94m461 |[0m   [1m[94m...[0m - name: Commit changes to branch
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m462 |[0m   [1m[94m...[0m   if: inputs.force == true || steps.check_should_commit.outputs.should_commit == 'true'
+[1m[94m463 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m464 |[0m [1m[91m|[0m [1m[94m...[0m     git config --global user.email "${{ format('{0}@users.noreply.github.com', github.triggering_actor) }}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m467 |[0m [1m[91m|[0m [1m[94m...[0m     git fetch origin --quiet
+[1m[94m468 |[0m [1m[91m|[0m [1m[94m...[0m     git commit -m "$(git show ${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }} --no-patch --pretty=format:'%B%n%nDiffTrain build for [${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha }}](https://github.com/facebook/react/commit/${{ inputs.commit_sha || github.event.workflow_run.head_sha || github.sha}})')" || echo "No changes to commit"
+    [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.workflow_run.head_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m49[39m findings ([1m[93m16[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m6[39m medium, [31m27[39m high

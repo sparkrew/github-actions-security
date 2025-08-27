@@ -1,0 +1,185 @@
+{
+  "workflow": "google_auto__ci.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "google_auto__ci.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 10,
+        "by_rule": {
+          "unpinned-github-actions": 10
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: styfle/cancel-workflow-action@85880fa0301c86cca9da44039ee3bb12d3bedbfa",
+          "line": 19
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 23
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684",
+          "line": 25
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00",
+          "line": 32
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 49
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684",
+          "line": 51
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00",
+          "line": 58
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 77
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684",
+          "line": 79
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00",
+          "line": 86
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "google_auto__ci.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          }
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/google_auto__ci.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          }
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "google_auto__ci.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 7,
+        "by_rule": {
+          "artipacked": 3,
+          "excessive-permissions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_auto__ci.yml",
+          "line": 24,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_auto__ci.yml",
+          "line": 51,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_auto__ci.yml",
+          "line": 80,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "google_auto__ci.yml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "google_auto__ci.yml",
+          "line": 12,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "google_auto__ci.yml",
+          "line": 45,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "google_auto__ci.yml",
+          "line": 74,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        }
+      ]
+    }
+  }
+}

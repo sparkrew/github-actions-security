@@ -1,0 +1,37 @@
+name: Image
+on:
+workflow_call:
+inputs:
+version:
+required: true
+type: string
+build_multi_arch_images:
+required: true
+type: string
+jobs:
+build:
+runs-on: linux-amd64-cpu4
+steps:
+- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2
+name: Check out code
+- name: Set up QEMU
+uses: docker/setup-qemu-action@29109295f81e9208d7d86ff1c6c12d2833863392 # docker/setup-qemu-action@v3 | v3.6.0
+with:
+image: tonistiigi/binfmt:master
+- name: Set up Docker Buildx
+uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435 # docker/setup-buildx-action@v3 | master,v3.11.1
+- name: Login to GitHub Container Registry
+uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # docker/login-action@v3 | v3.4.0
+with:
+registry: ghcr.io
+username: ${{ github.actor }}
+password: ${{ secrets.GITHUB_TOKEN }}
+- name: Build image
+env:
+IMAGE_NAME: ghcr.io/nvidia/k8s-device-plugin
+VERSION: ${{ inputs.version }}
+PUSH_ON_BUILD: true
+BUILD_MULTI_ARCH_IMAGES: ${{ inputs.build_multi_arch_images }}
+run: |
+echo "${VERSION}"
+make -f deployments/container/Makefile build

@@ -1,0 +1,22 @@
+name: 'Tests: pretest/posttest'
+on: [pull_request, push]
+jobs:
+pretest:
+runs-on: ubuntu-latest
+strategy:
+fail-fast: false
+matrix:
+package:
+- '..'
+- eslint-config-airbnb
+- eslint-config-airbnb-base
+defaults:
+run:
+working-directory: "packages/${{ matrix.package }}"
+steps:
+- uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # actions/checkout@v2 | releases,850,v2.7.0
+- uses: ljharb/actions/node/install@7f214d8efdbdcefc96ad9689663ef387a195deec # ljharb/actions/node/install@main
+name: 'nvm install lts/* && npm install'
+with:
+node-version: 'lts/*'
+- run: npm run pretest

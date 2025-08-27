@@ -1,0 +1,27 @@
+{
+  "workflow": "langchain-ai_langchain__run_notebooks.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+      "line": 23
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: google-github-actions/auth@6fc4af4b145ae7821d527454aa9bd537d1f2dc5f # google-github-actions/auth@v2 | v2.1.7",
+      "line": 30
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502 # aws-actions/configure-aws-credentials@v4",
+      "line": 34
+    }
+  ]
+}

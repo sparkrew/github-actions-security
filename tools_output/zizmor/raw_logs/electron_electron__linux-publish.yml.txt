@@ -1,0 +1,125 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__linux-publish.yml:33:7
+   [1m[94m|[0m
+[1m[94m33 |[0m       - name: Checkout Electron
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m34 |[0m [1m[33m|[0m       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+[1m[94m35 |[0m [1m[33m|[0m       with:
+[1m[94m36 |[0m [1m[33m|[0m         path: src/electron
+[1m[94m37 |[0m [1m[33m|[0m         fetch-depth: 0
+   [1m[94m|[0m [1m[33m|______________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__linux-publish.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m name: Publish Linux
+[1m[94m 2 |[0m [1m[33m|[0m
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m86 |[0m [1m[33m|[0m       upload-to-storage: ${{ inputs.upload-to-storage }}
+[1m[94m87 |[0m [1m[33m|[0m     secrets: inherit
+   [1m[94m|[0m [1m[33m|_____________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__linux-publish.yml:21:3
+   [1m[94m|[0m
+[1m[94m21 |[0m [1m[33m/[0m   checkout-linux:
+[1m[94m22 |[0m [1m[33m|[0m     runs-on: electron-arc-linux-amd64-32core
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m38 |[0m [1m[33m|[0m     - name: Checkout & Sync & Save
+[1m[94m39 |[0m [1m[33m|[0m       uses: ./src/electron/.github/actions/checkout
+   [1m[94m|[0m [1m[33m|[0m                                                   [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|___________________________________________________|[0m
+   [1m[94m|[0m                                                     [1m[33mthis job[0m
+   [1m[94m|[0m                                                     [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__linux-publish.yml:41:3
+   [1m[94m|[0m
+[1m[94m41 |[0m [1m[33m/[0m   publish-x64:
+[1m[94m42 |[0m [1m[33m|[0m     uses: ./.github/workflows/pipeline-segment-electron-build.yml
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m54 |[0m [1m[33m|[0m       upload-to-storage: ${{ inputs.upload-to-storage }}
+[1m[94m55 |[0m [1m[33m|[0m     secrets: inherit
+   [1m[94m|[0m [1m[33m|[0m                    [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________|[0m
+   [1m[94m|[0m                      [1m[33mthis job[0m
+   [1m[94m|[0m                      [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__linux-publish.yml:57:3
+   [1m[94m|[0m
+[1m[94m57 |[0m [1m[33m/[0m   publish-arm:
+[1m[94m58 |[0m [1m[33m|[0m     uses: ./.github/workflows/pipeline-segment-electron-build.yml
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m70 |[0m [1m[33m|[0m       upload-to-storage: ${{ inputs.upload-to-storage }}
+[1m[94m71 |[0m [1m[33m|[0m     secrets: inherit
+   [1m[94m|[0m [1m[33m|[0m                    [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________|[0m
+   [1m[94m|[0m                      [1m[33mthis job[0m
+   [1m[94m|[0m                      [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__linux-publish.yml:73:3
+   [1m[94m|[0m
+[1m[94m73 |[0m [1m[33m/[0m   publish-arm64:
+[1m[94m74 |[0m [1m[33m|[0m     uses: ./.github/workflows/pipeline-segment-electron-build.yml
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m86 |[0m [1m[33m|[0m       upload-to-storage: ${{ inputs.upload-to-storage }}
+[1m[94m87 |[0m [1m[33m|[0m     secrets: inherit
+   [1m[94m|[0m [1m[33m|[0m                     [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________________|[0m
+   [1m[94m|[0m                       [1m[33mthis job[0m
+   [1m[94m|[0m                       [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__linux-publish.yml:42:5
+   [1m[94m|[0m
+[1m[94m42 |[0m     uses: ./.github/workflows/pipeline-segment-electron-build.yml
+   [1m[94m|[0m     [1m[33m-------------------------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m43 |[0m     needs: checkout-linux
+[1m[94m...[0m
+[1m[94m54 |[0m       upload-to-storage: ${{ inputs.upload-to-storage }}
+[1m[94m55 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__linux-publish.yml:58:5
+   [1m[94m|[0m
+[1m[94m58 |[0m     uses: ./.github/workflows/pipeline-segment-electron-build.yml
+   [1m[94m|[0m     [1m[33m-------------------------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m59 |[0m     needs: checkout-linux
+[1m[94m...[0m
+[1m[94m70 |[0m       upload-to-storage: ${{ inputs.upload-to-storage }}
+[1m[94m71 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__linux-publish.yml:74:5
+   [1m[94m|[0m
+[1m[94m74 |[0m     uses: ./.github/workflows/pipeline-segment-electron-build.yml
+   [1m[94m|[0m     [1m[33m-------------------------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m75 |[0m     needs: checkout-linux
+[1m[94m...[0m
+[1m[94m86 |[0m       upload-to-storage: ${{ inputs.upload-to-storage }}
+[1m[94m87 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m10[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m9[39m medium, [31m0[39m high

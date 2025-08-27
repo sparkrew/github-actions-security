@@ -1,0 +1,53 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-native__check-nightly.yml:16:9
+   [1m[94m|[0m
+[1m[94m16 |[0m         - name: Checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m17 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-native__check-nightly.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m # This jobs runs every day 2 hours after the nightly job and its purpose is to report
+[1m[94m 2 |[0m [1m[33m|[0m # a failure in case the nightly failed to be published. We are going to hook this to an internal automation.
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m33 |[0m [1m[33m|[0m     secrets:
+[1m[94m34 |[0m [1m[33m|[0m       discord_webhook_url: ${{ secrets.NIGHTLY_DISCORD_WEBHOOK }}
+   [1m[94m|[0m [1m[33m|__________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-native__check-nightly.yml:12:3
+   [1m[94m|[0m
+[1m[94m12 |[0m [1m[33m/[0m   check-nightly:
+[1m[94m13 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m27 |[0m [1m[33m|[0m             echo 'Nightly Worked, All Good!'
+[1m[94m28 |[0m [1m[33m|[0m           fi
+   [1m[94m|[0m [1m[33m|[0m            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________|[0m
+   [1m[94m|[0m              [1m[33mthis job[0m
+   [1m[94m|[0m              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-native__check-nightly.yml:30:3
+   [1m[94m|[0m
+[1m[94m30 |[0m [1m[33m/[0m   test-libraries:
+[1m[94m31 |[0m [1m[33m|[0m     uses: ./.github/workflows/test-libraries-on-nightlies.yml
+[1m[94m32 |[0m [1m[33m|[0m     needs: check-nightly
+[1m[94m33 |[0m [1m[33m|[0m     secrets:
+[1m[94m34 |[0m [1m[33m|[0m       discord_webhook_url: ${{ secrets.NIGHTLY_DISCORD_WEBHOOK }}
+   [1m[94m|[0m [1m[33m|[0m                                                                  [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|__________________________________________________________________|[0m
+   [1m[94m|[0m                                                                    [1m[33mthis job[0m
+   [1m[94m|[0m                                                                    [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m4[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m4[39m medium, [31m0[39m high

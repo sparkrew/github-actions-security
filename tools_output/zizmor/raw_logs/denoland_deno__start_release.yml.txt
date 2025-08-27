@@ -1,0 +1,47 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/denoland_deno__start_release.yml:33:9
+   [1m[94m|[0m
+[1m[94m33 |[0m         - name: Clone repository
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m34 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/denoland_deno__start_release.yml:17:3
+   [1m[94m|[0m
+[1m[94m17 |[0m [1m[33m/[0m   build:
+[1m[94m18 |[0m [1m[33m|[0m     name: start release
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m44 |[0m [1m[33m|[0m           GH_WORKFLOW_ACTOR: ${{ github.actor }}
+[1m[94m45 |[0m [1m[33m|[0m         run: ./tools/release/00_start_release.ts --${{github.event.inputs.releaseKind}}
+   [1m[94m|[0m [1m[33m|[0m                                                                                        [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                          [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                          [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/denoland_deno__start_release.yml:41:9
+   [1m[94m|[0m
+[1m[94m41 |[0m       - name: Create Gist URL
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m42 |[0m         env:
+[1m[94m43 |[0m           GITHUB_TOKEN: ${{ secrets.DENOBOT_GIST_PAT }}
+[1m[94m44 |[0m           GH_WORKFLOW_ACTOR: ${{ github.actor }}
+[1m[94m45 |[0m         run: ./tools/release/00_start_release.ts --${{github.event.inputs.releaseKind}}
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mgithub.event.inputs.releaseKind may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/denoland_deno__start_release.yml:37:9
+   [1m[94m|[0m
+[1m[94m37 |[0m         uses: denoland/setup-deno@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m6[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m2[39m high

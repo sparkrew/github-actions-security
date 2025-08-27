@@ -1,0 +1,120 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__pipeline-segment-electron-build.yml:91:7
+   [1m[94m|[0m
+[1m[94m91 |[0m       - name: Checkout Electron
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m92 |[0m [1m[33m|[0m       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m95 |[0m [1m[33m|[0m         fetch-depth: 0
+[1m[94m96 |[0m [1m[33m|[0m         ref: ${{ github.event.pull_request.head.sha }}
+   [1m[94m|[0m [1m[33m|______________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__pipeline-segment-electron-build.yml:148:7
+    [1m[94m|[0m
+[1m[94m148 |[0m       - name: Checkout Electron
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m149 |[0m [1m[33m|[0m       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m152 |[0m [1m[33m|[0m         fetch-depth: 0
+[1m[94m153 |[0m [1m[33m|[0m         ref: ${{ github.event.pull_request.head.sha }}
+    [1m[94m|[0m [1m[33m|______________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__pipeline-segment-electron-build.yml:115:7
+    [1m[94m|[0m
+[1m[94m115 |[0m       - name: Set GN_EXTRA_ARGS for Linux
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m116 |[0m         if: ${{ inputs.target-platform == 'linux' }}
+[1m[94m117 |[0m [1m[91m/[0m       run: |
+[1m[94m118 |[0m [1m[91m|[0m         if [ "${{ inputs.target-arch  }}" = "arm" ]; then
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m128 |[0m [1m[91m|[0m         fi
+[1m[94m129 |[0m [1m[91m|[0m         echo "GN_EXTRA_ARGS=$GN_EXTRA_ARGS" >> $GITHUB_ENV
+    [1m[94m|[0m [1m[91m|__________________________________________________________^[0m [1m[91minputs.target-arch may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__pipeline-segment-electron-build.yml:115:7
+    [1m[94m|[0m
+[1m[94m115 |[0m       - name: Set GN_EXTRA_ARGS for Linux
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m116 |[0m         if: ${{ inputs.target-platform == 'linux' }}
+[1m[94m117 |[0m [1m[91m/[0m       run: |
+[1m[94m118 |[0m [1m[91m|[0m         if [ "${{ inputs.target-arch  }}" = "arm" ]; then
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m128 |[0m [1m[91m|[0m         fi
+[1m[94m129 |[0m [1m[91m|[0m         echo "GN_EXTRA_ARGS=$GN_EXTRA_ARGS" >> $GITHUB_ENV
+    [1m[94m|[0m [1m[91m|__________________________________________________________^[0m [1m[91minputs.is-release may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__pipeline-segment-electron-build.yml:115:7
+    [1m[94m|[0m
+[1m[94m115 |[0m       - name: Set GN_EXTRA_ARGS for Linux
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m116 |[0m         if: ${{ inputs.target-platform == 'linux' }}
+[1m[94m117 |[0m [1m[91m/[0m       run: |
+[1m[94m118 |[0m [1m[91m|[0m         if [ "${{ inputs.target-arch  }}" = "arm" ]; then
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m128 |[0m [1m[91m|[0m         fi
+[1m[94m129 |[0m [1m[91m|[0m         echo "GN_EXTRA_ARGS=$GN_EXTRA_ARGS" >> $GITHUB_ENV
+    [1m[94m|[0m [1m[91m|__________________________________________________________^[0m [1m[91minputs.target-arch may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__pipeline-segment-electron-build.yml:115:7
+    [1m[94m|[0m
+[1m[94m115 |[0m       - name: Set GN_EXTRA_ARGS for Linux
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m116 |[0m         if: ${{ inputs.target-platform == 'linux' }}
+[1m[94m117 |[0m [1m[91m/[0m       run: |
+[1m[94m118 |[0m [1m[91m|[0m         if [ "${{ inputs.target-arch  }}" = "arm" ]; then
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m128 |[0m [1m[91m|[0m         fi
+[1m[94m129 |[0m [1m[91m|[0m         echo "GN_EXTRA_ARGS=$GN_EXTRA_ARGS" >> $GITHUB_ENV
+    [1m[94m|[0m [1m[91m|__________________________________________________________^[0m [1m[91minputs.is-asan may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__pipeline-segment-electron-build.yml:161:7
+    [1m[94m|[0m
+[1m[94m161 |[0m       - name: Init Build Tools
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m162 |[0m [1m[91m/[0m       run: |
+[1m[94m163 |[0m [1m[91m|[0m         e init -f --root=$(pwd) --out=Default ${{ inputs.gn-build-type }} --import ${{ inputs.gn-build-type }} --target-cpu ${{ inputs.target-arch }}
+    [1m[94m|[0m [1m[91m|_____________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.gn-build-type may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__pipeline-segment-electron-build.yml:161:7
+    [1m[94m|[0m
+[1m[94m161 |[0m       - name: Init Build Tools
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m162 |[0m [1m[91m/[0m       run: |
+[1m[94m163 |[0m [1m[91m|[0m         e init -f --root=$(pwd) --out=Default ${{ inputs.gn-build-type }} --import ${{ inputs.gn-build-type }} --target-cpu ${{ inputs.target-arch }}
+    [1m[94m|[0m [1m[91m|_____________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.gn-build-type may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__pipeline-segment-electron-build.yml:161:7
+    [1m[94m|[0m
+[1m[94m161 |[0m       - name: Init Build Tools
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m162 |[0m [1m[91m/[0m       run: |
+[1m[94m163 |[0m [1m[91m|[0m         e init -f --root=$(pwd) --out=Default ${{ inputs.gn-build-type }} --import ${{ inputs.gn-build-type }} --target-cpu ${{ inputs.target-arch }}
+    [1m[94m|[0m [1m[91m|_____________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.target-arch may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m19[39m findings ([1m[93m10[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m7[39m high

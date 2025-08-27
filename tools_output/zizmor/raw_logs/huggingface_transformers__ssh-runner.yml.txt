@@ -1,0 +1,227 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__ssh-runner.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: SSH into our runners
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m112 |[0m [1m[33m|[0m           waitForSSH: true
+[1m[94m113 |[0m [1m[33m|[0m           sshTimeout: 15m
+    [1m[94m|[0m [1m[33m|__________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__ssh-runner.yml:28:3
+   [1m[94m|[0m
+[1m[94m28 |[0m [1m[33m/[0m   get_runner:
+[1m[94m29 |[0m [1m[33m|[0m     name: "Get runner to use"
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m52 |[0m [1m[33m|[0m           echo ${{ env.RUNNER }}
+[1m[94m53 |[0m [1m[33m|[0m           echo "RUNNER=${{ env.RUNNER }}" >> $GITHUB_OUTPUT
+   [1m[94m|[0m [1m[33m|[0m                                                           [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|___________________________________________________________|[0m
+   [1m[94m|[0m                                                             [1m[33mthis job[0m
+   [1m[94m|[0m                                                             [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__ssh-runner.yml:55:3
+    [1m[94m|[0m
+[1m[94m 55 |[0m [1m[33m/[0m   ssh_runner:
+[1m[94m 56 |[0m [1m[33m|[0m     name: "SSH"
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m112 |[0m [1m[33m|[0m           waitForSSH: true
+[1m[94m113 |[0m [1m[33m|[0m           sshTimeout: 15m
+    [1m[94m|[0m [1m[33m|[0m                          [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|__________________________|[0m
+    [1m[94m|[0m                            [1m[33mthis job[0m
+    [1m[94m|[0m                            [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__ssh-runner.yml:34:9
+   [1m[94m|[0m
+[1m[94m34 |[0m         - name: Get runner to use
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m35 |[0m           shell: bash
+[1m[94m36 |[0m [1m[91m/[0m         run: |
+[1m[94m37 |[0m [1m[91m|[0m           if [[ "${{ github.event.inputs.num_gpus }}" == "single" && "${{ github.event.inputs.runner_type }}" == "t4" ]]; then
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m46 |[0m [1m[91m|[0m             echo "RUNNER=" >> $GITHUB_ENV
+[1m[94m47 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|____________^[0m [1m[91mgithub.event.inputs.num_gpus may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__ssh-runner.yml:34:9
+   [1m[94m|[0m
+[1m[94m34 |[0m         - name: Get runner to use
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m35 |[0m           shell: bash
+[1m[94m36 |[0m [1m[91m/[0m         run: |
+[1m[94m37 |[0m [1m[91m|[0m           if [[ "${{ github.event.inputs.num_gpus }}" == "single" && "${{ github.event.inputs.runner_type }}" == "t4" ]]; then
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m46 |[0m [1m[91m|[0m             echo "RUNNER=" >> $GITHUB_ENV
+[1m[94m47 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|____________^[0m [1m[91mgithub.event.inputs.runner_type may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__ssh-runner.yml:34:9
+   [1m[94m|[0m
+[1m[94m34 |[0m         - name: Get runner to use
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m35 |[0m           shell: bash
+[1m[94m36 |[0m [1m[91m/[0m         run: |
+[1m[94m37 |[0m [1m[91m|[0m           if [[ "${{ github.event.inputs.num_gpus }}" == "single" && "${{ github.event.inputs.runner_type }}" == "t4" ]]; then
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m46 |[0m [1m[91m|[0m             echo "RUNNER=" >> $GITHUB_ENV
+[1m[94m47 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|____________^[0m [1m[91mgithub.event.inputs.num_gpus may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__ssh-runner.yml:34:9
+   [1m[94m|[0m
+[1m[94m34 |[0m         - name: Get runner to use
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m35 |[0m           shell: bash
+[1m[94m36 |[0m [1m[91m/[0m         run: |
+[1m[94m37 |[0m [1m[91m|[0m           if [[ "${{ github.event.inputs.num_gpus }}" == "single" && "${{ github.event.inputs.runner_type }}" == "t4" ]]; then
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m46 |[0m [1m[91m|[0m             echo "RUNNER=" >> $GITHUB_ENV
+[1m[94m47 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|____________^[0m [1m[91mgithub.event.inputs.runner_type may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__ssh-runner.yml:34:9
+   [1m[94m|[0m
+[1m[94m34 |[0m         - name: Get runner to use
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m35 |[0m           shell: bash
+[1m[94m36 |[0m [1m[91m/[0m         run: |
+[1m[94m37 |[0m [1m[91m|[0m           if [[ "${{ github.event.inputs.num_gpus }}" == "single" && "${{ github.event.inputs.runner_type }}" == "t4" ]]; then
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m46 |[0m [1m[91m|[0m             echo "RUNNER=" >> $GITHUB_ENV
+[1m[94m47 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|____________^[0m [1m[91mgithub.event.inputs.num_gpus may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__ssh-runner.yml:34:9
+   [1m[94m|[0m
+[1m[94m34 |[0m         - name: Get runner to use
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m35 |[0m           shell: bash
+[1m[94m36 |[0m [1m[91m/[0m         run: |
+[1m[94m37 |[0m [1m[91m|[0m           if [[ "${{ github.event.inputs.num_gpus }}" == "single" && "${{ github.event.inputs.runner_type }}" == "t4" ]]; then
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m46 |[0m [1m[91m|[0m             echo "RUNNER=" >> $GITHUB_ENV
+[1m[94m47 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|____________^[0m [1m[91mgithub.event.inputs.runner_type may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__ssh-runner.yml:34:9
+   [1m[94m|[0m
+[1m[94m34 |[0m         - name: Get runner to use
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m35 |[0m           shell: bash
+[1m[94m36 |[0m [1m[91m/[0m         run: |
+[1m[94m37 |[0m [1m[91m|[0m           if [[ "${{ github.event.inputs.num_gpus }}" == "single" && "${{ github.event.inputs.runner_type }}" == "t4" ]]; then
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m46 |[0m [1m[91m|[0m             echo "RUNNER=" >> $GITHUB_ENV
+[1m[94m47 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|____________^[0m [1m[91mgithub.event.inputs.num_gpus may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__ssh-runner.yml:34:9
+   [1m[94m|[0m
+[1m[94m34 |[0m         - name: Get runner to use
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m35 |[0m           shell: bash
+[1m[94m36 |[0m [1m[91m/[0m         run: |
+[1m[94m37 |[0m [1m[91m|[0m           if [[ "${{ github.event.inputs.num_gpus }}" == "single" && "${{ github.event.inputs.runner_type }}" == "t4" ]]; then
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m46 |[0m [1m[91m|[0m             echo "RUNNER=" >> $GITHUB_ENV
+[1m[94m47 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|____________^[0m [1m[91mgithub.event.inputs.runner_type may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__ssh-runner.yml:85:9
+   [1m[94m|[0m
+[1m[94m85 |[0m         - name: Store Slack infos
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m86 |[0m           #because the SSH can be enabled dynamically if the workflow failed, so we need to store slack infos to be able to retrieve t[1m[94m...[0m
+[1m[94m87 |[0m           shell: bash
+[1m[94m88 |[0m [1m[91m/[0m         run: |
+[1m[94m89 |[0m [1m[91m|[0m           echo "${{ github.actor }}"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m92 |[0m [1m[91m|[0m           echo "$github_actor"
+[1m[94m93 |[0m [1m[91m|[0m           echo "github_actor=$github_actor" >> $GITHUB_ENV
+   [1m[94m|[0m [1m[91m|__________________________________________________________^[0m [1m[91mgithub.actor may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__ssh-runner.yml:85:9
+   [1m[94m|[0m
+[1m[94m85 |[0m         - name: Store Slack infos
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m86 |[0m           #because the SSH can be enabled dynamically if the workflow failed, so we need to store slack infos to be able to retrieve t[1m[94m...[0m
+[1m[94m87 |[0m           shell: bash
+[1m[94m88 |[0m [1m[91m/[0m         run: |
+[1m[94m89 |[0m [1m[91m|[0m           echo "${{ github.actor }}"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m92 |[0m [1m[91m|[0m           echo "$github_actor"
+[1m[94m93 |[0m [1m[91m|[0m           echo "github_actor=$github_actor" >> $GITHUB_ENV
+   [1m[94m|[0m [1m[91m|__________________________________________________________^[0m [1m[91mgithub.actor may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__ssh-runner.yml:107:9
+    [1m[94m|[0m
+[1m[94m107 |[0m         uses: huggingface/tailscale-action@main
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#overprovisioned-secrets\overprovisioned-secrets]8;;\][0m: [1mexcessively provisioned secrets[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__ssh-runner.yml:100:17
+    [1m[94m|[0m
+[1m[94m100 |[0m           if [ "${{ secrets[format('{0}_{1}', env.github_actor, 'SLACK_ID')] }}" != "" ]; then
+    [1m[94m|[0m                 [1m[33m---------------------------------------------------------------[0m [1m[33minjects the entire secrets context into the runner[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#overprovisioned-secrets\overprovisioned-secrets]8;;\][0m: [1mexcessively provisioned secrets[0m
+   [1m[94m-->[0m ../.github/workflows/huggingface_transformers__ssh-runner.yml:101:32
+    [1m[94m|[0m
+[1m[94m101 |[0m             echo "SLACKCHANNEL=${{ secrets[format('{0}_{1}', env.github_actor, 'SLACK_ID')] }}" >> $GITHUB_ENV
+    [1m[94m|[0m                                [1m[33m---------------------------------------------------------------[0m [1m[33minjects the entire secrets context into the runner[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__ssh-runner.yml:61:7
+   [1m[94m|[0m
+[1m[94m61 |[0m       image: ${{ github.event.inputs.docker_image }}
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is unpinned[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m35[39m findings ([1m[93m18[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m5[39m medium, [31m12[39m high

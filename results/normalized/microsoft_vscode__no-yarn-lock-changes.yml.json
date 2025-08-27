@@ -1,0 +1,87 @@
+{
+  "workflow": "microsoft_vscode__no-yarn-lock-changes.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "microsoft_vscode__no-yarn-lock-changes.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: trilom/file-changes-action@a6ca26c14274c33b15e6499323aac178af06ad4b # v1.2.4",
+          "line": 10,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: octokit/request-action@dad4362715b7fb2ddedf9772c8670824af564f0d # v2.4.0",
+          "line": 28,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_vscode__no-yarn-lock-changes.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "automatic-hardening-check"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_vscode__no-yarn-lock-changes.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "template-injection": 2
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_vscode__no-yarn-lock-changes.yml",
+          "line": 38,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_vscode__no-yarn-lock-changes.yml",
+          "line": 38,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        }
+      ]
+    }
+  }
+}

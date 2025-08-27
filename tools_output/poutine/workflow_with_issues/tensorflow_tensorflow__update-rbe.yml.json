@@ -1,0 +1,23 @@
+{
+  "workflow": "tensorflow_tensorflow__update-rbe.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "unverified_script_exec": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": "35",
+      "column": "",
+      "job": "rbe",
+      "step": "1",
+      "details": "Command: curl -s --head \"https://gcr.io/v2/tensorflow-sigs/build/manifests/$2\" | egrep -o \"sh",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

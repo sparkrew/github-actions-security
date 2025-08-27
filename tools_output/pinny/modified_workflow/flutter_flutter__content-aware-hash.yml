@@ -1,0 +1,18 @@
+name: Generate a content aware hash for the Flutter Engine
+on: workflow_dispatch
+jobs:
+generate-engine-content-hash:
+runs-on: ubuntu-latest
+steps:
+- name: Checkout code
+uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2
+- name: Fetch base commit and origin/master
+run: |
+git fetch --no-tags --prune --depth=1 origin ${{ github.event.pull_request.base.sha }}
+- name: Generate Hash
+run: |
+engine_content_hash=$(bin/internal/content_aware_hash.sh)
+# test notice annotation for retrival from api
+echo "::notice ::{\"engine_content_hash\": \"${engine_content_hash}\"}"
+# test summary writing
+echo "{\"engine_content_hash\": \"${engine_content_hash}\"" >> $GITHUB_STEP_SUMMARY

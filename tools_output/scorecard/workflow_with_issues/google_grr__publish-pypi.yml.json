@@ -1,0 +1,112 @@
+{
+  "workflow": "google_grr__publish-pypi.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        10,
+        11,
+        14,
+        30,
+        36,
+        42,
+        48,
+        54,
+        60,
+        66,
+        72,
+        90,
+        95,
+        109,
+        114,
+        128,
+        133,
+        147,
+        152,
+        166,
+        171,
+        185,
+        190,
+        204,
+        209,
+        223,
+        228
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:10",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:11",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:14",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:30",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:36",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:42",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:48",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:54",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:60",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:66",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:72",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:90",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:95",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:109",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:114",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:128",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:133",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:166",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:171",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:185",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:190",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:204",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:209",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:147",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:152",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:223",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_grr__publish-pypi.yml:228",
+        "Info:   0 out of  19 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of   8 third-party GitHubAction dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 0,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1
+      ],
+      "raw_details": [
+        "Warn: no topLevel permission defined: .github/workflows/google_grr__publish-pypi.yml:1",
+        "Info: no jobLevel write permissions found"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

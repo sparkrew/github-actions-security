@@ -1,0 +1,78 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__notify_release.yml:35:9
+   [1m[94m|[0m
+[1m[94m35 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__notify_release.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m # A workflow runs when a release is published, dispatches a new event to the vercel/turbo
+[1m[94m 2 |[0m [1m[33m|[0m # to notify its release. Turbopack, and other integration workflow will subscribe to this event.
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m82 |[0m [1m[33m|[0m               "This may not start a new sync if one is already in progress. Check the logs of the cron-update-next Workflow run."
+[1m[94m83 |[0m [1m[33m|[0m             );
+   [1m[94m|[0m [1m[33m|_______________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__notify_release.yml:8:3
+   [1m[94m|[0m
+[1m[94m 8 |[0m [1m[33m/[0m   notify:
+[1m[94m 9 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m30 |[0m [1m[33m|[0m               }
+[1m[94m31 |[0m [1m[33m|[0m             })
+   [1m[94m|[0m [1m[33m|[0m              [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________|[0m
+   [1m[94m|[0m                [1m[33mthis job[0m
+   [1m[94m|[0m                [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__notify_release.yml:32:3
+   [1m[94m|[0m
+[1m[94m32 |[0m [1m[33m/[0m   front-sync:
+[1m[94m33 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m82 |[0m [1m[33m|[0m               "This may not start a new sync if one is already in progress. Check the logs of the cron-update-next Workflow run."
+[1m[94m83 |[0m [1m[33m|[0m             );
+   [1m[94m|[0m [1m[33m|[0m               [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________|[0m
+   [1m[94m|[0m                 [1m[33mthis job[0m
+   [1m[94m|[0m                 [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__notify_release.yml:46:9
+   [1m[94m|[0m
+[1m[94m46 |[0m         name: Extract `next` version
+   [1m[94m|[0m         [1m[94m----------------------------[0m [1m[94minfo: this step[0m
+[1m[94m47 |[0m         run: echo 'value=${{ fromJson(steps.nextPackageInfo.outputs.value).version }}' >> "$GITHUB_OUTPUT"
+   [1m[94m|[0m         [1m[94m--------------------------------------------------------------------------------------------------[0m [1m[94minfo: fromJson(steps.nextPackageInfo.outputs.value).version may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__notify_release.yml:53:9
+   [1m[94m|[0m
+[1m[94m53 |[0m   [1m[94m...[0m   name: Trigger vercel/front sync
+   [1m[94m|[0m         [1m[94m-------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m54 |[0m   [1m[94m...[0m   id: trigger-front-sync
+[1m[94m...[0m
+[1m[94m62 |[0m   [1m[94m...[0m     # if these need to be changed both side should be updated accordingly.
+[1m[94m63 |[0m [1m[94m/[0m [1m[94m...[0m     script: |
+[1m[94m64 |[0m [1m[94m|[0m [1m[94m...[0m       await github.request(
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m82 |[0m [1m[94m|[0m [1m[94m...[0m         "This may not start a new sync if one is already in progress. Check the logs of the cron-update-next Workflow run."
+[1m[94m83 |[0m [1m[94m|[0m [1m[94m...[0m       );
+   [1m[94m|[0m [1m[94m|_____________-[0m [1m[94minfo: steps.version.outputs.value may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m8[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m2[39m informational, [36m0[39m low, [33m4[39m medium, [31m0[39m high

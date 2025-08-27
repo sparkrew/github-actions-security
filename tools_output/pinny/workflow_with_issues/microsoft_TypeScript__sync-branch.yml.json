@@ -1,0 +1,27 @@
+{
+  "workflow": "microsoft_TypeScript__sync-branch.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0",
+      "line": 38
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2",
+      "line": 41
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: microsoft/typescript-bot-test-triggerer/.github/actions/post-workflow-result@ad4fc95fc98a9e11a940ff5932fc453fc97d7cea # microsoft/typescript-bot-test-triggerer/.github/actions/post-workflow-result@master",
+      "line": 59
+    }
+  ]
+}

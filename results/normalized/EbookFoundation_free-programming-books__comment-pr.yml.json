@@ -1,0 +1,183 @@
+{
+  "workflow": "EbookFoundation_free-programming-books__comment-pr.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "EbookFoundation_free-programming-books__comment-pr.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/github-script@v7",
+          "pinned": "actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea",
+          "line": 19,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "EbookFoundation_free-programming-books__comment-pr.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # actions/github-script@v7",
+          "line": 17,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "EbookFoundation_free-programming-books__comment-pr.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            19
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/EbookFoundation_free-programming-books__comment-pr.yml:19",
+            "Info:   0 out of   1 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "automatic-hardening-check"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/EbookFoundation_free-programming-books__comment-pr.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "permissions-check"
+        }
+      ]
+    },
+    "poutine": {
+      "workflow": "EbookFoundation_free-programming-books__comment-pr.yml",
+      "tool": "poutine",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "if_always_true": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "if_always_true",
+          "line": "14",
+          "column": "",
+          "job": "upload",
+          "step": "",
+          "details": "",
+          "event_triggers": [
+            "workflow_run"
+          ],
+          "capability": "control-flow-check"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "EbookFoundation_free-programming-books__comment-pr.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "line": 19,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/github-script@v7`",
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "EbookFoundation_free-programming-books__comment-pr.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "dangerous-triggers": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "dangerous-triggers",
+          "level": "error",
+          "message": "use of fundamentally insecure workflow trigger",
+          "workflow": "EbookFoundation_free-programming-books__comment-pr.yml",
+          "line": 3,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "trigger-permissions-check"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "EbookFoundation_free-programming-books__comment-pr.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 1
+      },
+      "findings": [
+        {
+          "line": 14,
+          "column": 9,
+          "message": "if: condition \"${{ github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success' }}\\n\" is always evaluated to true because extra characters are around ${{ }} [if-cond]",
+          "capability": "control-flow-check"
+        }
+      ]
+    }
+  }
+}

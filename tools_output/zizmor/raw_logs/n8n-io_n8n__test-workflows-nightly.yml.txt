@@ -1,0 +1,14 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/n8n-io_n8n__test-workflows-nightly.yml:21:5
+   [1m[94m|[0m
+[1m[94m21 |[0m     uses: ./.github/workflows/test-workflows-callable.yml
+   [1m[94m|[0m     [1m[33m-----------------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m22 |[0m     with:
+[1m[94m...[0m
+[1m[94m25 |[0m       pr_number: ''
+[1m[94m26 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m1[39m finding: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m0[39m high

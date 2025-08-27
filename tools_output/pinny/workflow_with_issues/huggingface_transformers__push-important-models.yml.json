@@ -1,0 +1,52 @@
+{
+  "workflow": "huggingface_transformers__push-important-models.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 8,
+    "by_rule": {
+      "unpinned-github-actions": 8
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+      "line": 23
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: tj-actions/changed-files@1c8e6069583811afb28f97afeaf8e7da80c6be5c",
+      "line": 26
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+      "line": 61
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+      "line": 81
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: huggingface/hf-workflows/.github/actions/post-slack@b5b9e1ae139ff95d1ebd3c14531e231e780ca345 # huggingface/hf-workflows/.github/actions/post-slack@main",
+      "line": 87
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+      "line": 100
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: huggingface/hf-workflows/.github/actions/post-slack@b5b9e1ae139ff95d1ebd3c14531e231e780ca345 # huggingface/hf-workflows/.github/actions/post-slack@main",
+      "line": 106
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: huggingface/tailscale-action@ee9ee9c497b1088140a77088ee948ed0bc91f9d0 # huggingface/tailscale-action@v1 | 5",
+      "line": 114
+    }
+  ]
+}

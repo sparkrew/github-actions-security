@@ -1,0 +1,31 @@
+{
+  "workflow": "microsoft_TypeScript__pr-modified-files.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "dangerous-triggers": 1,
+      "template-injection": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "dangerous-triggers",
+      "level": "error",
+      "message": "use of fundamentally insecure workflow trigger",
+      "workflow": "microsoft_TypeScript__pr-modified-files.yml",
+      "line": 2,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "microsoft_TypeScript__pr-modified-files.yml",
+      "line": 38,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

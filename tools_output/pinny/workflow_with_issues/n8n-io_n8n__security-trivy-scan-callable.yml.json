@@ -1,0 +1,32 @@
+{
+  "workflow": "n8n-io_n8n__security-trivy-scan-callable.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2",
+      "line": 23
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: aquasecurity/trivy-action@6c175e9c4083a92bbca2f9724c8a5e33bc2d97a5 # v0.30.0",
+      "line": 28
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0",
+      "line": 71
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0",
+      "line": 93
+    }
+  ]
+}

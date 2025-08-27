@@ -1,0 +1,27 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+ [1m[94m-->[0m ../.github/workflows/electron_electron__non-maintainer-dependency-change.yml:3:1
+  [1m[94m|[0m
+[1m[94m3 |[0m [1m[91m/[0m on:
+[1m[94m4 |[0m [1m[91m|[0m   pull_request_target:
+[1m[94m5 |[0m [1m[91m|[0m     paths:
+[1m[94m6 |[0m [1m[91m|[0m       - 'yarn.lock'
+[1m[94m7 |[0m [1m[91m|[0m       - 'spec/yarn.lock'
+  [1m[94m|[0m [1m[91m|________________________^[0m [1m[91mpull_request_target is almost always used insecurely[0m
+  [1m[94m|[0m
+  [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__non-maintainer-dependency-change.yml:31:9
+   [1m[94m|[0m
+[1m[94m31 |[0m   [1m[94m...[0m - name: Request changes
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m32 |[0m   [1m[94m...[0m   if: ${{ steps.check-for-review.outputs.SHOULD_REVIEW }}
+[1m[94m...[0m
+[1m[94m35 |[0m   [1m[94m...[0m     PR_URL: ${{ github.event.pull_request.html_url }}
+[1m[94m36 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m37 |[0m [1m[91m|[0m [1m[94m...[0m     printf "<!-- no-dependency-change -->\n\nHello @${{ github.event.pull_request.user.login }}! It looks like this pull request touches one of our dependency files, and per [our contribution policy](https://github.com/electron/electron/blob/main/CONTRIBUTING.md#dependencies-upgrades-policy) we do not accept these types of changes in PRs." | gh pr review $PR_URL -r --body-file=-
+   [1m[94m|[0m [1m[91m|__________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.pull_request.user.login may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m3[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m0[39m medium, [31m2[39m high

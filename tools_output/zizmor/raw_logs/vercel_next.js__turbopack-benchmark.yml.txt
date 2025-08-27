@@ -1,0 +1,138 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__turbopack-benchmark.yml:33:9
+   [1m[94m|[0m
+[1m[94m33 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__turbopack-benchmark.yml:56:9
+   [1m[94m|[0m
+[1m[94m56 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__turbopack-benchmark.yml:94:9
+   [1m[94m|[0m
+[1m[94m94 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__turbopack-benchmark.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: Turbopack Benchmark
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m110 |[0m [1m[33m|[0m           run: cargo codspeed run
+[1m[94m111 |[0m [1m[33m|[0m           token: ${{ secrets.CODSPEED_TOKEN }}
+    [1m[94m|[0m [1m[33m|_______________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__turbopack-benchmark.yml:29:3
+   [1m[94m|[0m
+[1m[94m29 |[0m [1m[33m/[0m   benchmark-tiny:
+[1m[94m30 |[0m [1m[33m|[0m     name: Benchmark Rust Crates (tiny)
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m49 |[0m [1m[33m|[0m           run: cargo codspeed run
+[1m[94m50 |[0m [1m[33m|[0m           token: ${{ secrets.CODSPEED_TOKEN }}
+   [1m[94m|[0m [1m[33m|[0m                                              [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________________________________|[0m
+   [1m[94m|[0m                                                [1m[33mthis job[0m
+   [1m[94m|[0m                                                [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__turbopack-benchmark.yml:52:3
+   [1m[94m|[0m
+[1m[94m52 |[0m [1m[33m/[0m   benchmark-small-apps:
+[1m[94m53 |[0m [1m[33m|[0m     name: Benchmark Rust Crates (small apps)
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m86 |[0m [1m[33m|[0m           run: cargo codspeed run
+[1m[94m87 |[0m [1m[33m|[0m           token: ${{ secrets.CODSPEED_TOKEN }}
+   [1m[94m|[0m [1m[33m|[0m                                              [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________________________________|[0m
+   [1m[94m|[0m                                                [1m[33mthis job[0m
+   [1m[94m|[0m                                                [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__turbopack-benchmark.yml:89:3
+    [1m[94m|[0m
+[1m[94m 89 |[0m [1m[33m/[0m   benchmark-large:
+[1m[94m 90 |[0m [1m[33m|[0m     name: Benchmark Rust Crates (large)
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m110 |[0m [1m[33m|[0m           run: cargo codspeed run
+[1m[94m111 |[0m [1m[33m|[0m           token: ${{ secrets.CODSPEED_TOKEN }}
+    [1m[94m|[0m [1m[33m|[0m                                               [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_______________________________________________|[0m
+    [1m[94m|[0m                                                 [1m[33mthis job[0m
+    [1m[94m|[0m                                                 [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__turbopack-benchmark.yml:39:9
+   [1m[94m|[0m
+[1m[94m39 |[0m         uses: taiki-e/install-action@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__turbopack-benchmark.yml:47:9
+   [1m[94m|[0m
+[1m[94m47 |[0m         uses: CodSpeedHQ/action@v3
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__turbopack-benchmark.yml:62:9
+   [1m[94m|[0m
+[1m[94m62 |[0m         uses: taiki-e/install-action@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__turbopack-benchmark.yml:67:9
+   [1m[94m|[0m
+[1m[94m67 |[0m         uses: ijjk/rust-cache@turbo-cache-v1.0.8
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__turbopack-benchmark.yml:84:9
+   [1m[94m|[0m
+[1m[94m84 |[0m         uses: CodSpeedHQ/action@v3
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__turbopack-benchmark.yml:100:9
+    [1m[94m|[0m
+[1m[94m100 |[0m         uses: taiki-e/install-action@v2
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/vercel_next.js__turbopack-benchmark.yml:108:9
+    [1m[94m|[0m
+[1m[94m108 |[0m         uses: CodSpeedHQ/action@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m16[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m7[39m medium, [31m7[39m high

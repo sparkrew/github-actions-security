@@ -1,0 +1,36 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/oracle_graal__spring.yml:64:7
+   [1m[94m|[0m
+[1m[94m64 |[0m       - name: Checkout oracle/graal
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m65 |[0m [1m[33m|[0m       uses: actions/checkout@v4
+   [1m[94m|[0m [1m[33m|_______________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/oracle_graal__spring.yml:70:7
+   [1m[94m|[0m
+[1m[94m70 |[0m       - name: Checkout spring-projects/spring-petclinic
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m71 |[0m [1m[33m|[0m       uses: actions/checkout@v4
+[1m[94m72 |[0m [1m[33m|[0m       with:
+[1m[94m73 |[0m [1m[33m|[0m         repository: spring-projects/spring-petclinic
+[1m[94m74 |[0m [1m[33m|[0m         path: ${{ env.SPRING_PETCLINIC_PATH }}
+   [1m[94m|[0m [1m[33m|______________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/oracle_graal__spring.yml:75:7
+   [1m[94m|[0m
+[1m[94m75 |[0m       - name: Run nativeTest in spring-petclinic
+   [1m[94m|[0m         [1m[96m----------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m76 |[0m [1m[96m/[0m       run: |
+[1m[94m77 |[0m [1m[96m|[0m         cd ${{ env.SPRING_PETCLINIC_PATH }}
+[1m[94m78 |[0m [1m[96m|[0m         ./gradlew nativeTest
+   [1m[94m|[0m [1m[96m|_____________________________-[0m [1m[96mhelp: env.SPRING_PETCLINIC_PATH may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m4[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m1[39m low, [33m2[39m medium, [31m0[39m high

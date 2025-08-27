@@ -1,0 +1,17 @@
+name: Create Release
+jobs:
+build:
+name: Create Release
+runs-on: ubuntu-latest
+steps:
+- name: Checkout code
+uses: actions/checkout@61b9e3751b92087fd0b06925ba6dd6314e06f089 # actions/checkout@master
+- name: Create Release for Tag
+id: release_tag
+uses: yyx990803/release-tag@8cccf7c5aa332d71d222df46677f70f77a8d2dc0 # yyx990803/release-tag@master | v1.0.0
+env:
+GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+with:
+tag_name: ${{ github.ref }}
+body: |
+Please refer to [CHANGELOG.md](https://github.com/vuejs/vue/blob/main/CHANGELOG.md) for details.

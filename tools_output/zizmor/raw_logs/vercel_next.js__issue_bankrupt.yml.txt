@@ -1,0 +1,24 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__issue_bankrupt.yml:16:9
+   [1m[94m|[0m
+[1m[94m16 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__issue_bankrupt.yml:12:3
+   [1m[94m|[0m
+[1m[94m12 |[0m [1m[33m/[0m   bankrupt:
+[1m[94m13 |[0m [1m[33m|[0m     if: github.repository_owner == 'vercel'
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m23 |[0m [1m[33m|[0m           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+[1m[94m24 |[0m [1m[33m|[0m           CREATED: ${{ github.event.inputs.created }}
+   [1m[94m|[0m [1m[33m|[0m                                                      [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________________________________________|[0m
+   [1m[94m|[0m                                                        [1m[33mthis job[0m
+   [1m[94m|[0m                                                        [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m3[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m0[39m high

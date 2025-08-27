@@ -1,0 +1,37 @@
+{
+  "workflow": "NVIDIA_k8s-device-plugin__deploy-to-pages.yml",
+  "tool": "scharf",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "unpinned-github-actions": 5
+    }
+  },
+  "findings": [
+    {
+      "line": 56,
+      "column": 15,
+      "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+    },
+    {
+      "line": 60,
+      "column": 15,
+      "message": "Unpinned GitHub Action: uses `actions/configure-pages@v5`"
+    },
+    {
+      "line": 62,
+      "column": 15,
+      "message": "Unpinned GitHub Action: uses `actions/jekyll-build-pages@v1`"
+    },
+    {
+      "line": 67,
+      "column": 15,
+      "message": "Unpinned GitHub Action: uses `actions/upload-pages-artifact@v3`"
+    },
+    {
+      "line": 79,
+      "column": 15,
+      "message": "Unpinned GitHub Action: uses `actions/deploy-pages@v4`"
+    }
+  ]
+}

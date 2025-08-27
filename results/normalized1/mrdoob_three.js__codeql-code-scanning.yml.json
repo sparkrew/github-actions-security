@@ -1,0 +1,96 @@
+{
+  "workflow": "mrdoob_three.js__codeql-code-scanning.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "mrdoob_three.js__codeql-code-scanning.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4",
+          "line": 25,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@ce28f5bb42b7a9f2c824e633a3f6ee835bab6858 # v3",
+          "line": 28,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@ce28f5bb42b7a9f2c824e633a3f6ee835bab6858 # github/codeql-action/init@ce28f5bb42b7a9f2c824e633a3f6ee835bab6858",
+          "line": 34,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@ce28f5bb42b7a9f2c824e633a3f6ee835bab6858 # github/codeql-action/init@ce28f5bb42b7a9f2c824e633a3f6ee835bab6858",
+          "line": 36,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "mrdoob_three.js__codeql-code-scanning.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            18,
+            19
+          ],
+          "raw_details": [
+            "Info: jobLevel 'actions' permission set to 'read': .github/workflows/mrdoob_three.js__codeql-code-scanning.yml:18",
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/mrdoob_three.js__codeql-code-scanning.yml:19",
+            "Warn: no topLevel permission defined: .github/workflows/mrdoob_three.js__codeql-code-scanning.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "permissions-check"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "mrdoob_three.js__codeql-code-scanning.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "mrdoob_three.js__codeql-code-scanning.yml",
+          "line": 28,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-Integrity-check"
+        }
+      ]
+    }
+  }
+}

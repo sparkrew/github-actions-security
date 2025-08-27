@@ -1,0 +1,13 @@
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/nodejs_node__commit-lint.yml:29:9
+   [1m[94m|[0m
+[1m[94m29 |[0m   [1m[94m...[0m - name: Validate commit message
+   [1m[94m|[0m         [1m[94m-----------------------------[0m [1m[94minfo: this step[0m
+[1m[94m30 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m31 |[0m [1m[94m|[0m [1m[94m...[0m     echo "::add-matcher::.github/workflows/commit-lint-problem-matcher.json"
+[1m[94m32 |[0m [1m[94m|[0m [1m[94m...[0m     git rev-parse HEAD~${{ steps.nb-of-commits.outputs.minusOne }} | xargs npx -q core-validate-commit --no-validate-metadata --tap
+   [1m[94m|[0m [1m[94m|________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.nb-of-commits.outputs.minusOne may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m4[39m findings ([1m[93m3[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m0[39m medium, [31m0[39m high

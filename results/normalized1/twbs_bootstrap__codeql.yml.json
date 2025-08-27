@@ -1,0 +1,170 @@
+{
+  "workflow": "twbs_bootstrap__codeql.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "twbs_bootstrap__codeql.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 27,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/init@v3",
+          "pinned": "github/codeql-action/init@181d5eefc20863364f96762470ba6f862bdef56b",
+          "line": 32,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/autobuild@v3",
+          "pinned": "github/codeql-action/autobuild@181d5eefc20863364f96762470ba6f862bdef56b",
+          "line": 39,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/analyze@v3",
+          "pinned": "github/codeql-action/analyze@181d5eefc20863364f96762470ba6f862bdef56b",
+          "line": 42,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "twbs_bootstrap__codeql.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 24,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@d6bbdef45e766d081b84a2def353b0055f728d3e # github/codeql-action/init@v3",
+          "line": 28,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@d6bbdef45e766d081b84a2def353b0055f728d3e # github/codeql-action/init@v3",
+          "line": 34,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@d6bbdef45e766d081b84a2def353b0055f728d3e # github/codeql-action/init@v3",
+          "line": 36,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "twbs_bootstrap__codeql.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            27,
+            32,
+            39,
+            42
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/twbs_bootstrap__codeql.yml:27",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/twbs_bootstrap__codeql.yml:32",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/twbs_bootstrap__codeql.yml:39",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/twbs_bootstrap__codeql.yml:42",
+            "Info:   0 out of   4 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/twbs_bootstrap__codeql.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "permissions-check"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "twbs_bootstrap__codeql.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "line": 27,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 32,
+          "column": 22,
+          "message": "Unpinned GitHub Action: uses `codeql-action/init@v3`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 39,
+          "column": 22,
+          "message": "Unpinned GitHub Action: uses `codeql-action/autobuild@v3`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 42,
+          "column": 22,
+          "message": "Unpinned GitHub Action: uses `codeql-action/analyze@v3`",
+          "capability": "pinning-check"
+        }
+      ]
+    }
+  }
+}

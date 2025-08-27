@@ -1,0 +1,37 @@
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__graphite_ci_optimizer.yml:46:9
+   [1m[94m|[0m
+[1m[94m46 |[0m         - name: Debug Output
+   [1m[94m|[0m           [1m[96m------------------[0m [1m[96mhelp: this step[0m
+[1m[94m47 |[0m [1m[96m/[0m         run: |
+[1m[94m48 |[0m [1m[96m|[0m           echo 'github.event_name: ${{ github.event_name }}'
+[1m[94m49 |[0m [1m[96m|[0m           echo "secrets.GRAPHITE_TOKEN != '': ${{ secrets.GRAPHITE_TOKEN != '' }}"
+[1m[94m50 |[0m [1m[96m|[0m           echo 'env.HAS_BYPASS_LABEL: ${{ env.HAS_BYPASS_LABEL }}'
+[1m[94m51 |[0m [1m[96m|[0m           echo 'steps.check-skip.outputs.skip: ${{ steps.check-skip.outputs.skip }}'
+   [1m[94m|[0m [1m[96m|_____________________________________________________________________________________-[0m [1m[96mhelp: env.HAS_BYPASS_LABEL may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__graphite_ci_optimizer.yml:46:9
+   [1m[94m|[0m
+[1m[94m46 |[0m         - name: Debug Output
+   [1m[94m|[0m           [1m[94m------------------[0m [1m[94minfo: this step[0m
+[1m[94m47 |[0m [1m[94m/[0m         run: |
+[1m[94m48 |[0m [1m[94m|[0m           echo 'github.event_name: ${{ github.event_name }}'
+[1m[94m49 |[0m [1m[94m|[0m           echo "secrets.GRAPHITE_TOKEN != '': ${{ secrets.GRAPHITE_TOKEN != '' }}"
+[1m[94m50 |[0m [1m[94m|[0m           echo 'env.HAS_BYPASS_LABEL: ${{ env.HAS_BYPASS_LABEL }}'
+[1m[94m51 |[0m [1m[94m|[0m           echo 'steps.check-skip.outputs.skip: ${{ steps.check-skip.outputs.skip }}'
+   [1m[94m|[0m [1m[94m|_____________________________________________________________________________________-[0m [1m[94minfo: steps.check-skip.outputs.skip may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/vercel_next.js__graphite_ci_optimizer.yml:43:9
+   [1m[94m|[0m
+[1m[94m43 |[0m         uses: withgraphite/graphite-ci-action@main
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m9[39m findings ([1m[93m6[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m1[39m low, [33m0[39m medium, [31m1[39m high

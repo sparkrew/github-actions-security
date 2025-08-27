@@ -1,0 +1,58 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/tensorflow_tensorflow__release-branch-cherrypick.yml:47:7
+   [1m[94m|[0m
+[1m[94m47 |[0m       - name: Checkout code
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m48 |[0m [1m[33m|[0m       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+[1m[94m49 |[0m [1m[33m|[0m       with:
+[1m[94m50 |[0m [1m[33m|[0m         ref: ${{ github.event.inputs.release_branch }}
+   [1m[94m|[0m [1m[33m|______________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/tensorflow_tensorflow__release-branch-cherrypick.yml:51:7
+   [1m[94m|[0m
+[1m[94m51 |[0m       - name: Get some helpful info for formatting
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m52 |[0m         id: cherrypick
+[1m[94m53 |[0m [1m[91m/[0m       run: |
+[1m[94m54 |[0m [1m[91m|[0m           git config --global user.name "TensorFlow Release Automation"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m58 |[0m [1m[91m|[0m           echo "SHORTSHA=$(git log -1 ${{ github.event.inputs.git_commit }} --format="%h")" >> "$GITHUB_OUTPUT"
+[1m[94m59 |[0m [1m[91m|[0m           echo "TITLE=$(git log -1 ${{ github.event.inputs.git_commit }} --format="%s")" >> "$GITHUB_OUTPUT"
+   [1m[94m|[0m [1m[91m|____________________________________________________________________________________________________________^[0m [1m[91mgithub.event.inputs.git_commit may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/tensorflow_tensorflow__release-branch-cherrypick.yml:51:7
+   [1m[94m|[0m
+[1m[94m51 |[0m       - name: Get some helpful info for formatting
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m52 |[0m         id: cherrypick
+[1m[94m53 |[0m [1m[91m/[0m       run: |
+[1m[94m54 |[0m [1m[91m|[0m           git config --global user.name "TensorFlow Release Automation"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m58 |[0m [1m[91m|[0m           echo "SHORTSHA=$(git log -1 ${{ github.event.inputs.git_commit }} --format="%h")" >> "$GITHUB_OUTPUT"
+[1m[94m59 |[0m [1m[91m|[0m           echo "TITLE=$(git log -1 ${{ github.event.inputs.git_commit }} --format="%s")" >> "$GITHUB_OUTPUT"
+   [1m[94m|[0m [1m[91m|____________________________________________________________________________________________________________^[0m [1m[91mgithub.event.inputs.git_commit may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/tensorflow_tensorflow__release-branch-cherrypick.yml:51:7
+   [1m[94m|[0m
+[1m[94m51 |[0m       - name: Get some helpful info for formatting
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m52 |[0m         id: cherrypick
+[1m[94m53 |[0m [1m[91m/[0m       run: |
+[1m[94m54 |[0m [1m[91m|[0m           git config --global user.name "TensorFlow Release Automation"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m58 |[0m [1m[91m|[0m           echo "SHORTSHA=$(git log -1 ${{ github.event.inputs.git_commit }} --format="%h")" >> "$GITHUB_OUTPUT"
+[1m[94m59 |[0m [1m[91m|[0m           echo "TITLE=$(git log -1 ${{ github.event.inputs.git_commit }} --format="%s")" >> "$GITHUB_OUTPUT"
+   [1m[94m|[0m [1m[91m|____________________________________________________________________________________________________________^[0m [1m[91mgithub.event.inputs.git_commit may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m7[39m findings ([1m[93m3[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m3[39m high

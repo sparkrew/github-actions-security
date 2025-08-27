@@ -1,0 +1,386 @@
+{
+  "workflow": "langchain-ai_langchain__check_diffs.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "langchain-ai_langchain__check_diffs.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 27
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-python@v5",
+          "pinned": "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "line": 28
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "Ana06/get-changed-files@v2.3.0",
+          "pinned": "Ana06/get-changed-files@25f79e676e7ea1868813e21465014798211fad8c",
+          "line": 32
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 128
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "langchain-ai_langchain__check_diffs.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 23
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # actions/setup-python@v5 | v5.6.0",
+          "line": 24
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: Ana06/get-changed-files@25f79e676e7ea1868813e21465014798211fad8c # Ana06/get-changed-files@v2.3.0 | main",
+          "line": 28
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 119
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "langchain-ai_langchain__check_diffs.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            27,
+            28,
+            32,
+            35,
+            128
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/langchain-ai_langchain__check_diffs.yml:27",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/langchain-ai_langchain__check_diffs.yml:28",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/langchain-ai_langchain__check_diffs.yml:32",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/langchain-ai_langchain__check_diffs.yml:128",
+            "Warn: pipCommand not pinned by hash: .github/workflows/langchain-ai_langchain__check_diffs.yml:35",
+            "Info:   0 out of   3 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   1 third-party GitHubAction dependencies pinned",
+            "Info:   0 out of   1 pipCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          }
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          }
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/langchain-ai_langchain__check_diffs.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          }
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "langchain-ai_langchain__check_diffs.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "line": 27,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+        },
+        {
+          "line": 28,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v5`"
+        },
+        {
+          "line": 32,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `Ana06/get-changed-files@v2.3.0`"
+        },
+        {
+          "line": 128,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "langchain-ai_langchain__check_diffs.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 18,
+        "by_rule": {
+          "artipacked": 2,
+          "excessive-permissions": 9,
+          "template-injection": 1,
+          "unpinned-uses": 1,
+          "secrets-inherit": 5
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "langchain-ai_langchain__check_diffs.yml",
+          "line": 27,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "langchain-ai_langchain__check_diffs.yml",
+          "line": 128,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "langchain-ai_langchain__check_diffs.yml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "langchain-ai_langchain__check_diffs.yml",
+          "line": 24,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "langchain-ai_langchain__check_diffs.yml",
+          "line": 45,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "langchain-ai_langchain__check_diffs.yml",
+          "line": 59,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "langchain-ai_langchain__check_diffs.yml",
+          "line": 73,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "langchain-ai_langchain__check_diffs.yml",
+          "line": 87,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "langchain-ai_langchain__check_diffs.yml",
+          "line": 99,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "langchain-ai_langchain__check_diffs.yml",
+          "line": 113,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "langchain-ai_langchain__check_diffs.yml",
+          "line": 156,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "langchain-ai_langchain__check_diffs.yml",
+          "line": 33,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "langchain-ai_langchain__check_diffs.yml",
+          "line": 32,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "secrets-inherit",
+          "level": "warning",
+          "message": "secrets unconditionally inherited by called workflow",
+          "workflow": "langchain-ai_langchain__check_diffs.yml",
+          "line": 53,
+          "column": 5,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "secrets-inherit",
+          "level": "warning",
+          "message": "secrets unconditionally inherited by called workflow",
+          "workflow": "langchain-ai_langchain__check_diffs.yml",
+          "line": 67,
+          "column": 5,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "secrets-inherit",
+          "level": "warning",
+          "message": "secrets unconditionally inherited by called workflow",
+          "workflow": "langchain-ai_langchain__check_diffs.yml",
+          "line": 81,
+          "column": 5,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "secrets-inherit",
+          "level": "warning",
+          "message": "secrets unconditionally inherited by called workflow",
+          "workflow": "langchain-ai_langchain__check_diffs.yml",
+          "line": 94,
+          "column": 5,
+          "note": "audit confidence \u2192 High"
+        },
+        {
+          "rule_id": "secrets-inherit",
+          "level": "warning",
+          "message": "secrets unconditionally inherited by called workflow",
+          "workflow": "langchain-ai_langchain__check_diffs.yml",
+          "line": 107,
+          "column": 5,
+          "note": "audit confidence \u2192 High"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "langchain-ai_langchain__check_diffs.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 5
+      },
+      "findings": [
+        {
+          "line": 53,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/_lint.yml\": open /home/huawei/github-actions-security/.github/workflows/_lint.yml: no such file or directory [expression]"
+        },
+        {
+          "line": 67,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/_test.yml\": open /home/huawei/github-actions-security/.github/workflows/_test.yml: no such file or directory [expression]"
+        },
+        {
+          "line": 81,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/_test_pydantic.yml\": open /home/huawei/github-actions-security/.github/workflows/_test_pydantic.yml: no such file or directory [expression]"
+        },
+        {
+          "line": 94,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/_test_doc_imports.yml\": open /home/huawei/github-actions-security/.github/workflows/_test_doc_imports.yml: no such file or directory [workflow-call]"
+        },
+        {
+          "line": 107,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/_compile_integration_test.yml\": open /home/huawei/github-actions-security/.github/workflows/_compile_integration_test.yml: no such file or directory [workflow-call]"
+        }
+      ]
+    }
+  }
+}

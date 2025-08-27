@@ -1,0 +1,21 @@
+name: Lint
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+      - uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+      - name: Install
+        run: npm ci --prefer-offline
+      - name: Alex
+        run: npm run alex
+      - name: Prettier
+        run: npm run prettier -- --list-different
+      - name: Eslint
+        run: npm run eslint -- --max-warnings 0

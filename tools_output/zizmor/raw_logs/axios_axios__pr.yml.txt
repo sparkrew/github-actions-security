@@ -1,0 +1,83 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/axios_axios__pr.yml:22:9
+   [1m[94m|[0m
+[1m[94m22 |[0m         - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m23 |[0m [1m[33m|[0m         with:
+[1m[94m24 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/axios_axios__pr.yml:19:3
+   [1m[94m|[0m
+[1m[94m19 |[0m [1m[33m/[0m   releaseIt:
+[1m[94m20 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m83 |[0m [1m[33m|[0m         run: |
+[1m[94m84 |[0m [1m[33m|[0m           echo "Axios Release v${{ steps.package-version.outputs.current-version}}' pull request - ${{ steps.cpr.outputs.pull-request-url }}"
+   [1m[94m|[0m [1m[33m|[0m                                                                                                                                              [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                                                                                [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                                                                                [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/axios_axios__pr.yml:81:9
+   [1m[94m|[0m
+[1m[94m81 |[0m   [1m[94m...[0m - name: Show PR link
+   [1m[94m|[0m         [1m[94m------------------[0m [1m[94minfo: this step[0m
+[1m[94m82 |[0m   [1m[94m...[0m   if: ${{ steps.cpr.outputs.pull-request-url }}
+[1m[94m83 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m84 |[0m [1m[94m|[0m [1m[94m...[0m     echo "Axios Release v${{ steps.package-version.outputs.current-version}}' pull request - ${{ steps.cpr.outputs.pull-request-url }}"
+   [1m[94m|[0m [1m[94m|____________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.package-version.outputs.current-version may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/axios_axios__pr.yml:81:9
+   [1m[94m|[0m
+[1m[94m81 |[0m   [1m[94m...[0m - name: Show PR link
+   [1m[94m|[0m         [1m[94m------------------[0m [1m[94minfo: this step[0m
+[1m[94m82 |[0m   [1m[94m...[0m   if: ${{ steps.cpr.outputs.pull-request-url }}
+[1m[94m83 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m84 |[0m [1m[94m|[0m [1m[94m...[0m     echo "Axios Release v${{ steps.package-version.outputs.current-version}}' pull request - ${{ steps.cpr.outputs.pull-request-url }}"
+   [1m[94m|[0m [1m[94m|____________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.cpr.outputs.pull-request-url may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/axios_axios__pr.yml:50:9
+   [1m[94m|[0m
+[1m[94m50 |[0m         uses: martinbeentjes/npm-get-version-action@main
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/axios_axios__pr.yml:53:9
+   [1m[94m|[0m
+[1m[94m53 |[0m         uses: ffurrer2/extract-release-notes@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/axios_axios__pr.yml:56:9
+   [1m[94m|[0m
+[1m[94m56 |[0m         uses: mathiasvr/command-output@v1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/axios_axios__pr.yml:60:9
+   [1m[94m|[0m
+[1m[94m60 |[0m         uses: peter-evans/create-pull-request@v7
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m11[39m findings ([1m[93m3[39m suppressed[0m): 0 unknown, [35m2[39m informational, [36m0[39m low, [33m2[39m medium, [31m4[39m high

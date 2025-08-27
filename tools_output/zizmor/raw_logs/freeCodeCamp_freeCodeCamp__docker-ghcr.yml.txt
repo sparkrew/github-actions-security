@@ -1,0 +1,24 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__docker-ghcr.yml:25:9
+   [1m[94m|[0m
+[1m[94m25 |[0m         - name: Checkout code
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m26 |[0m [1m[33m|[0m         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+   [1m[94m|[0m [1m[33m|____________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#cache-poisoning\cache-poisoning]8;;\][0m: [1mruntime artifacts potentially vulnerable to a cache poisoning attack[0m
+  [1m[94m-->[0m ../.github/workflows/freeCodeCamp_freeCodeCamp__docker-ghcr.yml:47:9
+   [1m[94m|[0m
+[1m[94m39 |[0m         uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcache enabled by default here[0m
+[1m[94m40 |[0m         with:
+[1m[94m...[0m
+[1m[94m46 |[0m       - name: Build and push Docker image
+[1m[94m47 |[0m         uses: docker/build-push-action@14487ce63c7a62a4a324b0bfb37086795e31c6c1 # v6.16.0
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mruntime artifacts usually published here[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m4[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m1[39m high

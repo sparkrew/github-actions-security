@@ -1,0 +1,197 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+ [1m[94m-->[0m ../.github/workflows/facebook_folly__oss-build-and-test.yml:7:9
+  [1m[94m|[0m
+[1m[94m7 |[0m         - uses: actions/checkout@v4
+  [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m8 |[0m [1m[33m|[0m         with:
+[1m[94m9 |[0m [1m[33m|[0m           submodules: 'true'
+  [1m[94m|[0m [1m[33m|____________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+  [1m[94m|[0m
+  [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_folly__oss-build-and-test.yml:58:11
+   [1m[94m|[0m
+[1m[94m58 |[0m           - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m___________-[0m
+[1m[94m59 |[0m [1m[33m|[0m           with:
+[1m[94m60 |[0m [1m[33m|[0m             submodules: 'true'
+   [1m[94m|[0m [1m[33m|______________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_folly__oss-build-and-test.yml:89:11
+   [1m[94m|[0m
+[1m[94m89 |[0m           - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m___________-[0m
+[1m[94m90 |[0m [1m[33m|[0m           with:
+[1m[94m91 |[0m [1m[33m|[0m             submodules: 'true'
+   [1m[94m|[0m [1m[33m|______________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_folly__oss-build-and-test.yml:118:11
+    [1m[94m|[0m
+[1m[94m118 |[0m           - uses: actions/checkout@v4
+    [1m[94m|[0m  [1m[33m___________-[0m
+[1m[94m119 |[0m [1m[33m|[0m           with:
+[1m[94m120 |[0m [1m[33m|[0m             submodules: 'true'
+    [1m[94m|[0m [1m[33m|______________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_folly__oss-build-and-test.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: Buck build and test
+[1m[94m  2 |[0m [1m[33m|[0m on: [push, pull_request, workflow_dispatch]
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m146 |[0m [1m[33m|[0m         - name: buck2 build and test
+[1m[94m147 |[0m [1m[33m|[0m           run: bash ./.github/scripts/buck_build_and_test.sh
+    [1m[94m|[0m [1m[33m|_____________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_folly__oss-build-and-test.yml:4:3
+   [1m[94m|[0m
+[1m[94m 4 |[0m [1m[33m/[0m   get-toolchains-to-install:
+[1m[94m 5 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m51 |[0m [1m[33m|[0m       uses_ocaml: ${{env.uses_ocaml}}
+[1m[94m52 |[0m [1m[33m|[0m       uses_python: ${{env.uses_python}}
+   [1m[94m|[0m [1m[33m|[0m                                       [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________________________|[0m
+   [1m[94m|[0m                                         [1m[33mthis job[0m
+   [1m[94m|[0m                                         [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_folly__oss-build-and-test.yml:54:3
+   [1m[94m|[0m
+[1m[94m54 |[0m [1m[33m/[0m   ubuntu-os-buck-build-and-test:
+[1m[94m55 |[0m [1m[33m|[0m       needs: get-toolchains-to-install
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m83 |[0m [1m[33m|[0m         - name: buck2 build and test
+[1m[94m84 |[0m [1m[33m|[0m           run: bash ./.github/scripts/buck_build_and_test.sh
+   [1m[94m|[0m [1m[33m|[0m                                                            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________________________________________|[0m
+   [1m[94m|[0m                                                              [1m[33mthis job[0m
+   [1m[94m|[0m                                                              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_folly__oss-build-and-test.yml:85:3
+    [1m[94m|[0m
+[1m[94m 85 |[0m [1m[33m/[0m   windows-os-buck-build-and-test:
+[1m[94m 86 |[0m [1m[33m|[0m       needs: get-toolchains-to-install
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m112 |[0m [1m[33m|[0m         - name: buck2 build and test
+[1m[94m113 |[0m [1m[33m|[0m           run: bash ./.github/scripts/buck_build_and_test.sh
+    [1m[94m|[0m [1m[33m|[0m                                                            [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________________________________________________|[0m
+    [1m[94m|[0m                                                              [1m[33mthis job[0m
+    [1m[94m|[0m                                                              [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_folly__oss-build-and-test.yml:114:3
+    [1m[94m|[0m
+[1m[94m114 |[0m [1m[33m/[0m   mac-os-buck-build-and-test:
+[1m[94m115 |[0m [1m[33m|[0m       needs: get-toolchains-to-install
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m146 |[0m [1m[33m|[0m         - name: buck2 build and test
+[1m[94m147 |[0m [1m[33m|[0m           run: bash ./.github/scripts/buck_build_and_test.sh
+    [1m[94m|[0m [1m[33m|[0m                                                             [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_____________________________________________________________|[0m
+    [1m[94m|[0m                                                               [1m[33mthis job[0m
+    [1m[94m|[0m                                                               [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_folly__oss-build-and-test.yml:10:9
+   [1m[94m|[0m
+[1m[94m10 |[0m       - uses: facebook/install-dotslash@latest
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_folly__oss-build-and-test.yml:63:11
+   [1m[94m|[0m
+[1m[94m63 |[0m         - uses: facebook/install-dotslash@latest
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_folly__oss-build-and-test.yml:66:11
+   [1m[94m|[0m
+[1m[94m66 |[0m           uses: dtolnay/rust-toolchain@stable
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_folly__oss-build-and-test.yml:75:11
+   [1m[94m|[0m
+[1m[94m75 |[0m           uses: ocaml/setup-ocaml@v2
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_folly__oss-build-and-test.yml:92:11
+   [1m[94m|[0m
+[1m[94m92 |[0m         - uses: facebook/install-dotslash@latest
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_folly__oss-build-and-test.yml:95:11
+   [1m[94m|[0m
+[1m[94m95 |[0m           uses: dtolnay/rust-toolchain@stable
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_folly__oss-build-and-test.yml:104:11
+    [1m[94m|[0m
+[1m[94m104 |[0m           uses: ocaml/setup-ocaml@v2
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_folly__oss-build-and-test.yml:121:11
+    [1m[94m|[0m
+[1m[94m121 |[0m         - uses: facebook/install-dotslash@latest
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_folly__oss-build-and-test.yml:124:11
+    [1m[94m|[0m
+[1m[94m124 |[0m           uses: dtolnay/rust-toolchain@stable
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_folly__oss-build-and-test.yml:132:11
+    [1m[94m|[0m
+[1m[94m132 |[0m           uses: ocaml/setup-ocaml@v2
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m19[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m9[39m medium, [31m10[39m high

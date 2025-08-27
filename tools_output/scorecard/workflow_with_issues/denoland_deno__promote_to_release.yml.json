@@ -1,0 +1,79 @@
+{
+  "workflow": "denoland_deno__promote_to_release.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        30,
+        36,
+        65,
+        73,
+        104,
+        119,
+        125,
+        133,
+        138,
+        155
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/denoland_deno__promote_to_release.yml:30",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/denoland_deno__promote_to_release.yml:36",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/denoland_deno__promote_to_release.yml:65",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/denoland_deno__promote_to_release.yml:73",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/denoland_deno__promote_to_release.yml:104",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/denoland_deno__promote_to_release.yml:119",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/denoland_deno__promote_to_release.yml:125",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/denoland_deno__promote_to_release.yml:133",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/denoland_deno__promote_to_release.yml:138",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/denoland_deno__promote_to_release.yml:155",
+        "Info:   0 out of   4 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of   6 third-party GitHubAction dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 0,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1,
+        24
+      ],
+      "raw_details": [
+        "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/denoland_deno__promote_to_release.yml:24",
+        "Warn: no topLevel permission defined: .github/workflows/denoland_deno__promote_to_release.yml:1"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

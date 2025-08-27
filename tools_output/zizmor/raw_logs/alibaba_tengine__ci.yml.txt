@@ -1,0 +1,63 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/alibaba_tengine__ci.yml:19:8
+   [1m[94m|[0m
+[1m[94m19 |[0m      - uses: actions/checkout@v3
+   [1m[94m|[0m        [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/alibaba_tengine__ci.yml:25:8
+   [1m[94m|[0m
+[1m[94m25 |[0m        - name: 'checkout luajit2'
+   [1m[94m|[0m  [1m[33m________-[0m
+[1m[94m26 |[0m [1m[33m|[0m        uses: actions/checkout@v3
+[1m[94m27 |[0m [1m[33m|[0m        with:
+[1m[94m28 |[0m [1m[33m|[0m          repository: openresty/luajit2
+[1m[94m29 |[0m [1m[33m|[0m          path: luajit2
+   [1m[94m|[0m [1m[33m|______________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/alibaba_tengine__ci.yml:35:8
+   [1m[94m|[0m
+[1m[94m35 |[0m        - name: 'checkout lua-resty-lrucache'
+   [1m[94m|[0m  [1m[33m________-[0m
+[1m[94m36 |[0m [1m[33m|[0m        uses: actions/checkout@v3
+[1m[94m37 |[0m [1m[33m|[0m        with:
+[1m[94m38 |[0m [1m[33m|[0m          repository: openresty/lua-resty-lrucache
+[1m[94m39 |[0m [1m[33m|[0m          path: lua-resty-lrucache
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/alibaba_tengine__ci.yml:44:8
+   [1m[94m|[0m
+[1m[94m44 |[0m        - name: 'checkout lua-resty-core'
+   [1m[94m|[0m  [1m[33m________-[0m
+[1m[94m45 |[0m [1m[33m|[0m        uses: actions/checkout@v3
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m48 |[0m [1m[33m|[0m          ref: v0.1.27
+[1m[94m49 |[0m [1m[33m|[0m          path: lua-resty-core
+   [1m[94m|[0m [1m[33m|_____________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/alibaba_tengine__ci.yml:10:3
+    [1m[94m|[0m
+[1m[94m 10 |[0m [1m[33m/[0m   build-and-test:
+[1m[94m 11 |[0m [1m[33m|[0m    runs-on: "ubuntu-24.04"
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m121 |[0m [1m[33m|[0m          PATH=/usr/local/nginx/sbin:$PATH \
+[1m[94m122 |[0m [1m[33m|[0m          prove -v -Itest-nginx/lib cases/
+    [1m[94m|[0m [1m[33m|[0m                                          [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|__________________________________________|[0m
+    [1m[94m|[0m                                            [1m[33mthis job[0m
+    [1m[94m|[0m                                            [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m6[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m5[39m medium, [31m0[39m high

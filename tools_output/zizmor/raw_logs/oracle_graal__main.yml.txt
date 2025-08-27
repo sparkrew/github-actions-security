@@ -1,0 +1,93 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_graal__main.yml:170:7
+    [1m[94m|[0m
+[1m[94m170 |[0m       - name: Checkout oracle/graal
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m171 |[0m [1m[33m|[0m       uses: actions/checkout@v4
+[1m[94m172 |[0m [1m[33m|[0m       with:
+[1m[94m173 |[0m [1m[33m|[0m         ref: ${{ github.ref }} # Lock ref to current branch to avoid fetching others
+[1m[94m174 |[0m [1m[33m|[0m         fetch-depth: "${{ env.MX_RUNS_STYLE && '0' || '1' }}" # The style gate needs the full commit history for checking copyright years
+    [1m[94m|[0m [1m[33m|_________________________________________________________________________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_graal__main.yml:177:7
+    [1m[94m|[0m
+[1m[94m177 |[0m       - name: Checkout graalvm/mx
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m178 |[0m [1m[33m|[0m       uses: actions/checkout@v4
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m181 |[0m [1m[33m|[0m         ref: ${{ env.MX_VERSION }}
+[1m[94m182 |[0m [1m[33m|[0m         path: ${{ env.MX_PATH }}
+    [1m[94m|[0m [1m[33m|________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_graal__main.yml:239:7
+    [1m[94m|[0m
+[1m[94m239 |[0m       - name: Checkout oracle/graal
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m240 |[0m [1m[33m|[0m       uses: actions/checkout@v4
+[1m[94m241 |[0m [1m[33m|[0m       with:
+[1m[94m242 |[0m [1m[33m|[0m         ref: ${{ github.ref }} # Lock ref to current branch to avoid fetching others
+    [1m[94m|[0m [1m[33m|____________________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_graal__main.yml:246:7
+    [1m[94m|[0m
+[1m[94m246 |[0m       - name: Checkout graalvm/mx
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m247 |[0m [1m[33m|[0m       uses: actions/checkout@v4
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m250 |[0m [1m[33m|[0m         ref: ${{ env.MX_VERSION }}
+[1m[94m251 |[0m [1m[33m|[0m         path: ${{ env.MX_PATH }}
+    [1m[94m|[0m [1m[33m|________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_graal__main.yml:223:7
+    [1m[94m|[0m
+[1m[94m223 |[0m     - name: Build GraalVM and run gate with tags
+    [1m[94m|[0m       [1m[96m------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m224 |[0m       env: ${{ matrix.env }}
+[1m[94m225 |[0m       run: ${MX_PATH}/mx --primary-suite-path ${PRIMARY} --java-home=${JAVA_HOME} --tools-java-home=${{ matrix.env.TOOLS_JDK_VERSION != '' && env.TOOLS_JAVA_HOME_LOCATION || '' }} gate --strict-mode ${{ matrix.env.GATE_OPTS }} --tags ${GATE_TAGS}
+    [1m[94m|[0m       [1m[96m------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.TOOLS_JAVA_HOME_LOCATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_graal__main.yml:261:7
+    [1m[94m|[0m
+[1m[94m261 |[0m       - name: Build GraalVM via cmd.exe
+    [1m[94m|[0m         [1m[96m-------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m262 |[0m         shell: cmd
+[1m[94m263 |[0m [1m[96m/[0m       run: |
+[1m[94m264 |[0m [1m[96m|[0m         call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m270 |[0m [1m[96m|[0m         echo %GRAALVM_HOME%\bin>>%GITHUB_PATH%
+[1m[94m271 |[0m [1m[96m|[0m         echo GRAALVM_HOME=%GRAALVM_HOME%>>%GITHUB_ENV%
+    [1m[94m|[0m [1m[96m|______________________________________________________-[0m [1m[96mhelp: env.MX_PATH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_graal__main.yml:261:7
+    [1m[94m|[0m
+[1m[94m261 |[0m       - name: Build GraalVM via cmd.exe
+    [1m[94m|[0m         [1m[96m-------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m262 |[0m         shell: cmd
+[1m[94m263 |[0m [1m[96m/[0m       run: |
+[1m[94m264 |[0m [1m[96m|[0m         call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m270 |[0m [1m[96m|[0m         echo %GRAALVM_HOME%\bin>>%GITHUB_PATH%
+[1m[94m271 |[0m [1m[96m|[0m         echo GRAALVM_HOME=%GRAALVM_HOME%>>%GITHUB_ENV%
+    [1m[94m|[0m [1m[96m|______________________________________________________-[0m [1m[96mhelp: env.MX_PATH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m17[39m findings ([1m[93m10[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m3[39m low, [33m4[39m medium, [31m0[39m high

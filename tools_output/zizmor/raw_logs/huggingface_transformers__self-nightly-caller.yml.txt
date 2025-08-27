@@ -1,0 +1,94 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-nightly-caller.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m name: Self-hosted runner (nightly-ci)
+[1m[94m 2 |[0m [1m[33m|[0m
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m42 |[0m [1m[33m|[0m       working-directory-prefix: /workspace
+[1m[94m43 |[0m [1m[33m|[0m     secrets: inherit
+   [1m[94m|[0m [1m[33m|_____________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-nightly-caller.yml:13:3
+   [1m[94m|[0m
+[1m[94m13 |[0m [1m[33m/[0m   build_nightly_ci_images:
+[1m[94m14 |[0m [1m[33m|[0m     name: Build Nightly CI Docker Images
+[1m[94m15 |[0m [1m[33m|[0m     if: (github.event_name == 'schedule') || ((github.event_name == 'push') && startsWith(github.ref_name, 'run_nightly_ci'))
+[1m[94m16 |[0m [1m[33m|[0m     uses: ./.github/workflows/build-nightly-ci-docker-images.yml
+[1m[94m17 |[0m [1m[33m|[0m     secrets: inherit
+   [1m[94m|[0m [1m[33m|[0m                    [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________|[0m
+   [1m[94m|[0m                      [1m[33mthis job[0m
+   [1m[94m|[0m                      [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-nightly-caller.yml:19:3
+   [1m[94m|[0m
+[1m[94m19 |[0m [1m[33m/[0m   model-ci:
+[1m[94m20 |[0m [1m[33m|[0m     name: Model CI
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m28 |[0m [1m[33m|[0m       ci_event: Nightly CI
+[1m[94m29 |[0m [1m[33m|[0m     secrets: inherit
+   [1m[94m|[0m [1m[33m|[0m                    [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________|[0m
+   [1m[94m|[0m                      [1m[33mthis job[0m
+   [1m[94m|[0m                      [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-nightly-caller.yml:31:3
+   [1m[94m|[0m
+[1m[94m31 |[0m [1m[33m/[0m   deepspeed-ci:
+[1m[94m32 |[0m [1m[33m|[0m     name: DeepSpeed CI
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m42 |[0m [1m[33m|[0m       working-directory-prefix: /workspace
+[1m[94m43 |[0m [1m[33m|[0m     secrets: inherit
+   [1m[94m|[0m [1m[33m|[0m                     [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________________|[0m
+   [1m[94m|[0m                       [1m[33mthis job[0m
+   [1m[94m|[0m                       [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-nightly-caller.yml:16:5
+   [1m[94m|[0m
+[1m[94m16 |[0m     uses: ./.github/workflows/build-nightly-ci-docker-images.yml
+   [1m[94m|[0m     [1m[33m------------------------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m17 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-nightly-caller.yml:22:5
+   [1m[94m|[0m
+[1m[94m22 |[0m     uses: ./.github/workflows/self-scheduled.yml
+   [1m[94m|[0m     [1m[33m--------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m23 |[0m     with:
+[1m[94m...[0m
+[1m[94m28 |[0m       ci_event: Nightly CI
+[1m[94m29 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/huggingface_transformers__self-nightly-caller.yml:34:5
+   [1m[94m|[0m
+[1m[94m34 |[0m     uses: ./.github/workflows/self-scheduled.yml
+   [1m[94m|[0m     [1m[33m--------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m35 |[0m     with:
+[1m[94m...[0m
+[1m[94m42 |[0m       working-directory-prefix: /workspace
+[1m[94m43 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m7[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m7[39m medium, [31m0[39m high

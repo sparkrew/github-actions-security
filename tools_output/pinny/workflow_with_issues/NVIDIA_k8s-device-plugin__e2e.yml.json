@@ -1,0 +1,37 @@
+{
+  "workflow": "NVIDIA_k8s-device-plugin__e2e.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "unpinned-github-actions": 5
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+      "line": 27
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5 # actions/setup-go@v5 | v5.5.0",
+      "line": 29
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: NVIDIA/holodeck@aa690b0cb42dffed4a0fa304a9ea896787955214 # NVIDIA/holodeck@v0.2.12",
+      "line": 33
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+      "line": 49
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: slackapi/slack-github-action@b0fa283ad8fea605de13dc3f449259339835fc52 # slackapi/slack-github-action@v2.1.0 | release",
+      "line": 57
+    }
+  ]
+}

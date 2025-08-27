@@ -1,0 +1,137 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/vuejs_vue__ci.yml:13:9
+   [1m[94m|[0m
+[1m[94m13 |[0m       - uses: actions/checkout@v2
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/vuejs_vue__ci.yml:32:9
+   [1m[94m|[0m
+[1m[94m32 |[0m       - uses: actions/checkout@v2
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/vuejs_vue__ci.yml:54:9
+   [1m[94m|[0m
+[1m[94m54 |[0m       - uses: actions/checkout@v2
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/vuejs_vue__ci.yml:76:9
+   [1m[94m|[0m
+[1m[94m76 |[0m       - uses: actions/checkout@v2
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/vuejs_vue__ci.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m name: 'ci'
+[1m[94m 2 |[0m [1m[33m|[0m on:
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m92 |[0m [1m[33m|[0m       - name: Run type declaration tests
+[1m[94m93 |[0m [1m[33m|[0m         run: pnpm run test:types
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/vuejs_vue__ci.yml:10:3
+   [1m[94m|[0m
+[1m[94m10 |[0m [1m[33m/[0m   unit-test:
+[1m[94m11 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m26 |[0m [1m[33m|[0m       - name: Run unit tests
+[1m[94m27 |[0m [1m[33m|[0m         run: pnpm run test:unit
+   [1m[94m|[0m [1m[33m|[0m                               [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________________|[0m
+   [1m[94m|[0m                                 [1m[33mthis job[0m
+   [1m[94m|[0m                                 [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/vuejs_vue__ci.yml:29:3
+   [1m[94m|[0m
+[1m[94m29 |[0m [1m[33m/[0m   ssr-sfc-test:
+[1m[94m30 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m48 |[0m [1m[33m|[0m       - name: Run compiler-sfc tests
+[1m[94m49 |[0m [1m[33m|[0m         run: pnpm run test:sfc
+   [1m[94m|[0m [1m[33m|[0m                              [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________________|[0m
+   [1m[94m|[0m                                [1m[33mthis job[0m
+   [1m[94m|[0m                                [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/vuejs_vue__ci.yml:51:3
+   [1m[94m|[0m
+[1m[94m51 |[0m [1m[33m/[0m   e2e-test:
+[1m[94m52 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m70 |[0m [1m[33m|[0m       - name: Run transition tests
+[1m[94m71 |[0m [1m[33m|[0m         run: pnpm run test:transition
+   [1m[94m|[0m [1m[33m|[0m                                     [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________________________________|[0m
+   [1m[94m|[0m                                       [1m[33mthis job[0m
+   [1m[94m|[0m                                       [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/vuejs_vue__ci.yml:73:3
+   [1m[94m|[0m
+[1m[94m73 |[0m [1m[33m/[0m   type-test:
+[1m[94m74 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m92 |[0m [1m[33m|[0m       - name: Run type declaration tests
+[1m[94m93 |[0m [1m[33m|[0m         run: pnpm run test:types
+   [1m[94m|[0m [1m[33m|[0m                                 [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_________________________________|[0m
+   [1m[94m|[0m                                   [1m[33mthis job[0m
+   [1m[94m|[0m                                   [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/vuejs_vue__ci.yml:16:9
+   [1m[94m|[0m
+[1m[94m16 |[0m         uses: pnpm/action-setup@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/vuejs_vue__ci.yml:35:9
+   [1m[94m|[0m
+[1m[94m35 |[0m         uses: pnpm/action-setup@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/vuejs_vue__ci.yml:57:9
+   [1m[94m|[0m
+[1m[94m57 |[0m         uses: pnpm/action-setup@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/vuejs_vue__ci.yml:79:9
+   [1m[94m|[0m
+[1m[94m79 |[0m         uses: pnpm/action-setup@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m13[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m9[39m medium, [31m4[39m high

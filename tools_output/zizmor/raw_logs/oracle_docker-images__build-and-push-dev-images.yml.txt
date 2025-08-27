@@ -1,0 +1,634 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:50:9
+   [1m[94m|[0m
+[1m[94m50 |[0m         - name: Checkout repo
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m51 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m52 |[0m [1m[33m|[0m         with:
+[1m[94m53 |[0m [1m[33m|[0m           # We need "some" commit history to check for changed files
+[1m[94m54 |[0m [1m[33m|[0m           fetch-depth: 32
+   [1m[94m|[0m [1m[33m|_________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:138:9
+    [1m[94m|[0m
+[1m[94m138 |[0m         - name: Checkout repo
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m139 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+    [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: Build and publish Oracle Linux developer container images to GitHub Container Registry
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m186 |[0m [1m[33m|[0m             "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[33m|[0m             "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[33m|________________________________________________________________________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:40:3
+    [1m[94m|[0m
+[1m[94m 40 |[0m [1m[33m/[0m   prepare:
+[1m[94m 41 |[0m [1m[33m|[0m     name: Create build matrix
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m126 |[0m [1m[33m|[0m         run: |
+[1m[94m127 |[0m [1m[33m|[0m           echo "date_stamp=$(date +'%Y%m%d')" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[33m|[0m                                                                 [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_________________________________________________________________|[0m
+    [1m[94m|[0m                                                                   [1m[33mthis job[0m
+    [1m[94m|[0m                                                                   [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:129:3
+    [1m[94m|[0m
+[1m[94m129 |[0m [1m[33m/[0m   build-image:
+[1m[94m130 |[0m [1m[33m|[0m     name: Build image
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m186 |[0m [1m[33m|[0m             "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[33m|[0m             "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[33m|[0m                                                                                                                                [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|________________________________________________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                                                  [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                                                  [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:56:9
+    [1m[94m|[0m
+[1m[94m 56 |[0m         - name: Build matrix
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m 57 |[0m           id: build-matrix
+[1m[94m 58 |[0m           working-directory: OracleLinuxDevelopers
+[1m[94m 59 |[0m [1m[91m/[0m         run: |
+[1m[94m 60 |[0m [1m[91m|[0m           IFS=", " read -r -a ol_list <<< "${{ github.event.inputs.ol || env.ol}}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m116 |[0m [1m[91m|[0m           echo "matrix=${matrix}" >> "$GITHUB_OUTPUT"
+[1m[94m117 |[0m [1m[91m|[0m           echo "skip_build=${skip_build}" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91mgithub.event.inputs.ol may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:56:9
+    [1m[94m|[0m
+[1m[94m 56 |[0m         - name: Build matrix
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m 57 |[0m           id: build-matrix
+[1m[94m 58 |[0m           working-directory: OracleLinuxDevelopers
+[1m[94m 59 |[0m [1m[91m/[0m         run: |
+[1m[94m 60 |[0m [1m[91m|[0m           IFS=", " read -r -a ol_list <<< "${{ github.event.inputs.ol || env.ol}}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m116 |[0m [1m[91m|[0m           echo "matrix=${matrix}" >> "$GITHUB_OUTPUT"
+[1m[94m117 |[0m [1m[91m|[0m           echo "skip_build=${skip_build}" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91mgithub.event.inputs.lang may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:56:9
+    [1m[94m|[0m
+[1m[94m 56 |[0m         - name: Build matrix
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m 57 |[0m           id: build-matrix
+[1m[94m 58 |[0m           working-directory: OracleLinuxDevelopers
+[1m[94m 59 |[0m [1m[91m/[0m         run: |
+[1m[94m 60 |[0m [1m[91m|[0m           IFS=", " read -r -a ol_list <<< "${{ github.event.inputs.ol || env.ol}}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m116 |[0m [1m[91m|[0m           echo "matrix=${matrix}" >> "$GITHUB_OUTPUT"
+[1m[94m117 |[0m [1m[91m|[0m           echo "skip_build=${skip_build}" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91mgithub.event.workflow may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:156:9
+    [1m[94m|[0m
+[1m[94m156 |[0m       - name: Build image - amd64
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mthis step[0m
+[1m[94m157 |[0m         uses: docker/build-push-action@v6
+[1m[94m158 |[0m         with:
+[1m[94m159 |[0m           context: OracleLinuxDevelopers/${{ matrix.ol }}/${{ matrix.lang }}/${{ matrix.tag }}
+    [1m[94m|[0m           [1m[33m------------------------------------------------------------------------------------[0m [1m[33mmatrix.ol may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:156:9
+    [1m[94m|[0m
+[1m[94m156 |[0m       - name: Build image - amd64
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mthis step[0m
+[1m[94m157 |[0m         uses: docker/build-push-action@v6
+[1m[94m158 |[0m         with:
+[1m[94m159 |[0m           context: OracleLinuxDevelopers/${{ matrix.ol }}/${{ matrix.lang }}/${{ matrix.tag }}
+    [1m[94m|[0m           [1m[33m------------------------------------------------------------------------------------[0m [1m[33mmatrix.lang may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:156:9
+    [1m[94m|[0m
+[1m[94m156 |[0m       - name: Build image - amd64
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mthis step[0m
+[1m[94m157 |[0m         uses: docker/build-push-action@v6
+[1m[94m158 |[0m         with:
+[1m[94m159 |[0m           context: OracleLinuxDevelopers/${{ matrix.ol }}/${{ matrix.lang }}/${{ matrix.tag }}
+    [1m[94m|[0m           [1m[33m------------------------------------------------------------------------------------[0m [1m[33mmatrix.tag may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:166:9
+    [1m[94m|[0m
+[1m[94m166 |[0m       - name: Build image - arm64
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mthis step[0m
+[1m[94m167 |[0m         uses: docker/build-push-action@v6
+[1m[94m168 |[0m         if: matrix.multi
+[1m[94m169 |[0m         with:
+[1m[94m170 |[0m           context: OracleLinuxDevelopers/${{ matrix.ol }}/${{ matrix.lang }}/${{ matrix.tag }}
+    [1m[94m|[0m           [1m[33m------------------------------------------------------------------------------------[0m [1m[33mmatrix.ol may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:166:9
+    [1m[94m|[0m
+[1m[94m166 |[0m       - name: Build image - arm64
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mthis step[0m
+[1m[94m167 |[0m         uses: docker/build-push-action@v6
+[1m[94m168 |[0m         if: matrix.multi
+[1m[94m169 |[0m         with:
+[1m[94m170 |[0m           context: OracleLinuxDevelopers/${{ matrix.ol }}/${{ matrix.lang }}/${{ matrix.tag }}
+    [1m[94m|[0m           [1m[33m------------------------------------------------------------------------------------[0m [1m[33mmatrix.lang may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:166:9
+    [1m[94m|[0m
+[1m[94m166 |[0m       - name: Build image - arm64
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mthis step[0m
+[1m[94m167 |[0m         uses: docker/build-push-action@v6
+[1m[94m168 |[0m         if: matrix.multi
+[1m[94m169 |[0m         with:
+[1m[94m170 |[0m           context: OracleLinuxDevelopers/${{ matrix.ol }}/${{ matrix.lang }}/${{ matrix.tag }}
+    [1m[94m|[0m           [1m[33m------------------------------------------------------------------------------------[0m [1m[33mmatrix.tag may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[94m--------------[0m [1m[94minfo: this step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[94m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m186 |[0m [1m[94m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[94m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[94m|______________________________________________________________________________________________________________________________-[0m [1m[94minfo: needs.prepare.outputs.repository_owner may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[33m--------------[0m [1m[33mthis step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[33m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m186 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.ol may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[33m--------------[0m [1m[33mthis step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[33m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m186 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.lang may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[33m--------------[0m [1m[33mthis step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[33m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m186 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.tag may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[94m--------------[0m [1m[94minfo: this step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[94m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m186 |[0m [1m[94m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[94m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[94m|______________________________________________________________________________________________________________________________-[0m [1m[94minfo: needs.prepare.outputs.date_stamp may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[94m--------------[0m [1m[94minfo: this step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[94m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m186 |[0m [1m[94m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[94m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[94m|______________________________________________________________________________________________________________________________-[0m [1m[94minfo: needs.prepare.outputs.repository_owner may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[33m--------------[0m [1m[33mthis step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[33m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m186 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.ol may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[33m--------------[0m [1m[33mthis step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[33m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m186 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.lang may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[33m--------------[0m [1m[33mthis step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[33m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m186 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.tag may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[94m--------------[0m [1m[94minfo: this step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[94m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m186 |[0m [1m[94m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[94m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[94m|______________________________________________________________________________________________________________________________-[0m [1m[94minfo: needs.prepare.outputs.date_stamp may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[94m--------------[0m [1m[94minfo: this step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[94m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m186 |[0m [1m[94m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[94m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[94m|______________________________________________________________________________________________________________________________-[0m [1m[94minfo: needs.prepare.outputs.repository_owner may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[33m--------------[0m [1m[33mthis step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[33m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m186 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.ol may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[33m--------------[0m [1m[33mthis step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[33m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m186 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.lang may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[33m--------------[0m [1m[33mthis step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[33m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m186 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.tag may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[94m--------------[0m [1m[94minfo: this step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[94m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m186 |[0m [1m[94m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[94m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[94m|______________________________________________________________________________________________________________________________-[0m [1m[94minfo: needs.prepare.outputs.date_stamp may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[94m--------------[0m [1m[94minfo: this step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[94m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m186 |[0m [1m[94m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[94m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[94m|______________________________________________________________________________________________________________________________-[0m [1m[94minfo: needs.prepare.outputs.repository_owner may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[33m--------------[0m [1m[33mthis step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[33m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m186 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.ol may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[33m--------------[0m [1m[33mthis step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[33m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m186 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.lang may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[33m--------------[0m [1m[33mthis step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[33m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m186 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.tag may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[94m--------------[0m [1m[94minfo: this step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[94m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m186 |[0m [1m[94m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[94m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[94m|______________________________________________________________________________________________________________________________-[0m [1m[94minfo: needs.prepare.outputs.repository_owner may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[33m--------------[0m [1m[33mthis step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[33m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m186 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.ol may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[33m--------------[0m [1m[33mthis step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[33m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m186 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.lang may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[33m--------------[0m [1m[33mthis step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[33m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m186 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.tag may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[94m--------------[0m [1m[94minfo: this step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[94m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m186 |[0m [1m[94m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[94m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[94m|______________________________________________________________________________________________________________________________-[0m [1m[94minfo: needs.prepare.outputs.repository_owner may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[33m--------------[0m [1m[33mthis step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[33m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m186 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.ol may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[33m--------------[0m [1m[33mthis step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[33m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m186 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.lang may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:177:9
+    [1m[94m|[0m
+[1m[94m177 |[0m   [1m[94m...[0m - name: Manifest
+    [1m[94m|[0m         [1m[33m--------------[0m [1m[33mthis step[0m
+[1m[94m178 |[0m   [1m[94m...[0m   if: matrix.multi && github.event_name != 'pull_request'
+[1m[94m179 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m180 |[0m [1m[33m|[0m [1m[94m...[0m     docker buildx imagetools create --tag \
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m186 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-amd64" \
+[1m[94m187 |[0m [1m[33m|[0m [1m[94m...[0m       "ghcr.io/${{ needs.prepare.outputs.repository_owner }}/${{ matrix.ol }}-${{ matrix.lang }}:${{ matrix.tag }}-arm64"
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.tag may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:142:9
+    [1m[94m|[0m
+[1m[94m142 |[0m         uses: docker/setup-qemu-action@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:147:9
+    [1m[94m|[0m
+[1m[94m147 |[0m         uses: docker/setup-buildx-action@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:150:9
+    [1m[94m|[0m
+[1m[94m150 |[0m         uses: docker/login-action@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:157:9
+    [1m[94m|[0m
+[1m[94m157 |[0m         uses: docker/build-push-action@v6
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/oracle_docker-images__build-and-push-dev-images.yml:167:9
+    [1m[94m|[0m
+[1m[94m167 |[0m         uses: docker/build-push-action@v6
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m85[39m findings ([1m[93m39[39m suppressed[0m): 0 unknown, [35m9[39m informational, [36m0[39m low, [33m29[39m medium, [31m8[39m high

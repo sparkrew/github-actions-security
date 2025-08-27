@@ -1,0 +1,408 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:52:7
+   [1m[94m|[0m
+[1m[94m52 |[0m       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.0.2
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m53 |[0m [1m[33m|[0m       with:
+[1m[94m54 |[0m [1m[33m|[0m         ref: ${{ github.event.pull_request.head.sha }}
+   [1m[94m|[0m [1m[33m|______________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:108:7
+    [1m[94m|[0m
+[1m[94m108 |[0m       - name: Checkout Electron
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m109 |[0m [1m[33m|[0m       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m112 |[0m [1m[33m|[0m         fetch-depth: 0
+[1m[94m113 |[0m [1m[33m|[0m         ref: ${{ github.event.pull_request.head.sha }}
+    [1m[94m|[0m [1m[33m|______________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:138:7
+    [1m[94m|[0m
+[1m[94m138 |[0m       - name: Checkout Electron
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m139 |[0m [1m[33m|[0m       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m142 |[0m [1m[33m|[0m         fetch-depth: 0
+[1m[94m143 |[0m [1m[33m|[0m         ref: ${{ github.event.pull_request.head.sha }}
+    [1m[94m|[0m [1m[33m|______________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:168:7
+    [1m[94m|[0m
+[1m[94m168 |[0m       - name: Checkout Electron
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m169 |[0m [1m[33m|[0m       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m172 |[0m [1m[33m|[0m         fetch-depth: 0
+[1m[94m173 |[0m [1m[33m|[0m         ref: ${{ github.event.pull_request.head.sha }}
+    [1m[94m|[0m [1m[33m|______________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: Build
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m395 |[0m [1m[33m|[0m       run: |
+[1m[94m396 |[0m [1m[33m|[0m         echo "All GitHub Actions Jobs are done"
+    [1m[94m|[0m [1m[33m|________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:74:3
+   [1m[94m|[0m
+[1m[94m74 |[0m [1m[33m/[0m   lint:
+[1m[94m75 |[0m [1m[33m|[0m     needs: setup
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m81 |[0m [1m[33m|[0m
+[1m[94m82 |[0m [1m[33m|[0m   # Docs Only Jobs
+   [1m[94m|[0m [1m[33m|[0m                  [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|__________________|[0m
+   [1m[94m|[0m                    [1m[33mthis job[0m
+   [1m[94m|[0m                    [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:83:3
+   [1m[94m|[0m
+[1m[94m83 |[0m [1m[33m/[0m   docs-only:
+[1m[94m84 |[0m [1m[33m|[0m     needs: setup
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m90 |[0m [1m[33m|[0m
+[1m[94m91 |[0m [1m[33m|[0m   # Checkout Jobs
+   [1m[94m|[0m [1m[33m|[0m                 [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_________________|[0m
+   [1m[94m|[0m                   [1m[33mthis job[0m
+   [1m[94m|[0m                   [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:92:3
+    [1m[94m|[0m
+[1m[94m 92 |[0m [1m[33m/[0m   checkout-macos:
+[1m[94m 93 |[0m [1m[33m|[0m     needs: setup
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m117 |[0m [1m[33m|[0m         generate-sas-token: 'true'
+[1m[94m118 |[0m [1m[33m|[0m         target-platform: macos
+    [1m[94m|[0m [1m[33m|[0m                              [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|______________________________|[0m
+    [1m[94m|[0m                                [1m[33mthis job[0m
+    [1m[94m|[0m                                [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:120:3
+    [1m[94m|[0m
+[1m[94m120 |[0m [1m[33m/[0m   checkout-linux:
+[1m[94m121 |[0m [1m[33m|[0m     needs: setup
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m146 |[0m [1m[33m|[0m       with:
+[1m[94m147 |[0m [1m[33m|[0m         target-platform: linux
+    [1m[94m|[0m [1m[33m|[0m                              [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|______________________________|[0m
+    [1m[94m|[0m                                [1m[33mthis job[0m
+    [1m[94m|[0m                                [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:149:3
+    [1m[94m|[0m
+[1m[94m149 |[0m [1m[33m/[0m   checkout-windows:
+[1m[94m150 |[0m [1m[33m|[0m     needs: setup
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m179 |[0m [1m[33m|[0m
+[1m[94m180 |[0m [1m[33m|[0m   # GN Check Jobs
+    [1m[94m|[0m [1m[33m|[0m                 [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_________________|[0m
+    [1m[94m|[0m                   [1m[33mthis job[0m
+    [1m[94m|[0m                   [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:181:3
+    [1m[94m|[0m
+[1m[94m181 |[0m [1m[33m/[0m   macos-gn-check:
+[1m[94m182 |[0m [1m[33m|[0m     uses: ./.github/workflows/pipeline-segment-electron-gn-check.yml
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m188 |[0m [1m[33m|[0m       gn-build-type: testing
+[1m[94m189 |[0m [1m[33m|[0m     secrets: inherit
+    [1m[94m|[0m [1m[33m|[0m                    [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________|[0m
+    [1m[94m|[0m                      [1m[33mthis job[0m
+    [1m[94m|[0m                      [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:191:3
+    [1m[94m|[0m
+[1m[94m191 |[0m [1m[33m/[0m   linux-gn-check:
+[1m[94m192 |[0m [1m[33m|[0m     uses: ./.github/workflows/pipeline-segment-electron-gn-check.yml
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m199 |[0m [1m[33m|[0m       gn-build-type: testing
+[1m[94m200 |[0m [1m[33m|[0m     secrets: inherit
+    [1m[94m|[0m [1m[33m|[0m                    [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________|[0m
+    [1m[94m|[0m                      [1m[33mthis job[0m
+    [1m[94m|[0m                      [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:202:3
+    [1m[94m|[0m
+[1m[94m202 |[0m [1m[33m/[0m   windows-gn-check:
+[1m[94m203 |[0m [1m[33m|[0m     uses: ./.github/workflows/pipeline-segment-electron-gn-check.yml
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m212 |[0m [1m[33m|[0m
+[1m[94m213 |[0m [1m[33m|[0m   # Build Jobs - These cascade into testing jobs
+    [1m[94m|[0m [1m[33m|[0m                                                [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|________________________________________________|[0m
+    [1m[94m|[0m                                                  [1m[33mthis job[0m
+    [1m[94m|[0m                                                  [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:388:3
+    [1m[94m|[0m
+[1m[94m388 |[0m [1m[33m/[0m   gha-done:
+[1m[94m389 |[0m [1m[33m|[0m     name: GitHub Actions Completed
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m395 |[0m [1m[33m|[0m       run: |
+[1m[94m396 |[0m [1m[33m|[0m         echo "All GitHub Actions Jobs are done"
+    [1m[94m|[0m [1m[33m|[0m                                                [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|________________________________________________|[0m
+    [1m[94m|[0m                                                  [1m[33mthis job[0m
+    [1m[94m|[0m                                                  [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:63:7
+   [1m[94m|[0m
+[1m[94m63 |[0m       - name: Set Outputs for Build Image SHA & Docs Only
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m64 |[0m         id: set-output
+[1m[94m65 |[0m [1m[91m/[0m       run: |
+[1m[94m66 |[0m [1m[91m|[0m         if [ -z "${{ inputs.build-image-sha }}" ]; then
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m70 |[0m [1m[91m|[0m         fi
+[1m[94m71 |[0m [1m[91m|[0m         echo "docs-only=${{ steps.filter.outputs.docs == 'true' && steps.filter.outputs.src == 'false' }}" >> "$GITHUB_OUTPUT"
+   [1m[94m|[0m [1m[91m|______________________________________________________________________________________________________________________________^[0m [1m[91minputs.build-image-sha may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:63:7
+   [1m[94m|[0m
+[1m[94m63 |[0m       - name: Set Outputs for Build Image SHA & Docs Only
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m64 |[0m         id: set-output
+[1m[94m65 |[0m [1m[91m/[0m       run: |
+[1m[94m66 |[0m [1m[91m|[0m         if [ -z "${{ inputs.build-image-sha }}" ]; then
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m70 |[0m [1m[91m|[0m         fi
+[1m[94m71 |[0m [1m[91m|[0m         echo "docs-only=${{ steps.filter.outputs.docs == 'true' && steps.filter.outputs.src == 'false' }}" >> "$GITHUB_OUTPUT"
+   [1m[94m|[0m [1m[91m|______________________________________________________________________________________________________________________________^[0m [1m[91minputs.build-image-sha may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:77:5
+   [1m[94m|[0m
+[1m[94m77 |[0m     uses: ./.github/workflows/pipeline-electron-lint.yml
+   [1m[94m|[0m     [1m[33m----------------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m78 |[0m     with:
+[1m[94m79 |[0m       container: '{"image":"ghcr.io/electron/build:${{ needs.setup.outputs.build-image-sha }}","options":"--user root"}'
+[1m[94m80 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:86:5
+   [1m[94m|[0m
+[1m[94m86 |[0m     uses: ./.github/workflows/pipeline-electron-docs-only.yml
+   [1m[94m|[0m     [1m[33m---------------------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m87 |[0m     with:
+[1m[94m88 |[0m       container: '{"image":"ghcr.io/electron/build:${{ needs.setup.outputs.build-image-sha }}","options":"--user root"}'
+[1m[94m89 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:182:5
+    [1m[94m|[0m
+[1m[94m182 |[0m     uses: ./.github/workflows/pipeline-segment-electron-gn-check.yml
+    [1m[94m|[0m     [1m[33m----------------------------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m183 |[0m     needs: checkout-macos
+[1m[94m...[0m
+[1m[94m188 |[0m       gn-build-type: testing
+[1m[94m189 |[0m     secrets: inherit
+    [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:192:5
+    [1m[94m|[0m
+[1m[94m192 |[0m     uses: ./.github/workflows/pipeline-segment-electron-gn-check.yml
+    [1m[94m|[0m     [1m[33m----------------------------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m193 |[0m     needs: checkout-linux
+[1m[94m...[0m
+[1m[94m199 |[0m       gn-build-type: testing
+[1m[94m200 |[0m     secrets: inherit
+    [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:203:5
+    [1m[94m|[0m
+[1m[94m203 |[0m     uses: ./.github/workflows/pipeline-segment-electron-gn-check.yml
+    [1m[94m|[0m     [1m[33m----------------------------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m204 |[0m     needs: checkout-windows
+[1m[94m...[0m
+[1m[94m210 |[0m       gn-build-type: testing
+[1m[94m211 |[0m     secrets: inherit
+    [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:219:5
+    [1m[94m|[0m
+[1m[94m219 |[0m     uses: ./.github/workflows/pipeline-electron-build-and-test.yml
+    [1m[94m|[0m     [1m[33m--------------------------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m220 |[0m     needs: checkout-macos
+[1m[94m...[0m
+[1m[94m229 |[0m       upload-to-storage: '0'
+[1m[94m230 |[0m     secrets: inherit
+    [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:237:5
+    [1m[94m|[0m
+[1m[94m237 |[0m     uses: ./.github/workflows/pipeline-electron-build-and-test.yml
+    [1m[94m|[0m     [1m[33m--------------------------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m238 |[0m     needs: checkout-macos
+[1m[94m...[0m
+[1m[94m247 |[0m       upload-to-storage: '0'
+[1m[94m248 |[0m     secrets: inherit
+    [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:255:5
+    [1m[94m|[0m
+[1m[94m255 |[0m     uses: ./.github/workflows/pipeline-electron-build-and-test-and-nan.yml
+    [1m[94m|[0m     [1m[33m----------------------------------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m256 |[0m     needs: checkout-linux
+[1m[94m...[0m
+[1m[94m267 |[0m       upload-to-storage: '0'
+[1m[94m268 |[0m     secrets: inherit
+    [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:275:5
+    [1m[94m|[0m
+[1m[94m275 |[0m     uses: ./.github/workflows/pipeline-electron-build-and-test.yml
+    [1m[94m|[0m     [1m[33m--------------------------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m276 |[0m     needs: checkout-linux
+[1m[94m...[0m
+[1m[94m288 |[0m       is-asan: true
+[1m[94m289 |[0m     secrets: inherit
+    [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:296:5
+    [1m[94m|[0m
+[1m[94m296 |[0m     uses: ./.github/workflows/pipeline-electron-build-and-test.yml
+    [1m[94m|[0m     [1m[33m--------------------------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m297 |[0m     needs: checkout-linux
+[1m[94m...[0m
+[1m[94m308 |[0m       upload-to-storage: '0'
+[1m[94m309 |[0m     secrets: inherit
+    [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:316:5
+    [1m[94m|[0m
+[1m[94m316 |[0m     uses: ./.github/workflows/pipeline-electron-build-and-test.yml
+    [1m[94m|[0m     [1m[33m--------------------------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m317 |[0m     needs: checkout-linux
+[1m[94m...[0m
+[1m[94m328 |[0m       upload-to-storage: '0'
+[1m[94m329 |[0m     secrets: inherit
+    [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:336:5
+    [1m[94m|[0m
+[1m[94m336 |[0m     uses: ./.github/workflows/pipeline-electron-build-and-test.yml
+    [1m[94m|[0m     [1m[33m--------------------------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m337 |[0m     needs: checkout-windows
+[1m[94m...[0m
+[1m[94m347 |[0m       upload-to-storage: '0'
+[1m[94m348 |[0m     secrets: inherit
+    [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:355:5
+    [1m[94m|[0m
+[1m[94m355 |[0m     uses: ./.github/workflows/pipeline-electron-build-and-test.yml
+    [1m[94m|[0m     [1m[33m--------------------------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m356 |[0m     needs: checkout-windows
+[1m[94m...[0m
+[1m[94m366 |[0m       upload-to-storage: '0'
+[1m[94m367 |[0m     secrets: inherit
+    [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+   [1m[94m-->[0m ../.github/workflows/electron_electron__build.yml:374:5
+    [1m[94m|[0m
+[1m[94m374 |[0m     uses: ./.github/workflows/pipeline-electron-build-and-test.yml
+    [1m[94m|[0m     [1m[33m--------------------------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m375 |[0m     needs: checkout-windows
+[1m[94m...[0m
+[1m[94m385 |[0m       upload-to-storage: '0'
+[1m[94m386 |[0m     secrets: inherit
+    [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m36[39m findings ([1m[93m6[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m28[39m medium, [31m2[39m high

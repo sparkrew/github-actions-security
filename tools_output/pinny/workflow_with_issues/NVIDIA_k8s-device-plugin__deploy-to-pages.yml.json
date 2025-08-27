@@ -1,0 +1,37 @@
+{
+  "workflow": "NVIDIA_k8s-device-plugin__deploy-to-pages.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "unpinned-github-actions": 5
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+      "line": 36
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # actions/configure-pages@v5 | v5.0.0",
+      "line": 40
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/jekyll-build-pages@44a6e6beabd48582f863aeeb6cb2151cc1716697 # actions/jekyll-build-pages@v1 | v1.0.13",
+      "line": 42
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # actions/upload-pages-artifact@v3 | v3.0.1",
+      "line": 47
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # actions/deploy-pages@v4 | v4.0.5",
+      "line": 58
+    }
+  ]
+}

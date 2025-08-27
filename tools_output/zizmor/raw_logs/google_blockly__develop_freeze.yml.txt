@@ -1,0 +1,16 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_blockly__develop_freeze.yml:18:3
+   [1m[94m|[0m
+[1m[94m18 |[0m [1m[33m/[0m   freeze-comment:
+[1m[94m19 |[0m [1m[33m|[0m     if: ${{ !contains(github.event.pull_request.labels.*.name, 'ignore-freeze') }}
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m25 |[0m [1m[33m|[0m           repo-token: ${{ secrets.GITHUB_TOKEN }}
+[1m[94m26 |[0m [1m[33m|[0m           message: 'Thanks for the PR! The develop branch is currently frozen in preparation for the release so it may not be addressed until after release week.'
+   [1m[94m|[0m [1m[33m|[0m                                                                                                                                                                   [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|___________________________________________________________________________________________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                                                                                                     [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                                                                                                     [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m2[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m0[39m high

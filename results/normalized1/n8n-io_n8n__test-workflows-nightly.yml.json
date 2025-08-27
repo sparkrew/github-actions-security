@@ -1,0 +1,68 @@
+{
+  "workflow": "n8n-io_n8n__test-workflows-nightly.yml",
+  "tools": {
+    "scorecard": {
+      "workflow": "n8n-io_n8n__test-workflows-nightly.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "automatic-hardening-check"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "n8n-io_n8n__test-workflows-nightly.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "secrets-inherit": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "secrets-inherit",
+          "level": "warning",
+          "message": "secrets unconditionally inherited by called workflow",
+          "workflow": "n8n-io_n8n__test-workflows-nightly.yml",
+          "line": 21,
+          "column": 5,
+          "note": "audit confidence \u2192 High",
+          "capability": "secrets-check"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "n8n-io_n8n__test-workflows-nightly.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 1
+      },
+      "findings": [
+        {
+          "line": 21,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/test-workflows-callable.yml\": open /home/huawei/github-actions-security/.github/workflows/test-workflows-callable.yml: no such file or directory [workflow-call]",
+          "capability": "workflow_structural_check"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,24 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/krahets_hello-algo__go.yml:25:7
+   [1m[94m|[0m
+[1m[94m25 |[0m     - uses: actions/checkout@v4
+   [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/krahets_hello-algo__go.yml:13:3
+   [1m[94m|[0m
+[1m[94m13 |[0m [1m[33m/[0m   build:
+[1m[94m14 |[0m [1m[33m|[0m     name: Go ${{ matrix.go-version }} on ${{ matrix.os }}
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m35 |[0m [1m[33m|[0m     - name: Test with Go
+[1m[94m36 |[0m [1m[33m|[0m       run: go test -v ./...
+   [1m[94m|[0m [1m[33m|[0m                            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________|[0m
+   [1m[94m|[0m                              [1m[33mthis job[0m
+   [1m[94m|[0m                              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m3[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m0[39m high

@@ -1,0 +1,90 @@
+name: Weekly Reachability Metadata Tests
+on:
+pull_request:
+paths:
+- '.github/workflows/reachability-metadata.yml'
+schedule:
+- cron: '0 1 * * 1'
+workflow_dispatch:
+env:
+REACHABILITY_METADATA_PATH: ${{ github.workspace }}/graalvm-reachability-metadata
+MINIMUM_METADATA_JAVA_VERSION: 17
+permissions:
+contents: read # to fetch code (actions/checkout)
+jobs:
+build-graalvm-and-populate-matrix:
+name: Build GraalVM and populate matrix
+runs-on: ubuntu-22.04
+if: (github.event_name == 'schedule' && github.repository == 'oracle/graal') || (github.event_name != 'schedule')
+outputs:
+matrix: ${{ steps.set-matrix.outputs.matrix }}
+steps:
+- name: Checkout oracle/graal
+uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2
+- name: Build GraalVM JDK
+uses: ./.github/actions/build-graalvm
+with:
+native-images: 'native-image,native-image-configure,lib:native-image-agent'
+components: 'Native Image,Native Image Configure Tool'
+java-version: ${{ env.MINIMUM_METADATA_JAVA_VERSION }}
+- name: Tar GraalVM JDK
+shell: bash
+run: tar -czvhf graalvm.tgz -C $(dirname ${GRAALVM_HOME}) $(basename ${GRAALVM_HOME})
+- name: Persist GraalVM JDK build
+uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2
+with:
+name: graalvm
+path: graalvm.tgz
+- name: Checkout oracle/graalvm-reachability-metadata
+uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2
+with:
+repository: oracle/graalvm-reachability-metadata
+path: ${{ env.REACHABILITY_METADATA_PATH }}
+- name: "Populate matrix"
+id: set-matrix
+run: |
+cd ${{ env.REACHABILITY_METADATA_PATH }}
+./gradlew generateMatrixMatchingCoordinates -Pcoordinates=all
+test-all-metadata:
+name: ${{ matrix.coordinates }}
+runs-on: ubuntu-latest
+env:
+GRAALVM_HOME: ${{ github.workspace }}/graalvm # identical to the one in ./.github/actions/build-graalvm
+timeout-minutes: 20
+needs: build-graalvm-and-populate-matrix
+strategy:
+fail-fast: false
+matrix:
+coordinates: ${{fromJson(needs.build-graalvm-and-populate-matrix.outputs.matrix).coordinates}}
+steps:
+- name: "Checkout oracle/graalvm-reachability-metadata"
+uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2
+with:
+repository: oracle/graalvm-reachability-metadata
+- name: Download GraalVM JDK build
+uses: actions/download-artifact@95815c38cf2ff2164869cbab79da8d1f422bc89e # v4.2.1
+with:
+name: graalvm
+path: .
+- name: Extract GraalVM JDK build
+run: tar -xzvf graalvm.tgz -C $(dirname ${GRAALVM_HOME})
+- name: "Setup JAVA_HOME"
+uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # actions/setup-java@v4 | v4.7.1
+with:
+distribution: 'oracle'
+java-version: ${{ env.MINIMUM_METADATA_JAVA_VERSION }}
+- name: "Pull allowed docker images"
+run: |
+./gradlew pullAllowedDockerImages --coordinates=${{ matrix.coordinates }}
+- name: "Disable docker"
+run: |
+sudo apt-get install openbsd-inetd
+sudo bash -c "cat ./.github/workflows/discard-port.conf >> /etc/inetd.conf"
+sudo systemctl start inetd
+sudo mkdir /etc/systemd/system/docker.service.d
+sudo bash -c "cat ./.github/workflows/dockerd.service > /etc/systemd/system/docker.service.d/http-proxy.conf"
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+- name: "Run '${{ matrix.coordinates }}' tests"
+run: |
+./gradlew test -Pcoordinates=${{ matrix.coordinates }}

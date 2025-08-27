@@ -1,0 +1,328 @@
+{
+  "workflow": "facebook_react__compiler_typescript.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "facebook_react__compiler_typescript.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 10,
+        "by_rule": {
+          "unpinned-github-actions": 10
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 33
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 42
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-node@v4",
+          "pinned": "actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "line": 43
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/cache@v4",
+          "pinned": "actions/cache@5a3ec84eff668545956fd18022155c47e93e2684",
+          "line": 49
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 64
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-node@v4",
+          "pinned": "actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "line": 65
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/cache@v4",
+          "pinned": "actions/cache@5a3ec84eff668545956fd18022155c47e93e2684",
+          "line": 71
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 90
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-node@v4",
+          "pinned": "actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "line": 91
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/cache@v4",
+          "pinned": "actions/cache@5a3ec84eff668545956fd18022155c47e93e2684",
+          "line": 97
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "facebook_react__compiler_typescript.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 10,
+        "by_rule": {
+          "unpinned-github-actions": 10
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 27
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 35
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | v4.4.0",
+          "line": 36
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # actions/cache@v4 | v4.2.3",
+          "line": 42
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 56
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | v4.4.0",
+          "line": 57
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # actions/cache@v4 | v4.2.3",
+          "line": 63
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 81
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | v4.4.0",
+          "line": 82
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # actions/cache@v4 | v4.2.3",
+          "line": 88
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "facebook_react__compiler_typescript.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            33,
+            42,
+            43,
+            49,
+            64,
+            65,
+            71,
+            90,
+            91,
+            97
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_react__compiler_typescript.yml:33",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_react__compiler_typescript.yml:42",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_react__compiler_typescript.yml:43",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_react__compiler_typescript.yml:49",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_react__compiler_typescript.yml:64",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_react__compiler_typescript.yml:65",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_react__compiler_typescript.yml:71",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_react__compiler_typescript.yml:90",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_react__compiler_typescript.yml:91",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_react__compiler_typescript.yml:97",
+            "Info:   0 out of  10 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          }
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          }
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "facebook_react__compiler_typescript.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 10,
+        "by_rule": {
+          "unpinned-github-actions": 10
+        }
+      },
+      "findings": [
+        {
+          "line": 33,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+        },
+        {
+          "line": 42,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+        },
+        {
+          "line": 43,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v4`"
+        },
+        {
+          "line": 49,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/cache@v4`"
+        },
+        {
+          "line": 64,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+        },
+        {
+          "line": 65,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v4`"
+        },
+        {
+          "line": 71,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/cache@v4`"
+        },
+        {
+          "line": 90,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+        },
+        {
+          "line": 91,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v4`"
+        },
+        {
+          "line": 97,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/cache@v4`"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "facebook_react__compiler_typescript.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "artipacked": 4,
+          "template-injection": 2
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "facebook_react__compiler_typescript.yml",
+          "line": 33,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "facebook_react__compiler_typescript.yml",
+          "line": 42,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "facebook_react__compiler_typescript.yml",
+          "line": 64,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "facebook_react__compiler_typescript.yml",
+          "line": 90,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "facebook_react__compiler_typescript.yml",
+          "line": 105,
+          "column": 9,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "facebook_react__compiler_typescript.yml",
+          "line": 107,
+          "column": 9,
+          "note": "audit confidence \u2192 Medium"
+        }
+      ]
+    }
+  }
+}

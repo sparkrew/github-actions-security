@@ -1,0 +1,12 @@
+name: Labeler
+on: [pull_request_target]
+jobs:
+label:
+runs-on: ubuntu-latest
+permissions:
+contents: read
+pull-requests: write
+steps:
+- uses: actions/labeler@ac9175f8a1f3625fd0d4fb234536d26811351594 # actions/labeler@v4 | releases,v4.3.0
+with:
+repo-token: "${{ secrets.GITHUB_TOKEN }}"

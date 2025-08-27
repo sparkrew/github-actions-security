@@ -1,0 +1,32 @@
+{
+  "workflow": "langgenius_dify__vdb-tests.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+      "line": 26
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: endersonmenezes/free-disk-space@3f9ec39ebae520864ac93467ee395f5237585c21 # endersonmenezes/free-disk-space@v2",
+      "line": 30
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: hoverkraft-tech/compose-action@f1ca7fefe3627c2dab0ae1db43a106d82740245e # hoverkraft-tech/compose-action@v2.0.2",
+      "line": 51
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: hoverkraft-tech/compose-action@f1ca7fefe3627c2dab0ae1db43a106d82740245e # hoverkraft-tech/compose-action@v2.0.2",
+      "line": 58
+    }
+  ]
+}

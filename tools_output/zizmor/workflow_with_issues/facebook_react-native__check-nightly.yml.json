@@ -1,0 +1,49 @@
+{
+  "workflow": "facebook_react-native__check-nightly.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "artipacked": 1,
+      "excessive-permissions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "facebook_react-native__check-nightly.yml",
+      "line": 16,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "facebook_react-native__check-nightly.yml",
+      "line": 1,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "facebook_react-native__check-nightly.yml",
+      "line": 12,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "facebook_react-native__check-nightly.yml",
+      "line": 30,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    }
+  ]
+}

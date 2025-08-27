@@ -1,0 +1,158 @@
+{
+  "workflow": "twbs_bootstrap__js.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "twbs_bootstrap__js.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 28
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-node@v4",
+          "pinned": "actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "line": 33
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "coverallsapp/github-action@v2",
+          "pinned": "coverallsapp/github-action@648a8eb78e6d50909eff900e4ec85cab4524a45b",
+          "line": 48
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "twbs_bootstrap__js.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 23
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | v4.4.0",
+          "line": 27
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: coverallsapp/github-action@648a8eb78e6d50909eff900e4ec85cab4524a45b # coverallsapp/github-action@v2 | v2.3.6",
+          "line": 38
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "twbs_bootstrap__js.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 4,
+          "reason": "dependency not pinned by hash detected -- score normalized to 4",
+          "lines": [
+            28,
+            33,
+            48
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/twbs_bootstrap__js.yml:28",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/twbs_bootstrap__js.yml:33",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/twbs_bootstrap__js.yml:48",
+            "Info:   0 out of   2 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   1 third-party GitHubAction dependencies pinned",
+            "Info:   1 out of   1 npmCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          }
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          }
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "twbs_bootstrap__js.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "line": 28,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+        },
+        {
+          "line": 33,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v4`"
+        },
+        {
+          "line": 48,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `coverallsapp/github-action@v2`"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "twbs_bootstrap__js.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-uses": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "twbs_bootstrap__js.yml",
+          "line": 48,
+          "column": 9,
+          "note": "audit confidence \u2192 High"
+        }
+      ]
+    }
+  }
+}

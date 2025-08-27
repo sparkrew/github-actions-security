@@ -1,0 +1,89 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/alibaba_ice__canary.yml:16:9
+   [1m[94m|[0m
+[1m[94m16 |[0m         - name: Checkout Branch
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m17 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/alibaba_ice__canary.yml:35:9
+   [1m[94m|[0m
+[1m[94m35 |[0m         - name: Checkout Branch
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m36 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/alibaba_ice__canary.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m name: Publish canary
+[1m[94m 2 |[0m [1m[33m|[0m
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m54 |[0m [1m[33m|[0m
+[1m[94m55 |[0m [1m[33m|[0m       - run: pnpm run release:snapshot
+   [1m[94m|[0m [1m[33m|_______________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/alibaba_ice__canary.yml:9:3
+   [1m[94m|[0m
+[1m[94m 9 |[0m [1m[33m/[0m   check_changeset:
+[1m[94m10 |[0m [1m[33m|[0m     name: Check Changeset exists
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m21 |[0m [1m[33m|[0m         continue-on-error: true
+[1m[94m22 |[0m [1m[33m|[0m         run: test "$(ls -1 .changeset | wc -l)" -gt "2"
+   [1m[94m|[0m [1m[33m|[0m                                                       [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________________________________________|[0m
+   [1m[94m|[0m                                                         [1m[33mthis job[0m
+   [1m[94m|[0m                                                         [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/alibaba_ice__canary.yml:24:3
+   [1m[94m|[0m
+[1m[94m24 |[0m [1m[33m/[0m   canary:
+[1m[94m25 |[0m [1m[33m|[0m     name: Publish Canary
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m54 |[0m [1m[33m|[0m
+[1m[94m55 |[0m [1m[33m|[0m       - run: pnpm run release:snapshot
+   [1m[94m|[0m [1m[33m|[0m                                       [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________________________|[0m
+   [1m[94m|[0m                                         [1m[33mthis job[0m
+   [1m[94m|[0m                                         [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/alibaba_ice__canary.yml:39:9
+   [1m[94m|[0m
+[1m[94m39 |[0m         uses: pnpm/action-setup@v4
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#cache-poisoning\cache-poisoning]8;;\][0m: [1mruntime artifacts potentially vulnerable to a cache poisoning attack[0m
+  [1m[94m-->[0m ../.github/workflows/alibaba_ice__canary.yml:3:1
+   [1m[94m|[0m
+[1m[94m 3 |[0m [1m[91m/[0m on:
+[1m[94m 4 |[0m [1m[91m|[0m   push:
+[1m[94m 5 |[0m [1m[91m|[0m     branches:
+[1m[94m 6 |[0m [1m[91m|[0m       - release/**
+   [1m[94m|[0m [1m[91m|__________________^[0m [1m[91mgenerally used when publishing artifacts generated at runtime[0m
+[1m[94m 7 |[0m
+[1m[94m...[0m
+[1m[94m42 |[0m           uses: actions/setup-node@v4
+[1m[94m43 |[0m [1m[91m/[0m         with:
+[1m[94m44 |[0m [1m[91m|[0m           node-version: ${{ matrix.node-version }}
+[1m[94m45 |[0m [1m[91m|[0m           cache: 'pnpm'
+   [1m[94m|[0m [1m[91m|_______________________^[0m [1m[91mopt-in for caching here[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m7[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m5[39m medium, [31m2[39m high

@@ -1,0 +1,58 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/rust-lang_rust__ci.yml:58:9
+   [1m[94m|[0m
+[1m[94m58 |[0m         - name: Checkout the source code
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m59 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m60 |[0m [1m[33m|[0m       # Cache citool to make its build faster, as it's in the critical path.
+[1m[94m61 |[0m [1m[33m|[0m       # The rust-cache doesn't bleed into the main `job`, so it should not affect any other
+[1m[94m62 |[0m [1m[33m|[0m       # Rust compilation.
+   [1m[94m|[0m [1m[33m|_________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/rust-lang_rust__ci.yml:126:9
+    [1m[94m|[0m
+[1m[94m126 |[0m         - name: checkout the source code
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m127 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m133 |[0m [1m[33m|[0m       # intensive jobs to run on free runners, which however also have
+[1m[94m134 |[0m [1m[33m|[0m       # less disk space.
+    [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/rust-lang_rust__ci.yml:319:9
+    [1m[94m|[0m
+[1m[94m319 |[0m         - name: checkout the source code
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m320 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m324 |[0m [1m[33m|[0m       # If all dependent jobs were successful, this exits with 0 (and the outcome job continues successfully).
+[1m[94m325 |[0m [1m[33m|[0m       # If a some dependent job has failed, this exits with 1.
+    [1m[94m|[0m [1m[33m|______________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/rust-lang_rust__ci.yml:28:3
+   [1m[94m|[0m
+[1m[94m28 |[0m   packages: write
+   [1m[94m|[0m   [1m[91m^^^^^^^^^^^^^^^[0m [1m[91mpackages: write is overly broad at the workflow level[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/rust-lang_rust__ci.yml:326:9
+    [1m[94m|[0m
+[1m[94m326 |[0m       - name: calculate the correct exit status
+    [1m[94m|[0m         [1m[94m---------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m327 |[0m         run: jq --exit-status 'all(.result == "success" or .result == "skipped")' <<< '${{ toJson(needs) }}'
+    [1m[94m|[0m         [1m[94m----------------------------------------------------------------------------------------------------[0m [1m[94minfo: needs may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m6[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m3[39m medium, [31m1[39m high

@@ -1,0 +1,21 @@
+name: 'Fetch Issues by Version'
+on:
+workflow_dispatch:
+inputs:
+version:
+description: 'Next.js Version'
+required: true
+type: string
+jobs:
+fetch_issues:
+if: github.repository_owner == 'vercel'
+runs-on: ubuntu-latest
+steps:
+- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2
+- uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | v4.4.0
+- name: 'Fetch issues & send notification to Slack'
+run: node ./.github/actions/next-repo-actions/dist/issues-by-version/index.js
+env:
+GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+VERSION: ${{ github.event.inputs.version }}

@@ -1,0 +1,41 @@
+{
+  "workflow": "vercel_next.js__cancel.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "excessive-permissions": 1,
+      "dangerous-triggers": 1,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "vercel_next.js__cancel.yml",
+      "line": 9,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "dangerous-triggers",
+      "level": "error",
+      "message": "use of fundamentally insecure workflow trigger",
+      "workflow": "vercel_next.js__cancel.yml",
+      "line": 2,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "vercel_next.js__cancel.yml",
+      "line": 14,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

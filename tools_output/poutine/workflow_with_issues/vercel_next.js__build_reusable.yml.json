@@ -1,0 +1,23 @@
+{
+  "workflow": "vercel_next.js__build_reusable.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "unverified_script_exec": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": "131",
+      "column": "",
+      "job": "build",
+      "step": "1",
+      "details": "Command: curl -fsSL https://fnm.vercel.app/install | bash",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    }
+  ]
+}

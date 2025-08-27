@@ -1,0 +1,424 @@
+{
+  "workflow": "oracle_docker-images__build-and-push-dev-images.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "oracle_docker-images__build-and-push-dev-images.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 7,
+        "by_rule": {
+          "unpinned-github-actions": 7
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 51,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 139,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/setup-qemu-action@v3",
+          "pinned": "docker/setup-qemu-action@29109295f81e9208d7d86ff1c6c12d2833863392",
+          "line": 142,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/setup-buildx-action@v3",
+          "pinned": "docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435",
+          "line": 147,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/login-action@v3",
+          "pinned": "docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772",
+          "line": 150,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/build-push-action@v6",
+          "pinned": "docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83",
+          "line": 157,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/build-push-action@v6",
+          "pinned": "docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83",
+          "line": 167,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "oracle_docker-images__build-and-push-dev-images.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 7,
+        "by_rule": {
+          "unpinned-github-actions": 7
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 46,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+          "line": 130,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/setup-qemu-action@29109295f81e9208d7d86ff1c6c12d2833863392 # docker/setup-qemu-action@v3 | v3.6.0",
+          "line": 132,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435 # docker/setup-buildx-action@v3 | master,v3.11.1",
+          "line": 136,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # docker/login-action@v3 | v3.4.0",
+          "line": 138,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # docker/build-push-action@v6 | master,v6.18.0",
+          "line": 144,
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # docker/build-push-action@v6 | master,v6.18.0",
+          "line": 153,
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "semgrep": {
+      "workflow": "oracle_docker-images__build-and-push-dev-images.yml",
+      "tool": "semgrep",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "run-shell-injection": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "run-shell-injection",
+          "line": 59,
+          "code": "requires login",
+          "note": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+          "documentation": null,
+          "capability": "injection-check"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "oracle_docker-images__build-and-push-dev-images.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            51,
+            139,
+            142,
+            147,
+            150,
+            157,
+            167
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/oracle_docker-images__build-and-push-dev-images.yml:51",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/oracle_docker-images__build-and-push-dev-images.yml:139",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/oracle_docker-images__build-and-push-dev-images.yml:142",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/oracle_docker-images__build-and-push-dev-images.yml:147",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/oracle_docker-images__build-and-push-dev-images.yml:150",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/oracle_docker-images__build-and-push-dev-images.yml:157",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/oracle_docker-images__build-and-push-dev-images.yml:167",
+            "Info:   0 out of   2 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   5 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "pinning-check"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "automatic-hardening-check"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/oracle_docker-images__build-and-push-dev-images.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "permissions-check"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "oracle_docker-images__build-and-push-dev-images.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 7,
+        "by_rule": {
+          "unpinned-github-actions": 7
+        }
+      },
+      "findings": [
+        {
+          "line": 51,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 139,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 142,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/setup-qemu-action@v3`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 147,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/setup-buildx-action@v3`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 150,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/login-action@v3`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 157,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/build-push-action@v6`",
+          "capability": "pinning-check"
+        },
+        {
+          "line": 167,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/build-push-action@v6`",
+          "capability": "pinning-check"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "oracle_docker-images__build-and-push-dev-images.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 46,
+        "by_rule": {
+          "artipacked": 2,
+          "excessive-permissions": 3,
+          "template-injection": 36,
+          "unpinned-uses": 5
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "oracle_docker-images__build-and-push-dev-images.yml",
+          "line": 50,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "oracle_docker-images__build-and-push-dev-images.yml",
+          "line": 138,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-Integrity-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "oracle_docker-images__build-and-push-dev-images.yml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "oracle_docker-images__build-and-push-dev-images.yml",
+          "line": 40,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "oracle_docker-images__build-and-push-dev-images.yml",
+          "line": 129,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "permissions-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "oracle_docker-images__build-and-push-dev-images.yml",
+          "line": 56,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "oracle_docker-images__build-and-push-dev-images.yml",
+          "line": 156,
+          "column": 9,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "oracle_docker-images__build-and-push-dev-images.yml",
+          "line": 166,
+          "column": 9,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "oracle_docker-images__build-and-push-dev-images.yml",
+          "line": 177,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-check"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "oracle_docker-images__build-and-push-dev-images.yml",
+          "line": 142,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "pinning-check"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "oracle_docker-images__build-and-push-dev-images.yml",
+          "line": 147,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "pinning-check"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "oracle_docker-images__build-and-push-dev-images.yml",
+          "line": 150,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "pinning-check"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "oracle_docker-images__build-and-push-dev-images.yml",
+          "line": 157,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "pinning-check"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "oracle_docker-images__build-and-push-dev-images.yml",
+          "line": 167,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "pinning-check"
+        }
+      ]
+    }
+  }
+}

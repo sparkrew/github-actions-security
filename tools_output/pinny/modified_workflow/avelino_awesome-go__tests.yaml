@@ -1,0 +1,19 @@
+name: tests
+on:
+push:
+branches:
+- 'main'
+pull_request:
+permissions:
+contents: read  #  to fetch code (actions/checkout)
+jobs:
+build:
+name: Running test
+runs-on: ubuntu-latest
+container: golang:latest
+steps:
+- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2
+- name: Get dependencies
+run: go get -v -t -d ./...
+- name: Run tests
+run: go test main_test.go main.go

@@ -1,0 +1,171 @@
+{
+  "workflow": "n8n-io_n8n__chromatic.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "n8n-io_n8n__chromatic.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 7,
+        "by_rule": {
+          "unpinned-github-actions": 7
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1",
+          "line": 18
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: tomi/paths-filter-action@32c62f5ca100c1110406e3477d5b3ecef4666fec # v3.0.2",
+          "line": 23
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1",
+          "line": 49
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0",
+          "line": 52
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: chromaui/action@c93e0bc3a63aa176e14a75b61a31847cbfdd341c # v11",
+          "line": 61
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043 # v4.0.0",
+          "line": 71
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043 # v4.0.0",
+          "line": 80
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "n8n-io_n8n__chromatic.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 7,
+          "reason": "dependency not pinned by hash detected -- score normalized to 7",
+          "lines": [
+            65
+          ],
+          "raw_details": [
+            "Warn: npmCommand not pinned by hash: .github/workflows/n8n-io_n8n__chromatic.yml:65",
+            "Info:   3 out of   3 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   4 out of   4 third-party GitHubAction dependencies pinned",
+            "Info:   0 out of   1 npmCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          }
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          }
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/n8n-io_n8n__chromatic.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          }
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "n8n-io_n8n__chromatic.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "artipacked": 2,
+          "excessive-permissions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "n8n-io_n8n__chromatic.yml",
+          "line": 20,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "n8n-io_n8n__chromatic.yml",
+          "line": 55,
+          "column": 9,
+          "note": "audit confidence \u2192 Low"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "n8n-io_n8n__chromatic.yml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "n8n-io_n8n__chromatic.yml",
+          "line": 15,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "n8n-io_n8n__chromatic.yml",
+          "line": 43,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium"
+        }
+      ]
+    }
+  }
+}

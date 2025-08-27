@@ -1,0 +1,113 @@
+{
+  "workflow": "denoland_deno__promote_to_release.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 9,
+    "by_rule": {
+      "unverified_script_exec": 1,
+      "known_vulnerability_in_build_component": 1,
+      "injection": 7
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": "50",
+      "column": "",
+      "job": "promote-to-release-windows",
+      "step": "3",
+      "details": "Command: deno install -A -n patchver https://deno.land/x/patchver@0.2.0/cli.ts",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "155",
+      "column": "",
+      "job": "promote-to-release",
+      "step": "6",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": "41",
+      "column": "",
+      "job": "promote-to-release-windows",
+      "step": "2",
+      "details": "Sources: github.event.inputs.commitHash",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": "151",
+      "column": "",
+      "job": "promote-to-release",
+      "step": "5",
+      "details": "Sources: github.event.inputs.commitHash github.event.inputs.releaseKind",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": "161",
+      "column": "",
+      "job": "promote-to-release",
+      "step": "7",
+      "details": "Sources: github.event.inputs.releaseKind",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": "169",
+      "column": "",
+      "job": "promote-to-release",
+      "step": "8",
+      "details": "Sources: github.event.inputs.releaseKind",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": "50",
+      "column": "",
+      "job": "promote-to-release-windows",
+      "step": "3",
+      "details": "Sources: github.event.inputs.releaseKind",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": "93",
+      "column": "",
+      "job": "promote-to-release-windows",
+      "step": "6",
+      "details": "Sources: github.event.inputs.releaseKind",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": "99",
+      "column": "",
+      "job": "promote-to-release-windows",
+      "step": "7",
+      "details": "Sources: github.event.inputs.releaseKind",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

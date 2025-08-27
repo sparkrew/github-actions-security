@@ -1,0 +1,16 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/electron_electron__issue-unlabeled.yml:16:9
+   [1m[94m|[0m
+[1m[94m16 |[0m         - name: Check for any blocked labels
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m17 |[0m           id: check-for-blocked-labels
+[1m[94m18 |[0m [1m[91m/[0m         run: |
+[1m[94m19 |[0m [1m[91m|[0m           set -eo pipefail
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m22 |[0m [1m[91m|[0m             echo "NOT_BLOCKED=1" >> "$GITHUB_OUTPUT"
+[1m[94m23 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|____________^[0m [1m[91mgithub.event.issue.labels.*.name may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m2[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m0[39m medium, [31m1[39m high

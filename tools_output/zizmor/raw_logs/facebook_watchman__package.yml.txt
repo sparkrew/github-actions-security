@@ -1,0 +1,87 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_watchman__package.yml:9:9
+   [1m[94m|[0m
+[1m[94m 9 |[0m         - name: Checkout code
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m10 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_watchman__package.yml:37:9
+   [1m[94m|[0m
+[1m[94m37 |[0m         - name: Checkout code
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m38 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_watchman__package.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m name: package
+[1m[94m 2 |[0m [1m[33m|[0m
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m55 |[0m [1m[33m|[0m       - name: Make .deb
+[1m[94m56 |[0m [1m[33m|[0m         run: ./watchman/build/package/make-deb.sh
+   [1m[94m|[0m [1m[33m|__________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_watchman__package.yml:6:3
+   [1m[94m|[0m
+[1m[94m 6 |[0m [1m[33m/[0m   docker-ubuntu:
+[1m[94m 7 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m28 |[0m [1m[33m|[0m           push: true
+[1m[94m29 |[0m [1m[33m|[0m           tags: ${{ format('ghcr.io/{0}/watchman-build-env:latest', github.repository) }}
+   [1m[94m|[0m [1m[33m|[0m                                                                                         [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_________________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                           [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                           [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_watchman__package.yml:31:3
+   [1m[94m|[0m
+[1m[94m31 |[0m [1m[33m/[0m   clone-and-build-and-package-ubuntu:
+[1m[94m32 |[0m [1m[33m|[0m     needs: docker-ubuntu
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m55 |[0m [1m[33m|[0m       - name: Make .deb
+[1m[94m56 |[0m [1m[33m|[0m         run: ./watchman/build/package/make-deb.sh
+   [1m[94m|[0m [1m[33m|[0m                                                  [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|__________________________________________________|[0m
+   [1m[94m|[0m                                                    [1m[33mthis job[0m
+   [1m[94m|[0m                                                    [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_watchman__package.yml:13:9
+   [1m[94m|[0m
+[1m[94m13 |[0m         uses: docker/setup-buildx-action@v3
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_watchman__package.yml:16:9
+   [1m[94m|[0m
+[1m[94m16 |[0m         uses: docker/login-action@v3
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_watchman__package.yml:23:9
+   [1m[94m|[0m
+[1m[94m23 |[0m         uses: docker/build-push-action@v6
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m9[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m5[39m medium, [31m3[39m high
