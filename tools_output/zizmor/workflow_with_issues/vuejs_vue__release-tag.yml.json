@@ -1,0 +1,41 @@
+{
+  "workflow": "vuejs_vue__release-tag.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "artipacked": 1,
+      "excessive-permissions": 1,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "vuejs_vue__release-tag.yml",
+      "line": 13,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "vuejs_vue__release-tag.yml",
+      "line": 9,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "vuejs_vue__release-tag.yml",
+      "line": 17,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

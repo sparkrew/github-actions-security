@@ -1,0 +1,40 @@
+{
+  "workflow": "NVIDIA_k8s-device-plugin__deploy-to-pages.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "artipacked": 1,
+      "excessive-permissions": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "NVIDIA_k8s-device-plugin__deploy-to-pages.yml",
+      "line": 55,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "error",
+      "message": "overly broad permissions",
+      "workflow": "NVIDIA_k8s-device-plugin__deploy-to-pages.yml",
+      "line": 41,
+      "column": 3,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "error",
+      "message": "overly broad permissions",
+      "workflow": "NVIDIA_k8s-device-plugin__deploy-to-pages.yml",
+      "line": 42,
+      "column": 3,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "workflow": "alibaba_druid__ci.yaml",
+  "tool": "frizbee",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "original": "actions/checkout@v4",
+      "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+      "line": 27
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "original": "actions/setup-java@v4",
+      "pinned": "actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00",
+      "line": 29
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "original": "codecov/codecov-action@v3.1.0",
+      "pinned": "codecov/codecov-action@81cd2dc8148241f03f5839d295e000b8f761e378",
+      "line": 42
+    }
+  ]
+}

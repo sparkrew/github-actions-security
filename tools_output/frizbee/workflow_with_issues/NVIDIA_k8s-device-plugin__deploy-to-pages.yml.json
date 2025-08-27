@@ -1,0 +1,42 @@
+{
+  "workflow": "NVIDIA_k8s-device-plugin__deploy-to-pages.yml",
+  "tool": "frizbee",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "unpinned-github-actions": 5
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "original": "actions/checkout@v4",
+      "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+      "line": 56
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "original": "actions/configure-pages@v5",
+      "pinned": "actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b",
+      "line": 60
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "original": "actions/jekyll-build-pages@v1",
+      "pinned": "actions/jekyll-build-pages@44a6e6beabd48582f863aeeb6cb2151cc1716697",
+      "line": 62
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "original": "actions/upload-pages-artifact@v3",
+      "pinned": "actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa",
+      "line": 67
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "original": "actions/deploy-pages@v4",
+      "pinned": "actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e",
+      "line": 79
+    }
+  ]
+}

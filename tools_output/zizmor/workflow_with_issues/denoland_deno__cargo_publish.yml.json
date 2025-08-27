@@ -1,0 +1,69 @@
+{
+  "workflow": "denoland_deno__cargo_publish.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 6,
+    "by_rule": {
+      "artipacked": 1,
+      "excessive-permissions": 1,
+      "template-injection": 2,
+      "unpinned-uses": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "denoland_deno__cargo_publish.yml",
+      "line": 27,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "denoland_deno__cargo_publish.yml",
+      "line": 11,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "denoland_deno__cargo_publish.yml",
+      "line": 46,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "denoland_deno__cargo_publish.yml",
+      "line": 46,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "denoland_deno__cargo_publish.yml",
+      "line": 34,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "denoland_deno__cargo_publish.yml",
+      "line": 37,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "workflow": "n8n-io_n8n__release-create-pr.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "injection": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "injection",
+      "line": "59",
+      "column": "",
+      "job": "create-release-pr",
+      "step": "6",
+      "details": "Sources: github.event.inputs.base-branch",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "workflow": "google_dagger__ci.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": "40",
+      "column": "",
+      "job": "bazel-test",
+      "step": "",
+      "details": "runs-on: group:large-runner-group, label:ubuntu-22.04-16core",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": "48",
+      "column": "",
+      "job": "gradle-build",
+      "step": "",
+      "details": "runs-on: group:large-runner-group, label:ubuntu-22.04-16core",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    }
+  ]
+}

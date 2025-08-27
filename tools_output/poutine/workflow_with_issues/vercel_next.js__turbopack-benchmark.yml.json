@@ -1,0 +1,38 @@
+{
+  "workflow": "vercel_next.js__turbopack-benchmark.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": "92",
+      "column": "",
+      "job": "benchmark-large",
+      "step": "",
+      "details": "runs-on: self-hosted, linux, x64, metal",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": "54",
+      "column": "",
+      "job": "benchmark-small-apps",
+      "step": "",
+      "details": "runs-on: self-hosted, linux, x64, metal",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "workflow": "electron_electron__pipeline-electron-build-and-test-and-nan.yml",
+  "tool": "actionlint",
+  "summary": {
+    "total_findings": 7
+  },
+  "findings": [
+    {
+      "line": 36,
+      "column": 18,
+      "message": "input \"is-release\" of workflow_call event has the default value \"false\", but it is also required. if an input is marked as required, its default value will never be used [events]"
+    },
+    {
+      "line": 41,
+      "column": 18,
+      "message": "input \"gn-build-type\" of workflow_call event has the default value \"testing\", but it is also required. if an input is marked as required, its default value will never be used [events]"
+    },
+    {
+      "line": 46,
+      "column": 18,
+      "message": "input \"generate-symbols\" of workflow_call event has the default value \"false\", but it is also required. if an input is marked as required, its default value will never be used [events]"
+    },
+    {
+      "line": 51,
+      "column": 18,
+      "message": "input \"upload-to-storage\" of workflow_call event has the default value \"0\", but it is also required. if an input is marked as required, its default value will never be used [events]"
+    },
+    {
+      "line": 64,
+      "column": 11,
+      "message": "could not read reusable workflow file for \"./.github/workflows/pipeline-segment-electron-build.yml\": open /home/huawei/github-actions-security/.github/workflows/pipeline-segment-electron-build.yml: no such file or directory [workflow-call]"
+    },
+    {
+      "line": 76,
+      "column": 11,
+      "message": "could not read reusable workflow file for \"./.github/workflows/pipeline-segment-electron-test.yml\": open /home/huawei/github-actions-security/.github/workflows/pipeline-segment-electron-test.yml: no such file or directory [workflow-call]"
+    },
+    {
+      "line": 85,
+      "column": 11,
+      "message": "could not read reusable workflow file for \"./.github/workflows/pipeline-segment-node-nan-test.yml\": open /home/huawei/github-actions-security/.github/workflows/pipeline-segment-node-nan-test.yml: no such file or directory [workflow-call]"
+    }
+  ]
+}

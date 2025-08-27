@@ -1,0 +1,42 @@
+{
+  "workflow": "NVIDIA_k8s-device-plugin__e2e.yaml",
+  "tool": "frizbee",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "unpinned-github-actions": 5
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "original": "actions/checkout@v4",
+      "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+      "line": 43
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "original": "actions/setup-go@v5",
+      "pinned": "actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5",
+      "line": 46
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "original": "NVIDIA/holodeck@v0.2.12",
+      "pinned": "NVIDIA/holodeck@aa690b0cb42dffed4a0fa304a9ea896787955214",
+      "line": 51
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "original": "actions/upload-artifact@v4",
+      "pinned": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+      "line": 69
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "original": "slackapi/slack-github-action@v2.1.0",
+      "pinned": "slackapi/slack-github-action@b0fa283ad8fea605de13dc3f449259339835fc52",
+      "line": 78
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "workflow": "facebook_create-react-app__e2e-base.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "artipacked": 1,
+      "template-injection": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "facebook_create-react-app__e2e-base.yml",
+      "line": 22,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "facebook_create-react-app__e2e-base.yml",
+      "line": 34,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    }
+  ]
+}

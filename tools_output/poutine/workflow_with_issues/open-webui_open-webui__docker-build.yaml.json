@@ -1,0 +1,60 @@
+{
+  "workflow": "open-webui_open-webui__docker-build.yaml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 4
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "490",
+      "column": "",
+      "job": "merge-cuda-images",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "546",
+      "column": "",
+      "job": "merge-cuda126-images",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "436",
+      "column": "",
+      "job": "merge-main-images",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "602",
+      "column": "",
+      "job": "merge-ollama-images",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "workflow": "langgenius_dify__translate-i18n-base-on-english.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "excessive-permissions": 1,
+      "unpinned-uses": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "langgenius_dify__translate-i18n-base-on-english.yml",
+      "line": 9,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "langgenius_dify__translate-i18n-base-on-english.yml",
+      "line": 35,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "langgenius_dify__translate-i18n-base-on-english.yml",
+      "line": 58,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

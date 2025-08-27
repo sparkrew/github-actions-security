@@ -1,0 +1,31 @@
+{
+  "workflow": "freeCodeCamp_freeCodeCamp__docker-ghcr.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "artipacked": 1,
+      "cache-poisoning": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "freeCodeCamp_freeCodeCamp__docker-ghcr.yml",
+      "line": 25,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "cache-poisoning",
+      "level": "error",
+      "message": "runtime artifacts potentially vulnerable to a cache poisoning attack",
+      "workflow": "freeCodeCamp_freeCodeCamp__docker-ghcr.yml",
+      "line": 47,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    }
+  ]
+}

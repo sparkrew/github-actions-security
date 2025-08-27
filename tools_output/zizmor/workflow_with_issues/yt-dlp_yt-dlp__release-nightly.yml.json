@@ -1,0 +1,41 @@
+{
+  "workflow": "yt-dlp_yt-dlp__release-nightly.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "artipacked": 1,
+      "unpinned-uses": 1,
+      "secrets-inherit": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "yt-dlp_yt-dlp__release-nightly.yml",
+      "line": 15,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "yt-dlp_yt-dlp__release-nightly.yml",
+      "line": 58,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "secrets-inherit",
+      "level": "warning",
+      "message": "secrets unconditionally inherited by called workflow",
+      "workflow": "yt-dlp_yt-dlp__release-nightly.yml",
+      "line": 34,
+      "column": 5,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

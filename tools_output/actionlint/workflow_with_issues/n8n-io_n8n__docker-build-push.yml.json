@@ -1,0 +1,29 @@
+{
+  "workflow": "n8n-io_n8n__docker-build-push.yml",
+  "tool": "actionlint",
+  "summary": {
+    "total_findings": 4
+  },
+  "findings": [
+    {
+      "line": 22,
+      "column": 18,
+      "message": "input \"release_type\" of workflow_call event has the default value \"dev\", but it is also required. if an input is marked as required, its default value will never be used [events]"
+    },
+    {
+      "line": 62,
+      "column": 21,
+      "message": "label \"blacksmith-4vcpu-ubuntu-2204\" is unknown. available labels are \"windows-latest\", \"windows-latest-8-cores\", \"windows-2025\", \"windows-2022\", \"windows-2019\", \"ubuntu-latest\", \"ubuntu-latest-4-cores\", \"ubuntu-latest-8-cores\", \"ubuntu-latest-16-cores\", \"ubuntu-24.04\", \"ubuntu-24.04-arm\", \"ubuntu-22.04\", \"ubuntu-22.04-arm\", \"ubuntu-20.04\", \"macos-latest\", \"macos-latest-xl\", \"macos-latest-xlarge\", \"macos-latest-large\", \"macos-15-xlarge\", \"macos-15-large\", \"macos-15\", \"macos-14-xl\", \"macos-14-xlarge\", \"macos-14-large\", \"macos-14\", \"macos-13-xl\", \"macos-13-xlarge\", \"macos-13-large\", \"macos-13\", \"self-hosted\", \"x64\", \"arm\", \"arm64\", \"linux\", \"macos\", \"windows\". if it is a custom label for self-hosted runner, set list of labels in actionlint.yaml config file [runner-label]"
+    },
+    {
+      "line": 65,
+      "column": 21,
+      "message": "label \"blacksmith-4vcpu-ubuntu-2204-arm\" is unknown. available labels are \"windows-latest\", \"windows-latest-8-cores\", \"windows-2025\", \"windows-2022\", \"windows-2019\", \"ubuntu-latest\", \"ubuntu-latest-4-cores\", \"ubuntu-latest-8-cores\", \"ubuntu-latest-16-cores\", \"ubuntu-24.04\", \"ubuntu-24.04-arm\", \"ubuntu-22.04\", \"ubuntu-22.04-arm\", \"ubuntu-20.04\", \"macos-latest\", \"macos-latest-xl\", \"macos-latest-xlarge\", \"macos-latest-large\", \"macos-15-xlarge\", \"macos-15-large\", \"macos-15\", \"macos-14-xl\", \"macos-14-xlarge\", \"macos-14-large\", \"macos-14\", \"macos-13-xl\", \"macos-13-xlarge\", \"macos-13-large\", \"macos-13\", \"self-hosted\", \"x64\", \"arm\", \"arm64\", \"linux\", \"macos\", \"windows\". if it is a custom label for self-hosted runner, set list of labels in actionlint.yaml config file [runner-label]"
+    },
+    {
+      "line": 328,
+      "column": 11,
+      "message": "could not read reusable workflow file for \"./.github/workflows/security-trivy-scan-callable.yml\": open /home/huawei/github-actions-security/.github/workflows/security-trivy-scan-callable.yml: no such file or directory [workflow-call]"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "workflow": "TheAlgorithms_Python__sphinx.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": "26",
+      "column": "",
+      "job": "build_docs",
+      "step": "",
+      "details": "runs-on: ubuntu-24.04-arm",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "workflow": "NVIDIA_k8s-device-plugin__golang.yaml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "artipacked": 3,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "NVIDIA_k8s-device-plugin__golang.yaml",
+      "line": 28,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "NVIDIA_k8s-device-plugin__golang.yaml",
+      "line": 48,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "NVIDIA_k8s-device-plugin__golang.yaml",
+      "line": 59,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "NVIDIA_k8s-device-plugin__golang.yaml",
+      "line": 35,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

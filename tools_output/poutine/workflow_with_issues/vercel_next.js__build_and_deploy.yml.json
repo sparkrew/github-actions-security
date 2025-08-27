@@ -1,0 +1,131 @@
+{
+  "workflow": "vercel_next.js__build_and_deploy.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 9,
+    "by_rule": {
+      "unverified_script_exec": 1,
+      "known_vulnerability_in_build_component": 6,
+      "pr_runs_on_self_hosted": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": "465",
+      "column": "",
+      "job": "build-wasm",
+      "step": "4",
+      "details": "Command: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "526",
+      "column": "",
+      "job": "deploy-tarball",
+      "step": "4",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "532",
+      "column": "",
+      "job": "deploy-tarball",
+      "step": "5",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "591",
+      "column": "",
+      "job": "publishRelease",
+      "step": "4",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "597",
+      "column": "",
+      "job": "publishRelease",
+      "step": "5",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "723",
+      "column": "",
+      "job": "releaseStats",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "746",
+      "column": "",
+      "job": "upload_turbopack_bytesize",
+      "step": "0",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": "444",
+      "column": "",
+      "job": "build-wasm",
+      "step": "",
+      "details": "runs-on: self-hosted, linux, x64, metal",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": "712",
+      "column": "",
+      "job": "releaseStats",
+      "step": "",
+      "details": "runs-on: self-hosted, linux, x64, metal",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

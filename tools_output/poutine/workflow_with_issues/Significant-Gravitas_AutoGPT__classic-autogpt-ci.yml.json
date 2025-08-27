@@ -1,0 +1,24 @@
+{
+  "workflow": "Significant-Gravitas_AutoGPT__classic-autogpt-ci.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "unverified_script_exec": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": "93",
+      "column": "",
+      "job": "test",
+      "step": "7",
+      "details": "Command: curl -sSL https://install.python-poetry.org | python",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "workflow": "huggingface_transformers__check_failed_tests.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0",
+      "line": 44
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0",
+      "line": 58
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: slackapi/slack-github-action@6c661ce58804a1a20f6dc5fbee7f0381b469e001",
+      "line": 156
+    }
+  ]
+}

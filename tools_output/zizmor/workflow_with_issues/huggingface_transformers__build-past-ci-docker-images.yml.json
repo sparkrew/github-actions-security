@@ -1,0 +1,132 @@
+{
+  "workflow": "huggingface_transformers__build-past-ci-docker-images.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 13,
+    "by_rule": {
+      "artipacked": 2,
+      "excessive-permissions": 3,
+      "template-injection": 2,
+      "unpinned-uses": 6
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "huggingface_transformers__build-past-ci-docker-images.yml",
+      "line": 26,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "huggingface_transformers__build-past-ci-docker-images.yml",
+      "line": 71,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "huggingface_transformers__build-past-ci-docker-images.yml",
+      "line": 1,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "huggingface_transformers__build-past-ci-docker-images.yml",
+      "line": 13,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "huggingface_transformers__build-past-ci-docker-images.yml",
+      "line": 58,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "info",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__build-past-ci-docker-images.yml",
+      "line": 36,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "info",
+      "message": "code injection via template expansion",
+      "workflow": "huggingface_transformers__build-past-ci-docker-images.yml",
+      "line": 81,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "huggingface_transformers__build-past-ci-docker-images.yml",
+      "line": 24,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "huggingface_transformers__build-past-ci-docker-images.yml",
+      "line": 41,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "huggingface_transformers__build-past-ci-docker-images.yml",
+      "line": 47,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "huggingface_transformers__build-past-ci-docker-images.yml",
+      "line": 69,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "huggingface_transformers__build-past-ci-docker-images.yml",
+      "line": 86,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "huggingface_transformers__build-past-ci-docker-images.yml",
+      "line": 92,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

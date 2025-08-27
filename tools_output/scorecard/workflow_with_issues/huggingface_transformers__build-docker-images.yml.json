@@ -1,0 +1,144 @@
+{
+  "workflow": "huggingface_transformers__build-docker-images.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        28,
+        31,
+        34,
+        40,
+        53,
+        63,
+        77,
+        80,
+        83,
+        89,
+        99,
+        114,
+        117,
+        120,
+        130,
+        140,
+        156,
+        159,
+        162,
+        168,
+        176,
+        192,
+        195,
+        198,
+        204,
+        214,
+        228,
+        231,
+        234,
+        240,
+        253,
+        263,
+        277,
+        280,
+        283,
+        289,
+        302,
+        312,
+        328,
+        331,
+        334,
+        340,
+        350
+      ],
+      "raw_details": [
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:28",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:31",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:34",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:40",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:53",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:63",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:77",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:80",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:83",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:89",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:99",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:114",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:117",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:120",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:130",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:140",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:156",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:159",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:162",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:168",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:176",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:192",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:195",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:198",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:204",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:214",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:228",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:231",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:234",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:240",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:253",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:263",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:277",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:280",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:283",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:289",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:302",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:312",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:328",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:331",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:334",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:340",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/huggingface_transformers__build-docker-images.yml:350",
+        "Info:   0 out of   8 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of  35 third-party GitHubAction dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 0,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1
+      ],
+      "raw_details": [
+        "Warn: no topLevel permission defined: .github/workflows/huggingface_transformers__build-docker-images.yml:1",
+        "Info: no jobLevel write permissions found"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

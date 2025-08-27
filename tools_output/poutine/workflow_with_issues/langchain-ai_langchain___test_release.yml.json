@@ -1,0 +1,23 @@
+{
+  "workflow": "langchain-ai_langchain___test_release.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "88",
+      "column": "",
+      "job": "publish",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    }
+  ]
+}

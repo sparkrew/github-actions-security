@@ -1,0 +1,32 @@
+{
+  "workflow": "freeCodeCamp_freeCodeCamp__deploy-client.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4",
+      "line": 83
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4",
+      "line": 87
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4",
+      "line": 91
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: tailscale/github-action@84a3f23bb4d843bcf4da6cf824ec1be473daf4de # tailscale/github-action@v3 | v3.2.3",
+      "line": 127
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "workflow": "facebook_react__runtime_commit_artifacts.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "312",
+      "column": "",
+      "job": "commit_fbsource_artifacts",
+      "step": "2",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_run",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "221",
+      "column": "",
+      "job": "commit_www_artifacts",
+      "step": "2",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_run",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "109",
+      "column": "",
+      "job": "process_artifacts",
+      "step": "6",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_run",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

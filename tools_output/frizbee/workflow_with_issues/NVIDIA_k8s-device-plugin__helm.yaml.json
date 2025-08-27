@@ -1,0 +1,24 @@
+{
+  "workflow": "NVIDIA_k8s-device-plugin__helm.yaml",
+  "tool": "frizbee",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "unpinned-github-actions": 2
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "original": "actions/checkout@v4",
+      "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+      "line": 30
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "original": "actions/setup-go@v5",
+      "pinned": "actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5",
+      "line": 32
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "workflow": "oracle_opengrok__release.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 6,
+    "by_rule": {
+      "artipacked": 3,
+      "excessive-permissions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "oracle_opengrok__release.yml",
+      "line": 15,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "oracle_opengrok__release.yml",
+      "line": 26,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "oracle_opengrok__release.yml",
+      "line": 39,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "oracle_opengrok__release.yml",
+      "line": 1,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "oracle_opengrok__release.yml",
+      "line": 9,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "oracle_opengrok__release.yml",
+      "line": 22,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    }
+  ]
+}

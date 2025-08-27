@@ -1,0 +1,27 @@
+{
+  "workflow": "axios_axios__codeql-analysis.yml",
+  "tool": "scharf",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "line": 35,
+      "column": 13,
+      "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+    },
+    {
+      "line": 41,
+      "column": 20,
+      "message": "Unpinned GitHub Action: uses `codeql-action/init@v3`"
+    },
+    {
+      "line": 47,
+      "column": 20,
+      "message": "Unpinned GitHub Action: uses `codeql-action/analyze@v3`"
+    }
+  ]
+}

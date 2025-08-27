@@ -1,0 +1,40 @@
+{
+  "workflow": "oracle_truffleruby__prism.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "artipacked": 2,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "oracle_truffleruby__prism.yml",
+      "line": 17,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "oracle_truffleruby__prism.yml",
+      "line": 32,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "oracle_truffleruby__prism.yml",
+      "line": 23,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

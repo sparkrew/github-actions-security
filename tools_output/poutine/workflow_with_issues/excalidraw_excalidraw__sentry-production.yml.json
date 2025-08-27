@@ -1,0 +1,23 @@
+{
+  "workflow": "excalidraw_excalidraw__sentry-production.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "unverified_script_exec": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": "24",
+      "column": "",
+      "job": "sentry",
+      "step": "3",
+      "details": "Command: curl -sL https://sentry.io/get-cli/ | bash",
+      "event_triggers": [
+        "push"
+      ]
+    }
+  ]
+}

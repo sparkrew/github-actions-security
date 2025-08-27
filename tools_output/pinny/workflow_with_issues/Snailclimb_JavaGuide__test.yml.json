@@ -1,0 +1,27 @@
+{
+  "workflow": "Snailclimb_JavaGuide__test.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+      "line": 11
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # pnpm/action-setup@v4",
+      "line": 13
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | v4.4.0",
+      "line": 15
+    }
+  ]
+}

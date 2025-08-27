@@ -1,0 +1,14 @@
+{
+  "workflow": "EbookFoundation_free-programming-books__comment-pr.yml",
+  "tool": "actionlint",
+  "summary": {
+    "total_findings": 1
+  },
+  "findings": [
+    {
+      "line": 14,
+      "column": 9,
+      "message": "if: condition \"${{ github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success' }}\\n\" is always evaluated to true because extra characters are around ${{ }} [if-cond]"
+    }
+  ]
+}

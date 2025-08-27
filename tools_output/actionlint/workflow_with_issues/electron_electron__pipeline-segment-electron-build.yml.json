@@ -1,0 +1,29 @@
+{
+  "workflow": "electron_electron__pipeline-segment-electron-build.yml",
+  "tool": "actionlint",
+  "summary": {
+    "total_findings": 4
+  },
+  "findings": [
+    {
+      "line": 35,
+      "column": 18,
+      "message": "input \"is-release\" of workflow_call event has the default value \"false\", but it is also required. if an input is marked as required, its default value will never be used [events]"
+    },
+    {
+      "line": 40,
+      "column": 18,
+      "message": "input \"gn-build-type\" of workflow_call event has the default value \"testing\", but it is also required. if an input is marked as required, its default value will never be used [events]"
+    },
+    {
+      "line": 45,
+      "column": 18,
+      "message": "input \"generate-symbols\" of workflow_call event has the default value \"false\", but it is also required. if an input is marked as required, its default value will never be used [events]"
+    },
+    {
+      "line": 50,
+      "column": 18,
+      "message": "input \"upload-to-storage\" of workflow_call event has the default value \"0\", but it is also required. if an input is marked as required, its default value will never be used [events]"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "workflow": "n8n-io_n8n__units-tests-reusable.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "untrusted_checkout_exec": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": "51",
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of a Local GitHub Action at path: `./.github/actions/setup-and-build`",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "workflow": "electron_electron__build.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": "123",
+      "column": "",
+      "job": "checkout-linux",
+      "step": "",
+      "details": "runs-on: electron-arc-linux-amd64-32core",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": "95",
+      "column": "",
+      "job": "checkout-macos",
+      "step": "",
+      "details": "runs-on: electron-arc-linux-amd64-32core",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": "152",
+      "column": "",
+      "job": "checkout-windows",
+      "step": "",
+      "details": "runs-on: electron-arc-linux-amd64-32core",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request"
+      ]
+    }
+  ]
+}

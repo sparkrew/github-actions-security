@@ -1,0 +1,34 @@
+{
+  "workflow": "huggingface_transformers__check_failed_tests.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "49",
+      "column": "",
+      "job": "check_new_failures",
+      "step": "0",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "65",
+      "column": "",
+      "job": "check_new_failures",
+      "step": "2",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "workflow": "twbs_bootstrap__codeql.yml",
+  "tool": "scharf",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "line": 27,
+      "column": 15,
+      "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+    },
+    {
+      "line": 32,
+      "column": 22,
+      "message": "Unpinned GitHub Action: uses `codeql-action/init@v3`"
+    },
+    {
+      "line": 39,
+      "column": 22,
+      "message": "Unpinned GitHub Action: uses `codeql-action/autobuild@v3`"
+    },
+    {
+      "line": 42,
+      "column": 22,
+      "message": "Unpinned GitHub Action: uses `codeql-action/analyze@v3`"
+    }
+  ]
+}

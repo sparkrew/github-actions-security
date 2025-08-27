@@ -1,0 +1,67 @@
+{
+  "workflow": "oracle_docker-images__build-and-push-nosql-sec-image.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 6,
+    "by_rule": {
+      "artipacked": 1,
+      "unpinned-uses": 5
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "oracle_docker-images__build-and-push-nosql-sec-image.yml",
+      "line": 27,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "oracle_docker-images__build-and-push-nosql-sec-image.yml",
+      "line": 31,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "oracle_docker-images__build-and-push-nosql-sec-image.yml",
+      "line": 34,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "oracle_docker-images__build-and-push-nosql-sec-image.yml",
+      "line": 47,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "oracle_docker-images__build-and-push-nosql-sec-image.yml",
+      "line": 55,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "oracle_docker-images__build-and-push-nosql-sec-image.yml",
+      "line": 67,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

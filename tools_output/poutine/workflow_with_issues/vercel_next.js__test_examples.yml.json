@@ -1,0 +1,24 @@
+{
+  "workflow": "vercel_next.js__test_examples.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "unverified_script_exec": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": "50",
+      "column": "",
+      "job": "testExamples",
+      "step": "6",
+      "details": "Command: curl -s https://install-node.vercel.app/v${{ matrix.node }} | FORCE=1 bash",
+      "event_triggers": [
+        "workflow_dispatch",
+        "schedule"
+      ]
+    }
+  ]
+}

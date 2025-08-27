@@ -1,0 +1,72 @@
+name: Cfnrelease-int
+
+on:
+  push: 
+    branches:    
+     - int
+    
+permissions:  # added using https://github.com/step-security/secure-repo
+  contents: read
+
+jobs:
+  publish-test:
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde
+        with:
+          egress-policy: audit
+      - name: Checkout
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
+        with:
+          fetch-depth: 0
+      - name: Set up Go 
+        uses: actions/setup-go@cdcb36043654635271a94b9a6d1392de5bb323a7 # v5.0.1
+        with:
+          go-version: 1.17
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@ea7b857d8a33dc2fb4ef5a724500044281b49a5e
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_INT }}  
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_INT }}
+          aws-region: us-west-2
+      
+      - run: go test ./...  -coverpkg=./...
+        env: 
+          PAT: ${{ secrets.PAT }}
+      
+      - name: Deploy to AWS CloudFormation
+        uses: aws-actions/aws-cloudformation-github-deploy@72bea2c93ca6be253b71b5966ecde13f9e8af2d4
+        with:
+          name: secure-workflow-api-ecr
+          template: cloudformation/ecr.yml
+          parameter-overrides: "ResourceName=secure-workflow-api"
+          no-fail-on-empty-changeset: "1"
+      
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@aaf69d68aa3fb14c1d5a6be9ac61fe15b48453a2
+
+      - name: Build, tag, and push image to Amazon ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: secure-workflow-api
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+      
+      - name: Deploy to AWS CloudFormation
+        uses: aws-actions/aws-cloudformation-github-deploy@72bea2c93ca6be253b71b5966ecde13f9e8af2d4
+        with:
+          name: secure-workflow-api
+          template: cloudformation/resources.yml
+          parameter-overrides: >-
+            ResourceName=secure-workflow-api,
+            ImageTag=${{ github.sha }},
+            PAT=${{ secrets.PAT }}            
+          no-fail-on-empty-changeset: "1"
+      
+        

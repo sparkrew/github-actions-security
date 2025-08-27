@@ -1,0 +1,67 @@
+{
+  "workflow": "electron_electron__pipeline-segment-electron-gn-check.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "untrusted_checkout_exec": 5
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": "72",
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of a Local GitHub Action at path: `./src/electron/.github/actions/install-build-tools`",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": "120",
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of a Local GitHub Action at path: `./src/electron/.github/actions/install-dependencies`",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": "90",
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of a Local GitHub Action at path: `./src/electron/.github/actions/restore-cache-aks`",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": "85",
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of a Local GitHub Action at path: `./src/electron/.github/actions/restore-cache-azcopy`",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": "70",
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of a Local GitHub Action at path: `./src/electron/.github/actions/set-chromium-cookie`",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    }
+  ]
+}

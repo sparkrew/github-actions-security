@@ -1,0 +1,24 @@
+{
+  "workflow": "facebook_hhvm__ubuntu.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": "29",
+      "column": "",
+      "job": "build_ubuntu_focal_nightly",
+      "step": "",
+      "details": "runs-on: 16-core",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    }
+  ]
+}

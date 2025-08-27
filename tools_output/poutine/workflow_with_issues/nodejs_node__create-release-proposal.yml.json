@@ -1,0 +1,23 @@
+{
+  "workflow": "nodejs_node__create-release-proposal.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "unverified_script_exec": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": "75",
+      "column": "",
+      "job": "releasePrepare",
+      "step": "6",
+      "details": "Command: curl -fsSL https://github.com/${GITHUB_REPOSITORY}/raw/${GITHUB_SHA}/tools/actions/create-release-proposal.sh |\\\nsh",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

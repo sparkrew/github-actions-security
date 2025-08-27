@@ -1,0 +1,23 @@
+{
+  "workflow": "huggingface_transformers__slack-report.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": "44",
+      "column": "",
+      "job": "send_results",
+      "step": "2",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    }
+  ]
+}

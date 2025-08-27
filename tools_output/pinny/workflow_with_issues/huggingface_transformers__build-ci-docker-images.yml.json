@@ -1,0 +1,37 @@
+{
+  "workflow": "huggingface_transformers__build-ci-docker-images.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "unpinned-github-actions": 5
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435 # docker/setup-buildx-action@v3 | master,v3.11.1",
+      "line": 37
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+      "line": 40
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # docker/login-action@v3 | v3.4.0",
+      "line": 43
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/build-push-action@ca052bb54ab0790a636c9b5f226502c73d547a25 # docker/build-push-action@v5 | releases,v5.4.0",
+      "line": 49
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: huggingface/hf-workflows/.github/actions/post-slack@b5b9e1ae139ff95d1ebd3c14531e231e780ca345 # huggingface/hf-workflows/.github/actions/post-slack@main",
+      "line": 63
+    }
+  ]
+}

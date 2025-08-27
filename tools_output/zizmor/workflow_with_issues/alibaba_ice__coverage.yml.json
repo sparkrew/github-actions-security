@@ -1,0 +1,40 @@
+{
+  "workflow": "alibaba_ice__coverage.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "artipacked": 1,
+      "unpinned-uses": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "alibaba_ice__coverage.yml",
+      "line": 36,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "alibaba_ice__coverage.yml",
+      "line": 45,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "alibaba_ice__coverage.yml",
+      "line": 64,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

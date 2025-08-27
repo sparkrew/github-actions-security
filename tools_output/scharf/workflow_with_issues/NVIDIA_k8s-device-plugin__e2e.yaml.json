@@ -1,0 +1,37 @@
+{
+  "workflow": "NVIDIA_k8s-device-plugin__e2e.yaml",
+  "tool": "scharf",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "unpinned-github-actions": 5
+    }
+  },
+  "findings": [
+    {
+      "line": 43,
+      "column": 13,
+      "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+    },
+    {
+      "line": 46,
+      "column": 13,
+      "message": "Unpinned GitHub Action: uses `actions/setup-go@v5`"
+    },
+    {
+      "line": 51,
+      "column": 13,
+      "message": "Unpinned GitHub Action: uses `NVIDIA/holodeck@v0.2.12`"
+    },
+    {
+      "line": 69,
+      "column": 13,
+      "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`"
+    },
+    {
+      "line": 78,
+      "column": 13,
+      "message": "Unpinned GitHub Action: uses `slackapi/slack-github-action@v2.1.0`"
+    }
+  ]
+}

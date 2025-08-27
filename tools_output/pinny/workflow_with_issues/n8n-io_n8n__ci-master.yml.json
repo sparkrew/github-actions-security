@@ -1,0 +1,37 @@
+{
+  "workflow": "n8n-io_n8n__ci-master.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "unpinned-github-actions": 5
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1",
+      "line": 13
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: useblacksmith/setup-node@65c6ca86fdeb0ab3d85e78f57e4f6a7e4780b391 # v5",
+      "line": 14
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: useblacksmith/caching-for-turbo@bafb57e7ebdbf1185762286ec94d24648cd3938a # v1",
+      "line": 24
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: useblacksmith/cache/save@c5fe29eb0efdf1cf4186b9f7fcbbcbc0cf025662 # v5",
+      "line": 28
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: act10ns/slack@44541246747a30eb3102d87f7a4cc5471b0ffb7d # v2.1.0",
+      "line": 61
+    }
+  ]
+}

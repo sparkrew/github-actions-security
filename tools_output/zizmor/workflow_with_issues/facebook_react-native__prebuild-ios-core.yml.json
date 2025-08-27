@@ -1,0 +1,40 @@
+{
+  "workflow": "facebook_react-native__prebuild-ios-core.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "artipacked": 2,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "facebook_react-native__prebuild-ios-core.yml",
+      "line": 20,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "facebook_react-native__prebuild-ios-core.yml",
+      "line": 136,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "facebook_react-native__prebuild-ios-core.yml",
+      "line": 171,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

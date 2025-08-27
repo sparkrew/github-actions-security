@@ -1,0 +1,36 @@
+{
+  "workflow": "twbs_bootstrap__codeql.yml",
+  "tool": "frizbee",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "original": "actions/checkout@v4",
+      "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+      "line": 27
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "original": "github/codeql-action/init@v3",
+      "pinned": "github/codeql-action/init@181d5eefc20863364f96762470ba6f862bdef56b",
+      "line": 32
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "original": "github/codeql-action/autobuild@v3",
+      "pinned": "github/codeql-action/autobuild@181d5eefc20863364f96762470ba6f862bdef56b",
+      "line": 39
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "original": "github/codeql-action/analyze@v3",
+      "pinned": "github/codeql-action/analyze@181d5eefc20863364f96762470ba6f862bdef56b",
+      "line": 42
+    }
+  ]
+}

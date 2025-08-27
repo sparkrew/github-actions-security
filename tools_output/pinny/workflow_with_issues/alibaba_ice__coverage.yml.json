@@ -1,0 +1,37 @@
+{
+  "workflow": "alibaba_ice__coverage.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "unpinned-github-actions": 5
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0",
+      "line": 31
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # actions/setup-node@v3 | releases,v3.9.1",
+      "line": 35
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # pnpm/action-setup@v4",
+      "line": 40
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/cache@2f8e54208210a422b2efd51efaa6bd6d7ca8920f # actions/cache@v3 | v3.4.3-working,v3.4.3",
+      "line": 47
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457 # codecov/codecov-action@v3 | v3",
+      "line": 59
+    }
+  ]
+}

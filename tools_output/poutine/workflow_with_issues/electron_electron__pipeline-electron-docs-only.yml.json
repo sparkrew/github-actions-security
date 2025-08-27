@@ -1,0 +1,45 @@
+{
+  "workflow": "electron_electron__pipeline-electron-docs-only.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "untrusted_checkout_exec": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": "32",
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of `webpack`",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": "32",
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of `yarn`",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": "29",
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of a Local GitHub Action at path: `./src/electron/.github/actions/install-dependencies`",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    }
+  ]
+}

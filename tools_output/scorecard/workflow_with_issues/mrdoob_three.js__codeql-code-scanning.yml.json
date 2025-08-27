@@ -1,0 +1,32 @@
+{
+  "workflow": "mrdoob_three.js__codeql-code-scanning.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Token-Permissions",
+      "score": 9,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1,
+        18,
+        19
+      ],
+      "raw_details": [
+        "Info: jobLevel 'actions' permission set to 'read': .github/workflows/mrdoob_three.js__codeql-code-scanning.yml:18",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/mrdoob_three.js__codeql-code-scanning.yml:19",
+        "Warn: no topLevel permission defined: .github/workflows/mrdoob_three.js__codeql-code-scanning.yml:1",
+        "Info: no jobLevel write permissions found"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

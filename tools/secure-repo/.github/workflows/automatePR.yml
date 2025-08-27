@@ -1,0 +1,32 @@
+name: Automate PR
+on:
+  issues:
+    types:
+      - labeled
+
+permissions:
+  contents: read
+
+jobs:
+  Automate:
+    if: github.event.label.name == 'Automate'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      actions: write
+    
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
+        with:
+          repository: step-security/secure-repo
+    
+      - name: Automate PR
+        uses: step-security/secure-repo/Automate-PR@98ff385ea512d8ac7a1445f95e199f6864f439e1
+        with:
+          github-token: ${{secrets.PAT }}
+          issue-id: ${{ github.event.issue.number}}

@@ -1,0 +1,22 @@
+{
+  "workflow": "microsoft_vscode__no-yarn-lock-changes.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "unpinned-github-actions": 2
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: trilom/file-changes-action@a6ca26c14274c33b15e6499323aac178af06ad4b # v1.2.4",
+      "line": 10
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: octokit/request-action@dad4362715b7fb2ddedf9772c8670824af564f0d # v2.4.0",
+      "line": 28
+    }
+  ]
+}

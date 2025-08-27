@@ -1,0 +1,140 @@
+{
+  "workflow": "google_grr__build.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        11,
+        36,
+        50,
+        61,
+        75,
+        86,
+        87,
+        93,
+        101,
+        110,
+        111,
+        116,
+        124,
+        138,
+        158,
+        167,
+        168,
+        175,
+        181,
+        197,
+        200,
+        205,
+        208,
+        212,
+        224,
+        237,
+        239,
+        273,
+        296,
+        298,
+        306,
+        332,
+        335,
+        352,
+        357,
+        359,
+        366
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:11",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:36",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:61",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:75",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:86",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:87",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:101",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:167",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:168",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:181",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:237",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:239",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:273",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:332",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:335",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:352",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:357",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:359",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:366",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:110",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:111",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:124",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:138",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:158",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:197",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:200",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:205",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:208",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:212",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:224",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:296",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:298",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_grr__build.yml:306",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_grr__build.yml:50",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_grr__build.yml:175",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_grr__build.yml:93",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_grr__build.yml:116",
+        "Info:   0 out of  25 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of   8 third-party GitHubAction dependencies pinned",
+        "Info:   0 out of   4 pipCommand dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 0,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1,
+        190,
+        232,
+        290,
+        320
+      ],
+      "raw_details": [
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/google_grr__build.yml:232",
+        "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/google_grr__build.yml:290",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/google_grr__build.yml:320",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/google_grr__build.yml:190",
+        "Warn: no topLevel permission defined: .github/workflows/google_grr__build.yml:1"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

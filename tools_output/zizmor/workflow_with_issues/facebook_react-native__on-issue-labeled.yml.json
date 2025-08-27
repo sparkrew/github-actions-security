@@ -1,0 +1,49 @@
+{
+  "workflow": "facebook_react-native__on-issue-labeled.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "artipacked": 2,
+      "excessive-permissions": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "facebook_react-native__on-issue-labeled.yml",
+      "line": 18,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "facebook_react-native__on-issue-labeled.yml",
+      "line": 54,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "error",
+      "message": "overly broad permissions",
+      "workflow": "facebook_react-native__on-issue-labeled.yml",
+      "line": 8,
+      "column": 3,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "error",
+      "message": "overly broad permissions",
+      "workflow": "facebook_react-native__on-issue-labeled.yml",
+      "line": 9,
+      "column": 3,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

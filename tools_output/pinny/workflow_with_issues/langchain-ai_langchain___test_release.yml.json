@@ -1,0 +1,37 @@
+{
+  "workflow": "langchain-ai_langchain___test_release.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "unpinned-github-actions": 5
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+      "line": 25
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+      "line": 45
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4 | v4.2.2",
+      "line": 75
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0",
+      "line": 76
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: pypa/gh-action-pypi-publish@76f52bc884231f62b9a034ebfe128415bbaabdfc # pypa/gh-action-pypi-publish@release/v1 | release",
+      "line": 81
+    }
+  ]
+}

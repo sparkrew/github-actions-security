@@ -1,0 +1,31 @@
+{
+  "workflow": "electron_electron__non-maintainer-dependency-change.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "dangerous-triggers": 1,
+      "template-injection": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "dangerous-triggers",
+      "level": "error",
+      "message": "use of fundamentally insecure workflow trigger",
+      "workflow": "electron_electron__non-maintainer-dependency-change.yml",
+      "line": 3,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "electron_electron__non-maintainer-dependency-change.yml",
+      "line": 31,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

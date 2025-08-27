@@ -1,0 +1,52 @@
+{
+  "workflow": "rust-lang_rust__dependencies.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        53,
+        78,
+        87,
+        103,
+        106,
+        110
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/rust-lang_rust__dependencies.yml:53",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/rust-lang_rust__dependencies.yml:78",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/rust-lang_rust__dependencies.yml:87",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/rust-lang_rust__dependencies.yml:103",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/rust-lang_rust__dependencies.yml:106",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/rust-lang_rust__dependencies.yml:110",
+        "Info:   0 out of   6 GitHub-owned GitHubAction dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    }
+  ]
+}

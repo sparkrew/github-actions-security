@@ -1,0 +1,47 @@
+name: Test
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main # to update code coverage
+
+permissions: # added using https://github.com/step-security/secure-repo
+  contents: read
+
+jobs:
+  test:
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
+        with:
+          egress-policy: audit
+          allowed-endpoints: >
+            api.github.com:443
+            cli.codecov.io:443
+            codecov.io:443
+            uploader.codecov.io:443
+            github.com:443
+            proxy.golang.org:443
+            sum.golang.org:443
+            storage.googleapis.com:443
+            objects.githubusercontent.com:443
+            golang.org:443
+      - name: Checkout
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Set up Go
+        uses: actions/setup-go@cdcb36043654635271a94b9a6d1392de5bb323a7 # v5.0.1
+        with:
+          go-version: 1.17
+      - name: Run coverage
+        run: go test ./...  -coverpkg=./... -race -coverprofile=coverage.txt -covermode=atomic
+        env:
+          PAT: ${{ secrets.GITHUB_TOKEN }}
+      - uses: codecov/codecov-action@125fc84a9a348dbcf27191600683ec096ec9021c # v4.4.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}

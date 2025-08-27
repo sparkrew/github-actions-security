@@ -1,0 +1,967 @@
+[2025-06-09 15:47:03] This is codeql database create my-yaml-db --language=yaml --source-root=/home/huawei/github-actions-security/.github/workflows --search-path=/home/huawei/github-actions-security/tools/codeql/codeql-repo
+[2025-06-09 15:47:03] Log file was started late.
+[2025-06-09 15:47:03] [PROGRESS] database create> Initializing database at /home/huawei/github-actions-security/tools/codeql/my-yaml-db.
+[2025-06-09 15:47:03] Running plumbing command: codeql database init --language=yaml --search-path=/home/huawei/github-actions-security/tools/codeql/codeql-repo --extractor-options-verbosity=1 --qlconfig-file=/home/huawei/github-actions-security/tools/codeql/qlconfig.yml --source-root=/home/huawei/github-actions-security/.github/workflows --allow-missing-source-root=false --allow-already-existing -- /home/huawei/github-actions-security/tools/codeql/my-yaml-db
+[2025-06-09 15:47:03] Calling plumbing command: codeql resolve languages --search-path=/home/huawei/github-actions-security/tools/codeql/codeql-repo --extractor-options-verbosity=1 --format=betterjson
+[2025-06-09 15:47:03] [DETAILS] resolve languages> Scanning for [codeql-extractor.yml] from /home/huawei/github-actions-security/tools/codeql/codeql-repo/codeql-workspace.yml
+[2025-06-09 15:47:03] [DETAILS] resolve languages> Scanning for [codeql-extractor.yml] from /home/huawei/github-actions-security/tools/codeql/.codeqlmanifest.json
+[2025-06-09 15:47:03] [DETAILS] resolve languages> Parsing /home/huawei/github-actions-security/tools/codeql/python/codeql-extractor.yml.
+[2025-06-09 15:47:03] [DETAILS] resolve languages> Parsing /home/huawei/github-actions-security/tools/codeql/properties/codeql-extractor.yml.
+[2025-06-09 15:47:03] [DETAILS] resolve languages> Parsing /home/huawei/github-actions-security/tools/codeql/xml/codeql-extractor.yml.
+[2025-06-09 15:47:03] [DETAILS] resolve languages> Parsing /home/huawei/github-actions-security/tools/codeql/java/codeql-extractor.yml.
+[2025-06-09 15:47:03] [DETAILS] resolve languages> Parsing /home/huawei/github-actions-security/tools/codeql/yaml/codeql-extractor.yml.
+[2025-06-09 15:47:03] [DETAILS] resolve languages> Parsing /home/huawei/github-actions-security/tools/codeql/csharp/codeql-extractor.yml.
+[2025-06-09 15:47:03] [DETAILS] resolve languages> Parsing /home/huawei/github-actions-security/tools/codeql/actions/codeql-extractor.yml.
+[2025-06-09 15:47:03] [DETAILS] resolve languages> Parsing /home/huawei/github-actions-security/tools/codeql/javascript/codeql-extractor.yml.
+[2025-06-09 15:47:04] [DETAILS] resolve languages> Parsing /home/huawei/github-actions-security/tools/codeql/cpp/codeql-extractor.yml.
+[2025-06-09 15:47:04] [DETAILS] resolve languages> Parsing /home/huawei/github-actions-security/tools/codeql/go/codeql-extractor.yml.
+[2025-06-09 15:47:04] [DETAILS] resolve languages> Parsing /home/huawei/github-actions-security/tools/codeql/swift/codeql-extractor.yml.
+[2025-06-09 15:47:04] [DETAILS] resolve languages> Parsing /home/huawei/github-actions-security/tools/codeql/ruby/codeql-extractor.yml.
+[2025-06-09 15:47:04] [DETAILS] resolve languages> Parsing /home/huawei/github-actions-security/tools/codeql/csv/codeql-extractor.yml.
+[2025-06-09 15:47:04] [DETAILS] resolve languages> Parsing /home/huawei/github-actions-security/tools/codeql/html/codeql-extractor.yml.
+[2025-06-09 15:47:04] Plumbing command codeql resolve languages completed:
+                      {
+                        "aliases" : {
+                          "c" : "cpp",
+                          "c++" : "cpp",
+                          "c-c++" : "cpp",
+                          "c-cpp" : "cpp",
+                          "c#" : "csharp",
+                          "java-kotlin" : "java",
+                          "kotlin" : "java",
+                          "javascript-typescript" : "javascript",
+                          "typescript" : "javascript"
+                        },
+                        "extractors" : {
+                          "python" : [
+                            {
+                              "extractor_root" : "/home/huawei/github-actions-security/tools/codeql/python",
+                              "extractor_options" : {
+                                "logging" : {
+                                  "title" : "Options pertaining to logging.",
+                                  "description" : "Options pertaining to logging.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "verbosity" : {
+                                      "title" : "Python extractor logging verbosity level.",
+                                      "description" : "Controls the level of verbosity of the CodeQL Python extractor.\nThe supported levels are (in order of increasing verbosity):\n\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+                                      "type" : "string",
+                                      "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+                                    }
+                                  }
+                                },
+                                "python_executable_name" : {
+                                  "title" : "Controls the name of the Python executable used by the Python extractor.",
+                                  "description" : "The Python extractor uses platform-dependent heuristics to determine the name of the Python executable to use. Specifying a value for this option overrides the name of the Python executable used by the extractor. Accepted values are py, python and python3. Use this setting with caution, the Python extractor requires Python 3 to run.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(py|python|python3)$"
+                                }
+                              }
+                            }
+                          ],
+                          "properties" : [
+                            {
+                              "extractor_root" : "/home/huawei/github-actions-security/tools/codeql/properties"
+                            }
+                          ],
+                          "xml" : [
+                            {
+                              "extractor_root" : "/home/huawei/github-actions-security/tools/codeql/xml"
+                            }
+                          ],
+                          "java" : [
+                            {
+                              "extractor_root" : "/home/huawei/github-actions-security/tools/codeql/java",
+                              "extractor_options" : {
+                                "exclude" : {
+                                  "title" : "A glob excluding files from analysis.",
+                                  "description" : "A glob indicating what files to exclude from the analysis. This accepts glob patterns that are supported by Java's 'getPathMatcher' implementation.\n",
+                                  "type" : "string"
+                                },
+                                "add_prefer_source" : {
+                                  "title" : "Whether to always prefer source files over class files.",
+                                  "description" : "A value indicating whether source files should be preferred over class files. If set to 'true', the extraction adds '-Xprefer:source' to the javac command line. If set to 'false', the extraction uses the default javac behavior ('-Xprefer:newer'). The default is 'true'.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                },
+                                "buildless" : {
+                                  "title" : "Whether to use buildless (standalone) extraction (experimental).",
+                                  "description" : "A value indicating, which type of extraction the autobuilder should perform. If 'true', then the standalone extractor will be used, otherwise tracing extraction will be performed. The default is 'false'. Note that buildless extraction will generally yield less accurate analysis results, and should only be used in cases where it is not possible to build the code (for example if it uses inaccessible dependencies).\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                },
+                                "buildless_dependency_dir" : {
+                                  "title" : "The path where buildless (standalone) extraction should keep dependencies.",
+                                  "description" : "If set, the buildless (standalone) extractor will store dependencies in this directory.\n",
+                                  "type" : "string"
+                                },
+                                "minimize_dependency_jars" : {
+                                  "title" : "Whether to rewrite and minimize downloaded JAR dependencies (experimental).",
+                                  "description" : "If 'true', JAR dependencies downloaded during extraction will be rewritten to remove unneeded data, such as method bodies. The default is 'false'.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                }
+                              }
+                            }
+                          ],
+                          "yaml" : [
+                            {
+                              "extractor_root" : "/home/huawei/github-actions-security/tools/codeql/yaml"
+                            }
+                          ],
+                          "csharp" : [
+                            {
+                              "extractor_root" : "/home/huawei/github-actions-security/tools/codeql/csharp",
+                              "extractor_options" : {
+                                "trap" : {
+                                  "title" : "Options pertaining to TRAP.",
+                                  "description" : "Options pertaining to TRAP.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "compression" : {
+                                      "title" : "Controls compression for the TRAP files written by the extractor.",
+                                      "description" : "This option is only intended for use in debugging the extractor. Accepted values are 'brotli' (the default, to write brotli-compressed TRAP), 'gzip', and 'none' (to write uncompressed TRAP).\n",
+                                      "type" : "string",
+                                      "pattern" : "^(none|gzip|brotli)$"
+                                    }
+                                  }
+                                },
+                                "buildless" : {
+                                  "title" : "DEPRECATED - Whether to use buildless (standalone) extraction.",
+                                  "description" : "DEPRECATED: Use `--build-mode none` instead.\nA value indicating, which type of extraction the autobuilder should perform. If 'true', then the standalone extractor will be used, otherwise tracing extraction will be performed. The default is 'false'. Note that buildless extraction will generally yield less accurate analysis results, and should only be used in cases where it is not possible to build the code (for example if it uses inaccessible dependencies).\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                },
+                                "logging" : {
+                                  "title" : "Options pertaining to logging.",
+                                  "description" : "Options pertaining to logging.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "verbosity" : {
+                                      "title" : "Extractor logging verbosity level.",
+                                      "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+                                      "type" : "string",
+                                      "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+                                    }
+                                  }
+                                },
+                                "binlog" : {
+                                  "title" : "Binlog",
+                                  "description" : "[EXPERIMENTAL] The value is a path to the MsBuild binary log file that should be extracted. This option only works when `--build-mode none` is also specified.\n",
+                                  "type" : "array"
+                                }
+                              }
+                            }
+                          ],
+                          "actions" : [
+                            {
+                              "extractor_root" : "/home/huawei/github-actions-security/tools/codeql/actions",
+                              "extractor_options" : { }
+                            }
+                          ],
+                          "javascript" : [
+                            {
+                              "extractor_root" : "/home/huawei/github-actions-security/tools/codeql/javascript",
+                              "extractor_options" : {
+                                "skip_types" : {
+                                  "title" : "Skip type extraction for TypeScript",
+                                  "description" : "Whether to skip the extraction of types in a TypeScript application",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                }
+                              }
+                            }
+                          ],
+                          "cpp" : [
+                            {
+                              "extractor_root" : "/home/huawei/github-actions-security/tools/codeql/cpp",
+                              "extractor_options" : {
+                                "scale_timeouts" : {
+                                  "title" : "Value to scale compiler introspection timeouts with",
+                                  "description" : "The extractor attempts to determine what compiler the source code being extracted is compiled with. To this end the extractor makes additional calls to the compiler, some of which are expected to return within a certain fixed time (either 10s or 15s). On some systems that are under high load this time might be too short, and can be scaled up using this option.\n",
+                                  "type" : "string",
+                                  "pattern" : "[0-9]+"
+                                },
+                                "log_verbosity" : {
+                                  "title" : "Verbosity of the extractor logging",
+                                  "description" : "Set the verbosity of the extractor logging to 'quiet' (0), 'normal' (1), 'chatty' (2), or 'noisy' (3). The default is 'normal'.\n",
+                                  "type" : "string",
+                                  "pattern" : "[0-3]"
+                                }
+                              }
+                            }
+                          ],
+                          "go" : [
+                            {
+                              "extractor_root" : "/home/huawei/github-actions-security/tools/codeql/go",
+                              "extractor_options" : {
+                                "extract_tests" : {
+                                  "title" : "Whether to include Go test files in the CodeQL database.",
+                                  "description" : "A value indicating whether Go test files should be included in the CodeQL database. The default is 'false'.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                },
+                                "extract_vendor_dirs" : {
+                                  "title" : "Whether to include Go vendor directories in the CodeQL database.",
+                                  "description" : "A value indicating whether Go vendor directories should be included in the CodeQL database. The default is 'false'.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                }
+                              }
+                            }
+                          ],
+                          "swift" : [
+                            {
+                              "extractor_root" : "/home/huawei/github-actions-security/tools/codeql/swift"
+                            }
+                          ],
+                          "ruby" : [
+                            {
+                              "extractor_root" : "/home/huawei/github-actions-security/tools/codeql/ruby",
+                              "extractor_options" : {
+                                "trap" : {
+                                  "title" : "Options pertaining to TRAP.",
+                                  "description" : "Options pertaining to TRAP.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "compression" : {
+                                      "title" : "Controls compression for the TRAP files written by the extractor.",
+                                      "description" : "This option is only intended for use in debugging the extractor. Accepted values are 'gzip' (the default, to write gzip-compressed TRAP) and 'none' (to write uncompressed TRAP).\n",
+                                      "type" : "string",
+                                      "pattern" : "^(none|gzip)$"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ],
+                          "csv" : [
+                            {
+                              "extractor_root" : "/home/huawei/github-actions-security/tools/codeql/csv"
+                            }
+                          ],
+                          "html" : [
+                            {
+                              "extractor_root" : "/home/huawei/github-actions-security/tools/codeql/html"
+                            }
+                          ]
+                        }
+                      }
+[2025-06-09 15:47:04] [PROGRESS] database init> Calculating baseline information in /home/huawei/github-actions-security/.github/workflows
+[2025-06-09 15:47:04] [SPAMMY] database init> Ignoring the following directories when processing baseline information: .git, .hg, .svn.
+[2025-06-09 15:47:04] [DETAILS] database init> Running command in /home/huawei/github-actions-security/.github/workflows: /home/huawei/github-actions-security/tools/codeql/tools/linux64/scc --by-file --exclude-dir .git,.hg,.svn --format json --no-large --no-min .
+[2025-06-09 15:47:04] Using configure-baseline script /home/huawei/github-actions-security/tools/codeql/javascript/tools/configure-baseline.sh.
+[2025-06-09 15:47:04] [PROGRESS] database init> Running command in /home/huawei/github-actions-security/.github/workflows: [/home/huawei/github-actions-security/tools/codeql/javascript/tools/configure-baseline.sh]
+[2025-06-09 15:47:04] [SPAMMY] database init> Found 2 baseline files for javascript.
+[2025-06-09 15:47:04] [PROGRESS] database init> Calculated baseline information for languages: javascript (219ms).
+[2025-06-09 15:47:04] [PROGRESS] database init> Resolving extractor yaml.
+[2025-06-09 15:47:04] [DETAILS] database init> Found candidate extractor root for yaml: /home/huawei/github-actions-security/tools/codeql/yaml.
+[2025-06-09 15:47:04] [PROGRESS] database init> Successfully loaded extractor YAML (yaml) from /home/huawei/github-actions-security/tools/codeql/yaml.
+[2025-06-09 15:47:04] [PROGRESS] database init> Created skeleton CodeQL database at /home/huawei/github-actions-security/tools/codeql/my-yaml-db. This in-progress database is ready to be populated by an extractor.
+[2025-06-09 15:47:04] Plumbing command codeql database init completed.
+[2025-06-09 15:47:04] [PROGRESS] database create> Running build command: []
+[2025-06-09 15:47:04] Running plumbing command: codeql database trace-command --working-dir=/home/huawei/github-actions-security/.github/workflows --index-traceless-dbs --no-db-cluster -- /home/huawei/github-actions-security/tools/codeql/my-yaml-db
+[2025-06-09 15:47:04] Using autobuild script /home/huawei/github-actions-security/tools/codeql/yaml/tools/autobuild.sh.
+[2025-06-09 15:47:04] [PROGRESS] database trace-command> Running command in /home/huawei/github-actions-security/.github/workflows: [/home/huawei/github-actions-security/tools/codeql/yaml/tools/autobuild.sh]
+[2025-06-09 15:47:05] [build-stderr] Scanning for files in /home/huawei/github-actions-security/.github/workflows...
+[2025-06-09 15:47:06] [build-stderr] /home/huawei/github-actions-security/tools/codeql/my-yaml-db: Indexing files in in /home/huawei/github-actions-security/.github/workflows...
+[2025-06-09 15:47:06] [build-stderr] Running command in /home/huawei/github-actions-security/.github/workflows: [/home/huawei/github-actions-security/tools/codeql/yaml/tools/index-files.sh, /home/huawei/github-actions-security/tools/codeql/my-yaml-db/working/files-to-index11305331692617304660.list]
+[2025-06-09 15:47:10] Plumbing command codeql database trace-command completed.
+[2025-06-09 15:47:10] [PROGRESS] database create> Finalizing database at /home/huawei/github-actions-security/tools/codeql/my-yaml-db.
+[2025-06-09 15:47:10] Running plumbing command: codeql database finalize --no-db-cluster -- /home/huawei/github-actions-security/tools/codeql/my-yaml-db
+[2025-06-09 15:47:10] [PROGRESS] database finalize> Running TRAP import for CodeQL database at /home/huawei/github-actions-security/tools/codeql/my-yaml-db...
+[2025-06-09 15:47:10] Running plumbing command: codeql dataset import --dbscheme=/home/huawei/github-actions-security/tools/codeql/yaml/yaml.dbscheme -- /home/huawei/github-actions-security/tools/codeql/my-yaml-db/db-yaml /home/huawei/github-actions-security/tools/codeql/my-yaml-db/trap/yaml
+[2025-06-09 15:47:10] Clearing disk cache since the version file /home/huawei/github-actions-security/tools/codeql/my-yaml-db/db-yaml/default/cache/version does not exist
+[2025-06-09 15:47:10] Tuple pool not found. Clearing relations with cached strings
+[2025-06-09 15:47:10] Trimming disk cache at /home/huawei/github-actions-security/tools/codeql/my-yaml-db/db-yaml/default/cache in mode clear.
+[2025-06-09 15:47:10] Sequence stamp origin is -6039847449770653776
+[2025-06-09 15:47:10] Pausing evaluation to hard-clear memory at sequence stamp o+0
+[2025-06-09 15:47:10] Unpausing evaluation
+[2025-06-09 15:47:10] Pausing evaluation to quickly trim disk at sequence stamp o+1
+[2025-06-09 15:47:10] Unpausing evaluation
+[2025-06-09 15:47:10] Pausing evaluation to zealously trim disk at sequence stamp o+2
+[2025-06-09 15:47:10] Unpausing evaluation
+[2025-06-09 15:47:10] Trimming completed (45ms): Purged everything.
+[2025-06-09 15:47:10] Scanning for files in /home/huawei/github-actions-security/tools/codeql/my-yaml-db/trap/yaml
+[2025-06-09 15:47:10] Found 624 TRAP files (4.92 MiB)
+[2025-06-09 15:47:10] [PROGRESS] dataset import> Importing TRAP files
+[2025-06-09 15:47:11] Importing NVIDIA_cutlass__labeler.yml.trap.gz (1 of 624)
+[2025-06-09 15:47:11] Importing NVIDIA_cutlass__new-issues-to-triage-projects.yml.trap.gz (2 of 624)
+[2025-06-09 15:47:11] Importing NVIDIA_cutlass__stale.yml.trap.gz (3 of 624)
+[2025-06-09 15:47:11] Importing NVIDIA_k8s-device-plugin__basic-checks.yaml.trap.gz (4 of 624)
+[2025-06-09 15:47:11] Importing NVIDIA_k8s-device-plugin__ci.yaml.trap.gz (5 of 624)
+[2025-06-09 15:47:11] Importing NVIDIA_k8s-device-plugin__code_scanning.yaml.trap.gz (6 of 624)
+[2025-06-09 15:47:11] Importing NVIDIA_k8s-device-plugin__e2e.yaml.trap.gz (7 of 624)
+[2025-06-09 15:47:11] Importing NVIDIA_k8s-device-plugin__golang.yaml.trap.gz (8 of 624)
+[2025-06-09 15:47:11] Importing NVIDIA_k8s-device-plugin__helm.yaml.trap.gz (9 of 624)
+[2025-06-09 15:47:11] Importing NVIDIA_k8s-device-plugin__image.yaml.trap.gz (10 of 624)
+[2025-06-09 15:47:11] Importing NVIDIA_k8s-device-plugin__publish-helm.yaml.trap.gz (11 of 624)
+[2025-06-09 15:47:11] Importing NVIDIA_k8s-device-plugin__release.yaml.trap.gz (12 of 624)
+[2025-06-09 15:47:11] Importing NVIDIA_k8s-device-plugin__stale.yaml.trap.gz (13 of 624)
+[2025-06-09 15:47:11] Importing NVIDIA_k8s-device-plugin__variables.yaml.trap.gz (14 of 624)
+[2025-06-09 15:47:11] Importing PRTargetWorkflow.yml.trap.gz (15 of 624)
+[2025-06-09 15:47:11] Importing RedHatOfficial_Overpass__build.yaml.trap.gz (16 of 624)
+[2025-06-09 15:47:11] Importing actions_cache__check-dist.yml.trap.gz (17 of 624)
+[2025-06-09 15:47:11] Importing actions_cache__close-inactive-issues.yml.trap.gz (18 of 624)
+[2025-06-09 15:47:11] Importing actions_cache__codeql.yml.trap.gz (19 of 624)
+[2025-06-09 15:47:11] Importing actions_cache__issue-opened-workflow.yml.trap.gz (20 of 624)
+[2025-06-09 15:47:11] Importing actions_cache__licensed.yml.trap.gz (21 of 624)
+[2025-06-09 15:47:11] Importing actions_cache__pr-opened-workflow.yml.trap.gz (22 of 624)
+[2025-06-09 15:47:11] Importing actions_cache__publish-immutable-actions.yml.trap.gz (23 of 624)
+[2025-06-09 15:47:11] Importing actions_cache__release-new-action-version.yml.trap.gz (24 of 624)
+[2025-06-09 15:47:11] Importing actions_cache__workflow.yml.trap.gz (25 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-node__basic-validation.yml.trap.gz (26 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-node__check-dist.yml.trap.gz (27 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-node__codeql-analysis.yml.trap.gz (28 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-node__e2e-cache.yml.trap.gz (29 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-node__licensed.yml.trap.gz (30 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-node__proxy.yml.trap.gz (31 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-node__publish-immutable-actions.yml.trap.gz (32 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-node__release-new-action-version.yml.trap.gz (33 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-node__update-config-files.yml.trap.gz (34 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-node__versions.yml.trap.gz (35 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-python__basic-validation.yml.trap.gz (36 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-python__check-dist.yml.trap.gz (37 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-python__codeql-analysis.yml.trap.gz (38 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-python__e2e-cache-freethreaded.yml.trap.gz (39 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-python__e2e-cache.yml.trap.gz (40 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-python__e2e-tests.yml.trap.gz (41 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-python__licensed.yml.trap.gz (42 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-python__publish-immutable-actions.yml.trap.gz (43 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-python__release-new-action-version.yml.trap.gz (44 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-python__test-graalpy.yml.trap.gz (45 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-python__test-pypy.yml.trap.gz (46 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-python__test-python-freethreaded.yml.trap.gz (47 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-python__test-python.yml.trap.gz (48 of 624)
+[2025-06-09 15:47:11] Importing actions_setup-python__update-config-files.yml.trap.gz (49 of 624)
+[2025-06-09 15:47:11] Importing actions_starter-workflows__auto-assign-issues.yml.trap.gz (50 of 624)
+[2025-06-09 15:47:11] Importing actions_starter-workflows__auto-assign.yml.trap.gz (51 of 624)
+[2025-06-09 15:47:11] Importing actions_starter-workflows__label-feature.yml.trap.gz (52 of 624)
+[2025-06-09 15:47:11] Importing actions_starter-workflows__label-support.yml.trap.gz (53 of 624)
+[2025-06-09 15:47:11] Importing actions_starter-workflows__labeler-triage.yml.trap.gz (54 of 624)
+[2025-06-09 15:47:11] Importing actions_starter-workflows__lint.yaml.trap.gz (55 of 624)
+[2025-06-09 15:47:11] Importing actions_starter-workflows__stale.yml.trap.gz (56 of 624)
+[2025-06-09 15:47:11] Importing actions_starter-workflows__sync-ghes.yaml.trap.gz (57 of 624)
+[2025-06-09 15:47:11] Importing actions_starter-workflows__validate-data.yaml.trap.gz (58 of 624)
+[2025-06-09 15:47:11] Importing alibaba_druid__ci.yaml.trap.gz (59 of 624)
+[2025-06-09 15:47:11] Importing alibaba_tengine__ci-arm64.yml.trap.gz (60 of 624)
+[2025-06-09 15:47:11] Importing alibaba_tengine__ci.yml.trap.gz (61 of 624)
+[2025-06-09 15:47:11] Importing alibaba_tengine__test-nginx-core.yml.trap.gz (62 of 624)
+[2025-06-09 15:47:11] Importing alibaba_tengine__test-ntls.yml.trap.gz (63 of 624)
+[2025-06-09 15:47:11] Importing anomalous-outbound-calls.yaml.trap.gz (64 of 624)
+[2025-06-09 15:47:11] Importing arc-codecov-simulation.yml.trap.gz (65 of 624)
+[2025-06-09 15:47:11] Importing arc-secure-by-default.yml.trap.gz (66 of 624)
+[2025-06-09 15:47:11] Importing arc-solarwinds-simulation.yml.trap.gz (67 of 624)
+[2025-06-09 15:47:11] Importing arc-zero-effort-observability.yml.trap.gz (68 of 624)
+[2025-06-09 15:47:11] Importing awslabs_amazon-ecr-credential-helper__build.yaml.trap.gz (69 of 624)
+[2025-06-09 15:47:11] Importing awslabs_amazon-ecr-credential-helper__check-links.yml.trap.gz (70 of 624)
+[2025-06-09 15:47:11] Importing awslabs_amazon-ecr-credential-helper__codeql.yml.trap.gz (71 of 624)
+[2025-06-09 15:47:11] Importing awslabs_amazon-ecr-credential-helper__new-pull-requests.yml.trap.gz (72 of 624)
+[2025-06-09 15:47:11] Importing awslabs_amazon-ecr-credential-helper__review-dependencies.yml.trap.gz (73 of 624)
+[2025-06-09 15:47:11] Importing awslabs_git-secrets__test.yml.trap.gz (74 of 624)
+[2025-06-09 15:47:11] Importing baseline_checks.yml.trap.gz (75 of 624)
+[2025-06-09 15:47:11] Importing bazelbuild_bazel__cherry-picker.yml.trap.gz (76 of 624)
+[2025-06-09 15:47:11] Importing bazelbuild_bazel__labeler.yml.trap.gz (77 of 624)
+[2025-06-09 15:47:11] Importing bazelbuild_bazel__release-helper.yml.trap.gz (78 of 624)
+[2025-06-09 15:47:11] Importing bazelbuild_bazel__remove-labels.yml.trap.gz (79 of 624)
+[2025-06-09 15:47:11] Importing bazelbuild_bazel__scorecard.yml.trap.gz (80 of 624)
+[2025-06-09 15:47:11] Importing bazelbuild_bazel__stale.yml.trap.gz (81 of 624)
+[2025-06-09 15:47:11] Importing block-dns-exfiltration.yaml.trap.gz (82 of 624)
+[2025-06-09 15:47:11] Importing changed-files-vulnerability-with-hr.yml.trap.gz (83 of 624)
+[2025-06-09 15:47:11] Importing changed-files-vulnerability-without-hr.yml.trap.gz (84 of 624)
+[2025-06-09 15:47:11] Importing denoland_deno__cargo_publish.yml.trap.gz (85 of 624)
+[2025-06-09 15:47:11] Importing denoland_deno__ci.yml.trap.gz (86 of 624)
+[2025-06-09 15:47:11] Importing denoland_deno__node_compat_test.yml.trap.gz (87 of 624)
+[2025-06-09 15:47:11] Importing denoland_deno__npm_publish.yml.trap.gz (88 of 624)
+[2025-06-09 15:47:11] Importing denoland_deno__post_publish.yml.trap.gz (89 of 624)
+[2025-06-09 15:47:11] Importing denoland_deno__promote_to_release.yml.trap.gz (90 of 624)
+[2025-06-09 15:47:12] Importing denoland_deno__start_release.yml.trap.gz (91 of 624)
+[2025-06-09 15:47:12] Importing denoland_deno__version_bump.yml.trap.gz (92 of 624)
+[2025-06-09 15:47:12] Importing denoland_deno__wpt_epoch.yml.trap.gz (93 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__archaeologist-dig.yml.trap.gz (94 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__branch-created.yml.trap.gz (95 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__build.yml.trap.gz (96 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__clean-src-cache.yml.trap.gz (97 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__issue-commented.yml.trap.gz (98 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__issue-labeled.yml.trap.gz (99 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__issue-opened.yml.trap.gz (100 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__issue-transferred.yml.trap.gz (101 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__issue-unlabeled.yml.trap.gz (102 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__linux-publish.yml.trap.gz (103 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__macos-publish.yml.trap.gz (104 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__non-maintainer-dependency-change.yml.trap.gz (105 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__pipeline-electron-build-and-test-and-nan.yml.trap.gz (106 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__pipeline-electron-build-and-test.yml.trap.gz (107 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__pipeline-electron-docs-only.yml.trap.gz (108 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__pipeline-electron-lint.yml.trap.gz (109 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__pipeline-segment-electron-build.yml.trap.gz (110 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__pipeline-segment-electron-gn-check.yml.trap.gz (111 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__pipeline-segment-electron-test.yml.trap.gz (112 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__pipeline-segment-node-nan-test.yml.trap.gz (113 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__pull-request-labeled.yml.trap.gz (114 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__scorecards.yml.trap.gz (115 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__semantic.yml.trap.gz (116 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__stable-prep-items.yml.trap.gz (117 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__stale.yml.trap.gz (118 of 624)
+[2025-06-09 15:47:12] Importing electron_electron__windows-publish.yml.trap.gz (119 of 624)
+[2025-06-09 15:47:12] Importing facebook_facebook-android-sdk__needs-attention.yml.trap.gz (120 of 624)
+[2025-06-09 15:47:12] Importing facebook_facebook-android-sdk__stale.yml.trap.gz (121 of 624)
+[2025-06-09 15:47:12] Importing facebook_facebook-ios-sdk__needs-attention.yml.trap.gz (122 of 624)
+[2025-06-09 15:47:12] Importing facebook_facebook-ios-sdk__stale.yml.trap.gz (123 of 624)
+[2025-06-09 15:47:12] Importing facebook_folly__TagIt.yml.trap.gz (124 of 624)
+[2025-06-09 15:47:12] Importing facebook_folly__getdeps_linux.yml.trap.gz (125 of 624)
+[2025-06-09 15:47:12] Importing facebook_folly__getdeps_mac.yml.trap.gz (126 of 624)
+[2025-06-09 15:47:12] Importing facebook_folly__getdeps_windows.yml.trap.gz (127 of 624)
+[2025-06-09 15:47:12] Importing facebook_folly__oss-build-and-test.yml.trap.gz (128 of 624)
+[2025-06-09 15:47:12] Importing facebook_hhvm__ubuntu.yml.trap.gz (129 of 624)
+[2025-06-09 15:47:12] Importing facebook_react__compiler_discord_notify.yml.trap.gz (130 of 624)
+[2025-06-09 15:47:12] Importing facebook_react__compiler_playground.yml.trap.gz (131 of 624)
+[2025-06-09 15:47:12] Importing facebook_react__compiler_prereleases.yml.trap.gz (132 of 624)
+[2025-06-09 15:47:12] Importing facebook_react__compiler_prereleases_manual.yml.trap.gz (133 of 624)
+[2025-06-09 15:47:12] Importing facebook_react__compiler_prereleases_nightly.yml.trap.gz (134 of 624)
+[2025-06-09 15:47:12] Importing facebook_react__compiler_typescript.yml.trap.gz (135 of 624)
+[2025-06-09 15:47:12] Importing facebook_react__devtools_regression_tests.yml.trap.gz (136 of 624)
+[2025-06-09 15:47:12] Importing facebook_react__runtime_build_and_test.yml.trap.gz (137 of 624)
+[2025-06-09 15:47:12] Importing facebook_react__runtime_commit_artifacts.yml.trap.gz (138 of 624)
+[2025-06-09 15:47:12] Importing facebook_react__runtime_discord_notify.yml.trap.gz (139 of 624)
+[2025-06-09 15:47:12] Importing facebook_react__runtime_eslint_plugin_e2e.yml.trap.gz (140 of 624)
+[2025-06-09 15:47:12] Importing facebook_react__runtime_fuzz_tests.yml.trap.gz (141 of 624)
+[2025-06-09 15:47:12] Importing facebook_react__runtime_prereleases.yml.trap.gz (142 of 624)
+[2025-06-09 15:47:12] Importing facebook_react__runtime_prereleases_manual.yml.trap.gz (143 of 624)
+[2025-06-09 15:47:12] Importing facebook_react__runtime_prereleases_nightly.yml.trap.gz (144 of 624)
+[2025-06-09 15:47:12] Importing facebook_react__runtime_releases_from_npm_manual.yml.trap.gz (145 of 624)
+[2025-06-09 15:47:12] Importing facebook_react__shared_check_maintainer.yml.trap.gz (146 of 624)
+[2025-06-09 15:47:12] Importing facebook_react__shared_cleanup_merged_branch_caches.yml.trap.gz (147 of 624)
+[2025-06-09 15:47:12] Importing facebook_react__shared_cleanup_stale_branch_caches.yml.trap.gz (148 of 624)
+[2025-06-09 15:47:12] Importing facebook_react__shared_close_direct_sync_branch_prs.yml.trap.gz (149 of 624)
+[2025-06-09 15:47:12] Importing facebook_react__shared_label_core_team_prs.yml.trap.gz (150 of 624)
+[2025-06-09 15:47:12] Importing facebook_react__shared_lint.yml.trap.gz (151 of 624)
+[2025-06-09 15:47:12] Importing facebook_react__shared_stale.yml.trap.gz (152 of 624)
+[2025-06-09 15:47:12] Importing facebook_watchman__getdeps_linux.yml.trap.gz (153 of 624)
+[2025-06-09 15:47:12] Importing facebook_watchman__getdeps_mac.yml.trap.gz (154 of 624)
+[2025-06-09 15:47:12] Importing facebook_watchman__getdeps_windows.yml.trap.gz (155 of 624)
+[2025-06-09 15:47:12] Importing facebook_watchman__package.yml.trap.gz (156 of 624)
+[2025-06-09 15:47:12] Importing facebook_watchman__release.yml.trap.gz (157 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____all-platform-bundle.yml.trap.gz (158 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____analyze-ref-input.yml.trap.gz (159 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____autobuild-action.yml.trap.gz (160 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____autobuild-direct-tracing-with-working-dir.yml.trap.gz (161 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____autobuild-direct-tracing.yml.trap.gz (162 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____build-mode-autobuild.yml.trap.gz (163 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____build-mode-manual.yml.trap.gz (164 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____build-mode-none.yml.trap.gz (165 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____build-mode-rollback.yml.trap.gz (166 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____cleanup-db-cluster-dir.yml.trap.gz (167 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____config-export.yml.trap.gz (168 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____config-input.yml.trap.gz (169 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____cpp-deptrace-disabled.yml.trap.gz (170 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____cpp-deptrace-enabled-on-macos.yml.trap.gz (171 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____cpp-deptrace-enabled.yml.trap.gz (172 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____diagnostics-export.yml.trap.gz (173 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____export-file-baseline-information.yml.trap.gz (174 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____extract-direct-to-toolcache.yml.trap.gz (175 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____extractor-ram-threads.yml.trap.gz (176 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____go-custom-queries.yml.trap.gz (177 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____go-indirect-tracing-workaround-diagnostic.yml.trap.gz (178 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____go-indirect-tracing-workaround-no-file-program.yml.trap.gz (179 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____go-indirect-tracing-workaround.yml.trap.gz (180 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____go-tracing-autobuilder.yml.trap.gz (181 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____go-tracing-custom-build-steps.yml.trap.gz (182 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____go-tracing-legacy-workflow.yml.trap.gz (183 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____init-with-registries.yml.trap.gz (184 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____javascript-source-root.yml.trap.gz (185 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____job-run-uuid-sarif.yml.trap.gz (186 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____language-aliases.yml.trap.gz (187 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____multi-language-autodetect.yml.trap.gz (188 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____packaging-codescanning-config-inputs-js.yml.trap.gz (189 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____packaging-config-inputs-js.yml.trap.gz (190 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____packaging-config-js.yml.trap.gz (191 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____packaging-inputs-js.yml.trap.gz (192 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____remote-config.yml.trap.gz (193 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____resolve-environment-action.yml.trap.gz (194 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____rubocop-multi-language.yml.trap.gz (195 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____ruby.yml.trap.gz (196 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____rust.yml.trap.gz (197 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____split-workflow.yml.trap.gz (198 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____start-proxy.yml.trap.gz (199 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____submit-sarif-failure.yml.trap.gz (200 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____swift-autobuild.yml.trap.gz (201 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____swift-custom-build.yml.trap.gz (202 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____test-autobuild-working-dir.yml.trap.gz (203 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____test-local-codeql.yml.trap.gz (204 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____test-proxy.yml.trap.gz (205 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____unset-environment.yml.trap.gz (206 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____upload-ref-sha-input.yml.trap.gz (207 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____with-checkout-path.yml.trap.gz (208 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____zstd-bundle-streaming.yml.trap.gz (209 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action____zstd-bundle.yml.trap.gz (210 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action__check-expected-release-files.yml.trap.gz (211 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action__codeql.yml.trap.gz (212 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action__codescanning-config-cli.yml.trap.gz (213 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action__debug-artifacts-failure-safe.yml.trap.gz (214 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action__debug-artifacts-safe.yml.trap.gz (215 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action__expected-queries-runs.yml.trap.gz (216 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action__post-release-mergeback.yml.trap.gz (217 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action__pr-checks.yml.trap.gz (218 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action__publish-immutable-action.yml.trap.gz (219 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action__python312-windows.yml.trap.gz (220 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action__query-filters.yml.trap.gz (221 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action__rebuild.yml.trap.gz (222 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action__test-codeql-bundle-all.yml.trap.gz (223 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action__update-bundle.yml.trap.gz (224 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action__update-dependencies.yml.trap.gz (225 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action__update-release-branch.yml.trap.gz (226 of 624)
+[2025-06-09 15:47:12] Importing github_codeql-action__update-supported-enterprise-server-versions.yml.trap.gz (227 of 624)
+[2025-06-09 15:47:12] Importing github_docs__all-documents.yml.trap.gz (228 of 624)
+[2025-06-09 15:47:12] Importing github_docs__article-api-docs.yml.trap.gz (229 of 624)
+[2025-06-09 15:47:12] Importing github_docs__auto-close-dependencies.yml.trap.gz (230 of 624)
+[2025-06-09 15:47:12] Importing github_docs__check-broken-links-github-github.yml.trap.gz (231 of 624)
+[2025-06-09 15:47:12] Importing github_docs__check-for-spammy-issues.yml.trap.gz (232 of 624)
+[2025-06-09 15:47:12] Importing github_docs__close-bad-repo-sync-prs.yml.trap.gz (233 of 624)
+[2025-06-09 15:47:12] Importing github_docs__close-on-invalid-label.yaml.trap.gz (234 of 624)
+[2025-06-09 15:47:12] Importing github_docs__codeql.yml.trap.gz (235 of 624)
+[2025-06-09 15:47:12] Importing github_docs__comment-release-note-info.yml.trap.gz (236 of 624)
+[2025-06-09 15:47:12] Importing github_docs__confirm-internal-staff-work-in-docs.yml.trap.gz (237 of 624)
+[2025-06-09 15:47:12] Importing github_docs__content-lint-markdown.yml.trap.gz (238 of 624)
+[2025-06-09 15:47:12] Importing github_docs__content-linter-rules-docs.yml.trap.gz (239 of 624)
+[2025-06-09 15:47:12] Importing github_docs__copy-api-issue-to-internal.yml.trap.gz (240 of 624)
+[2025-06-09 15:47:12] Importing github_docs__count-translation-corruptions.yml.trap.gz (241 of 624)
+[2025-06-09 15:47:12] Importing github_docs__delete-orphan-translation-files.yml.trap.gz (242 of 624)
+[2025-06-09 15:47:12] Importing github_docs__docs-review-collect.yml.trap.gz (243 of 624)
+[2025-06-09 15:47:12] Importing github_docs__dont-delete-assets.yml.trap.gz (244 of 624)
+[2025-06-09 15:47:12] Importing github_docs__dont-delete-features.yml.trap.gz (245 of 624)
+[2025-06-09 15:47:12] Importing github_docs__enterprise-dates.yml.trap.gz (246 of 624)
+[2025-06-09 15:47:12] Importing github_docs__enterprise-release-issue.yml.trap.gz (247 of 624)
+[2025-06-09 15:47:12] Importing github_docs__expertise-required-label-message.yml.trap.gz (248 of 624)
+[2025-06-09 15:47:12] Importing github_docs__first-responder-v2-prs-collect.yml.trap.gz (249 of 624)
+[2025-06-09 15:47:12] Importing github_docs__generate-code-scanning-query-lists.yml.trap.gz (250 of 624)
+[2025-06-09 15:47:12] Importing github_docs__headless-tests.yml.trap.gz (251 of 624)
+[2025-06-09 15:47:12] Importing github_docs__hubber-contribution-help.yml.trap.gz (252 of 624)
+[2025-06-09 15:47:12] Importing github_docs__index-autocomplete-search.yml.trap.gz (253 of 624)
+[2025-06-09 15:47:12] Importing github_docs__index-general-search-pr.yml.trap.gz (254 of 624)
+[2025-06-09 15:47:12] Importing github_docs__index-general-search.yml.trap.gz (255 of 624)
+[2025-06-09 15:47:12] Importing github_docs__keep-caches-warm.yml.trap.gz (256 of 624)
+[2025-06-09 15:47:12] Importing github_docs__link-check-daily.yml.trap.gz (257 of 624)
+[2025-06-09 15:47:12] Importing github_docs__link-check-on-pr.yml.trap.gz (258 of 624)
+[2025-06-09 15:47:12] Importing github_docs__lint-code.yml.trap.gz (259 of 624)
+[2025-06-09 15:47:12] Importing github_docs__lint-entire-content-data-markdown.yml.trap.gz (260 of 624)
+[2025-06-09 15:47:12] Importing github_docs__local-dev.yml.trap.gz (261 of 624)
+[2025-06-09 15:47:12] Importing github_docs__merged-notification.yml.trap.gz (262 of 624)
+[2025-06-09 15:47:12] Importing github_docs__moda-allowed-ips.yml.trap.gz (263 of 624)
+[2025-06-09 15:47:12] Importing github_docs__moda-ci.yaml.trap.gz (264 of 624)
+[2025-06-09 15:47:12] Importing github_docs__move-content.yml.trap.gz (265 of 624)
+[2025-06-09 15:47:12] Importing github_docs__move-existing-issues-to-the-correct-repo.yml.trap.gz (266 of 624)
+[2025-06-09 15:47:12] Importing github_docs__move-help-wanted-issues.yml.trap.gz (267 of 624)
+[2025-06-09 15:47:12] Importing github_docs__move-ready-to-merge-pr.yaml.trap.gz (268 of 624)
+[2025-06-09 15:47:12] Importing github_docs__move-reopened-issues-to-triage.yaml.trap.gz (269 of 624)
+[2025-06-09 15:47:12] Importing github_docs__needs-sme-stale-check.yaml.trap.gz (270 of 624)
+[2025-06-09 15:47:12] Importing github_docs__needs-sme-workflow.yml.trap.gz (271 of 624)
+[2025-06-09 15:47:12] Importing github_docs__no-response.yaml.trap.gz (272 of 624)
+[2025-06-09 15:47:12] Importing github_docs__notify-about-deployment.yml.trap.gz (273 of 624)
+[2025-06-09 15:47:12] Importing github_docs__notify-when-maintainers-cannot-edit.yaml.trap.gz (274 of 624)
+[2025-06-09 15:47:12] Importing github_docs__orphaned-features-check.yml.trap.gz (275 of 624)
+[2025-06-09 15:47:12] Importing github_docs__orphaned-files-check.yml.trap.gz (276 of 624)
+[2025-06-09 15:47:12] Importing github_docs__os-ready-for-review.yml.trap.gz (277 of 624)
+[2025-06-09 15:47:12] Importing github_docs__package-lock-lint.yml.trap.gz (278 of 624)
+[2025-06-09 15:47:12] Importing github_docs__purge-fastly.yml.trap.gz (279 of 624)
+[2025-06-09 15:47:12] Importing github_docs__purge-old-workflow-runs.yml.trap.gz (280 of 624)
+[2025-06-09 15:47:12] Importing github_docs__ready-for-doc-review.yml.trap.gz (281 of 624)
+[2025-06-09 15:47:12] Importing github_docs__remove-fr-label-remove-from-fr-v2.yml.trap.gz (282 of 624)
+[2025-06-09 15:47:12] Importing github_docs__repo-sync.yml.trap.gz (283 of 624)
+[2025-06-09 15:47:12] Importing github_docs__review-comment.yml.trap.gz (284 of 624)
+[2025-06-09 15:47:12] Importing github_docs__reviewers-content-systems.yml.trap.gz (285 of 624)
+[2025-06-09 15:47:12] Importing github_docs__reviewers-dependabot.yml.trap.gz (286 of 624)
+[2025-06-09 15:47:12] Importing github_docs__reviewers-docs-engineering.yml.trap.gz (287 of 624)
+[2025-06-09 15:47:12] Importing github_docs__reviewers-legal.yml.trap.gz (288 of 624)
+[2025-06-09 15:47:12] Importing github_docs__site-policy-reminder.yml.trap.gz (289 of 624)
+[2025-06-09 15:47:12] Importing github_docs__site-policy-sync.yml.trap.gz (290 of 624)
+[2025-06-09 15:47:12] Importing github_docs__sme-review-tracking-issue.yml.trap.gz (291 of 624)
+[2025-06-09 15:47:12] Importing github_docs__stale.yml.trap.gz (292 of 624)
+[2025-06-09 15:47:12] Importing github_docs__sync-audit-logs.yml.trap.gz (293 of 624)
+[2025-06-09 15:47:12] Importing github_docs__sync-codeql-cli.yml.trap.gz (294 of 624)
+[2025-06-09 15:47:12] Importing github_docs__sync-graphql.yml.trap.gz (295 of 624)
+[2025-06-09 15:47:12] Importing github_docs__sync-openapi.yml.trap.gz (296 of 624)
+[2025-06-09 15:47:12] Importing github_docs__sync-secret-scanning.yml.trap.gz (297 of 624)
+[2025-06-09 15:47:12] Importing github_docs__test-changed-content.yml.trap.gz (298 of 624)
+[2025-06-09 15:47:12] Importing github_docs__test.yml.trap.gz (299 of 624)
+[2025-06-09 15:47:12] Importing github_docs__triage-issue-comments.yml.trap.gz (300 of 624)
+[2025-06-09 15:47:12] Importing github_docs__triage-issues.yml.trap.gz (301 of 624)
+[2025-06-09 15:47:12] Importing github_docs__triage-pull-requests.yml.trap.gz (302 of 624)
+[2025-06-09 15:47:12] Importing github_docs__triage-stale-check.yml.trap.gz (303 of 624)
+[2025-06-09 15:47:12] Importing github_docs__triage-unallowed-contributions.yml.trap.gz (304 of 624)
+[2025-06-09 15:47:12] Importing github_docs__validate-asset-images.yml.trap.gz (305 of 624)
+[2025-06-09 15:47:12] Importing github_docs__validate-github-github-docs-urls.yml.trap.gz (306 of 624)
+[2025-06-09 15:47:12] Importing github_super-linter__cd.yml.trap.gz (307 of 624)
+[2025-06-09 15:47:12] Importing github_super-linter__ci.yml.trap.gz (308 of 624)
+[2025-06-09 15:47:12] Importing github_super-linter__dependabot-automation.yaml.trap.gz (309 of 624)
+[2025-06-09 15:47:12] Importing github_super-linter__lint-commit.yaml.trap.gz (310 of 624)
+[2025-06-09 15:47:12] Importing github_super-linter__stale.yml.trap.gz (311 of 624)
+[2025-06-09 15:47:12] Importing github_super-linter__thank_contributors.yaml.trap.gz (312 of 624)
+[2025-06-09 15:47:12] Importing google_dagger__ci.yml.trap.gz (313 of 624)
+[2025-06-09 15:47:12] Importing google_dagger__release.yml.trap.gz (314 of 624)
+[2025-06-09 15:47:12] Importing google_truth__ci.yml.trap.gz (315 of 624)
+[2025-06-09 15:47:12] Importing hashicorp_terraform__build-terraform-cli.yml.trap.gz (316 of 624)
+[2025-06-09 15:47:12] Importing hashicorp_terraform__build.yml.trap.gz (317 of 624)
+[2025-06-09 15:47:12] Importing hashicorp_terraform__changelog.yml.trap.gz (318 of 624)
+[2025-06-09 15:47:12] Importing hashicorp_terraform__checks.yml.trap.gz (319 of 624)
+[2025-06-09 15:47:12] Importing hashicorp_terraform__equivalence-test-diff.yml.trap.gz (320 of 624)
+[2025-06-09 15:47:12] Importing hashicorp_terraform__equivalence-test-manual-update.yml.trap.gz (321 of 624)
+[2025-06-09 15:47:12] Importing hashicorp_terraform__equivalence-test-update.yml.trap.gz (322 of 624)
+[2025-06-09 15:47:12] Importing hashicorp_terraform__issue-comment-created.yml.trap.gz (323 of 624)
+[2025-06-09 15:47:12] Importing hashicorp_terraform__lock.yml.trap.gz (324 of 624)
+[2025-06-09 15:47:12] Importing hashicorp_terraform__main.yml.trap.gz (325 of 624)
+[2025-06-09 15:47:12] Importing hosted-file-monitor-with-hr.yml.trap.gz (326 of 624)
+[2025-06-09 15:47:12] Importing hosted-file-monitor-without-hr.yml.trap.gz (327 of 624)
+[2025-06-09 15:47:12] Importing hosted-https-monitoring-hr.yml.trap.gz (328 of 624)
+[2025-06-09 15:47:12] Importing hosted-network-filtering-hr.yml.trap.gz (329 of 624)
+[2025-06-09 15:47:12] Importing hosted-network-monitoring-hr.yml.trap.gz (330 of 624)
+[2025-06-09 15:47:12] Importing hosted-network-without-hr.yml.trap.gz (331 of 624)
+[2025-06-09 15:47:12] Importing ibm_sarama__apidiff.yml.trap.gz (332 of 624)
+[2025-06-09 15:47:12] Importing ibm_sarama__cache-cleanup.yml.trap.gz (333 of 624)
+[2025-06-09 15:47:12] Importing ibm_sarama__ci.yml.trap.gz (334 of 624)
+[2025-06-09 15:47:12] Importing ibm_sarama__codeql-analysis.yml.trap.gz (335 of 624)
+[2025-06-09 15:47:12] Importing ibm_sarama__dependency-review.yml.trap.gz (336 of 624)
+[2025-06-09 15:47:12] Importing ibm_sarama__fuzz.yml.trap.gz (337 of 624)
+[2025-06-09 15:47:12] Importing ibm_sarama__fvt-main.yml.trap.gz (338 of 624)
+[2025-06-09 15:47:12] Importing ibm_sarama__fvt-pr.yml.trap.gz (339 of 624)
+[2025-06-09 15:47:12] Importing ibm_sarama__fvt.yml.trap.gz (340 of 624)
+[2025-06-09 15:47:12] Importing ibm_sarama__i386.yml.trap.gz (341 of 624)
+[2025-06-09 15:47:12] Importing ibm_sarama__scorecard.yml.trap.gz (342 of 624)
+[2025-06-09 15:47:12] Importing ibm_sarama__stale.yml.trap.gz (343 of 624)
+[2025-06-09 15:47:12] Importing microsoft_TypeScript__accept-baselines-fix-lints.yaml.trap.gz (344 of 624)
+[2025-06-09 15:47:12] Importing microsoft_TypeScript__ci.yml.trap.gz (345 of 624)
+[2025-06-09 15:47:12] Importing microsoft_TypeScript__close-issues.yml.trap.gz (346 of 624)
+[2025-06-09 15:47:12] Importing microsoft_TypeScript__codeql.yml.trap.gz (347 of 624)
+[2025-06-09 15:47:12] Importing microsoft_TypeScript__create-cherry-pick-pr.yml.trap.gz (348 of 624)
+[2025-06-09 15:47:12] Importing microsoft_TypeScript__error-deltas-watchdog.yaml.trap.gz (349 of 624)
+[2025-06-09 15:47:12] Importing microsoft_TypeScript__insiders.yaml.trap.gz (350 of 624)
+[2025-06-09 15:47:12] Importing microsoft_TypeScript__lkg.yml.trap.gz (351 of 624)
+[2025-06-09 15:47:12] Importing microsoft_TypeScript__new-release-branch.yaml.trap.gz (352 of 624)
+[2025-06-09 15:47:12] Importing microsoft_TypeScript__nightly.yaml.trap.gz (353 of 624)
+[2025-06-09 15:47:12] Importing microsoft_TypeScript__pr-modified-files.yml.trap.gz (354 of 624)
+[2025-06-09 15:47:12] Importing microsoft_TypeScript__release-branch-artifact.yaml.trap.gz (355 of 624)
+[2025-06-09 15:47:12] Importing microsoft_TypeScript__scorecard.yml.trap.gz (356 of 624)
+[2025-06-09 15:47:12] Importing microsoft_TypeScript__set-version.yaml.trap.gz (357 of 624)
+[2025-06-09 15:47:12] Importing microsoft_TypeScript__sync-branch.yaml.trap.gz (358 of 624)
+[2025-06-09 15:47:12] Importing microsoft_TypeScript__sync-wiki.yml.trap.gz (359 of 624)
+[2025-06-09 15:47:12] Importing microsoft_TypeScript__twoslash-repros.yaml.trap.gz (360 of 624)
+[2025-06-09 15:47:12] Importing microsoft_TypeScript__update-package-lock.yaml.trap.gz (361 of 624)
+[2025-06-09 15:47:12] Importing microsoft_vscode__basic.yml.trap.gz (362 of 624)
+[2025-06-09 15:47:12] Importing microsoft_vscode__ci.yml.trap.gz (363 of 624)
+[2025-06-09 15:47:12] Importing microsoft_vscode__monaco-editor.yml.trap.gz (364 of 624)
+[2025-06-09 15:47:12] Importing microsoft_vscode__no-package-lock-changes.yml.trap.gz (365 of 624)
+[2025-06-09 15:47:12] Importing microsoft_vscode__no-yarn-lock-changes.yml.trap.gz (366 of 624)
+[2025-06-09 15:47:12] Importing microsoft_vscode__telemetry.yml.trap.gz (367 of 624)
+[2025-06-09 15:47:12] Importing nestjs_nest__codeql-analysis.yml.trap.gz (368 of 624)
+[2025-06-09 15:47:12] Importing oracle_docker-images__build-and-push-dev-images.yml.trap.gz (369 of 624)
+[2025-06-09 15:47:12] Importing oracle_docker-images__build-and-push-instantclient-images.yml.trap.gz (370 of 624)
+[2025-06-09 15:47:12] Importing oracle_docker-images__build-and-push-nosql-image.yml.trap.gz (371 of 624)
+[2025-06-09 15:47:12] Importing oracle_docker-images__build-and-push-nosql-sec-image.yml.trap.gz (372 of 624)
+[2025-06-09 15:47:12] Importing oracle_docker-images__build-and-push-oci-cli-image.yml.trap.gz (373 of 624)
+[2025-06-09 15:47:12] Importing oracle_docker-images__super-linter.yml.trap.gz (374 of 624)
+[2025-06-09 15:47:12] Importing oracle_graal__cdt-inspect.yml.trap.gz (375 of 624)
+[2025-06-09 15:47:12] Importing oracle_graal__main.yml.trap.gz (376 of 624)
+[2025-06-09 15:47:12] Importing oracle_graal__micronaut.yml.trap.gz (377 of 624)
+[2025-06-09 15:47:12] Importing oracle_graal__ni-layers.yml.trap.gz (378 of 624)
+[2025-06-09 15:47:12] Importing oracle_graal__quarkus.yml.trap.gz (379 of 624)
+[2025-06-09 15:47:12] Importing oracle_graal__reachability-metadata.yml.trap.gz (380 of 624)
+[2025-06-09 15:47:12] Importing oracle_graal__spring.yml.trap.gz (381 of 624)
+[2025-06-09 15:47:12] Importing oracle_opengrok__apiary.yml.trap.gz (382 of 624)
+[2025-06-09 15:47:12] Importing oracle_opengrok__build.yml.trap.gz (383 of 624)
+[2025-06-09 15:47:12] Importing oracle_opengrok__codeql-analysis.yml.trap.gz (384 of 624)
+[2025-06-09 15:47:12] Importing oracle_opengrok__docker.yml.trap.gz (385 of 624)
+[2025-06-09 15:47:12] Importing oracle_opengrok__javadoc.yml.trap.gz (386 of 624)
+[2025-06-09 15:47:12] Importing oracle_opengrok__release.yml.trap.gz (387 of 624)
+[2025-06-09 15:47:12] Importing oracle_truffleruby__ci.yml.trap.gz (388 of 624)
+[2025-06-09 15:47:12] Importing oracle_truffleruby__prism.yml.trap.gz (389 of 624)
+[2025-06-09 15:47:12] Importing pnpm_pnpm__audit.yml.trap.gz (390 of 624)
+[2025-06-09 15:47:12] Importing pnpm_pnpm__ci.yml.trap.gz (391 of 624)
+[2025-06-09 15:47:12] Importing pnpm_pnpm__codeql-analysis.yml.trap.gz (392 of 624)
+[2025-06-09 15:47:12] Importing pnpm_pnpm__release.yml.trap.gz (393 of 624)
+[2025-06-09 15:47:12] Importing pnpm_pnpm__update-latest.yml.trap.gz (394 of 624)
+[2025-06-09 15:47:12] Importing publish.yml.trap.gz (395 of 624)
+[2025-06-09 15:47:12] Importing pytorch_pytorch___bazel-build-test.yml.trap.gz (396 of 624)
+[2025-06-09 15:47:12] Importing pytorch_pytorch___binary-build-linux.yml.trap.gz (397 of 624)
+[2025-06-09 15:47:12] Importing pytorch_pytorch___binary-test-linux.yml.trap.gz (398 of 624)
+[2025-06-09 15:47:12] Importing pytorch_pytorch___binary-upload.yml.trap.gz (399 of 624)
+[2025-06-09 15:47:12] Importing pytorch_pytorch___docs.yml.trap.gz (400 of 624)
+[2025-06-09 15:47:12] Importing pytorch_pytorch___link_check.yml.trap.gz (401 of 624)
+[2025-06-09 15:47:12] Importing pytorch_pytorch___linux-build.yml.trap.gz (402 of 624)
+[2025-06-09 15:47:12] Importing pytorch_pytorch___linux-test.yml.trap.gz (403 of 624)
+[2025-06-09 15:47:12] Importing pytorch_pytorch___mac-build.yml.trap.gz (404 of 624)
+[2025-06-09 15:47:12] Importing pytorch_pytorch___mac-test.yml.trap.gz (405 of 624)
+[2025-06-09 15:47:12] Importing pytorch_pytorch___rocm-test.yml.trap.gz (406 of 624)
+[2025-06-09 15:47:12] Importing pytorch_pytorch___runner-determinator.yml.trap.gz (407 of 624)
+[2025-06-09 15:47:12] Importing pytorch_pytorch___win-build.yml.trap.gz (408 of 624)
+[2025-06-09 15:47:12] Importing pytorch_pytorch___win-test.yml.trap.gz (409 of 624)
+[2025-06-09 15:47:12] Importing pytorch_pytorch___xpu-test.yml.trap.gz (410 of 624)
+[2025-06-09 15:47:12] Importing pytorch_pytorch__assigntome-docathon.yml.trap.gz (411 of 624)
+[2025-06-09 15:47:12] Importing pytorch_pytorch__auto_request_review.yml.trap.gz (412 of 624)
+[2025-06-09 15:47:12] Importing pytorch_pytorch__build-almalinux-images.yml.trap.gz (413 of 624)
+[2025-06-09 15:47:12] Importing pytorch_pytorch__build-libtorch-images.yml.trap.gz (414 of 624)
+[2025-06-09 15:47:12] Importing pytorch_pytorch__build-magma-linux.yml.trap.gz (415 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__build-magma-rocm-linux.yml.trap.gz (416 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__build-magma-windows.yml.trap.gz (417 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__build-manywheel-images-s390x.yml.trap.gz (418 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__build-manywheel-images.yml.trap.gz (419 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__build-triton-wheel.yml.trap.gz (420 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__check-labels.yml.trap.gz (421 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__check_mergeability_ghstack.yml.trap.gz (422 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__cherry-pick.yml.trap.gz (423 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__close-nonexistent-disable-issues.yml.trap.gz (424 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__create_release.yml.trap.gz (425 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__delete_old_branches.yml.trap.gz (426 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__docathon-sync-label.yml.trap.gz (427 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__docker-builds.yml.trap.gz (428 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__docker-cache-mi300.yml.trap.gz (429 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__docker-release.yml.trap.gz (430 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__generated-linux-aarch64-binary-manywheel-nightly.yml.trap.gz (431 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__generated-linux-binary-libtorch-nightly.yml.trap.gz (432 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__generated-linux-binary-libtorch-release-main.yml.trap.gz (433 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__generated-linux-binary-manywheel-main.yml.trap.gz (434 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__generated-linux-binary-manywheel-nightly.yml.trap.gz (435 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__generated-linux-s390x-binary-manywheel-nightly.yml.trap.gz (436 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__generated-macos-arm64-binary-libtorch-release-nightly.yml.trap.gz (437 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__generated-macos-arm64-binary-wheel-nightly.yml.trap.gz (438 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__generated-windows-arm64-binary-libtorch-debug-nightly.yml.trap.gz (439 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__generated-windows-arm64-binary-libtorch-release-nightly.yml.trap.gz (440 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__generated-windows-arm64-binary-wheel-nightly.yml.trap.gz (441 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__generated-windows-binary-libtorch-debug-main.yml.trap.gz (442 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__generated-windows-binary-libtorch-debug-nightly.yml.trap.gz (443 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__generated-windows-binary-libtorch-release-main.yml.trap.gz (444 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__generated-windows-binary-libtorch-release-nightly.yml.trap.gz (445 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__generated-windows-binary-wheel-nightly.yml.trap.gz (446 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__inductor-micro-benchmark-x86.yml.trap.gz (447 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__inductor-micro-benchmark.yml.trap.gz (448 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__inductor-nightly.yml.trap.gz (449 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__inductor-perf-compare.yml.trap.gz (450 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__inductor-perf-test-nightly-aarch64.yml.trap.gz (451 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__inductor-perf-test-nightly-h100.yml.trap.gz (452 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__inductor-perf-test-nightly-macos.yml.trap.gz (453 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__inductor-perf-test-nightly-rocm.yml.trap.gz (454 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__inductor-perf-test-nightly-x86.yml.trap.gz (455 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__inductor-perf-test-nightly.yml.trap.gz (456 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__inductor-periodic.yml.trap.gz (457 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__inductor-rocm-mi300.yml.trap.gz (458 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__inductor-rocm.yml.trap.gz (459 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__inductor-unittest.yml.trap.gz (460 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__inductor.yml.trap.gz (461 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__lint-autoformat.yml.trap.gz (462 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__lint-bc.yml.trap.gz (463 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__lint.yml.trap.gz (464 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__linux-aarch64.yml.trap.gz (465 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__llm_td_retrieval.yml.trap.gz (466 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__mac-mps.yml.trap.gz (467 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__nightly-s3-uploads.yml.trap.gz (468 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__nightly.yml.trap.gz (469 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__nitpicker.yml.trap.gz (470 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__operator_benchmark.yml.trap.gz (471 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__periodic-rocm-mi300.yml.trap.gz (472 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__periodic.yml.trap.gz (473 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__pull.yml.trap.gz (474 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__revert.yml.trap.gz (475 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__rocm-mi300.yml.trap.gz (476 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__rocm.yml.trap.gz (477 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__runner-determinator-validator.yml.trap.gz (478 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__runner_determinator_script_sync.yaml.trap.gz (479 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__s390.yml.trap.gz (480 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__s390x-periodic.yml.trap.gz (481 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__scorecards.yml.trap.gz (482 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__slow.yml.trap.gz (483 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__stale.yml.trap.gz (484 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__target-determination-indexer.yml.trap.gz (485 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__target_determination.yml.trap.gz (486 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__test-check-binary.yml.trap.gz (487 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__test-h100.yml.trap.gz (488 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__torchbench.yml.trap.gz (489 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__trunk.yml.trap.gz (490 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__trymerge.yml.trap.gz (491 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__tryrebase.yml.trap.gz (492 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__unstable-periodic.yml.trap.gz (493 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__unstable.yml.trap.gz (494 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__update-viablestrict.yml.trap.gz (495 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__update_pytorch_labels.yml.trap.gz (496 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__upload-test-stats-while-running.yml.trap.gz (497 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__upload-test-stats.yml.trap.gz (498 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__upload-torch-dynamo-perf-stats.yml.trap.gz (499 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__upload_test_stats_intermediate.yml.trap.gz (500 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__weekly.yml.trap.gz (501 of 624)
+[2025-06-09 15:47:13] Importing pytorch_pytorch__xpu.yml.trap.gz (502 of 624)
+[2025-06-09 15:47:13] Importing remix-run_remix__close-v2-issues.yml.trap.gz (503 of 624)
+[2025-06-09 15:47:13] Importing remix-run_remix__deduplicate-lock-file.yml.trap.gz (504 of 624)
+[2025-06-09 15:47:13] Importing remix-run_remix__deployments.yml.trap.gz (505 of 624)
+[2025-06-09 15:47:13] Importing remix-run_remix__format.yml.trap.gz (506 of 624)
+[2025-06-09 15:47:13] Importing remix-run_remix__lint.yml.trap.gz (507 of 624)
+[2025-06-09 15:47:13] Importing remix-run_remix__merged-pr.yml.trap.gz (508 of 624)
+[2025-06-09 15:47:13] Importing remix-run_remix__nightly.yml.trap.gz (509 of 624)
+[2025-06-09 15:47:13] Importing remix-run_remix__no-response.yml.trap.gz (510 of 624)
+[2025-06-09 15:47:13] Importing remix-run_remix__release-comments.yml.trap.gz (511 of 624)
+[2025-06-09 15:47:13] Importing remix-run_remix__release-experimental.yml.trap.gz (512 of 624)
+[2025-06-09 15:47:13] Importing remix-run_remix__release.yml.trap.gz (513 of 624)
+[2025-06-09 15:47:13] Importing remix-run_remix__shared-build.yml.trap.gz (514 of 624)
+[2025-06-09 15:47:13] Importing remix-run_remix__shared-test-integration.yml.trap.gz (515 of 624)
+[2025-06-09 15:47:13] Importing remix-run_remix__shared-test-unit.yml.trap.gz (516 of 624)
+[2025-06-09 15:47:13] Importing remix-run_remix__stacks.yml.trap.gz (517 of 624)
+[2025-06-09 15:47:13] Importing remix-run_remix__test-full.yml.trap.gz (518 of 624)
+[2025-06-09 15:47:13] Importing remix-run_remix__test-pr-ubuntu.yml.trap.gz (519 of 624)
+[2025-06-09 15:47:13] Importing remix-run_remix__test-pr-windows-macos.yml.trap.gz (520 of 624)
+[2025-06-09 15:47:13] Importing remix-run_remix__website.yml.trap.gz (521 of 624)
+[2025-06-09 15:47:13] Importing rust-lang_rust__ci.yml.trap.gz (522 of 624)
+[2025-06-09 15:47:13] Importing rust-lang_rust__dependencies.yml.trap.gz (523 of 624)
+[2025-06-09 15:47:13] Importing rust-lang_rust__ghcr.yml.trap.gz (524 of 624)
+[2025-06-09 15:47:13] Importing rust-lang_rust__post-merge.yml.trap.gz (525 of 624)
+[2025-06-09 15:47:13] Importing secret-in-build-log.yml.trap.gz (526 of 624)
+[2025-06-09 15:47:13] Importing self-hosted-file-monitor-with-hr.yml.trap.gz (527 of 624)
+[2025-06-09 15:47:13] Importing self-hosted-network-filtering-hr.yml.trap.gz (528 of 624)
+[2025-06-09 15:47:13] Importing self-hosted-network-monitoring-hr.yml.trap.gz (529 of 624)
+[2025-06-09 15:47:13] Importing tailwindlabs_tailwindcss__ci.yml.trap.gz (530 of 624)
+[2025-06-09 15:47:13] Importing tailwindlabs_tailwindcss__integration-tests.yml.trap.gz (531 of 624)
+[2025-06-09 15:47:13] Importing tailwindlabs_tailwindcss__prepare-release.yml.trap.gz (532 of 624)
+[2025-06-09 15:47:14] Importing tailwindlabs_tailwindcss__release-insiders.yml.trap.gz (533 of 624)
+[2025-06-09 15:47:14] Importing tailwindlabs_tailwindcss__release.yml.trap.gz (534 of 624)
+[2025-06-09 15:47:14] Importing tensorflow_tensorflow__arm-cd.yml.trap.gz (535 of 624)
+[2025-06-09 15:47:14] Importing tensorflow_tensorflow__arm-ci-extended-cpp.yml.trap.gz (536 of 624)
+[2025-06-09 15:47:14] Importing tensorflow_tensorflow__arm-ci-extended.yml.trap.gz (537 of 624)
+[2025-06-09 15:47:14] Importing tensorflow_tensorflow__arm-ci.yml.trap.gz (538 of 624)
+[2025-06-09 15:47:14] Importing tensorflow_tensorflow__cffconvert.yml.trap.gz (539 of 624)
+[2025-06-09 15:47:14] Importing tensorflow_tensorflow__issue-on-pr-rollback.yml.trap.gz (540 of 624)
+[2025-06-09 15:47:14] Importing tensorflow_tensorflow__osv-scanner-scheduled.yml.trap.gz (541 of 624)
+[2025-06-09 15:47:14] Importing tensorflow_tensorflow__pylint-presubmit.yml.trap.gz (542 of 624)
+[2025-06-09 15:47:14] Importing tensorflow_tensorflow__release-branch-cherrypick.yml.trap.gz (543 of 624)
+[2025-06-09 15:47:14] Importing tensorflow_tensorflow__scorecards-analysis.yml.trap.gz (544 of 624)
+[2025-06-09 15:47:14] Importing tensorflow_tensorflow__stale-issues.yml.trap.gz (545 of 624)
+[2025-06-09 15:47:14] Importing tensorflow_tensorflow__update-nightly.yml.trap.gz (546 of 624)
+[2025-06-09 15:47:14] Importing tensorflow_tensorflow__update-rbe.yml.trap.gz (547 of 624)
+[2025-06-09 15:47:14] Importing tj-actions-changed-files-incident.yaml.trap.gz (548 of 624)
+[2025-06-09 15:47:14] Importing toc-tou.yml.trap.gz (549 of 624)
+[2025-06-09 15:47:14] Importing typescript-eslint_typescript-eslint__a11y-alt-bot.yml.trap.gz (550 of 624)
+[2025-06-09 15:47:14] Importing typescript-eslint_typescript-eslint__ci.yml.trap.gz (551 of 624)
+[2025-06-09 15:47:14] Importing typescript-eslint_typescript-eslint__cleanup-cache.yml.trap.gz (552 of 624)
+[2025-06-09 15:47:14] Importing typescript-eslint_typescript-eslint__lock.yml.trap.gz (553 of 624)
+[2025-06-09 15:47:14] Importing typescript-eslint_typescript-eslint__nx-migrate.yml.trap.gz (554 of 624)
+[2025-06-09 15:47:14] Importing typescript-eslint_typescript-eslint__pr-labels.yml.trap.gz (555 of 624)
+[2025-06-09 15:47:14] Importing typescript-eslint_typescript-eslint__pr-review-requested.yml.trap.gz (556 of 624)
+[2025-06-09 15:47:14] Importing typescript-eslint_typescript-eslint__prettier-update.yml.trap.gz (557 of 624)
+[2025-06-09 15:47:14] Importing typescript-eslint_typescript-eslint__semantic-breaking-change-pr.yml.trap.gz (558 of 624)
+[2025-06-09 15:47:14] Importing typescript-eslint_typescript-eslint__semantic-pr-titles.yml.trap.gz (559 of 624)
+[2025-06-09 15:47:14] Importing unexpected-outbound-calls.yml.trap.gz (560 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__bench.yml.trap.gz (561 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__build_and_deploy.yml.trap.gz (562 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__build_and_test.yml.trap.gz (563 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__build_reusable.yml.trap.gz (564 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__cancel.yml.trap.gz (565 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__code_freeze.yml.trap.gz (566 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__force_merge_canary_release_pr.yml.trap.gz (567 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__graphite_ci_optimizer.yml.trap.gz (568 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__integration_tests_reusable.yml.trap.gz (569 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__issue_bankrupt.yml.trap.gz (570 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__issue_lock.yml.trap.gz (571 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__issue_stale.yml.trap.gz (572 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__issue_version.yml.trap.gz (573 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__issue_wrong_template.yml.trap.gz (574 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__notify_release.yml.trap.gz (575 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__popular.yml.trap.gz (576 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__pull_request_stats.yml.trap.gz (577 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__retry_deploy_test.yml.trap.gz (578 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__retry_test.yml.trap.gz (579 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__rspack-nextjs-build-integration-tests.yml.trap.gz (580 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__rspack-nextjs-dev-integration-tests.yml.trap.gz (581 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__rspack-update-tests-manifest.yml.trap.gz (582 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__setup-nextjs-build.yml.trap.gz (583 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__test-turbopack-rust-bench-test.yml.trap.gz (584 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__test_e2e_deploy_release.yml.trap.gz (585 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__test_examples.yml.trap.gz (586 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__triage.yml.trap.gz (587 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__triage_with_ai.yml.trap.gz (588 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__trigger_release.yml.trap.gz (589 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__trigger_release_new.yml.trap.gz (590 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__turbopack-nextjs-build-integration-tests.yml.trap.gz (591 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__turbopack-nextjs-dev-integration-tests.yml.trap.gz (592 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__turbopack-update-tests-manifest.yml.trap.gz (593 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__update_fonts_data.yml.trap.gz (594 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__update_react.yml.trap.gz (595 of 624)
+[2025-06-09 15:47:14] Importing vercel_next.js__upload-tests-manifest.yml.trap.gz (596 of 624)
+[2025-06-09 15:47:14] Importing vitejs_vite__ci.yml.trap.gz (597 of 624)
+[2025-06-09 15:47:14] Importing vitejs_vite__ecosystem-ci-trigger.yml.trap.gz (598 of 624)
+[2025-06-09 15:47:14] Importing vitejs_vite__issue-close-require.yml.trap.gz (599 of 624)
+[2025-06-09 15:47:14] Importing vitejs_vite__issue-labeled.yml.trap.gz (600 of 624)
+[2025-06-09 15:47:14] Importing vitejs_vite__lock-closed-issues.yml.trap.gz (601 of 624)
+[2025-06-09 15:47:14] Importing vitejs_vite__preview-release.yml.trap.gz (602 of 624)
+[2025-06-09 15:47:14] Importing vitejs_vite__publish.yml.trap.gz (603 of 624)
+[2025-06-09 15:47:14] Importing vitejs_vite__release-tag.yml.trap.gz (604 of 624)
+[2025-06-09 15:47:14] Importing vitejs_vite__semantic-pull-request.yml.trap.gz (605 of 624)
+[2025-06-09 15:47:14] Importing withastro_astro__benchmark.yml.trap.gz (606 of 624)
+[2025-06-09 15:47:14] Importing withastro_astro__check-merge.yml.trap.gz (607 of 624)
+[2025-06-09 15:47:14] Importing withastro_astro__check.yml.trap.gz (608 of 624)
+[2025-06-09 15:47:14] Importing withastro_astro__ci.yml.trap.gz (609 of 624)
+[2025-06-09 15:47:14] Importing withastro_astro__cleanup-cache.yml.trap.gz (610 of 624)
+[2025-06-09 15:47:14] Importing withastro_astro__congrats.yml.trap.gz (611 of 624)
+[2025-06-09 15:47:14] Importing withastro_astro__continuous_benchmark.yml.trap.gz (612 of 624)
+[2025-06-09 15:47:14] Importing withastro_astro__examples-deploy.yml.trap.gz (613 of 624)
+[2025-06-09 15:47:14] Importing withastro_astro__format.yml.trap.gz (614 of 624)
+[2025-06-09 15:47:14] Importing withastro_astro__issue-labeled.yml.trap.gz (615 of 624)
+[2025-06-09 15:47:14] Importing withastro_astro__issue-needs-repro.yml.trap.gz (616 of 624)
+[2025-06-09 15:47:14] Importing withastro_astro__issue-opened.yml.trap.gz (617 of 624)
+[2025-06-09 15:47:14] Importing withastro_astro__label.yml.trap.gz (618 of 624)
+[2025-06-09 15:47:14] Importing withastro_astro__preview-release.yml.trap.gz (619 of 624)
+[2025-06-09 15:47:14] Importing withastro_astro__release.yml.trap.gz (620 of 624)
+[2025-06-09 15:47:14] Importing withastro_astro__scripts.yml.trap.gz (621 of 624)
+[2025-06-09 15:47:14] Importing withastro_astro__sync-examples.yml.trap.gz (622 of 624)
+[2025-06-09 15:47:14] Importing withastro_astro__test-hosts.yml.trap.gz (623 of 624)
+[2025-06-09 15:47:14] Importing metadata.trap.gz (624 of 624)
+[2025-06-09 15:47:14] [PROGRESS] dataset import> Merging relations
+[2025-06-09 15:47:14] Merging 1 fragment for 'files'.
+[2025-06-09 15:47:14] Merged 1558 bytes (1.52 KiB) for 'files'.
+[2025-06-09 15:47:14] Merging 1 fragment for 'folders'.
+[2025-06-09 15:47:14] Merged 36 bytes for 'folders'.
+[2025-06-09 15:47:14] Merging 1 fragment for 'containerparent'.
+[2025-06-09 15:47:14] Merged 1091 bytes (1.07 KiB) for 'containerparent'.
+[2025-06-09 15:47:14] Merging 1 fragment for 'yaml_scalars'.
+[2025-06-09 15:47:14] Merged 321200 bytes (313.67 KiB) for 'yaml_scalars'.
+[2025-06-09 15:47:14] Merging 2 fragments for 'yaml'.
+[2025-06-09 15:47:14] Merged 709173 bytes (692.55 KiB) for 'yaml'.
+[2025-06-09 15:47:14] Merging 2 fragments for 'locations_default'.
+[2025-06-09 15:47:14] Merged 638157 bytes (623.20 KiB) for 'locations_default'.
+[2025-06-09 15:47:14] Merging 2 fragments for 'yaml_locations'.
+[2025-06-09 15:47:14] Merged 227662 bytes (222.33 KiB) for 'yaml_locations'.
+[2025-06-09 15:47:14] Merging 1 fragment for 'sourceLocationPrefix'.
+[2025-06-09 15:47:14] Merged 17 bytes for 'sourceLocationPrefix'.
+[2025-06-09 15:47:14] Saving string and id pools to disk.
+[2025-06-09 15:47:14] Finished importing TRAP files.
+[2025-06-09 15:47:14] Read 24.25 MiB of uncompressed TRAP data.
+[2025-06-09 15:47:14] Uncompressed relation data size: 7.06 MiB
+[2025-06-09 15:47:14] Relation data size: 1.81 MiB (merge rate: 6.34 MiB/s)
+[2025-06-09 15:47:14] String pool size: 2.78 MiB
+[2025-06-09 15:47:14] ID pool size: 6.00 MiB
+[2025-06-09 15:47:14] [PROGRESS] dataset import> Finished writing database (relations: 1.81 MiB; string pool: 2.78 MiB).
+[2025-06-09 15:47:14] Pausing evaluation to close the cache at sequence stamp o+25
+[2025-06-09 15:47:14] The disk cache is freshly trimmed; leave it be.
+[2025-06-09 15:47:14] Unpausing evaluation
+[2025-06-09 15:47:14] Plumbing command codeql dataset import completed.
+[2025-06-09 15:47:14] [PROGRESS] database finalize> TRAP import complete (4.3s).
+[2025-06-09 15:47:14] Running plumbing command: codeql database cleanup -- /home/huawei/github-actions-security/tools/codeql/my-yaml-db
+[2025-06-09 15:47:15] [PROGRESS] database cleanup> Cleaning up existing TRAP files after import...
+[2025-06-09 15:47:15] [PROGRESS] database cleanup> TRAP files cleaned up (24ms).
+[2025-06-09 15:47:15] [PROGRESS] database cleanup> Cleaning up scratch directory...
+[2025-06-09 15:47:15] [PROGRESS] database cleanup> Scratch directory cleaned up (0ms).
+[2025-06-09 15:47:15] Running plumbing command: codeql dataset cleanup -- /home/huawei/github-actions-security/tools/codeql/my-yaml-db/db-yaml
+[2025-06-09 15:47:15] [PROGRESS] dataset cleanup> Cleaning up dataset in /home/huawei/github-actions-security/tools/codeql/my-yaml-db/db-yaml.
+[2025-06-09 15:47:15] Trimming disk cache at /home/huawei/github-actions-security/tools/codeql/my-yaml-db/db-yaml/default/cache in mode trim.
+[2025-06-09 15:47:15] Sequence stamp origin is -6039847430456119124
+[2025-06-09 15:47:15] Pausing evaluation to quickly trim memory at sequence stamp o+0
+[2025-06-09 15:47:15] Unpausing evaluation
+[2025-06-09 15:47:15] Pausing evaluation to zealously trim disk at sequence stamp o+1
+[2025-06-09 15:47:15] Unpausing evaluation
+[2025-06-09 15:47:15] Trimming completed (10ms): Trimmed disposable data from cache.
+[2025-06-09 15:47:15] Pausing evaluation to close the cache at sequence stamp o+2
+[2025-06-09 15:47:15] The disk cache is freshly trimmed; leave it be.
+[2025-06-09 15:47:15] Unpausing evaluation
+[2025-06-09 15:47:15] [PROGRESS] dataset cleanup> Trimmed disposable data from cache.
+[2025-06-09 15:47:15] [PROGRESS] dataset cleanup> Finalizing dataset in /home/huawei/github-actions-security/tools/codeql/my-yaml-db/db-yaml
+[2025-06-09 15:47:15] [DETAILS] dataset cleanup> Finished deleting ID pool from /home/huawei/github-actions-security/tools/codeql/my-yaml-db/db-yaml (3ms).
+[2025-06-09 15:47:15] Plumbing command codeql dataset cleanup completed.
+[2025-06-09 15:47:15] Plumbing command codeql database cleanup completed with status 0.
+[2025-06-09 15:47:15] [PROGRESS] database finalize> Finished zipping source archive (838.79 KiB).
+[2025-06-09 15:47:15] Plumbing command codeql database finalize completed.
+[2025-06-09 15:47:15] [PROGRESS] database create> Successfully created database at /home/huawei/github-actions-security/tools/codeql/my-yaml-db.
+[2025-06-09 15:47:15] Terminating normally.

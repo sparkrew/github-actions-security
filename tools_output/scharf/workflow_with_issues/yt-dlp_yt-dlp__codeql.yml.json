@@ -1,0 +1,32 @@
+{
+  "workflow": "yt-dlp_yt-dlp__codeql.yml",
+  "tool": "scharf",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "line": 32,
+      "column": 13,
+      "message": "Unpinned GitHub Action: uses `actions/checkout@v4`"
+    },
+    {
+      "line": 36,
+      "column": 20,
+      "message": "Unpinned GitHub Action: uses `codeql-action/init@v3`"
+    },
+    {
+      "line": 50,
+      "column": 20,
+      "message": "Unpinned GitHub Action: uses `codeql-action/autobuild@v3`"
+    },
+    {
+      "line": 63,
+      "column": 20,
+      "message": "Unpinned GitHub Action: uses `codeql-action/analyze@v3`"
+    }
+  ]
+}

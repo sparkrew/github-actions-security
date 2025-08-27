@@ -1,0 +1,80 @@
+{
+  "workflow": "ollama_ollama__test.yaml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 1,
+      "reason": "dependency not pinned by hash detected -- score normalized to 1",
+      "lines": [
+        26,
+        58,
+        65,
+        93,
+        127,
+        133,
+        134,
+        149,
+        184,
+        213,
+        240
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ollama_ollama__test.yaml:26",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ollama_ollama__test.yaml:58",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ollama_ollama__test.yaml:65",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ollama_ollama__test.yaml:93",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ollama_ollama__test.yaml:127",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ollama_ollama__test.yaml:133",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ollama_ollama__test.yaml:134",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ollama_ollama__test.yaml:149",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ollama_ollama__test.yaml:184",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ollama_ollama__test.yaml:213",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ollama_ollama__test.yaml:240",
+        "Info:   3 out of  13 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of   1 third-party GitHubAction dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 0,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1
+      ],
+      "raw_details": [
+        "Warn: no topLevel permission defined: .github/workflows/ollama_ollama__test.yaml:1",
+        "Info: no jobLevel write permissions found"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

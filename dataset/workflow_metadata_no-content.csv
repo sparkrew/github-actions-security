@@ -1,0 +1,597 @@
+repo,workflow_file,loc,num_jobs,num_triggers,trigger_types,num_reused_actions
+google/truth,ci.yml,82,3,2,"push, pull_request",7
+google/dagger,ci.yml,203,12,2,"push, pull_request",27
+google/dagger,release.yml,160,8,1,workflow_dispatch,19
+google/auto,ci.yml,97,3,2,"push, pull_request",10
+google/go-github,linter.yml,19,1,2,"push, pull_request",2
+google/go-github,tests.yml,81,1,2,"push, pull_request",4
+google/go-querystring,linter.yml,17,1,2,"push, pull_request",2
+google/go-querystring,tests.yml,39,1,2,"push, pull_request",3
+google/jimfs,ci.yml,106,3,2,"push, pull_request",10
+google/blockly,appengine_deploy.yml,54,2,1,workflow_dispatch,4
+google/blockly,assign_reviewers.yml,43,1,1,pull_request_target,1
+google/blockly,browser_test.yml,55,1,1,workflow_dispatch,2
+google/blockly,build.yml,85,3,1,pull_request,6
+google/blockly,conventional-label.yml,20,1,1,pull_request_target,1
+google/blockly,develop_freeze.yml,26,1,1,pull_request,1
+google/blockly,keyboard_plugin_test.yml,66,1,3,"workflow_dispatch, pull_request, push",3
+google/blockly,tag_module_cleanup.yml,37,1,1,pull_request_target,1
+google/blockly,welcome_new_contributors.yml,36,1,1,pull_request_target,1
+google/grr,build.yml,371,11,2,"push, pull_request",33
+google/grr,publish-pypi.yml,228,9,1,release,27
+microsoft/TypeScript,accept-baselines-fix-lints.yaml,39,1,1,workflow_dispatch,2
+microsoft/TypeScript,ci.yml,340,12,2,"push, pull_request",29
+microsoft/TypeScript,close-issues.yml,50,1,2,"schedule, workflow_dispatch",0
+microsoft/TypeScript,codeql.yml,73,1,3,"push, pull_request, schedule",4
+microsoft/TypeScript,copilot-setup-steps.yml,22,1,1,workflow_dispatch,2
+microsoft/TypeScript,create-cherry-pick-pr.yml,189,1,1,workflow_dispatch,3
+microsoft/TypeScript,error-deltas-watchdog.yaml,45,1,2,"workflow_dispatch, schedule",0
+microsoft/TypeScript,insiders.yaml,65,2,2,"workflow_dispatch, repository_dispatch",4
+microsoft/TypeScript,lkg.yml,49,1,1,workflow_dispatch,2
+microsoft/TypeScript,new-release-branch.yaml,95,1,1,workflow_dispatch,3
+microsoft/TypeScript,nightly.yaml,65,2,2,"schedule, workflow_dispatch",4
+microsoft/TypeScript,pr-modified-files.yml,135,1,1,pull_request_target,0
+microsoft/TypeScript,release-branch-artifact.yaml,50,1,1,push,3
+microsoft/TypeScript,scorecard.yml,60,1,3,"branch_protection_rule, schedule, push",4
+microsoft/TypeScript,set-version.yaml,99,1,1,workflow_dispatch,3
+microsoft/TypeScript,sync-branch.yaml,76,1,1,workflow_dispatch,3
+microsoft/TypeScript,sync-wiki.yml,30,1,1,gollum,1
+microsoft/TypeScript,twoslash-repros.yaml,65,1,2,"schedule, workflow_dispatch",4
+microsoft/TypeScript,update-package-lock.yaml,52,1,2,"schedule, workflow_dispatch",2
+facebook/hhvm,ubuntu.yml,71,1,2,"push, pull_request",2
+facebook/facebook-android-sdk,needs-attention.yml,18,1,1,issue_comment,2
+facebook/facebook-android-sdk,stale.yml,18,1,1,schedule,1
+facebook/facebook-ios-sdk,needs-attention.yml,18,1,1,issue_comment,2
+facebook/facebook-ios-sdk,stale.yml,24,1,1,schedule,1
+facebook/folly,TagIt.yml,73,1,1,push,4
+facebook/folly,getdeps_linux.yml,464,1,2,"push, pull_request",46
+facebook/folly,getdeps_mac.yml,424,1,2,"push, pull_request",42
+facebook/folly,getdeps_windows.yml,404,1,2,"push, pull_request",40
+facebook/folly,oss-build-and-test.yml,147,4,3,"push, pull_request, workflow_dispatch",17
+facebook/watchman,getdeps_linux.yml,704,1,2,"push, pull_request",73
+facebook/watchman,getdeps_mac.yml,664,1,2,"push, pull_request",69
+facebook/watchman,getdeps_windows.yml,634,1,2,"push, pull_request",65
+facebook/watchman,package.yml,56,2,1,push,5
+facebook/watchman,release.yml,367,14,1,push,37
+facebook/rocksdb,benchmark-linux.yml,15,1,1,workflow_dispatch,4
+facebook/rocksdb,nightly-candidate.yml,19,1,1,workflow_dispatch,4
+facebook/rocksdb,nightly.yml,147,10,2,"schedule, workflow_dispatch",33
+facebook/rocksdb,pr-jobs-candidate.yml,47,2,1,workflow_dispatch,8
+facebook/rocksdb,pr-jobs.yml,585,32,2,"push, pull_request",115
+facebook/react,compiler_discord_notify.yml,49,3,1,pull_request_target,2
+facebook/react,compiler_playground.yml,71,1,2,"push, pull_request",5
+facebook/react,compiler_prereleases.yml,61,1,1,workflow_call,3
+facebook/react,compiler_prereleases_manual.yml,37,1,1,workflow_dispatch,1
+facebook/react,compiler_prereleases_nightly.yml,23,1,1,schedule,1
+facebook/react,compiler_typescript.yml,108,4,2,"push, pull_request",10
+facebook/react,devtools_regression_tests.yml,205,4,2,"schedule, workflow_dispatch",21
+facebook/react,runtime_build_and_test.yml,883,19,2,"push, pull_request",76
+facebook/react,runtime_commit_artifacts.yml,471,4,2,"workflow_run, workflow_dispatch",14
+facebook/react,runtime_discord_notify.yml,49,3,1,pull_request_target,2
+facebook/react,runtime_eslint_plugin_e2e.yml,65,1,2,"push, pull_request",3
+facebook/react,runtime_fuzz_tests.yml,33,1,3,"schedule, push, workflow_dispatch",2
+facebook/react,runtime_prereleases.yml,112,1,1,workflow_call,4
+facebook/react,runtime_prereleases_manual.yml,102,3,1,workflow_dispatch,3
+facebook/react,runtime_prereleases_nightly.yml,51,2,1,schedule,2
+facebook/react,runtime_releases_from_npm_manual.yml,128,2,1,workflow_dispatch,5
+facebook/react,shared_check_maintainer.yml,58,1,1,workflow_call,1
+facebook/react,shared_cleanup_merged_branch_caches.yml,41,1,2,"pull_request, workflow_dispatch",0
+facebook/react,shared_cleanup_stale_branch_caches.yml,36,1,2,"schedule, workflow_dispatch",0
+facebook/react,shared_close_direct_sync_branch_prs.yml,42,1,1,pull_request,1
+facebook/react,shared_label_core_team_prs.yml,55,3,1,pull_request_target,2
+facebook/react,shared_lint.yml,110,4,2,"push, pull_request",12
+facebook/react,shared_stale.yml,55,1,2,"schedule, workflow_dispatch",1
+facebook/fbthrift,getdeps_linux.yml,597,1,2,"push, pull_request",60
+facebook/fbthrift,getdeps_mac.yml,557,1,2,"push, pull_request",56
+facebook/fbthrift,getdeps_windows.yml,518,1,2,"push, pull_request",52
+facebook/mcrouter,build.yml,24,1,2,"push, pull_request",1
+awslabs/amazon-ecr-credential-helper,build.yaml,55,3,2,"push, pull_request",5
+awslabs/amazon-ecr-credential-helper,check-links.yml,24,1,3,"workflow_dispatch, schedule, pull_request",2
+awslabs/amazon-ecr-credential-helper,codeql.yml,42,1,3,"push, pull_request, schedule",3
+awslabs/amazon-ecr-credential-helper,new-pull-requests.yml,27,1,1,pull_request_target,1
+awslabs/amazon-ecr-credential-helper,review-dependencies.yml,24,1,1,pull_request,2
+oracle/opengrok,apiary.yml,23,1,2,"push, pull_request",1
+oracle/opengrok,build.yml,64,1,3,"push, pull_request, schedule",5
+oracle/opengrok,codeql-analysis.yml,39,1,3,"push, pull_request, schedule",5
+oracle/opengrok,docker.yml,50,1,3,"push, pull_request, release",2
+oracle/opengrok,javadoc.yml,44,1,1,push,4
+oracle/opengrok,release.yml,64,2,1,release,6
+oracle/docker-images,build-and-push-dev-images.yml,187,2,2,"push, workflow_dispatch",7
+oracle/docker-images,build-and-push-instantclient-images.yml,115,1,2,"push, workflow_dispatch",1
+oracle/docker-images,build-and-push-nosql-image.yml,74,1,2,"push, workflow_dispatch",6
+oracle/docker-images,build-and-push-nosql-sec-image.yml,74,1,2,"push, workflow_dispatch",6
+oracle/docker-images,build-and-push-oci-cli-image.yml,87,1,4,"workflow_dispatch, schedule, push, pull_request",6
+oracle/docker-images,super-linter.yml,31,1,1,pull_request,3
+oracle/graal,cdt-inspect.yml,92,1,1,schedule,4
+oracle/graal,main.yml,276,2,4,"push, pull_request, schedule, workflow_dispatch",6
+oracle/graal,micronaut.yml,86,1,3,"pull_request, schedule, workflow_dispatch",3
+oracle/graal,ni-layers.yml,121,2,3,"pull_request, schedule, workflow_dispatch",8
+oracle/graal,quarkus.yml,183,2,3,"pull_request, schedule, workflow_dispatch",9
+oracle/graal,reachability-metadata.yml,136,2,3,"pull_request, schedule, workflow_dispatch",7
+oracle/graal,spring.yml,78,1,3,"pull_request, schedule, workflow_dispatch",3
+oracle/truffleruby,ci.yml,255,9,2,"pull_request, push",36
+oracle/truffleruby,prism.yml,60,1,2,"workflow_dispatch, schedule",5
+IBM/sarama,apidiff.yml,55,1,3,"merge_group, push, pull_request",3
+IBM/sarama,cache-cleanup.yml,33,1,1,pull_request,0
+IBM/sarama,ci.yml,79,2,3,"merge_group, push, pull_request",5
+IBM/sarama,codeql-analysis.yml,52,1,4,"merge_group, push, pull_request, schedule",5
+IBM/sarama,dependency-review.yml,33,1,1,pull_request,2
+IBM/sarama,fuzz.yml,41,1,3,"merge_group, push, pull_request",2
+IBM/sarama,fvt-main.yml,50,1,2,"merge_group, push",1
+IBM/sarama,fvt-pr.yml,39,1,1,pull_request,1
+IBM/sarama,fvt.yml,87,1,1,workflow_call,5
+IBM/sarama,i386.yml,47,1,3,"merge_group, push, pull_request",2
+IBM/sarama,scorecard.yml,78,1,3,"branch_protection_rule, schedule, push",5
+IBM/sarama,stale.yml,47,1,2,"schedule, workflow_dispatch",1
+NVIDIA/k8s-device-plugin,basic-checks.yaml,43,4,2,"workflow_call, pull_request",4
+NVIDIA/k8s-device-plugin,ci.yaml,45,3,1,push,3
+NVIDIA/k8s-device-plugin,code_scanning.yaml,54,1,1,workflow_call,4
+NVIDIA/k8s-device-plugin,deploy-to-pages.yml,79,2,3,"push, workflow_call, workflow_dispatch",5
+NVIDIA/k8s-device-plugin,e2e.yaml,87,1,1,workflow_call,5
+NVIDIA/k8s-device-plugin,golang.yaml,65,3,1,workflow_call,7
+NVIDIA/k8s-device-plugin,helm.yaml,35,1,1,workflow_call,2
+NVIDIA/k8s-device-plugin,image.yaml,53,1,1,workflow_call,4
+NVIDIA/k8s-device-plugin,publish-helm.yaml,69,3,1,release,4
+NVIDIA/k8s-device-plugin,release.yaml,43,1,1,push,2
+NVIDIA/k8s-device-plugin,stale.yaml,27,1,1,schedule,1
+NVIDIA/k8s-device-plugin,variables.yaml,45,1,1,workflow_call,1
+NVIDIA/cutlass,blossom-ci.yml,112,4,2,"issue_comment, workflow_dispatch",2
+NVIDIA/cutlass,labeler.yml,11,1,1,pull_request_target,1
+NVIDIA/cutlass,new-issues-to-triage-projects.yml,35,1,1,issues,3
+NVIDIA/cutlass,stale.yml,57,2,1,schedule,2
+alibaba/druid,ci.yaml,44,1,2,"push, pull_request",3
+alibaba/tengine,ci-arm64.yml,90,1,2,"push, pull_request",3
+alibaba/tengine,ci.yml,122,1,2,"push, pull_request",4
+alibaba/tengine,test-nginx-core.yml,152,1,2,"push, pull_request",4
+alibaba/tengine,test-ntls.yml,101,1,2,"push, pull_request",5
+alibaba/transmittable-thread-local,ci.yaml,49,1,3,"push, pull_request, workflow_dispatch",2
+alibaba/transmittable-thread-local,strong_ci.yaml,46,1,3,"push, pull_request, workflow_dispatch",3
+alibaba/ice,canary.yml,55,2,1,push,4
+alibaba/ice,ci.yml,49,1,1,push,4
+alibaba/ice,coverage.yml,66,1,3,"push, pull_request, workflow_dispatch",5
+alibaba/ice,release.yml,48,1,1,push,4
+alibaba/ice,version.yml,44,1,1,push,4
+alibaba/ice,website.yml,41,1,2,"push, workflow_dispatch",4
+freeCodeCamp/freeCodeCamp,crowdin-download.client-ui.yml,339,1,2,"workflow_dispatch, schedule",15
+freeCodeCamp/freeCodeCamp,crowdin-upload.client-ui.yml,50,1,2,"workflow_dispatch, schedule",3
+freeCodeCamp/freeCodeCamp,crowdin-upload.curriculum.yml,75,1,2,"workflow_dispatch, schedule",7
+freeCodeCamp/freeCodeCamp,curriculum-i18n-submodule.yml,70,1,2,"push, workflow_dispatch",3
+freeCodeCamp/freeCodeCamp,deploy-api.yml,225,3,1,workflow_dispatch,2
+freeCodeCamp/freeCodeCamp,deploy-client.yml,223,2,1,workflow_dispatch,4
+freeCodeCamp/freeCodeCamp,docker-docr-cleanup.yml,53,1,2,"workflow_dispatch, schedule",3
+freeCodeCamp/freeCodeCamp,docker-docr.yml,72,1,2,"workflow_dispatch, workflow_call",2
+freeCodeCamp/freeCodeCamp,docker-ghcr.yml,60,1,2,"workflow_dispatch, push",5
+freeCodeCamp/freeCodeCamp,e2e-playwright.yml,178,3,3,"workflow_dispatch, workflow_run, pull_request",13
+freeCodeCamp/freeCodeCamp,e2e-third-party.yml,170,3,2,"workflow_dispatch, push",12
+freeCodeCamp/freeCodeCamp,github-autoclose.yml,71,1,1,pull_request_target,1
+freeCodeCamp/freeCodeCamp,github-labeler.yaml,24,1,1,pull_request_target,1
+freeCodeCamp/freeCodeCamp,github-no-i18n-via-prs.yml,34,1,1,pull_request_target,1
+freeCodeCamp/freeCodeCamp,github-no-web-commits.yml,60,1,1,pull_request_target,2
+freeCodeCamp/freeCodeCamp,github-spam.yml,23,1,1,pull_request_target,1
+freeCodeCamp/freeCodeCamp,i18n-validate-builds.yml,44,1,1,push,3
+freeCodeCamp/freeCodeCamp,i18n-validate-prs.yml,61,1,1,pull_request,4
+freeCodeCamp/freeCodeCamp,node.js-tests.yml,276,5,2,"push, pull_request",18
+sindresorhus/awesome,main.yml,14,1,1,pull_request,1
+EbookFoundation/free-programming-books,check-urls.yml,132,3,2,"push, pull_request",8
+EbookFoundation/free-programming-books,comment-pr.yml,55,1,1,workflow_run,1
+EbookFoundation/free-programming-books,detect-conflicting-prs.yml,73,1,3,"workflow_dispatch, push, pull_request_target",1
+EbookFoundation/free-programming-books,fpb-lint.yml,36,1,1,pull_request,3
+EbookFoundation/free-programming-books,issues-pinner.yml,64,1,1,issues,2
+EbookFoundation/free-programming-books,rtl-ltr-linter.yml,101,1,1,pull_request,4
+EbookFoundation/free-programming-books,stale.yml,46,1,2,"schedule, workflow_dispatch",1
+public-apis/public-apis,test_of_push_and_pull.yml,37,1,2,"push, pull_request",2
+public-apis/public-apis,test_of_validate_package.yml,29,1,2,"push, pull_request",2
+public-apis/public-apis,validate_links.yml,28,1,2,"workflow_dispatch, schedule",2
+jwasham/coding-interview-university,links_checker.yml,85,1,2,"workflow_dispatch, schedule",6
+vuejs/vue,ci.yml,93,4,2,"push, pull_request",12
+vuejs/vue,release-tag.yml,23,1,1,push,2
+TheAlgorithms/Python,build.yml,37,1,2,"pull_request, schedule",3
+TheAlgorithms/Python,directory_writer.yml,25,1,1,push,2
+TheAlgorithms/Python,project_euler.yml,35,2,2,"pull_request, schedule",6
+TheAlgorithms/Python,ruff.yml,16,1,2,"push, pull_request",2
+TheAlgorithms/Python,sphinx.yml,50,2,3,"push, pull_request, workflow_dispatch",6
+trekhleb/javascript-algorithms,CI.yml,35,1,2,"push, pull_request",3
+tensorflow/tensorflow,arm-cd.yml,71,1,2,"push, schedule",2
+tensorflow/tensorflow,arm-ci-extended-cpp.yml,64,1,2,"push, schedule",2
+tensorflow/tensorflow,arm-ci-extended.yml,65,1,2,"push, schedule",2
+tensorflow/tensorflow,arm-ci.yml,55,1,1,push,1
+tensorflow/tensorflow,cffconvert.yml,38,1,1,push,2
+tensorflow/tensorflow,issue-on-pr-rollback.yml,43,1,1,push,2
+tensorflow/tensorflow,osv-scanner-scheduled.yml,40,1,1,schedule,1
+tensorflow/tensorflow,pylint-presubmit.yml,50,1,1,pull_request,3
+tensorflow/tensorflow,release-branch-cherrypick.yml,71,1,1,workflow_dispatch,2
+tensorflow/tensorflow,scorecards-analysis.yml,69,1,3,"branch_protection_rule, schedule, push",4
+tensorflow/tensorflow,stale-issues.yml,83,1,1,schedule,2
+tensorflow/tensorflow,update-nightly.yml,34,1,2,"workflow_dispatch, schedule",1
+tensorflow/tensorflow,update-rbe.yml,143,1,1,workflow_dispatch,2
+ossu/computer-science,delete-empty-issues.yml,35,1,1,issues,2
+ohmyzsh/ohmyzsh,dependencies.yml,36,1,2,"workflow_dispatch, schedule",3
+ohmyzsh/ohmyzsh,installer.yml,56,2,2,"workflow_dispatch, push",2
+ohmyzsh/ohmyzsh,main.yml,38,1,2,"pull_request, push",1
+ohmyzsh/ohmyzsh,project.yml,146,1,2,"issues, pull_request_target",1
+Significant-Gravitas/AutoGPT,classic-autogpt-ci.yml,145,1,2,"push, pull_request",7
+Significant-Gravitas/AutoGPT,classic-autogpt-docker-cache-clean.yml,60,1,1,schedule,3
+Significant-Gravitas/AutoGPT,classic-autogpt-docker-ci.yml,166,2,2,"push, pull_request",7
+Significant-Gravitas/AutoGPT,classic-autogpt-docker-release.yml,87,1,2,"release, workflow_dispatch",4
+Significant-Gravitas/AutoGPT,classic-autogpts-ci.yml,76,1,4,"workflow_dispatch, schedule, push, pull_request",2
+Significant-Gravitas/AutoGPT,classic-benchmark-ci.yml,176,2,2,"push, pull_request",7
+Significant-Gravitas/AutoGPT,classic-benchmark_publish_package.yml,55,1,1,workflow_dispatch,3
+Significant-Gravitas/AutoGPT,classic-forge-ci.yml,243,1,2,"push, pull_request",7
+Significant-Gravitas/AutoGPT,classic-frontend-ci.yml,60,1,2,"push, pull_request",3
+Significant-Gravitas/AutoGPT,classic-python-checks.yml,151,3,2,"push, pull_request",8
+Significant-Gravitas/AutoGPT,claude.yml,47,1,4,"issue_comment, pull_request_review_comment, issues, pull_request_review",2
+Significant-Gravitas/AutoGPT,codeql.yml,98,1,4,"push, pull_request, merge_group, schedule",3
+Significant-Gravitas/AutoGPT,platform-autgpt-deploy-prod.yml,50,2,1,release,3
+Significant-Gravitas/AutoGPT,platform-autogpt-deploy-dev.yaml,51,2,1,push,3
+Significant-Gravitas/AutoGPT,platform-backend-ci.yml,227,1,3,"push, pull_request, merge_group",5
+Significant-Gravitas/AutoGPT,platform-dev-deploy-event-dispatcher.yml,198,1,2,"pull_request, issue_comment",10
+Significant-Gravitas/AutoGPT,platform-frontend-ci.yml,156,4,3,"push, pull_request, merge_group",11
+Significant-Gravitas/AutoGPT,repo-close-stale-issues.yml,34,1,2,"schedule, workflow_dispatch",1
+Significant-Gravitas/AutoGPT,repo-pr-enforce-base-branch.yml,21,1,1,pull_request_target,0
+Significant-Gravitas/AutoGPT,repo-pr-label.yml,66,3,2,"push, pull_request_target",3
+Significant-Gravitas/AutoGPT,repo-stats.yml,20,1,2,"schedule, workflow_dispatch",1
+Significant-Gravitas/AutoGPT,repo-workflow-checker.yml,32,1,2,"pull_request, merge_group",2
+microsoft/vscode,basic.yml,186,3,1,workflow_dispatch,12
+microsoft/vscode,ci.yml,328,4,1,workflow_dispatch,17
+microsoft/vscode,monaco-editor.yml,100,1,2,"push, pull_request",4
+microsoft/vscode,no-package-lock-changes.yml,51,1,1,pull_request,2
+microsoft/vscode,no-yarn-lock-changes.yml,51,1,1,pull_request,2
+microsoft/vscode,telemetry.yml,21,1,1,pull_request,2
+twbs/bootstrap,browserstack.yml,46,1,2,"push, workflow_dispatch",2
+twbs/bootstrap,bundlewatch.yml,43,1,3,"push, pull_request, workflow_dispatch",2
+twbs/bootstrap,calibreapp-image-actions.yml,32,1,1,pull_request,2
+twbs/bootstrap,codeql.yml,44,1,4,"push, pull_request, schedule, workflow_dispatch",4
+twbs/bootstrap,cspell.yml,36,1,3,"push, pull_request, workflow_dispatch",2
+twbs/bootstrap,css.yml,40,1,3,"push, pull_request, workflow_dispatch",2
+twbs/bootstrap,docs.yml,50,1,3,"push, pull_request, workflow_dispatch",3
+twbs/bootstrap,issue-close-require.yml,26,1,1,schedule,1
+twbs/bootstrap,issue-labeled.yml,26,1,1,issues,1
+twbs/bootstrap,js.yml,52,1,3,"push, pull_request, workflow_dispatch",3
+twbs/bootstrap,lint.yml,37,1,3,"push, pull_request, workflow_dispatch",2
+twbs/bootstrap,node-sass.yml,49,1,3,"push, pull_request, workflow_dispatch",2
+twbs/bootstrap,release-notes.yml,23,1,2,"push, workflow_dispatch",1
+flutter/flutter,content-aware-hash.yml,26,1,1,workflow_dispatch,1
+flutter/flutter,coverage.yml,29,1,1,push,2
+flutter/flutter,easy-cp.yml,87,1,1,pull_request_target,1
+flutter/flutter,files-changed.yml,41,1,1,pull_request,2
+flutter/flutter,labeler.yml,22,1,1,pull_request_target,1
+flutter/flutter,lock.yaml,35,1,1,schedule,1
+flutter/flutter,merge-changelog.yml,58,1,1,push,1
+flutter/flutter,mirror.yml,28,1,1,push,1
+flutter/flutter,no-response.yaml,44,1,2,"issue_comment, schedule",1
+flutter/flutter,tool-test-general.yml,30,1,2,"pull_request, push",2
+github/gitignore,stale.yml,32,1,1,schedule,1
+AUTOMATIC1111/stable-diffusion-webui,on_pull_request.yaml,38,2,2,"push, pull_request",4
+AUTOMATIC1111/stable-diffusion-webui,run_tests.yaml,81,1,2,"push, pull_request",5
+AUTOMATIC1111/stable-diffusion-webui,warns_merge_master.yml,19,1,1,pull_request,0
+Snailclimb/JavaGuide,test.yml,30,1,2,"push, pull_request",3
+airbnb/javascript,node-pretest.yml,26,1,2,"pull_request, push",2
+airbnb/javascript,node.yml,163,6,2,"pull_request, push",11
+airbnb/javascript,rebase.yml,15,1,1,pull_request_target,2
+airbnb/javascript,require-allow-edits.yml,12,1,1,pull_request_target,1
+avelino/awesome-go,check-for-spammy-issues.yml,14,1,1,issues,1
+avelino/awesome-go,pull-request-first-comment.yaml,31,1,1,pull_request_target,1
+avelino/awesome-go,run-check.yaml,22,1,2,"workflow_dispatch, schedule",1
+avelino/awesome-go,site-deploy.yaml,40,1,1,push,3
+avelino/awesome-go,tests.yaml,22,1,2,"push, pull_request",1
+huggingface/transformers,add-model-like.yml,80,1,1,push,3
+huggingface/transformers,assign-reviewers.yml,26,1,1,pull_request_target,2
+huggingface/transformers,benchmark.yml,76,1,2,"push, pull_request",1
+huggingface/transformers,build-ci-docker-images.yml,77,2,4,"push, repository_dispatch, workflow_call, schedule",5
+huggingface/transformers,build-docker-images.yml,355,8,4,"push, repository_dispatch, workflow_call, schedule",43
+huggingface/transformers,build-nightly-ci-docker-images.yml,67,2,2,"workflow_call, push",8
+huggingface/transformers,build-past-ci-docker-images.yml,101,2,1,push,8
+huggingface/transformers,build_documentation.yml,23,1,2,"workflow_dispatch, push",1
+huggingface/transformers,build_pr_documentation.yml,17,1,1,pull_request,1
+huggingface/transformers,check_failed_tests.yml,205,1,1,workflow_call,3
+huggingface/transformers,check_tiny_models.yml,82,1,3,"push, repository_dispatch, schedule",6
+huggingface/transformers,doctest_job.yml,83,1,1,workflow_call,1
+huggingface/transformers,doctests.yml,89,3,3,"push, repository_dispatch, schedule",4
+huggingface/transformers,model_jobs.yml,142,1,1,workflow_call,1
+huggingface/transformers,model_jobs_intel_gaudi.yml,121,1,1,workflow_call,2
+huggingface/transformers,new_model_pr_merged_notification.yml,68,1,1,push,2
+huggingface/transformers,pr-style-bot.yml,18,1,1,issue_comment,1
+huggingface/transformers,push-important-models.yml,135,2,1,push,8
+huggingface/transformers,release-conda.yml,47,1,1,push,2
+huggingface/transformers,self-comment-ci.yml,416,8,1,issue_comment,6
+huggingface/transformers,self-nightly-caller.yml,43,3,3,"repository_dispatch, schedule, push",3
+huggingface/transformers,self-nightly-past-ci-caller.yml,99,8,2,"schedule, push",7
+huggingface/transformers,self-past-caller.yml,40,2,1,workflow_call,2
+huggingface/transformers,self-push-amd-mi210-caller.yml,25,1,1,push,1
+huggingface/transformers,self-push-amd-mi250-caller.yml,25,1,1,push,1
+huggingface/transformers,self-push-amd-mi300-caller.yml,25,1,1,push,1
+huggingface/transformers,self-push-amd.yml,334,5,1,workflow_call,5
+huggingface/transformers,self-push-caller.yml,54,3,1,push,3
+huggingface/transformers,self-push.yml,652,6,3,"workflow_run, push, repository_dispatch",7
+huggingface/transformers,self-scheduled-amd-caller.yml,14,1,1,schedule,0
+huggingface/transformers,self-scheduled-amd-mi250-caller.yml,59,4,2,"workflow_run, push",4
+huggingface/transformers,self-scheduled-amd-mi300-caller.yml,63,4,2,"workflow_run, push",4
+huggingface/transformers,self-scheduled-caller.yml,113,7,4,"repository_dispatch, schedule, push, workflow_dispatch",7
+huggingface/transformers,self-scheduled-intel-gaudi.yml,345,7,1,workflow_call,11
+huggingface/transformers,self-scheduled-intel-gaudi3-caller.yml,67,5,3,"repository_dispatch, workflow_dispatch, schedule",5
+huggingface/transformers,self-scheduled.yml,536,10,1,workflow_call,11
+huggingface/transformers,slack-report.yml,93,1,1,workflow_call,3
+huggingface/transformers,ssh-runner.yml,113,2,1,workflow_dispatch,1
+huggingface/transformers,stale.yml,29,1,1,schedule,2
+huggingface/transformers,trufflehog.yml,20,1,1,push,2
+huggingface/transformers,update_metdata.yml,27,1,1,push,1
+huggingface/transformers,upload_pr_documentation.yml,16,1,1,workflow_run,1
+ollama/ollama,latest.yaml,24,1,1,release,2
+ollama/ollama,release.yaml,510,11,1,push,37
+ollama/ollama,test.yaml,244,6,1,pull_request,14
+ytdl-org/youtube-dl,ci.yml,482,3,3,"push, pull_request, workflow_dispatch",8
+vercel/next.js,build_and_deploy.yml,762,11,3,"push, pull_request, workflow_dispatch",37
+vercel/next.js,build_and_test.yml,916,41,2,"push, pull_request",42
+vercel/next.js,build_reusable.yml,298,1,1,workflow_call,9
+vercel/next.js,cancel.yml,17,1,1,pull_request_target,1
+vercel/next.js,code_freeze.yml,47,1,1,workflow_dispatch,1
+vercel/next.js,force_merge_canary_release_pr.yml,23,1,1,pull_request,0
+vercel/next.js,graphite_ci_optimizer.yml,51,1,1,workflow_call,1
+vercel/next.js,integration_tests_reusable.yml,171,6,1,workflow_call,7
+vercel/next.js,issue_bankrupt.yml,24,1,1,workflow_dispatch,2
+vercel/next.js,issue_lock.yml,29,1,2,"schedule, workflow_dispatch",1
+vercel/next.js,issue_stale.yml,73,1,2,"workflow_dispatch, schedule",4
+vercel/next.js,issue_version.yml,24,1,1,workflow_dispatch,2
+vercel/next.js,issue_wrong_template.yml,21,1,1,issues,2
+vercel/next.js,notify_release.yml,83,2,1,release,3
+vercel/next.js,popular.yml,30,1,2,"schedule, workflow_dispatch",2
+vercel/next.js,pull_request_stats.yml,60,2,1,pull_request,4
+vercel/next.js,retry_deploy_test.yml,58,2,1,workflow_run,1
+vercel/next.js,retry_test.yml,63,2,1,workflow_run,1
+vercel/next.js,rspack-nextjs-build-integration-tests.yml,25,1,2,"schedule, workflow_dispatch",1
+vercel/next.js,rspack-nextjs-dev-integration-tests.yml,25,1,2,"schedule, workflow_dispatch",1
+vercel/next.js,rspack-update-tests-manifest.yml,86,2,2,"schedule, workflow_dispatch",4
+vercel/next.js,setup-nextjs-build.yml,125,1,1,workflow_call,8
+vercel/next.js,test-turbopack-rust-bench-test.yml,69,1,1,workflow_call,3
+vercel/next.js,test_e2e_deploy_release.yml,88,3,2,"release, workflow_dispatch",4
+vercel/next.js,test_examples.yml,51,1,2,"workflow_dispatch, schedule",2
+vercel/next.js,triage.yml,47,1,2,"issues, issue_comment",1
+vercel/next.js,triage_with_ai.yml,22,1,1,issues,2
+vercel/next.js,trigger_release.yml,110,1,2,"schedule, workflow_dispatch",2
+vercel/next.js,trigger_release_new.yml,123,1,1,workflow_dispatch,3
+vercel/next.js,turbopack-benchmark.yml,111,3,3,"workflow_dispatch, push, pull_request",13
+vercel/next.js,turbopack-nextjs-build-integration-tests.yml,24,1,2,"schedule, workflow_dispatch",1
+vercel/next.js,turbopack-nextjs-dev-integration-tests.yml,17,1,2,"schedule, workflow_dispatch",1
+vercel/next.js,turbopack-update-tests-manifest.yml,82,2,2,"schedule, workflow_dispatch",4
+vercel/next.js,update_fonts_data.yml,48,1,2,"schedule, workflow_dispatch",2
+vercel/next.js,update_react.yml,56,1,2,"schedule, workflow_dispatch",2
+vercel/next.js,upload-tests-manifest.yml,44,1,3,"schedule, workflow_dispatch, push",3
+f/awesome-chatgpt-prompts,ai_bot.yml,623,1,4,"issues, issue_comment, pull_request_review_comment, pull_request",3
+f/awesome-chatgpt-prompts,auto_commands.yml,43,1,2,"pull_request, pull_request_target",1
+f/awesome-chatgpt-prompts,csv_linter.yml,77,1,2,"push, pull_request",2
+f/awesome-chatgpt-prompts,publish.yml,39,1,1,push,3
+yangshun/tech-interview-handbook,lint.yml,44,1,1,pull_request,2
+yangshun/tech-interview-handbook,tsc.yml,37,1,1,pull_request,2
+Chalarangelo/30-seconds-of-code,deploy-production.yml,17,1,2,"schedule, workflow_dispatch",1
+Chalarangelo/30-seconds-of-code,label.yml,22,1,1,pull_request_target,1
+Chalarangelo/30-seconds-of-code,stale.yml,32,1,1,schedule,1
+Chalarangelo/30-seconds-of-code,test.yml,23,1,2,"push, pull_request",2
+Genymobile/scrcpy,release.yml,514,15,1,workflow_dispatch,46
+facebook/react-native,autorebase.yml,27,1,1,issue_comment,2
+facebook/react-native,bump-podfile-lock.yml,41,1,1,workflow_call,2
+facebook/react-native,cache-reaper.yml,20,1,2,"workflow_dispatch, schedule",2
+facebook/react-native,check-for-reproducer.yml,19,1,1,issues,2
+facebook/react-native,check-nightly.yml,34,2,2,"workflow_dispatch, schedule",2
+facebook/react-native,close-pr.yml,63,1,1,push,1
+facebook/react-native,create-draft-release.yml,29,1,1,workflow_call,3
+facebook/react-native,create-release.yml,56,1,1,workflow_dispatch,2
+facebook/react-native,danger-pr.yml,29,1,1,pull_request_target,4
+facebook/react-native,generate-changelog.yml,28,1,1,workflow_call,3
+facebook/react-native,monitor-new-issues.yml,45,1,2,"schedule, workflow_dispatch",4
+facebook/react-native,needs-attention.yml,28,1,1,issue_comment,2
+facebook/react-native,nightly.yml,203,11,2,"workflow_dispatch, schedule",18
+facebook/react-native,on-issue-labeled.yml,60,2,1,issues,5
+facebook/react-native,prebuild-ios-core.yml,212,2,1,workflow_call,21
+facebook/react-native,prebuild-ios-dependencies.yml,202,3,1,workflow_call,25
+facebook/react-native,publish-bumped-packages.yml,28,1,1,push,3
+facebook/react-native,publish-release.yml,239,13,1,push,23
+facebook/react-native,retry-workflow.yml,19,1,1,workflow_dispatch,0
+facebook/react-native,stale-bot.yml,77,4,1,schedule,4
+facebook/react-native,test-all.yml,655,24,3,"workflow_dispatch, pull_request, push",65
+facebook/react-native,test-libraries-on-nightlies.yml,100,3,1,workflow_call,7
+microsoft/PowerToys,dependency-review.yml,26,1,1,pull_request,2
+microsoft/PowerToys,msstore-submissions.yml,89,1,2,"workflow_dispatch, release",4
+microsoft/PowerToys,package-submissions.yml,38,1,2,"workflow_dispatch, release",0
+microsoft/PowerToys,spelling2.yml,209,4,3,"push, pull_request_target, issue_comment",4
+electron/electron,archaeologist-dig.yml,65,1,1,pull_request,5
+electron/electron,audit-branch-ci.yml,145,1,2,"workflow_dispatch, schedule",2
+electron/electron,branch-created.yml,128,1,2,"workflow_dispatch, create",5
+electron/electron,build-git-cache.yml,74,3,1,schedule,6
+electron/electron,build.yml,396,19,3,"workflow_dispatch, push, pull_request",22
+electron/electron,clean-src-cache.yml,29,1,1,schedule,0
+electron/electron,issue-commented.yml,26,1,1,issue_comment,1
+electron/electron,issue-labeled.yml,88,3,1,issues,6
+electron/electron,issue-opened.yml,148,2,1,issues,5
+electron/electron,issue-transferred.yml,27,1,1,issues,2
+electron/electron,issue-unlabeled.yml,39,1,1,issues,2
+electron/electron,linux-publish.yml,87,4,1,workflow_dispatch,5
+electron/electron,macos-publish.yml,103,5,1,workflow_dispatch,6
+electron/electron,non-maintainer-dependency-change.yml,37,1,1,pull_request_target,0
+electron/electron,pipeline-electron-build-and-test-and-nan.yml,93,3,1,workflow_call,3
+electron/electron,pipeline-electron-build-and-test.yml,90,2,1,workflow_call,2
+electron/electron,pipeline-electron-docs-only.yml,42,1,1,workflow_call,2
+electron/electron,pipeline-electron-lint.yml,84,1,1,workflow_call,3
+electron/electron,pipeline-segment-electron-build.yml,207,1,1,workflow_call,13
+electron/electron,pipeline-segment-electron-gn-check.yml,162,1,1,workflow_call,7
+electron/electron,pipeline-segment-electron-test.yml,264,1,1,workflow_call,7
+electron/electron,pipeline-segment-node-nan-test.yml,146,2,1,workflow_call,12
+electron/electron,pull-request-labeled.yml,41,2,1,pull_request_target,3
+electron/electron,scorecards.yml,55,1,3,"branch_protection_rule, schedule, push",4
+electron/electron,semantic.yml,26,1,1,pull_request,2
+electron/electron,stable-prep-items.yml,35,1,2,"schedule, workflow_dispatch",2
+electron/electron,stale.yml,52,2,2,"workflow_dispatch, schedule",4
+electron/electron,windows-publish.yml,89,4,1,workflow_dispatch,5
+yt-dlp/yt-dlp,build.yml,572,9,2,"workflow_call, workflow_dispatch",22
+yt-dlp/yt-dlp,codeql.yml,65,1,3,"push, pull_request, schedule",4
+yt-dlp/yt-dlp,core.yml,66,1,2,"push, pull_request",2
+yt-dlp/yt-dlp,download.yml,48,2,2,"push, pull_request",4
+yt-dlp/yt-dlp,issue-lockdown.yml,21,1,1,issues,0
+yt-dlp/yt-dlp,quick-test.yml,42,2,2,"push, pull_request",4
+yt-dlp/yt-dlp,release-master.yml,47,2,1,push,3
+yt-dlp/yt-dlp,release-nightly.yml,60,3,1,schedule,4
+yt-dlp/yt-dlp,release.yml,394,4,2,"workflow_call, workflow_dispatch",10
+yt-dlp/yt-dlp,sanitize-comment.yml,17,1,1,issue_comment,1
+krahets/hello-algo,c.yml,72,1,3,"push, pull_request, workflow_dispatch",1
+krahets/hello-algo,cpp.yml,72,1,3,"push, pull_request, workflow_dispatch",1
+krahets/hello-algo,dart.yml,36,1,3,"push, pull_request, workflow_dispatch",2
+krahets/hello-algo,dotnet.yml,39,1,3,"push, pull_request, workflow_dispatch",2
+krahets/hello-algo,go.yml,36,1,3,"push, pull_request, workflow_dispatch",2
+krahets/hello-algo,java.yml,29,1,3,"push, pull_request, workflow_dispatch",2
+krahets/hello-algo,javascript.yml,27,1,3,"push, pull_request, workflow_dispatch",3
+krahets/hello-algo,kotlin.yml,24,1,3,"push, pull_request, workflow_dispatch",1
+krahets/hello-algo,python.yml,41,1,3,"push, pull_request, workflow_dispatch",2
+krahets/hello-algo,ruby.yml,37,1,3,"push, pull_request, workflow_dispatch",2
+krahets/hello-algo,rust.yml,27,1,2,"push, pull_request",2
+krahets/hello-algo,swift.yml,25,1,3,"push, pull_request, workflow_dispatch",1
+krahets/hello-algo,typescript.yml,26,1,3,"push, pull_request, workflow_dispatch",2
+n8n-io/n8n,benchmark-destroy-nightly.yml,46,1,2,"schedule, workflow_dispatch",3
+n8n-io/n8n,benchmark-nightly.yml,104,1,2,"schedule, workflow_dispatch",5
+n8n-io/n8n,check-documentation-urls.yml,47,1,3,"release, schedule, workflow_dispatch",3
+n8n-io/n8n,check-pr-title.yml,36,1,1,pull_request,3
+n8n-io/n8n,check-run-eligibility.yml,109,1,1,workflow_call,2
+n8n-io/n8n,chromatic.yml,98,2,3,"schedule, workflow_dispatch, pull_request_review",7
+n8n-io/n8n,ci-master.yml,80,4,1,push,7
+n8n-io/n8n,ci-postgres-mysql.yml,229,6,4,"schedule, workflow_dispatch, pull_request, pull_request_review",24
+n8n-io/n8n,ci-pull-requests.yml,103,4,1,pull_request,11
+n8n-io/n8n,docker-base-image.yml,55,1,1,workflow_dispatch,6
+n8n-io/n8n,docker-build-push.yml,332,3,4,"schedule, workflow_call, workflow_dispatch, pull_request",12
+n8n-io/n8n,docker-images-benchmark.yml,45,1,2,"workflow_dispatch, push",5
+n8n-io/n8n,e2e-flaky.yml,68,1,1,workflow_dispatch,4
+n8n-io/n8n,e2e-reusable.yml,189,4,1,workflow_call,10
+n8n-io/n8n,e2e-tests-pr.yml,79,3,1,pull_request_review,3
+n8n-io/n8n,e2e-tests.yml,70,3,2,"schedule, workflow_dispatch",2
+n8n-io/n8n,linting-reusable.yml,45,1,1,workflow_call,2
+n8n-io/n8n,notify-pr-status.yml,27,1,2,"pull_request_review, pull_request",1
+n8n-io/n8n,release-create-pr.yml,71,1,1,workflow_dispatch,3
+n8n-io/n8n,release-publish.yml,168,5,1,pull_request,11
+n8n-io/n8n,release-push-to-channel.yml,119,5,1,workflow_dispatch,3
+n8n-io/n8n,security-trivy-scan-callable.yml,123,1,2,"workflow_dispatch, workflow_call",4
+n8n-io/n8n,test-workflows-callable.yml,215,1,1,workflow_call,2
+n8n-io/n8n,test-workflows-nightly.yml,26,1,2,"schedule, workflow_dispatch",1
+n8n-io/n8n,test-workflows-pr-approved.yml,27,2,1,pull_request_review,2
+n8n-io/n8n,test-workflows-pr-comment.yml,112,2,1,issue_comment,2
+n8n-io/n8n,units-tests-reusable.yml,83,1,1,workflow_call,5
+nodejs/node,auto-start-ci.yml,75,2,1,schedule,2
+nodejs/node,build-tarball.yml,108,2,2,"pull_request, push",8
+nodejs/node,close-stale-feature-requests.yml,56,1,2,"workflow_dispatch, schedule",1
+nodejs/node,close-stale-pull-requests.yml,59,1,1,workflow_dispatch,1
+nodejs/node,close-stalled.yml,36,1,1,schedule,1
+nodejs/node,codeql.yml,41,1,1,schedule,4
+nodejs/node,comment-labeled.yml,55,3,2,"issues, pull_request_target",0
+nodejs/node,commit-lint.yml,32,1,1,pull_request,2
+nodejs/node,commit-queue.yml,99,2,1,schedule,2
+nodejs/node,coverage-linux-without-intl.yml,84,1,2,"pull_request, push",4
+nodejs/node,coverage-linux.yml,84,1,2,"pull_request, push",4
+nodejs/node,coverage-windows.yml,76,1,2,"pull_request, push",3
+nodejs/node,create-release-proposal.yml,81,1,1,workflow_dispatch,2
+nodejs/node,daily-wpt-fyi.yml,162,2,2,"workflow_dispatch, schedule",6
+nodejs/node,daily.yml,31,1,2,"workflow_dispatch, schedule",2
+nodejs/node,doc.yml,43,1,2,"pull_request, push",3
+nodejs/node,find-inactive-collaborators.yml,50,1,2,"schedule, workflow_dispatch",3
+nodejs/node,find-inactive-tsc.yml,62,1,2,"schedule, workflow_dispatch",4
+nodejs/node,label-flaky-test-issue.yml,52,1,1,issues,0
+nodejs/node,label-pr.yml,18,1,1,pull_request_target,1
+nodejs/node,license-builder.yml,38,1,2,"schedule, workflow_dispatch",2
+nodejs/node,lint-release-proposal.yml,78,1,1,push,1
+nodejs/node,linters.yml,206,10,2,"pull_request, push",18
+nodejs/node,major-release.yml,49,1,1,schedule,0
+nodejs/node,notify-on-push.yml,71,2,1,push,3
+nodejs/node,notify-on-review-wanted.yml,44,1,2,"issues, pull_request_target",1
+nodejs/node,scorecard.yml,78,1,4,"branch_protection_rule, schedule, push, workflow_dispatch",5
+nodejs/node,test-internet.yml,59,1,4,"workflow_dispatch, schedule, pull_request, push",2
+nodejs/node,test-linux.yml,70,1,2,"pull_request, push",3
+nodejs/node,test-macos.yml,100,1,2,"pull_request, push",3
+nodejs/node,timezone-update.yml,72,1,2,"schedule, workflow_dispatch",3
+nodejs/node,tools.yml,319,1,2,"schedule, workflow_dispatch",3
+nodejs/node,update-openssl.yml,60,1,2,"schedule, workflow_dispatch",3
+nodejs/node,update-release-links.yml,20,1,2,"workflow_dispatch, release",0
+nodejs/node,update-v8.yml,57,1,2,"schedule, workflow_dispatch",4
+nodejs/node,update-wpt.yml,87,1,2,"schedule, workflow_dispatch",3
+d3/d3,deploy.yml,36,1,2,"workflow_dispatch, push",6
+d3/d3,test.yml,24,1,2,"push, pull_request",2
+langchain-ai/langchain,_compile_integration_test.yml,52,1,1,workflow_call,2
+langchain-ai/langchain,_integration_test.yml,89,1,1,workflow_dispatch,2
+langchain-ai/langchain,_lint.yml,76,1,1,workflow_call,2
+langchain-ai/langchain,_release.yml,495,7,2,"workflow_call, workflow_dispatch",19
+langchain-ai/langchain,_test.yml,75,1,1,workflow_call,2
+langchain-ai/langchain,_test_doc_imports.yml,50,1,1,workflow_call,2
+langchain-ai/langchain,_test_pydantic.yml,63,1,1,workflow_call,2
+langchain-ai/langchain,_test_release.yml,106,2,1,workflow_call,6
+langchain-ai/langchain,api_doc_build.yml,107,1,2,"workflow_dispatch, schedule",5
+langchain-ai/langchain,check-broken-links.yml,25,1,2,"workflow_dispatch, schedule",2
+langchain-ai/langchain,check_core_versions.yml,29,1,1,pull_request,1
+langchain-ai/langchain,check_diffs.yml,172,8,3,"push, pull_request, merge_group",10
+langchain-ai/langchain,check_new_docs.yml,35,1,2,"push, pull_request",3
+langchain-ai/langchain,codespell.yml,35,1,2,"push, pull_request",2
+langchain-ai/langchain,codspeed.yml,62,1,3,"push, pull_request, workflow_dispatch",4
+langchain-ai/langchain,people.yml,26,1,3,"schedule, push, workflow_dispatch",2
+langchain-ai/langchain,run_notebooks.yml,72,1,2,"workflow_dispatch, schedule",4
+langchain-ai/langchain,scheduled_test.yml,172,2,2,"workflow_dispatch, schedule",7
+axios/axios,ci.yml,61,1,2,"push, pull_request",4
+axios/axios,codeql-analysis.yml,47,1,3,"push, pull_request, schedule",3
+axios/axios,depsreview.yaml,16,1,1,pull_request,2
+axios/axios,labeler.yml,32,1,2,"pull_request_target, workflow_dispatch",2
+axios/axios,notify.yml,51,1,1,workflow_dispatch,2
+axios/axios,npm-tag.yml,30,1,1,workflow_dispatch,2
+axios/axios,pr-guard.yml,30,1,1,pull_request,2
+axios/axios,pr.yml,84,1,1,workflow_dispatch,6
+axios/axios,publish.yml,84,2,2,"pull_request, workflow_dispatch",8
+axios/axios,sponsors.yml,72,1,3,"workflow_dispatch, repository_dispatch, schedule",3
+axios/axios,stale.yml,34,1,1,schedule,1
+mrdoob/three.js,ci.yml,114,5,1,pull_request,11
+mrdoob/three.js,codeql-code-scanning.yml,45,1,4,"push, pull_request, schedule, workflow_dispatch",4
+mrdoob/three.js,read-size.yml,67,1,1,pull_request,3
+mrdoob/three.js,report-size.yml,272,1,1,workflow_run,5
+langgenius/dify,api-tests.yml,99,1,1,pull_request,4
+langgenius/dify,build-push.yml,149,2,1,push,9
+langgenius/dify,db-migration-test.yml,57,1,1,pull_request,3
+langgenius/dify,deploy-dev.yml,24,1,1,workflow_run,1
+langgenius/dify,deploy-enterprise.yml,29,1,1,workflow_run,1
+langgenius/dify,deploy-rag-dev.yml,28,1,1,workflow_run,1
+langgenius/dify,docker-build.yml,48,1,1,pull_request,3
+langgenius/dify,stale.yml,30,1,1,schedule,1
+langgenius/dify,style.yml,183,4,1,pull_request,14
+langgenius/dify,tool-test-sdks.yaml,43,1,1,pull_request,2
+langgenius/dify,translate-i18n-base-on-english.yml,63,1,1,pull_request,4
+langgenius/dify,vdb-tests.yml,97,1,1,pull_request,5
+langgenius/dify,web-tests.yml,55,1,1,pull_request,4
+rust-lang/rust,ci.yml,335,3,2,"push, pull_request",5
+rust-lang/rust,dependencies.yml,155,3,2,"schedule, workflow_dispatch",6
+rust-lang/rust,ghcr.yml,75,1,2,"workflow_dispatch, schedule",1
+rust-lang/rust,post-merge.yml,53,1,1,push,1
+denoland/deno,cargo_publish.yml,55,1,1,workflow_dispatch,3
+denoland/deno,ci.yml,843,4,2,"push, pull_request",22
+denoland/deno,node_compat_test.yml,88,2,2,"schedule, workflow_dispatch",10
+denoland/deno,npm_publish.yml,45,1,2,"workflow_dispatch, release",3
+denoland/deno,post_publish.yml,34,1,1,release,4
+denoland/deno,promote_to_release.yml,171,2,1,workflow_dispatch,10
+denoland/deno,start_release.yml,45,1,1,workflow_dispatch,2
+denoland/deno,version_bump.yml,59,1,1,workflow_dispatch,3
+denoland/deno,wpt_epoch.yml,80,1,2,"schedule, workflow_dispatch",3
+facebook/create-react-app,build-and-test.yml,76,5,2,"push, pull_request",7
+facebook/create-react-app,e2e-base.yml,35,1,1,workflow_call,2
+facebook/create-react-app,lint.yml,21,1,2,"push, pull_request",2
+goldbergyoni/nodebestpractices,automerge-prs.yml,33,1,4,"pull_request, pull_request_review, check_suite, status",1
+goldbergyoni/nodebestpractices,lint-and-generate-html-from-markdown.yml,30,1,2,"push, pull_request",2
+goldbergyoni/nodebestpractices,update-date-in-last-update-badge.yml,39,1,1,push,2
+excalidraw/excalidraw,autorelease-excalidraw.yml,27,1,1,push,2
+excalidraw/excalidraw,autorelease-preview.yml,55,1,1,issue_comment,5
+excalidraw/excalidraw,build-docker.yml,13,1,1,push,1
+excalidraw/excalidraw,cancel.yml,17,1,2,"push, pull_request",1
+excalidraw/excalidraw,lint.yml,22,1,1,pull_request,2
+excalidraw/excalidraw,locales-coverage.yml,47,1,1,push,3
+excalidraw/excalidraw,publish-docker.yml,30,1,1,push,5
+excalidraw/excalidraw,semantic-pr-title.yml,16,1,1,pull_request,1
+excalidraw/excalidraw,sentry-production.yml,37,1,1,push,2
+excalidraw/excalidraw,size-limit.yml,28,1,1,pull_request,3
+excalidraw/excalidraw,test-coverage-pr.yml,26,1,1,pull_request,3
+excalidraw/excalidraw,test.yml,19,1,1,push,2
+open-webui/open-webui,build-release.yml,72,1,1,push,4
+open-webui/open-webui,deploy-to-hf-spaces.yml,63,2,2,"push, workflow_dispatch",1
+open-webui/open-webui,docker-build.yaml,642,8,2,"workflow_dispatch, push",48
+open-webui/open-webui,format-backend.yaml,49,1,2,"push, pull_request",2
+open-webui/open-webui,format-build-frontend.yaml,65,2,2,"push, pull_request",4
+open-webui/open-webui,release-pypi.yml,36,1,1,push,4
+microsoft/terminal,addToProject.yml,21,1,1,issues,1
+microsoft/terminal,spelling2.yml,204,4,3,"push, pull_request_target, issue_comment",4
+microsoft/terminal,winget.yml,27,1,1,release,0

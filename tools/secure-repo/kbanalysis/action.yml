@@ -1,0 +1,18 @@
+name: "KBAnalysis"
+description: "An action to analyze action"
+inputs:
+  github-token:
+    description: "github-token to be used for octokit authentication"
+    required: true
+    default: "${{github.token}}"
+  owner:
+    description: owner of the missing action
+  repo:
+    description: repo of the missing action     
+    
+
+runs:
+  using: node16
+  main: dist/src/index.js
+
+

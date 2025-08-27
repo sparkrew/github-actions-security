@@ -1,0 +1,23 @@
+{
+  "workflow": "axios_axios__notify.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "injection": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "injection",
+      "line": "51",
+      "column": "",
+      "job": "notify",
+      "step": "4",
+      "details": "Sources: github.event.inputs.tag || github.event.release.tag_name",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

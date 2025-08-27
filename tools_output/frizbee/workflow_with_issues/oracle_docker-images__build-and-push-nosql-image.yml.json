@@ -1,0 +1,48 @@
+{
+  "workflow": "oracle_docker-images__build-and-push-nosql-image.yml",
+  "tool": "frizbee",
+  "summary": {
+    "total_findings": 6,
+    "by_rule": {
+      "unpinned-github-actions": 6
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "original": "actions/checkout@v4",
+      "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+      "line": 28
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "original": "docker/setup-qemu-action@v3",
+      "pinned": "docker/setup-qemu-action@29109295f81e9208d7d86ff1c6c12d2833863392",
+      "line": 31
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "original": "docker/setup-buildx-action@v3",
+      "pinned": "docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435",
+      "line": 34
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "original": "docker/login-action@v3",
+      "pinned": "docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772",
+      "line": 47
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "original": "docker/metadata-action@v5",
+      "pinned": "docker/metadata-action@902fa8ec7d6ecbf8d84d538b9b233a880e428804",
+      "line": 55
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "original": "docker/build-push-action@v6",
+      "pinned": "docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83",
+      "line": 67
+    }
+  ]
+}

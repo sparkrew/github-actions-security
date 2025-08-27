@@ -1,0 +1,36 @@
+{
+  "workflow": "Significant-Gravitas_AutoGPT__classic-benchmark-ci.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "unverified_script_exec": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": "128",
+      "column": "",
+      "job": "self-test-with-agent",
+      "step": "2",
+      "details": "Command: curl -sSL https://install.python-poetry.org | python",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "rule_id": "unverified_script_exec",
+      "line": "65",
+      "column": "",
+      "job": "test",
+      "step": "3",
+      "details": "Command: curl -sSL https://install.python-poetry.org | python",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    }
+  ]
+}

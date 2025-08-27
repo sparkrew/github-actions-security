@@ -1,0 +1,128 @@
+actions:
+  actions-labeler:
+    name: actions/labeler
+    permissions:
+      contents: read
+      pull-requests: write
+  timonvs-pr-labeler-action:
+    name: timonvs/pr-labeler-action
+    permissions:
+      contents: read
+      pull-requests: write
+  actions-checkout:
+    name: actions/checkout
+    default-token: token
+    permissions:
+      contents: read
+  peter-evans-create-or-update-comment:
+    name: peter-evans/create-or-update-comment
+    default-token: token
+    permissions:
+      issues: write
+      pull-requests: write
+  actions-setup-node:
+    name: actions/setup-node # setup-node uses token to download node from an OSS repo. Probably just needed to avoid rate limiting. 
+    default-token: token
+  actions-setup-go:
+    name: actions/setup-go # setup-node uses token to download from an OSS repo. Probably just needed to avoid rate limiting. 
+    default-token: token
+  actions-setup-python:
+    name: actions/setup-python
+    default-token: token
+  jonabc-setup-licensed:
+    name: jonabc/setup-licensed # uses token to get releases from an OSS repo. Probably just needed to avoid rate limiting. 
+  actions-upload-artifact:
+    name: actions/upload-artifact
+  actions-download-artifact:
+    name: actions/download-artifact
+  actions-cache:
+    name: actions/cache
+  goreleaser-goreleaser-action:
+    name: goreleaser/goreleaser-action
+    env-key: GITHUB_TOKEN
+    permissions:
+      contents: write
+  actions-create-release:
+    name: actions/create-release
+    env-key: GITHUB_TOKEN
+    permissions:
+      contents: write
+  peter-evans-close-issue:
+    name: peter-evans/close-issue
+    default-token: token
+    permissions:
+      issues: write
+  actions-stale:
+    name: actions/stale
+    default-token: repo-token
+    permissions:
+      issues: write
+      pull-requests: write
+  github-super-linter:
+    name: github/super-linter
+    env-key: GITHUB_TOKEN
+    permissions:
+      statuses: write
+  peaceiris-actions-gh-pages:
+    name: peaceiris/actions-gh-pages # TODO: if token is not github token, no permissions needed
+    permissions:
+      contents: write
+  jasonetco-build-and-tag-action:
+    name: jasonetco/build-and-tag-action
+    env-key: GITHUB_TOKEN
+    permissions:
+      contents: write
+  actions-setup-java:
+    name: actions/setup-java # custom logic for maven and gradle
+  actions-setup-dotnet:
+    name: actions/setup-dotnet  # custom code
+  myjetwallet-nuget-publish-to-github-packages-action:
+    name: myjetwallet/nuget-publish-to-github-packages-action # TODO: if token is not github token, no permissions needed
+    permissions:
+      packages: write
+  paulhatch-semantic-version:
+    name: paulhatch/semantic-version
+  rokroskar-workflow-run-cleanup-action:
+    name: rokroskar/workflow-run-cleanup-action
+    env-key: GITHUB_TOKEN
+    permissions:
+      actions: write
+  jwgmeligmeyling-checkstyle-github-action:
+    name: jwgmeligmeyling/checkstyle-github-action
+    default-token: token
+    permissions:
+      checks: write
+  bobheadxi-deployments:
+    name: bobheadxi/deployments
+    permissions: # TODO: token
+      deployments: write
+  snyk-actions-node:
+    name: snyk/actions/node
+    permissions:
+      security-events: write # upload SARIF TODO: need to verify, do not see token being passed
+  brandedoutcast-publish-nuget:
+    name: brandedoutcast/publish-nuget # custom code
+  rohith-publish-nuget:
+    name: rohith/publish-nuget # custom code, same as above
+  peter-evans-create-pull-request:
+    name: peter-evans/create-pull-request
+    default-token: token
+    permissions:
+     contents: write
+     pull-requests: write
+  docker-login-action:
+    name: docker/login-action #custom logic
+  azure-docker-login:
+    name: azure/docker-login  # custom
+  elgohr-publish-docker-github-action:
+    name: elgohr/publish-docker-github-action # custom logic
+  borales-actions-yarn:
+    name: borales/actions-yarn # custom code
+  js-devtools-npm-publish:
+    name: js-devtools/npm-publish #custom code
+  reviewdog-action-staticcheck:
+    name: reviewdog/action-staticcheck
+    default-token: github_token
+    permissions:
+      checks: write
+      pull-requests: write

@@ -1,0 +1,27 @@
+{
+  "workflow": "trekhleb_javascript-algorithms__CI.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # actions/checkout@v2 | releases,850,v2.7.0",
+      "line": 15
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # actions/setup-node@v1 | servicing,v1.4.6",
+      "line": 17
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: codecov/codecov-action@29386c70ef20e286228c72b668a06fd0e8399192 # codecov/codecov-action@v1",
+      "line": 27
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "workflow": "facebook_hhvm__ubuntu.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "unpinned-github-actions": 2
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0",
+      "line": 56
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/upload-artifact@ff15f0306b3f739f7b6fd43fb5d26cd321bd4de5 # actions/upload-artifact@v3 | v3,v3.2.1",
+      "line": 62
+    }
+  ]
+}

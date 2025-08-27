@@ -1,0 +1,23 @@
+{
+  "workflow": "tensorflow_tensorflow__release-branch-cherrypick.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "injection": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "injection",
+      "line": "53",
+      "column": "",
+      "job": "cherrypick",
+      "step": "1",
+      "details": "Sources: github.event.inputs.git_commit",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

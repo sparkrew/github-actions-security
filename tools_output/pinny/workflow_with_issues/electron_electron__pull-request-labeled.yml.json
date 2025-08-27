@@ -1,0 +1,27 @@
+{
+  "workflow": "electron_electron__pull-request-labeled.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: slackapi/slack-github-action@b0fa283ad8fea605de13dc3f449259339835fc52 # v2.1.0",
+      "line": 13
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: electron/github-app-auth-action@384fd19694fe7b6dcc9a684746c6976ad78228ae # v1.1.1",
+      "line": 27
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: dsanders11/project-actions/edit-item@2134fe7cc71c58b7ae259c82a8e63c6058255678 # v1.7.0",
+      "line": 33
+    }
+  ]
+}
