@@ -1,23 +1,35 @@
 # GitHub Actions Security Analysis
 
 ## Overview
-This repository contains a systematic study of security risks associated with GitHub Actions workflows. It includes a bibliography of research papers and articles discussing security vulnerabilities, attack vectors, and mitigation strategies in CI/CD pipelines.
+This repository hosts a systematic, comparative study of security risks in GitHub Actions (GHA) workflows. It contains curated datasets of real workflow files, a normalized mapping of tool capabilities to issue categories, and scripts and notebooks used to collect, analyze, and summarize results.
 
-## Repository Contents
-- **`biblio.md`** – A curated bibliography of research papers and blog posts analyzing GitHub Actions security.
-- **`tools.csv`** – A dataset listing security tools related to GitHub Actions analysis.
+## Repository Structure
+- **`dataset/`** and **`datasets/`**: raw GHA workflow files used as data, kept here so they are not executed by this repository. Paths mirror the original repos, for example `datasets/<owner>/<repo>/.github/workflows/<file>.yml`.
+- **`capabilities/`**: rule and capability metadata.
+  - `group_tool_capabilities.csv`: grouped high level capabilities per tool.
+  - `rules_mapping.csv`: mapping from tool rule identifiers to the study taxonomy.
+- **`tools/`**: scripts or wrappers for running scanners and utilities used in the study.
+- **`scripts/`**: Jupyter notebooks that orchestrate collection and analysis.
+  - `fetch_workflows.ipynb`, `run_tools.ipynb`, `results.ipynb`.
+- **`tools_output/`**: selected outputs only.
+  - `*/workflow_with_issues/`: per tool, only workflows where issues were found.
+- **`biblio.md`**: annotated bibliography and links.
+- **`tools.csv`**: list of scanners considered in the study.
+
+> Safety note: workflow files are treated as data, not automation. They live under `dataset/` or `datasets/` so that GitHub does not run them for this repository.
 
 ## Study Objective
-The objective of this study is to identify and analyze security risks in GitHub Actions workflows, focusing on:
-- Common vulnerabilities (e.g., cache poisoning, privilege escalation, dependency risks).
-- Mitigation strategies and security best practices.
-- Comparative analysis of security tools for GitHub Actions.
+Identify and compare security risks in GitHub Actions workflows, with focus on:
+- Common misconfigurations and weaknesses in CI contexts (privilege scope, untrusted inputs, caches, dependency and action trust, secret handling).
+- Practical mitigation strategies and recommended defaults.
+- A capability based comparison of open source scanners for GHA.
 
-## References
-For detailed analysis, refer to **[`biblio.md`](biblio.md)**, which contains summaries of key research papers and articles.
-
-## Contributions & Feedback
-If you have any suggestions or contributions, feel free to open an issue or submit a pull request.
-
----
-Maintained as part of an academic research project on software supply chain security.
+## Quick Start
+```bash
+git clone https://github.com/Madjda32-del/github-actions-security.git
+cd github-actions-security
+# Optional environment
+# python -m venv .venv && source .venv/bin/activate
+# pip install -r requirements.txt
+# Open notebooks in your environment:
+# jupyter lab scripts/fetch_workflows.ipynb
