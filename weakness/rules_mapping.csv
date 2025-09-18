@@ -26,7 +26,6 @@ actionlint,"[if-cond]",control-flow-weakness
 actionlint,"[action]",github-runner-compatibility-weakness
 frizbee,unpinned-github-actions,unpinned-dependency-weakness
 pinny,unpinned-github-actions,unpinned-dependency-weakness
-scharf,unpinned-github-actions,unpinned-dependency-weakness
 poutine,debug_enabled,injection-weakness
 poutine,default_permissions_on_risky_events,excessive-permission-weakness
 poutine,github_action_from_unverified_creator_used,trigger-misuse-weakness
@@ -39,7 +38,8 @@ poutine,pr_runs_on_self_hosted,trigger-misuse-weakness
 poutine,unpinnable_action,unpinned-dependency-weakness
 poutine,untrusted_checkout_exec,artifact-integrity-weakness
 poutine,unverified_script_exec,injection-weakness
-scorecard,Dangerous-Workflow,trigger-misuse-weakness
+scharf,unpinned-github-actions,unpinned-dependency-weakness
+scorecard,Dangerous-Workflow,trigger-misuse-weakness + injection-weakness
 scorecard,Pinned-Dependencies,unpinned-dependency-weakness
 scorecard,Token-Permissions,excessive-permission-weakness
 scorecard,SAST,hardening-gap-weakness
