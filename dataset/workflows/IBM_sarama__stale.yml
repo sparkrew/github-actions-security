@@ -1,0 +1,47 @@
+# configuration for https://github.com/actions/stale
+name: "Stale issues and PRs"
+on:
+  schedule:
+  - cron: "0 */2 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
+
+permissions:
+  contents: read  # for actions/checkout to fetch code
+
+jobs:
+  stale:
+    permissions:
+      issues: write  # for actions/stale to close stale issues
+      pull-requests: write  # for actions/stale to close stale PRs
+    runs-on: ubuntu-latest
+    steps:
+      # pinned to main commit to make use of https://github.com/actions/stale/pull/1033
+    - uses: actions/stale@5bef64f19d7facfb25b37b414482c7164d639639 # v9.1.0
+      with:
+        ascending: true
+        days-before-stale: 90
+        days-before-close: 30
+        stale-issue-message: >-
+          Thank you for taking the time to raise this issue. However, it has not had
+          any activity on it in the past 90 days and will be closed in 30 days if
+          no updates occur.
+
+          Please check if the main branch has already resolved the issue since it
+          was raised. If you believe the issue is still valid and you would like input
+          from the maintainers then please comment to ask for it to be reviewed.
+        stale-pr-message: >-
+          Thank you for your contribution! However, this pull request has not had
+          any activity in the past 90 days and will be closed in 30 days if no updates
+          occur.
+
+          If you believe the changes are still valid then please verify your branch
+          has no conflicts with main and rebase if needed. If you are awaiting a (re-)review
+          then please let us know.
+        stale-issue-label: "stale"
+        exempt-issue-labels: "stale/exempt,pinned"
+        stale-pr-label: "stale"
+        exempt-pr-labels: "stale/exempt,pinned"

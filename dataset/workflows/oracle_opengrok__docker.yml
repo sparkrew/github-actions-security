@@ -1,0 +1,50 @@
+name: Build Docker image
+
+on:
+  push:
+  pull_request:
+  release:
+    types: [created]
+
+jobs:
+  ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Print environment
+      shell: bash
+      run: env
+    - name: Checkout master branch
+      uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+    - name: Install dependencies
+      run: python3 -m pip install -r docker/requirements.txt
+    - name: Install opengrok-tools so that pylint can perform the checks
+      run: python3 -m pip install .
+      working-directory: tools
+    - name: Install checkers
+      run: python3 -m pip install pylint flake8 black isort
+    - name: Run flake8
+      run: flake8 --max-line-length 119 docker/*.py
+    - name: Run pylint
+      run: pylint -E --max-line-length 119 docker/*.py
+    - name: Run black in check mode
+      run: black --check docker/*.py
+    - name: Run isort in check mode
+      run: isort --settings-file docker/.isort.cfg docker/*.py  --check --diff
+    - name: Build and optionally push Docker image
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        OPENGROK_REPO_SLUG: ${{ github.repository }}
+        OPENGROK_REF: ${{ github.ref }}
+      run: ./dev/docker.sh
+    - name: Install Python pre-requisites
+      run: python3 -m pip install requests
+    - name: Optionally update README on Docker hub
+      env:
+        OPENGROK_REPO_SLUG: ${{ github.repository }}
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: ./dev/dockerhub_readme.py

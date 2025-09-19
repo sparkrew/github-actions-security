@@ -1,0 +1,115 @@
+name: Build and publish Oracle Instant Client container images to GitHub Container Registry
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'OracleInstantClient/*/19/*'
+      - 'OracleInstantClient/*/21/*'
+      - 'OracleInstantClient/*/23/*'
+      - '.github/workflows/build-and-push-instantclient-images.yml'
+  workflow_dispatch:
+
+jobs:
+  push:
+    name: Build and push Oracle Instant Client images
+
+    runs-on: ubuntu-latest
+
+    outputs:
+      ol: ${{ steps.linux-version.outputs.ol }}
+      ic: ${{ steps.linux-version.outputs.ic }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          # We need "some" commit history to check for changed files
+          fetch-depth: 32
+
+      - name: Determine which images to build
+        id: linux-version
+        working-directory: OracleInstantClient
+        run: |
+          changes=$(mktemp)
+          # workflow is only in the workflow_dispatch event payload
+          workflow="${{ github.event.workflow }}"
+          if [[ -z ${workflow} ]]; then
+            # Push event - retrieve list of changed files
+            git diff --name-only '${{ github.event.before }}..${{ github.event.after }}' > "${changes}"
+            if grep -q build-and-push-instantclient-images.yml "${changes}"; then
+              echo "PUSH: Action updated: rebuilding all images"
+              ol="oraclelinux7 oraclelinux8 oraclelinux9"
+              ic="19 21 23"
+            else
+              echo "PUSH: Rebuilding changed images only"
+              if grep -q oraclelinux7 "${changes}"; then
+                ol="oraclelinux7"
+              fi
+              if grep -q oraclelinux8 "${changes}"; then
+                ol="${ol} oraclelinux8"
+              fi
+              if grep -q oraclelinux9 "${changes}"; then
+                ol="${ol} oraclelinux9"
+              fi
+              if grep -q /19/ "${changes}"; then
+                ic="19"
+              fi
+              if grep -q /21/ "${changes}"; then
+                ic="${ic} 21"
+              fi
+              if grep -q /23/ "${changes}"; then
+                ic="${ic} 23"
+              fi
+            fi
+          else
+            echo "MANUAL: Rebuilding all"
+            ol="oraclelinux7 oraclelinux8 oraclelinux9"
+            ic="19 21 23"
+          fi
+          echo "Rebuilding: ${ol} ${ic}"
+          echo "ol=${ol}" >> $GITHUB_OUTPUT
+          echo "ic=${ic}" >> $GITHUB_OUTPUT
+          rm "${changes}"
+
+      - name: Log into GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${GITHUB_ACTOR,,} --password-stdin
+
+      - name: Repository owner needs to be lowercase
+        id: repo-owner
+        run: |
+          REPO_OWNER=${{ github.repository_owner }}
+          echo "repo-owner=${REPO_OWNER,,}" >> $GITHUB_OUTPUT
+
+      - name: Build Oracle Instant Client
+        run: |
+          for o in ${{ steps.linux-version.outputs.ol }}
+          do
+            for i in ${{ steps.linux-version.outputs.ic }}
+            do
+              if [[ ${o} = "oraclelinux7" && ${i} = "23" ]]; then
+                continue
+              fi
+              if [[ ${o} = "oraclelinux9" && ${i} = "21" ]]; then
+                continue
+              fi
+              docker build --tag ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/${o}-instantclient:${i} OracleInstantClient/${o}/${i}
+            done
+          done
+
+      - name: Push to GitHub Container Registry
+        run: |
+          for o in ${{ steps.linux-version.outputs.ol }}
+          do
+            for i in ${{ steps.linux-version.outputs.ic }}
+            do
+              if [[ ${o} = "oraclelinux7" && ${i} = "23" ]]; then
+                continue
+              fi
+              if [[ ${o} = "oraclelinux9" && ${i} = "21" ]]; then
+                continue
+              fi
+              docker push ghcr.io/${{ steps.repo-owner.outputs.repo-owner }}/${o}-instantclient:${i}
+            done
+          done
