@@ -4,10 +4,11 @@
 This repository hosts a systematic, comparative study of security risks in GitHub Actions (GHA) workflows. It contains curated datasets of real workflow files, a normalized mapping of tool capabilities to issue categories, and scripts and notebooks used to collect, analyze, and summarize results.
 
 ## Repository Structure
-- **`dataset/`** and **`datasets/`**: raw GHA workflow files used as data, kept here so they are not executed by this repository. Paths mirror the original repos, for example `datasets/<owner>/<repo>/.github/workflows/<file>.yml`.
-- **`capabilities/`**: rule and capability metadata.
-  - `group_tool_capabilities.csv`: grouped high level capabilities per tool.
+- **`dataset/`** and **`workflows/`**: raw GHA workflow files used as data, kept here so they are not executed by this repository. Paths mirror the original repos, for example `dataset/workflows/<owner>/<repo>/.github/workflows/<file>.yml`.
+- **`weakness/`**: rule and capability metadata.
   - `rules_mapping.csv`: mapping from tool rule identifiers to the study taxonomy.
+- **`results/`**: directory contains summary CSV files.
+  - `coverage_matrix.csv`, `detection_volume_matrix.csv`, `merged_rules_detections.csv`, `execution_time.csv`.
 - **`tools/`**: scripts or wrappers for running scanners and utilities used in the study.
 - **`scripts/`**: Jupyter notebooks that orchestrate collection and analysis.
   - `fetch_workflows.ipynb`, `run_tools.ipynb`, `results.ipynb`.
@@ -16,7 +17,7 @@ This repository hosts a systematic, comparative study of security risks in GitHu
 - **`biblio.md`**: annotated bibliography and links.
 - **`tools.csv`**: list of scanners considered in the study.
 
-> Safety note: workflow files are treated as data, not automation. They live under `dataset/` or `datasets/` so that GitHub does not run them for this repository.
+> Safety note: workflow files are treated as data, not automation. They live under `dataset/workflows/`  so that GitHub does not run them for this repository.
 
 ## Study Objective
 Identify and compare security risks in GitHub Actions workflows, with focus on:
