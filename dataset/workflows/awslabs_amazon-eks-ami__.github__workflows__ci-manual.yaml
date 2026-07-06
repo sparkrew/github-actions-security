@@ -1,0 +1,166 @@
+name: '[CI] Manual'
+run-name: "#${{ inputs.pr_number }} - ${{ inputs.uuid }}"
+on:
+  workflow_dispatch:
+    inputs:
+      requester:
+        required: true
+        type: string
+      comment_url:
+        required: true
+        type: string
+      uuid:
+        required: true
+        type: string
+      pr_number:
+        required: true
+        type: string
+      git_sha:
+        required: true
+        type: string
+      goal:
+        required: true
+        type: choice
+        default: "test"
+        options:
+          - "build"
+          - "test"
+      os_distros:
+        description: 'Operating System Distributions (comma-separated, e.g., al2,al2023)'
+        default: "al2,al2023"
+        required: false
+        type: string
+      k8s_versions:
+        description: 'Kubernetes Versions (comma-separated, e.g., 1.29,1.30)'
+        required: false
+        type: string
+      build_arguments:
+        required: false
+        type: string
+      test_arguments:
+        required: false
+        type: string
+
+permissions:
+  pull-requests: write
+  issues: write
+  contents: read
+  id-token: write
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      git_sha_short: ${{ steps.variables.outputs.git_sha_short }}
+      workflow_run_url: ${{ steps.variables.outputs.workflow_run_url }}
+    steps:
+    - id: variables
+      run: |
+        echo "git_sha_short=$(echo ${{ inputs.git_sha }} | rev | cut -c-7 | rev)" >> $GITHUB_OUTPUT
+        echo "workflow_run_url=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_OUTPUT
+
+  notify-start:
+    runs-on: ubuntu-latest
+    needs:
+      - setup
+    steps:
+      - uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # 8.0.0
+        with:
+          script: |
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: ${{ inputs.pr_number }},
+              body: `@${{ inputs.requester }} roger [that](${{ inputs.comment_url }})! I've dispatched a [workflow](${{ needs.setup.outputs.workflow_run_url }}). 👍`
+            });
+  ci:
+    uses: ./.github/workflows/ci.yaml
+    needs:
+      - setup
+      - notify-start
+    secrets: inherit
+    with:
+      k8s_versions: ${{ inputs.k8s_versions }}
+      os_distros: ${{ inputs.os_distros }}
+      git_sha: ${{ inputs.git_sha }}
+      build_arguments: ${{ inputs.build_arguments }}
+      test_arguments: ${{ inputs.test_arguments }}
+      resource_id: "ci-${{ inputs.pr_number }}-${{ needs.setup.outputs.git_sha_short }}-${{ inputs.uuid }}"
+      run_name: "ci(#${{ inputs.pr_number }}@${{ needs.setup.outputs.git_sha_short }}): ${{ inputs.uuid }}"
+      goal: "${{ inputs.goal }}"
+
+  notify-outcome:
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    needs:
+      - setup
+      - ci
+    steps:
+      - uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # 8.0.0
+        with:
+          script: |
+            const { data } = await github.rest.actions.listJobsForWorkflowRun({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId
+            });
+            const conclusionEmojis = {
+              "success": "✅",
+              "skipped": "⏭️",
+              "failure": "❌",
+              "cancelled": "🚮"
+            };
+            const uniqueStepNames = new Set();
+            const stepConclusionsByJob = new Map();
+            const ciStepNamePrefix = "${{ needs.ci.outputs.ci_step_name_prefix }}";
+            for (const job of data.jobs) {
+              // look for jobs named "ci / k8sVersion / osDistro"
+              if (/^ci \/ \d+\.\d+/.test(job.name)) {
+                // remove the "ci /" prefix
+                const jobName = job.name.substring("ci /".length).trim();
+                for (const step of job.steps) {
+                  if (step.name.startsWith(ciStepNamePrefix)) {
+                    const stepName = step.name.substring(ciStepNamePrefix.length).trim();
+                    let stepConclusions = stepConclusionsByJob.get(jobName);
+                    if (!stepConclusions) {
+                      stepConclusions = new Map();
+                      stepConclusionsByJob.set(jobName, stepConclusions);
+                    }
+                    stepConclusions.set(stepName, step.conclusion);
+                    uniqueStepNames.add(stepName);
+                  }
+                }
+              }
+            }
+            const headers = [{
+              data: 'AMI variant',
+              header: true
+            }];
+            for (const stepName of uniqueStepNames.values()) {
+              headers.push({
+                  data: stepName,
+                  header: true
+              });
+            }
+            const rows = [];
+            for (const stepConclusionsForJob of [...stepConclusionsByJob.entries()].sort()) {
+              const job = stepConclusionsForJob[0];
+              const row = [job];
+              for (const step of stepConclusionsForJob[1].entries()) {
+                  row.push(`${step[1]} ${conclusionEmojis[step[1]]}`);
+              }
+              rows.push(row);
+            }
+            const commentBody = core.summary
+              .addRaw("@${{ inputs.requester }} the <a href=${{ needs.setup.outputs.workflow_run_url }}>workflow</a> that you <a href=${{ inputs.comment_url }}>requested</a> has completed. 🎉")
+              .addTable([
+                headers,
+                ...rows,
+              ])
+              .stringify();
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: ${{ inputs.pr_number }},
+              body: commentBody
+            });

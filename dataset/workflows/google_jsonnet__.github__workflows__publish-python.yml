@@ -1,0 +1,105 @@
+name: Build and Publish Python Package
+
+# Be very careful granting extra permissions here, as this workflow uses third party actions.
+# Prefer to pin to exact commits for third-party actions. I'm making an exception for actions
+# maintained by GitHub itself.
+
+# For now, just trigger this workflow manually.
+on:
+  workflow_dispatch:
+    inputs:
+      upload_to_pypi:
+        description: "Upload generate package files to PyPI"
+        required: true
+        type: boolean
+      pypi_environment:
+        description: "Which PyPI instance to publish to"
+        required: true
+        type: choice
+        options:
+          - testpypi
+          - pypi
+
+jobs:
+  build_sdist:
+    name: Build Python sdist
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.8"
+          cache: "pip"
+      - run: pip install 'build==1.2.2'
+      - name: Build sdist
+        run: python3 -m build --sdist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sdist
+          path: ./dist/*.gz
+          if-no-files-found: error
+
+  build_wheels:
+    name: Build wheels on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, windows-latest, macos-14, macos-latest]
+
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build wheels
+        uses: pypa/cibuildwheel@298ed2fb2c105540f5ed055e8a6ad78d82dd3a7e # v3.3.1
+        env:
+          # CIBuildWheel itself no longer supports earlier than Python 3.8, which is
+          # the earliest we try to support here. Also likely cibuildwheel will soon
+          # drop support for 3.8, see https://github.com/pypa/cibuildwheel/issues/2685
+          CIBW_SKIP: "*-win32 *-manylinux_i686 *-musllinux_i686"
+          CIBW_TEST_COMMAND: >
+            python {package}/python/_jsonnet_test.py
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cibw-wheels-${{ matrix.os }}
+          path: ./wheelhouse/*.whl
+          if-no-files-found: error
+
+  upload_to_pypi:
+    name: "Upload packages to PyPI"
+    needs: [build_sdist, build_wheels]
+    runs-on: ubuntu-24.04
+    if: "${{ inputs.upload_to_pypi }}"
+    permissions:
+      contents: read
+      id-token: write # Needed for PyPI Trusted Publishing
+    environment:
+      name: "${{ inputs.pypi_environment }}"
+      url: "${{ inputs.pypi_environment == 'pypi' && 'https://pypi.org/p/jsonnet' || 'https://test.pypi.org/p/jsonnet' }}"
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: cibw-wheels
+          pattern: cibw-wheels-*
+      - uses: actions/download-artifact@v4
+        with:
+          path: sdist
+          name: sdist
+      - name: Flatten wheels to one directory
+        run: |
+          mkdir dist
+          find cibw-wheels/ -type f -name '*.whl' -exec mv '{}' ./dist/ ';'
+          find sdist/ -type f -name '*.gz' -exec mv '{}' ./dist/ ';'
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # v1.13.0
+        with:
+          verbose: true
+          print-hash: true
+          repository-url: "${{ inputs.pypi_environment == 'testpypi' && 'https://test.pypi.org/legacy/' || '' }}"

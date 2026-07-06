@@ -1,0 +1,80 @@
+name: Benchmark
+
+on:
+  push:
+    branches:
+      - version-3
+
+  pull_request:
+    branches:
+      - version-3
+
+permissions:
+  id-token: write # required for OIDC
+  contents: read
+  pull-requests: write
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    env:
+      GH_EVENT: ${{github.event_name}}
+      GH_REF: ${{github.head_ref}}
+      GH_REPO: ${{github.repository}}
+      EXECUTION_ENV: github-action
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: [2.7, '3.0', 3.1, 3.2, 3.3, 3.4, jruby-9.4]
+
+    steps:
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+
+      - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+
+      - name: Install gems
+        run: |
+          bundle config set --local without 'development docs rbs repl'
+          bundle install
+
+      - name: Build SDK
+        run: bundle exec rake build
+
+      - name: Benchmark gems
+        env:
+          JRUBY_OPTS: -J-Xmx4g
+        run: bundle exec rake benchmark:run
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v5
+        continue-on-error: true
+        with:
+          role-to-assume: arn:aws:iam::373952703873:role/BenchmarkReporter
+          role-session-name: benchmark-reporter
+          aws-region: us-east-1
+
+      - name: Upload benchmark report
+        if: ${{ env.AWS_ACCESS_KEY_ID != '' }}
+        run: bundle exec rake benchmark:upload-report
+
+      - name: Put benchmark metrics
+        if: ${{ env.AWS_ACCESS_KEY_ID != '' }}
+        run: bundle exec rake benchmark:put-metrics
+
+      - name: Check for Performance Regressions
+        if: ${{ env.AWS_ACCESS_KEY_ID != '' }}
+        id: regressions
+        run: bundle exec rake benchmark:check-regressions
+
+      - name: Comment on PR
+        if: ${{ github.event_name == 'pull_request' && steps.regressions.outputs.message }}
+        uses: thollander/actions-comment-pull-request@main
+        with:
+          message: ${{ steps.regressions.outputs.message }}
+          comment-tag: performance-regression
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

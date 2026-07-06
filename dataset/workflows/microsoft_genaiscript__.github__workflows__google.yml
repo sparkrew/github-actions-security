@@ -1,0 +1,37 @@
+name: google tests
+permissions:
+    contents: read
+on:
+    workflow_dispatch:
+    release:
+        types:
+            - published
+    pull_request:
+        paths:
+            - yarn.lock
+            - ".github/workflows/google.yml"
+            - "packages/core/**/*"
+            - "packages/cli/**/*"
+            - "packages/samples/**/*"
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}-google
+    cancel-in-progress: true
+jobs:
+    tests:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  submodules: "recursive"
+                  fetch-depth: 0
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: "22"
+                  cache: yarn
+            - run: yarn install --frozen-lockfile
+            - name: compile
+              run: yarn compile:action
+            - name: poem
+              run: yarn run:script poem -p google --out-trace $GITHUB_STEP_SUMMARY
+              env:
+                  GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}

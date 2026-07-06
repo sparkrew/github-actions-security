@@ -1,0 +1,167 @@
+name: Website validation
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - "docs/**"
+      - "*.md"
+      - "**/*.md"
+      - "!.changeset/**"
+      - "!build-tools/**"
+      - "!RELEASE_NOTES/**"
+      - "!server/**"
+
+defaults:
+  run:
+    working-directory: ./docs
+
+permissions:
+  contents: read
+
+jobs:
+
+  # Build the website (including API documentation).
+  # Publish the build artifact for subsequent jobs to leverage.
+  build_site:
+    runs-on: ubuntu-latest
+    name: Build site
+    steps:
+      # release notes: https://github.com/actions/checkout/releases/tag/v6.0.0
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # ratchet:actions/checkout@v6
+        with:
+          submodules: false
+
+      # release notes: https://github.com/pnpm/action-setup/releases/tag/v4.2.0
+      - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # ratchet:pnpm/action-setup@v4
+
+      # release notes: https://github.com/actions/setup-node/releases/tag/v6.0.0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # ratchet:actions/setup-node@v6
+        with:
+          node-version: "20"
+          cache: "pnpm"
+          cache-dependency-path: docs/pnpm-lock.yaml
+      - name: Build site artifact
+        run: |
+          pnpm i --frozen-lockfile
+          npm run build
+      - name: Validate CSP hashes
+        run: |
+          ./validateHashes.sh
+      - name: Upload site artifact
+        # release notes: https://github.com/actions/upload-artifact/releases/tag/v5.0.0
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # ratchet:actions/upload-artifact@v5
+        with:
+          name: fluidframework-site
+          path: docs/build
+          retention-days: 3
+
+  # Run linter checks against the website content and infrastructure.
+  lint:
+    runs-on: ubuntu-latest
+    name: pnpm lint
+    steps:
+      # release notes: https://github.com/actions/checkout/releases/tag/v6.0.0
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # ratchet:actions/checkout@v6
+        with:
+          submodules: false
+
+      # release notes: https://github.com/pnpm/action-setup/releases/tag/v4.2.0
+      - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # ratchet:pnpm/action-setup@v4
+
+      # release notes: https://github.com/actions/setup-node/releases/tag/v6.0.0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # ratchet:actions/setup-node@v6
+        with:
+          node-version: "20"
+          cache: "pnpm"
+          cache-dependency-path: docs/pnpm-lock.yaml
+      - name: pnpm lint
+        run: |
+          pnpm i --frozen-lockfile
+          pnpm lint
+
+  # Run the website's tests.
+  test:
+    runs-on: ubuntu-latest
+    name: 🧪 Website Tests
+    needs: build_site
+    steps:
+      # release notes: https://github.com/actions/checkout/releases/tag/v6.0.0
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # ratchet:actions/checkout@v6
+        with:
+          submodules: false
+
+      # release notes: https://github.com/pnpm/action-setup/releases/tag/v4.2.0
+      - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # ratchet:pnpm/action-setup@v4
+
+      # release notes: https://github.com/actions/setup-node/releases/tag/v6.0.0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # ratchet:actions/setup-node@v6
+        with:
+          node-version: "20"
+          cache: "pnpm"
+          cache-dependency-path: docs/pnpm-lock.yaml
+
+      - name: Download site artifact
+        # release notes: https://github.com/actions/download-artifact/releases/tag/v6.0.0
+        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # ratchet:actions/download-artifact@v6
+        with:
+          name: fluidframework-site
+          path: docs/build
+      - name: Install dependencies
+        run: "pnpm i --frozen-lockfile"
+      - name: Run tests
+        run: "npm run test"
+
+  # Run the link checker against the website.
+  # Publish the results to the PR as a comment.
+  broken_link_check:
+    runs-on: ubuntu-latest
+    name: 🔗 Broken Link Check
+    needs: build_site
+    steps:
+      # release notes: https://github.com/actions/checkout/releases/tag/v6.0.0
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # ratchet:actions/checkout@v6
+        with:
+          submodules: false
+
+      # release notes: https://github.com/pnpm/action-setup/releases/tag/v4.2.0
+      - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # ratchet:pnpm/action-setup@v4
+
+      # release notes: https://github.com/actions/setup-node/releases/tag/v6.0.0
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # ratchet:actions/setup-node@v6
+        with:
+          node-version: "20"
+          cache: "pnpm"
+          cache-dependency-path: docs/pnpm-lock.yaml
+      - name: Create results folder
+        run: mkdir -p ./results
+
+      - name: Download site artifact
+        # release notes: https://github.com/actions/download-artifact/releases/tag/v6.0.0
+        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # ratchet:actions/download-artifact@v6
+        with:
+          name: fluidframework-site
+          path: docs/build
+      - name: Install dependencies
+        run: "pnpm i --frozen-lockfile"
+      - name: Check for broken links
+        id: linkcheck
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          pnpm run ci:check-links | tee ./results/linkcheck-output.txt
+
+      - name: Save PR number
+        run: echo ${{ github.event.number }} > ./results/pr
+      - name: Save linkcheck report
+        run: |
+          cat "$GITHUB_WORKSPACE/.github/workflows/data/linkcheck-${{ steps.linkcheck.outcome }}.md" | tee ./results/linkcheck
+          echo -e "\n#### linkcheck output\n\n\`\`\`" | tee -a ./results/linkcheck
+          cat ./results/linkcheck-output.txt | tee -a ./results/linkcheck
+          echo -e "\n\`\`\`" | tee -a ./results/linkcheck
+      - name: Upload results artifact
+        # release notes: https://github.com/actions/upload-artifact/releases/tag/v5.0.0
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # ratchet:actions/upload-artifact@v5
+        with:
+          name: website-validation-results
+          path: ./docs/results
+          retention-days: 3

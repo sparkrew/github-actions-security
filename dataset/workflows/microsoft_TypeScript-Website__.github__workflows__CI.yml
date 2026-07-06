@@ -1,0 +1,120 @@
+name: CI
+on:
+  pull_request:
+    branches:
+      - v2
+
+# Ensure scripts are run with pipefail. See:
+# https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#exit-codes-and-error-action-preference
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        with:
+          node-version: "20.x"
+      - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4.2.0
+
+      - run: pnpm install
+
+      # Grab localizations
+      - run: pnpm docs-sync pull microsoft/TypeScript-Website-localizations#main 1
+
+      # Build the packages
+      - run: pnpm bootstrap
+      - run: pnpm build
+
+      # Verify it compiles
+      - run: pnpm build-site
+      
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        if: github.event_name == 'pull_request' && matrix.os == 'ubuntu-latest'
+        with:
+          name: site
+          path: packages/typescriptlang-org/public
+
+      # Run all the package's tests
+      - run: pnpm test
+
+      # danger for PR builds
+      - if: github.event_name == 'pull_request' && github.event.pull_request.base.repo.id == github.event.pull_request.head.repo.id && matrix.os == 'ubuntu-latest'
+        run: "pnpm danger ci"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: |
+          git add .
+          if ! git diff --staged --exit-code --quiet; then
+            echo "This PR is missing some generated changes. Please update locally or merge the patch artifact."
+            echo ""
+            git diff --staged
+            git diff --staged > missing.patch
+            exit 1
+          fi
+        name: Check for uncommitted changes
+        id: check-diff
+        if: github.event_name == 'pull_request'
+
+      - name: Upload diff artifact
+        if: ${{ failure() && steps.check-diff.conclusion == 'failure' }}
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: missing.patch
+          path: missing.patch
+
+  changesets:
+    name: changesets
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      with:
+        fetch-depth: 0
+    - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+      with:
+        node-version: 'lts/*'
+    - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4.2.0
+    
+    - run: pnpm install
+    
+    - name: Check for missing changesets
+      run: |
+        PR_CHANGESETS=$(ls .changeset | (grep -v -E 'README\.md|config\.json' || true) | wc -l)
+        MAIN_CHANGESETS=$(git ls-tree -r origin/v2 .changeset | (grep -v -E 'README\.md|config\.json' || true) | wc -l)
+
+        # If the PR has no changesets, but main has changesets, assume this is PR is a versioning PR and exit
+        if [[ $PR_CHANGESETS -eq 0 && $MAIN_CHANGESETS -gt 0 ]]; then
+          echo "This PR is a versioning PR, exiting"
+          exit 0
+        fi
+
+        # git switch -c changesets-temp
+        # git checkout origin/v2 -- <ignored files>
+        pnpm changeset status --since=origin/v2
+
+  required:
+    runs-on: ubuntu-latest
+    if: ${{ always() }}
+    needs:
+      - tests
+      - changesets
+    
+    steps:
+      - name: Check required jobs
+        env:
+          NEEDS: ${{ toJson(needs) }}
+        run: |
+          ! echo $NEEDS | jq -e 'to_entries[] | { job: .key, result: .value.result } | select(.result != "success")'

@@ -1,0 +1,26 @@
+name: Reopen closed issue on comment
+
+on:
+  issue_comment:
+    types:
+      - created
+
+
+jobs:
+  reopen_issue:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    if: github.event.issue.state == 'closed'
+    steps:
+      - name: Reopen Issue
+        run: |
+          curl \
+          -X PATCH \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }} \
+          -d '{"state":"open"}' \
+          --fail
+
+      

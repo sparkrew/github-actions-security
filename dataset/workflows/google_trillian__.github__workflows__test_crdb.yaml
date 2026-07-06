@@ -1,0 +1,80 @@
+---
+name: Test CRDB
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
+      pull-requests: read  # for golangci/golangci-lint-action to fetch pull requests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+    - uses: actions/setup-go@7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5 # v6.2.0
+      with:
+        go-version-file: go.mod
+        check-latest: true
+        cache: true
+
+    - uses: golangci/golangci-lint-action@1e7e51e771db61008b38414a730f564565cf7c20 # v9.2.0
+      with:
+        version: 'v2.6.0'
+        args: ./storage/crdb
+
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+    - uses: actions/setup-go@7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5 # v6.2.0
+      with:
+        go-version-file: go.mod
+        check-latest: true
+        cache: true
+
+    - name: Run tests
+      run: go test -v ./storage/crdb/... ./quota/crdbqm/...
+
+  integration:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+    - uses: actions/setup-go@7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5 # v6.2.0
+      with:
+        go-version-file: go.mod
+        check-latest: true
+        cache: true
+
+    - name: Build before tests
+      run: go mod download && go build ./...
+    
+    - name: Run CockroachDB
+      run: docker run --rm -d --name=roach -p 8080:8080 -p 26257:26257 -v "${PWD}/cockroach-data:/cockroach/cockroach-data"  cockroachdb/cockroach:latest start-single-node --insecure
+
+    - name: Wait for CockroachDB
+      uses: nick-fields/retry@ce71cc2ab81d554ebbe88c79ab5975992d79ba08 # v3.0.2
+      with:
+        timeout_seconds: 15
+        max_attempts: 3
+        retry_on: error
+        command: docker exec roach ./cockroach sql --insecure -e "SELECT 1"
+
+    - name: Get crdb logs
+      run: docker logs roach
+
+    - name: Run tests
+      run: ./integration/integration_test.sh
+      env:
+        TEST_COCKROACHDB_URI: postgresql://root@localhost:26257/defaultdb?sslmode=disable
+        CRDB_IN_CONTAINER: true
+        CRDB_CONTAINER_NAME: roach

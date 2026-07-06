@@ -1,0 +1,55 @@
+name: Deploy docs
+on:
+  workflow_dispatch:
+  release:
+    types: [created]
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+permissions: {}
+
+env:
+  npm_config_audit: false
+  npm_config_fund: false
+  npm_config_save: false
+  npm_config_package_lock: false
+
+jobs:
+  deploy:
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+          ref: main
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Add additional deps
+        run: npm i @rollup/rollup-linux-x64-gnu@4.46.4
+
+      - name: Build docs
+        run: npm run docs:build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4.0.0
+        with:
+          path: 'docs/build'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,22 @@
+name: container project - merge build
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches:
+      - main
+      - release/*
+
+jobs:
+  build:
+    name: Invoke build
+    uses: ./.github/workflows/common.yml
+    with:
+      release: true
+    secrets: inherit
+    permissions:
+      contents: read
+      packages: read
+      pages: write

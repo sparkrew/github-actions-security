@@ -1,0 +1,30 @@
+name: Fidelity tests
+
+on: pull_request
+
+jobs:
+  compare_renders:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: true
+
+    - uses: actions/setup-node@v4
+
+    - name: NPM install
+      run: npm ci
+
+    # - name: Lint TypeScript sources
+    #   run: npm run lint
+
+    - name: Build packages
+      run: |
+       npm run build --workspace=@google/model-viewer --workspace=@google/model-viewer-render-fidelity-tools
+
+    - name: Fidelity tests
+      uses: coactions/setup-xvfb@v1
+      with:
+        run: npm run test --workspace=@google/model-viewer-render-fidelity-tools -- --quiet

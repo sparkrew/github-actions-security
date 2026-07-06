@@ -1,0 +1,58 @@
+name: Minimal Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  Check:
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
+        platform: [ubuntu-latest, macos-latest, windows-latest]
+        exclude:
+          - python-version: "3.13"
+            platform: windows-latest
+          - python-version: "3.14"
+            platform: windows-latest
+    env:
+      AWS_DEFAULT_REGION: us-east-1
+
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Rust latest
+        run: rustup update
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+      - name: Install Requirements
+        run: uv sync --frozen --dev --verbose
+        working-directory: ${{ github.workspace }}
+      - name: Test Metadata
+        run: uv run pytest tests/unit/test_metadata.py
+        working-directory: ${{ github.workspace }}
+      - name: Test Session
+        run: uv run pytest tests/unit/test_session.py
+        working-directory: ${{ github.workspace }}
+      - name: Test Utils
+        run: uv run pytest tests/unit/test_utils.py
+        working-directory: ${{ github.workspace }}
+      - name: Test Moto
+        run: uv run pytest -n 4 tests/unit/test_moto.py
+        working-directory: ${{ github.workspace }}

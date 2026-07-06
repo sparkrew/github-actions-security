@@ -1,0 +1,100 @@
+name: FVT
+on:
+  workflow_call:
+    inputs:
+      go-version:
+        required: false
+        type: string
+        default: stable
+      kafka-version:
+        required: false
+        type: string
+        default: "3.9.1"
+      scala-version:
+        required: false
+        type: string
+        default: "2.13"
+
+concurrency:
+  group: ${{ github.workflow }}-kafka-${{ inputs.kafka-version}}-${{ github.ref }}
+  cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
+
+permissions:
+  contents: read # for actions/checkout to fetch code
+
+env:
+  # Use the Go toolchain installed by setup-go
+  GOTOOLCHAIN: local
+
+jobs:
+  fvt:
+    name: Test with Kafka ${{ inputs.kafka-version }}
+    runs-on: ubuntu-latest
+    env:
+      DEBUG: true
+      GOFLAGS: -trimpath
+      KAFKA_VERSION: ${{ inputs.kafka-version }}
+      SCALA_VERSION: ${{ inputs.scala-version }}
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      with:
+        persist-credentials: false
+    - name: Setup Docker
+      uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3.12.0
+      id: buildx
+    - name: Build FVT Docker Image
+      uses: docker/bake-action@5be5f02ff8819ecd3092ea6b2e6261c31774f2b4 # v6.10.0
+      with:
+        builder: ${{ steps.buildx.outputs.name }}
+        files: docker-compose.yml
+        load: true
+        targets: kafka-1
+        set: |
+          *.cache-from=type=gha,scope=fvt-kafka-${{ inputs.kafka-version }}
+          *.cache-to=type=gha,scope=fvt-kafka-${{ inputs.kafka-version }},mode=max
+    - name: Setup Go
+      uses: actions/setup-go@7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5 # v6.2.0
+      with:
+        go-version: ${{ inputs.go-version }}
+    - name: Setup Docker Compose
+      run: |
+        curl --fail -sSL "https://github.com/docker/compose/releases/download/v2.32.1/docker-compose-$(uname -s)-$(uname -m)" -o /tmp/docker-compose
+        mkdir -p $HOME/.docker/cli-plugins
+        install -m755 /tmp/docker-compose $HOME/.docker/cli-plugins
+        docker version --format 'Docker Engine version v{{.Server.Version}}'
+        docker compose version
+    - name: Test (Functional)
+      run: |
+        nohup sudo tcpdump -i lo -w "fvt-kafka-${KAFKA_VERSION}.pcap" portrange 29091-29095 >/dev/null 2>&1 &
+        echo $! >tcpdump.pid
+        make test_functional
+    - name: Report Test Results
+      if: always()
+      run: |
+        # renovate: datasource=github-releases depName=mfridman/tparse
+        go run github.com/mfridman/tparse@v0.18.0 -all -format markdown -file _test/fvt.json | tee -a $GITHUB_STEP_SUMMARY
+    - name: Report Per Func Test Coverage
+      if: always()
+      run: |
+        cat >>$GITHUB_STEP_SUMMARY <<EOF
+        <details>
+        <summary>Click for per-func code coverage</summary>
+
+        |Filename|Function|Coverage|
+        |--------|--------|--------|
+        $(go tool cover -func=profile.out | sed -E -e 's/[[:space:]]+/|/g' -e 's/$/|/g' -e 's/^/|/g')
+        </details>
+        EOF
+    - name: Stop tcpdump
+      if: always()
+      run: |
+        if [ -f "tcpdump.pid" ]; then sudo kill "$(cat tcpdump.pid)" || true; fi
+        if [ -f "fvt-kafka-${KAFKA_VERSION}.pcap" ]; then sudo chmod a+r "fvt-kafka-${KAFKA_VERSION}.pcap"; fi
+    - name: Upload pcap file
+      if: always()
+      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+      with:
+        name: fvt-kafka-${{ inputs.kafka-version }}.pcap
+        path: fvt-kafka-${{ inputs.kafka-version }}.pcap
+        retention-days: 5
+        if-no-files-found: ignore

@@ -1,0 +1,35 @@
+name: Build E2E Test Event Writer
+on:
+  push:
+    branches: 
+      - main
+      - dev/**
+  merge_group:
+    types: [checks_requested]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+  packages: write
+
+env:
+  EVENT_WRITER_PATH: "${{ github.workspace }}/test/e2e/tools/event-writer/"
+
+jobs:
+  retina-win-e2e-bpf-images:
+    name: Build E2E Test Event Writer
+    runs-on: windows-2022
+    timeout-minutes: 30
+
+    env:
+      IS_MERGE_GROUP: ${{ (github.event_name == 'merge_group') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/dev/v0.0.33-windows' && github.repository == 'microsoft/retina') }}
+
+    strategy:
+      matrix:
+        platform: ["windows"]
+        arch: ["amd64"]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2

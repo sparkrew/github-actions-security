@@ -1,0 +1,24 @@
+name: Publish release
+
+on:
+  release:
+    types:
+      - published #https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#release
+
+jobs:
+  publish:
+    needs: check-build-test
+    runs-on: ubuntu-22.04
+    env:
+      DISABLE_TENCENT_MAVEN_MIRROR: true
+      PUBLISH_RELEASE: true
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: pre-build
+        uses: ./.github/actions/pre-build
+      - name: publish
+        run: ./gradlew publish
+      - name: post-build
+        uses: ./.github/actions/post-build

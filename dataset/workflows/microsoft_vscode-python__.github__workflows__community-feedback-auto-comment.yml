@@ -1,0 +1,28 @@
+name: Community Feedback Auto Comment
+
+on:
+  issues:
+    types:
+      - labeled
+jobs:
+  add-comment:
+    if: github.event.label.name == 'needs community feedback'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Check For Existing Comment
+        uses: peter-evans/find-comment@b30e6a3c0ed37e7c023ccd3f1db5c6c0b0c23aad # v4.0.0
+        id: finder
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: 'Thanks for the feature request! We are going to give the community'
+
+      - name: Add Community Feedback Comment
+        if: steps.finder.outputs.comment-id == ''
+        uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5.0.0
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Thanks for the feature request! We are going to give the community 60 days from when this issue was created to provide 7 👍 upvotes on the opening comment to gauge general interest in this idea. If there's enough upvotes then we will consider this feature request in our future planning. If there's unfortunately not enough upvotes then we will close this issue.

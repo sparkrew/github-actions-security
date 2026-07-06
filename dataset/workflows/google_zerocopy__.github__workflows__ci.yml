@@ -1,0 +1,994 @@
+# Copyright 2022 The Fuchsia Authors
+#
+# Licensed under a BSD-style license <LICENSE-BSD>, Apache License, Version 2.0
+# <LICENSE-APACHE or https://www.apache.org/licenses/LICENSE-2.0>, or the MIT
+# license <LICENSE-MIT or https://opensource.org/licenses/MIT>, at your option.
+# This file may not be copied, modified, or distributed except according to
+# those terms.
+
+name: Build & Tests
+
+on:
+  pull_request:
+  merge_group:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS: -Dwarnings
+  RUSTDOCFLAGS: -Dwarnings
+  # `ZC_NIGHTLY_XXX` are flags that we add to `XXX` only on the nightly
+  # toolchain.
+  ZC_NIGHTLY_RUSTFLAGS: -Zrandomize-layout
+  ZC_NIGHTLY_MIRIFLAGS: "-Zmiri-strict-provenance -Zmiri-backtrace=full"
+
+jobs:
+  build_test:
+    runs-on: ubuntu-latest
+    # Generate and populate the global Cargo registry and cache first. Each
+    # job in the matrix runs in parallel, so without populating the cache
+    # first, most jobs would duplicate the work of downloading crates from
+    # the internet. Populating the cache first ensures that this work only
+    # happens once.
+    needs: generate_cache
+
+    strategy:
+      # By default, this is set to `true`, which means that a single CI job
+      # failure will cause all outstanding jobs to be canceled. This slows down
+      # development because it means that errors need to be encountered and
+      # fixed one at a time.
+      fail-fast: false
+      matrix:
+        # See `INTERNAL.md` for an explanation of these pinned toolchain
+        # versions.
+        toolchain: [
+          "msrv",
+          "stable",
+          "nightly",
+
+          # These are the names of specific Rust versions detected in
+          # `build.rs`. Each of these represents the minimum Rust version for
+          # which a particular feature is supported.
+          "no-zerocopy-simd-x86-avx12-1-89-0",
+          "no-zerocopy-core-error-1-81-0",
+          "no-zerocopy-diagnostic-on-unimplemented-1-78-0",
+          "no-zerocopy-generic-bounds-in-const-fn-1-61-0",
+          "no-zerocopy-target-has-atomics-1-60-0",
+          "no-zerocopy-aarch64-simd-1-59-0",
+          "no-zerocopy-panic-in-const-and-vec-try-reserve-1-57-0"
+        ]
+        target: [
+          "i686-unknown-linux-gnu",
+          "x86_64-unknown-linux-gnu",
+          "arm-unknown-linux-gnueabi",
+          "aarch64-unknown-linux-gnu",
+          "powerpc-unknown-linux-gnu",
+          "powerpc64-unknown-linux-gnu",
+          "riscv64gc-unknown-linux-gnu",
+          "s390x-unknown-linux-gnu",
+          "x86_64-pc-windows-msvc",
+          "thumbv6m-none-eabi",
+          "wasm32-unknown-unknown"
+        ]
+        features: [
+          "--no-default-features",
+          "",
+          "--features __internal_use_only_features_that_work_on_stable",
+          "--all-features"
+        ]
+        crate: [ "zerocopy", "zerocopy-derive" ]
+        event_name: [ "${{ github.event_name }}" ]
+        exclude:
+          # Exclude any combination which uses a non-nightly toolchain but
+          # enables nightly features.
+          - toolchain: "msrv"
+            features: "--all-features"
+          - toolchain: "stable"
+            features: "--all-features"
+          - toolchain: "no-zerocopy-simd-x86-avx12-1-89-0"
+            features: "--all-features"
+          - toolchain: "no-zerocopy-core-error-1-81-0"
+            features: "--all-features"
+          - toolchain: "no-zerocopy-diagnostic-on-unimplemented-1-78-0"
+            features: "--all-features"
+          - toolchain: "no-zerocopy-generic-bounds-in-const-fn-1-61-0"
+            features: "--all-features"
+          - toolchain: "no-zerocopy-target-has-atomics-1-60-0"
+            features: "--all-features"
+          - toolchain: "no-zerocopy-aarch64-simd-1-59-0"
+            features: "--all-features"
+          - toolchain: "no-zerocopy-panic-in-const-and-vec-try-reserve-1-57-0"
+            features: "--all-features"
+          # Exclude any combination for the zerocopy-derive crate which
+          # uses zerocopy features.
+          - crate: "zerocopy-derive"
+            features: "--no-default-features"
+          - crate: "zerocopy-derive"
+            features: "--features __internal_use_only_features_that_work_on_stable"
+          - crate: "zerocopy-derive"
+            features: "--all-features"
+          # Exclue any combination of zerocopy-derive and any toolchain version
+          # other than "msrv", "stable", and "nightly". These other versions
+          # exist to exercise zerocopy behavior which differs by toolchain;
+          # zerocopy-derive doesn't behave differently on these toolchains.
+          - crate: "zerocopy-derive"
+            toolchain: "no-zerocopy-simd-x86-avx12-1-89-0"
+          - crate: "zerocopy-derive"
+            toolchain: "no-zerocopy-core-error-1-81-0"
+          - crate: "zerocopy-derive"
+            toolchain: "no-zerocopy-diagnostic-on-unimplemented-1-78-0"
+          - crate: "zerocopy-derive"
+            toolchain: "no-zerocopy-generic-bounds-in-const-fn-1-61-0"
+          - crate: "zerocopy-derive"
+            toolchain: "no-zerocopy-target-has-atomics-1-60-0"
+          - crate: "zerocopy-derive"
+            toolchain: "no-zerocopy-aarch64-simd-1-59-0"
+          - crate: "zerocopy-derive"
+            toolchain: "no-zerocopy-panic-in-const-and-vec-try-reserve-1-57-0"
+          # Exclude stable/wasm since wasm is no longer provided via rustup on
+          # stable.
+          - toolchain: "stable"
+            target: "wasm32-unknown-unknown"
+          # Exclude non-aarch64 targets from the `no-zerocopy-aarch64-simd-1-59-0`
+          # toolchain.
+          - toolchain: "no-zerocopy-aarch64-simd-1-59-0"
+            target: "i686-unknown-linux-gnu"
+          - toolchain: "no-zerocopy-aarch64-simd-1-59-0"
+            target: "x86_64-unknown-linux-gnu"
+          - toolchain: "no-zerocopy-aarch64-simd-1-59-0"
+            target: "arm-unknown-linux-gnueabi"
+          - toolchain: "no-zerocopy-aarch64-simd-1-59-0"
+            target: "powerpc-unknown-linux-gnu"
+          - toolchain: "no-zerocopy-aarch64-simd-1-59-0"
+            target: "powerpc64-unknown-linux-gnu"
+          - toolchain: "no-zerocopy-aarch64-simd-1-59-0"
+            target: "riscv64gc-unknown-linux-gnu"
+          - toolchain: "no-zerocopy-aarch64-simd-1-59-0"
+            target: "s390x-unknown-linux-gnu"
+          - toolchain: "no-zerocopy-aarch64-simd-1-59-0"
+            target: "x86_64-pc-windows-msvc"
+          - toolchain: "no-zerocopy-aarch64-simd-1-59-0"
+            target: "thumbv6m-none-eabi"
+          - toolchain: "no-zerocopy-aarch64-simd-1-59-0"
+            target: "wasm32-unknown-unknown"
+          # Exclude most targets from the `no-zerocopy-core-error-1-81-0`
+          # toolchain since the `no-zerocopy-core-error-1-81-0` feature is unrelated to
+          # compilation target. This only leaves i686 and x86_64 targets.
+          - toolchain: "no-zerocopy-core-error-1-81-0"
+            target: "arm-unknown-linux-gnueabi"
+          - toolchain: "no-zerocopy-core-error-1-81-0"
+            target: "aarch64-unknown-linux-gnu"
+          - toolchain: "no-zerocopy-core-error-1-81-0"
+            target: "powerpc-unknown-linux-gnu"
+          - toolchain: "no-zerocopy-core-error-1-81-0"
+            target: "powerpc64-unknown-linux-gnu"
+          - toolchain: "no-zerocopy-core-error-1-81-0"
+            target: "riscv64gc-unknown-linux-gnu"
+          - toolchain: "no-zerocopy-core-error-1-81-0"
+            target: "s390x-unknown-linux-gnu"
+          - toolchain: "no-zerocopy-core-error-1-81-0"
+            target: "x86_64-pc-windows-msvc"
+          - toolchain: "no-zerocopy-core-error-1-81-0"
+            target: "thumbv6m-none-eabi"
+          - toolchain: "no-zerocopy-core-error-1-81-0"
+            target: "wasm32-unknown-unknown"
+          # Exclude most targets from the
+          # `no-zerocopy-diagnostic-on-unimplemented-1-78-0` toolchain since the
+          # `no-zerocopy-diagnostic-on-unimplemented-1-78-0` feature is unrelated to
+          # compilation target. This only leaves i686 and x86_64 targets.
+          - toolchain: "no-zerocopy-diagnostic-on-unimplemented-1-78-0"
+            target: "arm-unknown-linux-gnueabi"
+          - toolchain: "no-zerocopy-diagnostic-on-unimplemented-1-78-0"
+            target: "aarch64-unknown-linux-gnu"
+          - toolchain: "no-zerocopy-diagnostic-on-unimplemented-1-78-0"
+            target: "powerpc-unknown-linux-gnu"
+          - toolchain: "no-zerocopy-diagnostic-on-unimplemented-1-78-0"
+            target: "powerpc64-unknown-linux-gnu"
+          - toolchain: "no-zerocopy-diagnostic-on-unimplemented-1-78-0"
+            target: "riscv64gc-unknown-linux-gnu"
+          - toolchain: "no-zerocopy-diagnostic-on-unimplemented-1-78-0"
+            target: "s390x-unknown-linux-gnu"
+          - toolchain: "no-zerocopy-diagnostic-on-unimplemented-1-78-0"
+            target: "x86_64-pc-windows-msvc"
+          - toolchain: "no-zerocopy-diagnostic-on-unimplemented-1-78-0"
+            target: "thumbv6m-none-eabi"
+          - toolchain: "no-zerocopy-diagnostic-on-unimplemented-1-78-0"
+            target: "wasm32-unknown-unknown"
+          # Exclude most targets from the
+          # `no-zerocopy-generic-bounds-in-const-fn-1-61-0` toolchain since the
+          # `no-zerocopy-generic-bounds-in-const-fn-1-61-0` feature is unrelated to
+          # compilation target. This only leaves i686 and x86_64 targets.
+          - toolchain: "no-zerocopy-generic-bounds-in-const-fn-1-61-0"
+            target: "arm-unknown-linux-gnueabi"
+          - toolchain: "no-zerocopy-generic-bounds-in-const-fn-1-61-0"
+            target: "aarch64-unknown-linux-gnu"
+          - toolchain: "no-zerocopy-generic-bounds-in-const-fn-1-61-0"
+            target: "powerpc-unknown-linux-gnu"
+          - toolchain: "no-zerocopy-generic-bounds-in-const-fn-1-61-0"
+            target: "powerpc64-unknown-linux-gnu"
+          - toolchain: "no-zerocopy-generic-bounds-in-const-fn-1-61-0"
+            target: "riscv64gc-unknown-linux-gnu"
+          - toolchain: "no-zerocopy-generic-bounds-in-const-fn-1-61-0"
+            target: "s390x-unknown-linux-gnu"
+          - toolchain: "no-zerocopy-generic-bounds-in-const-fn-1-61-0"
+            target: "x86_64-pc-windows-msvc"
+          - toolchain: "no-zerocopy-generic-bounds-in-const-fn-1-61-0"
+            target: "thumbv6m-none-eabi"
+          - toolchain: "no-zerocopy-generic-bounds-in-const-fn-1-61-0"
+            target: "wasm32-unknown-unknown"
+          # Exclude `thumbv6m-none-eabi` combined with any feature that implies
+          # the `std` feature since `thumbv6m-none-eabi` does not include a
+          # pre-compiled std.
+          - target: "thumbv6m-none-eabi"
+            features: "--features __internal_use_only_features_that_work_on_stable"
+          - target: "thumbv6m-none-eabi"
+            features: "--all-features"
+          # Exclude most targets during PR development, but allow them in the
+          # merge queue. This speeds up our development flow, while still
+          # ensuring that errors on these targets are caught before a PR is
+          # merged to main.
+          - target: "arm-unknown-linux-gnueabi"
+            event_name: "pull_request"
+          - target: "aarch64-unknown-linux-gnu"
+            event_name: "pull_request"
+          - target: "powerpc-unknown-linux-gnu"
+            event_name: "pull_request"
+          - target: "powerpc64-unknown-linux-gnu"
+            event_name: "pull_request"
+          - target: "riscv64gc-unknown-linux-gnu"
+            event_name: "pull_request"
+          - target: "s390x-unknown-linux-gnu"
+            event_name: "pull_request"
+          - target: "thumbv6m-none-eabi"
+            event_name: "pull_request"
+          - target: "wasm32-unknown-unknown"
+            event_name: "pull_request"
+
+    name: Build & Test (${{ matrix.crate }} / ${{ matrix.toolchain }} / ${{ matrix.features }} / ${{ matrix.target }})
+
+    steps:
+    - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+      with:
+        fetch-depth: 2
+        persist-credentials: false
+
+    - name: Populate cache
+      uses: ./.github/actions/cache
+
+    - name: Configure environment variables
+      env:
+        TOOLCHAIN: ${{ matrix.toolchain }}
+      run: |
+        set -eo pipefail
+
+        # We use toolchain descriptors ("msrv", "stable", "nightly", and values
+        # from the "metadata.build-rs" key in Cargo.toml) in the matrix. This
+        # step converts the current descriptor to a particular toolchain version
+        # by looking up the corresponding key in `Cargo.toml`. It sets the
+        # `ZC_TOOLCHAIN` environment variable for use in the next step
+        # (toolchain installation) because GitHub variable interpolation doesn't
+        # support running arbitrary commands. In other words, we can't rewrite:
+        #
+        #   toolchain: $ {{ env.ZC_TOOLCHAIN }}
+        #
+        # ...to:
+        #
+        #   toolchain: $ {{ ./cargo.sh --version matrix.toolchain }} # hypothetical syntax
+        ZC_TOOLCHAIN="$(./cargo.sh --version $TOOLCHAIN)"
+        echo "Found that the '$TOOLCHAIN' toolchain is $ZC_TOOLCHAIN" | tee -a $GITHUB_STEP_SUMMARY
+        echo "ZC_TOOLCHAIN=$ZC_TOOLCHAIN" >> $GITHUB_ENV
+
+        if [[ "$TOOLCHAIN" == 'nightly' ]]; then
+          RUSTFLAGS="$RUSTFLAGS $ZC_NIGHTLY_RUSTFLAGS"
+          MIRIFLAGS="$MIRIFLAGS $ZC_NIGHTLY_MIRIFLAGS"
+          echo "Using nightly toolchain; setting RUSTFLAGS='$RUSTFLAGS' and MIRIFLAGS='$MIRIFLAGS'" | tee -a $GITHUB_STEP_SUMMARY
+          echo "RUSTFLAGS=$RUSTFLAGS" >> $GITHUB_ENV
+          echo "MIRIFLAGS=$MIRIFLAGS" >> $GITHUB_ENV
+        else
+          echo "Using non-nightly toolchain; not modifying RUSTFLAGS='$RUSTFLAGS' or MIRIFLAGS='$MIRIFLAGS'" | tee -a $GITHUB_STEP_SUMMARY
+        fi
+
+    # On our MSRV, `cargo` does not know about the `rust-version` field. As a
+    # result, in `cargo.sh`, if we use our MSRV toolchain in order to run `cargo
+    # metadata`, we will not be able to extract the `rust-version` field. Thus,
+    # in `cargo.sh`, we explicitly do `cargo +stable metadata`. This requires a
+    # (more recent) stable toolchain to be installed. As of this writing, this
+    # toolchain is not used for anything else.
+    - name: Install stable Rust for use in 'cargo.sh'
+      uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9 # v1
+      with:
+        toolchain: stable
+
+    - name: Install Rust with ${{ matrix.toolchain }} toolchain (${{ env.ZC_TOOLCHAIN }}) and target ${{ matrix.target }}
+      uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9 # v1
+      with:
+          toolchain: ${{ env.ZC_TOOLCHAIN }}
+          targets: ${{ matrix.target }}
+          # We require the `rust-src` component to ensure that the compiler
+          # error output generated during UI tests matches that generated on
+          # local developer machines; see
+          # https://github.com/rust-lang/rust/issues/116433.
+          #
+          # Only nightly has a working Miri, so we skip installing on all other
+          # toolchains. This expression is effectively a ternary expression -
+          # see [1] for details.
+          #
+          # [1] https://github.com/actions/runner/issues/409#issuecomment-752775072
+          components: clippy, rust-src ${{ matrix.toolchain == 'nightly' && ', miri' || '' }}
+
+    # On the `thumbv6m-none-eabi` target, we can't run `cargo check --tests` due
+    # to the `memchr` crate, so we just do `cargo check` instead.
+    - name: Check
+      env:
+        TOOLCHAIN: ${{ matrix.toolchain }}
+        CRATE: ${{ matrix.crate }}
+        TARGET: ${{ matrix.target }}
+        FEATURES: ${{ matrix.features }}
+      run: ./cargo.sh +$TOOLCHAIN check --package $CRATE --target $TARGET $FEATURES --verbose
+      if: matrix.target == 'thumbv6m-none-eabi'
+
+    - name: Check tests
+      env:
+        TOOLCHAIN: ${{ matrix.toolchain }}
+        CRATE: ${{ matrix.crate }}
+        TARGET: ${{ matrix.target }}
+        FEATURES: ${{ matrix.features }}
+      run: ./cargo.sh +$TOOLCHAIN check --tests --package $CRATE --target $TARGET $FEATURES --verbose
+      if: matrix.target != 'thumbv6m-none-eabi'
+
+    - name: Build
+      env:
+        TOOLCHAIN: ${{ matrix.toolchain }}
+        CRATE: ${{ matrix.crate }}
+        TARGET: ${{ matrix.target }}
+        FEATURES: ${{ matrix.features }}
+      run: ./cargo.sh +$TOOLCHAIN build --package $CRATE --target $TARGET $FEATURES --verbose
+      if: matrix.target != 'thumbv6m-none-eabi'
+
+    # When building tests for the i686 target, we need certain libraries which
+    # are not installed by default; `gcc-multilib` includes these libraries.
+    - name: Install gcc-multilib
+      # Per [1]:
+      #
+      #   Note: Always run `sudo apt-get update` before installing a package. In
+      #   case the `apt` index is stale, this command fetches and re-indexes any
+      #   available packages, which helps prevent package installation failures.
+      #
+      # [1] https://docs.github.com/en/actions/using-github-hosted-runners/customizing-github-hosted-runners
+      run: |
+        sudo apt-get update
+        sudo apt-get install gcc-multilib
+      if: contains(matrix.target, 'i686')
+
+    - name: Run tests
+      env:
+        TOOLCHAIN: ${{ matrix.toolchain }}
+        CRATE: ${{ matrix.crate }}
+        TARGET: ${{ matrix.target }}
+        FEATURES: ${{ matrix.features }}
+      run: |
+        ./cargo.sh +$TOOLCHAIN test \
+          --package $CRATE \
+          --target $TARGET \
+          $FEATURES \
+          --verbose \
+          -- \
+          --skip ui
+
+      # Only run tests when targetting Linux x86 (32- or 64-bit) - we're
+      # executing on Linux x86_64, so we can't run tests for any non-x86 target.
+      #
+      # TODO(https://github.com/dtolnay/trybuild/issues/184#issuecomment-1269097742):
+      # Run compile tests when building for other targets.
+      if: contains(matrix.target, 'linux') && (contains(matrix.target, 'x86_64') || contains(matrix.target, 'i686'))
+
+    - name: Run UI tests
+      env:
+        TOOLCHAIN: ${{ matrix.toolchain }}
+        CRATE: ${{ matrix.crate }}
+        TARGET: ${{ matrix.target }}
+        FEATURES: ${{ matrix.features }}
+      run: |
+        # Run UI tests separately, treating warnings as warnings (rather than
+        # as errors, as we do everywhere else in our CI tests). This allows
+        # our UI tests to more accurately reflect what users will see, and
+        # also ensures that we're not spuriously relying on warnings being
+        # errors to ensure compilation failure (if we were, then our code
+        # would be unsound whenever -Dwarnings is not enabled).
+        #
+        # TODO(#560), TODO(#187): Once we migrate to the ui-test crate, we
+        # likely won't have to special-case the UI tests like this.
+        RUSTFLAGS="$RUSTFLAGS -Wwarnings" ./cargo.sh +$TOOLCHAIN test \
+          --package $CRATE \
+          --target $TARGET \
+          $FEATURES \
+          --verbose \
+          ui
+
+      # Only run tests when targetting Linux x86 (32- or 64-bit) - we're
+      # executing on Linux x86_64, so we can't run tests for any non-x86 target.
+      #
+      # TODO(https://github.com/dtolnay/trybuild/issues/184#issuecomment-1269097742):
+      # Run compile tests when building for other targets.
+      #
+      # Only run UI tests for zerocopy-derive, or for zerocopy with the derive
+      # feature.
+      #
+      # Only run UI tests for the 'msrv', 'stable', and 'nightly' toolchains.
+      # Other toolchains are tested only because zerocopy has behavior which
+      # differs on those toolchains, but at present, none of that behavior
+      # affects UI tests. If we were to run UI tests on these toolchains, we
+      # would need a new set of UI test files per toolchain, which would be a
+      # maintenance burden not worth the (at present, zero) benefit.
+      if: |
+        (!contains(matrix.target, 'windows')) &&
+        (contains(matrix.target, 'x86_64') || contains(matrix.target, 'i686')) &&
+          (matrix.crate == 'zerocopy-derive' ||
+            (matrix.features != '' && matrix.features != '--no-default-features')) &&
+          (matrix.toolchain == 'msrv' || matrix.toolchain == 'stable' || matrix.toolchain == 'nightly')
+
+    - name: Run tests under Miri
+      env:
+        TARGET: ${{ matrix.target }}
+        TOOLCHAIN: ${{ matrix.toolchain }}
+        CRATE: ${{ matrix.crate }}
+        FEATURES: ${{ matrix.features }}
+      run: |
+        set -eo pipefail
+
+        # FIXME(#2906): We do this because `cargo vendor` doesn't currently
+        # support vendoring std's dependencies (required in order to build std
+        # from source, which Miri does). As a workaround, we simply temporarily
+        # remove the cargo config and bypass vendoring altogether. Eventually,
+        # we should get vendoring working for std's dependencies too.
+        #
+        # See also: https://github.com/rust-lang/wg-cargo-std-aware/issues/23
+        mv .cargo/config.toml .cargo/config.toml.bak
+
+        # Work around https://github.com/rust-lang/miri/issues/3125
+        [ "$TARGET" == "aarch64-unknown-linux-gnu" ] && cargo clean
+
+        # Spawn twice the number of workers as there are CPU cores.
+        THREADS=$(echo "$(nproc) * 2" | bc)
+        echo "Running Miri tests with $THREADS threads" | tee -a $GITHUB_STEP_SUMMARY
+
+        # FIXME(https://github.com/nextest-rs/nextest/issues/2990): Once the fix
+        # [1] for this `cargo miri nextest` bug is published, either go back to
+        # installing the latest version of `cargo-nextest` or pin and set up a
+        # roller.
+        #
+        # [1] https://github.com/nextest-rs/nextest/pull/2991
+        cargo install --locked --version 0.9.122 cargo-nextest
+
+        # Run under both the stacked borrows model (default) and under the tree 
+        # borrows model to ensure we're compliant with both.
+        for EXTRA_FLAGS in "" "-Zmiri-tree-borrows"; do
+          MIRIFLAGS="$MIRIFLAGS $EXTRA_FLAGS" ./cargo.sh +$TOOLCHAIN \
+            miri nextest run \
+            --test-threads "$THREADS" \
+            --package $CRATE \
+            --target $TARGET \
+            $FEATURES
+        done
+
+        mv .cargo/config.toml.bak .cargo/config.toml
+      # Only nightly has a working Miri, so we skip installing on all other
+      # toolchains.
+      #
+      # We skip Miri tests on pull request, but run them in the merge queue.
+      # Miri tests are far and away the most expensive aspect of our CI tests,
+      # but they rarely surface issues (ie, tests that pass `cargo test` but
+      # fail `cargo miri test`). Skipping them during PR development
+      # significantly speeds up our development flow, while still ensuring that
+      # Miri can catch any errors before a PR is merged into main.
+      #
+      # TODO(#22): Re-enable testing on riscv64gc-unknown-linux-gnu and/or
+      # wasm32-unknown-unknown once those work.
+      if: |
+        matrix.toolchain == 'nightly' &&
+        matrix.target != 'riscv64gc-unknown-linux-gnu' &&
+        matrix.target != 'thumbv6m-none-eabi' &&
+        matrix.target != 'wasm32-unknown-unknown' &&
+        github.event_name != 'pull_request'
+
+    # On the `thumbv6m-none-eabi` target, we can't run `cargo clippy --tests`
+    # due to the `memchr` crate, so we just do `cargo clippy` instead.
+    - name: Clippy
+      env:
+        TOOLCHAIN: ${{ matrix.toolchain }}
+        CRATE: ${{ matrix.crate }}
+        TARGET: ${{ matrix.target }}
+        FEATURES: ${{ matrix.features }}
+      run: ./cargo.sh +$TOOLCHAIN clippy --package $CRATE --target $TARGET $FEATURES --verbose
+      if: matrix.toolchain == 'nightly' && matrix.target == 'thumbv6m-none-eabi'
+
+    - name: Clippy tests
+      env:
+        TOOLCHAIN: ${{ matrix.toolchain }}
+        CRATE: ${{ matrix.crate }}
+        TARGET: ${{ matrix.target }}
+        FEATURES: ${{ matrix.features }}
+      run: ./cargo.sh +$TOOLCHAIN clippy --package $CRATE --target $TARGET $FEATURES --tests --verbose
+      # Clippy improves the accuracy of lints over time, and fixes bugs. Only
+      # running Clippy on nightly allows us to avoid having to write code which
+      # is compatible with older versions of Clippy, which sometimes requires
+      # hacks to work around limitations that are fixed in more recent versions.
+      if: matrix.toolchain == 'nightly' && matrix.target != 'thumbv6m-none-eabi'
+
+    - name: Cargo doc
+      # We pass --document-private-items and --document-hidden items to ensure that 
+      # documentation always builds even for these items. This makes future changes to 
+      # make those items public/non-hidden more painless. Note that 
+      # --document-hidden-items is unstable; if a future release breaks or removes it,
+      # we can just update CI to no longer pass that flag.
+      env:
+        TOOLCHAIN: ${{ matrix.toolchain }}
+        CRATE: ${{ matrix.crate }}
+        FEATURES: ${{ matrix.features }}
+        NIGHTLY_FLAG: ${{ matrix.toolchain == 'nightly' && '-Z unstable-options --document-hidden-items $METADATA_DOCS_RS_RUSTDOC_ARGS'|| '' }}
+      run: |
+        # Include arguments passed during docs.rs deployments to make sure those
+        # work properly.
+        set -eo pipefail
+        METADATA_DOCS_RS_RUSTDOC_ARGS="$(cargo metadata --format-version 1 | \
+          jq -r ".packages[] | select(.name == \"zerocopy\").metadata.docs.rs.\"rustdoc-args\"[]" | tr '\n' ' ')"
+        if [[ "$TOOLCHAIN" == "nightly" ]]; then
+          export RUSTDOCFLAGS="-Z unstable-options --document-hidden-items $METADATA_DOCS_RS_RUSTDOC_ARGS $RUSTDOCFLAGS"
+        fi
+        ./cargo.sh +$TOOLCHAIN doc --document-private-items --package $CRATE $FEATURES
+
+    # If the commit message contains the line `SKIP_CARGO_SEMVER_CHECKS=1`, then
+    # skip the cargo-semver-checks step.
+    - name: Check whether to skip cargo-semver-checks
+      env:
+        EVENT_NAME: ${{ github.event_name }}
+        HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        SHA: ${{ github.sha }}
+      run: |
+        set -eo pipefail
+
+        if [ "$EVENT_NAME" == "pull_request" ]; then
+          # Invoked from a PR - get the PR body directly
+          MESSAGE="$(git log -1 --pretty=%B $HEAD_SHA)"
+        else
+          # Invoked from the merge queue - get the commit message
+          MESSAGE="$(git log -1 --pretty=%B $SHA)"
+        fi
+
+        if echo "$MESSAGE" | grep '^\s*SKIP_CARGO_SEMVER_CHECKS=1\s*$' > /dev/null; then
+          echo "Found 'SKIP_CARGO_SEMVER_CHECKS=1' in commit message; skipping cargo-semver-checks..." | tee -a $GITHUB_STEP_SUMMARY
+          echo "ZC_SKIP_CARGO_SEMVER_CHECKS=1" >> $GITHUB_ENV
+        fi
+
+    # FIXME(#2906): We do this because `cargo semver-checks` fetches the latest
+    # zerocopy from crates.io, but `.cargo/config.toml` causes that to resolve
+    # in our vendor directory, and we don't vendor zerocopy. Removing this file
+    # has the effect of causing the subsequent build to use crates.io rather
+    # than vendored dependencies, which is fine since we only run this on the
+    # stable toolchain. Eventually, we should update this job to use the
+    # `--baseline-rev` option to use a previous git commit as the baseline for
+    # checking compatibility (rather than the most recent published version),
+    # which will make this unnecessary.
+    - name: Remove Cargo config
+      run: rm .cargo/config.toml
+
+    # Check semver compatibility with the most recently-published version on
+    # crates.io. We do this in the matrix rather than in its own job so that it
+    # gets run on different targets. Some of our API is target-specific (e.g.,
+    # SIMD type impls), and so we need to run on each target.
+    - name: Check semver compatibility
+      uses: obi1kenobi/cargo-semver-checks-action@5b298c9520f7096a4683c0bd981a7ac5a7e249ae # v2.8
+      with:
+        # Don't semver check zerocopy-derive; as a proc macro, it doesn't have
+        # an API that cargo-semver-checks can understand.
+        package: zerocopy
+        # Test on the stable toolchain, and thus don't test nightly features.
+        # We previously tested on the nightly toolchain, but this caused problems
+        # [1] because cargo-semver-checks only promises compatibility with the
+        # latest stable toolchain. Testing on the stable toolchain is more
+        # reliable, and doesn't require us to give up anything - we wouldn't want
+        # to test nightly-only features anyway, as we don't make stability
+        # guarantees regarding these features.
+        # 
+        # [1] See, for example: https://github.com/google/zerocopy/actions/runs/9466417300/job/26078264384?pr=1413
+        feature-group: only-explicit-features
+        features: __internal_use_only_features_that_work_on_stable
+        rust-toolchain: ${{ env.ZC_TOOLCHAIN }}
+        rust-target: ${{ matrix.target }}
+      # TODO(#1565): Run on wasm32-unknown-unknown.
+      if: |
+        matrix.crate == 'zerocopy' &&
+        matrix.features == '--features __internal_use_only_features_that_work_on_stable' &&
+        matrix.toolchain == 'stable' &&
+        matrix.target != 'wasm32-unknown-unknown' &&
+        env.ZC_SKIP_CARGO_SEMVER_CHECKS != '1'
+
+  coverage:
+    runs-on: ubuntu-latest
+    name: Generate code coverage
+    needs: generate_cache
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Populate cache
+        uses: ./.github/actions/cache
+      - name: Generate code coverage
+        run: |
+          set -eo pipefail
+          ./cargo.sh +nightly install --version 0.8.0 cargo-llvm-cov
+          ./cargo.sh +nightly llvm-cov \
+            --package zerocopy \
+            --target x86_64-unknown-linux-gnu \
+            --all-features \
+            --doctests \
+            --lcov \
+            --output-path lcov.info \
+            --verbose \
+            -- --skip ui
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5.5.2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: lcov.info
+
+  kani:
+    runs-on: ubuntu-latest        
+    name: 'Run tests under Kani'
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - uses: model-checking/kani-github-action@f838096619a707b0f6b2118cf435eaccfa33e51f # v1.1
+        with:
+          # Use `--features __internal_use_only_features_that_work_on_stable`
+          # because the Kani GitHub Action uses its own pinned nightly
+          # toolchain. Sometimes, we make changes to our nightly features for
+          # more recent toolchains, and so our nightly features become
+          # incompatible with the toolchain that Kani uses. By only testing
+          # stable features, we ensure that this doesn't cause problems in CI.
+          #
+          # TODO(https://github.com/model-checking/kani-github-action/issues/56):
+          # Go back to testing all features once the Kani GitHub Action supports
+          # specifying a particular toolchain.
+          args: "--package zerocopy --features __internal_use_only_features_that_work_on_stable --output-format=terse -Zfunction-contracts --randomize-layout --memory-safety-checks --overflow-checks --undefined-function-checks --unwinding-checks"
+          # This version is automatically rolled by
+          # `roll-pinned-toolchain-versions.yml`.
+          kani-version: 0.60.0
+
+  # NEON intrinsics are currently broken on big-endian platforms. [1] This test ensures
+  # that we don't accidentally attempt to compile these intrinsics on such platforms. We
+  # can't use this as part of the build matrix because rustup doesn't support the
+  # `aarch64_be-unknown-linux-gnu` target.
+  #
+  # [1] https://github.com/rust-lang/stdarch/issues/1484
+  check_be_aarch64:
+    runs-on: ubuntu-latest
+    name: Build (zerocopy / nightly / --simd / aarch64_be-unknown-linux-gnu)
+    needs: generate_cache
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Populate cache
+        uses: ./.github/actions/cache
+      - name: Configure environment variables
+        run: |
+          set -eo pipefail
+          ZC_TOOLCHAIN="$(./cargo.sh --version nightly)"
+          RUSTFLAGS="$RUSTFLAGS $ZC_NIGHTLY_RUSTFLAGS"
+          echo "RUSTFLAGS=$RUSTFLAGS" >> $GITHUB_ENV
+          echo "ZC_TOOLCHAIN=$ZC_TOOLCHAIN" >> $GITHUB_ENV
+      - name: Install stable Rust for use in 'cargo.sh'
+        uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9 # v1
+        with:
+          toolchain: stable
+      - name: Install Rust with nightly toolchain (${{ env.ZC_TOOLCHAIN }}) and target aarch64_be-unknown-linux-gnu
+        uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9 # v1
+        with:
+            toolchain: ${{ env.ZC_TOOLCHAIN }}
+            components: clippy, rust-src
+      - name: Check big endian for aarch64_be-unknown-linux-gnu target
+        run: |
+          set -eo pipefail
+
+          # FIXME(#2906): We do this because `cargo vendor` doesn't currently
+          # support vendoring std's dependencies (required in order to build
+          # std from source, as we do here). As a workaround, we simply nuke
+          # the cargo config and bypass vendoring altogether. Eventually, we
+          # should get vendoring working for std's dependencies too.
+          #
+          # See also: https://github.com/rust-lang/wg-cargo-std-aware/issues/23
+          rm .cargo/config.toml
+
+          ./cargo.sh +nightly build --target=aarch64_be-unknown-linux-gnu -Zbuild-std --features simd
+
+  # We can't use this as part of the build matrix because rustup doesn't support
+  # the `avr-none` target.
+  check_avr_atmega:
+    runs-on: ubuntu-latest
+    name: Build (zerocopy / nightly / --simd / avr-none)
+    needs: generate_cache
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Populate cache
+        uses: ./.github/actions/cache
+      - name: Configure environment variables
+        run: |
+          set -eo pipefail
+          ZC_TOOLCHAIN="$(./cargo.sh --version nightly)"
+          RUSTFLAGS="$RUSTFLAGS $ZC_NIGHTLY_RUSTFLAGS"
+          echo "RUSTFLAGS=$RUSTFLAGS" >> $GITHUB_ENV
+          echo "ZC_TOOLCHAIN=$ZC_TOOLCHAIN" >> $GITHUB_ENV
+      - name: Install stable Rust for use in 'cargo.sh'
+        uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9 # v1
+        with:
+          toolchain: stable
+      - name: Install Rust with nightly toolchain (${{ env.ZC_TOOLCHAIN }})
+        uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9 # v1
+        with:
+            toolchain: ${{ env.ZC_TOOLCHAIN }}
+            components: clippy, rust-src
+      # FIXME(#2906): We do this because `cargo vendor` doesn't currently
+      # support vendoring std's dependencies (required in order to build std
+      # from source, as we do here). As a workaround, we simply nuke the cargo
+      # config and bypass vendoring altogether. Eventually, we should get
+      # vendoring working for std's dependencies too.
+      #
+      # See also: https://github.com/rust-lang/wg-cargo-std-aware/issues/23
+      - name: Remove Cargo config
+        run: rm .cargo/config.toml
+      # NOTE: We cannot check tests because of a number of different issues (at
+      # the time of writing):
+      # - No `alloc::sync`
+      # - Values of type `[u8; 32768]` are too big
+      #
+      # To try for yourself, replace `-Zbuild-std=core` with `-Zbuild-std` and
+      # add `--tests`.
+      - name: Check avr-none target
+        run: RUSTFLAGS='-C target-cpu=atmega328p' ./cargo.sh +nightly check --target=avr-none -Zbuild-std=core --features simd,simd-nightly,float-nightly,derive
+      - name: Clippy check avr-none target
+        run: RUSTFLAGS='-C target-cpu=atmega328p' ./cargo.sh +nightly clippy --target=avr-none -Zbuild-std=core --features simd,simd-nightly,float-nightly,derive
+
+  check_fmt:
+    runs-on: ubuntu-latest
+    name: Check Rust formatting
+    needs: generate_cache
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Populate cache
+        uses: ./.github/actions/cache
+      - name: Check Rust formatting
+        run: |
+          set -eo pipefail
+
+          # Required by `ci/check_fmt.sh` as of this writing.
+          rustup install $(./cargo.sh --version nightly) -c rust-src,rustfmt
+
+          ./ci/check_fmt.sh
+
+  check_stale_stderr:
+    runs-on: ubuntu-latest
+    name: Check stale stderr files
+    needs: generate_cache
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Populate cache
+        uses: ./.github/actions/cache
+      - name: Check stale stderr
+        run: ./ci/check_stale_stderr.sh
+
+  check_actions:
+    needs: generate_cache
+    runs-on: ubuntu-latest
+    name: Check GitHub Actions
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Populate cache
+        uses: ./.github/actions/cache
+      - name: Check Actions
+        run: ./ci/check_actions.sh
+
+  check_readme:
+    needs: generate_cache
+    runs-on: ubuntu-latest
+    name: Check README.md
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Populate cache
+        uses: ./.github/actions/cache
+      - name: Check README.md
+        run: ./ci/check_readme.sh
+
+  check_versions:
+    needs: generate_cache
+    runs-on: ubuntu-latest
+    name: Check crate versions match
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Populate cache
+        uses: ./.github/actions/cache
+      # Make sure that both crates are at the same version, and that zerocopy
+      # depends exactly upon the current version of zerocopy-derive. See
+      # `INTERNAL.md` for an explanation of why we do this.
+      - name: Check crate versions match
+        run: ./ci/check_versions.sh
+
+  check_msrv_is_minimal:
+    needs: generate_cache
+    runs-on: ubuntu-latest
+    name: Check MSRV is minimal
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Populate cache
+        uses: ./.github/actions/cache
+      - name: Check MSRV is minimal
+        run: ./ci/check_msrv_is_minimal.sh
+
+  generate_cache:
+    runs-on: ubuntu-latest
+    name: Generate cache
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Populate cache
+        uses: ./.github/actions/cache
+        with:
+          mode: generate
+          run: |
+            # Ensure all dependencies are downloaded - both for our crates and for
+            # tools we use in CI. We don't care about these tools succeeding for
+            # two reasons: First, this entire job is best-effort since it's just a
+            # performance optimization. Second, there may be failures due to
+            # issues other than failing to download dependencies (e.g., `cargo
+            # metadata` called with a malformed `Cargo.toml`, build failure in our
+            # own crate or in dependencies, etc). For those reasons, we discard
+            # stderr and ignore status codes.
+            #
+            # For downloading our crates' dependencies in particular, note that
+            # there is no support for doing this directly [1], so we just check
+            # all crates using --tests.
+            #
+            # We background all jobs and then wait for them so that they can run
+            # in parallel.
+            #
+            # [1]  https://stackoverflow.com/a/42139535/836390
+
+            cargo check --workspace --tests                         &> /dev/null &
+            # On our MSRV toolchain, updating the Cargo index takes a long time, so
+            # it is worth specifically caching the MSRV index.
+            ./cargo.sh +msrv check --workspace --tests              &> /dev/null &
+            cargo metadata                                          &> /dev/null &
+            cargo install cargo-readme --version 3.2.0              &> /dev/null &
+            cargo install --locked action-validator --version 0.8.0 &> /dev/null &
+            cargo install --locked kani-verifier                    &> /dev/null &
+            cargo install cargo-nextest                             &> /dev/null &
+            cargo kani setup                                        &> /dev/null &
+
+            wait
+
+  check-all-toolchains-tested:
+    runs-on: ubuntu-latest
+    name: Check that all toolchains listed in Cargo.toml are tested in CI
+    steps:
+      - name: Install yq (for YAML parsing)
+        # FIXME(https://github.com/mikefarah/yq/issues/2587): Remove
+        # `GONOSUMDB` once this bug is fixed.
+        run: GONOSUMDB=github.com/mikefarah/yq/v4 go install github.com/mikefarah/yq/v4@v4.44.1
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Run check
+        run: ./ci/check_all_toolchains_tested.sh
+
+  check-job-dependencies:
+    runs-on: ubuntu-latest
+    name: Check all-jobs-succeeded depends on all jobs
+    steps:
+      - name: Install yq (for YAML parsing)
+        # FIXME(https://github.com/mikefarah/yq/issues/2587): Remove
+        # `GONOSUMDB` once this bug is fixed.
+        run: GONOSUMDB=github.com/mikefarah/yq/v4 go install github.com/mikefarah/yq/v4@v4.44.1
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Run dependency check
+        run: ./ci/check_job_dependencies.sh
+
+  check-todo:
+    runs-on: ubuntu-latest
+    name: Check for todo comments
+    steps:
+      - name: Install ripgrep
+        run: |
+         sudo apt-get update
+         sudo apt-get install ripgrep
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Run todo check
+        run: ./ci/check_todo.sh
+
+  run-git-hooks:
+    runs-on: ubuntu-latest
+    name: Run Git hooks
+    steps:
+      - name: Install yq (for YAML parsing)
+        # FIXME(https://github.com/mikefarah/yq/issues/2587): Remove
+        # `GONOSUMDB` once this bug is fixed.
+        run: GONOSUMDB=github.com/mikefarah/yq/v4 go install github.com/mikefarah/yq/v4@v4.44.1
+      - name: Install ripgrep
+        run: |
+         sudo apt-get update
+         sudo apt-get install ripgrep
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - name: Run dependency check
+        # Ensure that Git hooks execute successfully.
+        #
+        # Note that this runs all hooks. As of this writing, the only Git hook
+        # is `pre-push`. Running all hooks ensures that, if a new hook is added
+        # which can't run in CI (at least not using this naive setup), we'll
+        # notice and it will remind us to update this test.
+        run: |
+          set -eo pipefail
+
+          # Required by `ci/check_fmt.sh` as of this writing.
+          rustup install $(./cargo.sh --version nightly) -c rust-src,rustfmt
+
+          for hook in ./githooks/*; do $hook; done
+
+  zizmor:
+    runs-on: ubuntu-latest
+    name: zizmor
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - uses: zizmorcore/zizmor-action@e639db99335bc9038abc0e066dfcd72e23d26fb4 # v0.3.0
+        with:
+          # Only scan the .github directory to avoid scanning vendored dependencies
+          inputs: .github
+          # We don't want to use GitHub Advanced Security because we want to
+          # block the merge on zizmor failure, and the only way to do that
+          # (without manually configuring a ruleset) is to fail the job, which
+          # the action only does if advanced-security is false.
+          advanced-security: false
+          persona: pedantic
+
+  # Used to signal to branch protections that all other jobs have succeeded.
+  all-jobs-succeed:
+      name: All checks succeeded
+      # On failure, we run and unconditionally exit with a failing status code.
+      # On success, this job is skipped. Jobs skipped using `if:` are considered
+      # to have succeeded:
+      #
+      # https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/troubleshooting-required-status-checks#handling-skipped-but-required-checks
+      if: failure()
+      runs-on: ubuntu-latest
+      needs: [build_test, coverage, kani, check_be_aarch64, check_avr_atmega, check_fmt, check_actions, check_readme, check_versions, check_msrv_is_minimal, check_stale_stderr, generate_cache, check-all-toolchains-tested, check-job-dependencies, check-todo, run-git-hooks, zizmor]
+      steps:
+        - name: Mark the job as failed
+          run: exit 1

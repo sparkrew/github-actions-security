@@ -1,0 +1,325 @@
+name: CI
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  merge_group:
+  workflow_dispatch:
+
+# If a new commit is pushed to the branch before ongoing runs finish, cancel the ongoing runs
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  NEXTEST_VERSION: 0.9.114
+
+jobs:
+  build_and_test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    env:
+      RUSTFLAGS: -Dwarnings
+      RUSTDOCFLAGS: -Dwarnings
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v6
+      - name: Use Node.js
+        uses: actions/setup-node@v6
+      - name: Set up Rust
+        run: |
+          rustup toolchain install $(awk -F'"' '/channel/{print $2}' rust-toolchain.toml) --profile minimal --no-self-update --component rustfmt,clippy --target x86_64-unknown-linux-gnu
+      - name: Set up Nextest
+        uses: taiki-e/install-action@v2
+        with:
+          tool: nextest@${{ env.NEXTEST_VERSION }}
+      - name: Set up tun
+        run: |
+          sudo ./litebox_platform_linux_userland/scripts/tun-setup.sh
+      - name: Install iperf3
+        run: |
+          sudo apt install -y iperf3
+      - name: Install diod
+        run: |
+          sudo apt install -y diod
+      - uses: Swatinem/rust-cache@v2
+      - name: Cache custom out directories
+        uses: actions/cache@v5
+        with:
+          path: |
+            target/*/build/litebox_runner_linux_userland-*/out
+          key: custom-out-${{ runner.os }}-${{ github.job }}-${{ hashFiles('**/Cargo.lock') }}-${{ hashFiles('**/litebox_syscall_rewriter/**/*.rs') }}
+      - run: ./.github/tools/github_actions_run_cargo fmt
+      - run: |
+          ./.github/tools/github_actions_run_cargo clippy --all-targets --all-features --workspace --exclude litebox_runner_lvbs --exclude litebox_runner_optee_on_linux_userland --exclude litebox_runner_snp
+          ./.github/tools/github_actions_run_cargo clippy --all-targets --all-features -p litebox_runner_optee_on_linux_userland
+          # We exclude `litebox_runner_lvbs` because it requires a custom target and nightly
+          # features. `build_and_test_lvbs` covers it.
+          # `litebox_runner_optee_on_linux_userland` conflicts with `litebox_runner_linux_userland` due to
+          # feature unification (`optee_syscall` versus `linux_syscall`). Build it separately for now.
+      - run: |
+          ./.github/tools/github_actions_run_cargo build
+          ./.github/tools/github_actions_run_cargo build -p litebox_runner_optee_on_linux_userland
+      - run: |
+          ./.github/tools/github_actions_run_cargo nextest
+          ./.github/tools/github_actions_run_cargo nextest -p litebox_runner_optee_on_linux_userland
+      - run: |
+          ./.github/tools/github_actions_run_cargo test --doc
+          # We need to run `cargo test --doc` separately because doc tests
+          # aren't included in nextest at the moment. See relevant discussion at
+          # https://github.com/nextest-rs/nextest/issues/16
+      - name: Build documentation (fail on warnings)
+        run: ./.github/tools/github_actions_run_cargo doc --no-deps --all-features --document-private-items --workspace --exclude litebox_runner_lvbs --exclude litebox_runner_snp
+
+  build_and_test_32bit:
+    name: Build and Test (32-bit)
+    runs-on: ubuntu-latest
+    env:
+      RUSTFLAGS: -Dwarnings
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v6
+      - run: sudo apt update && sudo apt install -y gcc-multilib
+      - name: Set up Rust
+        run: |
+          rustup toolchain install $(awk -F'"' '/channel/{print $2}' rust-toolchain.toml) --profile minimal --no-self-update --component rustfmt,clippy --target i686-unknown-linux-gnu
+      - name: Set up Nextest
+        uses: taiki-e/install-action@v2
+        with:
+          tool: nextest@${{ env.NEXTEST_VERSION }}
+      - name: Install diod
+        run: |
+          sudo apt install -y diod
+      - name: Set up tun
+        run: |
+          sudo ./litebox_platform_linux_userland/scripts/tun-setup.sh
+      - uses: Swatinem/rust-cache@v2
+      - name: Cache custom out directories
+        uses: actions/cache@v5
+        with:
+          path: |
+            target/*/build/litebox_runner_linux_userland-*/out
+          key: custom-out-${{ runner.os }}-${{ github.job }}-${{ hashFiles('**/Cargo.lock') }}-${{ hashFiles('**/litebox_syscall_rewriter/**/*.rs') }}
+      - run: ./.github/tools/github_actions_run_cargo build --target=i686-unknown-linux-gnu
+      - run: ./.github/tools/github_actions_run_cargo nextest --target=i686-unknown-linux-gnu
+      - run: |
+          ./.github/tools/github_actions_run_cargo test --target=i686-unknown-linux-gnu --doc
+          # We need to run `cargo test --doc` separately because doc tests
+          # aren't included in nextest at the moment. See relevant discussion at
+          # https://github.com/nextest-rs/nextest/issues/16
+
+  build_and_test_lvbs:
+    name: Build and Test LVBS
+    runs-on: ubuntu-latest
+    env:
+      RUSTFLAGS: -Dwarnings
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v6
+      # LVBS requires a nightly toolchain because:
+      # 1. It uses a custom target (x86_64_vtl1.json) for bare-metal VTL1 kernel development
+      # 2. The custom target requires `-Z build-std` to build core/alloc from source
+      # 3. build-std is needed to compile the standard library with SSE support, which is
+      #    required by dependencies like `libm` (used by RSA/crypto for authenticode verification)
+      # 4. The built-in x86_64-unknown-none target uses soft-float (no SSE), causing ABI
+      #    incompatibility when SSE-using dependencies are linked against a soft-float stdlib
+      #
+      # Version alignment: The nightly version should match the stable version (e.g., stable
+      # 1.91.x -> nightly 1.91.x). Use `rustc +nightly-YYYY-MM-DD --version` to find a date.
+      - name: Set up Rust
+        run: |
+          RUST_CHANNEL=$(awk -F'"' '/channel/{print $2}' litebox_runner_lvbs/rust-toolchain.toml)
+          rustup toolchain install ${RUST_CHANNEL} --profile minimal --no-self-update --component rustfmt,clippy --target x86_64-unknown-none
+          rustup component add rust-src --toolchain ${RUST_CHANNEL}-x86_64-unknown-linux-gnu
+          rustup default ${RUST_CHANNEL}
+          rustup override set ${RUST_CHANNEL}
+          rustup show
+      - name: Set up Nextest
+        uses: taiki-e/install-action@v2
+        with:
+          tool: nextest@${{ env.NEXTEST_VERSION }}
+      - name: Set up tun
+        run: |
+          sudo ./litebox_platform_linux_userland/scripts/tun-setup.sh
+      - uses: Swatinem/rust-cache@v2
+      - name: Cache custom out directories
+        uses: actions/cache@v5
+        with:
+          path: |
+            target/*/build/litebox_runner_linux_userland-*/out
+          key: custom-out-${{ runner.os }}-${{ github.job }}-${{ hashFiles('**/Cargo.lock') }}-${{ hashFiles('**/litebox_syscall_rewriter/**/*.rs') }}
+      - run: |
+          ./.github/tools/github_actions_run_cargo clippy --all-targets --all-features
+          # Run clippy for lvbs with custom target (requires build-std)
+          ./.github/tools/github_actions_run_cargo clippy -Z build-std-features=compiler-builtins-mem -Z build-std=core,alloc --manifest-path=litebox_runner_lvbs/Cargo.toml --target litebox_runner_lvbs/x86_64_vtl1.json --all-features
+      - run: |
+          ./.github/tools/github_actions_run_cargo build
+          ./.github/tools/github_actions_run_cargo build -Z build-std-features=compiler-builtins-mem -Z build-std=core,alloc --manifest-path=litebox_runner_lvbs/Cargo.toml --target litebox_runner_lvbs/x86_64_vtl1.json
+      - run: ./.github/tools/github_actions_run_cargo nextest -p litebox_platform_lvbs
+      - run: |
+          ./.github/tools/github_actions_run_cargo test --doc
+          # We need to run `cargo test --doc` separately because doc tests
+          # aren't included in nextest at the moment. See relevant discussion at
+          # https://github.com/nextest-rs/nextest/issues/16
+      - name: Build documentation (fail on warnings)
+        run: ./.github/tools/github_actions_run_cargo doc --no-deps --all-features --document-private-items
+
+  build_and_test_windows:
+    name: Build and Test Windows
+    runs-on: windows-latest
+    env:
+      RUSTFLAGS: -Dwarnings
+      RUSTDOCFLAGS: -Dwarnings
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v6
+      - name: Set up Rust
+        run: |
+          rustup toolchain install $(awk -F'"' '/channel/{print $2}' rust-toolchain.toml) --profile minimal --no-self-update --component rustfmt,clippy --target x86_64-pc-windows-msvc
+      - name: Set up Nextest
+        uses: taiki-e/install-action@v2
+        with:
+          tool: nextest@${{ env.NEXTEST_VERSION }}
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo clippy --locked --verbose --all-targets --all-features -p litebox_runner_linux_on_windows_userland
+      - run: cargo build --locked --verbose -p litebox_runner_linux_on_windows_userland
+      - run: cargo nextest run --locked --profile ci -p litebox_runner_linux_on_windows_userland
+      - run: cargo nextest run --locked --profile ci -p litebox_shim_linux --no-default-features --features platform_windows_userland
+      - run: |
+          cargo test --locked --verbose --doc -p litebox_runner_linux_on_windows_userland
+          # We need to run `cargo test --doc` separately because doc tests
+          # aren't included in nextest at the moment. See relevant discussion at
+          # https://github.com/nextest-rs/nextest/issues/16
+      - name: Build documentation (fail on warnings)
+        run: cargo doc --locked --verbose --no-deps --all-features --document-private-items -p litebox_runner_linux_on_windows_userland
+
+  build_and_test_snp:
+    name: Build and Test SNP
+    runs-on: ubuntu-latest
+    env:
+      RUSTFLAGS: -Dwarnings
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v6
+      - name: Set up Rust
+        run: |
+          RUST_CHANNEL=$(awk -F'"' '/channel/{print $2}' litebox_runner_snp/rust-toolchain.toml)
+          rustup toolchain install ${RUST_CHANNEL} --profile minimal --no-self-update --component rustfmt,clippy --target x86_64-unknown-none
+          rustup component add rust-src --toolchain ${RUST_CHANNEL}-x86_64-unknown-linux-gnu
+          rustup default ${RUST_CHANNEL}
+          rustup override set ${RUST_CHANNEL}
+          rustup show
+      - uses: Swatinem/rust-cache@v2
+      - run: ./.github/tools/github_actions_run_cargo clippy --all-features --target litebox_runner_snp/target.json --manifest-path=litebox_runner_snp/Cargo.toml -Zbuild-std=core,compiler_builtins,alloc
+      - run: |
+          ./.github/tools/github_actions_run_cargo build -Zbuild-std=core,compiler_builtins,alloc -Zbuild-std-features=compiler-builtins-mem --manifest-path=litebox_runner_snp/Cargo.toml --target litebox_runner_snp/target.json
+      - name: Build documentation (fail on warnings)
+        run: ./.github/tools/github_actions_run_cargo doc --no-deps --all-features --document-private-items
+
+  confirm_no_std:
+    name: Confirm no_std
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v6
+      - name: Set up Rust
+        run: |
+          rustup toolchain install $(awk -F'"' '/channel/{print $2}' rust-toolchain.toml) --profile minimal --no-self-update --target x86_64-unknown-none
+      - uses: Swatinem/rust-cache@v2
+      - name: Confirm that we haven't accidentally pulled in std into LiteBox
+        run: |
+          # Essentially, we run a build on a target that simply does NOT have
+          # `std` support at all. If that build succeeds, then we know that the
+          # litebox crate has not accidentally pulled in `std` from a dependency
+          # that is not a `#[no_std]` crate.
+          #
+          # This build will fail if any of the dependencies of `litebox` pull in
+          # `std`. Unfortunately, the error message is not very useful to point
+          # out _which_ dependency pulled in `std`, but otoh, hopefully it
+          # should be quite obvious by looking at the PR itself.
+          #
+          # The `find` invocation runs through every `Cargo.toml` in the
+          # repository, and runs a build with `x86_64-unknown-none` target
+          # (which does not support `std`), thereby catching any crate that
+          # pulls in an std-crate accidentally. The `-not -path` lines are an
+          # allow-list (i.e., crates that are allowed to have `std`).
+          #
+          # Reason for each item in allow-list:
+          #
+          # - `.` is itself special, since it would otherwise trigger a
+          #   full-workspace check, which we don't want, thus we allow that one
+          #   in particular to also have `std` in it.
+          #
+          # - `litebox_platform_linux_userland` is allowed to have `std` access,
+          #   since it is a purely-userland implementation.
+          #
+          # - `litebox_platform_windows_userland` is allowed to have `std` access,
+          #   since it is a purely-userland implementation.
+          #
+          # - `litebox_platform_lvbs` has a custom target (`no_std`), so it does
+          #   not work with the current no_std checker.
+          #
+          # - `litebox_platform_multiplex` is allowed to have `std` access (in
+          #   its default feature set) because `litebox_platform_linux_userland`
+          #   has access, and this is just a multiplexer. Ideally, we'd do a
+          #   more precise check, but as long as we are tracking the underlying
+          #   platforms, we are unlikely to hit any significant issues here.
+          #
+          # - `litebox_runner_linux_on_windows_userland` is allowed to have `std`
+          #   access since it needs to actually access the file-system, pull in
+          #   relevant files, and then actually trigger LiteBox itself.
+          #
+          # - `litebox_runner_linux_userland` is allowed to have `std` access
+          #   since it needs to actually access the file-system, pull in
+          #   relevant files, and then actually trigger LiteBox itself.
+          #
+          # - `litebox_runner_lvbs` has a custom target (`no_std`), so it does
+          #   not work with the current no_std checker.
+          #
+          # - `litebox_runner_optee_on_linux_userland` is allowed to have `std`
+          #   access since it needs to actually access the file-system, pull in
+          #   relevant files, and then actually trigger LiteBox itself.
+          #
+          # - `litebox_shim_linux` (in its default feature set) depends on
+          #   `litebox_platform_multiplex`; similarly, ideally we'd do a more
+          #   precise check.
+          #
+          # - `litebox_shim_optee` is expected to work with
+          #   `litebox_platform_lvbs` (`no_std`) and
+          #   `litebox_platform_linux_userland` (for debugging) which
+          #   depends on `litebox_platform_multiplex`.
+          #
+          # - `litebox_syscall_rewriter` is allowed to have `std` access since
+          #   it is a helper binary that runs in userland to AOT "compile" ELFs.
+          #
+          # - `litebox_runner_snp` is `no_std` but requires custom target to build
+          #
+          # - `dev_tests` is meant to only be used for tests, and thus can
+          #   safely use std.
+          #
+          # - `dev_bench` is meant to only be used for benchmarking, and thus
+          #   can safely use std.
+          find . -type f -name 'Cargo.toml' \
+            -not -path './Cargo.toml' \
+            -not -path './litebox_platform_linux_userland/Cargo.toml' \
+            -not -path './litebox_platform_windows_userland/Cargo.toml' \
+            -not -path './litebox_runner_linux_on_windows_userland/Cargo.toml' \
+            -not -path './litebox_platform_lvbs/Cargo.toml' \
+            -not -path './litebox_platform_multiplex/Cargo.toml' \
+            -not -path './litebox_runner_linux_userland/Cargo.toml' \
+            -not -path './litebox_runner_lvbs/Cargo.toml' \
+            -not -path './litebox_runner_optee_on_linux_userland/Cargo.toml' \
+            -not -path './litebox_shim_linux/Cargo.toml' \
+            -not -path './litebox_shim_optee/Cargo.toml' \
+            -not -path './litebox_syscall_rewriter/Cargo.toml' \
+            -not -path './litebox_runner_snp/Cargo.toml' \
+            -not -path './dev_tests/Cargo.toml' \
+            -not -path './dev_bench/Cargo.toml' \
+            -print0 | \
+              xargs -0 -I '{}' sh -c 'cd "$(dirname "{}")"; pwd; cargo build --locked --target x86_64-unknown-none || exit 1; echo; echo'

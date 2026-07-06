@@ -1,0 +1,31 @@
+name: Unit tests
+
+on: pull_request
+
+jobs:
+  full_test_run:
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: true
+
+    - uses: actions/setup-node@v4
+
+    - name: NPM install
+      run: npm ci
+
+    - name: Install playwright browsers
+      run: npx playwright install --with-deps
+
+    # - name: Lint TypeScript sources
+    #   run: npm run lint
+
+    - name: Build packages
+      run: npm run build
+
+    - name: Unit tests
+      run: npm run test:ci

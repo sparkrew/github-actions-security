@@ -1,0 +1,52 @@
+name: .NET Build Validation
+
+'on':
+  pull_request:
+    branches: [ main ]
+    paths:
+    - 'samples/**/*.cs'
+    - 'samples/**/*.csproj'
+    - 'samples/**/*.sln'
+    - 'samples/**/*.slnx'
+    - 'samples/**/*.razor'
+    - 'samples/**/*.json'
+    - '.github/workflows/build-validation.yml'
+
+jobs:
+  build:
+    name: Build .NET Projects
+    runs-on: ubuntu-latest
+    
+    strategy:
+      fail-fast: false  # Show results for all projects even if some fail
+      matrix:
+        solution:
+        - path: "samples/CoreSamples/CoreGenerativeAITechniques.sln"
+          name: "Core Samples"
+        - path: "samples/PracticalSamples/Aspire.MCP.Sample.sln"
+          name: "Practical Samples - Aspire MCP"
+        - path: "samples/AppsWithGenAI/HFMCP.GenImage/HFMCP.GenImage.sln"
+          name: "HFMCP GenImage App"
+        - path: "samples/AppsWithGenAI/SpaceAINet/SpaceAINet.sln"
+          name: "SpaceAINet App"
+        - path: "samples/AgentFx/AgentFx-Demos.slnx"
+          name: "AgentFx Demos"
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET 9.0
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Restore dependencies for ${{ matrix.solution.name }}
+      run: dotnet restore "${{ matrix.solution.path }}"
+
+    - name: Build ${{ matrix.solution.name }}
+      run: dotnet build "${{ matrix.solution.path }}" --no-restore --configuration Release --verbosity minimal
+
+    - name: Display build result
+      if: success()
+      run: echo "✅ ${{ matrix.solution.name }} build succeeded"

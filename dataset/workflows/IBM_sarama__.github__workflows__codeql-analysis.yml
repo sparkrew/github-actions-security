@@ -1,0 +1,52 @@
+name: "CodeQL"
+on:
+  merge_group:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - "**"
+  schedule:
+  - cron: "39 12 * * 1"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
+
+permissions:
+  contents: read  # for actions/checkout to fetch code
+
+env:
+  # Use the Go toolchain installed by setup-go
+  GOTOOLCHAIN: local
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read  # for github/codeql-action to list actions
+      contents: read  # for actions/checkout to fetch code
+      security-events: write  # for github/codeql-action to report security issues
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ["actions", "go"]
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      with:
+        persist-credentials: false
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@89a39a4e59826350b863aa6b6252a07ad50cf83e # v4.32.4
+      with:
+        languages: ${{ matrix.language }}
+    - name: Setup Go
+      uses: actions/setup-go@7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5 # v6.2.0
+      with:
+        go-version: stable
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@89a39a4e59826350b863aa6b6252a07ad50cf83e # v4.32.4
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@89a39a4e59826350b863aa6b6252a07ad50cf83e # v4.32.4

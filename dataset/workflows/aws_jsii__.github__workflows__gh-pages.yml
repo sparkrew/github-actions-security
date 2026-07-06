@@ -1,0 +1,81 @@
+# Workflow that publishes to the gh-pacges branch
+name: GitHub Pages
+
+on:
+  merge_group: {}
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    paths: [gh-pages/**]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: build
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          cache: 'pip'
+          cache-dependency-path: 'gh-pages/requirements-dev.txt'
+          python-version: '3.9'
+      - name: Install Dependencies
+        run: |-
+          python3 -m venv ${{ runner.temp }}/venv
+          source ${{ runner.temp }}/venv/bin/activate
+          python3 -m pip install -r requirements-dev.txt
+        working-directory: gh-pages
+      - name: Build DocSite
+        run: |-
+          mkdir -p ${{ runner.temp }}/site
+          source ${{ runner.temp }}/venv/bin/activate
+          mkdocs build                                                          \
+            --strict                                                            \
+            --site-dir ${{ runner.temp }}/site
+        working-directory: gh-pages
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: doc-site
+          path: ${{ runner.temp }}/site/
+
+  publish:
+    name: Publish
+    needs: build
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v6
+        with:
+          ref: gh-pages
+          token: ${{ secrets.PROJEN_GITHUB_TOKEN }}
+      - name: Download Artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: doc-site
+          path: ${{ runner.temp }}/site
+      - name: Configure Git
+        run: |-
+          git config user.name "AWS CDK Automation"
+          git config user.email "aws-cdk+automation@amazon.com"
+      - name: Prepare Commit
+        run: |-
+          rsync --archive --checksum --delete --inplace --recursive --verbose   \
+            --exclude=.git --exclude=.nojekyll --exclude=dev                    \
+            ${{ runner.temp }}/site/ ./
+          git add .
+          git diff --cached --exit-code >/dev/null || (
+            git commit -am 'docs: publish from ${{ github.sha }}'
+          )
+      - name: Push
+        run: |-
+          git push origin gh-pages:gh-pages

@@ -1,0 +1,91 @@
+name: Check packages
+on:
+  pull_request:
+
+jobs:
+  dependency-deduplication:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository_owner == 'microsoft' }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: 'yarn'
+
+      - uses: tj-actions/changed-files@ed68ef82c095e0d48ec87eccea555d944a631a4c # v46.0.5
+        id: changed-files-specific
+        with:
+          files: |
+            yarn.lock
+
+      - name: Check package duplicates
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        run: |
+          echo "yarn.lock changed! Verifying package deduplication ..."
+
+          yarn run dedupe --list --fail
+
+          if [[ $? -ne 0 ]]; then
+            echo "Your changes introduced package duplication 🚨"
+            echo "Run 'yarn run dedupe' to fix those."
+          else
+            echo "No duplicate packages introduced ✅"
+          fi
+
+  dependency-mismatches:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository_owner == 'microsoft' }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22.x
+
+      - uses: actions/github-script@v8
+        with:
+          script: |
+            const syncpackVersion = require('./package.json').devDependencies.syncpack;
+
+            if (typeof syncpackVersion !== 'string') {
+              core.setFailed("Please check 'package.json', it should include 'syncpack' in 'devDependencies'")
+              return
+            }
+
+            core.exportVariable('SYNCPACK_VERSION', syncpackVersion);
+
+      - run: |
+          npx syncpack@$SYNCPACK_VERSION list-mismatches
+
+  change-files:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository_owner == 'microsoft' }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22.x
+
+      - uses: actions/github-script@v8
+        with:
+          script: |
+            const beachballVersion = require('./package.json').devDependencies.beachball;
+
+            if (typeof beachballVersion !== 'string') {
+              core.setFailed("Please check 'package.json', it should include 'beachball' in 'devDependencies'")
+              return
+            }
+
+            core.exportVariable('BEACHBALL_VERSION', beachballVersion);
+
+      - run: |
+          npx beachball@$BEACHBALL_VERSION check

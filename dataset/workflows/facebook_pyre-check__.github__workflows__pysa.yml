@@ -1,0 +1,44 @@
+name: pysa
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  pysa:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+      - uses: actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548 # v6.1.0
+        with:
+          python-version: "3.10"
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+          sudo apt-get install opam
+
+      - name: Build Pyre (and Pysa)
+        run: |
+          # We aren't sure why, but `setup.py` is not adding the opam bin
+          # directory to the PATH successfully in github CI so we set it
+          # manually. TODO(T195374929) Maybe investigate this more?
+          export PATH="${HOME}/.opam/pyre-4.14.0/bin:${PATH}"
+
+          ./scripts/setup.sh --local --no-tests
+
+          echo "PYTHONPATH=$GITHUB_WORKSPACE/..:$PYTHONPATH" >> $GITHUB_ENV
+          echo "pythonLocation=$GITHUB_WORKSPACE:$pythonLocation" >> $GITHUB_ENV
+          echo "PYRE_BINARY=$GITHUB_WORKSPACE/source/_build/default/main.exe" >> $GITHUB_ENV
+          echo "PYRE_TYPESHED=$GITHUB_WORKSPACE/stubs/typeshed/typeshed/" >> $GITHUB_ENV
+
+      - name: Run and test pysa output
+        run: |
+          cd ./documentation/deliberately_vulnerable_flask_app
+          . ./setup.sh
+          ./run_integration_tests.sh

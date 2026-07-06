@@ -1,0 +1,213 @@
+name: Dependabot Auto-Merge
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+  # Trigger on workflow runs to catch test completions
+  workflow_run:
+    workflows: ["checks"]
+    types:
+      - completed
+
+permissions:
+  pull-requests: write
+  contents: write
+  checks: read
+
+jobs:
+  auto-approve:
+    runs-on: ubuntu-latest
+    if: github.actor == 'dependabot[bot]' && github.event_name == 'pull_request'
+    steps:
+      - name: Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v2
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Approve PR
+        run: gh pr review --approve "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  auto-merge:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success'
+    steps:
+      - name: Get PR number from workflow run
+        id: pr
+        run: |
+          PR_NUMBER=$(gh pr list \
+            --repo ${{ github.repository }} \
+            --head ${GITHUB_EVENT_WORKFLOW_RUN_HEAD_BRANCH} \
+            --state open \
+            --json number \
+            --jq '.[0].number')
+
+          if [ -z "$PR_NUMBER" ] || [ "$PR_NUMBER" = "null" ]; then
+            echo "No open PR found for branch ${GITHUB_EVENT_WORKFLOW_RUN_HEAD_BRANCH}"
+            exit 0
+          fi
+
+          echo "number=$PR_NUMBER" >> $GITHUB_OUTPUT
+          echo "Found PR #$PR_NUMBER"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_EVENT_WORKFLOW_RUN_HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
+
+      - name: Check if PR is from Dependabot
+        if: steps.pr.outputs.number != ''
+        id: check
+        run: |
+          PR_INFO=$(gh pr view ${STEPS_PR_OUTPUTS_NUMBER} \
+            --repo ${{ github.repository }} \
+            --json author,mergeable,state)
+
+          PR_AUTHOR=$(echo "$PR_INFO" | jq -r '.author.login')
+          PR_MERGEABLE=$(echo "$PR_INFO" | jq -r '.mergeable')
+          PR_STATE=$(echo "$PR_INFO" | jq -r '.state')
+
+          echo "PR Author: $PR_AUTHOR"
+          echo "PR Mergeable: $PR_MERGEABLE"
+          echo "PR State: $PR_STATE"
+
+          if [ "$PR_AUTHOR" = "dependabot[bot]" ] || [ "$PR_AUTHOR" = "app/dependabot" ]; then
+            echo "is_dependabot=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_dependabot=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          echo "mergeable=$PR_MERGEABLE" >> $GITHUB_OUTPUT
+          echo "state=$PR_STATE" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          STEPS_PR_OUTPUTS_NUMBER: ${{ steps.pr.outputs.number }}
+
+      - name: Checkout code
+        if: steps.check.outputs.is_dependabot == 'true'
+        uses: actions/checkout@v5
+        with:
+          ref: refs/pull/${{ steps.pr.outputs.number }}/head
+          fetch-depth: 0
+
+      - name: Check if changes are in agents using starter pack for testing
+        if: steps.check.outputs.is_dependabot == 'true'
+        id: check-agent
+        run: |
+          # Get the base branch for comparison
+          BASE_BRANCH=$(gh pr view ${STEPS_PR_OUTPUTS_NUMBER} --repo ${{ github.repository }} --json baseRefName --jq '.baseRefName')
+          git fetch origin $BASE_BRANCH
+
+          # Get all changed files
+          CHANGED_FILES=$(git diff --name-only origin/$BASE_BRANCH...HEAD)
+
+          # Check if all changed files are in python/agents/** directories using agent starter pack for testing
+          HAS_AUTOMATED_TESTS=true
+
+          # Get all changed agent directories
+          CHANGED_AGENT_DIRS=$(echo "$CHANGED_FILES" | grep -o 'python/agents/[^/]*' | sort -u || true)
+
+          if [ -z "$CHANGED_AGENT_DIRS" ]; then
+            echo "No changes in python/agents/** directories"
+            HAS_AUTOMATED_TESTS=false
+          else
+            for dir in $CHANGED_AGENT_DIRS; do
+              if [ ! -f "$dir/pyproject.toml" ]; then
+                echo "$dir does not have pyproject.toml"
+                HAS_AUTOMATED_TESTS=false
+                break
+              fi
+
+              if ! grep -q '\[tool\.agent-starter-pack\]' "$dir/pyproject.toml"; then
+                echo "$dir is not using agent starter pack for testing"
+                HAS_AUTOMATED_TESTS=false
+                break
+              fi
+            done
+          fi
+
+          echo "has_tests=$HAS_AUTOMATED_TESTS" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          STEPS_PR_OUTPUTS_NUMBER: ${{ steps.pr.outputs.number }}
+
+      - name: Update branch if needed
+        if: steps.check.outputs.is_dependabot == 'true' && steps.check-agent.outputs.has_tests == 'true' && steps.check.outputs.mergeable == 'CONFLICTING'
+        run: |
+          echo "Branch needs update, updating..."
+          gh pr comment ${STEPS_PR_OUTPUTS_NUMBER} --body "@dependabot rebase"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          STEPS_PR_OUTPUTS_NUMBER: ${{ steps.pr.outputs.number }}
+
+      - name: Wait for all checks to complete
+        if: steps.check.outputs.is_dependabot == 'true' && steps.check-agent.outputs.has_tests == 'true' && steps.check.outputs.mergeable != 'CONFLICTING'
+        id: wait-checks
+        run: |
+          MAX_WAIT_TIME=600  # 10 minutes
+          WAIT_INTERVAL=30   # 30 seconds
+          elapsed=0
+
+          echo "Waiting for all checks to complete..."
+
+          while [ $elapsed -lt $MAX_WAIT_TIME ]; do
+            # Get PR details via API
+            PR_DATA=$(gh api repos/${{ github.repository }}/pulls/${STEPS_PR_OUTPUTS_NUMBER})
+
+            # Get commit SHA
+            HEAD_SHA=$(echo "$PR_DATA" | jq -r '.head.sha')
+
+            # Get check runs for this commit
+            CHECK_RUNS=$(gh api repos/${{ github.repository }}/commits/$HEAD_SHA/check-runs)
+
+            # Count checks
+            TOTAL=$(echo "$CHECK_RUNS" | jq '.total_count')
+            PENDING=$(echo "$CHECK_RUNS" | jq '[.check_runs[] | select(.status == "queued" or .status == "in_progress")] | length')
+            FAILED=$(echo "$CHECK_RUNS" | jq '[.check_runs[] | select(.conclusion == "failure" or .conclusion == "cancelled" or .conclusion == "timed_out")] | length')
+
+            echo "Total checks: $TOTAL, Pending: $PENDING, Failed: $FAILED"
+
+            if [ "$FAILED" -gt 0 ]; then
+              echo "Some checks failed, will not merge"
+              echo "all_passed=false" >> $GITHUB_OUTPUT
+              exit 0
+            fi
+
+            if [ "$PENDING" -eq 0 ] && [ "$TOTAL" -gt 0 ]; then
+              echo "All checks completed successfully"
+              echo "all_passed=true" >> $GITHUB_OUTPUT
+              exit 0
+            fi
+
+            if [ "$TOTAL" -eq 0 ]; then
+              echo "No checks found yet, waiting..."
+            fi
+
+            echo "Waiting $WAIT_INTERVAL seconds before next check..."
+            sleep $WAIT_INTERVAL
+            elapsed=$((elapsed + WAIT_INTERVAL))
+          done
+
+          echo "Timeout waiting for checks to complete"
+          echo "all_passed=false" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          STEPS_PR_OUTPUTS_NUMBER: ${{ steps.pr.outputs.number }}
+
+      - name: Merge PR
+        if: |
+          steps.check.outputs.is_dependabot == 'true' &&
+          steps.check-agent.outputs.has_tests == 'true' &&
+          steps.wait-checks.outputs.all_passed == 'true' &&
+          steps.check.outputs.mergeable != 'CONFLICTING'
+        run: |
+          echo "All checks passed, merging PR #${STEPS_PR_OUTPUTS_NUMBER}"
+          gh pr merge ${STEPS_PR_OUTPUTS_NUMBER} --repo ${{ github.repository }} --squash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          STEPS_PR_OUTPUTS_NUMBER: ${{ steps.pr.outputs.number }}

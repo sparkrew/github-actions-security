@@ -1,0 +1,191 @@
+# Copyright 2023 The Fuchsia Authors
+#
+# Licensed under a BSD-style license <LICENSE-BSD>, Apache License, Version 2.0
+# <LICENSE-APACHE or https://www.apache.org/licenses/LICENSE-2.0>, or the MIT
+# license <LICENSE-MIT or https://opensource.org/licenses/MIT>, at your option.
+# This file may not be copied, modified, or distributed except according to
+# those terms.
+
+# Once a week, attempt to roll the pinned nightly and stable toolchain versions
+# and update the codebase as necessary (in particular, by regenerating the files
+# which store expected compiler output for UI tests; this output is not stable
+# and may change between compiler versions). On success, submit the changes as a
+# new PR. Note that this does not guarantee that the roll will succeed: PRs go
+# through many tests which are not exercised here, and so the generated PR may
+# still fail CI. In particular, some nightly releases do not support all of the
+# target architectures that we use in CI; attempting to roll to any such release
+# will fail.
+
+name: Roll pinned toolchain versions
+on:
+  schedule:
+    - cron: '29 09 * * 1'
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  roll_rust:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write # zizmor: ignore[excessive-permissions] (Needed to create pull requests)
+    strategy:
+      # By default, this is set to `true`, which means that a single CI job
+      # failure will cause all outstanding jobs to be canceled. This means that
+      # if, for example, rolling the nightly toolchain on a particular branch
+      # fails, all other rollers (which might have succeeded) will be canceled.
+      fail-fast: false
+      matrix:
+        toolchain: ["stable", "nightly"]
+        branch: ["main"]
+    name: Roll pinned toolchain ${{ matrix.toolchain }} version on ${{ matrix.branch }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          ref: ${{ matrix.branch }}
+          persist-credentials: false
+      - name: Calculate target version
+        env:
+          TOOLCHAIN: ${{ matrix.toolchain }}
+        run: |
+          if [ "$TOOLCHAIN" == stable ]; then
+            # Install whatever the latest stable release is. This has the side
+            # effect of determining the latest stable release so that we can
+            # update `Cargo.toml`.
+            echo "ZC_TARGET_TOOLCHAIN=stable" >> $GITHUB_ENV
+          else
+            # Use yesterday's date (`-d '-1 day'`) so we're sure the nightly for
+            # that date has actually been published yet. This allows us to not
+            # worry about what time of day this job runs.
+            echo "ZC_TARGET_TOOLCHAIN=nightly-$(date -d '-1 day' +%Y-%m-%d)" >> $GITHUB_ENV
+          fi
+      - name: Install stable Rust for use in 'cargo.sh'
+        uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9 # v1
+        with:
+          toolchain: stable
+      - name: Install Rust with ${{ env.ZC_TARGET_TOOLCHAIN }} toolchain
+        uses: dtolnay/rust-toolchain@e97e2d8cc328f1b50210efc529dca0028893a2d9 # v1
+        with:
+            toolchain: ${{ env.ZC_TARGET_TOOLCHAIN }}
+            # We require the `rust-src` component to ensure that the compiler
+            # error output generated during UI tests matches that expected by
+            # CI; see `ci.yml` and
+            # https://github.com/rust-lang/rust/issues/116433.
+            components: rust-src
+      - name: Update files
+        env:
+          TOOLCHAIN: ${{ matrix.toolchain }}
+        run: |
+          set -eo pipefail
+
+          function validate-file {
+            REGEX="$1"
+            FILE="$2"
+            grep "$REGEX" "$FILE" >/dev/null || { echo "Failed to find line matching regex '$REGEX' in $FILE" >&2; exit 1; }
+          }
+
+          function update-pinned-version {
+            VERSION_NAME="$1"
+            VERSION="$2"
+            ZEROCOPY_FEATURES="$3"
+
+            # Confirm that `Cargo.toml` lists the pinned version in the expected
+            # format. This is a prerequisite for the subsequent `sed` command.
+            REGEX="^pinned-$VERSION_NAME = \"[a-z0-9\.-]*\"$"
+            validate-file "$REGEX" Cargo.toml
+            sed -i -e "s/$REGEX/pinned-$VERSION_NAME = \"$VERSION\"/" Cargo.toml
+
+            # Confirm that the update didn't bork `Cargo.toml`.
+            validate-file "$REGEX" Cargo.toml
+
+            # Run `cargo fix` in case there are any warnings or errors
+            # introduced on this new toolchain that we can fix automatically.
+            # This is best-effort, so we don't let failure cause the whole job
+            # to fail.
+            ./cargo.sh "+$VERSION_NAME" fix --allow-dirty --tests --package zerocopy $ZEROCOPY_FEATURES || true
+            ./cargo.sh "+$VERSION_NAME" fix --allow-dirty --tests --package zerocopy-derive             || true
+
+            ./tools/update-expected-test-output.sh
+          }
+
+          if [ "$TOOLCHAIN" == stable ]; then
+            STABLE_VERSION="$(cargo +stable version | sed -e 's/^cargo \([0-9\.]*\) .*/\1/')"
+            update-pinned-version stable "$STABLE_VERSION" '--features __internal_use_only_features_that_work_on_stable'
+
+            # Used as part of the branch name created by the "Submit PR" step.
+            echo "ZC_VERSION_FOR_BRANCH_NAME=$STABLE_VERSION" >> $GITHUB_ENV
+          else
+            update-pinned-version nightly "$ZC_TARGET_TOOLCHAIN" --all-features
+            echo "ZC_VERSION_FOR_BRANCH_NAME=$ZC_TARGET_TOOLCHAIN" >> $GITHUB_ENV
+          fi
+
+      - name: Submit PR
+        id: submit-pr
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0  # v8.1.0
+        with:
+          commit-message: "[ci] Roll pinned ${{ matrix.toolchain }} toolchain"
+          author: Google PR Creation Bot <github-pull-request-creation-bot@google.com>
+          committer: Google PR Creation Bot <github-pull-request-creation-bot@google.com>
+          title: "[ci] Roll pinned ${{ matrix.toolchain }} toolchain"
+          body: "${{ matrix.toolchain == 'nightly' && 'On failure, consider [manually creating roll PRs](https://github.com/google/zerocopy/actions/workflows/roll-pinned-toolchain-versions.yml) for previous nightlies to bisect the failure.' || '' }}"
+          branch: roll-pinned-${{ matrix.toolchain }}-toolchain-to-${{ env.ZC_VERSION_FOR_BRANCH_NAME }}-for-${{ matrix.branch }}
+          push-to-fork: google-pr-creation-bot/zerocopy
+          token: ${{ secrets.GOOGLE_PR_CREATION_BOT_TOKEN }}
+
+      - name: Add labels
+        if: steps.submit-pr.outputs.pull-request-operation == 'created'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ steps.submit-pr.outputs.pull-request-number }}
+        run: gh pr edit "$PR_NUMBER" --add-label "hide-from-release-notes"
+          
+  roll_kani:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write # zizmor: ignore[excessive-permissions] (Needed to create pull requests)
+    strategy:
+      matrix:
+        branch: ["main", "v0.7.x"]
+    name: Roll pinned Kani version
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          ref: ${{ matrix.branch }}
+          persist-credentials: false
+      - run: |
+          set -eo pipefail
+
+          # NOTE: If this is failing, try adding the `cargo add` command on a
+          # separate line to see its output. As is, we pipe stdout and stderr to
+          # `grep`, which will eat any error messages.
+          KANI_LATEST=$(cargo add --dry-run kani-verifier 2>&1 | grep -oh '[0-9]\+\.[0-9]\+\.[0-9]\+')
+          echo "ZC_KANI_LATEST=$KANI_LATEST" >> $GITHUB_ENV
+
+          # Update the `kani-version:` argument in-place.
+          sed -i -E -e "s/^( *kani-version:)( [0-9]+\.[0-9]+\.[0-9]+)/\1 $KANI_LATEST/" .github/workflows/ci.yml
+      - name: Submit PR
+        id: submit-pr
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0  # v8.1.0
+        with:
+          commit-message: "[ci] Roll pinned Kani version"
+          author: Google PR Creation Bot <github-pull-request-creation-bot@google.com>
+          committer: Google PR Creation Bot <github-pull-request-creation-bot@google.com>
+          title: "[ci] Roll pinned Kani version"
+          branch: roll-pinned-kani-to-${{ env.ZC_KANI_LATEST }}-for-${{ matrix.branch }}
+          push-to-fork: google-pr-creation-bot/zerocopy
+          token: ${{ secrets.GOOGLE_PR_CREATION_BOT_TOKEN }}
+
+      - name: Add labels
+        if: steps.submit-pr.outputs.pull-request-operation == 'created'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ steps.submit-pr.outputs.pull-request-number }}
+        run: gh pr edit "$PR_NUMBER" --add-label "hide-from-release-notes"

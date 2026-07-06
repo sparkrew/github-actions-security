@@ -1,0 +1,184 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+  release:
+    types: [created]
+
+permissions: {}
+
+env:
+  npm_config_audit: false
+  npm_config_fund: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: 'npm'
+      - name: Compare release tag with package.json
+        if: github.event_name == 'release'
+        run: |
+          RELEASE_VERSION=${GITHUB_REF#refs/tags/}
+          PKG_VERSION=$(node -p "require('./package.json').version")
+
+          echo "Release tag: $RELEASE_VERSION"
+          echo "package.json: $PKG_VERSION"
+
+          [ "$RELEASE_VERSION" = "$PKG_VERSION" ] || { echo "❌ Mismatch"; exit 1; }
+
+      - run: npm ci
+      - run: npm test
+        env:
+          FORCE_COLOR: 3
+      - uses: actions/upload-artifact@v6
+        with:
+          name: build-${{ github.run_id }}
+          path: |
+            build
+            jsr.json
+            package.json
+            package-lite.json
+            package-main.json
+          retention-days: 1
+
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      v: ${{ steps.ref.outputs.ZX_VERSION }}
+      lite: ${{ steps.ref.outputs.ZX_VERSION }}-lite
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - id: ref
+        run: |
+          echo SHA_SHORT=$(git rev-parse --short HEAD) >> $GITHUB_OUTPUT
+          echo ZX_VERSION=$(jq -r '.version' package.json) >> $GITHUB_OUTPUT
+
+  npm-publish:
+    needs: [build, version]
+    runs-on: ubuntu-latest
+    permissions:
+      checks: read
+      statuses: write
+      contents: write
+      packages: write
+      id-token: write
+    env:
+      GOOGLE_NPM_REGISTRY: wombat-dressing-room.appspot.com
+      GOOGLE_NPM_TOKEN: ${{ secrets.AUTH_TOKEN }}
+      GH_NPM_REGISTRY: npm.pkg.github.com
+      GH_NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      ZX_VERSION: ${{ needs.version.outputs.v }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: 'npm'
+      - name: Configure npmrc
+        run: |
+          echo "//${{ env.GOOGLE_NPM_REGISTRY }}/:_authToken=$GOOGLE_NPM_TOKEN" >> .npmrc
+          echo "//${{ env.GH_NPM_REGISTRY }}/:_authToken=$GH_NPM_TOKEN" >> .npmrc
+      - uses: actions/download-artifact@v7
+        with:
+          name: build-${{ github.run_id }}
+
+      - name: pushing to ${{ env.GOOGLE_NPM_REGISTRY }}
+        run: |
+          mv -f package-main.json package.json
+          npm publish --provenance --access=public --registry https://${{ env.GOOGLE_NPM_REGISTRY }}
+
+      - name: pushing to ${{ env.GH_NPM_REGISTRY }}
+        run: |
+          cat <<< $(jq '.name="@${{ github.repository }}"' package.json) > package.json
+          npm publish --no-git-tag-version --access=public --registry https://${{ env.GH_NPM_REGISTRY }}
+
+      - name: pushing lite snapshot to ${{ env.GOOGLE_NPM_REGISTRY }}
+        run: |
+          mv -f package-lite.json package.json
+          npm publish --provenance --access=public --no-git-tag-version --tag lite --registry https://${{ env.GOOGLE_NPM_REGISTRY }}
+
+  jsr-publish:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: 'npm'
+      - uses: actions/download-artifact@v7
+        with:
+          name: build-${{ github.run_id }}
+      - name: pushing to jsr.io
+        run: npx jsr publish --allow-dirty
+
+  docker-publish:
+    needs: [build, version]
+    runs-on: ubuntu-latest
+    # Defines two custom environment variables for the workflow. These are used for the Container registry domain, and a name for the Docker image that this workflow builds.
+    env:
+      REGISTRY: ghcr.io
+      IMAGE_NAME: ${{ github.repository }}
+      ZX_VERSION: ${{ needs.version.outputs.v }}
+
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - uses: actions/download-artifact@v7
+        with:
+          name: build-${{ github.run_id }}
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@5e57cd118135c172c3672efd75eb46360885c0ef # v3.6.0
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # v5.10.0
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=sha
+            type=semver,pattern={{version}},value=v${{ env.ZX_VERSION }}
+      - name: Build and push Docker image
+        id: push
+        uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 #v6.18.0
+        with:
+          context: ./
+          file: ./dcr/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Generate artifact attestation
+        uses: actions/attest-build-provenance@v3
+        with:
+          subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
+          subject-digest: ${{ steps.push.outputs.digest }}
+          push-to-registry: true

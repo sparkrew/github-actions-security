@@ -1,0 +1,90 @@
+name: CI for general build
+
+on:
+  push:
+    branches: [ master ]
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+  release:
+    types: [ created ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest ]
+        arch: [ x64, arm64 ]
+        absl_provider: [ module, internal ]
+        include:
+          - os: windows-latest
+            arch: Win32
+            absl_provider: internal
+          - os: windows-latest
+            arch: x64
+            absl_provider: internal
+          - os: windows-11-arm
+            arch: ARM64
+            absl_provider: internal
+          - os: windows-latest
+            arch: Win32
+            absl_provider: module
+          - os: windows-latest
+            arch: x64
+            absl_provider: module
+          - os: windows-11-arm
+            arch: ARM64
+            absl_provider: module
+
+    runs-on: ${{ matrix.os }}
+
+    permissions:
+      contents: write # svenstaro/upload-release-action
+
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+    - name: Config for Windows
+      if: runner.os == 'Windows'
+      run: cmake -A ${{ matrix.arch }} -B build -DSPM_BUILD_TEST=ON -DSPM_ENABLE_SHARED=OFF -DCMAKE_INSTALL_PREFIX=build/root -DSPM_ABSL_PROVIDER=${{ matrix.absl_provider }}
+
+    - name: Config for Linux/MacOSX
+      if: runner.os != 'Windows'
+      run: cmake -B build -DSPM_BUILD_TEST=ON -DCMAKE_INSTALL_PREFIX=build/root -DSPM_ABSL_PROVIDER=${{ matrix.absl_provider }}
+      env:
+        CMAKE_OSX_ARCHITECTURES: arm64;x86_64
+
+    - name: Build
+      run: cmake --build build --config Release --target install --parallel 32
+
+    - name: Test
+      working-directory: build
+      run: ctest -C Release --output-on-failure
+
+    - name: Package
+      working-directory: build
+      run: cpack
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v6
+      with:
+        name: artifacts-${{ matrix.os }}-${{ matrix.arch }}
+        path: ./build/*.7z
+        overwrite: true
+
+    - name: Upload Release Assets
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: svenstaro/upload-release-action@6b7fa9f267e90b50a19fef07b3596790bb941741 # v2.11.3
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ./build/*.7z
+        tag: ${{ github.ref }}
+        overwrite: true
+        prerelease: true
+        file_glob: true
+        body: "This is my release text"

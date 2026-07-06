@@ -1,0 +1,145 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Format reference: https://docs.github.com/en/actions/reference
+
+name: Run Tests
+
+# https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#on
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+    # Daily at 12pm UTC
+    - cron: '0 12 * * *'
+  # Can be called from other workflow to run the tests
+  workflow_call:
+    inputs:
+      ref:
+        description: 'Tag or commit to checkout'
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+env:
+  VERSION_NODEJS: '22'
+  UNSYMLINK_DIR: bazel-bin-unsymlink
+
+# https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobs
+jobs:
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Java
+        # https://github.com/marketplace/actions/setup-java-jdk
+        uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
+        with:
+          distribution: zulu
+          java-version: '21'
+          java-package: jdk
+          architecture: x64
+
+        # Clone closure-compiler repo from the commit under test into current directory.
+      - name: Checkout Current closure-compiler Commit
+        # https://github.com/marketplace/actions/checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: ${{ inputs.ref || github.sha }}
+
+      # https://github.com/bazel-contrib/setup-bazel
+      - uses: bazel-contrib/setup-bazel@083175551ceeceebc757ebee2127fde78840ca77 # v0.18.0
+        with:
+          # Avoid downloading Bazel every time.
+          bazelisk-cache: true
+          # Store build cache per workflow.
+          disk-cache: ${{ github.workflow }}
+          # Share repository cache between workflows
+          repository-cache: true
+
+      - name: Build and Test
+        run: unset ANDROID_HOME && bazelisk test //:all
+
+      - name: Unsymlink Bazel Artifacts
+        # upload-artifact doesn't support paths with symlinks
+        run: |
+          mkdir -p ${{ env.UNSYMLINK_DIR }}
+          cp -t ${{ env.UNSYMLINK_DIR }} bazel-bin/compiler_uberjar_deploy.jar
+          cp -t ${{ env.UNSYMLINK_DIR }} bazel-bin/*_bundle.jar
+
+        # Share the following files with other jobs in this workflow. They can be grabbed using ID
+        # `unshaded_compiler`. This is made possible by uploading the files to GitHub controlled
+        # storage.
+      - name: Share Unshaded Compiler
+        # https://github.com/marketplace/actions/upload-a-build-artifact
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: unshaded_compiler
+          path: ${{ env.UNSYMLINK_DIR }}/compiler_uberjar_deploy.jar
+          if-no-files-found: error
+
+  test-closure-compiler-npm:
+    name: Make Sure closure-compiler-npm is Compatible with this Compiler Build
+    runs-on: ubuntu-latest
+    needs:
+      - build-and-test
+    steps:
+      - name: Setup Java
+        # https://github.com/marketplace/actions/setup-java-jdk
+        uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
+        with:
+          distribution: zulu
+          java-version: '21'
+          java-package: jdk
+          architecture: x64
+
+      - name: Setup Node.js
+        # https://github.com/marketplace/actions/setup-node-js-environment
+        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        with:
+          node-version: ${{ env.VERSION_NODEJS }}
+
+        # Clone closure-compiler-npm repo from master into the current directory.
+      - name: Checkout Current closure-compiler-npm Commit
+        # https://github.com/marketplace/actions/checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          repository: chadkillingsworth/closure-compiler-npm
+          ref: master
+
+        # Clone closure-compiler repo from the commit under test into the npm repo compiler
+        # submodule
+      - name: Checkout Current closure-compiler Commit
+        # https://github.com/marketplace/actions/checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          path: compiler
+          ref: ${{ inputs.ref || github.sha }}
+
+        # Grab the compiler binary that was shared from `build-and-test` and put the file into
+        # ./compiler/bazel-bin.
+      - name: Grab Unshaded Compiler
+        # https://github.com/marketplace/actions/download-a-build-artifact
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7.0.0
+        with:
+          name: unshaded_compiler
+          # Put the binary where bazel would have put it.
+          path: compiler/bazel-bin
+
+      - name: Test closure-compiler-npm
+        run: compiler/.github/ci_support/test_closure-compiler-npm.sh compiler/bazel-bin/compiler_uberjar_deploy.jar

@@ -1,0 +1,70 @@
+name: facebook/redex/build_and_test
+on:
+  workflow_call
+env:
+  CACHE_VERSION: xxxxx1
+jobs:
+  linux-gcc:
+    name: Linux GCC - ${{ matrix.config.os }} - ${{ matrix.build_arch }}
+    runs-on: 4-core-ubuntu
+    container: ${{ matrix.config.os }}
+    strategy:
+      matrix:
+        config:
+        # Extra flags for false positives from GCC 12:
+        # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=105651
+        - {os: "debian:12", configure_extra: "CXXFLAGS=-Wno-restrict"}
+        - {os: "debian:13", configure_extra: ""}
+        - {os: "ubuntu:22.04", configure_extra: ""}
+        - {os: "ubuntu:24.04", configure_extra: ""}
+        - {os: "gcc:latest", configure_extra: ""}
+        build_arch: ["x86_64"]
+        include:
+        - config: {os: "debian:13", configure_extra: "--host=i686-linux-gnu CFLAGS=-m32 CXXFLAGS='-m32 -Wno-restrict' LDFLAGS=-m32"}
+          build_arch: "x86"
+    steps:
+    - name: Show OS info
+      run: cat /etc/os-release
+    - name: Install prerequisites for checking out the repo
+      run: apt-get update && apt-get install -y --no-install-recommends ca-certificates git-core
+    - uses: actions/checkout@v6
+    - uses: "./.github/actions/prepare_debian"
+    - uses: ./.github/actions/setup-build-and-test-w-make
+      with:
+        save_boost_cache: false
+        setup_32bit_toolchain: ${{ matrix.build_arch == 'x86' }}
+        configure_extra: ${{ matrix.config.configure_extra }}
+        job_name: Linux GCC - ${{ matrix.config.os }} - ${{ matrix.build_arch }}
+
+  build-deb_stable-w-clang-llvm-org:
+    runs-on: 4-core-ubuntu
+    env:
+      CC: clang
+      CXX: clang++
+    strategy:
+      matrix:
+        clang_version:
+        # Test 3 clang versions, counting back from the default clang version
+        # provided by apt.llvm.org.
+        # We intentionally don't explicitly spell out all versions, so that 0
+        # will always track the default from apt.llvm.org (usually the latest
+        # stable clang).
+        - 0  # At time of edit 20.
+        - 19
+        - 18
+    steps:
+    - uses: actions/checkout@v6
+    - uses: "./.github/actions/prepare_debian"
+      with:
+        install_clang_llvm_org: "${{ matrix.clang_version }}"
+    - uses: ./.github/actions/setup-build-and-test-w-make
+      with:
+        save_boost_cache: false
+        mode_32: false
+        job_name: "ubuntu_22_clang_upstream-${{ matrix.clang_version }}"
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v6
+    - uses: "./.github/actions/setup-build-and-test-windows"

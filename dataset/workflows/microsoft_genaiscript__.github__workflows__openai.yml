@@ -1,0 +1,29 @@
+name: openai smoke tests
+permissions:
+    contents: read
+on:
+    workflow_dispatch:
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}-openai
+    cancel-in-progress: true
+jobs:
+    tests:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  submodules: "recursive"
+                  fetch-depth: 0
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: "22"
+                  cache: yarn
+            - run: yarn install --frozen-lockfile
+            - name: compile
+              run: yarn compile:action
+            - name: run summarize
+              run: yarn test:summarize -p openai --out-trace $GITHUB_STEP_SUMMARY
+              env:
+                  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+                  OPENAI_API_TYPE: ${{ secrets.OPENAI_API_TYPE }}
+                  OPENAI_API_BASE: ${{ secrets.OPENAI_API_BASE }}

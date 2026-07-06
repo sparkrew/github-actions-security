@@ -1,0 +1,149 @@
+name: Yarn Upgrade
+
+on:
+  schedule:
+    # Every wednesday at 13:37 UTC
+    - cron: 37 13 * * 3
+  workflow_dispatch: {}
+
+jobs:
+  upgrade:
+    name: Yarn Upgrade
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Out
+        uses: actions/checkout@v6
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          cache: yarn
+          node-version: "lts/*"
+
+      - name: Install Tools
+        run: |-
+          npm -g install lerna npm-check-updates@^9.0.0
+
+      - name: List Mono-Repo Packages
+        id: monorepo-packages
+        # These need to be ignored from the `ncu` runs!
+        run: |-
+          echo -n "list=" >> $GITHUB_OUTPUT
+          node -p "$(lerna ls --all --json 2>/dev/null).map(item => item.name).join(',')" >> $GITHUB_OUTPUT
+
+      - name: Identify production dependencies
+        id: production-dependencies
+        # These should be limited to `--target=minor` in the `ncu` run
+        # We assume repository-root has no production dependencies (it shouldn't have any!)
+        # We always consider @types/node to be a production dependency (it must relate to our minimum supported engine)
+        run: |-
+          echo -n "list=" >> $GITHUB_OUTPUT
+          node -p <<-EOF >> $GITHUB_OUTPUT
+            const path = require('path');
+
+            const prodDependencies = new Set(['@types/node']);
+            function processManifest(file) {
+              const manifest = require(file);
+              for (const kind of ['dependencies', 'peerDependencies']) {
+                // We assume the manifests are well-formed here (should be safe, since it's in the trunk)
+                if (!(kind in manifest)) {
+                  continue;
+                }
+                for (const dep of Object.keys(manifest[kind])) {
+                  prodDependencies.add(dep);
+                }
+              }
+            }
+
+            const lernaPackagesDirs = $(lerna ls --all --json 2>/dev/null).map(item => item.location);
+            for (const packageDir of lernaPackagesDirs) {
+              processManifest(path.join(packageDir, 'package.json'));
+            }
+
+            Array.from(prodDependencies).sort().join(',');
+          EOF
+
+      - name: Run "ncu -u"
+        # We special-case typescript because it's not semantically versionned, and major.minor is the API contract
+        # We special-case @types/fs-extra because 9.0.13 is the last version that supports typescript@3.9
+        # We special-case @types/yargs because 17.0.13 is the last version that doesn't break
+        # We special-case eslint-plugin-import because 26 is the last version that works for us.
+        # We special-case glob because newer version don't support Node 18
+        # We special-case @xmldom/xmldom because newer versions are not compatible with the code and jsii-rosetta 1.x is soon EOS
+        run: |-
+          # Upgrade devDependencies at repository root
+          ncu --upgrade --target=minor --filter=@types/inquirer,@types/node,@jest/types,jest-config,jest-circus,eslint
+          ncu --upgrade --target=patch --filter=typescript
+          ncu --upgrade --target=latest --reject=@types/inquirer,@types/node,typescript,@jest/types,jest-config,jest-circus,eslint-plugin-import
+
+          # Upgrade all production dependencies (and other always major-pinned dependencies)
+          lerna exec --parallel ncu -- --upgrade --target=minor                                     \
+            --filter='@types/diff,@types/fs-extra,${{ steps.production-dependencies.outputs.list }}'                            \
+            --reject='typescript,@xmldom/xmldom,jsii,jsii-rosetta,${{ steps.monorepo-packages.outputs.list }}'
+
+          # Upgrade all minor-pinned dependencies
+          lerna exec --parallel ncu -- --upgrade --target=patch                                     \
+            --filter=typescript,@xmldom/xmldom
+
+          # Upgrade all other dependencies (devDependencies) to the latest
+          lerna exec --parallel ncu -- --upgrade --target=latest                                    \
+            --reject='@types/diff,@types/inquirer,@types/node,@types/fs-extra,@types/yargs,@xmldom/xmldom,glob,typescript,${{ steps.production-dependencies.outputs.list }},jsii,jsii-rosetta,${{ steps.monorepo-packages.outputs.list }}'
+
+      # This will ensure the current lockfile is up-to-date with the dependency specifications (necessary for "yarn update" to run)
+      - name: Run "yarn install"
+        run: yarn install
+
+      - name: Run "yarn upgrade"
+        run: yarn upgrade
+
+      # Next, create and upload the changes as a patch file. This will later be downloaded to create a pull request
+      # Creating a pull request requires write permissions and it's best to keep write privileges isolated.
+      - name: Create Patch
+        run: |-
+          git add .
+          git diff --patch --staged > ${{ runner.temp }}/upgrade.patch
+      - name: Upload Patch
+        uses: actions/upload-artifact@v7
+        with:
+          name: upgrade.patch
+          path: ${{ runner.temp }}/upgrade.patch
+
+  pr:
+    name: Create Pull Request
+    needs: upgrade
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Out
+        uses: actions/checkout@v6
+
+      - name: Download patch
+        uses: actions/download-artifact@v8
+        with:
+          name: upgrade.patch
+          path: ${{ runner.temp }}
+
+      - name: Apply patch
+        run: '[ -s ${{ runner.temp }}/upgrade.patch ] && git apply ${{ runner.temp }}/upgrade.patch || echo "Empty patch. Skipping."'
+
+      - name: Make Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          # Git commit details
+          author: "AWS CDK Automation <aws-cdk-automation@users.noreply.github.com>"
+          branch: automation/yarn-upgrade
+          commit-message: |-
+            chore: npm-check-updates && yarn upgrade
+
+            Ran npm-check-updates and yarn upgrade to keep the `yarn.lock` file up-to-date.
+          # Pull Request details
+          title: "chore: npm-check-updates && yarn upgrade"
+          body: |-
+            Ran npm-check-updates and yarn upgrade to keep the `yarn.lock` file up-to-date.
+          labels: contribution/core,dependencies,auto-approve
+          # Privileged token so automated PR validation happens
+          token: ${{ secrets.PROJEN_GITHUB_TOKEN }}

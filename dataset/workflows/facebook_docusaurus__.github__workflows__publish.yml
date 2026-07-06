@@ -1,0 +1,46 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - docusaurus-v**
+    paths:
+      - .github/workflows/publish.yml
+      - package.json
+      - packages/*
+
+permissions:
+  contents: read
+  id-token: write # For OIDC, see https://docs.npmjs.com/trusted-publishers
+
+jobs:
+  publish-canary:
+    name: Publish Canary
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0 # Needed to get the commit number with "git rev-list --count HEAD"
+      - name: Set up Node
+        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        with:
+          node-version: lts/*
+          cache: yarn
+      - name: Prepare git
+        run: |
+          git config --global user.name "Docusaurus Canary"
+          git config --global user.email "canary@docusaurus.io"
+      - name: Installation
+        run: yarn || yarn || yarn
+        # TODO Docusaurus v4: remove after we upgrade the Node version
+      - name: Upgrade Lerna
+        run: |
+          yarn add -D -W lerna@9.0.3 --ignore-scripts
+          git commit -am "chore: upgrade lerna"
+      - name: Publish Canary release
+        run: |
+          yarn canary:bumpVersion
+          yarn canary:publish

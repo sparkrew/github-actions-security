@@ -1,0 +1,62 @@
+# Copyright 2024 The Fuchsia Authors
+#
+# Licensed under a BSD-style license <LICENSE-BSD>, Apache License, Version 2.0
+# <LICENSE-APACHE or https://www.apache.org/licenses/LICENSE-2.0>, or the MIT
+# license <LICENSE-MIT or https://opensource.org/licenses/MIT>, at your option.
+# This file may not be copied, modified, or distributed except according to
+# those terms.
+
+name: Release new crate versions
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Crate version'
+        required: true
+      branch:
+        description: 'Branch to update'
+        required: true
+        default: 'main'
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  release:
+    permissions:
+      contents: read
+      pull-requests: write # zizmor: ignore[excessive-permissions] (Needed to create pull requests)
+    runs-on: ubuntu-latest
+    name: Release new crate versions
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          ref: ${{ github.event.inputs.branch }}
+          persist-credentials: false
+      - name: Overwrite Cargo.toml files
+        env:
+          VERSION: ${{ github.event.inputs.version }}
+        run: ./ci/release_crate_version.sh "$VERSION"
+
+      - name: Submit PR
+        id: submit-pr
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0  # v8.1.0
+        with:
+          commit-message: "Release ${{ github.event.inputs.version }}"
+          author: Google PR Creation Bot <github-pull-request-creation-bot@google.com>
+          committer: Google PR Creation Bot <github-pull-request-creation-bot@google.com>
+          title: "Release ${{ github.event.inputs.version }}"
+          branch: release-${{ github.event.inputs.version }}
+          push-to-fork: google-pr-creation-bot/zerocopy
+          token: ${{ secrets.GOOGLE_PR_CREATION_BOT_TOKEN }}
+
+      - name: Add labels
+        if: steps.submit-pr.outputs.pull-request-operation == 'created'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ steps.submit-pr.outputs.pull-request-number }}
+        run: gh pr edit "$PR_NUMBER" --add-label "hide-from-release-notes"

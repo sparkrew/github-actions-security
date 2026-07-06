@@ -1,0 +1,31 @@
+name: genai issue bot
+permissions:
+    contents: read
+    issues: write
+    models: read
+on:
+    issues:
+        types: [closed]
+concurrency:
+    group: issue-bot-${{ github.event.issue.number }}
+    cancel-in-progress: true
+jobs:
+    reason:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  submodules: "recursive"
+                  fetch-depth: 10
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: "22"
+                  cache: yarn
+            - run: yarn install --frozen-lockfile
+            - name: compile
+              run: yarn compile
+            - name: genaiscript issue-review
+              run: node packages/cli/built/genaiscript.cjs run issue-bot -p github -prc bot --out-output $GITHUB_STEP_SUMMARY
+              env:
+                  GITHUB_ISSUE: ${{ github.event.issue.number }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

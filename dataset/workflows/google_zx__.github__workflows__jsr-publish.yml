@@ -1,0 +1,57 @@
+name: JSR Manual Publish
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: 'npm'
+      - run: npm ci
+      - run: npm test
+        env:
+          FORCE_COLOR: 3
+      - uses: actions/upload-artifact@v6
+        with:
+          name: build-${{ github.run_id }}
+          path: |
+            build
+            jsr.json
+          retention-days: 1
+
+  jsr-publish:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: 'npm'
+      - uses: actions/download-artifact@v7
+        with:
+          name: build-${{ github.run_id }}
+
+      - name: Get zx version info
+        run: |
+          echo SHA_SHORT=$(git rev-parse --short HEAD) >> $GITHUB_ENV
+          echo ZX_VERSION=$(jq -r '.version' jsr.json) >> $GITHUB_ENV
+
+      - name: pushing to jsr.io
+        run: |
+          cat <<< $(jq '.version="${ZX_VERSION}-dev.${SHA_SHORT}"' jsr.json) > jsr.json
+          npx jsr publish --allow-dirty

@@ -1,0 +1,24 @@
+name: cli test
+permissions:
+    contents: read
+on:
+    workflow_dispatch:
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  submodules: "recursive"
+                  fetch-depth: 0
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: "22"
+                  cache: yarn
+            - run: yarn install --frozen-lockfile
+            - name: compile
+              run: yarn compile:action
+            - name: unit tests
+              run: yarn test:samples
+            - name: run code-annotator
+              run: node packages/cli/built/genaiscript.cjs run code-annotator packages/sample/src/counting.py -l Test -ot $GITHUB_STEP_SUMMARY

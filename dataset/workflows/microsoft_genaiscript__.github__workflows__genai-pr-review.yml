@@ -1,0 +1,52 @@
+name: genai pull request review
+on:
+    workflow_dispatch:
+    pull_request:
+        types: [opened, ready_for_review, reopened]
+        paths:
+            - yarn.lock
+            - "packages/core/**/*"
+            - "packages/cli/**/*"
+            - "packages/samples/**/*"
+concurrency:
+    group: pr-review-${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+env:
+    GENAISCRIPT_MODEL_REVIEW: ${{ vars.GENAISCRIPT_MODEL_REVIEW }}
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        permissions:
+            pull-requests: write
+            models: read
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  submodules: "recursive"
+                  fetch-depth: 10
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: "22"
+                  cache: yarn
+            - run: yarn install --frozen-lockfile
+            - name: compile
+              run: yarn compile
+            - name: git stuff
+              run: git fetch origin && git pull origin dev:dev
+            - name: genaiscript pr-describe
+              continue-on-error: true
+              run: node packages/cli/built/genaiscript.cjs run pr-describe --out ./temp/genai/pr-describe -prd -m review --out-trace $GITHUB_STEP_SUMMARY --vars defaultBranch=dev
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: genaiscript pr-review
+              run: node packages/cli/built/genaiscript.cjs run pr-review --out ./temp/genai/pr-review -prc -m review --out-trace $GITHUB_STEP_SUMMARY --vars defaultBranch=dev
+              continue-on-error: true
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GITHUB_COMMIT_SHA: ${{ github.event.pull_request.base.sha}}
+            - name: Archive genai results
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: genai-results
+                  path: ./temp/genai/**

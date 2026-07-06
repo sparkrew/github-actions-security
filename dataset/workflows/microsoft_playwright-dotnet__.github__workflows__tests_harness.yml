@@ -1,0 +1,39 @@
+name: Test Harness
+
+on:
+  push:
+    branches:
+      - main
+      - release-*
+  pull_request:
+    branches:
+      - main
+      - release-*
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 8.0.x
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Install prerequisites and download drivers
+        shell: bash
+        run: ./build.sh --download-driver
+      - name: Building
+        run: dotnet build ./src
+      - name: Installing Browsers and dependencies
+        run: pwsh src/Playwright/bin/Debug/netstandard2.0/playwright.ps1 install --with-deps
+      - name: Install test-runner
+        run: npm ci
+        working-directory: src/Playwright.TestingHarnessTest
+      - name: Running tests
+        run: xvfb-run npx playwright test
+        working-directory: src/Playwright.TestingHarnessTest

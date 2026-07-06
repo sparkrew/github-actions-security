@@ -1,0 +1,46 @@
+name: GHCR Authentication test
+
+on:
+  pull_request_target:
+    branches: ['main']
+  push:
+    branches: ['main']
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  krane:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+
+      - name: Install krane
+        working-directory: ./cmd/krane
+        run: go install .
+
+      - name: Test krane + GHCR
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          # List the tags
+          krane ls ghcr.io/${{ github.repository }}/testimage
+
+      - name: Test krane auth get + GHCR
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          CRED1=$(krane auth get ghcr.io)
+          CRED2=$(krane auth get ghcr.io)
+          if [[ "$CRED1" == "" ]] ; then
+            exit 1
+          fi
+          if [[ "$CRED1" == "$CRED2" ]] ; then
+            echo "credentials are cached by infrastructure"
+          fi
+

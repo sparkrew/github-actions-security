@@ -1,0 +1,86 @@
+# Copyright (c) eBPF for Windows contributors
+# SPDX-License-Identifier: MIT
+
+# This workflow executes the OSSAR action.
+---
+name: ossar-scan
+
+on:
+  workflow_call:
+    inputs:
+      # The name of the build artifact to download.
+      build_artifact:
+        required: true
+        type: string
+
+permissions:
+  checks: read  # Required by fountainhead/action-wait-for-check to wait for another GitHub check to complete.
+  contents: read  # Required by actions/checkout to fetch code.
+  security-events: write  # Required by codeql task
+
+jobs:
+  scan:
+    timeout-minutes: 30
+
+    strategy:
+      matrix:
+        # For now only run on release as debug builds of the MSVC are built without /Qspectre.
+        configurations: [Release]
+
+    # github/ossar-action doesn't run on windows-2019, requires windows-latest.
+    runs-on: windows-latest
+    env:
+      # Configuration type to build.
+      BUILD_CONFIGURATION: ${{matrix.configurations}}
+      BUILD_PLATFORM: x64
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@5ef0c079ce82195b2a36a210272d6b661572d83e  # v2.14.2
+        with:
+          egress-policy: audit
+
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@f75f66ce1886f00957d99748a42c724f4330bdcf  # v5.3.1
+        with:
+          cancel_others: 'false'
+          paths_ignore: '["**.md", "**/docs/**"]'
+
+      # Checking out the branch is needed to correctly log security alerts.
+      - uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
+        if: steps.skip_check.outputs.should_skip != 'true'
+        with:
+          # Only check out main repo, not submodules.
+          ref: ${{ github.event.workflow_run.head_branch }}
+
+      - name: Download build artifact
+        if: (steps.skip_check.outputs.should_skip != 'true') && success()
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        id: download_artifact
+        with:
+          name: ${{inputs.build_artifact}}-${{matrix.configurations}}
+          path: ${{github.workspace}}
+
+      - name: Extract build artifact
+        if: steps.skip_check.outputs.should_skip != 'true'
+        working-directory: ${{github.workspace}}
+        run: |
+          mkdir ${{env.BUILD_PLATFORM}}
+          Expand-Archive .\build-${{ matrix.configurations }}.zip -DestinationPath .\${{env.BUILD_PLATFORM}}
+
+      - name: Exclude external files
+        if: steps.skip_check.outputs.should_skip != 'true'
+        run: |
+          pushd ${{github.workspace}}/${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+          Remove-Item @("clang_rt.*", "concrt*", "msvc*", "ucrt*", "vc*") -ErrorAction SilentlyContinue
+
+      - name: Run OSSAR (Open Source Static Analysis Runner)
+        if: steps.skip_check.outputs.should_skip != 'true'
+        uses: github/ossar-action@4e96c4f6e591eb4b991abfd459e40b136a317aea
+        id: ossar
+
+      - name: Upload results to Security tab
+        if: steps.skip_check.outputs.should_skip != 'true'
+        uses: github/codeql-action/upload-sarif@89a39a4e59826350b863aa6b6252a07ad50cf83e
+        with:
+          sarif_file: ${{ steps.ossar.outputs.sarifFile }}

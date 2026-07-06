@@ -1,0 +1,37 @@
+name: "Janitor"
+on:
+  workflow_dispatch:
+  schedule:
+    # hourly at the top of the hour
+    - cron: "0 * * * *"
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  kubetest2-sweeper:
+    # disable in forks
+    if: github.repository == 'awslabs/amazon-eks-ami'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # 6.0.2
+      - uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7 # 6.0.0
+        with:
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN_JANITOR }}
+      - uses: ./.github/actions/janitor/kubetest2-sweeper
+        with:
+          max_resource_age_duration: 3h
+  ami-sweeper:
+    # disable in forks
+    if: github.repository == 'awslabs/amazon-eks-ami'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # 6.0.2
+      - uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7 # 6.0.0
+        with:
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN_JANITOR }}
+      - uses: ./.github/actions/janitor/ami-sweeper
+        with:
+          # 3 days
+          max_age_seconds: 259200

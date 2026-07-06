@@ -1,0 +1,22 @@
+name: Tutorials
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - "tutorials/**"
+  pull_request:
+    branches: [ main ]
+    paths:
+      - "tutorials/**"
+
+
+jobs:
+
+  build-tutorials-with-latest-botorch:
+    name: Tutorials with latest BoTorch
+    uses: ./.github/workflows/reusable_tutorials.yml
+    with:
+      smoke_test: true
+      pinned_botorch: false

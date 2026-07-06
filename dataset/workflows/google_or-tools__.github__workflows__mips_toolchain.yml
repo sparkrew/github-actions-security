@@ -1,0 +1,28 @@
+# ref: https://codescape.mips.com/components/toolchain/2021.09-01/downloads.html
+name: mips Toolchain
+
+on: [workflow_dispatch]
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
+# Building using the github runner environement directly.
+jobs:
+  mips:
+    strategy:
+      matrix:
+        targets: [mips64, mips64el]
+      fail-fast: false
+    name: Linux•Toolchain ${{matrix.targets}}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+    - name: Build env stage
+      run: make --directory=cmake toolchain_${{matrix.targets}}_env
+    - name: Build devel stage
+      run: make --directory=cmake toolchain_${{matrix.targets}}_devel
+    - name: Build build stage
+      run: make --directory=cmake toolchain_${{matrix.targets}}_build
+    - name: Build Test stage
+      run: make --directory=cmake toolchain_${{matrix.targets}}_test

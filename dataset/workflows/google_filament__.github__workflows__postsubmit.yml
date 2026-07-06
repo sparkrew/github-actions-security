@@ -1,0 +1,115 @@
+name: 'Postsubmit CI'
+
+on:
+  push:
+    branches:
+      - main
+      - release
+      - rc/**
+
+jobs:
+  build-android:
+    name: build-android
+    # We intentially use a larger runner here to enable larger disk space
+    # (standard linux runner will fail on disk space and faster build time).
+    runs-on: 'ubuntu-24.04-16core'
+
+    steps:
+      - uses: actions/checkout@v4.1.6
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/linux-prereq
+      - name: Run Android Continuous
+        uses: ./.github/actions/android-continuous
+        with:
+          build-abi: armeabi-v7a,arm64-v8a,x86_64
+
+  build-ios:
+    name: build-ios
+    runs-on: macos-14-xlarge
+
+    steps:
+      - uses: actions/checkout@v4.1.6
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/mac-prereq
+      - name: Run build script
+        run: |
+          cd build/ios && printf "y" | ./build.sh continuous
+      - uses: actions/upload-artifact@v4
+        with:
+          name: filament-ios
+          path: out/filament-release-ios.tgz
+      - name: Build iOS samples
+        run: |
+          cd build/ios && ./build-samples.sh continuous
+
+  build-linux:
+    name: build-linux
+    runs-on: 'ubuntu-24.04-16core'
+
+    steps:
+      - uses: actions/checkout@v4.1.6
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/linux-prereq
+      - name: Run build script
+        run: |
+          cd build/linux && printf "y" | ./build.sh continuous
+      - uses: actions/upload-artifact@v4
+        with:
+          name: filament-linux
+          path: out/filament-release-linux.tgz
+
+  build-mac:
+    name: build-mac
+    runs-on: macos-14-xlarge
+
+    steps:
+      - uses: actions/checkout@v4.1.6
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/mac-prereq
+      - name: Run build script
+        run: |
+          cd build/mac && printf "y" | ./build.sh continuous
+      - uses: actions/upload-artifact@v4
+        with:
+          name: filament-mac
+          path: out/filament-release-darwin.tgz
+      - name: Check public headers
+        run: |
+          test/check-headers/test.sh out/release/filament/include
+
+  build-web:
+    name: build-web
+    runs-on: 'ubuntu-24.04-16core'
+
+    steps:
+      - uses: actions/checkout@v4.1.6
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/linux-prereq
+      - uses: ./.github/actions/web-prereq
+      - name: Run build script
+        run: |
+          cd build/web && printf "y" | ./build.sh continuous
+      - uses: actions/upload-artifact@v4
+        with:
+          name: filament-web
+          path: out/filament-release-web.tgz
+
+  build-windows:
+    name: build-windows
+    runs-on: windows-2022-32core
+
+    steps:
+      - uses: actions/checkout@v4.1.6
+      - name: Run build script
+        run: |
+          build\windows\build-github.bat continuous
+        shell: cmd
+      - uses: actions/upload-artifact@v4
+        with:
+          name: filament-windows
+          path: out/filament-windows.tgz

@@ -1,0 +1,307 @@
+name: CI
+
+# {{SQL CARBON EDIT}} Enable CI on push/pull_requests
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - release/*
+  pull_request:
+    branches:
+      - main
+      - release/*
+
+jobs:
+  windows:
+    name: Windows
+    runs-on: windows-2022
+    timeout-minutes: 60
+    env:
+      CHILD_CONCURRENCY: "1"
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 20.17
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11.x"
+
+      - name: Compute node modules cache key
+        id: nodeModulesCacheKey
+        run: echo "value=$(node build/azure-pipelines/common/sql-computeNodeModulesCacheKey.js)" >> $ENV:GITHUB_OUTPUT
+      - name: Cache node modules
+        id: cacheNodeModules
+        uses: actions/cache@v4
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-cacheNodeModules20-${{ steps.nodeModulesCacheKey.outputs.value }}
+          restore-keys: ${{ runner.os }}-cacheNodeModules20-
+      - name: Get yarn cache directory path
+        id: yarnCacheDirPath
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        run: echo "dir=$(yarn cache dir)" >> $ENV:GITHUB_OUTPUT
+      - name: Cache yarn directory
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.yarnCacheDirPath.outputs.dir }}
+          key: ${{ runner.os }}-yarnCacheDir-${{ steps.nodeModulesCacheKey.outputs.value }}
+          restore-keys: ${{ runner.os }}-yarnCacheDir-
+
+      - name: Execute yarn
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+          ELECTRON_SKIP_BINARY_DOWNLOAD: 1
+        run: yarn --frozen-lockfile --network-timeout 180000
+      - name: Create node_modules archive
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        run: |
+          mkdir -Force .build
+          node build/azure-pipelines/common/listNodeModules.js .build/node_modules_list.txt
+          mkdir -Force .build/node_modules_cache
+          7z.exe a .build/node_modules_cache/cache.7z -mx3 `@.build/node_modules_list.txt
+
+      - name: Compile and Download
+        run: yarn npm-run-all --max_old_space_size=4095 -lp compile "electron x64" # {{SQL CARBON EDIT}} Remove unused options playwright-install download-builtin-extensions
+
+      - name: Run Core Unit Tests # {{SQL CARBON EDIT}} Rename to core for clarity
+        run: .\scripts\test.bat
+
+      # - name: Run Unit Tests (Browser) {{SQL CARBON EDIT}} disable for now
+      #   run: yarn test-browser --browser chromium
+
+      # {{SQL CARBON EDIT}} Rename to core for clarity
+      # - name: Run Core Integration Tests {{SQL CARBON EDIT}} disable for now
+      #   run: .\scripts\test-integration.bat
+
+  linux:
+    name: Linux
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 20.17
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11.x"
+
+      - name: Install openssl-dev
+        run: |
+          TEMP_DIR=$(mktemp -d)
+          cd "$TEMP_DIR"
+          wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl1.0/libssl1.0.0_1.0.2n-1ubuntu5_amd64.deb
+          echo "fcadc659174561b7a925e4f17e9de7451f4fb556a032fea1ed2ff800ed3a285e  libssl1.0.0_1.0.2n-1ubuntu5_amd64.deb" | sha256sum -c -
+          sudo dpkg -i libssl1.0.0_1.0.2n-1ubuntu5_amd64.deb
+          cd -
+          rm -rf "$TEMP_DIR"
+
+      # TODO: rename azure-pipelines/linux/xvfb.init to github-actions
+      - name: Setup Build Environment
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libxkbfile-dev pkg-config libsecret-1-dev libkrb5-dev libxss1 dbus xvfb libgtk-3-0 libgbm1
+          sudo cp build/azure-pipelines/linux/xvfb.init /etc/init.d/xvfb
+          sudo chmod +x /etc/init.d/xvfb
+          sudo update-rc.d xvfb defaults
+          sudo service xvfb start
+
+      - name: Compute node modules cache key
+        id: nodeModulesCacheKey
+        # {{ SQL Carbon Edit}} Use sql-computeNodeModulesCacheKey
+        run: echo "value=$(node build/azure-pipelines/common/sql-computeNodeModulesCacheKey.js)" >> $GITHUB_OUTPUT
+      - name: Cache node modules
+        id: cacheNodeModules
+        uses: actions/cache@v4
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-cacheNodeModules20-${{ steps.nodeModulesCacheKey.outputs.value }}
+          restore-keys: ${{ runner.os }}-cacheNodeModules20-
+      - name: Get yarn cache directory path
+        id: yarnCacheDirPath
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+      - name: Cache yarn directory
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.yarnCacheDirPath.outputs.dir }}
+          key: ${{ runner.os }}-yarnCacheDir-${{ steps.nodeModulesCacheKey.outputs.value }}
+          restore-keys: ${{ runner.os }}-yarnCacheDir-
+      - name: Install libkrb5-dev
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        run: sudo apt install -y libkrb5-dev
+      - name: Execute yarn
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+          ELECTRON_SKIP_BINARY_DOWNLOAD: 1
+        run: yarn --frozen-lockfile --network-timeout 180000
+
+      # Don't inline source maps so that we generate code coverage for ts files
+      - name: Compile and Download
+        run: yarn npm-run-all --max_old_space_size=4095 -lp compile "electron x64" # {{SQL CARBON EDIT}} Remove unused options playwright-install download-builtin-extensions
+        env:
+          SQL_NO_INLINE_SOURCEMAP: 1
+
+      - name: Run Core Unit Tests # {{SQL CARBON EDIT}} Rename to core for clarity
+        id: electron-unit-tests
+        run: DISPLAY=:10 ./scripts/test.sh --runGlob "**/sql/**/*.test.js" --coverage
+
+      - name: Run Extension Unit Tests # {{SQL CARBON EDIT}} Rename to extension for clarity
+        id: electron-extension-unit-tests
+        run: DISPLAY=:10 ./scripts/test-extensions-unit.sh
+
+      # {{SQL CARBON EDIT}} Add coveralls. We merge first to get around issue where parallel builds weren't being combined correctly
+      - name: Combine code coverage files
+        run: node test/combineCoverage
+      - name: Upload Code Coverage
+        uses: coverallsapp/github-action@v2.3.6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: "test/coverage/lcov.info"
+
+      # - name: Run Unit Tests (Browser) {{SQL CARBON EDIT}} Skip for now
+      #   id: browser-unit-tests
+      #   run: DISPLAY=:10 yarn test-browser --browser chromium
+
+      # {{SQL CARBON EDIT}} Rename to core for clarity
+      # - name: Run Core Integration Tests {{SQL CARBON EDIT}} Skip for now
+      #   id: electron-integration-tests
+      #   run: DISPLAY=:10 ./scripts/test-integration.sh
+
+  darwin:
+    name: macOS
+    runs-on: macos-latest-large
+    timeout-minutes: 30
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 20.17
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11.x"
+      - name: Compute node modules cache key
+        id: nodeModulesCacheKey
+        # {{ SQL Carbon Edit}} Use sql-computeNodeModulesCacheKey
+        run: echo "value=$(node build/azure-pipelines/common/sql-computeNodeModulesCacheKey.js)" >> $GITHUB_OUTPUT
+      - name: Cache node modules
+        id: cacheNodeModules
+        uses: actions/cache@v4
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-cacheNodeModules20-${{ steps.nodeModulesCacheKey.outputs.value }}
+          restore-keys: ${{ runner.os }}-cacheNodeModules20-
+      - name: Get yarn cache directory path
+        id: yarnCacheDirPath
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+      - name: Cache yarn directory
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.yarnCacheDirPath.outputs.dir }}
+          key: ${{ runner.os }}-yarnCacheDir-${{ steps.nodeModulesCacheKey.outputs.value }}
+          restore-keys: ${{ runner.os }}-yarnCacheDir-
+      - name: Execute yarn
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+          ELECTRON_SKIP_BINARY_DOWNLOAD: 1
+        run: yarn --frozen-lockfile --network-timeout 180000
+
+      - name: Compile and Download
+        run: yarn npm-run-all --max_old_space_size=4095 -lp compile "electron x64" # {{SQL CARBON EDIT}} Remove unused options playwright-install download-builtin-extensions
+
+      # This is required for keytar unittests, otherwise we hit
+      # https://github.com/atom/node-keytar/issues/76
+      - name: Create temporary keychain
+        run: |
+          security create-keychain -p pwd $RUNNER_TEMP/buildagent.keychain
+          security default-keychain -s $RUNNER_TEMP/buildagent.keychain
+          security unlock-keychain -p pwd $RUNNER_TEMP/buildagent.keychain
+
+      - name: Run Core Unit Tests # {{SQL CARBON EDIT}} Rename to core for clarity
+        run: DISPLAY=:10 ./scripts/test.sh
+
+      # - name: Run Unit Tests (Browser) {{SQL CARBON EDIT}} Skip for now
+      #   run: DISPLAY=:10 yarn test-browser --browser chromium
+
+      # {{SQL CARBON EDIT}} Rename to core for clarity
+      # - name: Run Core Integration Tests {{SQL CARBON EDIT}} Skip for now
+      #   run: DISPLAY=:10 ./scripts/test-integration.sh
+
+  hygiene:
+    name: Hygiene and Layering
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 20.17
+
+      - name: Compute node modules cache key
+        id: nodeModulesCacheKey
+        # {{ SQL Carbon Edit}} Use sql-computeNodeModulesCacheKey
+        run: echo "value=$(node build/azure-pipelines/common/sql-computeNodeModulesCacheKey.js)" >> $GITHUB_OUTPUT
+      - name: Cache node modules
+        id: cacheNodeModules
+        uses: actions/cache@v4
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-cacheNodeModules23-${{ steps.nodeModulesCacheKey.outputs.value }}
+          restore-keys: ${{ runner.os }}-cacheNodeModules23-
+      - name: Get yarn cache directory path
+        id: yarnCacheDirPath
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+      - name: Cache yarn directory
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.yarnCacheDirPath.outputs.dir }}
+          key: ${{ runner.os }}-yarnCacheDir-${{ steps.nodeModulesCacheKey.outputs.value }}
+          restore-keys: ${{ runner.os }}-yarnCacheDir-
+      - name: Setup Build Environment # {{SQL CARBON EDIT}} Add step to install required packages if we need to run yarn
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libkrb5-dev libsecret-1-dev libx11-dev libxkbfile-dev
+      - name: Execute yarn
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+          ELECTRON_SKIP_BINARY_DOWNLOAD: 1
+        run: yarn --frozen-lockfile --network-timeout 180000
+
+      - name: Download Playwright
+        run: yarn playwright-install
+
+      - name: Run Hygiene Checks
+        run: yarn gulp hygiene
+
+      - name: Check clean git state
+        run: ./.github/workflows/check-clean-git-state.sh
+
+      - name: Run eslint
+        run: yarn eslint
+
+      # {{SQL CARBON EDIT}} Don't need this
+      # - name: Run vscode-dts Compile Checks
+      #   run: yarn vscode-dts-compile-check
+
+      - name: Run Trusted Types Checks
+        run: yarn tsec-compile-check

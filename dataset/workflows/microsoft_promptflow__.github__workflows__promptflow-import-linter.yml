@@ -1,0 +1,66 @@
+name: promptflow-import-linter
+
+on:
+  pull_request:
+    paths:
+      - src/promptflow-tracing/**
+      - src/promptflow-core/**
+      - src/promptflow-devkit/**
+      - src/promptflow-azure/**
+      - .github/workflows/promptflow-import-linter.yml
+  workflow_dispatch:
+
+env:
+  WORKING_DIRECTORY: ${{ github.workspace }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.11
+    - uses: snok/install-poetry@v1
+    - name: Install all packages
+      run: |
+        touch src/promptflow-tracing/promptflow/__init__.py
+        poetry install -C ${{ env.WORKING_DIRECTORY }}/src/promptflow-tracing --with dev
+        touch src/promptflow-core/promptflow/__init__.py
+        poetry install -C ${{ env.WORKING_DIRECTORY }}/src/promptflow-core --with dev
+        touch src/promptflow-devkit/promptflow/__init__.py
+        poetry install -C ${{ env.WORKING_DIRECTORY }}/src/promptflow-devkit --with dev
+        touch src/promptflow-azure/promptflow/__init__.py
+        poetry install -C ${{ env.WORKING_DIRECTORY }}/src/promptflow-azure --with dev
+        touch src/promptflow-evals/promptflow/__init__.py
+        poetry install -C ${{ env.WORKING_DIRECTORY }}/src/promptflow-evals --with dev
+      working-directory: ${{ env.WORKING_DIRECTORY }}
+    - name: import lint
+      run: |
+        echo "=== Running import lint in promptflow-tracing ==="
+        poetry -C ${{ env.WORKING_DIRECTORY }}/src/promptflow-tracing run lint-imports
+        echo "=== Running import lint in promptflow-core ==="
+        poetry -C ${{ env.WORKING_DIRECTORY }}/src/promptflow-core run lint-imports
+        echo "=== Running import lint in promptflow-devkit ==="
+        poetry -C ${{ env.WORKING_DIRECTORY }}/src/promptflow-devkit run lint-imports
+        echo "=== Running import lint in promptflow-azure ==="
+        poetry -C ${{ env.WORKING_DIRECTORY }}/src/promptflow-azure run lint-imports
+        echo "=== Running import lint in promptflow-evals ==="
+        poetry -C ${{ env.WORKING_DIRECTORY }}/src/promptflow-evals run lint-imports
+      working-directory: ${{ env.WORKING_DIRECTORY }}
+    - name: import lint testing private imports from global
+      working-directory: ${{ env.WORKING_DIRECTORY }}/src/promptflow-azure
+      run: |
+        set -xe
+        rm ${{ env.WORKING_DIRECTORY }}/src/promptflow-tracing/promptflow/__init__.py
+        rm ${{ env.WORKING_DIRECTORY }}/src/promptflow-core/promptflow/__init__.py
+        rm ${{ env.WORKING_DIRECTORY }}/src/promptflow-devkit/promptflow/__init__.py
+        rm ${{ env.WORKING_DIRECTORY }}/src/promptflow-azure/promptflow/__init__.py
+        rm ${{ env.WORKING_DIRECTORY }}/src/promptflow-evals/promptflow/__init__.py
+        echo "=== Add more import linter when facing more import errors ==="
+
+        echo "=== promptflow-azure full lints ==="
+        poetry run pip install langchain
+        poetry run pip install "tenacity<8.4.0"
+        poetry run python ${{ github.workspace }}/scripts/import_linter/import_linter.py

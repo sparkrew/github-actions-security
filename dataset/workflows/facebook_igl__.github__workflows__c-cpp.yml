@@ -1,0 +1,283 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "**" ]
+
+# https://github.com/git-lfs/git-lfs/issues/5749
+env:
+  GIT_CLONE_PROTECTION_ACTIVE: false
+
+jobs:
+  build:
+    name: "Android (Ubuntu)"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+
+      - name: Free up disk space
+        run: |
+          df -h
+          sudo rm -rf /usr/share/dotnet /opt/ghc
+          sudo docker system prune --all --force --volumes
+          sudo apt-get clean -y
+          df -h
+
+      - name: Set up NDK
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: r26b
+
+      - name: Set up JDK
+        uses: actions/setup-java@v5
+        with:
+          java-version: 21
+          distribution: 'oracle'
+
+      - name: Assemble APK debug
+        run: |
+          cd build/android
+          chmod +x ./gradlew
+          ./gradlew assembleDebug
+
+  cmake-build:
+      strategy:
+        fail-fast: false
+        matrix:
+          config:
+          - {
+              name: "Windows - MSVC 2022",
+              os: windows-latest,
+              build_type: "Debug",
+              cc: "cl",
+              cxx: "cl",
+              generators: "Visual Studio 17 2022",
+              cmake_args: "-DIGL_WITH_TRACY=ON -DIGL_WITH_TESTS=ON"
+            }
+          - {
+              name: "Windows - MSVC 2022 (no OpenGL)",
+              os: windows-latest,
+              build_type: "Debug",
+              cc: "cl",
+              cxx: "cl",
+              generators: "Visual Studio 17 2022",
+              cmake_args: "-DIGL_WITH_TRACY=ON -DIGL_WITH_TESTS=ON -DIGL_WITH_OPENGL=OFF"
+            }
+          - {
+              name: "Ubuntu - Clang",
+              os: ubuntu-latest,
+              build_type: "Debug",
+              cc: "clang",
+              cxx: "clang++",
+              generators: "Unix Makefiles",
+              cmake_args: "-DIGL_WITH_TRACY=ON"
+            }
+          - {
+              name: "Ubuntu - GCC",
+              os: ubuntu-latest,
+              build_type: "Debug",
+              cc: "gcc",
+              cxx: "g++",
+              generators: "Unix Makefiles",
+              # TODO: Fix killing GCC process on Github CI when IGL_WITH_SHELL is ON.
+              cmake_args: "-DIGL_WITH_TRACY=ON -DIGL_WITH_SHELL=OFF"
+            }
+# https://github.com/emscripten-core/emscripten/pull/20802#issuecomment-1858114093
+#          - {
+#              name: "Emscripten (Ubuntu)",
+#              os: ubuntu-latest,
+#              build_type: "Debug",
+#              cc: "emcc",
+#              cxx: "em++",
+#              generators: "Ninja",
+#          }
+#          - {
+#              name: "macOS - Clang (Xcode)",
+#              os: macos-latest,
+#              build_type: "Debug",
+#              cc: "clang",
+#              cxx: "clang++",
+#              generators: "Xcode",
+#              cmake_args: "-DIGL_WITH_VULKAN=OFF"
+#            }
+#          - {
+#              name: "macOS - Clang (Unix Makefiles)",
+#              os: macos-latest,
+#              build_type: "Debug",
+#              cc: "clang",
+#              cxx: "clang++",
+#              generators: "Unix Makefiles",
+#              cmake_args: "-DIGL_WITH_VULKAN=OFF"
+#            }
+      runs-on: ${{ matrix.config.os }}
+
+      steps:
+        - uses: actions/checkout@v6
+          with:
+            submodules: recursive
+
+        - if: startsWith(matrix.config.os, 'windows')
+          run: |
+            git config --system core.longpaths true
+
+        - if: startsWith(matrix.config.name, 'Emscripten')
+          run: |
+            sudo sed -i 's/azure\.//' /etc/apt/sources.list
+            sudo apt-get update
+            sudo apt-get install -y clang emscripten xorg-dev libxinerama-dev libxcursor-dev libgles2-mesa-dev libegl1-mesa-dev libglfw3-dev libglew-dev libstdc++-12-dev
+
+        - if: startsWith(matrix.config.name, 'Ubuntu' )
+          run: |
+            sudo sed -i 's/azure\.//' /etc/apt/sources.list
+            sudo apt-get update
+            sudo apt-get install -y clang xorg-dev libxinerama-dev libxcursor-dev libgles2-mesa-dev libegl1-mesa-dev libglfw3-dev libglew-dev libstdc++-12-dev
+
+        - name: Prepare Vulkan SDK
+          uses: jakoch/install-vulkan-sdk-action@v1.2.5
+          with:
+            vulkan_version: 1.4.309.0
+            install_runtime: true
+            cache: true
+            stripdown: true
+
+        - name: Get the number of CPU cores
+          uses: SimenB/github-actions-cpu-cores@v2
+
+        - name: Build
+          shell: bash
+          env:
+            CC:  ${{ matrix.config.cc }}
+            CXX: ${{ matrix.config.cxx }}
+          if: ${{ matrix.config.name  != 'Emscripten (Ubuntu)' }}
+          run: |
+            cmake ${{ env.CMAKE_GENERATOR }} -S "${{ github.workspace }}" -B build ${{ matrix.config.cmake_args }}
+            cd build
+            cmake --build . --parallel ${{ steps.cpu-cores.outputs.count }}
+
+        - name: Build Emscripten
+          shell: bash
+          env:
+            CC:  ${{ matrix.config.cc }}
+            CXX: ${{ matrix.config.cxx }}
+          if: ${{ matrix.config.name  == 'Emscripten (Ubuntu)' }}
+          run: |
+            emcmake cmake ${{ env.CMAKE_GENERATOR }} -S "${{ github.workspace }}" -B build ${{ matrix.config.cmake_args }}
+            cd build
+            cmake --build . --parallel ${{ steps.cpu-cores.outputs.count }}
+
+  cmake-test-ubuntu:
+      strategy:
+        fail-fast: false
+        matrix:
+          config:
+          - {
+              name: "Ubuntu - Clang",
+              os: ubuntu-latest,
+              build_type: "Debug",
+              cc: "clang-16",
+              cxx: "clang++-16",
+              generators: "Unix Makefiles",
+            }
+      runs-on: ${{ matrix.config.os }}
+
+      steps:
+        - uses: actions/checkout@v6
+          with:
+            submodules: recursive
+
+        - name: Install Ubuntu packages
+          shell: bash
+          run: |
+            sudo apt-get update
+            sudo apt-get install -y gcc-13 clang-16 xorg-dev libxinerama-dev libxcursor-dev libgles2-mesa-dev libegl1-mesa-dev libglfw3-dev libglew-dev libstdc++-12-dev extra-cmake-modules libxkbcommon-x11-dev wayland-protocols ninja-build
+            sudo apt-get install -y mesa-vulkan-drivers libvulkan1 vulkan-tools vulkan-validationlayers
+            cmake --version
+            vulkaninfo
+
+        - name: Install Vulkan SDK
+          uses: jakoch/install-vulkan-sdk-action@v1.2.5
+          with:
+            vulkan_version: 1.4.309.0
+            install_runtime: true
+            cache: true
+            stripdown: true
+
+        - name: Get the number of CPU cores
+          uses: SimenB/github-actions-cpu-cores@v2
+
+        - name: Check disk space
+          run: df -h
+
+        - name: Build
+          shell: bash
+          env:
+            CC:  ${{ matrix.config.cc }}
+            CXX: ${{ matrix.config.cxx }}
+          run: |
+            cmake ${{ env.CMAKE_GENERATOR }} -S "${{ github.workspace }}" -B build ${{ matrix.config.cmake_args }} -DCMAKE_BUILD_TYPE=Debug
+            cd build
+            cmake --build . --target Tiny --parallel ${{ steps.cpu-cores.outputs.count }}
+            cmake --build . --target BasicFramebufferSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+            cmake --build . --target BindGroupSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+            cmake --build . --target ColorSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+            cmake --build . --target DrawInstancedSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+            cmake --build . --target GPUStressSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+            cmake --build . --target HelloWorldSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+            cmake --build . --target ImguiSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+            cmake --build . --target MRTSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+            cmake --build . --target Textured3DCubeSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+            cmake --build . --target TextureViewSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+            cmake --build . --target TinyMeshBindGroupSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+            cmake --build . --target TinyMeshSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+            cmake --build . --target TQSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+            cmake --build . --target YUVColorSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+
+        - name: Run tests (shell)
+          run: |
+            ls build/shell
+            ./build/shell/BasicFramebufferSession_vulkan  --headless --viewport-size 1600x900 --screenshot-file BasicFramebufferSession.png
+            ./build/shell/BindGroupSession_vulkan         --headless --viewport-size 1600x900 --screenshot-file BindGroupSession.png
+            ./build/shell/ColorSession_vulkan             --headless --viewport-size 1600x900 --screenshot-file ColorSession.png
+            ./build/shell/DrawInstancedSession_vulkan     --headless --viewport-size 1600x900 --screenshot-file DrawInstancedSession.png
+            ./build/shell/GPUStressSession_vulkan         --headless --viewport-size 1600x900 --screenshot-file GPUStressSession.png
+            ./build/shell/HelloWorldSession_vulkan        --headless --viewport-size 1600x900 --screenshot-file HelloWorldSession.png
+            ./build/shell/ImguiSession_vulkan             --headless --viewport-size 1600x900 --screenshot-file ImguiSession.png
+            ./build/shell/MRTSession_vulkan               --headless --viewport-size 1600x900 --screenshot-file MRTSession.png
+            ./build/shell/Textured3DCubeSession_vulkan    --headless --viewport-size 1600x900 --screenshot-file Textured3DCubeSession.png
+            ./build/shell/TextureViewSession_vulkan       --headless --viewport-size 1600x900 --screenshot-file TextureViewSession.png
+            ./build/shell/TinyMeshBindGroupSession_vulkan --headless --viewport-size 1600x900 --screenshot-file TinyMeshBindGroupSession.png
+            ./build/shell/TinyMeshSession_vulkan          --headless --viewport-size 1600x900 --screenshot-file TinyMeshSession.png
+            ./build/shell/TQSession_vulkan                --headless --viewport-size 1600x900 --screenshot-file TQSession.png
+            ./build/shell/YUVColorSession_vulkan          --headless --viewport-size 1600x900 --screenshot-file YUVColorSession.png
+
+        - name: Run tests (desktop)
+          run: |
+            ls build/samples/desktop
+            #./build/samples/desktop/Tiny --headless
+
+        - name: Upload artifacts
+          uses: actions/upload-artifact@v6
+          with:
+            name: Screenshots
+            path: |
+              BasicFramebufferSession.png
+              BindGroupSession.png
+              ColorSession.png
+              DrawInstancedSession.png
+              GPUStressSession.png
+              HelloWorldSession.png
+              ImguiSession.png
+              MRTSession.png
+              Textured3DCubeSession.png
+              TextureViewSession.png
+              TinyMeshBindGroupSession.png
+              TinyMeshSession.png
+              TQSession.png
+              YUVColorSession.png
+            if-no-files-found: error
+            retention-days: 5
+            overwrite: true

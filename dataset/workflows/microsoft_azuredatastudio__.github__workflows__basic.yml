@@ -1,0 +1,194 @@
+name: Basic checks
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  main:
+    if: github.ref != 'refs/heads/main'
+    name: Compilation, Unit and Integration Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 20.17
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11.x"
+
+      - name: Install openssl-dev
+        run: |
+          TEMP_DIR=$(mktemp -d)
+          cd "$TEMP_DIR"
+          wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl1.0/libssl1.0.0_1.0.2n-1ubuntu5_amd64.deb
+          echo "fcadc659174561b7a925e4f17e9de7451f4fb556a032fea1ed2ff800ed3a285e  libssl1.0.0_1.0.2n-1ubuntu5_amd64.deb" | sha256sum -c -
+          sudo dpkg -i libssl1.0.0_1.0.2n-1ubuntu5_amd64.deb
+          cd -
+          rm -rf "$TEMP_DIR"
+
+      # TODO: rename azure-pipelines/linux/xvfb.init to github-actions
+      - name: Setup Build Environment
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libxkbfile-dev pkg-config libsecret-1-dev libkrb5-dev libxss1 dbus xvfb libgtk-3-0 libgbm1
+          sudo cp build/azure-pipelines/linux/xvfb.init /etc/init.d/xvfb
+          sudo chmod +x /etc/init.d/xvfb
+          sudo update-rc.d xvfb defaults
+          sudo service xvfb start
+
+      - name: Compute node modules cache key
+        id: nodeModulesCacheKey
+        run: echo "value=$(node build/azure-pipelines/common/sql-computeNodeModulesCacheKey.js)" >> $GITHUB_OUTPUT
+      - name: Cache node modules
+        id: cacheNodeModules
+        uses: actions/cache@v4
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-cacheNodeModules23-${{ steps.nodeModulesCacheKey.outputs.value }}
+          restore-keys: ${{ runner.os }}-cacheNodeModules23-
+      - name: Get yarn cache directory path
+        id: yarnCacheDirPath
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+      - name: Cache yarn directory
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.yarnCacheDirPath.outputs.dir }}
+          key: ${{ runner.os }}-yarnCacheDir-${{ steps.nodeModulesCacheKey.outputs.value }}
+          restore-keys: ${{ runner.os }}-yarnCacheDir-
+      - name: Execute yarn
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+          ELECTRON_SKIP_BINARY_DOWNLOAD: 1
+        run: yarn --frozen-lockfile --network-timeout 180000
+
+      - name: Compile and Download
+        run: yarn npm-run-all --max_old_space_size=4095 -lp compile "electron x64"
+
+      - name: Run Unit Tests
+        id: electron-unit-tests
+        run: DISPLAY=:10 ./scripts/test.sh
+
+      - name: Run Integration Tests (Electron)
+        id: electron-integration-tests
+        run: DISPLAY=:10 ./scripts/test-integration.sh
+
+  hygiene:
+    if: github.ref != 'refs/heads/main'
+    name: Hygiene and Layering
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 20.17
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11.x"
+
+      - name: Compute node modules cache key
+        id: nodeModulesCacheKey
+        # {{ SQL Carbon Edit}} Use sql-computeNodeModulesCacheKey
+        run: echo "value=$(node build/azure-pipelines/common/sql-computeNodeModulesCacheKey.js)" >> $GITHUB_OUTPUT
+      - name: Cache node modules
+        id: cacheNodeModules
+        uses: actions/cache@v4
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-cacheNodeModules20-${{ steps.nodeModulesCacheKey.outputs.value }}
+          restore-keys: ${{ runner.os }}-cacheNodeModules20-
+      - name: Get yarn cache directory path
+        id: yarnCacheDirPath
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+      - name: Cache yarn directory
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.yarnCacheDirPath.outputs.dir }}
+          key: ${{ runner.os }}-yarnCacheDir-${{ steps.nodeModulesCacheKey.outputs.value }}
+          restore-keys: ${{ runner.os }}-yarnCacheDir-
+      - name: Install Dependencies
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        run: sudo apt install -y libkrb5-dev libsecret-1-dev libx11-dev libxkbfile-dev
+      - name: Execute yarn
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+          ELECTRON_SKIP_BINARY_DOWNLOAD: 1
+        run: yarn --frozen-lockfile --network-timeout 180000
+
+      - name: Run Hygiene Checks
+        run: yarn gulp hygiene
+
+      - name: Check clean git state
+        run: ./.github/workflows/check-clean-git-state.sh
+
+      - name: Run eslint
+        run: yarn eslint
+
+      # {{SQL CARBON EDIT}} Add linting for our folders
+      - name: Run sqllint
+        run: yarn sqllint
+
+      - name: Run vscode-dts Compile Checks
+        run: yarn vscode-dts-compile-check
+
+      - name: Run Trusted Types Checks
+        run: yarn tsec-compile-check
+
+  # {{SQL CARBON TODO}} Update node modules caching to work with our cache keys
+  # warm-cache:
+  #   name: Warm up node modules cache
+  #   if: github.ref == 'refs/heads/main'
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 40
+  #   env:
+  #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #   steps:
+  #     - uses: actions/checkout@v4
+
+  #     - uses: actions/setup-node@v5
+  #       with:
+  #         node-version: 18.15
+
+  #     - name: Compute node modules cache key
+  #       id: nodeModulesCacheKey
+  #       run: echo "value=$(node build/azure-pipelines/common/sql-computeNodeModulesCacheKey.js)" >> $GITHUB_OUTPUT
+  #     - name: Cache node modules
+  #       id: cacheNodeModules
+  #       uses: actions/cache@v4
+  #       with:
+  #         path: "**/node_modules"
+  #         key: ${{ runner.os }}-cacheNodeModulesLinux-${{ steps.nodeModulesCacheKey.outputs.value }}
+  #     - name: Get yarn cache directory path
+  #       id: yarnCacheDirPath
+  #       if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+  #       run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+  #     - name: Cache yarn directory
+  #       if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+  #       uses: actions/cache@v4
+  #       with:
+  #         path: ${{ steps.yarnCacheDirPath.outputs.dir }}
+  #         key: ${{ runner.os }}-yarnCacheDir-${{ steps.nodeModulesCacheKey.outputs.value }}
+  #         restore-keys: ${{ runner.os }}-yarnCacheDir-
+  #     - name: Execute yarn
+  #       if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+  #       env:
+  #         PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+  #         ELECTRON_SKIP_BINARY_DOWNLOAD: 1
+  #       run: yarn --frozen-lockfile --network-timeout 180000

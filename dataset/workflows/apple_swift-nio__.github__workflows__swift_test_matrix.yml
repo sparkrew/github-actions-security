@@ -1,0 +1,121 @@
+name: Matrix
+
+permissions:
+  contents: read
+
+on:
+  workflow_call:
+    inputs:
+      name:
+        type: string
+        description: "The name of the workflow used for the concurrency group."
+        required: true
+      matrix_string:
+        type: string
+        description: "The test matrix definition."
+        required: true
+
+# We will cancel previously triggered workflow runs
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ inputs.name }}
+  cancel-in-progress: true
+
+jobs:
+  execute-matrix:
+    name: ${{ matrix.config.platform }} (${{ matrix.config.name }})
+    runs-on: ${{ matrix.config.runner }}
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(inputs.matrix_string) }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+        with:
+          persist-credentials: false
+          submodules: true
+      - name: Wait for Docker daemon (Windows)
+        if: ${{ matrix.config.platform == 'Windows' }}
+        run: |
+          $maxAttempts = 30
+          $attempt = 0
+          do {
+            $attempt++
+            docker info 2>&1 | Out-Null
+            if ($LASTEXITCODE -eq 0) { break }
+            if ($attempt -ge $maxAttempts) {
+              Write-Error "Docker daemon did not become ready after $maxAttempts attempts"
+              exit 1
+            }
+            Start-Sleep -Seconds 2
+          } while ($true)
+        shell: pwsh
+      - name: Pull Docker image
+        run: docker pull ${{ matrix.config.image }}
+      - name: Run matrix job
+        if: ${{ matrix.config.platform != 'Windows' }}
+        run: |
+          if [[ -n '${{ matrix.config.setup_command }}' ]]; then
+            setup_command_expression='${{ matrix.config.setup_command }} &&'
+          else
+            setup_command_expression=""
+          fi
+          workspace="/$(basename ${{ github.workspace }})"
+
+          docker_args=(
+            "run"
+            "-v" "${{ github.workspace }}:$workspace"
+            "-w" "$workspace"
+            "-e" "CI=$CI"
+            "-e" "GITHUB_ACTIONS=$GITHUB_ACTIONS"
+            "-e" "SWIFT_VERSION=${{ matrix.config.swift_version }}"
+            "-e" "workspace=$workspace"
+          )
+
+          if [[ '${{ toJson(matrix.config.env) }}' != '{}' ]]; then
+            while IFS="=" read -r key value; do
+              if [[ -n "$key" && -n "$value" ]]; then
+                docker_args+=("-e" "$key=$value")
+              fi
+            done < <(echo '${{ toJson(matrix.config.env) }}' | jq -r 'to_entries[] | "\(.key)=\(.value)"')
+          fi
+
+          docker_args+=("${{ matrix.config.image }}")
+          docker_args+=("bash" "-c" "$setup_command_expression ${{ matrix.config.command }} ${{ matrix.config.command_arguments }}")
+
+          echo "Executing Docker command: docker ${docker_args[*]}"
+          docker "${docker_args[@]}"
+      - name: Run matrix job (Windows)
+        if: ${{ matrix.config.platform == 'Windows' }}
+        run: |
+          if (-not [string]::IsNullOrEmpty("${{ matrix.config.setup_command }}")) {
+              $setup_command_expression = "${{ matrix.config.setup_command }} &"
+          } else {
+              $setup_command_expression = ""
+          }
+          $workspace = "C:\" + (Split-Path ${{ github.workspace }} -Leaf)
+
+          $docker_args = @(
+              "run", "-v", "${{ github.workspace }}:$($workspace)",
+              "-w", $workspace,
+              "-e", "CI=$env:CI",
+              "-e", "GITHUB_ACTIONS=$env:GITHUB_ACTIONS",
+              "-e", "SWIFT_VERSION=${{ matrix.config.swift_version }}"
+          )
+
+          $env_args = @()
+          $env_json = '${{ toJson(matrix.config.env) }}'
+          if ($env_json -ne '{}') {
+              $env_obj = $env_json | ConvertFrom-Json
+              $env_obj.PSObject.Properties | ForEach-Object {
+                  $env_args += "-e"
+                  $env_args += "$($_.Name)=$($_.Value)"
+              }
+          }
+          $docker_args += $env_args
+
+          $docker_args += @("${{ matrix.config.image }}", "cmd", "/s", "/c", "swift --version & $($setup_command_expression) ${{ matrix.config.command }} ${{ matrix.config.command_arguments }}")
+
+          Write-Host "Executing Docker command: docker $($docker_args -join ' ')"
+          & docker @docker_args
+    env:
+      SWIFT_VERSION: ${{ matrix.config.swift_version }}

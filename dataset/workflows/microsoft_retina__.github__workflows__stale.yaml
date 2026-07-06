@@ -1,0 +1,35 @@
+name: "Stale PR and Issue Handler"
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/stale@b5d41d4e1d5dceea10e7104786b73624c18a190f # v10.2.0
+        id: stale
+        with:
+          ascending: true
+          close-issue-message: "Issue closed due to inactivity."
+          close-pr-message: "Pull request closed due to inactivity."
+          days-before-issue-stale: -1 # don't automatically stale issues.
+          days-before-issue-close: 7 # manually staled issues may be closed after 7 days.
+          days-before-pr-close: 7
+          days-before-pr-stale: 30
+          delete-branch: true
+          exempt-draft-pr: true
+          exempt-pr-labels: "meta/preserve"
+          stale-issue-label: "meta/waiting-for-author"
+          stale-pr-label: "meta/waiting-for-author"
+          operations-per-run: 100
+          stale-issue-message: "This issue will be closed in 7 days due to inactivity."
+          stale-pr-message: "This PR will be closed in 7 days due to inactivity."
+      - name: Print outputs
+        run: echo "${{ join(steps.stale.outputs.*, ',') }}"

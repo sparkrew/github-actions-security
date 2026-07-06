@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build_test:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build docker image
+      run: >
+        docker build
+        -t below
+        --target builder
+        .
+    - name: Run tests
+      # Skip tests that require host to have cgroup2
+      run: >
+        docker run below
+        /root/.cargo/bin/cargo test
+        --release
+        --
+        --skip test_dump
+        --skip advance_forward_and_reverse
+        --skip disable_disk_stat
+        --skip disable_io_stat
+        --skip record_replay_integration

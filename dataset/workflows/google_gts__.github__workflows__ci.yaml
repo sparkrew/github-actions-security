@@ -1,0 +1,61 @@
+on:
+  push:
+    branches: [$default-branch]
+  pull_request:
+name: ci
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [18, 20, 22]
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm i --production --engine-strict --ignore-scripts
+      - run: node --version
+      - run: npm ci
+      - run: npm test
+      - name: coverage
+        uses: codecov/codecov-action@v5
+        with:
+          name: actions ${{ matrix.node }}
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npm run system-test
+  system_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npm run system-test
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npm run lint
+  license_check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npm run license-check

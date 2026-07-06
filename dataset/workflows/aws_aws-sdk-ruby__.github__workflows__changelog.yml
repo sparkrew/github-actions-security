@@ -1,0 +1,26 @@
+on:
+  pull_request:
+    paths:
+      - 'gems/aws-sdk-core/**/*.rb'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  changelog_comment_pr:
+    runs-on: ubuntu-latest
+    name: Comment when CHANGELOG entry is missing
+    steps:
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@3c4bc6fa0ca4718d438e0a4bd3ea81fbb0e6e2be
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Comment on PR
+        if: ${{!contains(steps.changed-files.outputs.all_changed_files, 'gems/aws-sdk-core/CHANGELOG.md')}}
+        uses: thollander/actions-comment-pull-request@main
+        with:
+          message: 'You have made a change to core without a corresponding change to the CHANGELOG.md. This change will not result in a new version and will not published unless an entry is added to CHANGELOG.md.'
+          github-token: ${{ secrets.GITHUB_TOKEN }}

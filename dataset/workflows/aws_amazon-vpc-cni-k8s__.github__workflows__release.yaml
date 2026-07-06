@@ -1,0 +1,31 @@
+name: VPC CNI Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+env:
+  GITHUB_USERNAME: ${{ secrets.EKS_BOT_GITHUB_USERNAME }}
+  GITHUB_TOKEN: ${{ secrets.EKS_BOT_GITHUB_TOKEN }}
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout latest commit in the PR
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # refs/tags/v5.0.0
+        with:
+          ref: "refs/tags/${{ github.event.release.tag_name }}"
+      - name: Set up Go
+        uses: actions/setup-go@44694675825211faa026b3c33043df3e48a5fa00 # refs/tags/v6.0.0
+        with:
+          go-version: "1.25"
+      - name: Generate CNI YAML
+        run: make generate-cni-yaml
+      - name: Create eks-charts PR
+        run: make ekscharts-sync-release
+      - name: Create sample manifests PR
+        run: make config-folder-sync

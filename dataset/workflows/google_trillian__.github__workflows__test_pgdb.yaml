@@ -1,0 +1,71 @@
+---
+name: Test PostgreSQL
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    permissions:
+      contents: read  # for actions/checkout to fetch code
+      pull-requests: read  # for golangci/golangci-lint-action to fetch pull requests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+    - uses: actions/setup-go@7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5 # v6.2.0
+      with:
+        go-version-file: go.mod
+        check-latest: true
+        cache: true
+
+    - uses: golangci/golangci-lint-action@1e7e51e771db61008b38414a730f564565cf7c20 # v9.2.0
+      with:
+        version: 'v2.6.0'
+        args: ./storage/postgresql
+
+  integration-and-unit-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_HOST_AUTH_METHOD: trust
+        options: >-
+          --name pgsql
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+    - uses: actions/setup-go@7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5 # v6.2.0
+      with:
+        go-version-file: go.mod
+        check-latest: true
+        cache: true
+
+    - name: Build before tests
+      run: go mod download && go build ./...
+    
+    - name: Run integration tests
+      run: ./integration/integration_test.sh
+      env:
+        TEST_POSTGRESQL_URI: postgresql:///defaultdb?host=localhost&user=postgres&password=postgres
+        POSTGRESQL_IN_CONTAINER: true
+        POSTGRESQL_CONTAINER_NAME: pgsql
+
+    - name: Run unit tests
+      run: go test -v ./storage/postgresql/... ./quota/postgresqlqm/...
+  
