@@ -1,0 +1,68 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_playwright__.github__workflows__tests_primary.yml:57:7
+   [1m[94m|[0m
+[1m[94m57 |[0m     - uses: actions/checkout@v6
+   [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_playwright__.github__workflows__tests_primary.yml:80:7
+   [1m[94m|[0m
+[1m[94m80 |[0m     - uses: actions/checkout@v6
+   [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_playwright__.github__workflows__tests_primary.yml:144:7
+    [1m[94m|[0m
+[1m[94m144 |[0m     - uses: actions/checkout@v6
+    [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_playwright__.github__workflows__tests_primary.yml:162:7
+    [1m[94m|[0m
+[1m[94m162 |[0m     - uses: actions/checkout@v6
+    [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_playwright__.github__workflows__tests_primary.yml:210:7
+    [1m[94m|[0m
+[1m[94m210 |[0m     - uses: actions/checkout@v6
+    [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_playwright__.github__workflows__tests_primary.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: "tests 1"
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m226 |[0m [1m[33m|[0m         flakiness-tenant-id: ${{ secrets.AZURE_FLAKINESS_DASHBOARD_TENANT_ID }}
+[1m[94m227 |[0m [1m[33m|[0m         flakiness-subscription-id: ${{ secrets.AZURE_FLAKINESS_DASHBOARD_SUBSCRIPTION_ID }}
+    [1m[94m|[0m [1m[33m|____________________________________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_playwright__.github__workflows__tests_primary.yml:158:3
+    [1m[94m|[0m
+[1m[94m158 |[0m [1m[33m/[0m   test_vscode_extension:
+[1m[94m159 |[0m [1m[33m|[0m     name: VSCode Extension
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m191 |[0m [1m[33m|[0m         report_dir: playwright-vscode/blob-report
+[1m[94m192 |[0m [1m[33m|[0m         job_name: vscode-extension
+    [1m[94m|[0m [1m[33m|[0m                                  [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|__________________________________|[0m
+    [1m[94m|[0m                                    [1m[33mthis job[0m
+    [1m[94m|[0m                                    [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m7[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m7[39m medium, [31m0[39m high

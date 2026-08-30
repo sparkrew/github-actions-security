@@ -1,0 +1,129 @@
+name: Publish Website
+
+on:
+  workflow_call:
+    inputs:
+      new_version:
+        required: false
+        type: string
+      run_tutorials:
+        required: false
+        type: boolean
+        default: true
+      pinned_botorch:
+        required: true
+        type: boolean
+      dry_run:
+        required: false
+        type: boolean
+        default: false
+  workflow_dispatch:
+    inputs:
+      run_tutorials:
+        required: true
+        type: boolean
+      pinned_botorch:
+        required: true
+        type: boolean
+      dry_run:
+        required: true
+        type: boolean
+        default: false
+
+jobs:
+  build-website:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      # `uv pip ...` requires venv by default. This skips that requirement.
+      UV_SYSTEM_PYTHON: 1
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+      with:
+        ref: 'gh-pages' # release branch
+        fetch-depth: 0
+    - name: Sync release branch with main
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git merge origin/main
+        # To avoid a large number of commits we don't push this sync commit to github until a new release.
+    - name: Install uv
+      uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # astral-sh/setup-uv@v5
+    - name: Set up Python
+      uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # actions/setup-python@v6 | main,v6.2.0
+      with:
+        python-version: "3.14"
+
+    - if: ${{ inputs.pinned_botorch }}
+      name: Install dependencies with pinned BoTorch
+      run: |
+        uv pip install -e ".[tutorial]"
+    - if: ${{ !inputs.pinned_botorch }}
+      name: Install dependencies with latest BoTorch
+      run: |
+        uv pip install git+https://github.com/cornellius-gp/linear_operator.git
+        uv pip install git+https://github.com/cornellius-gp/gpytorch.git
+        uv pip install git+https://github.com/pytorch/botorch.git
+        uv pip install -e ".[tutorial]"
+
+    - if: ${{ inputs.run_tutorials }}
+      name: Run Tutorials
+      run: |
+        python scripts/run_tutorials.py -w $(pwd)
+    - if: ${{ inputs.new_version && !inputs.dry_run }}
+      name: Delete existing similar versions from Docusaurus
+      run: |
+        # Delete existing versions for same Major and Minor version numbers.
+        # We do this to keep only the latest patch for a given major/minor version.
+        MAJOR_MINOR_VERSION=$(cut -d '.' -f 1-2 <<< ${{ inputs.new_version }}) # remove patch number
+        MAJOR_MINOR_VERSION=${MAJOR_MINOR_VERSION#v}                           # remove optional "v" prefix
+        for dir in website/versioned_docs/version-$MAJOR_MINOR_VERSION.*; do
+            if [ -d "$dir" ]; then
+                OLD_VERSION=$(basename "$dir" | sed 's/^version-//') # remove "version-" prefix from the directory name
+                echo "Deleting older version $OLD_VERSION with the same major and minor version numbers as $NEW_VERSION"
+                # Delete version from the three locations Docusaurus uses:
+                #   - versioned_docs/version-X.Y.Z/
+                #   - versioned_sidebars/version-X.Y.Z-sidebars.json
+                #   - versions.json
+                # https://docusaurus.io/docs/versioning#deleting-an-existing-version
+                rm -rf "$dir"
+                rm "website/versioned_sidebars/version-$OLD_VERSION-sidebars.json"
+                sed -i "/\"$OLD_VERSION\"/d" website/versions.json
+            fi
+        done
+    - if: ${{ inputs.new_version && !inputs.dry_run }}
+      name: Create new docusaurus version
+      run: |
+        python3 scripts/convert_ipynb_to_mdx.py --clean
+        cd website
+        yarn
+        yarn docusaurus docs:version ${{ inputs.new_version }}
+
+        git add versioned_docs/ versioned_sidebars/ versions.json
+        git commit -m "Create version ${{ inputs.new_version }} of site in Docusaurus"
+        git push --force origin HEAD:gh-pages
+    - name: Build website
+      run: |
+        bash scripts/make_docs.sh -b
+    - name: Upload website build as artifact
+      id: deployment
+      uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # actions/upload-pages-artifact@v4 | main,v4.0.0
+      with:
+        path: website/build/
+
+  deploy-website:
+    if: ${{ !inputs.dry_run }}
+    needs: build-website
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # actions/deploy-pages@v4 | v4.0.5

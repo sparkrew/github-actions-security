@@ -1,0 +1,77 @@
+{
+  "workflow": "google_pytype__.github__workflows__build.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 7,
+    "by_rule": {
+      "artipacked": 2,
+      "excessive-permissions": 4,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "google_pytype__.github__workflows__build.yml",
+      "line": 26,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "google_pytype__.github__workflows__build.yml",
+      "line": 62,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "google_pytype__.github__workflows__build.yml",
+      "line": 1,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "google_pytype__.github__workflows__build.yml",
+      "line": 16,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "google_pytype__.github__workflows__build.yml",
+      "line": 51,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "google_pytype__.github__workflows__build.yml",
+      "line": 75,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "google_pytype__.github__workflows__build.yml",
+      "line": 32,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "workflow": "google_osv.dev__.github__workflows__codeql-analysis.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2",
+      "line": 42
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: github/codeql-action/init@89a39a4e59826350b863aa6b6252a07ad50cf83e # v4.32.4",
+      "line": 46
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: github/codeql-action/init@89a39a4e59826350b863aa6b6252a07ad50cf83e # github/codeql-action/init@89a39a4e59826350b863aa6b6252a07ad50cf83e",
+      "line": 57
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: github/codeql-action/init@89a39a4e59826350b863aa6b6252a07ad50cf83e # github/codeql-action/init@89a39a4e59826350b863aa6b6252a07ad50cf83e",
+      "line": 71
+    }
+  ]
+}

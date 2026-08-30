@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/facebook_react-native__.github__workflows__close-pr.yml b/.github/workflows/facebook_react-native__.github__workflows__close-pr.yml
+index 5d0489f..277f726 100644
+--- a/.github/workflows/facebook_react-native__.github__workflows__close-pr.yml
++++ b/.github/workflows/facebook_react-native__.github__workflows__close-pr.yml
+@@ -11,7 +11,7 @@ jobs:
+     runs-on: ubuntu-latest
+     if: github.repository == 'facebook/react-native'
+     steps:
+-      - uses: actions/github-script@v8
++      - uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+         with:
+           github-token: ${{ secrets.REACT_NATIVE_BOT_GITHUB_TOKEN }}
+           script: |

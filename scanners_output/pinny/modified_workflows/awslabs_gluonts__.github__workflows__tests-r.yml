@@ -1,0 +1,45 @@
+name: R Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    strategy:
+      max-parallel: 4
+      fail-fast: false
+      matrix:
+        python-version: ['3.11']
+        platform: [ubuntu-latest]
+
+    runs-on: ${{ matrix.platform }}
+
+    if: github.event_name == 'push' || contains(github.event.pull_request.labels.*.name, 'pr:test-r')
+
+    steps:
+    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0
+    - name: Set up R
+      uses: r-lib/actions/setup-r@6f6e5bc62fba3a704f74e7ad7ef7676c5c6a2590 # r-lib/actions/setup-r@v2 | v2-branch,v2.11.4
+      with:
+        r-version: '4.2.3'
+    - name: Install R dependencies
+      run: |
+        wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+        sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+        sudo apt-get install -y \
+          libcairo-dev \
+          libedit-dev \
+          libnlopt-dev \
+          libxml2-dev \
+          libcurl4-openssl-dev
+        Rscript -e 'install.packages(c("forecast", "nnfor", "hts"), repos="https://cloud.r-project.org")'
+    - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # actions/setup-python@v4 | restore-v4-release,v4.9.1
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install Python dependencies
+      run: |
+        pip install . \
+          -r requirements/requirements-test.txt \
+          -r requirements/requirements-extras-r.txt
+    - name: Test with pytest
+      run: |
+        pytest -n2 test/ext/r_forecast

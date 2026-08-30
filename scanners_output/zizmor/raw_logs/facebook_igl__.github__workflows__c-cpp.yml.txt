@@ -1,0 +1,418 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:18:9
+   [1m[94m|[0m
+[1m[94m18 |[0m         - uses: actions/checkout@v6
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m19 |[0m [1m[33m|[0m         with:
+[1m[94m20 |[0m [1m[33m|[0m           submodules: recursive
+   [1m[94m|[0m [1m[33m|_______________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:119:11
+    [1m[94m|[0m
+[1m[94m119 |[0m           - uses: actions/checkout@v6
+    [1m[94m|[0m  [1m[33m___________-[0m
+[1m[94m120 |[0m [1m[33m|[0m           with:
+[1m[94m121 |[0m [1m[33m|[0m             submodules: recursive
+    [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:188:11
+    [1m[94m|[0m
+[1m[94m188 |[0m           - uses: actions/checkout@v6
+    [1m[94m|[0m  [1m[33m___________-[0m
+[1m[94m189 |[0m [1m[33m|[0m           with:
+[1m[94m190 |[0m [1m[33m|[0m             submodules: recursive
+    [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: C/C++ CI
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m282 |[0m [1m[33m|[0m             retention-days: 5
+[1m[94m283 |[0m [1m[33m|[0m             overwrite: true
+    [1m[94m|[0m [1m[33m|____________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:14:3
+   [1m[94m|[0m
+[1m[94m14 |[0m [1m[33m/[0m   build:
+[1m[94m15 |[0m [1m[33m|[0m     name: "Android (Ubuntu)"
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m44 |[0m [1m[33m|[0m           chmod +x ./gradlew
+[1m[94m45 |[0m [1m[33m|[0m           ./gradlew assembleDebug
+   [1m[94m|[0m [1m[33m|[0m                                 [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_________________________________|[0m
+   [1m[94m|[0m                                   [1m[33mthis job[0m
+   [1m[94m|[0m                                   [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:47:3
+    [1m[94m|[0m
+[1m[94m 47 |[0m [1m[33m/[0m   cmake-build:
+[1m[94m 48 |[0m [1m[33m|[0m       strategy:
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m169 |[0m [1m[33m|[0m             cd build
+[1m[94m170 |[0m [1m[33m|[0m             cmake --build . --parallel ${{ steps.cpu-cores.outputs.count }}
+    [1m[94m|[0m [1m[33m|[0m                                                                           [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|___________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                             [1m[33mthis job[0m
+    [1m[94m|[0m                                                                             [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:172:3
+    [1m[94m|[0m
+[1m[94m172 |[0m [1m[33m/[0m   cmake-test-ubuntu:
+[1m[94m173 |[0m [1m[33m|[0m       strategy:
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m282 |[0m [1m[33m|[0m             retention-days: 5
+[1m[94m283 |[0m [1m[33m|[0m             overwrite: true
+    [1m[94m|[0m [1m[33m|[0m                            [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________________|[0m
+    [1m[94m|[0m                              [1m[33mthis job[0m
+    [1m[94m|[0m                              [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:150:11
+    [1m[94m|[0m
+[1m[94m150 |[0m           - name: Build
+    [1m[94m|[0m             [1m[94m-----------[0m [1m[94minfo: this step[0m
+[1m[94m151 |[0m             shell: bash
+[1m[94m...[0m
+[1m[94m155 |[0m             if: ${{ matrix.config.name  != 'Emscripten (Ubuntu)' }}
+[1m[94m156 |[0m [1m[94m/[0m           run: |
+[1m[94m157 |[0m [1m[94m|[0m             cmake ${{ env.CMAKE_GENERATOR }} -S "${{ github.workspace }}" -B build ${{ matrix.config.cmake_args }}
+[1m[94m158 |[0m [1m[94m|[0m             cd build
+[1m[94m159 |[0m [1m[94m|[0m             cmake --build . --parallel ${{ steps.cpu-cores.outputs.count }}
+    [1m[94m|[0m [1m[94m|___________________________________________________________________________-[0m [1m[94minfo: steps.cpu-cores.outputs.count may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:161:11
+    [1m[94m|[0m
+[1m[94m161 |[0m           - name: Build Emscripten
+    [1m[94m|[0m             [1m[94m----------------------[0m [1m[94minfo: this step[0m
+[1m[94m162 |[0m             shell: bash
+[1m[94m...[0m
+[1m[94m166 |[0m             if: ${{ matrix.config.name  == 'Emscripten (Ubuntu)' }}
+[1m[94m167 |[0m [1m[94m/[0m           run: |
+[1m[94m168 |[0m [1m[94m|[0m             emcmake cmake ${{ env.CMAKE_GENERATOR }} -S "${{ github.workspace }}" -B build ${{ matrix.config.cmake_args }}
+[1m[94m169 |[0m [1m[94m|[0m             cd build
+[1m[94m170 |[0m [1m[94m|[0m             cmake --build . --parallel ${{ steps.cpu-cores.outputs.count }}
+    [1m[94m|[0m [1m[94m|___________________________________________________________________________-[0m [1m[94minfo: steps.cpu-cores.outputs.count may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:215:11
+    [1m[94m|[0m
+[1m[94m215 |[0m           - name: Build
+    [1m[94m|[0m             [1m[94m-----------[0m [1m[94minfo: this step[0m
+[1m[94m216 |[0m             shell: bash
+[1m[94m...[0m
+[1m[94m219 |[0m               CXX: ${{ matrix.config.cxx }}
+[1m[94m220 |[0m [1m[94m/[0m           run: |
+[1m[94m221 |[0m [1m[94m|[0m             cmake ${{ env.CMAKE_GENERATOR }} -S "${{ github.workspace }}" -B build ${{ matrix.config.cmake_args }} -DCMAKE_BUILD_TY[1m[94m...[0m
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m236 |[0m [1m[94m|[0m             cmake --build . --target TQSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+[1m[94m237 |[0m [1m[94m|[0m             cmake --build . --target YUVColorSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+    [1m[94m|[0m [1m[94m|___________________________________________________________________________________________________________-[0m [1m[94minfo: steps.cpu-cores.outputs.count may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:215:11
+    [1m[94m|[0m
+[1m[94m215 |[0m           - name: Build
+    [1m[94m|[0m             [1m[94m-----------[0m [1m[94minfo: this step[0m
+[1m[94m216 |[0m             shell: bash
+[1m[94m...[0m
+[1m[94m219 |[0m               CXX: ${{ matrix.config.cxx }}
+[1m[94m220 |[0m [1m[94m/[0m           run: |
+[1m[94m221 |[0m [1m[94m|[0m             cmake ${{ env.CMAKE_GENERATOR }} -S "${{ github.workspace }}" -B build ${{ matrix.config.cmake_args }} -DCMAKE_BUILD_TY[1m[94m...[0m
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m236 |[0m [1m[94m|[0m             cmake --build . --target TQSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+[1m[94m237 |[0m [1m[94m|[0m             cmake --build . --target YUVColorSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+    [1m[94m|[0m [1m[94m|___________________________________________________________________________________________________________-[0m [1m[94minfo: steps.cpu-cores.outputs.count may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:215:11
+    [1m[94m|[0m
+[1m[94m215 |[0m           - name: Build
+    [1m[94m|[0m             [1m[94m-----------[0m [1m[94minfo: this step[0m
+[1m[94m216 |[0m             shell: bash
+[1m[94m...[0m
+[1m[94m219 |[0m               CXX: ${{ matrix.config.cxx }}
+[1m[94m220 |[0m [1m[94m/[0m           run: |
+[1m[94m221 |[0m [1m[94m|[0m             cmake ${{ env.CMAKE_GENERATOR }} -S "${{ github.workspace }}" -B build ${{ matrix.config.cmake_args }} -DCMAKE_BUILD_TY[1m[94m...[0m
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m236 |[0m [1m[94m|[0m             cmake --build . --target TQSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+[1m[94m237 |[0m [1m[94m|[0m             cmake --build . --target YUVColorSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+    [1m[94m|[0m [1m[94m|___________________________________________________________________________________________________________-[0m [1m[94minfo: steps.cpu-cores.outputs.count may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:215:11
+    [1m[94m|[0m
+[1m[94m215 |[0m           - name: Build
+    [1m[94m|[0m             [1m[94m-----------[0m [1m[94minfo: this step[0m
+[1m[94m216 |[0m             shell: bash
+[1m[94m...[0m
+[1m[94m219 |[0m               CXX: ${{ matrix.config.cxx }}
+[1m[94m220 |[0m [1m[94m/[0m           run: |
+[1m[94m221 |[0m [1m[94m|[0m             cmake ${{ env.CMAKE_GENERATOR }} -S "${{ github.workspace }}" -B build ${{ matrix.config.cmake_args }} -DCMAKE_BUILD_TY[1m[94m...[0m
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m236 |[0m [1m[94m|[0m             cmake --build . --target TQSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+[1m[94m237 |[0m [1m[94m|[0m             cmake --build . --target YUVColorSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+    [1m[94m|[0m [1m[94m|___________________________________________________________________________________________________________-[0m [1m[94minfo: steps.cpu-cores.outputs.count may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:215:11
+    [1m[94m|[0m
+[1m[94m215 |[0m           - name: Build
+    [1m[94m|[0m             [1m[94m-----------[0m [1m[94minfo: this step[0m
+[1m[94m216 |[0m             shell: bash
+[1m[94m...[0m
+[1m[94m219 |[0m               CXX: ${{ matrix.config.cxx }}
+[1m[94m220 |[0m [1m[94m/[0m           run: |
+[1m[94m221 |[0m [1m[94m|[0m             cmake ${{ env.CMAKE_GENERATOR }} -S "${{ github.workspace }}" -B build ${{ matrix.config.cmake_args }} -DCMAKE_BUILD_TY[1m[94m...[0m
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m236 |[0m [1m[94m|[0m             cmake --build . --target TQSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+[1m[94m237 |[0m [1m[94m|[0m             cmake --build . --target YUVColorSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+    [1m[94m|[0m [1m[94m|___________________________________________________________________________________________________________-[0m [1m[94minfo: steps.cpu-cores.outputs.count may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:215:11
+    [1m[94m|[0m
+[1m[94m215 |[0m           - name: Build
+    [1m[94m|[0m             [1m[94m-----------[0m [1m[94minfo: this step[0m
+[1m[94m216 |[0m             shell: bash
+[1m[94m...[0m
+[1m[94m219 |[0m               CXX: ${{ matrix.config.cxx }}
+[1m[94m220 |[0m [1m[94m/[0m           run: |
+[1m[94m221 |[0m [1m[94m|[0m             cmake ${{ env.CMAKE_GENERATOR }} -S "${{ github.workspace }}" -B build ${{ matrix.config.cmake_args }} -DCMAKE_BUILD_TY[1m[94m...[0m
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m236 |[0m [1m[94m|[0m             cmake --build . --target TQSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+[1m[94m237 |[0m [1m[94m|[0m             cmake --build . --target YUVColorSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+    [1m[94m|[0m [1m[94m|___________________________________________________________________________________________________________-[0m [1m[94minfo: steps.cpu-cores.outputs.count may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:215:11
+    [1m[94m|[0m
+[1m[94m215 |[0m           - name: Build
+    [1m[94m|[0m             [1m[94m-----------[0m [1m[94minfo: this step[0m
+[1m[94m216 |[0m             shell: bash
+[1m[94m...[0m
+[1m[94m219 |[0m               CXX: ${{ matrix.config.cxx }}
+[1m[94m220 |[0m [1m[94m/[0m           run: |
+[1m[94m221 |[0m [1m[94m|[0m             cmake ${{ env.CMAKE_GENERATOR }} -S "${{ github.workspace }}" -B build ${{ matrix.config.cmake_args }} -DCMAKE_BUILD_TY[1m[94m...[0m
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m236 |[0m [1m[94m|[0m             cmake --build . --target TQSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+[1m[94m237 |[0m [1m[94m|[0m             cmake --build . --target YUVColorSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+    [1m[94m|[0m [1m[94m|___________________________________________________________________________________________________________-[0m [1m[94minfo: steps.cpu-cores.outputs.count may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:215:11
+    [1m[94m|[0m
+[1m[94m215 |[0m           - name: Build
+    [1m[94m|[0m             [1m[94m-----------[0m [1m[94minfo: this step[0m
+[1m[94m216 |[0m             shell: bash
+[1m[94m...[0m
+[1m[94m219 |[0m               CXX: ${{ matrix.config.cxx }}
+[1m[94m220 |[0m [1m[94m/[0m           run: |
+[1m[94m221 |[0m [1m[94m|[0m             cmake ${{ env.CMAKE_GENERATOR }} -S "${{ github.workspace }}" -B build ${{ matrix.config.cmake_args }} -DCMAKE_BUILD_TY[1m[94m...[0m
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m236 |[0m [1m[94m|[0m             cmake --build . --target TQSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+[1m[94m237 |[0m [1m[94m|[0m             cmake --build . --target YUVColorSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+    [1m[94m|[0m [1m[94m|___________________________________________________________________________________________________________-[0m [1m[94minfo: steps.cpu-cores.outputs.count may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:215:11
+    [1m[94m|[0m
+[1m[94m215 |[0m           - name: Build
+    [1m[94m|[0m             [1m[94m-----------[0m [1m[94minfo: this step[0m
+[1m[94m216 |[0m             shell: bash
+[1m[94m...[0m
+[1m[94m219 |[0m               CXX: ${{ matrix.config.cxx }}
+[1m[94m220 |[0m [1m[94m/[0m           run: |
+[1m[94m221 |[0m [1m[94m|[0m             cmake ${{ env.CMAKE_GENERATOR }} -S "${{ github.workspace }}" -B build ${{ matrix.config.cmake_args }} -DCMAKE_BUILD_TY[1m[94m...[0m
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m236 |[0m [1m[94m|[0m             cmake --build . --target TQSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+[1m[94m237 |[0m [1m[94m|[0m             cmake --build . --target YUVColorSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+    [1m[94m|[0m [1m[94m|___________________________________________________________________________________________________________-[0m [1m[94minfo: steps.cpu-cores.outputs.count may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:215:11
+    [1m[94m|[0m
+[1m[94m215 |[0m           - name: Build
+    [1m[94m|[0m             [1m[94m-----------[0m [1m[94minfo: this step[0m
+[1m[94m216 |[0m             shell: bash
+[1m[94m...[0m
+[1m[94m219 |[0m               CXX: ${{ matrix.config.cxx }}
+[1m[94m220 |[0m [1m[94m/[0m           run: |
+[1m[94m221 |[0m [1m[94m|[0m             cmake ${{ env.CMAKE_GENERATOR }} -S "${{ github.workspace }}" -B build ${{ matrix.config.cmake_args }} -DCMAKE_BUILD_TY[1m[94m...[0m
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m236 |[0m [1m[94m|[0m             cmake --build . --target TQSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+[1m[94m237 |[0m [1m[94m|[0m             cmake --build . --target YUVColorSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+    [1m[94m|[0m [1m[94m|___________________________________________________________________________________________________________-[0m [1m[94minfo: steps.cpu-cores.outputs.count may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:215:11
+    [1m[94m|[0m
+[1m[94m215 |[0m           - name: Build
+    [1m[94m|[0m             [1m[94m-----------[0m [1m[94minfo: this step[0m
+[1m[94m216 |[0m             shell: bash
+[1m[94m...[0m
+[1m[94m219 |[0m               CXX: ${{ matrix.config.cxx }}
+[1m[94m220 |[0m [1m[94m/[0m           run: |
+[1m[94m221 |[0m [1m[94m|[0m             cmake ${{ env.CMAKE_GENERATOR }} -S "${{ github.workspace }}" -B build ${{ matrix.config.cmake_args }} -DCMAKE_BUILD_TY[1m[94m...[0m
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m236 |[0m [1m[94m|[0m             cmake --build . --target TQSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+[1m[94m237 |[0m [1m[94m|[0m             cmake --build . --target YUVColorSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+    [1m[94m|[0m [1m[94m|___________________________________________________________________________________________________________-[0m [1m[94minfo: steps.cpu-cores.outputs.count may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:215:11
+    [1m[94m|[0m
+[1m[94m215 |[0m           - name: Build
+    [1m[94m|[0m             [1m[94m-----------[0m [1m[94minfo: this step[0m
+[1m[94m216 |[0m             shell: bash
+[1m[94m...[0m
+[1m[94m219 |[0m               CXX: ${{ matrix.config.cxx }}
+[1m[94m220 |[0m [1m[94m/[0m           run: |
+[1m[94m221 |[0m [1m[94m|[0m             cmake ${{ env.CMAKE_GENERATOR }} -S "${{ github.workspace }}" -B build ${{ matrix.config.cmake_args }} -DCMAKE_BUILD_TY[1m[94m...[0m
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m236 |[0m [1m[94m|[0m             cmake --build . --target TQSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+[1m[94m237 |[0m [1m[94m|[0m             cmake --build . --target YUVColorSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+    [1m[94m|[0m [1m[94m|___________________________________________________________________________________________________________-[0m [1m[94minfo: steps.cpu-cores.outputs.count may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:215:11
+    [1m[94m|[0m
+[1m[94m215 |[0m           - name: Build
+    [1m[94m|[0m             [1m[94m-----------[0m [1m[94minfo: this step[0m
+[1m[94m216 |[0m             shell: bash
+[1m[94m...[0m
+[1m[94m219 |[0m               CXX: ${{ matrix.config.cxx }}
+[1m[94m220 |[0m [1m[94m/[0m           run: |
+[1m[94m221 |[0m [1m[94m|[0m             cmake ${{ env.CMAKE_GENERATOR }} -S "${{ github.workspace }}" -B build ${{ matrix.config.cmake_args }} -DCMAKE_BUILD_TY[1m[94m...[0m
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m236 |[0m [1m[94m|[0m             cmake --build . --target TQSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+[1m[94m237 |[0m [1m[94m|[0m             cmake --build . --target YUVColorSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+    [1m[94m|[0m [1m[94m|___________________________________________________________________________________________________________-[0m [1m[94minfo: steps.cpu-cores.outputs.count may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:215:11
+    [1m[94m|[0m
+[1m[94m215 |[0m           - name: Build
+    [1m[94m|[0m             [1m[94m-----------[0m [1m[94minfo: this step[0m
+[1m[94m216 |[0m             shell: bash
+[1m[94m...[0m
+[1m[94m219 |[0m               CXX: ${{ matrix.config.cxx }}
+[1m[94m220 |[0m [1m[94m/[0m           run: |
+[1m[94m221 |[0m [1m[94m|[0m             cmake ${{ env.CMAKE_GENERATOR }} -S "${{ github.workspace }}" -B build ${{ matrix.config.cmake_args }} -DCMAKE_BUILD_TY[1m[94m...[0m
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m236 |[0m [1m[94m|[0m             cmake --build . --target TQSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+[1m[94m237 |[0m [1m[94m|[0m             cmake --build . --target YUVColorSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+    [1m[94m|[0m [1m[94m|___________________________________________________________________________________________________________-[0m [1m[94minfo: steps.cpu-cores.outputs.count may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:215:11
+    [1m[94m|[0m
+[1m[94m215 |[0m           - name: Build
+    [1m[94m|[0m             [1m[94m-----------[0m [1m[94minfo: this step[0m
+[1m[94m216 |[0m             shell: bash
+[1m[94m...[0m
+[1m[94m219 |[0m               CXX: ${{ matrix.config.cxx }}
+[1m[94m220 |[0m [1m[94m/[0m           run: |
+[1m[94m221 |[0m [1m[94m|[0m             cmake ${{ env.CMAKE_GENERATOR }} -S "${{ github.workspace }}" -B build ${{ matrix.config.cmake_args }} -DCMAKE_BUILD_TY[1m[94m...[0m
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m236 |[0m [1m[94m|[0m             cmake --build . --target TQSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+[1m[94m237 |[0m [1m[94m|[0m             cmake --build . --target YUVColorSession_vulkan --parallel ${{ steps.cpu-cores.outputs.count }}
+    [1m[94m|[0m [1m[94m|___________________________________________________________________________________________________________-[0m [1m[94minfo: steps.cpu-cores.outputs.count may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:31:9
+   [1m[94m|[0m
+[1m[94m31 |[0m         uses: nttld/setup-ndk@v1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:140:11
+    [1m[94m|[0m
+[1m[94m140 |[0m           uses: jakoch/install-vulkan-sdk-action@v1.2.5
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:148:11
+    [1m[94m|[0m
+[1m[94m148 |[0m           uses: SimenB/github-actions-cpu-cores@v2
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:202:11
+    [1m[94m|[0m
+[1m[94m202 |[0m           uses: jakoch/install-vulkan-sdk-action@v1.2.5
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_igl__.github__workflows__c-cpp.yml:210:11
+    [1m[94m|[0m
+[1m[94m210 |[0m           uses: SimenB/github-actions-cpu-cores@v2
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m55[39m findings ([1m[93m26[39m suppressed[0m): 0 unknown, [35m17[39m informational, [36m0[39m low, [33m7[39m medium, [31m5[39m high

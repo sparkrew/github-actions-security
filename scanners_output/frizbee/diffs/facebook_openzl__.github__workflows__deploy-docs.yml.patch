@@ -1,0 +1,42 @@
+diff --git a/.github/workflows/facebook_openzl__.github__workflows__deploy-docs.yml b/.github/workflows/facebook_openzl__.github__workflows__deploy-docs.yml
+index 766f6eb..714a72d 100644
+--- a/.github/workflows/facebook_openzl__.github__workflows__deploy-docs.yml
++++ b/.github/workflows/facebook_openzl__.github__workflows__deploy-docs.yml
+@@ -29,11 +29,11 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           submodules: recursive
+       - name: Set up Node
+-        uses: actions/setup-node@v4
++        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+         with:
+           node-version: lts/*
+           cache: 'yarn'
+@@ -45,7 +45,7 @@ jobs:
+         working-directory: ${{github.workspace}}/tools/visualization_app
+         run: yarn build
+       - name: Setup Pages
+-        uses: actions/configure-pages@v5
++        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+       - name: Setup mkdocs environment
+         run: |
+             sudo apt-get update
+@@ -55,7 +55,7 @@ jobs:
+         run: |
+             ./doc/mkdocs/github_pages_build_script.py
+       - name: Upload artifact
+-        uses: actions/upload-pages-artifact@v3
++        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+         with:
+           path: './doc/mkdocs/build/'
+ 
+@@ -69,4 +69,4 @@ jobs:
+     steps:
+       - name: Deploy to GitHub Pages
+         id: deployment
+-        uses: actions/deploy-pages@v4
++        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

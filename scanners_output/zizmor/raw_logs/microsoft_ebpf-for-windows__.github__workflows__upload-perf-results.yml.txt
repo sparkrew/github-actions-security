@@ -1,0 +1,29 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__upload-perf-results.yml:57:9
+   [1m[94m|[0m
+[1m[94m57 |[0m   [1m[94m...[0m - name: Post-process results
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m58 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m59 |[0m [1m[91m|[0m [1m[94m...[0m     # Download script to convert CSV to SQL from GitHub.
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m63 |[0m [1m[91m|[0m [1m[94m...[0m     # Run script to convert CSV to SQL.
+[1m[94m64 |[0m [1m[91m|[0m [1m[94m...[0m     python3 ./process_results.py --csv-directory ${{github.workspace}}/results/${{github.sha}} --sql-script-file ${{github.workspace}}/results/upload.sql --commit_id ${{github.sha}} --platform "${{inputs.platform}}" --repository ${{github.repository}}
+   [1m[94m|[0m [1m[91m|_______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.platform may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__upload-perf-results.yml:97:9
+    [1m[94m|[0m
+[1m[94m 97 |[0m   [1m[94m...[0m - name: Download and run regression script
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m 98 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m 99 |[0m [1m[91m|[0m [1m[94m...[0m     curl https://raw.githubusercontent.com/microsoft/bpf_performance/refs/heads/main/scripts/check_perf_results.sql > check_perf_result[1m[94m...[0m
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m104 |[0m [1m[91m|[0m [1m[94m...[0m     export PGDATABASE=$(cat ${{github.workspace}}/PGDATABASE)
+[1m[94m105 |[0m [1m[91m|[0m [1m[94m...[0m     psql -f ./check_perf_results.sql -v platform='${{inputs.platform}}' --csv > ${{github.workspace}}/results/regression_results.csv
+    [1m[94m|[0m [1m[91m|________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.platform may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m33[39m findings ([1m[93m31[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m0[39m medium, [31m2[39m high

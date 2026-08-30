@@ -1,0 +1,25 @@
+{
+  "workflow": "microsoft_onnxruntime__.github__workflows__windows_openvino.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 21,
+      "column": "",
+      "job": "BUILD_OPENVINO_EP",
+      "step": "",
+      "details": "runs-on: self-hosted, 1ES.Pool=onnxruntime-github-vs2022-latest, JobId=BUILD_OPENVINO_EP-${{ github.run_id }}-${{ github.run_number }}-${{ github.run_attempt }}",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

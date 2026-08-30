@@ -1,0 +1,30 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
+name: Update yarn.lock
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  update-yarn-lock:
+    name: Update yarn.lock file
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+      - uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3
+        with:
+          node-version: '18'
+      - name: yarn install
+        run: yarn install
+      - name: pull-request
+        uses: peter-evans/create-pull-request@38e0b6e68b4c852a5500a94740f0e535e0d7ba54 # v4
+        with:
+          title: "Update yarn.lock"
+          branch: update-yarn-lock
+          delete-branch: true
+          # Use a PAT with permissions to act as relay-bot and bypass branch protection
+          token: ${{ secrets.RELAY_BOT_GITHUB_PAT }}

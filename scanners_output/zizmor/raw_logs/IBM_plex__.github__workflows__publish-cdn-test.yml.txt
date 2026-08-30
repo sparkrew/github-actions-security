@@ -1,0 +1,87 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/IBM_plex__.github__workflows__publish-cdn-test.yml:17:9
+   [1m[94m|[0m
+[1m[94m17 |[0m         - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m18 |[0m [1m[33m|[0m         with:
+[1m[94m19 |[0m [1m[33m|[0m           fetch-depth: '0'
+   [1m[94m|[0m [1m[33m|__________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/IBM_plex__.github__workflows__publish-cdn-test.yml:12:3
+   [1m[94m|[0m
+[1m[94m12 |[0m [1m[33m/[0m   publish-cdn:
+[1m[94m13 |[0m [1m[33m|[0m     if: |
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m40 |[0m [1m[33m|[0m           aws s3 cp ${{ env.SOURCE_DIR }} s3://${{ env.AWS_S3_NAME }}${{ env.DEST_DIR_A }} --endpoint-url ${{ env.AWS_S3_ENDPOINT }}[1m[94m...[0m
+[1m[94m41 |[0m [1m[33m|[0m             
+   [1m[94m|[0m [1m[33m|[0m            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________|[0m
+   [1m[94m|[0m              [1m[33mthis job[0m
+   [1m[94m|[0m              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/IBM_plex__.github__workflows__publish-cdn-test.yml:29:9
+   [1m[94m|[0m
+[1m[94m29 |[0m         - name: Upload to S3 bucket
+   [1m[94m|[0m           [1m[96m-------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m30 |[0m           env:
+[1m[94m...[0m
+[1m[94m38 |[0m             DEST_DIR_B: '/common/carbon-for-ibm-dotcom/plex-test'
+[1m[94m39 |[0m [1m[96m/[0m         run: |
+[1m[94m40 |[0m [1m[96m|[0m           aws s3 cp ${{ env.SOURCE_DIR }} s3://${{ env.AWS_S3_NAME }}${{ env.DEST_DIR_A }} --endpoint-url ${{ env.AWS_S3_ENDPOINT }}[1m[94m...[0m
+[1m[94m41 |[0m [1m[96m|[0m             
+   [1m[94m|[0m [1m[96m|____________-[0m [1m[96mhelp: env.AWS_S3_NAME may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/IBM_plex__.github__workflows__publish-cdn-test.yml:29:9
+   [1m[94m|[0m
+[1m[94m29 |[0m         - name: Upload to S3 bucket
+   [1m[94m|[0m           [1m[96m-------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m30 |[0m           env:
+[1m[94m...[0m
+[1m[94m38 |[0m             DEST_DIR_B: '/common/carbon-for-ibm-dotcom/plex-test'
+[1m[94m39 |[0m [1m[96m/[0m         run: |
+[1m[94m40 |[0m [1m[96m|[0m           aws s3 cp ${{ env.SOURCE_DIR }} s3://${{ env.AWS_S3_NAME }}${{ env.DEST_DIR_A }} --endpoint-url ${{ env.AWS_S3_ENDPOINT }}[1m[94m...[0m
+[1m[94m41 |[0m [1m[96m|[0m             
+   [1m[94m|[0m [1m[96m|____________-[0m [1m[96mhelp: env.AWS_S3_ENDPOINT may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/IBM_plex__.github__workflows__publish-cdn-test.yml:29:9
+   [1m[94m|[0m
+[1m[94m29 |[0m         - name: Upload to S3 bucket
+   [1m[94m|[0m           [1m[96m-------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m30 |[0m           env:
+[1m[94m...[0m
+[1m[94m38 |[0m             DEST_DIR_B: '/common/carbon-for-ibm-dotcom/plex-test'
+[1m[94m39 |[0m [1m[96m/[0m         run: |
+[1m[94m40 |[0m [1m[96m|[0m           aws s3 cp ${{ env.SOURCE_DIR }} s3://${{ env.AWS_S3_NAME }}${{ env.DEST_DIR_A }} --endpoint-url ${{ env.AWS_S3_ENDPOINT }}[1m[94m...[0m
+[1m[94m41 |[0m [1m[96m|[0m             
+   [1m[94m|[0m [1m[96m|____________-[0m [1m[96mhelp: env.AWS_S3_NAME may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/IBM_plex__.github__workflows__publish-cdn-test.yml:29:9
+   [1m[94m|[0m
+[1m[94m29 |[0m         - name: Upload to S3 bucket
+   [1m[94m|[0m           [1m[96m-------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m30 |[0m           env:
+[1m[94m...[0m
+[1m[94m38 |[0m             DEST_DIR_B: '/common/carbon-for-ibm-dotcom/plex-test'
+[1m[94m39 |[0m [1m[96m/[0m         run: |
+[1m[94m40 |[0m [1m[96m|[0m           aws s3 cp ${{ env.SOURCE_DIR }} s3://${{ env.AWS_S3_NAME }}${{ env.DEST_DIR_A }} --endpoint-url ${{ env.AWS_S3_ENDPOINT }}[1m[94m...[0m
+[1m[94m41 |[0m [1m[96m|[0m             
+   [1m[94m|[0m [1m[96m|____________-[0m [1m[96mhelp: env.AWS_S3_ENDPOINT may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m15[39m findings ([1m[93m9[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m4[39m low, [33m2[39m medium, [31m0[39m high

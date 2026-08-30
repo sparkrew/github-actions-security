@@ -1,0 +1,145 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_flax__.github__workflows__flax_test.yml:24:9
+   [1m[94m|[0m
+[1m[94m24 |[0m       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+   [1m[94m|[0m         [1m[33m------------------------------------------------------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_flax__.github__workflows__flax_test.yml:39:7
+   [1m[94m|[0m
+[1m[94m39 |[0m       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m40 |[0m [1m[33m|[0m     # We allow at most 5 commits in a branch to ensure our CI doesn't break.
+   [1m[94m|[0m [1m[33m|____________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_flax__.github__workflows__flax_test.yml:68:7
+   [1m[94m|[0m
+[1m[94m68 |[0m     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+   [1m[94m|[0m       [1m[33m------------------------------------------------------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/google_flax__.github__workflows__flax_test.yml:104:7
+    [1m[94m|[0m
+[1m[94m104 |[0m     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+    [1m[94m|[0m       [1m[33m------------------------------------------------------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/google_flax__.github__workflows__flax_test.yml:175:7
+    [1m[94m|[0m
+[1m[94m175 |[0m     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+    [1m[94m|[0m       [1m[33m------------------------------------------------------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_flax__.github__workflows__flax_test.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+[1m[94m  2 |[0m [1m[33m|[0m # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m193 |[0m [1m[33m|[0m         find tests/ -name "*.py" | grep -vE 'io_test|tensorboard' | xargs pytest -n auto
+[1m[94m194 |[0m [1m[33m|[0m
+    [1m[94m|[0m [1m[33m|__-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_flax__.github__workflows__flax_test.yml:20:3
+   [1m[94m|[0m
+[1m[94m20 |[0m [1m[33m/[0m   pre-commit:
+[1m[94m21 |[0m [1m[33m|[0m     name: Test pre-commit hooks
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m33 |[0m [1m[33m|[0m           key: pre-commit-${{ env.pythonLocation }}-${{ hashFiles('.pre-commit-config.yaml', 'pyproject.toml') }}
+[1m[94m34 |[0m [1m[33m|[0m       - run: pre-commit run --show-diff-on-failure --color=always --all-files
+   [1m[94m|[0m [1m[33m|[0m                                                                             [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                               [1m[33mthis job[0m
+   [1m[94m|[0m                                                                               [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_flax__.github__workflows__flax_test.yml:35:3
+   [1m[94m|[0m
+[1m[94m35 |[0m [1m[33m/[0m   commit-count:
+[1m[94m36 |[0m [1m[33m|[0m     name: Check commit count
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m59 |[0m [1m[33m|[0m           exit 1
+[1m[94m60 |[0m [1m[33m|[0m         fi
+   [1m[94m|[0m [1m[33m|[0m          [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|__________|[0m
+   [1m[94m|[0m            [1m[33mthis job[0m
+   [1m[94m|[0m            [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_flax__.github__workflows__flax_test.yml:61:3
+   [1m[94m|[0m
+[1m[94m61 |[0m [1m[33m/[0m   test-import:
+[1m[94m62 |[0m [1m[33m|[0m     name: Test import standalone
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m82 |[0m [1m[33m|[0m       run: |
+[1m[94m83 |[0m [1m[33m|[0m         uv run --no-sync python -c "import flax"
+   [1m[94m|[0m [1m[33m|[0m                                                [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________________________________________|[0m
+   [1m[94m|[0m                                                  [1m[33mthis job[0m
+   [1m[94m|[0m                                                  [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_flax__.github__workflows__flax_test.yml:85:3
+    [1m[94m|[0m
+[1m[94m 85 |[0m [1m[33m/[0m   tests:
+[1m[94m 86 |[0m [1m[33m|[0m     name: Run Tests
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m168 |[0m [1m[33m|[0m   # This is a temporary workflow to test flax on Python 3.14 and
+[1m[94m169 |[0m [1m[33m|[0m   # skipping deps like tensorstore, tensorflow etc
+    [1m[94m|[0m [1m[33m|[0m                                                  [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|__________________________________________________|[0m
+    [1m[94m|[0m                                                    [1m[33mthis job[0m
+    [1m[94m|[0m                                                    [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_flax__.github__workflows__flax_test.yml:170:3
+    [1m[94m|[0m
+[1m[94m170 |[0m [1m[33m/[0m   tests-python314:
+[1m[94m171 |[0m [1m[33m|[0m     name: Run Tests on Python 3.14
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m193 |[0m [1m[33m|[0m         find tests/ -name "*.py" | grep -vE 'io_test|tensorboard' | xargs pytest -n auto
+[1m[94m194 |[0m [1m[33m|[0m
+    [1m[94m|[0m [1m[33m|_--[0m [1m[33mthis job[0m
+    [1m[94m|[0m   [1m[33m|[0m
+    [1m[94m|[0m   [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_flax__.github__workflows__flax_test.yml:151:7
+    [1m[94m|[0m
+[1m[94m151 |[0m       - name: Report success or failure as github status
+    [1m[94m|[0m         [1m[94m------------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m152 |[0m         if: always()
+[1m[94m153 |[0m         shell: bash
+[1m[94m154 |[0m [1m[94m/[0m       run: |
+[1m[94m155 |[0m [1m[94m|[0m         status="${{ job.status }}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m165 |[0m [1m[94m|[0m            "context": "github-actions/Build"
+[1m[94m166 |[0m [1m[94m|[0m            }'
+    [1m[94m|[0m [1m[94m|_____________-[0m [1m[94minfo: job.status may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m27[39m findings ([1m[93m15[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m11[39m medium, [31m0[39m high

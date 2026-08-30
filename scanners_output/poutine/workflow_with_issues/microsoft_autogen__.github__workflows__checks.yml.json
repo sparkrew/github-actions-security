@@ -1,0 +1,24 @@
+{
+  "workflow": "microsoft_autogen__.github__workflows__checks.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 251,
+      "column": "",
+      "job": "codecov",
+      "step": "3",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    }
+  ]
+}

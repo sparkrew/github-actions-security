@@ -1,0 +1,139 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_playwright-python__.github__workflows__ci.yml:24:7
+   [1m[94m|[0m
+[1m[94m24 |[0m     - uses: actions/checkout@v5
+   [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_playwright-python__.github__workflows__ci.yml:83:7
+   [1m[94m|[0m
+[1m[94m83 |[0m     - uses: actions/checkout@v5
+   [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_playwright-python__.github__workflows__ci.yml:130:7
+    [1m[94m|[0m
+[1m[94m130 |[0m     - uses: actions/checkout@v5
+    [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_playwright-python__.github__workflows__ci.yml:166:9
+    [1m[94m|[0m
+[1m[94m166 |[0m         - uses: actions/checkout@v5
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m167 |[0m [1m[33m|[0m         with:
+[1m[94m168 |[0m [1m[33m|[0m           fetch-depth: 0
+    [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_playwright-python__.github__workflows__ci.yml:187:7
+    [1m[94m|[0m
+[1m[94m187 |[0m     - uses: actions/checkout@v5
+    [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_playwright-python__.github__workflows__ci.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: CI
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m196 |[0m [1m[33m|[0m     - name: Common Tests
+[1m[94m197 |[0m [1m[33m|[0m       run: pytest
+    [1m[94m|[0m [1m[33m|__________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_playwright-python__.github__workflows__ci.yml:20:3
+   [1m[94m|[0m
+[1m[94m20 |[0m [1m[33m/[0m   infra:
+[1m[94m21 |[0m [1m[33m|[0m     name: Lint
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m41 |[0m [1m[33m|[0m     - name: Verify generated API is up to date
+[1m[94m42 |[0m [1m[33m|[0m       run: git diff --exit-code
+   [1m[94m|[0m [1m[33m|[0m                               [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________________|[0m
+   [1m[94m|[0m                                 [1m[33mthis job[0m
+   [1m[94m|[0m                                 [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_playwright-python__.github__workflows__ci.yml:44:3
+    [1m[94m|[0m
+[1m[94m 44 |[0m [1m[33m/[0m   build:
+[1m[94m 45 |[0m [1m[33m|[0m     name: Build
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m112 |[0m [1m[33m|[0m       if: matrix.os == 'ubuntu-latest'
+[1m[94m113 |[0m [1m[33m|[0m       run: xvfb-run pytest tests/async --browser=${{ matrix.browser }} --timeout 90
+    [1m[94m|[0m [1m[33m|[0m                                                                                   [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|___________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                     [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                     [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_playwright-python__.github__workflows__ci.yml:115:3
+    [1m[94m|[0m
+[1m[94m115 |[0m [1m[33m/[0m   test-stable:
+[1m[94m116 |[0m [1m[33m|[0m     name: Stable
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m155 |[0m [1m[33m|[0m       if: matrix.os == 'ubuntu-latest'
+[1m[94m156 |[0m [1m[33m|[0m       run: xvfb-run pytest tests/async --browser=chromium --browser-channel=${{ matrix.browser-channel }} --timeout 90
+    [1m[94m|[0m [1m[33m|[0m                                                                                                                      [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                                        [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                                        [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_playwright-python__.github__workflows__ci.yml:158:3
+    [1m[94m|[0m
+[1m[94m158 |[0m [1m[33m/[0m   build-conda:
+[1m[94m159 |[0m [1m[33m|[0m     name: Conda Build
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m177 |[0m [1m[33m|[0m       - name: Build
+[1m[94m178 |[0m [1m[33m|[0m         run: conda build .
+    [1m[94m|[0m [1m[33m|[0m                          [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|__________________________|[0m
+    [1m[94m|[0m                            [1m[33mthis job[0m
+    [1m[94m|[0m                            [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_playwright-python__.github__workflows__ci.yml:180:3
+    [1m[94m|[0m
+[1m[94m180 |[0m [1m[33m/[0m   test_examples:
+[1m[94m181 |[0m [1m[33m|[0m     name: Examples
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m196 |[0m [1m[33m|[0m     - name: Common Tests
+[1m[94m197 |[0m [1m[33m|[0m       run: pytest
+    [1m[94m|[0m [1m[33m|[0m                  [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|__________________|[0m
+    [1m[94m|[0m                    [1m[33mthis job[0m
+    [1m[94m|[0m                    [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_playwright-python__.github__workflows__ci.yml:170:9
+    [1m[94m|[0m
+[1m[94m170 |[0m         uses: conda-incubator/setup-miniconda@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m26[39m findings ([1m[93m14[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m11[39m medium, [31m1[39m high

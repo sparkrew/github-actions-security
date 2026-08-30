@@ -1,0 +1,26 @@
+{
+  "workflow": "google_closure-compiler__.github__workflows__run_tests.yaml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "untrusted_checkout_exec": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 145,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of `bash`",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "schedule",
+        "workflow_call"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+diff --git a/.github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__e2e.yaml b/.github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__e2e.yaml
+index d3c3019..5cd2591 100644
+--- a/.github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__e2e.yaml
++++ b/.github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__e2e.yaml
+@@ -55,7 +55,7 @@ jobs:
+             driver_branch: 580
+     steps:
+       - name: Check out code
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       - name: Calculate build vars
+         id: vars
+@@ -66,12 +66,12 @@ jobs:
+           echo "GOLANG_VERSION=${GOLANG_VERSION##GOLANG_VERSION := }" >> $GITHUB_ENV
+ 
+       - name: Install Go
+-        uses: actions/setup-go@v6
++        uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 # v6
+         with:
+           go-version: ${{ env.GOLANG_VERSION }}
+ 
+       - name: Set up Holodeck (${{ matrix.driver_branch }})
+-        uses: NVIDIA/holodeck@v0.2.13
++        uses: NVIDIA/holodeck@eddefe3812ee9c8cc1425bfc69ab9585596abd9f # v0.2.13
+         with:
+           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+@@ -100,7 +100,7 @@ jobs:
+           make -f tests/e2e/Makefile test
+ 
+       - name: Archive Ginkgo logs
+-        uses: actions/upload-artifact@v6
++        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+         with:
+           name: ginkgo-logs-${{ matrix.driver_branch }}
+           path: ginkgo.json
+@@ -108,7 +108,7 @@ jobs:
+ 
+       - name: Send Slack alert notification
+         if: ${{ failure() }}
+-        uses: slackapi/slack-github-action@v2.1.1
++        uses: slackapi/slack-github-action@91efab103c0de0a537f72a35f6b8cda0ee76bf0a # v2.1.1
+         with:
+           method: chat.postMessage
+           token: ${{ secrets.SLACK_BOT_TOKEN }}

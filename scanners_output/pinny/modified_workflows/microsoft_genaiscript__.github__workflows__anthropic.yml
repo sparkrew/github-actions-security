@@ -1,0 +1,43 @@
+name: anthropic tests
+permissions:
+    contents: read
+on:
+    workflow_dispatch:
+    release:
+        types:
+            - published
+    pull_request:
+        paths:
+            - yarn.lock
+            - ".github/workflows/anthropic.yml"
+            - "packages/core/**/*"
+            - "packages/cli/**/*"
+            - "packages/samples/**/*"
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}-anthropic
+    cancel-in-progress: true
+jobs:
+    tests:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+              with:
+                  submodules: "recursive"
+                  fetch-depth: 0
+            - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | releases,v4.4.0
+              with:
+                  node-version: "22"
+                  cache: yarn
+            - run: yarn install --frozen-lockfile
+            - name: compile
+              run: yarn compile:action
+            - name: poem
+              continue-on-error: true
+              run: yarn run:script poem -p anthropic --out-trace $GITHUB_STEP_SUMMARY
+              env:
+                  ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+            - name: reasoning
+              continue-on-error: true
+              run: yarn run:script tools -p anthropic -m reasoning --out-trace $GITHUB_STEP_SUMMARY
+              env:
+                  ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}

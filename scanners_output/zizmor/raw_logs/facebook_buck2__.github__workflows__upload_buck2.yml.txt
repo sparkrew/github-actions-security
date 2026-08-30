@@ -1,0 +1,349 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:82:9
+   [1m[94m|[0m
+[1m[94m82 |[0m         - uses: actions/checkout@v6
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m83 |[0m [1m[33m|[0m         with:
+[1m[94m84 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:175:9
+    [1m[94m|[0m
+[1m[94m175 |[0m         - uses: actions/checkout@v6
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m176 |[0m [1m[33m|[0m         with:
+[1m[94m177 |[0m [1m[33m|[0m           fetch-depth: 0
+[1m[94m178 |[0m [1m[33m|[0m       # Publish a new tag and upload all aritfacts from `build` and `get_prelude_hash`
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:236:9
+    [1m[94m|[0m
+[1m[94m236 |[0m         - uses: actions/checkout@v6
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m237 |[0m [1m[33m|[0m         with:
+[1m[94m238 |[0m [1m[33m|[0m           fetch-depth: 0
+[1m[94m239 |[0m [1m[33m|[0m       # Publish a new tag and upload all aritfacts from `build` and `get_prelude_hash`
+    [1m[94m|[0m [1m[33m|______________________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:257:7
+    [1m[94m|[0m
+[1m[94m257 |[0m       - name: Checkout
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m258 |[0m [1m[33m|[0m       uses: actions/checkout@v6
+    [1m[94m|[0m [1m[33m|_______________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: Build, upload, and tag `buck2`
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m281 |[0m [1m[33m|[0m         folder: website/build # The folder the action should deploy.
+[1m[94m282 |[0m [1m[33m|[0m         single-commit: true # Discard history for the gh-pages branch.
+    [1m[94m|[0m [1m[33m|_______________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:9:3
+   [1m[94m|[0m
+[1m[94m 9 |[0m [1m[33m/[0m   set_version_info:
+[1m[94m10 |[0m [1m[33m|[0m     name: Define the version info for this release
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m22 |[0m [1m[33m|[0m       - name: Display version info
+[1m[94m23 |[0m [1m[33m|[0m         run: echo ${{ steps.define_version_info.outputs.buck2_version }}
+   [1m[94m|[0m [1m[33m|[0m                                                                        [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                          [1m[33mthis job[0m
+   [1m[94m|[0m                                                                          [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:25:3
+   [1m[94m|[0m
+[1m[94m25 |[0m [1m[33m/[0m   get_prelude_hash:
+[1m[94m26 |[0m [1m[33m|[0m     name: Get the latest prelude hash
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m43 |[0m [1m[33m|[0m           path: artifacts/prelude_hash
+[1m[94m44 |[0m [1m[33m|[0m           name: prelude_hash
+   [1m[94m|[0m [1m[33m|[0m                            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________|[0m
+   [1m[94m|[0m                              [1m[33mthis job[0m
+   [1m[94m|[0m                              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:46:3
+    [1m[94m|[0m
+[1m[94m 46 |[0m [1m[33m/[0m   build:
+[1m[94m 47 |[0m [1m[33m|[0m     needs:
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m165 |[0m [1m[33m|[0m           name: buck2-${{ matrix.target.triple }}
+[1m[94m166 |[0m [1m[33m|[0m           path: artifacts/
+    [1m[94m|[0m [1m[33m|[0m                          [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|__________________________|[0m
+    [1m[94m|[0m                            [1m[33mthis job[0m
+    [1m[94m|[0m                            [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:168:3
+    [1m[94m|[0m
+[1m[94m168 |[0m [1m[33m/[0m   release_latest:
+[1m[94m169 |[0m [1m[33m|[0m     name: Release `latest` tag
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m181 |[0m [1m[33m|[0m           tag: "latest"
+[1m[94m182 |[0m [1m[33m|[0m           github_token: ${{ secrets.GITHUB_TOKEN }}
+    [1m[94m|[0m [1m[33m|[0m                                                   [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|___________________________________________________|[0m
+    [1m[94m|[0m                                                     [1m[33mthis job[0m
+    [1m[94m|[0m                                                     [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:184:3
+    [1m[94m|[0m
+[1m[94m184 |[0m [1m[33m/[0m   check_for_bi_monthly_release:
+[1m[94m185 |[0m [1m[33m|[0m     name: Check if there's a release for this half of the month already
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m224 |[0m [1m[33m|[0m           if (( day >= 15 && tags_count < 2 )); then echo "new_tag=${tag}" >> "$GITHUB_OUTPUT"; fi;
+[1m[94m225 |[0m [1m[33m|[0m           cat $GITHUB_OUTPUT
+    [1m[94m|[0m [1m[33m|[0m                            [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________________|[0m
+    [1m[94m|[0m                              [1m[33mthis job[0m
+    [1m[94m|[0m                              [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:227:3
+    [1m[94m|[0m
+[1m[94m227 |[0m [1m[33m/[0m   release_bi_monthly:
+[1m[94m228 |[0m [1m[33m|[0m     name: Release bi-monthly tag
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m248 |[0m [1m[33m|[0m           config: .github/dotslash-config.json
+[1m[94m249 |[0m [1m[33m|[0m           tag: ${{ needs.check_for_bi_monthly_release.outputs.tag }}
+    [1m[94m|[0m [1m[33m|[0m                                                                    [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________________________________________________________|[0m
+    [1m[94m|[0m                                                                      [1m[33mthis job[0m
+    [1m[94m|[0m                                                                      [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:251:3
+    [1m[94m|[0m
+[1m[94m251 |[0m [1m[33m/[0m   build_docs_job:
+[1m[94m252 |[0m [1m[33m|[0m     name: Publish buck2.build
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m281 |[0m [1m[33m|[0m         folder: website/build # The folder the action should deploy.
+[1m[94m282 |[0m [1m[33m|[0m         single-commit: true # Discard history for the gh-pages branch.
+    [1m[94m|[0m [1m[33m|[0m                                                                       [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_______________________________________________________________________|[0m
+    [1m[94m|[0m                                                                         [1m[33mthis job[0m
+    [1m[94m|[0m                                                                         [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:22:9
+   [1m[94m|[0m
+[1m[94m22 |[0m       - name: Display version info
+   [1m[94m|[0m         [1m[94m--------------------------[0m [1m[94minfo: this step[0m
+[1m[94m23 |[0m         run: echo ${{ steps.define_version_info.outputs.buck2_version }}
+   [1m[94m|[0m         [1m[94m----------------------------------------------------------------[0m [1m[94minfo: steps.define_version_info.outputs.buck2_version may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:139:9
+    [1m[94m|[0m
+[1m[94m139 |[0m         - name: Sanity check with examples/with_prelude
+    [1m[94m|[0m           [1m[94m---------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m140 |[0m           if: ${{ !matrix.target.cross }}
+[1m[94m141 |[0m           shell: bash
+[1m[94m142 |[0m [1m[94m/[0m         run: |
+[1m[94m143 |[0m [1m[94m|[0m           BUCK2="$(pwd)/${{ steps.set_variables.outputs.buck2_out }}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m150 |[0m [1m[94m|[0m           fi
+[1m[94m151 |[0m [1m[94m|[0m           "$BUCK2" build $TARGETS -v=2
+    [1m[94m|[0m [1m[94m|______________________________________-[0m [1m[94minfo: steps.set_variables.outputs.buck2_out may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:156:9
+    [1m[94m|[0m
+[1m[94m156 |[0m   [1m[94m...[0m - name: Move binary to artifacts/
+    [1m[94m|[0m         [1m[94m-------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m157 |[0m   [1m[94m...[0m   shell: bash
+[1m[94m158 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m159 |[0m [1m[94m|[0m [1m[94m...[0m     mkdir artifacts
+[1m[94m160 |[0m [1m[94m|[0m [1m[94m...[0m     zstd -z ${{ steps.set_variables.outputs.buck2_out }} -o ${{ steps.set_variables.outputs.buck2_zst }}
+[1m[94m161 |[0m [1m[94m|[0m [1m[94m...[0m     zstd -z ${{ steps.set_variables.outputs.buck2_rust_project_out }} -o ${{ steps.set_variables.outputs.buck2_rust_project_zst }}
+    [1m[94m|[0m [1m[94m|______________________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.set_variables.outputs.buck2_out may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:156:9
+    [1m[94m|[0m
+[1m[94m156 |[0m   [1m[94m...[0m - name: Move binary to artifacts/
+    [1m[94m|[0m         [1m[94m-------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m157 |[0m   [1m[94m...[0m   shell: bash
+[1m[94m158 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m159 |[0m [1m[94m|[0m [1m[94m...[0m     mkdir artifacts
+[1m[94m160 |[0m [1m[94m|[0m [1m[94m...[0m     zstd -z ${{ steps.set_variables.outputs.buck2_out }} -o ${{ steps.set_variables.outputs.buck2_zst }}
+[1m[94m161 |[0m [1m[94m|[0m [1m[94m...[0m     zstd -z ${{ steps.set_variables.outputs.buck2_rust_project_out }} -o ${{ steps.set_variables.outputs.buck2_rust_project_zst }}
+    [1m[94m|[0m [1m[94m|______________________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.set_variables.outputs.buck2_zst may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:156:9
+    [1m[94m|[0m
+[1m[94m156 |[0m   [1m[94m...[0m - name: Move binary to artifacts/
+    [1m[94m|[0m         [1m[94m-------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m157 |[0m   [1m[94m...[0m   shell: bash
+[1m[94m158 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m159 |[0m [1m[94m|[0m [1m[94m...[0m     mkdir artifacts
+[1m[94m160 |[0m [1m[94m|[0m [1m[94m...[0m     zstd -z ${{ steps.set_variables.outputs.buck2_out }} -o ${{ steps.set_variables.outputs.buck2_zst }}
+[1m[94m161 |[0m [1m[94m|[0m [1m[94m...[0m     zstd -z ${{ steps.set_variables.outputs.buck2_rust_project_out }} -o ${{ steps.set_variables.outputs.buck2_rust_project_zst }}
+    [1m[94m|[0m [1m[94m|______________________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.set_variables.outputs.buck2_rust_project_out may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:156:9
+    [1m[94m|[0m
+[1m[94m156 |[0m   [1m[94m...[0m - name: Move binary to artifacts/
+    [1m[94m|[0m         [1m[94m-------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m157 |[0m   [1m[94m...[0m   shell: bash
+[1m[94m158 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m159 |[0m [1m[94m|[0m [1m[94m...[0m     mkdir artifacts
+[1m[94m160 |[0m [1m[94m|[0m [1m[94m...[0m     zstd -z ${{ steps.set_variables.outputs.buck2_out }} -o ${{ steps.set_variables.outputs.buck2_zst }}
+[1m[94m161 |[0m [1m[94m|[0m [1m[94m...[0m     zstd -z ${{ steps.set_variables.outputs.buck2_rust_project_out }} -o ${{ steps.set_variables.outputs.buck2_rust_project_zst }}
+    [1m[94m|[0m [1m[94m|______________________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.set_variables.outputs.buck2_rust_project_zst may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:205:9
+    [1m[94m|[0m
+[1m[94m205 |[0m           name: Count the number of tags already published for this month
+    [1m[94m|[0m           [1m[94m---------------------------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m206 |[0m [1m[94m/[0m         run: |
+[1m[94m207 |[0m [1m[94m|[0m           # GITHUB_REPOSITORY is used to allow this action to work on forks
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m212 |[0m [1m[94m|[0m           echo "tags_count=$tags_count" >> "$GITHUB_OUTPUT"
+[1m[94m213 |[0m [1m[94m|[0m           cat "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[94m|______________________________-[0m [1m[94minfo: steps.get_date.outputs.month may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:215:9
+    [1m[94m|[0m
+[1m[94m215 |[0m           name: Check if we should tag
+    [1m[94m|[0m           [1m[94m----------------------------[0m [1m[94minfo: this step[0m
+[1m[94m216 |[0m [1m[94m/[0m         run: |
+[1m[94m217 |[0m [1m[94m|[0m           tags_count=${{ steps.get_tags_count.outputs.tags_count }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m224 |[0m [1m[94m|[0m           if (( day >= 15 && tags_count < 2 )); then echo "new_tag=${tag}" >> "$GITHUB_OUTPUT"; fi;
+[1m[94m225 |[0m [1m[94m|[0m           cat $GITHUB_OUTPUT
+    [1m[94m|[0m [1m[94m|____________________________-[0m [1m[94minfo: steps.get_tags_count.outputs.tags_count may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:215:9
+    [1m[94m|[0m
+[1m[94m215 |[0m           name: Check if we should tag
+    [1m[94m|[0m           [1m[94m----------------------------[0m [1m[94minfo: this step[0m
+[1m[94m216 |[0m [1m[94m/[0m         run: |
+[1m[94m217 |[0m [1m[94m|[0m           tags_count=${{ steps.get_tags_count.outputs.tags_count }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m224 |[0m [1m[94m|[0m           if (( day >= 15 && tags_count < 2 )); then echo "new_tag=${tag}" >> "$GITHUB_OUTPUT"; fi;
+[1m[94m225 |[0m [1m[94m|[0m           cat $GITHUB_OUTPUT
+    [1m[94m|[0m [1m[94m|____________________________-[0m [1m[94minfo: steps.get_date.outputs.day may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:215:9
+    [1m[94m|[0m
+[1m[94m215 |[0m           name: Check if we should tag
+    [1m[94m|[0m           [1m[94m----------------------------[0m [1m[94minfo: this step[0m
+[1m[94m216 |[0m [1m[94m/[0m         run: |
+[1m[94m217 |[0m [1m[94m|[0m           tags_count=${{ steps.get_tags_count.outputs.tags_count }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m224 |[0m [1m[94m|[0m           if (( day >= 15 && tags_count < 2 )); then echo "new_tag=${tag}" >> "$GITHUB_OUTPUT"; fi;
+[1m[94m225 |[0m [1m[94m|[0m           cat $GITHUB_OUTPUT
+    [1m[94m|[0m [1m[94m|____________________________-[0m [1m[94minfo: steps.get_date.outputs.tag may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:85:9
+   [1m[94m|[0m
+[1m[94m85 |[0m       - uses: SebRollen/toml-action@v1.0.2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:90:9
+   [1m[94m|[0m
+[1m[94m90 |[0m       - uses: dtolnay/rust-toolchain@v1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:94:9
+   [1m[94m|[0m
+[1m[94m94 |[0m       - uses: Swatinem/rust-cache@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:98:9
+   [1m[94m|[0m
+[1m[94m98 |[0m       - uses: actions-rs/install@v0.1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:244:9
+    [1m[94m|[0m
+[1m[94m244 |[0m       - uses: facebook/dotslash-publish-release@v1
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_buck2__.github__workflows__upload_buck2.yml:278:7
+    [1m[94m|[0m
+[1m[94m278 |[0m       uses: JamesIves/github-pages-deploy-action@v4
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m53[39m findings ([1m[93m25[39m suppressed[0m): 0 unknown, [35m10[39m informational, [36m0[39m low, [33m12[39m medium, [31m6[39m high

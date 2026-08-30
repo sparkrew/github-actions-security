@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/google_or-tools__.github__workflows__amd64_linux_cmake_system_deps.yml b/.github/workflows/google_or-tools__.github__workflows__amd64_linux_cmake_system_deps.yml
+index aed615d..b818b0c 100644
+--- a/.github/workflows/google_or-tools__.github__workflows__amd64_linux_cmake_system_deps.yml
++++ b/.github/workflows/google_or-tools__.github__workflows__amd64_linux_cmake_system_deps.yml
+@@ -22,7 +22,7 @@ jobs:
+     name: amd64•Archlinux•CMake•${{matrix.lang}}•BUILD_DEPS=OFF
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: Build base image
+         run: make --directory=cmake ${{matrix.distro}}_base
+       - name: Build env image

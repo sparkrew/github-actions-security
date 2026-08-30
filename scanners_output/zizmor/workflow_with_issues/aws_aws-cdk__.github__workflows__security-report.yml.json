@@ -1,0 +1,40 @@
+{
+  "workflow": "aws_aws-cdk__.github__workflows__security-report.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "dangerous-triggers": 1,
+      "unpinned-uses": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "dangerous-triggers",
+      "level": "error",
+      "message": "use of fundamentally insecure workflow trigger",
+      "workflow": "aws_aws-cdk__.github__workflows__security-report.yml",
+      "line": 2,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "aws_aws-cdk__.github__workflows__security-report.yml",
+      "line": 35,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "aws_aws-cdk__.github__workflows__security-report.yml",
+      "line": 88,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

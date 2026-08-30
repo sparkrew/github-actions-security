@@ -1,0 +1,43 @@
+diff --git a/.github/workflows/google_oss-fuzz__.github__workflows__pr_helper.yml b/.github/workflows/google_oss-fuzz__.github__workflows__pr_helper.yml
+index 72a9854..e67ee03 100644
+--- a/.github/workflows/google_oss-fuzz__.github__workflows__pr_helper.yml
++++ b/.github/workflows/google_oss-fuzz__.github__workflows__pr_helper.yml
+@@ -16,9 +16,9 @@ jobs:
+       pull-requests: write
+ 
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: Setup python environment
+-        uses: actions/setup-python@v6
++        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+         with:
+           python-version: 3.11
+           cache: pip
+@@ -31,7 +31,7 @@ jobs:
+           pip install -r infra/ci/requirements.txt
+ 
+       - name: setup go environment
+-        uses: actions/setup-go@v6
++        uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 # v6
+         with:
+           go-version: 'stable'
+       - run: go install github.com/ossf/criticality_score/cmd/criticality_score@latest
+@@ -46,7 +46,7 @@ jobs:
+ 
+       - name: Leave comments
+         if: env.IS_INTERNAL == 'FALSE'
+-        uses: actions/github-script@v8
++        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+         with:
+           github-token: ${{secrets.GITHUB_TOKEN}}
+           script: |
+@@ -59,7 +59,7 @@ jobs:
+ 
+       - name: Add labels for valid PR
+         if: env.IS_READY_FOR_MERGE == 'True'
+-        uses: actions/github-script@v8
++        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+         with:
+           script: |
+             github.rest.issues.addLabels({

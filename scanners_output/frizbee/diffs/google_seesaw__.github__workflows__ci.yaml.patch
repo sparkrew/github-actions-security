@@ -1,0 +1,15 @@
+diff --git a/.github/workflows/google_seesaw__.github__workflows__ci.yaml b/.github/workflows/google_seesaw__.github__workflows__ci.yaml
+index 6135626..b747628 100644
+--- a/.github/workflows/google_seesaw__.github__workflows__ci.yaml
++++ b/.github/workflows/google_seesaw__.github__workflows__ci.yaml
+@@ -10,8 +10,8 @@ jobs:
+         os: [ubuntu-18.04]
+         go: [1.19, 1.18]
+     steps:
+-    - uses: actions/checkout@v2
+-    - uses: actions/setup-go@v2
++    - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
++    - uses: actions/setup-go@bfdd3570ce990073878bf10f6b2d79082de49492 # v2
+       with:
+         go-version: ${{ matrix.go }}
+     - name: Install Dependencies

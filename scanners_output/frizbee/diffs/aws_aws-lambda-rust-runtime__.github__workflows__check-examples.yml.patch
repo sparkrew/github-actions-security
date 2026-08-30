@@ -1,0 +1,21 @@
+diff --git a/.github/workflows/aws_aws-lambda-rust-runtime__.github__workflows__check-examples.yml b/.github/workflows/aws_aws-lambda-rust-runtime__.github__workflows__check-examples.yml
+index cec9ac1..9a7ae93 100644
+--- a/.github/workflows/aws_aws-lambda-rust-runtime__.github__workflows__check-examples.yml
++++ b/.github/workflows/aws_aws-lambda-rust-runtime__.github__workflows__check-examples.yml
+@@ -12,11 +12,11 @@ jobs:
+   check:
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v6
+-      - uses: dtolnay/rust-toolchain@stable
+-      - uses: Swatinem/rust-cache@v2
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
++      - uses: dtolnay/rust-toolchain@631a55b12751854ce901bb631d5902ceb48146f7 # stable
++      - uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # v2
+ 
+       - name: Check examples
+         working-directory: examples
+         shell: bash
+-        run: ./check-examples.sh
+\ No newline at end of file
++        run: ./check-examples.sh

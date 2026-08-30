@@ -1,0 +1,38 @@
+name: genai blog post generator
+permissions:
+    actions: read
+    contents: write
+    pull-requests: write
+    models: read
+on:
+    workflow_dispatch:
+    schedule:
+        - cron: "0 0 * * *"
+concurrency:
+    group: blog-post-${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+              with:
+                  submodules: "recursive"
+                  fetch-depth: 10
+                  ref: dev
+            - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | releases,v4.4.0
+              with:
+                  node-version: "22"
+                  cache: yarn
+            - run: yarn install --frozen-lockfile
+            - name: compile
+              run: yarn compile
+            - name: generate blog post
+              run: yarn genai:blog-post -p github --out-trace $GITHUB_STEP_SUMMARY
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - uses: stefanzweifel/git-auto-commit-action@b863ae1933cb653a53c021fe36dbb774e1fb9403 # stefanzweifel/git-auto-commit-action@v5 | v5.2.0
+              with:
+                  file_pattern: "docs/src/content/docs/blog/drafts/*.md"
+                  commit_message: "[genai] generated blog posts"
+                  commit_user_name: "genaiscript"

@@ -1,0 +1,70 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_TransformerEngine__.github__workflows__upload-ci-logs.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m # Copyright (c) 2022-2026, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+[1m[94m 2 |[0m [1m[33m|[0m #
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m51 |[0m [1m[33m|[0m           https://api.github.com/repos/${{ github.repository }}/statuses/${{ inputs.commit_sha }} \
+[1m[94m52 |[0m [1m[33m|[0m           -d "{\"state\":\"${{ inputs.result }}\",\"target_url\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\",\"description\":\"\",\"context\":\"te-ci/${{ inputs.job_name }}\"}"
+   [1m[94m|[0m [1m[33m|_____________________________________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_TransformerEngine__.github__workflows__upload-ci-logs.yml:27:3
+   [1m[94m|[0m
+[1m[94m27 |[0m [1m[33m/[0m   Upload-Log:
+[1m[94m28 |[0m [1m[33m|[0m     name: Upload log
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m35 |[0m [1m[33m|[0m           CI_SERVER: ${{ secrets.CI_SERVER }}
+[1m[94m36 |[0m [1m[33m|[0m           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+   [1m[94m|[0m [1m[33m|[0m                                                 [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_________________________________________________|[0m
+   [1m[94m|[0m                                                   [1m[33mthis job[0m
+   [1m[94m|[0m                                                   [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_TransformerEngine__.github__workflows__upload-ci-logs.yml:45:9
+   [1m[94m|[0m
+[1m[94m45 |[0m   [1m[94m...[0m - name: Set status
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m46 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m47 |[0m [1m[91m|[0m [1m[94m...[0m     curl \
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m51 |[0m [1m[91m|[0m [1m[94m...[0m     https://api.github.com/repos/${{ github.repository }}/statuses/${{ inputs.commit_sha }} \
+[1m[94m52 |[0m [1m[91m|[0m [1m[94m...[0m     -d "{\"state\":\"${{ inputs.result }}\",\"target_url\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\",\"description\":\"\",\"context\":\"te-ci/${{ inputs.job_name }}\"}"
+   [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.commit_sha may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_TransformerEngine__.github__workflows__upload-ci-logs.yml:45:9
+   [1m[94m|[0m
+[1m[94m45 |[0m   [1m[94m...[0m - name: Set status
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m46 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m47 |[0m [1m[91m|[0m [1m[94m...[0m     curl \
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m51 |[0m [1m[91m|[0m [1m[94m...[0m     https://api.github.com/repos/${{ github.repository }}/statuses/${{ inputs.commit_sha }} \
+[1m[94m52 |[0m [1m[91m|[0m [1m[94m...[0m     -d "{\"state\":\"${{ inputs.result }}\",\"target_url\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\",\"description\":\"\",\"context\":\"te-ci/${{ inputs.job_name }}\"}"
+   [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.result may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_TransformerEngine__.github__workflows__upload-ci-logs.yml:45:9
+   [1m[94m|[0m
+[1m[94m45 |[0m   [1m[94m...[0m - name: Set status
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m46 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m47 |[0m [1m[91m|[0m [1m[94m...[0m     curl \
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m51 |[0m [1m[91m|[0m [1m[94m...[0m     https://api.github.com/repos/${{ github.repository }}/statuses/${{ inputs.commit_sha }} \
+[1m[94m52 |[0m [1m[91m|[0m [1m[94m...[0m     -d "{\"state\":\"${{ inputs.result }}\",\"target_url\":\"${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\",\"description\":\"\",\"context\":\"te-ci/${{ inputs.job_name }}\"}"
+   [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.job_name may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m13[39m findings ([1m[93m8[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m3[39m high

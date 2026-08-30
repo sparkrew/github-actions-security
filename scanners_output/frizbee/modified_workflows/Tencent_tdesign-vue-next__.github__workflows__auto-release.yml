@@ -1,0 +1,37 @@
+name: auto-release
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    if: github.event.pull_request.merged && startsWith(github.head_ref, 'release/')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          submodules: recursive
+
+      - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 18
+
+      - run: pnpm install
+
+      - run: pnpm run '/build:*/'
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+
+      - uses: TDesignOteam/flow-pilot-action@399782ec88e2fa31b35f65be213763e45a49455e # develop
+        with:
+          token: ${{ secrets.TDESIGN_BOT_TOKEN }}
+          packages: 'tdesign-vue-next,@tdesign-vue-next/chat,@tdesign-vue-next/auto-import-resolver'

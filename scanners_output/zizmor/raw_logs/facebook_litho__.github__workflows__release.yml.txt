@@ -1,0 +1,169 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_litho__.github__workflows__release.yml:39:7
+   [1m[94m|[0m
+[1m[94m39 |[0m       - name: Checkout code
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m40 |[0m [1m[33m|[0m       uses: actions/checkout@v3
+   [1m[94m|[0m [1m[33m|_______________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_litho__.github__workflows__release.yml:63:7
+   [1m[94m|[0m
+[1m[94m63 |[0m       - name: Checkout code
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m64 |[0m [1m[33m|[0m       uses: actions/checkout@v3
+   [1m[94m|[0m [1m[33m|_______________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_litho__.github__workflows__release.yml:92:7
+   [1m[94m|[0m
+[1m[94m92 |[0m       - name: Checkout code
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m93 |[0m [1m[33m|[0m       uses: actions/checkout@v3
+   [1m[94m|[0m [1m[33m|_______________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_litho__.github__workflows__release.yml:117:7
+    [1m[94m|[0m
+[1m[94m117 |[0m       - name: Checkout code
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m118 |[0m [1m[33m|[0m       uses: actions/checkout@v3
+    [1m[94m|[0m [1m[33m|_______________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_litho__.github__workflows__release.yml:149:7
+    [1m[94m|[0m
+[1m[94m149 |[0m       - name: Checkout code
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m150 |[0m [1m[33m|[0m       uses: actions/checkout@v3
+    [1m[94m|[0m [1m[33m|_______________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_litho__.github__workflows__release.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m # Copyright (c) Facebook, Inc. and its affiliates.
+[1m[94m  2 |[0m [1m[33m|[0m #
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m154 |[0m [1m[33m|[0m         repo-token: "${{ secrets.GITHUB_TOKEN }}"
+[1m[94m155 |[0m [1m[33m|[0m         tag: ${{ needs.check-release-job.outputs.release-version-info }}
+    [1m[94m|[0m [1m[33m|_________________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_litho__.github__workflows__release.yml:32:3
+   [1m[94m|[0m
+[1m[94m32 |[0m [1m[33m/[0m   check-release-job:
+[1m[94m33 |[0m [1m[33m|[0m     name: Check for release marker
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m48 |[0m [1m[33m|[0m         VERSION_INFO: ${{ steps.version_info.outputs.VERSION_INFO }}
+[1m[94m49 |[0m [1m[33m|[0m       run: echo $VERSION_INFO
+   [1m[94m|[0m [1m[33m|[0m                             [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________________________|[0m
+   [1m[94m|[0m                               [1m[33mthis job[0m
+   [1m[94m|[0m                               [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_litho__.github__workflows__release.yml:50:3
+   [1m[94m|[0m
+[1m[94m50 |[0m [1m[33m/[0m   start-release-job:
+[1m[94m51 |[0m [1m[33m|[0m     name: Skip all if not a release
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m56 |[0m [1m[33m|[0m     - name: Check step
+[1m[94m57 |[0m [1m[33m|[0m       run: echo "Starting a release"
+   [1m[94m|[0m [1m[33m|[0m                                    [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________________|[0m
+   [1m[94m|[0m                                      [1m[33mthis job[0m
+   [1m[94m|[0m                                      [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_litho__.github__workflows__release.yml:58:3
+   [1m[94m|[0m
+[1m[94m58 |[0m [1m[33m/[0m   test-job:
+[1m[94m59 |[0m [1m[33m|[0m     name: Run Tests
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m85 |[0m [1m[33m|[0m         max_attempts: 2
+[1m[94m86 |[0m [1m[33m|[0m         command: BUCK_PATH=`realpath buck/buck` ./gradlew test -x :litho-intellij-plugin:test -x :litho-core:test -x :litho-it:test --stacktrace
+   [1m[94m|[0m [1m[33m|[0m                                                                                                                                                [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________________________________________________________________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                                                                                  [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                                                                                  [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_litho__.github__workflows__release.yml:87:3
+    [1m[94m|[0m
+[1m[94m 87 |[0m [1m[33m/[0m   sample-app-job:
+[1m[94m 88 |[0m [1m[33m|[0m     name: Assemble Sample App
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m110 |[0m [1m[33m|[0m     - name: Assemble sample app
+[1m[94m111 |[0m [1m[33m|[0m       run: BUCK_PATH=`realpath buck/buck` ./gradlew :sample:assembleRelease --stacktrace
+    [1m[94m|[0m [1m[33m|[0m                                                                                        [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                          [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                          [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_litho__.github__workflows__release.yml:112:3
+    [1m[94m|[0m
+[1m[94m112 |[0m [1m[33m/[0m   publish-job:
+[1m[94m113 |[0m [1m[33m|[0m     name: Maven Publish
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m142 |[0m [1m[33m|[0m       if: always()
+[1m[94m143 |[0m [1m[33m|[0m       run: rm /tmp/secring.gpg
+    [1m[94m|[0m [1m[33m|[0m                              [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|______________________________|[0m
+    [1m[94m|[0m                                [1m[33mthis job[0m
+    [1m[94m|[0m                                [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_litho__.github__workflows__release.yml:144:3
+    [1m[94m|[0m
+[1m[94m144 |[0m [1m[33m/[0m   push-tags-job:
+[1m[94m145 |[0m [1m[33m|[0m     name: Push tags if release succeeded
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m154 |[0m [1m[33m|[0m         repo-token: "${{ secrets.GITHUB_TOKEN }}"
+[1m[94m155 |[0m [1m[33m|[0m         tag: ${{ needs.check-release-job.outputs.release-version-info }}
+    [1m[94m|[0m [1m[33m|[0m                                                                         [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                           [1m[33mthis job[0m
+    [1m[94m|[0m                                                                           [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_litho__.github__workflows__release.yml:82:7
+   [1m[94m|[0m
+[1m[94m82 |[0m       uses: nick-invision/retry@v1
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_litho__.github__workflows__release.yml:152:7
+    [1m[94m|[0m
+[1m[94m152 |[0m       uses: tvdias/github-tagger@v0.0.1
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m19[39m findings ([1m[93m5[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m12[39m medium, [31m2[39m high

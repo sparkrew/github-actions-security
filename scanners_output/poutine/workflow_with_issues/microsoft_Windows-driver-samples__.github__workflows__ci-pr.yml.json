@@ -1,0 +1,23 @@
+{
+  "workflow": "microsoft_Windows-driver-samples__.github__workflows__ci-pr.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 60,
+      "column": "",
+      "job": "report",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "pull_request"
+      ]
+    }
+  ]
+}

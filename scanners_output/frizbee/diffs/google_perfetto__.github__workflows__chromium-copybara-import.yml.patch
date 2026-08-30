@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/google_perfetto__.github__workflows__chromium-copybara-import.yml b/.github/workflows/google_perfetto__.github__workflows__chromium-copybara-import.yml
+index 347cf45..71cd39a 100644
+--- a/.github/workflows/google_perfetto__.github__workflows__chromium-copybara-import.yml
++++ b/.github/workflows/google_perfetto__.github__workflows__chromium-copybara-import.yml
+@@ -30,7 +30,7 @@ jobs:
+     if: github.head_ref == 'dev/copybara/chromium_tmp'
+     steps:
+       - name: Include GitOrigin-RevId in Copybara PR body
+-        uses: actions/github-script@v6
++        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6
+         with:
+           script: |
+             const revIdRegex = /GitOrigin-RevId: \w+/;

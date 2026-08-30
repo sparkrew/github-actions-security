@@ -1,0 +1,33 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml:24:3
+   [1m[94m|[0m
+[1m[94m24 |[0m   id-token: "write"
+   [1m[94m|[0m   [1m[91m^^^^^^^^^^^^^^^^^[0m [1m[91mid-token: write is overly broad at the workflow level[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml:35:9
+   [1m[94m|[0m
+[1m[94m35 |[0m       - uses: dorny/paths-filter@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml:129:9
+    [1m[94m|[0m
+[1m[94m129 |[0m         uses: azure/login@v2
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml:187:9
+    [1m[94m|[0m
+[1m[94m187 |[0m         uses: danielpalme/ReportGenerator-GitHub-Action@5.4.12
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m11[39m findings ([1m[93m7[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m0[39m medium, [31m4[39m high

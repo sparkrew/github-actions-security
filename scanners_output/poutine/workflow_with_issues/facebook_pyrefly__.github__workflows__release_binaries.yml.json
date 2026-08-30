@@ -1,0 +1,24 @@
+{
+  "workflow": "facebook_pyrefly__.github__workflows__release_binaries.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "unverified_script_exec": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": 81,
+      "column": "",
+      "job": "build",
+      "step": "1",
+      "details": "Command: curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/sh",
+      "event_triggers": [
+        "release",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

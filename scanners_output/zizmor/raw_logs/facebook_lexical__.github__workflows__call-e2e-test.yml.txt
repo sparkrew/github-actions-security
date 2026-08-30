@@ -1,0 +1,41 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_lexical__.github__workflows__call-e2e-test.yml:32:9
+   [1m[94m|[0m
+[1m[94m32 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_lexical__.github__workflows__call-e2e-test.yml:47:9
+   [1m[94m|[0m
+[1m[94m47 |[0m         - name: Install React ${{ inputs.override-react-version }}
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m48 |[0m           if: inputs.override-react-version != ''
+[1m[94m49 |[0m           # This should be safe since we are caching pnpm store and not node_modules
+[1m[94m50 |[0m [1m[91m/[0m         run: |
+[1m[94m51 |[0m [1m[91m|[0m           node ./scripts/override-react.js --version=${{ inputs.override-react-version }}
+[1m[94m52 |[0m [1m[91m|[0m           grep version node_modules/{react,react-dom}/package.json
+   [1m[94m|[0m [1m[91m|__________________________________________________________________^[0m [1m[91minputs.override-react-version may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_lexical__.github__workflows__call-e2e-test.yml:67:9
+   [1m[94m|[0m
+[1m[94m67 |[0m       - name: Run tests
+   [1m[94m|[0m         [1m[96m---------------[0m [1m[96mhelp: this step[0m
+[1m[94m68 |[0m         run: pnpm run ${{ env.test_script }}
+   [1m[94m|[0m         [1m[96m------------------------------------[0m [1m[96mhelp: env.test_script may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_lexical__.github__workflows__call-e2e-test.yml:37:9
+   [1m[94m|[0m
+[1m[94m37 |[0m       - uses: pnpm/action-setup@v4
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m6[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m1[39m low, [33m1[39m medium, [31m2[39m high

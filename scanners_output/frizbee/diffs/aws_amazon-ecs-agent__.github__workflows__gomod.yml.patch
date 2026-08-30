@@ -1,0 +1,29 @@
+diff --git a/.github/workflows/aws_amazon-ecs-agent__.github__workflows__gomod.yml b/.github/workflows/aws_amazon-ecs-agent__.github__workflows__gomod.yml
+index bcdde02..2b62940 100644
+--- a/.github/workflows/aws_amazon-ecs-agent__.github__workflows__gomod.yml
++++ b/.github/workflows/aws_amazon-ecs-agent__.github__workflows__gomod.yml
+@@ -8,7 +8,7 @@ jobs:
+   check:
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           submodules: true
+           path: src/github.com/aws/amazon-ecs-agent
+@@ -26,7 +26,7 @@ jobs:
+             exit 1
+           fi
+           echo "GO_VERSION=$go_version" >> $GITHUB_OUTPUT
+-      - uses: actions/setup-go@v6
++      - uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 # v6
+         with:
+           go-version: ${{ steps.get-go-version.outputs.GO_VERSION }}
+       - name: Run go mod tidy and go mod vendor in csidriver module
+@@ -56,4 +56,4 @@ jobs:
+           go mod tidy
+           git diff --exit-code go.mod go.sum
+           go mod vendor
+-          git diff --exit-code vendor/
+\ No newline at end of file
++          git diff --exit-code vendor/

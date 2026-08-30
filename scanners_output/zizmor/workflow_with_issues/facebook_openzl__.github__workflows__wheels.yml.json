@@ -1,0 +1,96 @@
+{
+  "workflow": "facebook_openzl__.github__workflows__wheels.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 9,
+    "by_rule": {
+      "artipacked": 2,
+      "excessive-permissions": 4,
+      "use-trusted-publishing": 1,
+      "unpinned-uses": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "facebook_openzl__.github__workflows__wheels.yml",
+      "line": 35,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "facebook_openzl__.github__workflows__wheels.yml",
+      "line": 63,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "facebook_openzl__.github__workflows__wheels.yml",
+      "line": 1,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "facebook_openzl__.github__workflows__wheels.yml",
+      "line": 31,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "facebook_openzl__.github__workflows__wheels.yml",
+      "line": 51,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "facebook_openzl__.github__workflows__wheels.yml",
+      "line": 83,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "use-trusted-publishing",
+      "level": "info",
+      "message": "prefer trusted publishing for authentication",
+      "workflow": "facebook_openzl__.github__workflows__wheels.yml",
+      "line": 97,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "facebook_openzl__.github__workflows__wheels.yml",
+      "line": 67,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "facebook_openzl__.github__workflows__wheels.yml",
+      "line": 97,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

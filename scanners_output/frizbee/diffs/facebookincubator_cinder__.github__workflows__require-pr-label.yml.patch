@@ -1,0 +1,40 @@
+diff --git a/.github/workflows/facebookincubator_cinder__.github__workflows__require-pr-label.yml b/.github/workflows/facebookincubator_cinder__.github__workflows__require-pr-label.yml
+index 7e534c5..8b7f8ed 100644
+--- a/.github/workflows/facebookincubator_cinder__.github__workflows__require-pr-label.yml
++++ b/.github/workflows/facebookincubator_cinder__.github__workflows__require-pr-label.yml
+@@ -15,7 +15,7 @@ jobs:
+ 
+     steps:
+       - name: Check there's no DO-NOT-MERGE
+-        uses: mheap/github-action-required-labels@v5
++        uses: mheap/github-action-required-labels@8afbe8ae6ab7647d0c9f0cfa7c2f939650d22509 # v5
+         with:
+           mode: exactly
+           count: 0
+@@ -33,7 +33,7 @@ jobs:
+     steps:
+       # Check that the PR is not awaiting changes from the author due to previous review.
+       - name: Check there's no required changes
+-        uses: mheap/github-action-required-labels@v5
++        uses: mheap/github-action-required-labels@8afbe8ae6ab7647d0c9f0cfa7c2f939650d22509 # v5
+         with:
+           mode: exactly
+           count: 0
+@@ -42,7 +42,7 @@ jobs:
+             awaiting change review
+       - id: is-feature
+         name: Check whether this PR is a feature (contains a "type-feature" label)
+-        uses: mheap/github-action-required-labels@v5
++        uses: mheap/github-action-required-labels@8afbe8ae6ab7647d0c9f0cfa7c2f939650d22509 # v5
+         with:
+           mode: exactly
+           count: 1
+@@ -53,7 +53,7 @@ jobs:
+       - id: awaiting-merge
+         if: steps.is-feature.outputs.status == 'success'
+         name: Check for complete review
+-        uses: mheap/github-action-required-labels@v5
++        uses: mheap/github-action-required-labels@8afbe8ae6ab7647d0c9f0cfa7c2f939650d22509 # v5
+         with:
+           mode: exactly
+           count: 1

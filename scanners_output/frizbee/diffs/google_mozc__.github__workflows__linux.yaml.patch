@@ -1,0 +1,31 @@
+diff --git a/.github/workflows/google_mozc__.github__workflows__linux.yaml b/.github/workflows/google_mozc__.github__workflows__linux.yaml
+index 1e54c23..2276602 100644
+--- a/.github/workflows/google_mozc__.github__workflows__linux.yaml
++++ b/.github/workflows/google_mozc__.github__workflows__linux.yaml
+@@ -20,7 +20,7 @@ jobs:
+ 
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           submodules: recursive
+           persist-credentials: false
+@@ -39,7 +39,7 @@ jobs:
+           bazelisk build --config oss_linux package --config release_build
+ 
+       - name: Upload Artifacts
+-        uses: actions/upload-artifact@v6
++        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+         with:
+           name: mozc.zip
+           path: src/bazel-bin/unix/mozc.zip
+@@ -52,7 +52,7 @@ jobs:
+ 
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           submodules: recursive
+           persist-credentials: false

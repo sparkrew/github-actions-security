@@ -1,0 +1,106 @@
+{
+  "workflow": "facebook_litho__.github__workflows__ci.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        14,
+        16,
+        21,
+        26,
+        30,
+        34,
+        38,
+        43,
+        60,
+        62,
+        67,
+        72,
+        76,
+        80,
+        85,
+        107,
+        110,
+        118,
+        120,
+        125,
+        130,
+        134,
+        138,
+        143
+      ],
+      "raw_details": [
+        "Info: Possibly incomplete results: error parsing shell code: a command can only contain words and redirects; encountered ): .github/workflows/facebook_litho__.github__workflows__ci.yml:110",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_litho__.github__workflows__ci.yml:107",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_litho__.github__workflows__ci.yml:118",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_litho__.github__workflows__ci.yml:120",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/facebook_litho__.github__workflows__ci.yml:125",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/facebook_litho__.github__workflows__ci.yml:130",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_litho__.github__workflows__ci.yml:134",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_litho__.github__workflows__ci.yml:138",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_litho__.github__workflows__ci.yml:143",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_litho__.github__workflows__ci.yml:14",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_litho__.github__workflows__ci.yml:16",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/facebook_litho__.github__workflows__ci.yml:21",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/facebook_litho__.github__workflows__ci.yml:26",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_litho__.github__workflows__ci.yml:30",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/facebook_litho__.github__workflows__ci.yml:34",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_litho__.github__workflows__ci.yml:38",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_litho__.github__workflows__ci.yml:43",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_litho__.github__workflows__ci.yml:60",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_litho__.github__workflows__ci.yml:62",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/facebook_litho__.github__workflows__ci.yml:67",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/facebook_litho__.github__workflows__ci.yml:72",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_litho__.github__workflows__ci.yml:76",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_litho__.github__workflows__ci.yml:80",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_litho__.github__workflows__ci.yml:85",
+        "Info:   0 out of  16 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of   7 third-party GitHubAction dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 0,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1
+      ],
+      "raw_details": [
+        "Warn: no topLevel permission defined: .github/workflows/facebook_litho__.github__workflows__ci.yml:1",
+        "Info: no jobLevel write permissions found"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

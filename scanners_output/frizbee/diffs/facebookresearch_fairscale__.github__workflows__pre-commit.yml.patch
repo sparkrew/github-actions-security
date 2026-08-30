@@ -1,0 +1,16 @@
+diff --git a/.github/workflows/facebookresearch_fairscale__.github__workflows__pre-commit.yml b/.github/workflows/facebookresearch_fairscale__.github__workflows__pre-commit.yml
+index 4341b92..20e69b9 100644
+--- a/.github/workflows/facebookresearch_fairscale__.github__workflows__pre-commit.yml
++++ b/.github/workflows/facebookresearch_fairscale__.github__workflows__pre-commit.yml
+@@ -13,8 +13,8 @@ jobs:
+         # make sure python versions are consistent with those used in .circleci/config.yml
+         python-version: ['3.8.12', '3.9.7', '3.10.1']
+     steps:
+-    - uses: actions/checkout@v2
+-    - uses: actions/setup-python@v2
++    - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
++    - uses: actions/setup-python@e9aba2c848f5ebd159c070c61ea2c4e2b122355e # v2
+       with:
+         python-version: ${{ matrix.python-version }}
+-    - uses: pre-commit/action@v2.0.3
++    - uses: pre-commit/action@9b88afc9cd57fd75b655d5c71bd38146d07135fe # v2.0.3

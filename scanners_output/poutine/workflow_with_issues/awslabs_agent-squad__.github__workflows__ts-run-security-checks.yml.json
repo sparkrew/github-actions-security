@@ -1,0 +1,24 @@
+{
+  "workflow": "awslabs_agent-squad__.github__workflows__ts-run-security-checks.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "debug_enabled": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "debug_enabled",
+      "line": 10,
+      "column": "",
+      "job": "scan",
+      "step": "",
+      "details": "ACTIONS_STEP_DEBUG",
+      "event_triggers": [
+        "workflow_call",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

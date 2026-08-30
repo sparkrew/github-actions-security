@@ -1,0 +1,24 @@
+{
+  "workflow": "google_accompanist__.github__workflows__publish-docs.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 28,
+      "column": "",
+      "job": "deploy_docs",
+      "step": "3",
+      "details": "Package: gradle/gradle-build-action",
+      "event_triggers": [
+        "push",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

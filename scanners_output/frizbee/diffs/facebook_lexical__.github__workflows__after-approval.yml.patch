@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/facebook_lexical__.github__workflows__after-approval.yml b/.github/workflows/facebook_lexical__.github__workflows__after-approval.yml
+index d060e0f..b558113 100644
+--- a/.github/workflows/facebook_lexical__.github__workflows__after-approval.yml
++++ b/.github/workflows/facebook_lexical__.github__workflows__after-approval.yml
+@@ -14,7 +14,7 @@ jobs:
+       should_skip: ${{ steps.skip_check.outputs.should_skip }}
+     steps:
+       - id: skip_check
+-        uses: fkirc/skip-duplicate-actions@v5
++        uses: fkirc/skip-duplicate-actions@f75f66ce1886f00957d99748a42c724f4330bdcf # v5
+         with:
+           concurrent_skipping: 'same_content_newer'
+           skip_after_successful_duplicate: 'true'

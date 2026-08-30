@@ -1,0 +1,40 @@
+{
+  "workflow": "NVIDIA_stdexec__.github__workflows__ci.gpu.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "excessive-permissions": 2,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "NVIDIA_stdexec__.github__workflows__ci.gpu.yml",
+      "line": 1,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "NVIDIA_stdexec__.github__workflows__ci.gpu.yml",
+      "line": 129,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "NVIDIA_stdexec__.github__workflows__ci.gpu.yml",
+      "line": 55,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

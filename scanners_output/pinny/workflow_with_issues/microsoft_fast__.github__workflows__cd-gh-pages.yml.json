@@ -1,0 +1,32 @@
+{
+  "workflow": "microsoft_fast__.github__workflows__cd-gh-pages.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+      "line": 21
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | releases,v4.4.0",
+      "line": 23
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # actions/cache@v4 | v4.3.0",
+      "line": 34
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: JamesIves/github-pages-deploy-action@d92aa235d04922e8f08b40ce78cc5442fcfbfa2f # JamesIves/github-pages-deploy-action@v4 | releases,v4.8.0",
+      "line": 55
+    }
+  ]
+}

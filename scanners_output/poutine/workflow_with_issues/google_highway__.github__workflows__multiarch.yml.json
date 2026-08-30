@@ -1,0 +1,24 @@
+{
+  "workflow": "google_highway__.github__workflows__multiarch.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 52,
+      "column": "",
+      "job": "aarch64_cmake",
+      "step": "",
+      "details": "runs-on: ubuntu-24.04-arm",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    }
+  ]
+}

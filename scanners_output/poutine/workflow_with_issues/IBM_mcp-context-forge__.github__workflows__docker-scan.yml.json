@@ -1,0 +1,25 @@
+{
+  "workflow": "IBM_mcp-context-forge__.github__workflows__docker-scan.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "unverified_script_exec": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": 159,
+      "column": "",
+      "job": "scan",
+      "step": "9",
+      "details": "Command: curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

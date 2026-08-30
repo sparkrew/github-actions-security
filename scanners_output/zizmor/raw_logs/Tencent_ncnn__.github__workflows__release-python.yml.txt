@@ -1,0 +1,202 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__release-python.yml:21:7
+   [1m[94m|[0m
+[1m[94m21 |[0m       - uses: actions/checkout@v6
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m22 |[0m [1m[33m|[0m       with:
+[1m[94m23 |[0m [1m[33m|[0m         submodules: true
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__release-python.yml:83:7
+   [1m[94m|[0m
+[1m[94m83 |[0m       - uses: actions/checkout@v6
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m84 |[0m [1m[33m|[0m       with:
+[1m[94m85 |[0m [1m[33m|[0m         submodules: true
+[1m[94m86 |[0m [1m[33m|[0m
+[1m[94m87 |[0m [1m[33m|[0m     # build wheels for ubuntu
+   [1m[94m|[0m [1m[33m|_____________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__release-python.yml:285:7
+    [1m[94m|[0m
+[1m[94m285 |[0m       - uses: actions/checkout@v6
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m286 |[0m [1m[33m|[0m       with:
+[1m[94m287 |[0m [1m[33m|[0m         submodules: true
+    [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__release-python.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: release-python
+[1m[94m  2 |[0m [1m[33m|[0m on:
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m333 |[0m [1m[33m|[0m         user: __token__
+[1m[94m334 |[0m [1m[33m|[0m         password: ${{ secrets.PYPI_API_TOKEN }}
+    [1m[94m|[0m [1m[33m|________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__release-python.yml:17:3
+   [1m[94m|[0m
+[1m[94m17 |[0m [1m[33m/[0m   build_sdist:
+[1m[94m18 |[0m [1m[33m|[0m     name: Build SDist
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m40 |[0m [1m[33m|[0m         name: sdist
+[1m[94m41 |[0m [1m[33m|[0m         path: dist/*.tar.gz
+   [1m[94m|[0m [1m[33m|[0m                           [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|___________________________|[0m
+   [1m[94m|[0m                             [1m[33mthis job[0m
+   [1m[94m|[0m                             [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__release-python.yml:43:3
+    [1m[94m|[0m
+[1m[94m 43 |[0m [1m[33m/[0m   build_wheels:
+[1m[94m 44 |[0m [1m[33m|[0m     name: ${{ matrix.arch }} ${{ matrix.build_id }} on ${{ matrix.os }}
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m270 |[0m [1m[33m|[0m         name: wheels-${{ matrix.os }}-${{ matrix.arch }}-${{ matrix.build_id }}
+[1m[94m271 |[0m [1m[33m|[0m         path: wheelhouse/*.whl
+    [1m[94m|[0m [1m[33m|[0m                              [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|______________________________|[0m
+    [1m[94m|[0m                                [1m[33mthis job[0m
+    [1m[94m|[0m                                [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__release-python.yml:273:3
+    [1m[94m|[0m
+[1m[94m273 |[0m [1m[33m/[0m   build_wheels_qemu_cp:
+[1m[94m274 |[0m [1m[33m|[0m     name: ${{ matrix.arch }} ${{ matrix.build_cp }} ${{ matrix.build_sub }}
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m315 |[0m [1m[33m|[0m         name: wheels_qemu_cp-${{ matrix.arch }}-${{ matrix.build_cp }}-${{ matrix.build_sub }}
+[1m[94m316 |[0m [1m[33m|[0m         path: wheelhouse/*.whl
+    [1m[94m|[0m [1m[33m|[0m                              [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|______________________________|[0m
+    [1m[94m|[0m                                [1m[33mthis job[0m
+    [1m[94m|[0m                                [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#use-trusted-publishing\use-trusted-publishing]8;;\][0m: [1mprefer trusted publishing for authentication[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__release-python.yml:331:7
+    [1m[94m|[0m
+[1m[94m331 |[0m     - uses: pypa/gh-action-pypi-publish@release/v1
+    [1m[94m|[0m       [1m[94m--------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m332 |[0m       with:
+[1m[94m333 |[0m         user: __token__
+[1m[94m334 |[0m         password: ${{ secrets.PYPI_API_TOKEN }}
+    [1m[94m|[0m         [1m[94m---------------------------------------[0m [1m[94minfo: uses a manually-configured credential instead of Trusted Publishing[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__release-python.yml:90:7
+   [1m[94m|[0m
+[1m[94m90 |[0m       uses: pypa/cibuildwheel@v3.3.1
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__release-python.yml:103:7
+    [1m[94m|[0m
+[1m[94m103 |[0m       uses: pypa/cibuildwheel@v3.3.1
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__release-python.yml:117:7
+    [1m[94m|[0m
+[1m[94m117 |[0m       uses: pypa/cibuildwheel@v3.3.1
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__release-python.yml:130:7
+    [1m[94m|[0m
+[1m[94m130 |[0m       uses: pypa/cibuildwheel@v3.3.1
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__release-python.yml:144:7
+    [1m[94m|[0m
+[1m[94m144 |[0m       uses: pypa/cibuildwheel@v3.3.1
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__release-python.yml:223:7
+    [1m[94m|[0m
+[1m[94m223 |[0m       uses: pypa/cibuildwheel@v3.3.1
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__release-python.yml:242:7
+    [1m[94m|[0m
+[1m[94m242 |[0m       uses: pypa/cibuildwheel@v3.3.1
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__release-python.yml:290:7
+    [1m[94m|[0m
+[1m[94m290 |[0m       uses: docker/setup-qemu-action@v3
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__release-python.yml:295:7
+    [1m[94m|[0m
+[1m[94m295 |[0m       uses: pypa/cibuildwheel@v3.3.1
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__release-python.yml:331:7
+    [1m[94m|[0m
+[1m[94m331 |[0m     - uses: pypa/gh-action-pypi-publish@release/v1
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#cache-poisoning\cache-poisoning]8;;\][0m: [1mruntime artifacts potentially vulnerable to a cache poisoning attack[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__release-python.yml:2:1
+    [1m[94m|[0m
+[1m[94m  2 |[0m [1m[91m/[0m on:
+[1m[94m  3 |[0m [1m[91m|[0m   push:
+[1m[94m  4 |[0m [1m[91m|[0m     tags:
+[1m[94m  5 |[0m [1m[91m|[0m       - '*'
+[1m[94m  6 |[0m [1m[91m|[0m   workflow_dispatch:
+    [1m[94m|[0m [1m[91m|____________________^[0m [1m[91mgenerally used when publishing artifacts generated at runtime[0m
+[1m[94m  7 |[0m
+[1m[94m...[0m
+[1m[94m159 |[0m         id: cache-openmp
+[1m[94m160 |[0m         uses: actions/cache@v5
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcache enabled by default here[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m35[39m findings ([1m[93m16[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m7[39m medium, [31m11[39m high

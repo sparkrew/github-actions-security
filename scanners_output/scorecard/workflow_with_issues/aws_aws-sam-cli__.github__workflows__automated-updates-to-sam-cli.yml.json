@@ -1,0 +1,83 @@
+{
+  "workflow": "aws_aws-sam-cli__.github__workflows__automated-updates-to-sam-cli.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        27,
+        33,
+        82,
+        90,
+        95,
+        100,
+        151,
+        159,
+        164,
+        169
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_aws-sam-cli__.github__workflows__automated-updates-to-sam-cli.yml:27",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_aws-sam-cli__.github__workflows__automated-updates-to-sam-cli.yml:33",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_aws-sam-cli__.github__workflows__automated-updates-to-sam-cli.yml:82",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_aws-sam-cli__.github__workflows__automated-updates-to-sam-cli.yml:90",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_aws-sam-cli__.github__workflows__automated-updates-to-sam-cli.yml:95",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/aws_aws-sam-cli__.github__workflows__automated-updates-to-sam-cli.yml:100",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_aws-sam-cli__.github__workflows__automated-updates-to-sam-cli.yml:151",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_aws-sam-cli__.github__workflows__automated-updates-to-sam-cli.yml:159",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_aws-sam-cli__.github__workflows__automated-updates-to-sam-cli.yml:164",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/aws_aws-sam-cli__.github__workflows__automated-updates-to-sam-cli.yml:169",
+        "Info:   0 out of   8 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of   2 third-party GitHubAction dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 9,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1,
+        12,
+        67,
+        136
+      ],
+      "raw_details": [
+        "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/aws_aws-sam-cli__.github__workflows__automated-updates-to-sam-cli.yml:136",
+        "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/aws_aws-sam-cli__.github__workflows__automated-updates-to-sam-cli.yml:12",
+        "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/aws_aws-sam-cli__.github__workflows__automated-updates-to-sam-cli.yml:67",
+        "Warn: no topLevel permission defined: .github/workflows/aws_aws-sam-cli__.github__workflows__automated-updates-to-sam-cli.yml:1"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

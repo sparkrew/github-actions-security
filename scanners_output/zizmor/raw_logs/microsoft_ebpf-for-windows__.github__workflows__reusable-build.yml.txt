@@ -1,0 +1,523 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:122:9
+    [1m[94m|[0m
+[1m[94m122 |[0m         - uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m123 |[0m [1m[33m|[0m         if: steps.skip_check.outputs.should_skip != 'true'
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m126 |[0m [1m[33m|[0m           submodules: 'recursive'
+[1m[94m127 |[0m [1m[33m|[0m           ref: ${{inputs.ref}}
+    [1m[94m|[0m [1m[33m|______________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:129:9
+    [1m[94m|[0m
+[1m[94m129 |[0m   [1m[94m...[0m - name: Configure Windows Error Reporting to make a local copy of any crashes that occur.
+    [1m[94m|[0m         [1m[96m---------------------------------------------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m130 |[0m   [1m[94m...[0m   id: configure_windows_error_reporting
+[1m[94m131 |[0m   [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true'
+[1m[94m132 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m133 |[0m [1m[96m|[0m [1m[94m...[0m     mkdir c:/dumps/${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m134 |[0m [1m[96m|[0m [1m[94m...[0m     New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps" -ErrorAction SilentlyContinue
+[1m[94m135 |[0m [1m[96m|[0m [1m[94m...[0m     New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps" -Name "DumpType" -Value 2 -PropertyType DWord -ErrorAction SilentlyContinue
+[1m[94m136 |[0m [1m[96m|[0m [1m[94m...[0m     New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps" -Name "DumpFolder" -Value "c:\dumps\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}" -PropertyType ExpandString -ErrorAction SilentlyContinue
+    [1m[94m|[0m [1m[96m|_______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:129:9
+    [1m[94m|[0m
+[1m[94m129 |[0m   [1m[94m...[0m - name: Configure Windows Error Reporting to make a local copy of any crashes that occur.
+    [1m[94m|[0m         [1m[96m---------------------------------------------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m130 |[0m   [1m[94m...[0m   id: configure_windows_error_reporting
+[1m[94m131 |[0m   [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true'
+[1m[94m132 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m133 |[0m [1m[96m|[0m [1m[94m...[0m     mkdir c:/dumps/${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m134 |[0m [1m[96m|[0m [1m[94m...[0m     New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps" -ErrorAction SilentlyContinue
+[1m[94m135 |[0m [1m[96m|[0m [1m[94m...[0m     New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps" -Name "DumpType" -Value 2 -PropertyType DWord -ErrorAction SilentlyContinue
+[1m[94m136 |[0m [1m[96m|[0m [1m[94m...[0m     New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps" -Name "DumpFolder" -Value "c:\dumps\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}" -PropertyType ExpandString -ErrorAction SilentlyContinue
+    [1m[94m|[0m [1m[96m|_______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:129:9
+    [1m[94m|[0m
+[1m[94m129 |[0m   [1m[94m...[0m - name: Configure Windows Error Reporting to make a local copy of any crashes that occur.
+    [1m[94m|[0m         [1m[96m---------------------------------------------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m130 |[0m   [1m[94m...[0m   id: configure_windows_error_reporting
+[1m[94m131 |[0m   [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true'
+[1m[94m132 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m133 |[0m [1m[96m|[0m [1m[94m...[0m     mkdir c:/dumps/${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m134 |[0m [1m[96m|[0m [1m[94m...[0m     New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps" -ErrorAction SilentlyContinue
+[1m[94m135 |[0m [1m[96m|[0m [1m[94m...[0m     New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps" -Name "DumpType" -Value 2 -PropertyType DWord -ErrorAction SilentlyContinue
+[1m[94m136 |[0m [1m[96m|[0m [1m[94m...[0m     New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps" -Name "DumpFolder" -Value "c:\dumps\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}" -PropertyType ExpandString -ErrorAction SilentlyContinue
+    [1m[94m|[0m [1m[96m|_______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:129:9
+    [1m[94m|[0m
+[1m[94m129 |[0m   [1m[94m...[0m - name: Configure Windows Error Reporting to make a local copy of any crashes that occur.
+    [1m[94m|[0m         [1m[96m---------------------------------------------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m130 |[0m   [1m[94m...[0m   id: configure_windows_error_reporting
+[1m[94m131 |[0m   [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true'
+[1m[94m132 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m133 |[0m [1m[96m|[0m [1m[94m...[0m     mkdir c:/dumps/${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m134 |[0m [1m[96m|[0m [1m[94m...[0m     New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps" -ErrorAction SilentlyContinue
+[1m[94m135 |[0m [1m[96m|[0m [1m[94m...[0m     New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps" -Name "DumpType" -Value 2 -PropertyType DWord -ErrorAction SilentlyContinue
+[1m[94m136 |[0m [1m[96m|[0m [1m[94m...[0m     New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps" -Name "DumpFolder" -Value "c:\dumps\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}" -PropertyType ExpandString -ErrorAction SilentlyContinue
+    [1m[94m|[0m [1m[96m|_______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:234:9
+    [1m[94m|[0m
+[1m[94m234 |[0m         - name: Configuring repo for first build
+    [1m[94m|[0m           [1m[96m--------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m235 |[0m           if: steps.skip_check.outputs.should_skip != 'true'
+[1m[94m...[0m
+[1m[94m239 |[0m             LDFLAGS: ${{env.LD_FLAGS}}
+[1m[94m240 |[0m [1m[96m/[0m         run: |
+[1m[94m241 |[0m [1m[96m|[0m           .\scripts\initialize_ebpf_repo.ps1 ${{env.BUILD_PLATFORM}}
+    [1m[94m|[0m [1m[96m|____________________________________________________________________-[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:243:9
+    [1m[94m|[0m
+[1m[94m243 |[0m [1m[94m...[0m - name: Build
+    [1m[94m|[0m       [1m[96m-----------[0m [1m[96mhelp: this step[0m
+[1m[94m244 |[0m [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true'
+[1m[94m245 |[0m [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m246 |[0m [1m[94m...[0m   run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} /p:HostPlatform=${{env.BUILD_PLATFORM}} ${{env.BUILD_OPTIONS}} ${{env.SOLUTION_FILE_PATH}}  /bl:out.binlog
+    [1m[94m|[0m       [1m[96m------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:243:9
+    [1m[94m|[0m
+[1m[94m243 |[0m [1m[94m...[0m - name: Build
+    [1m[94m|[0m       [1m[96m-----------[0m [1m[96mhelp: this step[0m
+[1m[94m244 |[0m [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true'
+[1m[94m245 |[0m [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m246 |[0m [1m[94m...[0m   run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} /p:HostPlatform=${{env.BUILD_PLATFORM}} ${{env.BUILD_OPTIONS}} ${{env.SOLUTION_FILE_PATH}}  /bl:out.binlog
+    [1m[94m|[0m       [1m[96m------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:243:9
+    [1m[94m|[0m
+[1m[94m243 |[0m [1m[94m...[0m - name: Build
+    [1m[94m|[0m       [1m[96m-----------[0m [1m[96mhelp: this step[0m
+[1m[94m244 |[0m [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true'
+[1m[94m245 |[0m [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m246 |[0m [1m[94m...[0m   run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} /p:HostPlatform=${{env.BUILD_PLATFORM}} ${{env.BUILD_OPTIONS}} ${{env.SOLUTION_FILE_PATH}}  /bl:out.binlog
+    [1m[94m|[0m       [1m[96m------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:243:9
+    [1m[94m|[0m
+[1m[94m243 |[0m [1m[94m...[0m - name: Build
+    [1m[94m|[0m       [1m[96m-----------[0m [1m[96mhelp: this step[0m
+[1m[94m244 |[0m [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true'
+[1m[94m245 |[0m [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m246 |[0m [1m[94m...[0m   run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} /p:HostPlatform=${{env.BUILD_PLATFORM}} ${{env.BUILD_OPTIONS}} ${{env.SOLUTION_FILE_PATH}}  /bl:out.binlog
+    [1m[94m|[0m       [1m[96m------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.BUILD_OPTIONS may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:243:9
+    [1m[94m|[0m
+[1m[94m243 |[0m [1m[94m...[0m - name: Build
+    [1m[94m|[0m       [1m[96m-----------[0m [1m[96mhelp: this step[0m
+[1m[94m244 |[0m [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true'
+[1m[94m245 |[0m [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m246 |[0m [1m[94m...[0m   run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} /p:HostPlatform=${{env.BUILD_PLATFORM}} ${{env.BUILD_OPTIONS}} ${{env.SOLUTION_FILE_PATH}}  /bl:out.binlog
+    [1m[94m|[0m       [1m[96m------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.SOLUTION_FILE_PATH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:248:9
+    [1m[94m|[0m
+[1m[94m248 |[0m   [1m[94m...[0m - name: Check DLL dependencies for distributed binaries
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m249 |[0m   [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true' && ((inputs.build_artifact == 'Build-x64' && matrix.configurations == 'Debug') || (inputs.build_artifact == 'B[1m[94m...[0m
+[1m[94m250 |[0m   [1m[94m...[0m   working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m251 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m252 |[0m [1m[91m|[0m [1m[94m...[0m     ..\..\scripts\check_binary_dependencies.ps1 -BuildArtifact "${{inputs.build_artifact}}_${{env.BUILD_CONFIGURATION}}" -VsToolsPath "${{env.msvc_tools_path}}"
+    [1m[94m|[0m [1m[91m|____________________________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.build_artifact may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:248:9
+    [1m[94m|[0m
+[1m[94m248 |[0m   [1m[94m...[0m - name: Check DLL dependencies for distributed binaries
+    [1m[94m|[0m         [1m[96m-----------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m249 |[0m   [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true' && ((inputs.build_artifact == 'Build-x64' && matrix.configurations == 'Debug') || (inputs.build_artifact == 'B[1m[94m...[0m
+[1m[94m250 |[0m   [1m[94m...[0m   working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m251 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m252 |[0m [1m[96m|[0m [1m[94m...[0m     ..\..\scripts\check_binary_dependencies.ps1 -BuildArtifact "${{inputs.build_artifact}}_${{env.BUILD_CONFIGURATION}}" -VsToolsPath "${{env.msvc_tools_path}}"
+    [1m[94m|[0m [1m[96m|____________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:254:9
+    [1m[94m|[0m
+[1m[94m254 |[0m   [1m[94m...[0m - name: Test the MSI
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m255 |[0m   [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true' && ((inputs.build_artifact == 'Build-x64' && matrix.configurations == 'Debug') || (inputs.build_art[1m[94m...[0m
+[1m[94m256 |[0m   [1m[94m...[0m   working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m257 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m258 |[0m [1m[91m|[0m [1m[94m...[0m     ..\..\scripts\check_msi_installation.ps1 -BuildArtifact "${{inputs.build_artifact}}_${{env.BUILD_CONFIGURATION}}" -MsiPath "ebpf-for-windows.msi"
+    [1m[94m|[0m [1m[91m|_________________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.build_artifact may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:254:9
+    [1m[94m|[0m
+[1m[94m254 |[0m   [1m[94m...[0m - name: Test the MSI
+    [1m[94m|[0m         [1m[96m------------------[0m [1m[96mhelp: this step[0m
+[1m[94m255 |[0m   [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true' && ((inputs.build_artifact == 'Build-x64' && matrix.configurations == 'Debug') || (inputs.build_art[1m[94m...[0m
+[1m[94m256 |[0m   [1m[94m...[0m   working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m257 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m258 |[0m [1m[96m|[0m [1m[94m...[0m     ..\..\scripts\check_msi_installation.ps1 -BuildArtifact "${{inputs.build_artifact}}_${{env.BUILD_CONFIGURATION}}" -MsiPath "ebpf-for-windows.msi"
+    [1m[94m|[0m [1m[96m|_________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:267:9
+    [1m[94m|[0m
+[1m[94m267 |[0m [1m[94m...[0m - name: Download demo Debug repository
+    [1m[94m|[0m       [1m[96m------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m268 |[0m [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true' && inputs.download_demo_repository == true && (matrix.configurations == 'Debug' || matrix.configurations == 'NativeOnlyDebug')
+[1m[94m269 |[0m [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m270 |[0m [1m[94m...[0m   run: Invoke-WebRequest https://github.com/microsoft/ebpf-for-windows-demo/releases/download/v0.0.2/${{env.BUILD_PLATFORM}}-Debug-cilium-xdp.zip -OutFile x64-${{env.BUILD_CONFIGURATION}}-cilium-xdp.zip
+    [1m[94m|[0m       [1m[96m--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:267:9
+    [1m[94m|[0m
+[1m[94m267 |[0m [1m[94m...[0m - name: Download demo Debug repository
+    [1m[94m|[0m       [1m[96m------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m268 |[0m [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true' && inputs.download_demo_repository == true && (matrix.configurations == 'Debug' || matrix.configurations == 'NativeOnlyDebug')
+[1m[94m269 |[0m [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m270 |[0m [1m[94m...[0m   run: Invoke-WebRequest https://github.com/microsoft/ebpf-for-windows-demo/releases/download/v0.0.2/${{env.BUILD_PLATFORM}}-Debug-cilium-xdp.zip -OutFile x64-${{env.BUILD_CONFIGURATION}}-cilium-xdp.zip
+    [1m[94m|[0m       [1m[96m--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:272:9
+    [1m[94m|[0m
+[1m[94m272 |[0m [1m[94m...[0m - name: Download demo Release repository
+    [1m[94m|[0m       [1m[96m--------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m273 |[0m [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true' && inputs.download_demo_repository == true && (matrix.configurations == 'Release' || matrix.configurations == 'NativeOnlyRelease')
+[1m[94m274 |[0m [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m275 |[0m [1m[94m...[0m   run: Invoke-WebRequest https://github.com/microsoft/ebpf-for-windows-demo/releases/download/v0.0.2/${{env.BUILD_PLATFORM}}-Release-cilium-xdp.zip -OutFile x64-${{env.BUILD_CONFIGURATION}}-cilium-xdp.zip
+    [1m[94m|[0m       [1m[96m----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:272:9
+    [1m[94m|[0m
+[1m[94m272 |[0m [1m[94m...[0m - name: Download demo Release repository
+    [1m[94m|[0m       [1m[96m--------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m273 |[0m [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true' && inputs.download_demo_repository == true && (matrix.configurations == 'Release' || matrix.configurations == 'NativeOnlyRelease')
+[1m[94m274 |[0m [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m275 |[0m [1m[94m...[0m   run: Invoke-WebRequest https://github.com/microsoft/ebpf-for-windows-demo/releases/download/v0.0.2/${{env.BUILD_PLATFORM}}-Release-cilium-xdp.zip -OutFile x64-${{env.BUILD_CONFIGURATION}}-cilium-xdp.zip
+    [1m[94m|[0m       [1m[96m----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:278:9
+    [1m[94m|[0m
+[1m[94m278 |[0m   [1m[94m...[0m - name: Download bpf_performance repository artifacts
+    [1m[94m|[0m         [1m[96m---------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m279 |[0m   [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true'
+[1m[94m280 |[0m   [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m281 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m282 |[0m [1m[96m|[0m [1m[94m...[0m     cd ${{github.workspace}}/${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m283 |[0m [1m[96m|[0m [1m[94m...[0m     Invoke-WebRequest https://github.com/microsoft/bpf_performance/releases/download/v0.13.0/build-Release-windows-2022.zip -OutFile bpf_performance.zip
+    [1m[94m|[0m [1m[96m|____________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:278:9
+    [1m[94m|[0m
+[1m[94m278 |[0m   [1m[94m...[0m - name: Download bpf_performance repository artifacts
+    [1m[94m|[0m         [1m[96m---------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m279 |[0m   [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true'
+[1m[94m280 |[0m   [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m281 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m282 |[0m [1m[96m|[0m [1m[94m...[0m     cd ${{github.workspace}}/${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m283 |[0m [1m[96m|[0m [1m[94m...[0m     Invoke-WebRequest https://github.com/microsoft/bpf_performance/releases/download/v0.13.0/build-Release-windows-2022.zip -OutFile bpf_performance.zip
+    [1m[94m|[0m [1m[96m|____________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:299:9
+    [1m[94m|[0m
+[1m[94m299 |[0m         - name: Extract artifacts to build path
+    [1m[94m|[0m           [1m[96m-------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m300 |[0m           if: steps.skip_check.outputs.should_skip != 'true' && inputs.download_demo_repository == true && matrix.configurations != '[1m[94m...[0m
+[1m[94m301 |[0m           working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m302 |[0m [1m[96m/[0m         run: |
+[1m[94m303 |[0m [1m[96m|[0m           cd ${{github.workspace}}/${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m304 |[0m [1m[96m|[0m           tar -xf ..\..\x64-${{ matrix.configurations }}-cilium-xdp.zip
+    [1m[94m|[0m [1m[96m|_______________________________________________________________________-[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:299:9
+    [1m[94m|[0m
+[1m[94m299 |[0m         - name: Extract artifacts to build path
+    [1m[94m|[0m           [1m[96m-------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m300 |[0m           if: steps.skip_check.outputs.should_skip != 'true' && inputs.download_demo_repository == true && matrix.configurations != '[1m[94m...[0m
+[1m[94m301 |[0m           working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m302 |[0m [1m[96m/[0m         run: |
+[1m[94m303 |[0m [1m[96m|[0m           cd ${{github.workspace}}/${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m304 |[0m [1m[96m|[0m           tar -xf ..\..\x64-${{ matrix.configurations }}-cilium-xdp.zip
+    [1m[94m|[0m [1m[96m|_______________________________________________________________________-[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:299:9
+    [1m[94m|[0m
+[1m[94m299 |[0m         - name: Extract artifacts to build path
+    [1m[94m|[0m           [1m[33m-------------------------------------[0m [1m[33mthis step[0m
+[1m[94m300 |[0m           if: steps.skip_check.outputs.should_skip != 'true' && inputs.download_demo_repository == true && matrix.configurations != '[1m[94m...[0m
+[1m[94m301 |[0m           working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m302 |[0m [1m[33m/[0m         run: |
+[1m[94m303 |[0m [1m[33m|[0m           cd ${{github.workspace}}/${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m304 |[0m [1m[33m|[0m           tar -xf ..\..\x64-${{ matrix.configurations }}-cilium-xdp.zip
+    [1m[94m|[0m [1m[33m|_______________________________________________________________________-[0m [1m[33mmatrix.configurations may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:306:9
+    [1m[94m|[0m
+[1m[94m306 |[0m   [1m[94m...[0m - name: Zip Build Output
+    [1m[94m|[0m         [1m[96m----------------------[0m [1m[96mhelp: this step[0m
+[1m[94m307 |[0m   [1m[94m...[0m   if: always() && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m308 |[0m   [1m[94m...[0m   working-directory: ${{github.workspace}}
+[1m[94m309 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m310 |[0m [1m[96m|[0m [1m[94m...[0m     Compress-Archive -Path ${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}} -DestinationPath .\build-${{ matrix.configurations }}.zip
+    [1m[94m|[0m [1m[96m|_____________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:306:9
+    [1m[94m|[0m
+[1m[94m306 |[0m   [1m[94m...[0m - name: Zip Build Output
+    [1m[94m|[0m         [1m[96m----------------------[0m [1m[96mhelp: this step[0m
+[1m[94m307 |[0m   [1m[94m...[0m   if: always() && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m308 |[0m   [1m[94m...[0m   working-directory: ${{github.workspace}}
+[1m[94m309 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m310 |[0m [1m[96m|[0m [1m[94m...[0m     Compress-Archive -Path ${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}} -DestinationPath .\build-${{ matrix.configurations }}.zip
+    [1m[94m|[0m [1m[96m|_____________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:306:9
+    [1m[94m|[0m
+[1m[94m306 |[0m   [1m[94m...[0m - name: Zip Build Output
+    [1m[94m|[0m         [1m[33m----------------------[0m [1m[33mthis step[0m
+[1m[94m307 |[0m   [1m[94m...[0m   if: always() && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m308 |[0m   [1m[94m...[0m   working-directory: ${{github.workspace}}
+[1m[94m309 |[0m [1m[33m/[0m [1m[94m...[0m   run: |
+[1m[94m310 |[0m [1m[33m|[0m [1m[94m...[0m     Compress-Archive -Path ${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}} -DestinationPath .\build-${{ matrix.configurations }}.zip
+    [1m[94m|[0m [1m[33m|_____________________________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.configurations may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:327:9
+    [1m[94m|[0m
+[1m[94m327 |[0m [1m[94m...[0m - name: Build the NuGet package
+    [1m[94m|[0m       [1m[96m-----------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m328 |[0m [1m[94m...[0m   if: inputs.build_nuget == true && (matrix.configurations == 'Release' || matrix.configurations == 'NativeOnlyRelease') && steps.skip_check.outputs.should_skip != 'true'
+[1m[94m329 |[0m [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m330 |[0m [1m[94m...[0m   run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} /p:HostPlatform=${{env.BUILD_PLATFORM}} ${{env.SOLUTION_FILE_PATH}} ${{env.BUILD_OPTIONS}} /t:tools\nuget /bl:out.binlog
+    [1m[94m|[0m       [1m[96m--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:327:9
+    [1m[94m|[0m
+[1m[94m327 |[0m [1m[94m...[0m - name: Build the NuGet package
+    [1m[94m|[0m       [1m[96m-----------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m328 |[0m [1m[94m...[0m   if: inputs.build_nuget == true && (matrix.configurations == 'Release' || matrix.configurations == 'NativeOnlyRelease') && steps.skip_check.outputs.should_skip != 'true'
+[1m[94m329 |[0m [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m330 |[0m [1m[94m...[0m   run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} /p:HostPlatform=${{env.BUILD_PLATFORM}} ${{env.SOLUTION_FILE_PATH}} ${{env.BUILD_OPTIONS}} /t:tools\nuget /bl:out.binlog
+    [1m[94m|[0m       [1m[96m--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:327:9
+    [1m[94m|[0m
+[1m[94m327 |[0m [1m[94m...[0m - name: Build the NuGet package
+    [1m[94m|[0m       [1m[96m-----------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m328 |[0m [1m[94m...[0m   if: inputs.build_nuget == true && (matrix.configurations == 'Release' || matrix.configurations == 'NativeOnlyRelease') && steps.skip_check.outputs.should_skip != 'true'
+[1m[94m329 |[0m [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m330 |[0m [1m[94m...[0m   run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} /p:HostPlatform=${{env.BUILD_PLATFORM}} ${{env.SOLUTION_FILE_PATH}} ${{env.BUILD_OPTIONS}} /t:tools\nuget /bl:out.binlog
+    [1m[94m|[0m       [1m[96m--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:327:9
+    [1m[94m|[0m
+[1m[94m327 |[0m [1m[94m...[0m - name: Build the NuGet package
+    [1m[94m|[0m       [1m[96m-----------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m328 |[0m [1m[94m...[0m   if: inputs.build_nuget == true && (matrix.configurations == 'Release' || matrix.configurations == 'NativeOnlyRelease') && steps.skip_check.outputs.should_skip != 'true'
+[1m[94m329 |[0m [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m330 |[0m [1m[94m...[0m   run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} /p:HostPlatform=${{env.BUILD_PLATFORM}} ${{env.SOLUTION_FILE_PATH}} ${{env.BUILD_OPTIONS}} /t:tools\nuget /bl:out.binlog
+    [1m[94m|[0m       [1m[96m--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.SOLUTION_FILE_PATH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:327:9
+    [1m[94m|[0m
+[1m[94m327 |[0m [1m[94m...[0m - name: Build the NuGet package
+    [1m[94m|[0m       [1m[96m-----------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m328 |[0m [1m[94m...[0m   if: inputs.build_nuget == true && (matrix.configurations == 'Release' || matrix.configurations == 'NativeOnlyRelease') && steps.skip_check.outputs.should_skip != 'true'
+[1m[94m329 |[0m [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m330 |[0m [1m[94m...[0m   run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} /p:HostPlatform=${{env.BUILD_PLATFORM}} ${{env.SOLUTION_FILE_PATH}} ${{env.BUILD_OPTIONS}} /t:tools\nuget /bl:out.binlog
+    [1m[94m|[0m       [1m[96m--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.BUILD_OPTIONS may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:339:9
+    [1m[94m|[0m
+[1m[94m339 |[0m [1m[94m...[0m - name: Build the NuGet Redist package
+    [1m[94m|[0m       [1m[96m------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m340 |[0m [1m[94m...[0m   if: inputs.build_nuget == true && (matrix.configurations == 'Release' || matrix.configurations == 'NativeOnlyRelease') && steps.skip_check.outputs.should_skip != 'true'
+[1m[94m341 |[0m [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m342 |[0m [1m[94m...[0m   run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} /p:HostPlatform=${{env.BUILD_PLATFORM}} ${{env.SOLUTION_FILE_PATH}} ${{env.BUILD_OPTIONS}} /t:tools\redist-package /bl:out.binlog
+    [1m[94m|[0m       [1m[96m-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:339:9
+    [1m[94m|[0m
+[1m[94m339 |[0m [1m[94m...[0m - name: Build the NuGet Redist package
+    [1m[94m|[0m       [1m[96m------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m340 |[0m [1m[94m...[0m   if: inputs.build_nuget == true && (matrix.configurations == 'Release' || matrix.configurations == 'NativeOnlyRelease') && steps.skip_check.outputs.should_skip != 'true'
+[1m[94m341 |[0m [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m342 |[0m [1m[94m...[0m   run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} /p:HostPlatform=${{env.BUILD_PLATFORM}} ${{env.SOLUTION_FILE_PATH}} ${{env.BUILD_OPTIONS}} /t:tools\redist-package /bl:out.binlog
+    [1m[94m|[0m       [1m[96m-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:339:9
+    [1m[94m|[0m
+[1m[94m339 |[0m [1m[94m...[0m - name: Build the NuGet Redist package
+    [1m[94m|[0m       [1m[96m------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m340 |[0m [1m[94m...[0m   if: inputs.build_nuget == true && (matrix.configurations == 'Release' || matrix.configurations == 'NativeOnlyRelease') && steps.skip_check.outputs.should_skip != 'true'
+[1m[94m341 |[0m [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m342 |[0m [1m[94m...[0m   run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} /p:HostPlatform=${{env.BUILD_PLATFORM}} ${{env.SOLUTION_FILE_PATH}} ${{env.BUILD_OPTIONS}} /t:tools\redist-package /bl:out.binlog
+    [1m[94m|[0m       [1m[96m-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:339:9
+    [1m[94m|[0m
+[1m[94m339 |[0m [1m[94m...[0m - name: Build the NuGet Redist package
+    [1m[94m|[0m       [1m[96m------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m340 |[0m [1m[94m...[0m   if: inputs.build_nuget == true && (matrix.configurations == 'Release' || matrix.configurations == 'NativeOnlyRelease') && steps.skip_check.outputs.should_skip != 'true'
+[1m[94m341 |[0m [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m342 |[0m [1m[94m...[0m   run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} /p:HostPlatform=${{env.BUILD_PLATFORM}} ${{env.SOLUTION_FILE_PATH}} ${{env.BUILD_OPTIONS}} /t:tools\redist-package /bl:out.binlog
+    [1m[94m|[0m       [1m[96m-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.SOLUTION_FILE_PATH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:339:9
+    [1m[94m|[0m
+[1m[94m339 |[0m [1m[94m...[0m - name: Build the NuGet Redist package
+    [1m[94m|[0m       [1m[96m------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m340 |[0m [1m[94m...[0m   if: inputs.build_nuget == true && (matrix.configurations == 'Release' || matrix.configurations == 'NativeOnlyRelease') && steps.skip_check.outputs.should_skip != 'true'
+[1m[94m341 |[0m [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m342 |[0m [1m[94m...[0m   run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{env.BUILD_PLATFORM}} /p:HostPlatform=${{env.BUILD_PLATFORM}} ${{env.SOLUTION_FILE_PATH}} ${{env.BUILD_OPTIONS}} /t:tools\redist-package /bl:out.binlog
+    [1m[94m|[0m       [1m[96m-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.BUILD_OPTIONS may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:344:9
+    [1m[94m|[0m
+[1m[94m344 |[0m   [1m[94m...[0m - name: Valdiate NuGet Redist package
+    [1m[94m|[0m         [1m[96m-----------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m345 |[0m   [1m[94m...[0m   if: inputs.build_nuget == true && (matrix.configurations == 'Release' || matrix.configurations == 'NativeOnlyRelease') && steps.s[1m[94m...[0m
+[1m[94m346 |[0m   [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m347 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m348 |[0m [1m[96m|[0m [1m[94m...[0m      $nugetFile = Get-ChildItem -Path .\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}} -Filter "*eBPF-for-Windows-Redist*.nup[1m[94m...[0m
+[1m[94m349 |[0m [1m[96m|[0m [1m[94m...[0m      .\scripts\validate_redist_nuget_architecture.ps1 -NugetPackagePath $nugetFile -ExpectedArchitecture ${{env.BUILD_PLATFORM}}
+    [1m[94m|[0m [1m[96m|____________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:344:9
+    [1m[94m|[0m
+[1m[94m344 |[0m   [1m[94m...[0m - name: Valdiate NuGet Redist package
+    [1m[94m|[0m         [1m[96m-----------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m345 |[0m   [1m[94m...[0m   if: inputs.build_nuget == true && (matrix.configurations == 'Release' || matrix.configurations == 'NativeOnlyRelease') && steps.s[1m[94m...[0m
+[1m[94m346 |[0m   [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m347 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m348 |[0m [1m[96m|[0m [1m[94m...[0m      $nugetFile = Get-ChildItem -Path .\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}} -Filter "*eBPF-for-Windows-Redist*.nup[1m[94m...[0m
+[1m[94m349 |[0m [1m[96m|[0m [1m[94m...[0m      .\scripts\validate_redist_nuget_architecture.ps1 -NugetPackagePath $nugetFile -ExpectedArchitecture ${{env.BUILD_PLATFORM}}
+    [1m[94m|[0m [1m[96m|____________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml:344:9
+    [1m[94m|[0m
+[1m[94m344 |[0m   [1m[94m...[0m - name: Valdiate NuGet Redist package
+    [1m[94m|[0m         [1m[96m-----------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m345 |[0m   [1m[94m...[0m   if: inputs.build_nuget == true && (matrix.configurations == 'Release' || matrix.configurations == 'NativeOnlyRelease') && steps.s[1m[94m...[0m
+[1m[94m346 |[0m   [1m[94m...[0m   working-directory: ${{env.GITHUB_WORKSPACE}}
+[1m[94m347 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m348 |[0m [1m[96m|[0m [1m[94m...[0m      $nugetFile = Get-ChildItem -Path .\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}} -Filter "*eBPF-for-Windows-Redist*.nup[1m[94m...[0m
+[1m[94m349 |[0m [1m[96m|[0m [1m[94m...[0m      .\scripts\validate_redist_nuget_architecture.ps1 -NugetPackagePath $nugetFile -ExpectedArchitecture ${{env.BUILD_PLATFORM}}
+    [1m[94m|[0m [1m[96m|____________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m86[39m findings ([1m[93m46[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m35[39m low, [33m3[39m medium, [31m2[39m high

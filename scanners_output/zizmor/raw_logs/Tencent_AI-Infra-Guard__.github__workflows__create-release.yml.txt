@@ -1,0 +1,119 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_AI-Infra-Guard__.github__workflows__create-release.yml:18:9
+   [1m[94m|[0m
+[1m[94m18 |[0m         - name: 🛒 Checkout repository
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m19 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m20 |[0m [1m[33m|[0m         with:
+[1m[94m21 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_AI-Infra-Guard__.github__workflows__create-release.yml:50:9
+   [1m[94m|[0m
+[1m[94m50 |[0m         - name: 📦 Prepare release package
+   [1m[94m|[0m           [1m[94m--------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m51 |[0m [1m[94m/[0m         run: |
+[1m[94m52 |[0m [1m[94m|[0m           # Create release directory
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m68 |[0m [1m[94m|[0m           # Replace latest tag in docker-compose.images.yml with current version
+[1m[94m69 |[0m [1m[94m|[0m           sed -i "s/:latest/:${VERSION}/g" release-package/docker-compose.yml
+   [1m[94m|[0m [1m[94m|_____________________________________________________________________________-[0m [1m[94minfo: steps.tag-message.outputs.tag_name may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_AI-Infra-Guard__.github__workflows__create-release.yml:72:9
+   [1m[94m|[0m
+[1m[94m72 |[0m         - name: 📦 Create release archive
+   [1m[94m|[0m           [1m[94m-------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m73 |[0m [1m[94m/[0m         run: |
+[1m[94m74 |[0m [1m[94m|[0m           # Create compressed package
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m81 |[0m [1m[94m|[0m           zip -r ../AI-Infra-Guard-${{ steps.tag-message.outputs.tag_name }}.zip .
+[1m[94m82 |[0m [1m[94m|[0m           cd ..
+   [1m[94m|[0m [1m[94m|_______________-[0m [1m[94minfo: steps.tag-message.outputs.tag_name may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_AI-Infra-Guard__.github__workflows__create-release.yml:72:9
+   [1m[94m|[0m
+[1m[94m72 |[0m         - name: 📦 Create release archive
+   [1m[94m|[0m           [1m[94m-------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m73 |[0m [1m[94m/[0m         run: |
+[1m[94m74 |[0m [1m[94m|[0m           # Create compressed package
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m81 |[0m [1m[94m|[0m           zip -r ../AI-Infra-Guard-${{ steps.tag-message.outputs.tag_name }}.zip .
+[1m[94m82 |[0m [1m[94m|[0m           cd ..
+   [1m[94m|[0m [1m[94m|_______________-[0m [1m[94minfo: steps.tag-message.outputs.tag_name may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_AI-Infra-Guard__.github__workflows__create-release.yml:96:9
+    [1m[94m|[0m
+[1m[94m 96 |[0m   [1m[94m...[0m - name: 📊 Release Summary
+    [1m[94m|[0m         [1m[94m------------------------[0m [1m[94minfo: this step[0m
+[1m[94m 97 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m 98 |[0m [1m[94m|[0m [1m[94m...[0m     echo "🎉 Release created successfully!"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m102 |[0m [1m[94m|[0m [1m[94m...[0m     echo "   - AI-Infra-Guard-${{ steps.tag-message.outputs.tag_name }}.zip"
+[1m[94m103 |[0m [1m[94m|[0m [1m[94m...[0m     echo "🔗 Release URL: ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ steps.tag-message.outputs.tag_name }[1m[94m...[0m
+    [1m[94m|[0m [1m[94m|________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.tag-message.outputs.tag_name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_AI-Infra-Guard__.github__workflows__create-release.yml:96:9
+    [1m[94m|[0m
+[1m[94m 96 |[0m   [1m[94m...[0m - name: 📊 Release Summary
+    [1m[94m|[0m         [1m[94m------------------------[0m [1m[94minfo: this step[0m
+[1m[94m 97 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m 98 |[0m [1m[94m|[0m [1m[94m...[0m     echo "🎉 Release created successfully!"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m102 |[0m [1m[94m|[0m [1m[94m...[0m     echo "   - AI-Infra-Guard-${{ steps.tag-message.outputs.tag_name }}.zip"
+[1m[94m103 |[0m [1m[94m|[0m [1m[94m...[0m     echo "🔗 Release URL: ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ steps.tag-message.outputs.tag_name }[1m[94m...[0m
+    [1m[94m|[0m [1m[94m|________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.tag-message.outputs.tag_name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_AI-Infra-Guard__.github__workflows__create-release.yml:96:9
+    [1m[94m|[0m
+[1m[94m 96 |[0m   [1m[94m...[0m - name: 📊 Release Summary
+    [1m[94m|[0m         [1m[94m------------------------[0m [1m[94minfo: this step[0m
+[1m[94m 97 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m 98 |[0m [1m[94m|[0m [1m[94m...[0m     echo "🎉 Release created successfully!"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m102 |[0m [1m[94m|[0m [1m[94m...[0m     echo "   - AI-Infra-Guard-${{ steps.tag-message.outputs.tag_name }}.zip"
+[1m[94m103 |[0m [1m[94m|[0m [1m[94m...[0m     echo "🔗 Release URL: ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ steps.tag-message.outputs.tag_name }[1m[94m...[0m
+    [1m[94m|[0m [1m[94m|________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.tag-message.outputs.tag_name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_AI-Infra-Guard__.github__workflows__create-release.yml:96:9
+    [1m[94m|[0m
+[1m[94m 96 |[0m   [1m[94m...[0m - name: 📊 Release Summary
+    [1m[94m|[0m         [1m[94m------------------------[0m [1m[94minfo: this step[0m
+[1m[94m 97 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m 98 |[0m [1m[94m|[0m [1m[94m...[0m     echo "🎉 Release created successfully!"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m102 |[0m [1m[94m|[0m [1m[94m...[0m     echo "   - AI-Infra-Guard-${{ steps.tag-message.outputs.tag_name }}.zip"
+[1m[94m103 |[0m [1m[94m|[0m [1m[94m...[0m     echo "🔗 Release URL: ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ steps.tag-message.outputs.tag_name }[1m[94m...[0m
+    [1m[94m|[0m [1m[94m|________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.tag-message.outputs.tag_name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_AI-Infra-Guard__.github__workflows__create-release.yml:85:9
+   [1m[94m|[0m
+[1m[94m85 |[0m         uses: softprops/action-gh-release@v1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m20[39m findings ([1m[93m11[39m suppressed[0m): 0 unknown, [35m7[39m informational, [36m0[39m low, [33m1[39m medium, [31m1[39m high

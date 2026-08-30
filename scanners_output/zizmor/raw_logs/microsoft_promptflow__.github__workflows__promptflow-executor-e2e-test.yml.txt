@@ -1,0 +1,128 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-executor-e2e-test.yml:33:7
+   [1m[94m|[0m
+[1m[94m33 |[0m       - name: checkout
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m34 |[0m [1m[33m|[0m       uses: actions/checkout@v4
+[1m[94m35 |[0m [1m[33m|[0m       with:
+[1m[94m36 |[0m [1m[33m|[0m         ref: ${{ github.event.pull_request.head.sha || github.ref }}
+[1m[94m37 |[0m [1m[33m|[0m         fetch-depth: 0
+   [1m[94m|[0m [1m[33m|______________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-executor-e2e-test.yml:75:7
+   [1m[94m|[0m
+[1m[94m75 |[0m       - name: checkout
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m76 |[0m [1m[33m|[0m       uses: actions/checkout@v4
+[1m[94m77 |[0m [1m[33m|[0m       with:
+[1m[94m78 |[0m [1m[33m|[0m         ref: ${{ github.event.pull_request.head.sha || github.ref }}
+[1m[94m79 |[0m [1m[33m|[0m         fetch-depth: 0
+   [1m[94m|[0m [1m[33m|______________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-executor-e2e-test.yml:158:7
+    [1m[94m|[0m
+[1m[94m158 |[0m       - name: checkout
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m159 |[0m [1m[33m|[0m       uses: actions/checkout@v4
+[1m[94m160 |[0m [1m[33m|[0m       with:
+[1m[94m161 |[0m [1m[33m|[0m         ref: ${{ github.event.pull_request.head.sha || github.ref }}
+[1m[94m162 |[0m [1m[33m|[0m         fetch-depth: 0
+    [1m[94m|[0m [1m[33m|______________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-executor-e2e-test.yml:14:3
+   [1m[94m|[0m
+[1m[94m14 |[0m   id-token: write
+   [1m[94m|[0m   [1m[91m^^^^^^^^^^^^^^^[0m [1m[91mid-token: write is overly broad at the workflow level[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-executor-e2e-test.yml:122:7
+    [1m[94m|[0m
+[1m[94m122 |[0m       - name: Run Coverage Test
+    [1m[94m|[0m         [1m[96m-----------------------[0m [1m[96mhelp: this step[0m
+[1m[94m123 |[0m         shell: pwsh
+[1m[94m124 |[0m         working-directory: ${{ github.workspace }}
+[1m[94m125 |[0m [1m[96m/[0m       run: |
+[1m[94m126 |[0m [1m[96m|[0m         gci env:* | sort-object name
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m137 |[0m [1m[96m|[0m           --coverage-config ${{ env.testWorkingDirectory }}/tests/executor/.coveragerc `
+[1m[94m138 |[0m [1m[96m|[0m           --disable-cov-branch
+    [1m[94m|[0m [1m[96m|______________________________-[0m [1m[96mhelp: env.testWorkingDirectory may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-executor-e2e-test.yml:122:7
+    [1m[94m|[0m
+[1m[94m122 |[0m       - name: Run Coverage Test
+    [1m[94m|[0m         [1m[96m-----------------------[0m [1m[96mhelp: this step[0m
+[1m[94m123 |[0m         shell: pwsh
+[1m[94m124 |[0m         working-directory: ${{ github.workspace }}
+[1m[94m125 |[0m [1m[96m/[0m       run: |
+[1m[94m126 |[0m [1m[96m|[0m         gci env:* | sort-object name
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m137 |[0m [1m[96m|[0m           --coverage-config ${{ env.testWorkingDirectory }}/tests/executor/.coveragerc `
+[1m[94m138 |[0m [1m[96m|[0m           --disable-cov-branch
+    [1m[94m|[0m [1m[96m|______________________________-[0m [1m[96mhelp: env.testWorkingDirectory may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-executor-e2e-test.yml:122:7
+    [1m[94m|[0m
+[1m[94m122 |[0m       - name: Run Coverage Test
+    [1m[94m|[0m         [1m[94m-----------------------[0m [1m[94minfo: this step[0m
+[1m[94m123 |[0m         shell: pwsh
+[1m[94m124 |[0m         working-directory: ${{ github.workspace }}
+[1m[94m125 |[0m [1m[94m/[0m       run: |
+[1m[94m126 |[0m [1m[94m|[0m         gci env:* | sort-object name
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m137 |[0m [1m[94m|[0m           --coverage-config ${{ env.testWorkingDirectory }}/tests/executor/.coveragerc `
+[1m[94m138 |[0m [1m[94m|[0m           --disable-cov-branch
+    [1m[94m|[0m [1m[94m|______________________________-[0m [1m[94minfo: steps.cpu-cores.outputs.count may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-executor-e2e-test.yml:122:7
+    [1m[94m|[0m
+[1m[94m122 |[0m       - name: Run Coverage Test
+    [1m[94m|[0m         [1m[96m-----------------------[0m [1m[96mhelp: this step[0m
+[1m[94m123 |[0m         shell: pwsh
+[1m[94m124 |[0m         working-directory: ${{ github.workspace }}
+[1m[94m125 |[0m [1m[96m/[0m       run: |
+[1m[94m126 |[0m [1m[96m|[0m         gci env:* | sort-object name
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m137 |[0m [1m[96m|[0m           --coverage-config ${{ env.testWorkingDirectory }}/tests/executor/.coveragerc `
+[1m[94m138 |[0m [1m[96m|[0m           --disable-cov-branch
+    [1m[94m|[0m [1m[96m|______________________________-[0m [1m[96mhelp: env.testWorkingDirectory may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-executor-e2e-test.yml:110:7
+    [1m[94m|[0m
+[1m[94m110 |[0m       uses: azure/login@v1
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-executor-e2e-test.yml:120:7
+    [1m[94m|[0m
+[1m[94m120 |[0m       uses: SimenB/github-actions-cpu-cores@v1
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m20[39m findings ([1m[93m10[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m3[39m low, [33m3[39m medium, [31m3[39m high

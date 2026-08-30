@@ -1,0 +1,49 @@
+{
+  "workflow": "google_highway__.github__workflows__multiarch.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "artipacked": 3,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "google_highway__.github__workflows__multiarch.yml",
+      "line": 26,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "google_highway__.github__workflows__multiarch.yml",
+      "line": 75,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "google_highway__.github__workflows__multiarch.yml",
+      "line": 109,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "google_highway__.github__workflows__multiarch.yml",
+      "line": 29,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "workflow": "microsoft_semantic-kernel__.github__workflows__python-test-coverage-report.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "artipacked": 1,
+      "dangerous-triggers": 1,
+      "unpinned-uses": 1,
+      "github-env": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_semantic-kernel__.github__workflows__python-test-coverage-report.yml",
+      "line": 22,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "dangerous-triggers",
+      "level": "error",
+      "message": "use of fundamentally insecure workflow trigger",
+      "workflow": "microsoft_semantic-kernel__.github__workflows__python-test-coverage-report.yml",
+      "line": 3,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "microsoft_semantic-kernel__.github__workflows__python-test-coverage-report.yml",
+      "line": 42,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "github-env",
+      "level": "error",
+      "message": "dangerous use of environment file",
+      "workflow": "microsoft_semantic-kernel__.github__workflows__python-test-coverage-report.yml",
+      "line": 36,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    }
+  ]
+}

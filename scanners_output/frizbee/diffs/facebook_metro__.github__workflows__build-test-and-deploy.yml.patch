@@ -1,0 +1,31 @@
+diff --git a/.github/workflows/facebook_metro__.github__workflows__build-test-and-deploy.yml b/.github/workflows/facebook_metro__.github__workflows__build-test-and-deploy.yml
+index a978ab8..9497a0b 100644
+--- a/.github/workflows/facebook_metro__.github__workflows__build-test-and-deploy.yml
++++ b/.github/workflows/facebook_metro__.github__workflows__build-test-and-deploy.yml
+@@ -28,7 +28,7 @@ jobs:
+     runs-on: ubuntu-latest
+     name: "Type check, lint, smoke test"
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - uses: ./.github/actions/yarn-install
+       - run: yarn typecheck
+       - run: yarn typecheck-ts
+@@ -39,7 +39,7 @@ jobs:
+     runs-on: ubuntu-latest
+     name: "Tests with coverage"
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - uses: ./.github/actions/yarn-install
+       - run: yarn test-coverage
+       - run: "./.github/scripts/install_codecov.sh"
+@@ -72,7 +72,7 @@ jobs:
+       contents: read
+       id-token: write  # Required for npm provenance / OIDC trusted publishing
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - uses: ./.github/actions/yarn-install
+       - run: "./.github/scripts/publish.sh"
+         env:

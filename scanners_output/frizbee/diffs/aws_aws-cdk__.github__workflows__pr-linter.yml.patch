@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/aws_aws-cdk__.github__workflows__pr-linter.yml b/.github/workflows/aws_aws-cdk__.github__workflows__pr-linter.yml
+index 5662c6b..064d741 100644
+--- a/.github/workflows/aws_aws-cdk__.github__workflows__pr-linter.yml
++++ b/.github/workflows/aws_aws-cdk__.github__workflows__pr-linter.yml
+@@ -33,7 +33,7 @@ jobs:
+     steps:
+       - name: 'Download workflow_run artifact'
+         if: github.event_name == 'workflow_run'
+-        uses: dawidd6/action-download-artifact@v15
++        uses: dawidd6/action-download-artifact@fe9d59ce33ce92db8a6ac90b2c8be6b6d90417c8 # v15
+         continue-on-error: true
+         with:
+           run_id: ${{ github.event.workflow_run.id }}
+@@ -68,7 +68,7 @@ jobs:
+     needs: download-if-workflow-run
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       - name: Install & Build prlint
+         run: yarn install --frozen-lockfile && cd tools/@aws-cdk/prlint && yarn build+test

@@ -1,0 +1,23 @@
+diff --git a/.github/workflows/facebook_lexical__.github__workflows__call-npm-publish.yml b/.github/workflows/facebook_lexical__.github__workflows__call-npm-publish.yml
+index 9dd3d96..0489099 100644
+--- a/.github/workflows/facebook_lexical__.github__workflows__call-npm-publish.yml
++++ b/.github/workflows/facebook_lexical__.github__workflows__call-npm-publish.yml
+@@ -25,15 +25,15 @@ jobs:
+       DRY_RUN_ARG: ${{ inputs.dry-run && '--dry-run' || '' }}
+       IGNORE_PREVIOUSLY_PUBLISHED_ARG: ${{ inputs.ignore-previously-published && '--ignore-previously-published' || '' }}
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           ref: ${{ inputs.ref }}
+       # Setup .npmrc file to publish to npm
+-      - uses: actions/setup-node@v4
++      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+         with:
+           node-version: 22.x
+           registry-url: 'https://registry.npmjs.org'
+-      - uses: pnpm/action-setup@v4
++      - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
+         with:
+           version: 9
+       - run: pnpm install

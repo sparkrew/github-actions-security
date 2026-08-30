@@ -1,0 +1,19 @@
+diff --git a/.github/workflows/aws_aws-cdk__.github__workflows__analytics-metadata-updater.yml b/.github/workflows/aws_aws-cdk__.github__workflows__analytics-metadata-updater.yml
+index dd81bb8..79d7eb9 100644
+--- a/.github/workflows/aws_aws-cdk__.github__workflows__analytics-metadata-updater.yml
++++ b/.github/workflows/aws_aws-cdk__.github__workflows__analytics-metadata-updater.yml
+@@ -13,12 +13,12 @@ jobs:
+       contents: write
+       pull-requests: write
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           ref: ${{ github.event.pull_request.head.sha }}
+ 
+       - name: Set up Node
+-        uses: actions/setup-node@v6
++        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+         with:
+           node-version: "*"
+         env:

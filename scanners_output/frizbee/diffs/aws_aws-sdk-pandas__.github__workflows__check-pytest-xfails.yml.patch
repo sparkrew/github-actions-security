@@ -1,0 +1,14 @@
+diff --git a/.github/workflows/aws_aws-sdk-pandas__.github__workflows__check-pytest-xfails.yml b/.github/workflows/aws_aws-sdk-pandas__.github__workflows__check-pytest-xfails.yml
+index 3551dc2..c19d18d 100644
+--- a/.github/workflows/aws_aws-sdk-pandas__.github__workflows__check-pytest-xfails.yml
++++ b/.github/workflows/aws_aws-sdk-pandas__.github__workflows__check-pytest-xfails.yml
+@@ -15,6 +15,6 @@ jobs:
+   Check:
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: check xfails
+-        run: if grep -ro "@pytest.mark.xfail()" tests/; then echo "xfails must catch a specific error, e.g. '@pytest.mark.xfail(raises=NotImplementedError)'" && exit 1; else echo "success" && exit 0; fi
+\ No newline at end of file
++        run: if grep -ro "@pytest.mark.xfail()" tests/; then echo "xfails must catch a specific error, e.g. '@pytest.mark.xfail(raises=NotImplementedError)'" && exit 1; else echo "success" && exit 0; fi

@@ -1,0 +1,47 @@
+name: dockerized-test
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ '*' ]
+  workflow_dispatch:
+
+
+jobs:
+  dockerized-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+
+    - uses: dtolnay/rust-toolchain@631a55b12751854ce901bb631d5902ceb48146f7 # dtolnay/rust-toolchain@stable
+    - uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # Swatinem/rust-cache@v2
+    - name: Load environment variables
+      run: |
+        if [ -f .env ]; then
+          set -a
+          source .env
+          set +a
+          echo "HANDLERS_TO_BUILD=${HANDLERS_TO_BUILD}" >> $GITHUB_ENV
+          echo "OUTPUT_DIR=${OUTPUT_DIR}" >> $GITHUB_ENV
+        fi
+    
+    - name: Build Lambda artifacts for testing
+      run: |
+        mkdir -p test/dockerized/tasks
+        OUTPUT_DIR="$(pwd)/test/dockerized/tasks" make build-examples
+        ls -la test/dockerized/tasks/
+    
+    - name: Build base test image with RIE and custom entrypoint
+      run: |
+        docker build . -t local/test-base -f Dockerfile.test
+
+    - name: Run tests
+      uses: aws/containerized-test-runner-for-aws-lambda@1caf56a008892641e7e079b8d44848705d8b583d # aws/containerized-test-runner-for-aws-lambda@main
+      with:
+        suiteFileArray: '["./test/dockerized/suites/*.json"]'
+        dockerImageName: 'local/test-base'
+        taskFolder: './test/dockerized/tasks'

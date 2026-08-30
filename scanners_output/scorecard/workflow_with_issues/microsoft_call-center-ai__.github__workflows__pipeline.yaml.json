@@ -1,0 +1,101 @@
+{
+  "workflow": "microsoft_call-center-ai__.github__workflows__pipeline.yaml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        34,
+        52,
+        60,
+        76,
+        86,
+        107,
+        110,
+        124,
+        130,
+        148,
+        168,
+        177,
+        182,
+        187,
+        195,
+        212,
+        231,
+        253,
+        257,
+        290
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_call-center-ai__.github__workflows__pipeline.yaml:253",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_call-center-ai__.github__workflows__pipeline.yaml:257",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_call-center-ai__.github__workflows__pipeline.yaml:290",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_call-center-ai__.github__workflows__pipeline.yaml:34",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_call-center-ai__.github__workflows__pipeline.yaml:52",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_call-center-ai__.github__workflows__pipeline.yaml:60",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_call-center-ai__.github__workflows__pipeline.yaml:76",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_call-center-ai__.github__workflows__pipeline.yaml:86",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_call-center-ai__.github__workflows__pipeline.yaml:107",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_call-center-ai__.github__workflows__pipeline.yaml:110",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_call-center-ai__.github__workflows__pipeline.yaml:124",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_call-center-ai__.github__workflows__pipeline.yaml:130",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_call-center-ai__.github__workflows__pipeline.yaml:148",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_call-center-ai__.github__workflows__pipeline.yaml:168",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_call-center-ai__.github__workflows__pipeline.yaml:177",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_call-center-ai__.github__workflows__pipeline.yaml:182",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_call-center-ai__.github__workflows__pipeline.yaml:187",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_call-center-ai__.github__workflows__pipeline.yaml:195",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_call-center-ai__.github__workflows__pipeline.yaml:212",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_call-center-ai__.github__workflows__pipeline.yaml:231",
+        "Info:   0 out of  13 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of   7 third-party GitHubAction dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 0,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1,
+        245,
+        281
+      ],
+      "raw_details": [
+        "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/microsoft_call-center-ai__.github__workflows__pipeline.yaml:245",
+        "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/microsoft_call-center-ai__.github__workflows__pipeline.yaml:281",
+        "Warn: no topLevel permission defined: .github/workflows/microsoft_call-center-ai__.github__workflows__pipeline.yaml:1"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

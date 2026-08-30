@@ -1,0 +1,76 @@
+name: kernelCTF auto releaser
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 12 * * *' # every day at 12:00 UTC
+permissions: {}
+defaults:
+  run:
+    shell: bash
+    working-directory: kernelctf
+jobs:
+  get_new_builds:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Test GCS SA key to fail quick before trying to make a build
+        uses: google-github-actions/auth@c200f3691d83b41bf9bbd8638997a462592937ed # google-github-actions/auth@v2 | release,v2.1.13
+        with:
+          credentials_json: '${{ secrets.KERNELCTF_GCS_SA_KEY }}'
+          create_credentials_file: false
+      
+      - name: Checkout repo
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      
+      - name: Setup Go
+        uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # actions/setup-go@v5 | releases,v5.6.0
+        with:
+          go-version: 'stable'
+      
+      - name: Install prerequisites
+        run: sudo apt-get install -yq --no-install-recommends jq python3-lxml
+      
+      - name: Build fetch_artifact tool
+        run: |
+          git clone https://android.googlesource.com/tools/fetch_artifact
+          cd fetch_artifact
+          go build -o fetch_artifact .
+          sudo mv fetch_artifact /usr/local/bin/
+          cd ..
+          rm -rf fetch_artifact
+            
+      - name: Check latest Linux kernel versions
+        id: check_linux
+        run: python3 get_latest_lts_cos_versions.py
+
+      - name: Check for new Android builds
+        id: check_android
+        run: python3 get_latest_android_versions.py
+            
+      - name: Merge all releases
+        id: merge
+        run: |
+          LINUX_RELEASES='${{ steps.check_linux.outputs.releases }}'
+          ANDROID_RELEASES='${{ steps.check_android.outputs.releases }}'
+          
+          # Merge both release arrays
+          MERGED=$(jq -sc 'add' <(echo "$LINUX_RELEASES") <(echo "$ANDROID_RELEASES"))
+          
+          echo "releases=$MERGED" >> $GITHUB_OUTPUT
+          echo "Merged releases: $MERGED"
+    
+    outputs:
+      releases: ${{ steps.merge.outputs.releases }}
+  
+  build_release:
+    needs: get_new_builds
+    if: fromJSON(needs.get_new_builds.outputs.releases)[0] != null
+    strategy:
+      matrix:
+        release: ${{ fromJSON(needs.get_new_builds.outputs.releases) }}
+      fail-fast: false # do not cancel other builds
+    uses: ./.github/workflows/kernelctf-release-build.yaml
+    secrets: inherit
+    with:
+      releaseId: ${{ matrix.release.releaseId }}
+      branch: ${{ matrix.release.branch }}

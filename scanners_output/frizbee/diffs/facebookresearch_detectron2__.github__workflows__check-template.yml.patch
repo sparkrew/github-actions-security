@@ -1,0 +1,15 @@
+diff --git a/.github/workflows/facebookresearch_detectron2__.github__workflows__check-template.yml b/.github/workflows/facebookresearch_detectron2__.github__workflows__check-template.yml
+index 3caed9d..49876a7 100644
+--- a/.github/workflows/facebookresearch_detectron2__.github__workflows__check-template.yml
++++ b/.github/workflows/facebookresearch_detectron2__.github__workflows__check-template.yml
+@@ -10,8 +10,8 @@ jobs:
+     # comment this out when testing with https://github.com/nektos/act
+     if: ${{ github.repository_owner == 'facebookresearch' }}
+     steps:
+-      - uses: actions/checkout@v2
+-      - uses: actions/github-script@v3
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
++      - uses: actions/github-script@ffc2c79a5b2490bd33e0a41c1de74b877714d736 # v3
+         with:
+           github-token: ${{secrets.GITHUB_TOKEN}}
+           script: |

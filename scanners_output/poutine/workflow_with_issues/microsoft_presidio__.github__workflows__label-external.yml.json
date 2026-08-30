@@ -1,0 +1,23 @@
+{
+  "workflow": "microsoft_presidio__.github__workflows__label-external.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 14,
+      "column": "",
+      "job": "label-external",
+      "step": "",
+      "details": "runs-on: ubuntu-slim",
+      "event_triggers": [
+        "pull_request_target"
+      ]
+    }
+  ]
+}

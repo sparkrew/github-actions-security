@@ -1,0 +1,27 @@
+{
+  "workflow": "google_tunix__.github__workflows__cpu-tests.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+      "line": 29
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # actions/setup-python@v4 | restore-v4-release,v4.9.1",
+      "line": 30
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5.0.0",
+      "line": 35
+    }
+  ]
+}

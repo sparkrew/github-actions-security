@@ -1,0 +1,30 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+  [1m[94m-->[0m ../.github/workflows/google_langextract__.github__workflows__check-pr-size.yml:3:1
+   [1m[94m|[0m
+[1m[94m 3 |[0m [1m[91m/[0m on:
+[1m[94m 4 |[0m [1m[91m|[0m   pull_request_target:
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m10 |[0m [1m[91m|[0m         required: false
+[1m[94m11 |[0m [1m[91m|[0m         type: string
+   [1m[94m|[0m [1m[91m|____________________^[0m [1m[91mpull_request_target is almost always used insecurely[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/google_langextract__.github__workflows__check-pr-size.yml:26:9
+   [1m[94m|[0m
+[1m[94m26 |[0m         - name: Get PR data for manual trigger
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m27 |[0m           if: github.event_name == 'workflow_dispatch' && github.event.inputs.pr_number
+[1m[94m...[0m
+[1m[94m31 |[0m             result-encoding: string
+[1m[94m32 |[0m [1m[91m/[0m           script: |
+[1m[94m33 |[0m [1m[91m|[0m             const { data } = await github.rest.pulls.get({
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m37 |[0m [1m[91m|[0m             });
+[1m[94m38 |[0m [1m[91m|[0m             return JSON.stringify(data);
+   [1m[94m|[0m [1m[91m|________________________________________^[0m [1m[91mgithub.event.inputs.pr_number may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m5[39m findings ([1m[93m3[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m0[39m medium, [31m2[39m high

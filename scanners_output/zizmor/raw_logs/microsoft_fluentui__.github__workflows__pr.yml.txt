@@ -1,0 +1,61 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_fluentui__.github__workflows__pr.yml:33:9
+   [1m[94m|[0m
+[1m[94m33 |[0m         - uses: actions/checkout@v6
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m34 |[0m [1m[33m|[0m         with:
+[1m[94m35 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_fluentui__.github__workflows__pr.yml:88:9
+   [1m[94m|[0m
+[1m[94m88 |[0m         - uses: actions/checkout@v6
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m89 |[0m [1m[33m|[0m         with:
+[1m[94m90 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_fluentui__.github__workflows__pr.yml:143:9
+    [1m[94m|[0m
+[1m[94m143 |[0m         - uses: actions/checkout@v6
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m144 |[0m [1m[33m|[0m         with:
+[1m[94m145 |[0m [1m[33m|[0m           fetch-depth: 0
+    [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_fluentui__.github__workflows__pr.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: CI
+[1m[94m  2 |[0m [1m[33m|[0m on:
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m177 |[0m [1m[33m|[0m             packages/**/cypress/screenshots/**/*.png
+[1m[94m178 |[0m [1m[33m|[0m           retention-days: 1
+    [1m[94m|[0m [1m[33m|____________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_fluentui__.github__workflows__pr.yml:84:3
+    [1m[94m|[0m
+[1m[94m 84 |[0m [1m[33m/[0m   react-major-versions-integration:
+[1m[94m 85 |[0m [1m[33m|[0m     if: ${{ github.repository_owner == 'microsoft' }}
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m129 |[0m [1m[33m|[0m         run: |
+[1m[94m130 |[0m [1m[33m|[0m           FLUENT_JEST_WORKER=2 yarn nx affected -t test-rit--17--type-check,test-rit--18--type-check,test-rit--17--test,test-rit--18--test --exclude='react-19-tests-v9'
+    [1m[94m|[0m [1m[33m|[0m                                                                                                                                                                        [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|________________________________________________________________________________________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                                                                                          [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                                                                                          [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m5[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m5[39m medium, [31m0[39m high

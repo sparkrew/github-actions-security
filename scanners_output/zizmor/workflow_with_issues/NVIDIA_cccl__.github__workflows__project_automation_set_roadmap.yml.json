@@ -1,0 +1,69 @@
+{
+  "workflow": "NVIDIA_cccl__.github__workflows__project_automation_set_roadmap.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 6,
+    "by_rule": {
+      "excessive-permissions": 1,
+      "dangerous-triggers": 1,
+      "unpinned-uses": 1,
+      "github-env": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "NVIDIA_cccl__.github__workflows__project_automation_set_roadmap.yml",
+      "line": 39,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "dangerous-triggers",
+      "level": "error",
+      "message": "use of fundamentally insecure workflow trigger",
+      "workflow": "NVIDIA_cccl__.github__workflows__project_automation_set_roadmap.yml",
+      "line": 89,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "NVIDIA_cccl__.github__workflows__project_automation_set_roadmap.yml",
+      "line": 46,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "github-env",
+      "level": "error",
+      "message": "dangerous use of environment file",
+      "workflow": "NVIDIA_cccl__.github__workflows__project_automation_set_roadmap.yml",
+      "line": 56,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "github-env",
+      "level": "error",
+      "message": "dangerous use of environment file",
+      "workflow": "NVIDIA_cccl__.github__workflows__project_automation_set_roadmap.yml",
+      "line": 94,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "github-env",
+      "level": "error",
+      "message": "dangerous use of environment file",
+      "workflow": "NVIDIA_cccl__.github__workflows__project_automation_set_roadmap.yml",
+      "line": 131,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    }
+  ]
+}

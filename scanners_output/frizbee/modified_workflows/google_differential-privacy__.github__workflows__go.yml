@@ -1,0 +1,45 @@
+name: Go
+
+on:
+  push:
+    branches-ignore:
+    # Version 1.0 does not work with the "go" tool properly.
+    - "1.0"
+  pull_request:
+    branches-ignore:
+    # Version 1.0 does not work with the "go" tool properly.
+    - "1.0"
+  workflow_dispatch:
+
+jobs:
+  go-tests:
+    name: Go Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+    - name: Set up Go
+      uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 # v6
+      with:
+        go-version: 1.25
+
+    - name: Build go
+      run: go build -mod=mod -v ./...
+      working-directory: ./go
+
+    - name: Test go
+      run: go test -mod=mod -v ./...
+      working-directory: ./go
+
+    - name: Build examples/go
+      run: go build -mod=mod -v ./...
+      working-directory: ./examples/go
+
+    - name: Build privacy-on-beam
+      run: go build -mod=mod -v ./...
+      working-directory: ./privacy-on-beam
+
+    - name: Test privacy-on-beam
+      run: go test -mod=mod -v ./...
+      working-directory: ./privacy-on-beam

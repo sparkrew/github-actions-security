@@ -1,0 +1,59 @@
+name: docs
+
+permissions:
+  contents: read
+
+on:
+  pull_request:
+    paths-ignore:
+      - '.github/ISSUE_TEMPLATE/**'
+      - '.github/workflows/web.yml'
+      - 'crates/libs/rdl/rdl.md'
+      - 'web/**'
+  push:
+    paths-ignore:
+      - '.github/ISSUE_TEMPLATE/**'
+      - '.github/workflows/web.yml'
+      - 'crates/libs/rdl/rdl.md'
+      - 'web/**'
+    branches:
+      - master
+
+jobs:
+  windows:
+    name: windows
+    runs-on: windows-2025
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+      - name: Check
+        run: cargo doc --no-deps -p windows
+
+  windows-sys:
+    name: windows-sys
+    runs-on: windows-2025
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+      - name: Check
+        run: cargo doc --no-deps -p windows-sys
+
+  other-crates:
+    runs-on: windows-2025
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+
+      - name: Check
+        run: >
+          cargo doc --no-deps
+          -p windows-bindgen
+          -p windows-core
+          -p cppwinrt
+          -p windows-implement
+          -p windows-interface
+          -p windows-registry
+          -p windows-result
+          -p windows-strings
+          -p windows-targets
+          -p windows-version

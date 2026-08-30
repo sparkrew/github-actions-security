@@ -1,0 +1,42 @@
+{
+  "workflow": "facebookresearch_hydra__.github__workflows__publish.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 6,
+    "by_rule": {
+      "unpinned-github-actions": 6
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # actions/checkout@v5 | releases,v5.0.1",
+      "line": 22
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # actions/setup-python@v6 | main,v6.2.0",
+      "line": 25
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # actions/setup-java@v5 | v5.2.0",
+      "line": 30
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+      "line": 50
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # actions/download-artifact@v5 | v5.0.0",
+      "line": 65
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # pypa/gh-action-pypi-publish@release/v1 | release",
+      "line": 71
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_auto_merger.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: '[gh] pull request auto merger'
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m205 |[0m [1m[33m|[0m
+[1m[94m206 |[0m [1m[33m|[0m           await Promise.all(p);
+    [1m[94m|[0m [1m[33m|________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_auto_merger.yml:21:3
+   [1m[94m|[0m
+[1m[94m21 |[0m [1m[33m/[0m   call_get_workflow_output:
+[1m[94m22 |[0m [1m[33m|[0m     if: github.repository == 'Tencent/Hippy' && github.event.action == 'completed' && github.event.workflow_run.conclusion == 'success'
+[1m[94m23 |[0m [1m[33m|[0m     uses: ./.github/workflows/reuse_get_workflow_output.yml
+[1m[94m24 |[0m [1m[33m|[0m     with:
+[1m[94m25 |[0m [1m[33m|[0m       workflow_run: ${{ github.event.workflow_run.id }}
+   [1m[94m|[0m [1m[33m|[0m                                                       [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________________________________________|[0m
+   [1m[94m|[0m                                                         [1m[33mthis job[0m
+   [1m[94m|[0m                                                         [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_auto_merger.yml:27:3
+   [1m[94m|[0m
+[1m[94m27 |[0m [1m[33m/[0m   get_decision:
+[1m[94m28 |[0m [1m[33m|[0m     needs: call_get_workflow_output
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m76 |[0m [1m[33m|[0m             fs.appendFileSync(process.env.GITHUB_OUTPUT, `review_decision=APPROVED${os.EOL}`, { encoding: 'utf8' });
+[1m[94m77 |[0m [1m[33m|[0m           }
+   [1m[94m|[0m [1m[33m|[0m           [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|___________|[0m
+   [1m[94m|[0m             [1m[33mthis job[0m
+   [1m[94m|[0m             [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_auto_merger.yml:79:3
+   [1m[94m|[0m
+[1m[94m79 |[0m [1m[33m/[0m   call_classify_commits:
+[1m[94m80 |[0m [1m[33m|[0m     needs: get_decision
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m83 |[0m [1m[33m|[0m     with:
+[1m[94m84 |[0m [1m[33m|[0m       pull_request_number: ${{ fromJSON(needs.get_decision.outputs.pull_request_number) }}
+   [1m[94m|[0m [1m[33m|[0m                                                                                          [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|__________________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                            [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                            [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_auto_merger.yml:86:3
+    [1m[94m|[0m
+[1m[94m 86 |[0m [1m[33m/[0m   auto_merge:
+[1m[94m 87 |[0m [1m[33m|[0m     needs: [ get_decision, call_classify_commits ]
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m128 |[0m [1m[33m|[0m
+[1m[94m129 |[0m [1m[33m|[0m           await Promise.all(p);
+    [1m[94m|[0m [1m[33m|[0m                               [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_______________________________|[0m
+    [1m[94m|[0m                                 [1m[33mthis job[0m
+    [1m[94m|[0m                                 [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_auto_merger.yml:131:3
+    [1m[94m|[0m
+[1m[94m131 |[0m [1m[33m/[0m   manual_merge:
+[1m[94m132 |[0m [1m[33m|[0m     needs: [ get_decision, call_classify_commits ]
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m205 |[0m [1m[33m|[0m
+[1m[94m206 |[0m [1m[33m|[0m           await Promise.all(p);
+    [1m[94m|[0m [1m[33m|[0m                                [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|________________________________|[0m
+    [1m[94m|[0m                                  [1m[33mthis job[0m
+    [1m[94m|[0m                                  [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+ [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_auto_merger.yml:3:1
+  [1m[94m|[0m
+[1m[94m3 |[0m [1m[91m/[0m on:
+[1m[94m4 |[0m [1m[91m|[0m   workflow_run:
+[1m[94m5 |[0m [1m[91m|[0m     workflows:
+[1m[94m6 |[0m [1m[91m|[0m       - \[gh\] pull request review
+[1m[94m7 |[0m [1m[91m|[0m     types: [ completed ]
+  [1m[94m|[0m [1m[91m|________________________^[0m [1m[91mworkflow_run is almost always used insecurely[0m
+  [1m[94m|[0m
+  [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_auto_merger.yml:54:7
+   [1m[94m|[0m
+[1m[94m54 |[0m       - name: Decision
+   [1m[94m|[0m         [1m[94m--------------[0m [1m[94minfo: this step[0m
+[1m[94m55 |[0m         id: decision
+[1m[94m...[0m
+[1m[94m58 |[0m         with:
+[1m[94m59 |[0m [1m[94m/[0m         script: |
+[1m[94m60 |[0m [1m[94m|[0m           const fs = require('fs');
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m76 |[0m [1m[94m|[0m             fs.appendFileSync(process.env.GITHUB_OUTPUT, `review_decision=APPROVED${os.EOL}`, { encoding: 'utf8' });
+[1m[94m77 |[0m [1m[94m|[0m           }
+   [1m[94m|[0m [1m[94m|___________-[0m [1m[94minfo: steps.parse_workflow_output.outputs.pull_request_number may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_auto_merger.yml:97:7
+    [1m[94m|[0m
+[1m[94m 97 |[0m       - name: Auto
+    [1m[94m|[0m         [1m[94m----------[0m [1m[94minfo: this step[0m
+[1m[94m 98 |[0m         uses: actions/github-script@v6
+[1m[94m...[0m
+[1m[94m102 |[0m           github-token: ${{ steps.get-token.outputs.token }}
+[1m[94m103 |[0m [1m[94m/[0m         script: |
+[1m[94m104 |[0m [1m[94m|[0m           const { issues } = github.rest;
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m128 |[0m [1m[94m|[0m
+[1m[94m129 |[0m [1m[94m|[0m           await Promise.all(p);
+    [1m[94m|[0m [1m[94m|_______________________________-[0m [1m[94minfo: needs.get_decision.outputs.pull_request_number may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_auto_merger.yml:97:7
+    [1m[94m|[0m
+[1m[94m 97 |[0m       - name: Auto
+    [1m[94m|[0m         [1m[94m----------[0m [1m[94minfo: this step[0m
+[1m[94m 98 |[0m         uses: actions/github-script@v6
+[1m[94m...[0m
+[1m[94m102 |[0m           github-token: ${{ steps.get-token.outputs.token }}
+[1m[94m103 |[0m [1m[94m/[0m         script: |
+[1m[94m104 |[0m [1m[94m|[0m           const { issues } = github.rest;
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m128 |[0m [1m[94m|[0m
+[1m[94m129 |[0m [1m[94m|[0m           await Promise.all(p);
+    [1m[94m|[0m [1m[94m|_______________________________-[0m [1m[94minfo: needs.get_decision.outputs.pull_request_number may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_auto_merger.yml:97:7
+    [1m[94m|[0m
+[1m[94m 97 |[0m       - name: Auto
+    [1m[94m|[0m         [1m[94m----------[0m [1m[94minfo: this step[0m
+[1m[94m 98 |[0m         uses: actions/github-script@v6
+[1m[94m...[0m
+[1m[94m102 |[0m           github-token: ${{ steps.get-token.outputs.token }}
+[1m[94m103 |[0m [1m[94m/[0m         script: |
+[1m[94m104 |[0m [1m[94m|[0m           const { issues } = github.rest;
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m128 |[0m [1m[94m|[0m
+[1m[94m129 |[0m [1m[94m|[0m           await Promise.all(p);
+    [1m[94m|[0m [1m[94m|_______________________________-[0m [1m[94minfo: needs.get_decision.outputs.pull_request_number may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_auto_merger.yml:142:7
+    [1m[94m|[0m
+[1m[94m142 |[0m       - name: Manual
+    [1m[94m|[0m         [1m[94m------------[0m [1m[94minfo: this step[0m
+[1m[94m143 |[0m         uses: actions/github-script@v6
+[1m[94m...[0m
+[1m[94m151 |[0m           github-token: ${{ steps.get-token.outputs.token }}
+[1m[94m152 |[0m [1m[94m/[0m         script: |
+[1m[94m153 |[0m [1m[94m|[0m           const util = require('util');
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m205 |[0m [1m[94m|[0m
+[1m[94m206 |[0m [1m[94m|[0m           await Promise.all(p);
+    [1m[94m|[0m [1m[94m|________________________________-[0m [1m[94minfo: needs.get_decision.outputs.pull_request_number may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_auto_merger.yml:142:7
+    [1m[94m|[0m
+[1m[94m142 |[0m       - name: Manual
+    [1m[94m|[0m         [1m[94m------------[0m [1m[94minfo: this step[0m
+[1m[94m143 |[0m         uses: actions/github-script@v6
+[1m[94m...[0m
+[1m[94m151 |[0m           github-token: ${{ steps.get-token.outputs.token }}
+[1m[94m152 |[0m [1m[94m/[0m         script: |
+[1m[94m153 |[0m [1m[94m|[0m           const util = require('util');
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m205 |[0m [1m[94m|[0m
+[1m[94m206 |[0m [1m[94m|[0m           await Promise.all(p);
+    [1m[94m|[0m [1m[94m|________________________________-[0m [1m[94minfo: needs.get_decision.outputs.pull_request_number may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_auto_merger.yml:142:7
+    [1m[94m|[0m
+[1m[94m142 |[0m       - name: Manual
+    [1m[94m|[0m         [1m[94m------------[0m [1m[94minfo: this step[0m
+[1m[94m143 |[0m         uses: actions/github-script@v6
+[1m[94m...[0m
+[1m[94m151 |[0m           github-token: ${{ steps.get-token.outputs.token }}
+[1m[94m152 |[0m [1m[94m/[0m         script: |
+[1m[94m153 |[0m [1m[94m|[0m           const util = require('util');
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m205 |[0m [1m[94m|[0m
+[1m[94m206 |[0m [1m[94m|[0m           await Promise.all(p);
+    [1m[94m|[0m [1m[94m|________________________________-[0m [1m[94minfo: needs.call_classify_commits.outputs.normal_commits_count may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_auto_merger.yml:92:7
+   [1m[94m|[0m
+[1m[94m92 |[0m       uses: navikt/github-app-token-generator@v1
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_auto_merger.yml:137:7
+    [1m[94m|[0m
+[1m[94m137 |[0m       uses: navikt/github-app-token-generator@v1
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m25[39m findings ([1m[93m9[39m suppressed[0m): 0 unknown, [35m7[39m informational, [36m0[39m low, [33m6[39m medium, [31m3[39m high

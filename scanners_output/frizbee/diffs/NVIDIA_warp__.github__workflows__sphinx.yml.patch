@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/NVIDIA_warp__.github__workflows__sphinx.yml b/.github/workflows/NVIDIA_warp__.github__workflows__sphinx.yml
+index 906c6b8..a1b831d 100644
+--- a/.github/workflows/NVIDIA_warp__.github__workflows__sphinx.yml
++++ b/.github/workflows/NVIDIA_warp__.github__workflows__sphinx.yml
+@@ -29,7 +29,7 @@ jobs:
+       contents: write
+     steps:
+       - name: Checkout repository
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           lfs: true
+       - name: Install uv
+@@ -45,7 +45,7 @@ jobs:
+         run: |
+           uv run --extra docs build_docs.py
+       - name: Upload artifacts
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: html-docs
+           path: docs/_build/html/

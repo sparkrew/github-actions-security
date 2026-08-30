@@ -1,0 +1,51 @@
+{
+  "workflow": "facebookresearch_habitat-sim__.github__workflows__install_and_test.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 335,
+      "column": "",
+      "job": "build_conda_binaries",
+      "step": "",
+      "details": "runs-on: 4-core-ubuntu-gpu-t4",
+      "event_triggers": [
+        "pull_request",
+        "push",
+        "schedule"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 207,
+      "column": "",
+      "job": "install_and_test_lab_ubuntu",
+      "step": "",
+      "details": "runs-on: 4-core-ubuntu-gpu-t4",
+      "event_triggers": [
+        "pull_request",
+        "push",
+        "schedule"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 75,
+      "column": "",
+      "job": "install_and_test_sim_ubuntu",
+      "step": "",
+      "details": "runs-on: 4-core-ubuntu-gpu-t4",
+      "event_triggers": [
+        "pull_request",
+        "push",
+        "schedule"
+      ]
+    }
+  ]
+}

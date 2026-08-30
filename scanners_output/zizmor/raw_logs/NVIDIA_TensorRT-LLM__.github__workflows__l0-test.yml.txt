@@ -1,0 +1,146 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_TensorRT-LLM__.github__workflows__l0-test.yml:31:3
+   [1m[94m|[0m
+[1m[94m31 |[0m [1m[33m/[0m   Upload-Test:
+[1m[94m32 |[0m [1m[33m|[0m     name: Upload test results
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m73 |[0m [1m[33m|[0m               description: '${{ steps.test_summary.outputs.passed }} passed, ${{ steps.test_summary.outputs.failed }} failed, ${{ st[1m[94m...[0m
+[1m[94m74 |[0m [1m[33m|[0m             })
+   [1m[94m|[0m [1m[33m|[0m               [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________|[0m
+   [1m[94m|[0m                 [1m[33mthis job[0m
+   [1m[94m|[0m                 [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_TensorRT-LLM__.github__workflows__l0-test.yml:36:9
+   [1m[94m|[0m
+[1m[94m36 |[0m         - name: Update commit status
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m37 |[0m           uses: actions/github-script@v8
+[1m[94m38 |[0m           with:
+[1m[94m39 |[0m [1m[91m/[0m           script: |
+[1m[94m40 |[0m [1m[91m|[0m             state = 'pending'
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m53 |[0m [1m[91m|[0m               description: description,
+[1m[94m54 |[0m [1m[91m|[0m             })
+   [1m[94m|[0m [1m[91m|______________^[0m [1m[91mgithub.event.inputs.test_result may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_TensorRT-LLM__.github__workflows__l0-test.yml:36:9
+   [1m[94m|[0m
+[1m[94m36 |[0m         - name: Update commit status
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m37 |[0m           uses: actions/github-script@v8
+[1m[94m38 |[0m           with:
+[1m[94m39 |[0m [1m[91m/[0m           script: |
+[1m[94m40 |[0m [1m[91m|[0m             state = 'pending'
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m53 |[0m [1m[91m|[0m               description: description,
+[1m[94m54 |[0m [1m[91m|[0m             })
+   [1m[94m|[0m [1m[91m|______________^[0m [1m[91mgithub.event.inputs.sha may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_TensorRT-LLM__.github__workflows__l0-test.yml:55:9
+   [1m[94m|[0m
+[1m[94m55 |[0m [1m[94m...[0m - name: Collect test result
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m56 |[0m [1m[94m...[0m   run: rm -rf results && mkdir results && cd results && curl --user svc_tensorrt:${{ secrets.ARTIFACTORY_TOKEN }} -L ${{ github.event.inputs.test_results_url }} | tar -xz
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mgithub.event.inputs.test_results_url may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_TensorRT-LLM__.github__workflows__l0-test.yml:62:9
+   [1m[94m|[0m
+[1m[94m62 |[0m         - name: Update commit status
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m63 |[0m           uses: actions/github-script@v8
+[1m[94m64 |[0m           with:
+[1m[94m65 |[0m [1m[91m/[0m           script: |
+[1m[94m66 |[0m [1m[91m|[0m             github.rest.repos.createCommitStatus({
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m73 |[0m [1m[91m|[0m               description: '${{ steps.test_summary.outputs.passed }} passed, ${{ steps.test_summary.outputs.failed }} failed, ${{ st[1m[94m...[0m
+[1m[94m74 |[0m [1m[91m|[0m             })
+   [1m[94m|[0m [1m[91m|_______________^[0m [1m[91mgithub.event.inputs.sha may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_TensorRT-LLM__.github__workflows__l0-test.yml:62:9
+   [1m[94m|[0m
+[1m[94m62 |[0m         - name: Update commit status
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m63 |[0m           uses: actions/github-script@v8
+[1m[94m64 |[0m           with:
+[1m[94m65 |[0m [1m[91m/[0m           script: |
+[1m[94m66 |[0m [1m[91m|[0m             github.rest.repos.createCommitStatus({
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m73 |[0m [1m[91m|[0m               description: '${{ steps.test_summary.outputs.passed }} passed, ${{ steps.test_summary.outputs.failed }} failed, ${{ st[1m[94m...[0m
+[1m[94m74 |[0m [1m[91m|[0m             })
+   [1m[94m|[0m [1m[91m|_______________^[0m [1m[91mgithub.event.inputs.test_result may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_TensorRT-LLM__.github__workflows__l0-test.yml:62:9
+   [1m[94m|[0m
+[1m[94m62 |[0m         - name: Update commit status
+   [1m[94m|[0m           [1m[94m--------------------------[0m [1m[94minfo: this step[0m
+[1m[94m63 |[0m           uses: actions/github-script@v8
+[1m[94m64 |[0m           with:
+[1m[94m65 |[0m [1m[94m/[0m           script: |
+[1m[94m66 |[0m [1m[94m|[0m             github.rest.repos.createCommitStatus({
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m73 |[0m [1m[94m|[0m               description: '${{ steps.test_summary.outputs.passed }} passed, ${{ steps.test_summary.outputs.failed }} failed, ${{ st[1m[94m...[0m
+[1m[94m74 |[0m [1m[94m|[0m             })
+   [1m[94m|[0m [1m[94m|_______________-[0m [1m[94minfo: steps.test_summary.outputs.passed may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_TensorRT-LLM__.github__workflows__l0-test.yml:62:9
+   [1m[94m|[0m
+[1m[94m62 |[0m         - name: Update commit status
+   [1m[94m|[0m           [1m[94m--------------------------[0m [1m[94minfo: this step[0m
+[1m[94m63 |[0m           uses: actions/github-script@v8
+[1m[94m64 |[0m           with:
+[1m[94m65 |[0m [1m[94m/[0m           script: |
+[1m[94m66 |[0m [1m[94m|[0m             github.rest.repos.createCommitStatus({
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m73 |[0m [1m[94m|[0m               description: '${{ steps.test_summary.outputs.passed }} passed, ${{ steps.test_summary.outputs.failed }} failed, ${{ st[1m[94m...[0m
+[1m[94m74 |[0m [1m[94m|[0m             })
+   [1m[94m|[0m [1m[94m|_______________-[0m [1m[94minfo: steps.test_summary.outputs.failed may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_TensorRT-LLM__.github__workflows__l0-test.yml:62:9
+   [1m[94m|[0m
+[1m[94m62 |[0m         - name: Update commit status
+   [1m[94m|[0m           [1m[94m--------------------------[0m [1m[94minfo: this step[0m
+[1m[94m63 |[0m           uses: actions/github-script@v8
+[1m[94m64 |[0m           with:
+[1m[94m65 |[0m [1m[94m/[0m           script: |
+[1m[94m66 |[0m [1m[94m|[0m             github.rest.repos.createCommitStatus({
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m73 |[0m [1m[94m|[0m               description: '${{ steps.test_summary.outputs.passed }} passed, ${{ steps.test_summary.outputs.failed }} failed, ${{ st[1m[94m...[0m
+[1m[94m74 |[0m [1m[94m|[0m             })
+   [1m[94m|[0m [1m[94m|_______________-[0m [1m[94minfo: steps.test_summary.outputs.skipped may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_TensorRT-LLM__.github__workflows__l0-test.yml:59:9
+   [1m[94m|[0m
+[1m[94m59 |[0m         uses: test-summary/action@dist
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m20[39m findings ([1m[93m10[39m suppressed[0m): 0 unknown, [35m3[39m informational, [36m0[39m low, [33m1[39m medium, [31m6[39m high

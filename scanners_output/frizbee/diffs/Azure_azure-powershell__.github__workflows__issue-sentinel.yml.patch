@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/Azure_azure-powershell__.github__workflows__issue-sentinel.yml b/.github/workflows/Azure_azure-powershell__.github__workflows__issue-sentinel.yml
+index 8406b4b..62b1818 100644
+--- a/.github/workflows/Azure_azure-powershell__.github__workflows__issue-sentinel.yml
++++ b/.github/workflows/Azure_azure-powershell__.github__workflows__issue-sentinel.yml
+@@ -10,7 +10,7 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Run Issue Sentinel
+-        uses: Azure/issue-sentinel@v1
++        uses: Azure/issue-sentinel@90a0a10b1fc9726af6212f3a68e9a316ddfe1afd # v1
+         with:
+           password: ${{secrets.ISSUE_SENTINEL_PASSWORD}}
+           enable-similar-issues-scanning: true # Scan similar issues in your repo, default: true

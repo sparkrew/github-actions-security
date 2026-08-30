@@ -1,0 +1,49 @@
+{
+  "workflow": "aws_aws-cdk__.github__workflows__issue-label-assign.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "dangerous-triggers": 1,
+      "unpinned-uses": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "dangerous-triggers",
+      "level": "error",
+      "message": "use of fundamentally insecure workflow trigger",
+      "workflow": "aws_aws-cdk__.github__workflows__issue-label-assign.yml",
+      "line": 2,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "aws_aws-cdk__.github__workflows__issue-label-assign.yml",
+      "line": 15,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "aws_aws-cdk__.github__workflows__issue-label-assign.yml",
+      "line": 31,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "aws_aws-cdk__.github__workflows__issue-label-assign.yml",
+      "line": 47,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

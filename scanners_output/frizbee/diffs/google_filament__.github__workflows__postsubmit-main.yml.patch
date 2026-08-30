@@ -1,0 +1,36 @@
+diff --git a/.github/workflows/google_filament__.github__workflows__postsubmit-main.yml b/.github/workflows/google_filament__.github__workflows__postsubmit-main.yml
+index fe6b39d..817a3a4 100644
+--- a/.github/workflows/google_filament__.github__workflows__postsubmit-main.yml
++++ b/.github/workflows/google_filament__.github__workflows__postsubmit-main.yml
+@@ -12,7 +12,7 @@ jobs:
+     name: update-renderdiff-goldens
+     runs-on: 'macos-14-xlarge'
+     steps:
+-      - uses: actions/checkout@v4.1.6
++      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+         with:
+           fetch-depth: 0
+       - id: get_commit_msg
+@@ -67,7 +67,7 @@ jobs:
+     name: update-docs
+     runs-on: 'ubuntu-24.04-4core'
+     steps:
+-      - uses: actions/checkout@v4.1.6
++      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+         with:
+           fetch-depth: 0
+       - uses: ./.github/actions/linux-prereq
+@@ -92,11 +92,11 @@ jobs:
+     name: update-sizeguard
+     runs-on: 'ubuntu-24.04-16core'
+     steps:
+-      - uses: actions/checkout@v4.1.6
++      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+         with:
+           fetch-depth: 0
+       - uses: ./.github/actions/linux-prereq
+-      - uses: actions/setup-java@v3
++      - uses: actions/setup-java@17f84c3641ba7b8f6deff6309fc4c864478f5d62 # v3
+         with:
+           distribution: 'temurin'
+           java-version: '17'

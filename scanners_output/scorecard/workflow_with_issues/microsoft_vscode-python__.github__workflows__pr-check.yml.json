@@ -1,0 +1,111 @@
+{
+  "workflow": "microsoft_vscode-python__.github__workflows__pr-check.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 3,
+      "reason": "dependency not pinned by hash detected -- score normalized to 3",
+      "lines": [
+        60,
+        65,
+        90,
+        104,
+        109,
+        114,
+        138,
+        165,
+        171,
+        178,
+        183,
+        195,
+        218,
+        224,
+        236,
+        252,
+        258,
+        262,
+        268,
+        270,
+        278,
+        415,
+        421,
+        455,
+        460,
+        493,
+        498,
+        510,
+        525,
+        548,
+        551,
+        559,
+        562,
+        685
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:60",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:65",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:90",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:104",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:109",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:114",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:165",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:171",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:218",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:224",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:236",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:252",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:270",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:415",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:421",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:455",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:460",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:493",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:498",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:510",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:525",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:551",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:685",
+        "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:258",
+        "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:262",
+        "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:268",
+        "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:278",
+        "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:548",
+        "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:559",
+        "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:562",
+        "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:138",
+        "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:178",
+        "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:183",
+        "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_vscode-python__.github__workflows__pr-check.yml:195",
+        "Info:   0 out of  21 GitHub-owned GitHubAction dependencies pinned",
+        "Info:  11 out of  13 third-party GitHubAction dependencies pinned",
+        "Info:   0 out of  11 pipCommand dependencies pinned",
+        "Info:   2 out of   2 npmCommand dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    }
+  ]
+}

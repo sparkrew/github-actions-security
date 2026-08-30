@@ -1,0 +1,24 @@
+diff --git a/.github/workflows/microsoft_agent-lightning__.github__workflows__dashboard.yml b/.github/workflows/microsoft_agent-lightning__.github__workflows__dashboard.yml
+index 2e87552..9ed0644 100644
+--- a/.github/workflows/microsoft_agent-lightning__.github__workflows__dashboard.yml
++++ b/.github/workflows/microsoft_agent-lightning__.github__workflows__dashboard.yml
+@@ -17,16 +17,16 @@ jobs:
+     runs-on: ubuntu-latest
+     timeout-minutes: 15
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           fetch-depth: 0
+-      - uses: actions/setup-node@v6
++      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+         with:
+           node-version: '22'
+       - name: Install JavaScript dependencies
+         run: cd dashboard && npm ci
+       - name: Run Chromatic
+-        uses: chromaui/action@v13
++        uses: chromaui/action@07791f8243f4cb2698bf4d00426baf4b2d1cb7e0 # v13
+         with:
+           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+           workingDir: dashboard

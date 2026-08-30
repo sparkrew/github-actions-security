@@ -1,0 +1,44 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_perfetto__.github__workflows__pr-branch-check.yml:28:3
+   [1m[94m|[0m
+[1m[94m28 |[0m [1m[33m/[0m   pr-branch-check:
+[1m[94m29 |[0m [1m[33m|[0m     if: startsWith(github.base_ref, 'dev/')
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m38 |[0m [1m[33m|[0m           echo "When working with stacked changes you need to first land the upstream PR, then click on the button that suggests to [1m[94m...[0m
+[1m[94m39 |[0m [1m[33m|[0m           exit 1
+   [1m[94m|[0m [1m[33m|[0m                 [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_________________|[0m
+   [1m[94m|[0m                   [1m[33mthis job[0m
+   [1m[94m|[0m                   [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/google_perfetto__.github__workflows__pr-branch-check.yml:34:9
+   [1m[94m|[0m
+[1m[94m34 |[0m         - name: Prevent accidental merge PRs into dev branches
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m35 |[0m           shell: bash
+[1m[94m36 |[0m [1m[91m/[0m         run: |
+[1m[94m37 |[0m [1m[91m|[0m           echo "❌ You are trying to merge the a PR ${{ github.ref }} on top of another one (${{ github.base_ref }})."
+[1m[94m38 |[0m [1m[91m|[0m           echo "When working with stacked changes you need to first land the upstream PR, then click on the button that suggests to [1m[94m...[0m
+[1m[94m39 |[0m [1m[91m|[0m           exit 1
+   [1m[94m|[0m [1m[91m|_________________^[0m [1m[91mgithub.ref may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/google_perfetto__.github__workflows__pr-branch-check.yml:34:9
+   [1m[94m|[0m
+[1m[94m34 |[0m         - name: Prevent accidental merge PRs into dev branches
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m35 |[0m           shell: bash
+[1m[94m36 |[0m [1m[91m/[0m         run: |
+[1m[94m37 |[0m [1m[91m|[0m           echo "❌ You are trying to merge the a PR ${{ github.ref }} on top of another one (${{ github.base_ref }})."
+[1m[94m38 |[0m [1m[91m|[0m           echo "When working with stacked changes you need to first land the upstream PR, then click on the button that suggests to [1m[94m...[0m
+[1m[94m39 |[0m [1m[91m|[0m           exit 1
+   [1m[94m|[0m [1m[91m|_________________^[0m [1m[91mgithub.base_ref may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m6[39m findings ([1m[93m3[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m2[39m high

@@ -1,0 +1,36 @@
+{
+  "workflow": "Tencent_AI-Infra-Guard__.github__workflows__docker-publish.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "injection": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "injection",
+      "line": 181,
+      "column": "",
+      "job": "build-and-push",
+      "step": "10",
+      "details": "Sources: github.event.inputs.force_build",
+      "event_triggers": [
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": 39,
+      "column": "",
+      "job": "build-and-push",
+      "step": "1",
+      "details": "Sources: github.event.inputs.force_build github.event.inputs.tag",
+      "event_triggers": [
+        "push",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

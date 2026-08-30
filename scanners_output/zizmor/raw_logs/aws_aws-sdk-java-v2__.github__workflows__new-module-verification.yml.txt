@@ -1,0 +1,61 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-sdk-java-v2__.github__workflows__new-module-verification.yml:21:9
+   [1m[94m|[0m
+[1m[94m21 |[0m         - name: Checkout repository
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m22 |[0m [1m[33m|[0m         uses: actions/checkout@v6
+[1m[94m23 |[0m [1m[33m|[0m         with:
+[1m[94m24 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-sdk-java-v2__.github__workflows__new-module-verification.yml:26:9
+   [1m[94m|[0m
+[1m[94m26 |[0m         - name: Check for new module additions
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m27 |[0m           id: check-new-modules
+[1m[94m28 |[0m           shell: bash
+[1m[94m29 |[0m [1m[91m/[0m         run: |
+[1m[94m30 |[0m [1m[91m|[0m           set -euo pipefail
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m49 |[0m [1m[91m|[0m           echo "$NEW_POM_FILES" > new_pom_files.txt
+[1m[94m50 |[0m [1m[91m|[0m           echo "::endgroup::"
+   [1m[94m|[0m [1m[91m|_____________________________^[0m [1m[91mgithub.base_ref may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-sdk-java-v2__.github__workflows__new-module-verification.yml:26:9
+   [1m[94m|[0m
+[1m[94m26 |[0m         - name: Check for new module additions
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m27 |[0m           id: check-new-modules
+[1m[94m28 |[0m           shell: bash
+[1m[94m29 |[0m [1m[91m/[0m         run: |
+[1m[94m30 |[0m [1m[91m|[0m           set -euo pipefail
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m49 |[0m [1m[91m|[0m           echo "$NEW_POM_FILES" > new_pom_files.txt
+[1m[94m50 |[0m [1m[91m|[0m           echo "::endgroup::"
+   [1m[94m|[0m [1m[91m|_____________________________^[0m [1m[91mgithub.base_ref may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_aws-sdk-java-v2__.github__workflows__new-module-verification.yml:52:9
+    [1m[94m|[0m
+[1m[94m 52 |[0m         - name: Verify new modules
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m 53 |[0m           if: steps.check-new-modules.outputs.new_modules_found == 'true'
+[1m[94m 54 |[0m           shell: bash
+[1m[94m 55 |[0m [1m[91m/[0m         run: |
+[1m[94m 56 |[0m [1m[91m|[0m           set -euo pipefail
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m219 |[0m [1m[91m|[0m           fi
+[1m[94m220 |[0m [1m[91m|[0m           echo "::endgroup::"
+    [1m[94m|[0m [1m[91m|______________________________^[0m [1m[91mgithub.base_ref may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m7[39m findings ([1m[93m3[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m3[39m high

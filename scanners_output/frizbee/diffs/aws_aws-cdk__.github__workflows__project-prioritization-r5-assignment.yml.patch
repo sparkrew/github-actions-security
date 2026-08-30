@@ -1,0 +1,20 @@
+diff --git a/.github/workflows/aws_aws-cdk__.github__workflows__project-prioritization-r5-assignment.yml b/.github/workflows/aws_aws-cdk__.github__workflows__project-prioritization-r5-assignment.yml
+index 672c99a..9a7f377 100644
+--- a/.github/workflows/aws_aws-cdk__.github__workflows__project-prioritization-r5-assignment.yml
++++ b/.github/workflows/aws_aws-cdk__.github__workflows__project-prioritization-r5-assignment.yml
+@@ -9,11 +9,11 @@ jobs:
+     if: github.repository == 'aws/aws-cdk'
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: Check and Assign R5 Priority to PRs
+-        uses: actions/github-script@v8
++        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+         with:
+           github-token: ${{ secrets.PROJEN_GITHUB_TOKEN }}
+           script: |
+             const script = require('./scripts/prioritization/assign-r5-priority.js')
+-            await script({github})
+\ No newline at end of file
++            await script({github})

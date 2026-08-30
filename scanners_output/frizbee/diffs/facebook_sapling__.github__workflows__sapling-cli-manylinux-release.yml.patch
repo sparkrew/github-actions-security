@@ -1,0 +1,36 @@
+diff --git a/.github/workflows/facebook_sapling__.github__workflows__sapling-cli-manylinux-release.yml b/.github/workflows/facebook_sapling__.github__workflows__sapling-cli-manylinux-release.yml
+index db2c6f7..f202491 100644
+--- a/.github/workflows/facebook_sapling__.github__workflows__sapling-cli-manylinux-release.yml
++++ b/.github/workflows/facebook_sapling__.github__workflows__sapling-cli-manylinux-release.yml
+@@ -19,7 +19,7 @@ jobs:
+       image: ${{ format('ghcr.io/{0}/manylinux_2_34:latest', github.repository) }}
+     steps:
+     - name: Checkout Code
+-      uses: actions/checkout@v6
++      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+     - name: Configure Git
+       run: git config --global --add safe.directory "$PWD"
+     - name: rustup
+@@ -34,7 +34,7 @@ jobs:
+       working-directory: ./eden/scm
+       run: ${{ format('mv sl-manylinux.tar.xz sapling-{0}-linux-{1}.tar.xz', env.SAPLING_VERSION, matrix.arch) }}
+     - name: Upload Artifact
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: sapling-linux-${{ matrix.arch }}
+         path: ./eden/scm/sapling*.tar.xz
+@@ -43,11 +43,11 @@ jobs:
+     needs: build
+     steps:
+     - name: Checkout Code
+-      uses: actions/checkout@v6
++      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+     - name: Grant Access
+       run: git config --global --add safe.directory "$PWD"
+     - name: Download Artifacts
+-      uses: actions/download-artifact@v7
++      uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+       with:
+         pattern: sapling-linux-*
+         merge-multiple: true

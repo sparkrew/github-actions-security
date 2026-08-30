@@ -1,0 +1,25 @@
+{
+  "workflow": "microsoft_garnet__.github__workflows__deploy-website.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 81,
+      "column": "",
+      "job": "deploy",
+      "step": "8",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "workflow_run"
+      ]
+    }
+  ]
+}

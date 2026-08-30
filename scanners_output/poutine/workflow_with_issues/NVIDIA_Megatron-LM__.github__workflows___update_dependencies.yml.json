@@ -1,0 +1,35 @@
+{
+  "workflow": "NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "untrusted_checkout_exec": 1,
+      "known_vulnerability_in_build_component": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 52,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of `docker`",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 106,
+      "column": "",
+      "job": "create-pr",
+      "step": "2",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    }
+  ]
+}

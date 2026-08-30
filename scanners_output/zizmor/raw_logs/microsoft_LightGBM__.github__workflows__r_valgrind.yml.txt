@@ -1,0 +1,91 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_LightGBM__.github__workflows__r_valgrind.yml:79:9
+   [1m[94m|[0m
+[1m[94m79 |[0m         - name: Send final status
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m80 |[0m           if: ${{ always() }}
+[1m[94m81 |[0m [1m[91m/[0m         run: |
+[1m[94m82 |[0m [1m[91m|[0m           $GITHUB_WORKSPACE/.ci/set-commit-status.sh \
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m90 |[0m [1m[91m|[0m             "${{ inputs.pr-number }}" \
+[1m[94m91 |[0m [1m[91m|[0m             "${comment}"
+   [1m[94m|[0m [1m[91m|________________________^[0m [1m[91mgithub.workflow may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_LightGBM__.github__workflows__r_valgrind.yml:79:9
+   [1m[94m|[0m
+[1m[94m79 |[0m         - name: Send final status
+   [1m[94m|[0m           [1m[94m-----------------------[0m [1m[94minfo: this step[0m
+[1m[94m80 |[0m           if: ${{ always() }}
+[1m[94m81 |[0m [1m[94m/[0m         run: |
+[1m[94m82 |[0m [1m[94m|[0m           $GITHUB_WORKSPACE/.ci/set-commit-status.sh \
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m90 |[0m [1m[94m|[0m             "${{ inputs.pr-number }}" \
+[1m[94m91 |[0m [1m[94m|[0m             "${comment}"
+   [1m[94m|[0m [1m[94m|________________________-[0m [1m[94minfo: job.status may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_LightGBM__.github__workflows__r_valgrind.yml:79:9
+   [1m[94m|[0m
+[1m[94m79 |[0m         - name: Send final status
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m80 |[0m           if: ${{ always() }}
+[1m[94m81 |[0m [1m[91m/[0m         run: |
+[1m[94m82 |[0m [1m[91m|[0m           $GITHUB_WORKSPACE/.ci/set-commit-status.sh \
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m90 |[0m [1m[91m|[0m             "${{ inputs.pr-number }}" \
+[1m[94m91 |[0m [1m[91m|[0m             "${comment}"
+   [1m[94m|[0m [1m[91m|________________________^[0m [1m[91mgithub.workflow may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_LightGBM__.github__workflows__r_valgrind.yml:79:9
+   [1m[94m|[0m
+[1m[94m79 |[0m         - name: Send final status
+   [1m[94m|[0m           [1m[94m-----------------------[0m [1m[94minfo: this step[0m
+[1m[94m80 |[0m           if: ${{ always() }}
+[1m[94m81 |[0m [1m[94m/[0m         run: |
+[1m[94m82 |[0m [1m[94m|[0m           $GITHUB_WORKSPACE/.ci/set-commit-status.sh \
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m90 |[0m [1m[94m|[0m             "${{ inputs.pr-number }}" \
+[1m[94m91 |[0m [1m[94m|[0m             "${comment}"
+   [1m[94m|[0m [1m[94m|________________________-[0m [1m[94minfo: job.status may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_LightGBM__.github__workflows__r_valgrind.yml:79:9
+   [1m[94m|[0m
+[1m[94m79 |[0m         - name: Send final status
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m80 |[0m           if: ${{ always() }}
+[1m[94m81 |[0m [1m[91m/[0m         run: |
+[1m[94m82 |[0m [1m[91m|[0m           $GITHUB_WORKSPACE/.ci/set-commit-status.sh \
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m90 |[0m [1m[91m|[0m             "${{ inputs.pr-number }}" \
+[1m[94m91 |[0m [1m[91m|[0m             "${comment}"
+   [1m[94m|[0m [1m[91m|________________________^[0m [1m[91minputs.pr-number may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_LightGBM__.github__workflows__r_valgrind.yml:92:9
+   [1m[94m|[0m
+[1m[94m92 |[0m         - name: Rerun workflow-indicator
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m93 |[0m           if: ${{ always() }}
+[1m[94m94 |[0m [1m[91m/[0m         run: |
+[1m[94m95 |[0m [1m[91m|[0m           bash $GITHUB_WORKSPACE/.ci/rerun-workflow.sh \
+[1m[94m96 |[0m [1m[91m|[0m             "optional_checks.yml" \
+[1m[94m97 |[0m [1m[91m|[0m             "${{ inputs.pr-branch }}" \
+[1m[94m98 |[0m [1m[91m|[0m             || true
+   [1m[94m|[0m [1m[91m|____________________^[0m [1m[91minputs.pr-branch may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m18[39m findings ([1m[93m12[39m suppressed[0m): 0 unknown, [35m2[39m informational, [36m0[39m low, [33m0[39m medium, [31m4[39m high

@@ -1,0 +1,24 @@
+diff --git a/.github/workflows/microsoft_Microsoft.IO.RecyclableMemoryStream__.github__workflows__benchmark.yml b/.github/workflows/microsoft_Microsoft.IO.RecyclableMemoryStream__.github__workflows__benchmark.yml
+index 749de4d..19e3fe8 100644
+--- a/.github/workflows/microsoft_Microsoft.IO.RecyclableMemoryStream__.github__workflows__benchmark.yml
++++ b/.github/workflows/microsoft_Microsoft.IO.RecyclableMemoryStream__.github__workflows__benchmark.yml
+@@ -13,8 +13,8 @@ jobs:
+     name: Run Benchmark.Net
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v6
+-      - uses: actions/setup-dotnet@v5
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
++      - uses: actions/setup-dotnet@baa11fbfe1d6520db94683bd5c7a3818018e4309 # v5
+         with:
+           dotnet-version: 8.0.100
+       - name: Run benchmark
+@@ -24,7 +24,7 @@ jobs:
+         run: dotnet tool install -g dotnet-script && cd BenchmarkTests && dotnet script combine-bechmarks.csx
+ 
+       - name: Store benchmark result
+-        uses: rhysd/github-action-benchmark@v1
++        uses: rhysd/github-action-benchmark@4bdcce38c94cec68da58d012ac24b7b1155efe8b # v1
+         with:
+           name: Benchmark.Net Benchmark
+           tool: 'benchmarkdotnet'

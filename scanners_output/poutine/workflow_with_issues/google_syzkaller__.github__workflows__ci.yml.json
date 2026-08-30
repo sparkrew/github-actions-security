@@ -1,0 +1,60 @@
+{
+  "workflow": "google_syzkaller__.github__workflows__ci.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 4
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 52,
+      "column": "",
+      "job": "build",
+      "step": "",
+      "details": "runs-on: syz-env-x86",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 82,
+      "column": "",
+      "job": "dashboard",
+      "step": "",
+      "details": "runs-on: syz-env-x86",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 137,
+      "column": "",
+      "job": "race",
+      "step": "",
+      "details": "runs-on: syz-env-x86",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 162,
+      "column": "",
+      "job": "race_dashboard",
+      "step": "",
+      "details": "runs-on: syz-env-x86",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    }
+  ]
+}

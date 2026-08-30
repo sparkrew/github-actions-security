@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/microsoft_azure-pipelines-tasks__.github__workflows__autoAssignRM.yml b/.github/workflows/microsoft_azure-pipelines-tasks__.github__workflows__autoAssignRM.yml
+index 8fd292a..5c2d330 100644
+--- a/.github/workflows/microsoft_azure-pipelines-tasks__.github__workflows__autoAssignRM.yml
++++ b/.github/workflows/microsoft_azure-pipelines-tasks__.github__workflows__autoAssignRM.yml
+@@ -14,7 +14,7 @@ jobs:
+     name: Assign to RM Project
+     steps:
+     - name: "Assign issues with 'Area: RM' label to project board"
+-      uses: actions/add-to-project@v0.4.1
++      uses: actions/add-to-project@4756e6330fe1e0a736690d3cfd9f11c9399c2ed4 # v0.4.1
+       with:
+         project-url: https://github.com/orgs/microsoft/projects/892
+         github-token: ${{ secrets.RM_TOKEN }} #reach-out to v-mohithgc@microsoft.com / razvanmanole@microsoft.com if any issues with the token.

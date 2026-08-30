@@ -1,0 +1,27 @@
+{
+  "workflow": "facebook_relay__.github__workflows__update-yarn-lock.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # actions/checkout@v2 | releases,850,v2.7.0",
+      "line": 17
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # actions/setup-node@v3 | releases,v3.9.1",
+      "line": 18
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: peter-evans/create-pull-request@38e0b6e68b4c852a5500a94740f0e535e0d7ba54 # peter-evans/create-pull-request@v4 | v4.2.4",
+      "line": 24
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/facebook_react__.github__workflows__shared_label_core_team_prs.yml b/.github/workflows/facebook_react__.github__workflows__shared_label_core_team_prs.yml
+index cc10e87..454a782 100644
+--- a/.github/workflows/facebook_react__.github__workflows__shared_label_core_team_prs.yml
++++ b/.github/workflows/facebook_react__.github__workflows__shared_label_core_team_prs.yml
+@@ -44,7 +44,7 @@ jobs:
+       pull-requests: write
+     steps:
+       - name: Label PR as React Core Team
+-        uses: actions/github-script@v7
++        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+         with:
+           script: |
+             github.rest.issues.addLabels({

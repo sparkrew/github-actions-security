@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/google_breakpad__.github__workflows__coverity.yml b/.github/workflows/google_breakpad__.github__workflows__coverity.yml
+index 06f8e27..68bc4d5 100644
+--- a/.github/workflows/google_breakpad__.github__workflows__coverity.yml
++++ b/.github/workflows/google_breakpad__.github__workflows__coverity.yml
+@@ -36,7 +36,7 @@ jobs:
+     - run: ./configure --disable-silent-rules
+       working-directory: src
+ 
+-    - uses: vapier/coverity-scan-action@v1
++    - uses: vapier/coverity-scan-action@2068473c7bdf8c2fb984a6a40ae76ee7facd7a85 # v1
+       with:
+         command: make -C src -O -j$(getconf _NPROCESSORS_CONF)
+         email: ${{ secrets.COVERITY_SCAN_EMAIL }}

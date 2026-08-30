@@ -1,0 +1,70 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_Web-Dev-For-Beginners__.github__workflows__azure-static-web-apps-ashy-river-0debb7803.yml:11:9
+   [1m[94m|[0m
+[1m[94m11 |[0m         - uses: actions/checkout@v3
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m12 |[0m [1m[33m|[0m         with:
+[1m[94m13 |[0m [1m[33m|[0m           submodules: true
+   [1m[94m|[0m [1m[33m|__________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_Web-Dev-For-Beginners__.github__workflows__azure-static-web-apps-ashy-river-0debb7803.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m name: Azure Static Web Apps CI/CD
+[1m[94m 2 |[0m [1m[33m|[0m
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m37 |[0m [1m[33m|[0m           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ASHY_RIVER_0DEBB7803 }}
+[1m[94m38 |[0m [1m[33m|[0m           action: "close"
+   [1m[94m|[0m [1m[33m|__________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_Web-Dev-For-Beginners__.github__workflows__azure-static-web-apps-ashy-river-0debb7803.yml:6:3
+   [1m[94m|[0m
+[1m[94m 6 |[0m [1m[33m/[0m   build_and_deploy_job:
+[1m[94m 7 |[0m [1m[33m|[0m     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m25 |[0m [1m[33m|[0m           output_location: "dist" # Built app content directory - optional
+[1m[94m26 |[0m [1m[33m|[0m           ###### End of Repository/Build Configurations ######
+   [1m[94m|[0m [1m[33m|[0m                                                              [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________________________________________________|[0m
+   [1m[94m|[0m                                                                [1m[33mthis job[0m
+   [1m[94m|[0m                                                                [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_Web-Dev-For-Beginners__.github__workflows__azure-static-web-apps-ashy-river-0debb7803.yml:28:3
+   [1m[94m|[0m
+[1m[94m28 |[0m [1m[33m/[0m   close_pull_request_job:
+[1m[94m29 |[0m [1m[33m|[0m     if: github.event_name == 'pull_request' && github.event.action == 'closed'
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m37 |[0m [1m[33m|[0m           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ASHY_RIVER_0DEBB7803 }}
+[1m[94m38 |[0m [1m[33m|[0m           action: "close"
+   [1m[94m|[0m [1m[33m|[0m                          [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|__________________________|[0m
+   [1m[94m|[0m                            [1m[33mthis job[0m
+   [1m[94m|[0m                            [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_Web-Dev-For-Beginners__.github__workflows__azure-static-web-apps-ashy-river-0debb7803.yml:16:9
+   [1m[94m|[0m
+[1m[94m16 |[0m         uses: Azure/static-web-apps-deploy@v1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_Web-Dev-For-Beginners__.github__workflows__azure-static-web-apps-ashy-river-0debb7803.yml:35:9
+   [1m[94m|[0m
+[1m[94m35 |[0m         uses: Azure/static-web-apps-deploy@v1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m6[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m4[39m medium, [31m2[39m high

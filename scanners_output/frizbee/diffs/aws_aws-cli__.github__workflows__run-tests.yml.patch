@@ -1,0 +1,24 @@
+diff --git a/.github/workflows/aws_aws-cli__.github__workflows__run-tests.yml b/.github/workflows/aws_aws-cli__.github__workflows__run-tests.yml
+index 44bebe6..ebf3830 100644
+--- a/.github/workflows/aws_aws-cli__.github__workflows__run-tests.yml
++++ b/.github/workflows/aws_aws-cli__.github__workflows__run-tests.yml
+@@ -19,9 +19,9 @@ jobs:
+         os: [ubuntu-latest, macOS-latest, windows-latest]
+ 
+     steps:
+-    - uses: actions/checkout@v6.0.1
++    - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+     - name: Set up Python ${{ matrix.python-version }}
+-      uses: actions/setup-python@v6
++      uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+       with:
+         python-version: ${{ matrix.python-version }}
+     - name: Install dependencies
+@@ -33,6 +33,6 @@ jobs:
+     - name: Run checks
+       run: python scripts/ci/run-check
+     - name: codecov
+-      uses: codecov/codecov-action@v5
++      uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5
+       with:
+         directory: tests

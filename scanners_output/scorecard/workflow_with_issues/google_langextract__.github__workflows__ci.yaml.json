@@ -1,0 +1,132 @@
+{
+  "workflow": "google_langextract__.github__workflows__ci.yaml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Dangerous-Workflow": 1,
+      "Pinned-Dependencies": 1,
+      "SAST": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Dangerous-Workflow",
+      "score": 0,
+      "reason": "dangerous workflow patterns detected",
+      "lines": [
+        41
+      ],
+      "raw_details": [
+        "Warn: untrusted code checkout '${{ github.event.pull_request.head.ref }}': .github/workflows/google_langextract__.github__workflows__ci.yaml:41"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#dangerous-workflow",
+        "short": "Determines if the project's GitHub Action workflows avoid dangerous patterns."
+      }
+    },
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        42,
+        49,
+        55,
+        56,
+        77,
+        96,
+        101,
+        107,
+        108,
+        109,
+        126,
+        131,
+        137,
+        138,
+        139,
+        164,
+        171,
+        188,
+        194,
+        195,
+        212,
+        219,
+        234,
+        254,
+        255,
+        278,
+        300,
+        332,
+        338,
+        340,
+        356,
+        382,
+        401,
+        402,
+        403,
+        411,
+        423
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:212",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:219",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:234",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:278",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:300",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:332",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:356",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:382",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:411",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:423",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:42",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:49",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:77",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:96",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:101",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:126",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:131",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:164",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:171",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:188",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:137",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:138",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:139",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:194",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:195",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:254",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:255",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:338",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:340",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:401",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:402",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:403",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:55",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:56",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:107",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:108",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_langextract__.github__workflows__ci.yaml:109",
+        "Info:   0 out of  18 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of   2 third-party GitHubAction dependencies pinned",
+        "Info:   0 out of  17 pipCommand dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    }
+  ]
+}

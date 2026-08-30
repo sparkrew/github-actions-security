@@ -1,0 +1,31 @@
+diff --git a/.github/workflows/Tencent_ncnn__.github__workflows__linux-aarch64.yml b/.github/workflows/Tencent_ncnn__.github__workflows__linux-aarch64.yml
+index 28fe148..c0ddd95 100644
+--- a/.github/workflows/Tencent_ncnn__.github__workflows__linux-aarch64.yml
++++ b/.github/workflows/Tencent_ncnn__.github__workflows__linux-aarch64.yml
+@@ -32,7 +32,7 @@ jobs:
+   aarch64-native:
+     runs-on: ubuntu-24.04-arm
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+     - name: build
+       run: |
+@@ -61,7 +61,7 @@ jobs:
+   asan:
+     runs-on: ubuntu-24.04-arm
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+     - name: build
+       run: |
+         mkdir build && cd build
+@@ -75,7 +75,7 @@ jobs:
+   aarch64:
+     runs-on: ubuntu-24.04
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+     - name: aarch64-gnu-toolchain
+       run: |

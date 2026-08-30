@@ -1,0 +1,140 @@
+diff --git a/.github/workflows/google_magika__.github__workflows__python-build-and-release-package.yml b/.github/workflows/google_magika__.github__workflows__python-build-and-release-package.yml
+index 4183eda..79e5a28 100644
+--- a/.github/workflows/google_magika__.github__workflows__python-build-and-release-package.yml
++++ b/.github/workflows/google_magika__.github__workflows__python-build-and-release-package.yml
+@@ -40,7 +40,7 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v5
++        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+       - name: Setup python
+         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # pin@v5
+         with:
+@@ -82,7 +82,7 @@ jobs:
+           - runner: macos-14
+             target: aarch64
+     steps:
+-      - uses: actions/checkout@v5
++      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+       - name: Setup Python
+         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # pin@v5
+         with:
+@@ -96,7 +96,7 @@ jobs:
+           key: maturin-${{ matrix.platform.target }}-${{ hashFiles('rust/onnx/build.sh') }}
+       - if: matrix.platform.runner == 'ubuntu-latest'
+         name: Build wheels
+-        uses: PyO3/maturin-action@v1
++        uses: PyO3/maturin-action@b1bd829e37fef14c63f19162034228a2f3dc1021 # v1
+         with:
+           target: ${{ matrix.platform.target }}
+           args: --release --out=../dist
+@@ -105,13 +105,13 @@ jobs:
+           working-directory: python
+       - if: matrix.platform.runner != 'ubuntu-latest'
+         name: Build wheels
+-        uses: PyO3/maturin-action@v1
++        uses: PyO3/maturin-action@b1bd829e37fef14c63f19162034228a2f3dc1021 # v1
+         with:
+           target: ${{ matrix.platform.target }}
+           args: --release --out=../dist
+           working-directory: python
+       - name: Upload wheels
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: wheel-${{ matrix.platform.runner }}-${{ matrix.platform.target }}
+           path: dist
+@@ -134,8 +134,8 @@ jobs:
+           - runner: macos-14
+             target: aarch64
+     steps:
+-      - uses: actions/checkout@v5
+-      - uses: actions/download-artifact@v4
++      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
++      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+         with:
+           name: wheel-${{ matrix.platform.runner }}-${{ matrix.platform.target }}
+           path: dist
+@@ -190,7 +190,7 @@ jobs:
+     runs-on: ubuntu-latest
+     if: github.event.schedule != '12 3 * * 1'
+     steps:
+-      - uses: actions/checkout@v5
++      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+       - name: Install uv
+         run: curl -LsSf https://astral.sh/uv/${{ env.UV_VERSION }}/install.sh | sh
+       - run: uv run ./scripts/prepare_pyproject_for_pure_python_wheel.py
+@@ -199,12 +199,12 @@ jobs:
+         run: uv build --out-dir ../dist
+         working-directory: python
+       - name: Upload pure python wheel
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: wheel-pure-python
+           path: dist/*.whl
+       - name: Upload sdist
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: sdist
+           path: dist/*.tar.gz
+@@ -227,8 +227,8 @@ jobs:
+           - runner: macos-14
+             target: aarch64
+     steps:
+-      - uses: actions/checkout@v5
+-      - uses: actions/download-artifact@v4
++      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
++      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+         with:
+           name: wheel-pure-python
+           path: dist
+@@ -299,8 +299,8 @@ jobs:
+           - runner: macos-14
+             target: aarch64
+     steps:
+-      - uses: actions/checkout@v5
+-      - uses: actions/download-artifact@v4
++      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
++      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+         with:
+           name: sdist
+           path: dist
+@@ -371,7 +371,7 @@ jobs:
+ 
+     steps:
+       - name: Download all the artifacts (binary wheels, pure python wheel, sdist)
+-        uses: actions/download-artifact@v4
++        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+         with:
+           path: artifacts/
+ 
+@@ -391,7 +391,7 @@ jobs:
+ 
+       - name: Publish distribution to PyPI
+         if: github.event_name == 'push' && github.ref_type == 'tag' && startsWith(github.ref_name, env.RELEASE_TAG_PREFIX)
+-        uses: pypa/gh-action-pypi-publish@release/v1
++        uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # release/v1
+         with:
+           packages-dir: artifacts/
+ 
+@@ -411,7 +411,7 @@ jobs:
+ 
+     steps:
+       - name: Download all the artifacts (binary wheels, pure python wheel, sdist)
+-        uses: actions/download-artifact@v4
++        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+         with:
+           path: artifacts/
+ 
+@@ -431,7 +431,7 @@ jobs:
+ 
+       - name: Publish distribution to TestPyPI
+         if: github.event_name == 'push' && github.ref_type == 'tag' && startsWith(github.ref_name, env.TEST_RELEASE_TAG_PREFIX)
+-        uses: pypa/gh-action-pypi-publish@release/v1
++        uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # release/v1
+         with:
+           packages-dir: artifacts/
+           repository-url: https://test.pypi.org/legacy/

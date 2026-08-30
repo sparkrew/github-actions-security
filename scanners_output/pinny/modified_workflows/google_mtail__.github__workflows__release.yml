@@ -1,0 +1,150 @@
+name: release
+on:
+  # Test that this workflow works on every pull_request or merge group;
+  # goreleaser is put into snapshot mode when not on a tag
+  pull_request:
+  merge_group:
+  # Run when a tag is pushed.
+  push:
+    tags:
+      - v*
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  goreleaser:
+    runs-on: ubuntu-latest
+    permissions:
+      # goreleaser uploads artifacts to the releases api
+      contents: write
+      # goreleaser uploads images to container registry
+      packages: write
+    env:
+      flags: ""
+    outputs:
+      binary_hashes: ${{ steps.binary.outputs.hashes }}
+      image_subjects: ${{ steps.image.outputs.subjects }}
+    steps:
+      - if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        run: echo "flags=--snapshot" >> $GITHUB_ENV
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+        with:
+          fetch-depth: 0
+      - run: git fetch --force --tags
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # actions/setup-go@v5 | releases,v5.6.0
+        with:
+          go-version-file: 'go.mod'
+          cache: true
+      - uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # docker/login-action@v3.3.0
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: goreleaser/goreleaser-action@e435ccd777264be153ace6237001ef4d979d3a7a # goreleaser/goreleaser-action@v6 | v6.4.0
+        id: goreleaser
+        with:
+          version: latest
+          args: release --clean ${{ env.flags }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: generate hashes for binary artifacts
+        id: binary
+        env:
+          ARTIFACTS: "${{ steps.goreleaser.outputs.artifacts }}"
+        run: |
+          set -exuo pipefail
+          checksum_file=$(echo "${ARTIFACTS}" | jq -r '.[] | select (.type=="Checksum") | .path')
+          echo "hashes=$(cat ${checksum_file} | base64 -w0)" >> "${GITHUB_OUTPUT}"
+      - name: generate digest for container image
+        id: image
+        env:
+          ARTIFACTS: "${{ steps.goreleaser.outputs.artifacts }}"
+        run: |
+          set -exuo pipefail
+          image_list=$(echo -e "${ARTIFACTS}" | jq -r '.[] | select(.type=="Docker Manifest") | {"image": (.name | sub("^.*?/"; "") | sub(":(.*)"; "")), "digest": .extra.Digest}')
+          echo "subjects=$(echo $image_list | jq -c -s 'unique_by(.digest) | {"include": .}')" >> "$GITHUB_OUTPUT"
+
+  binary-provenance:
+    needs: [goreleaser]
+    if: ${{ startsWith(github.ref, 'refs/tags/') }}
+    permissions:
+      actions: read # To read the workflow path.
+      id-token: write # To sign the provenance.
+      contents: write # To add assets to a release.
+    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@5a775b367a56d5bd118a224a811bba288150a563 # slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v2.0.0
+    with:
+      base64-subjects: "${{ needs.goreleaser.outputs.binary_hashes }}"
+      upload-assets: true # upload to a new release
+
+  binary-verify:
+    needs: [goreleaser, binary-provenance]
+    if: ${{ startsWith(github.ref, 'refs/tags/') }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: slsa-framework/slsa-verifier/actions/installer@3714a2a4684014deb874a0e737dffa0ee02dd647 # slsa-framework/slsa-verifier/actions/installer@v2.6.0 | v2.6.0-rc.1
+      - name: download assets
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -exuo pipefail
+          gh release download "${GITHUB_REF_NAME}" --repo "${GITHUB_REPOSITORY}"
+      - name: verify assets
+        env:
+          CHECKSUMS: ${{ needs.goreleaser.outputs.binary_hashes }}
+          PROVENANCE: "${{ needs.binary-provenance.outputs.provenance-name }}"
+        run: |
+          set -exuo pipefail
+          echo "$CHECKSUMS" | base64 -d | while read -r line; do
+              fn=$(echo $line | cut -d ' ' -f2)
+              echo "Verifying $fn"
+              slsa-verifier verify-artifact --provenance-path "$PROVENANCE" \
+                                            --source-uri "github.com/$GITHUB_REPOSITORY" \
+                                            --source-tag "$GITHUB_REF_NAME" \
+                                            "$fn"
+          done
+
+  image-provenance:
+    needs: [goreleaser]
+    if: ${{ startsWith(github.ref, 'refs/tags/') }}
+    permissions:
+      actions: read
+      id-token: write
+      packages: write
+    strategy:
+      matrix: ${{ fromJSON(needs.goreleaser.outputs.image_subjects) }}
+    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@5a775b367a56d5bd118a224a811bba288150a563 # slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v2.0.0
+    with:
+      image: ghcr.io/${{ matrix.image }}
+      digest: ${{ matrix.digest }}
+      registry-username: ${{ github.actor }}
+    secrets:
+      registry-password: ${{ secrets.GITHUB_TOKEN }}
+
+  image-verify:
+    needs: [goreleaser, image-provenance]
+    if: ${{ startsWith(github.ref, 'refs/tags/') }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    strategy:
+      matrix: ${{ fromJSON(needs.goreleaser.outputs.image_subjects) }}
+    steps:
+      - uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # docker/login-action@v3.3.0
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: sigstore/cosign-installer@dc72c7d5c4d10cd6bcb8cf6e3fd625a9e5e537da # sigstore/cosign-installer@v3.7.0
+      - name: verify image
+        env:
+          IMAGE: ${{ matrix.image }}
+          DIGEST: ${{ matrix.digest }}
+        run: |
+          cosign verify-attestation \
+             --type slsaprovenance \
+             --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+             --certificate-identity-regexp '^https://github.com/slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@refs/tags/v[0-9]+.[0-9]+.[0-9]+$' \
+             ${REGISTRY}/${IMAGE}@${DIGEST}

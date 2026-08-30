@@ -1,0 +1,32 @@
+diff --git a/.github/workflows/Tencent_spring-cloud-tencent__.github__workflows__snapshot.yml b/.github/workflows/Tencent_spring-cloud-tencent__.github__workflows__snapshot.yml
+index 4be4c5f..5189ad1 100644
+--- a/.github/workflows/Tencent_spring-cloud-tencent__.github__workflows__snapshot.yml
++++ b/.github/workflows/Tencent_spring-cloud-tencent__.github__workflows__snapshot.yml
+@@ -21,7 +21,7 @@ jobs:
+       IS_SNAPSHOT: ${{ steps.check-deploy-type.outputs.IS_SNAPSHOT }}
+     steps:
+       - name: Checkout codes
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: Check deploy type
+         id: check-deploy-type
+         run: |
+@@ -65,9 +65,9 @@ jobs:
+     if: ${{ needs.check-snapshot.outputs.IS_SNAPSHOT == 'true' }}
+     steps:
+       - name: Checkout codes
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: Set up JDK ${{ needs.set-jdk.outputs.jdk }}
+-        uses: actions/setup-java@v5
++        uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5
+         with:
+           java-version: ${{ needs.set-jdk.outputs.jdk }}
+           distribution: 'temurin'
+@@ -78,4 +78,4 @@ jobs:
+         run: mvn clean deploy -B -U -Dmaven.test.skip=true
+         env:
+           MAVEN_USERNAME: ${{ secrets.CENTRAL_PORTAL_USERNAME }}
+-          MAVEN_PASSWORD: ${{ secrets.CENTRAL_PORTAL_TOKEN }}
+\ No newline at end of file
++          MAVEN_PASSWORD: ${{ secrets.CENTRAL_PORTAL_TOKEN }}

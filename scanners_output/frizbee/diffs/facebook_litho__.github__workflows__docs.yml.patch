@@ -1,0 +1,39 @@
+diff --git a/.github/workflows/facebook_litho__.github__workflows__docs.yml b/.github/workflows/facebook_litho__.github__workflows__docs.yml
+index b56a59d..26c5d34 100644
+--- a/.github/workflows/facebook_litho__.github__workflows__docs.yml
++++ b/.github/workflows/facebook_litho__.github__workflows__docs.yml
+@@ -11,21 +11,21 @@ jobs:
+ 
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v3
++        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+         with:
+           persist-credentials: false
+       - name: Set up JDK
+-        uses: actions/setup-java@v3
++        uses: actions/setup-java@17f84c3641ba7b8f6deff6309fc4c864478f5d62 # v3
+         with:
+           distribution: 'adopt'
+           java-version: 17
+       - name: Gradle caches
+-        uses: actions/cache@v3
++        uses: actions/cache@6f8efc29b200d32929f49075959781ed54ec270c # v3
+         with:
+           path: ~/.gradle/caches
+           key: caches-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
+       - name: Gradle wrapper caches
+-        uses: actions/cache@v3
++        uses: actions/cache@6f8efc29b200d32929f49075959781ed54ec270c # v3
+         with:
+           path: ~/.gradle/wrapper
+           key: wrapper-${{ runner.os }}-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+@@ -41,7 +41,7 @@ jobs:
+         working-directory: website/
+ 
+       - name: Deploy
+-        uses: JamesIves/github-pages-deploy-action@v4
++        uses: JamesIves/github-pages-deploy-action@d92aa235d04922e8f08b40ce78cc5442fcfbfa2f # v4
+         with:
+           branch: gh-pages
+           folder: website/build

@@ -1,0 +1,74 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+ [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__website-cleanup-preview.yaml:2:1
+  [1m[94m|[0m
+[1m[94m2 |[0m [1m[91m/[0m on:
+[1m[94m3 |[0m [1m[91m|[0m   pull_request_target:
+[1m[94m4 |[0m [1m[91m|[0m     types: [ closed ]
+  [1m[94m|[0m [1m[91m|_____________________^[0m [1m[91mpull_request_target is almost always used insecurely[0m
+  [1m[94m|[0m
+  [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__website-cleanup-preview.yaml:22:9
+   [1m[94m|[0m
+[1m[94m22 |[0m         - run: |
+   [1m[94m|[0m  [1m[94m_________-[0m
+[1m[94m23 |[0m [1m[94m|[0m           if aws amplify get-branch --app-id ${{ vars.AMPLIFY_APP_ID_PREVIEW }} --branch-name "${{ env.BRANCH_NAME }}" 2>/dev/null; [1m[94m...[0m
+[1m[94m24 |[0m [1m[94m|[0m             aws amplify delete-branch --app-id ${{ vars.AMPLIFY_APP_ID_PREVIEW }} --branch-name "${{ env.BRANCH_NAME }}"
+[1m[94m25 |[0m [1m[94m|[0m           fi
+   [1m[94m|[0m [1m[94m|[0m            [1m[94m-[0m
+   [1m[94m|[0m [1m[94m|____________|[0m
+   [1m[94m|[0m              [1m[94minfo: this step[0m
+   [1m[94m|[0m              [1m[94minfo: vars.AMPLIFY_APP_ID_PREVIEW may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__website-cleanup-preview.yaml:22:9
+   [1m[94m|[0m
+[1m[94m22 |[0m         - run: |
+   [1m[94m|[0m  [1m[94m_________-[0m
+[1m[94m23 |[0m [1m[94m|[0m           if aws amplify get-branch --app-id ${{ vars.AMPLIFY_APP_ID_PREVIEW }} --branch-name "${{ env.BRANCH_NAME }}" 2>/dev/null; [1m[94m...[0m
+[1m[94m24 |[0m [1m[94m|[0m             aws amplify delete-branch --app-id ${{ vars.AMPLIFY_APP_ID_PREVIEW }} --branch-name "${{ env.BRANCH_NAME }}"
+[1m[94m25 |[0m [1m[94m|[0m           fi
+   [1m[94m|[0m [1m[94m|[0m            [1m[94m-[0m
+   [1m[94m|[0m [1m[94m|____________|[0m
+   [1m[94m|[0m              [1m[94minfo: this step[0m
+   [1m[94m|[0m              [1m[94minfo: vars.AMPLIFY_APP_ID_PREVIEW may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__website-cleanup-preview.yaml:26:9
+   [1m[94m|[0m
+[1m[94m26 |[0m       - run: aws s3 rm s3://${{ vars.AMPLIFY_S3_BUCKET_BETA }}/pr-${{ env.PR_NUMBER }}/ --recursive
+   [1m[94m|[0m         [1m[94m-------------------------------------------------------------------------------------------[0m
+   [1m[94m|[0m         [1m[94m|[0m
+   [1m[94m|[0m         [1m[94minfo: this step[0m
+   [1m[94m|[0m         [1m[94minfo: vars.AMPLIFY_S3_BUCKET_BETA may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#github-env\github-env]8;;\][0m: [1mdangerous use of environment file[0m
+  [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__website-cleanup-preview.yaml:14:9
+   [1m[94m|[0m
+[1m[94m14 |[0m [1m[91m/[0m         run: |
+[1m[94m15 |[0m [1m[91m|[0m           pr_number="${{ github.event.number }}"
+[1m[94m16 |[0m [1m[91m|[0m           echo PR_NUMBER="$pr_number" >> "$GITHUB_ENV"
+[1m[94m17 |[0m [1m[91m|[0m           echo BRANCH_NAME="pr-$pr_number" >> "$GITHUB_ENV"
+   [1m[94m|[0m [1m[91m|___________________________________________________________^[0m [1m[91mwrite to GITHUB_ENV may allow code execution[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#github-env\github-env]8;;\][0m: [1mdangerous use of environment file[0m
+  [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__website-cleanup-preview.yaml:14:9
+   [1m[94m|[0m
+[1m[94m14 |[0m [1m[91m/[0m         run: |
+[1m[94m15 |[0m [1m[91m|[0m           pr_number="${{ github.event.number }}"
+[1m[94m16 |[0m [1m[91m|[0m           echo PR_NUMBER="$pr_number" >> "$GITHUB_ENV"
+[1m[94m17 |[0m [1m[91m|[0m           echo BRANCH_NAME="pr-$pr_number" >> "$GITHUB_ENV"
+   [1m[94m|[0m [1m[91m|___________________________________________________________^[0m [1m[91mwrite to GITHUB_ENV may allow code execution[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m14[39m findings ([1m[93m8[39m suppressed[0m): 0 unknown, [35m3[39m informational, [36m0[39m low, [33m0[39m medium, [31m3[39m high

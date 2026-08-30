@@ -1,0 +1,29 @@
+diff --git a/.github/workflows/Azure_bicep__.github__workflows__lockfiles-command.yml b/.github/workflows/Azure_bicep__.github__workflows__lockfiles-command.yml
+index 7573ea4..67b4544 100644
+--- a/.github/workflows/Azure_bicep__.github__workflows__lockfiles-command.yml
++++ b/.github/workflows/Azure_bicep__.github__workflows__lockfiles-command.yml
+@@ -16,13 +16,13 @@ jobs:
+           GITHUB_CONTEXT: ${{ toJson(github) }}
+         run: echo "$GITHUB_CONTEXT"
+ 
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           fetch-depth: 0 # full history
+           token: ${{ secrets.GITHUB_TOKEN }}
+ 
+       - name: Setup .NET Core
+-        uses: actions/setup-dotnet@v5
++        uses: actions/setup-dotnet@baa11fbfe1d6520db94683bd5c7a3818018e4309 # v5
+ 
+       - name: Restore dotnet dependencies
+         run: |
+@@ -37,7 +37,7 @@ jobs:
+           & .\npm-install.bat
+         working-directory: src/vscode-bicep
+ 
+-      - uses: stefanzweifel/git-auto-commit-action@v7
++      - uses: stefanzweifel/git-auto-commit-action@04702edda442b2e678b25b537cec683a1493fcb9 # v7
+         with:
+           commit_message: Update lockfiles
+           commit_user_name: ${{ github.actor }}

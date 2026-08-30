@@ -1,0 +1,28 @@
+diff --git a/.github/workflows/awslabs_aws-lambda-web-adapter__.github__workflows__changelog.yaml b/.github/workflows/awslabs_aws-lambda-web-adapter__.github__workflows__changelog.yaml
+index 7236c5d..f883ab0 100644
+--- a/.github/workflows/awslabs_aws-lambda-web-adapter__.github__workflows__changelog.yaml
++++ b/.github/workflows/awslabs_aws-lambda-web-adapter__.github__workflows__changelog.yaml
+@@ -22,12 +22,12 @@ jobs:
+       VERSION_TAG: ${{ inputs.version || github.ref_name }}
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           fetch-depth: 0
+ 
+       - name: Generate changelog
+-        uses: orhun/git-cliff-action@v4
++        uses: orhun/git-cliff-action@c93ef52f3d0ddcdcc9bd5447d98d458a11cd4f72 # v4
+         id: git-cliff
+         with:
+           config: cliff.toml
+@@ -45,7 +45,7 @@ jobs:
+           git push origin HEAD:main
+ 
+       - name: Create/update GitHub release body
+-        uses: orhun/git-cliff-action@v4
++        uses: orhun/git-cliff-action@c93ef52f3d0ddcdcc9bd5447d98d458a11cd4f72 # v4
+         with:
+           config: cliff.toml
+           args: --verbose --latest --strip header

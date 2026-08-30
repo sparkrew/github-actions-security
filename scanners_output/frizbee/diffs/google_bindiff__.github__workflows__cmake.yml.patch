@@ -1,0 +1,47 @@
+diff --git a/.github/workflows/google_bindiff__.github__workflows__cmake.yml b/.github/workflows/google_bindiff__.github__workflows__cmake.yml
+index ca9ffea..b12c166 100644
+--- a/.github/workflows/google_bindiff__.github__workflows__cmake.yml
++++ b/.github/workflows/google_bindiff__.github__workflows__cmake.yml
+@@ -17,16 +17,16 @@ jobs:
+     runs-on: ${{ matrix.os }}
+ 
+     steps:
+-    - uses: actions/checkout@v4
++    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+       with:
+         path: bindiff
+-    - uses: actions/checkout@v4
++    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+       with:
+         repository: google/binexport
+         path: binexport
+ 
+     - name: Install ninja-build tool
+-      uses: turtlesec-no/get-ninja@1.1.0
++      uses: turtlesec-no/get-ninja@d7a7c37af896a14495405252c4657afbc7a7b6fa # 1.1.0
+ 
+     - name: Create Build Environment
+       env:
+@@ -44,11 +44,11 @@ jobs:
+ 
+     - name: Enable Developer Command Prompt (Windows)
+       if: matrix.os == 'windows-2022'
+-      uses: ilammy/msvc-dev-cmd@v1.12.1
++      uses: ilammy/msvc-dev-cmd@cec98b9d092141f74527d0afa6feb2af698cfe89 # v1.12.1
+ 
+     - name: Enable mold linker (Linux)
+       if: matrix.os == 'ubuntu-22.04'
+-      uses: rui314/setup-mold@v1
++      uses: rui314/setup-mold@725a8794d15fc7563f59595bd9556495c0564878 # v1
+ 
+     - name: Configure CMake
+       working-directory: ${{ runner.workspace }}/build
+@@ -69,7 +69,7 @@ jobs:
+       run: ctest --build-config "${BUILD_TYPE}" --output-on-failure -R '^[A-Z]'
+ 
+     - name: Upload Build Artifacts
+-      uses: actions/upload-artifact@v3.1.2
++      uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3.1.2
+       with:
+         name: BinDiff-${{ runner.os }}
+         path: |

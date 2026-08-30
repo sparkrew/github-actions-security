@@ -1,0 +1,28 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_mcp__.github__workflows__typescript.yml:17:9
+   [1m[94m|[0m
+[1m[94m17 |[0m       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+   [1m[94m|[0m         [1m[33m------------------------------------------------------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_mcp__.github__workflows__typescript.yml:34:9
+   [1m[94m|[0m
+[1m[94m34 |[0m       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+   [1m[94m|[0m         [1m[33m------------------------------------------------------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_mcp__.github__workflows__typescript.yml:63:9
+   [1m[94m|[0m
+[1m[94m63 |[0m   [1m[94m...[0m - name: Generate Software Bill of Materials (SBOM)
+   [1m[94m|[0m         [1m[33m------------------------------------------------[0m [1m[33mthis step[0m
+[1m[94m64 |[0m [1m[33m/[0m [1m[94m...[0m   run:
+[1m[94m65 |[0m [1m[33m|[0m [1m[94m...[0m     npx @cyclonedx/cyclonedx-npm --gather-license-texts --mc-type library --output-format XML > src/${{ matrix.package }}/sbom.cyclondx.xml
+   [1m[94m|[0m [1m[33m|_______________________________________________________________________________________________________________________________________________-[0m [1m[33mmatrix.package may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m4[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m3[39m medium, [31m0[39m high

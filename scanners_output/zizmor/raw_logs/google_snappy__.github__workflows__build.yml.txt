@@ -1,0 +1,208 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/google_snappy__.github__workflows__build.yml:98:7
+    [1m[94m|[0m
+[1m[94m 98 |[0m       - uses: actions/checkout@v2
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m 99 |[0m [1m[33m|[0m       with:
+[1m[94m100 |[0m [1m[33m|[0m         submodules: true
+    [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_snappy__.github__workflows__build.yml:102:7
+    [1m[94m|[0m
+[1m[94m102 |[0m       - name: Generate build config
+    [1m[94m|[0m         [1m[96m---------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m103 |[0m [1m[96m/[0m       run: >-
+[1m[94m104 |[0m [1m[96m|[0m         cmake -S "${{ github.workspace }}" -B "${{ env.CMAKE_BUILD_DIR }}"
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m108 |[0m [1m[96m|[0m         -DSNAPPY_REQUIRE_AVX=${{ env.SNAPPY_REQUIRE_AVX }}
+[1m[94m109 |[0m [1m[96m|[0m         -DSNAPPY_REQUIRE_AVX2=${{ env.SNAPPY_REQUIRE_AVX2 }}
+    [1m[94m|[0m [1m[96m|____________________________________________________________-[0m [1m[96mhelp: env.CMAKE_BUILD_DIR may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_snappy__.github__workflows__build.yml:102:7
+    [1m[94m|[0m
+[1m[94m102 |[0m       - name: Generate build config
+    [1m[94m|[0m         [1m[96m---------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m103 |[0m [1m[96m/[0m       run: >-
+[1m[94m104 |[0m [1m[96m|[0m         cmake -S "${{ github.workspace }}" -B "${{ env.CMAKE_BUILD_DIR }}"
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m108 |[0m [1m[96m|[0m         -DSNAPPY_REQUIRE_AVX=${{ env.SNAPPY_REQUIRE_AVX }}
+[1m[94m109 |[0m [1m[96m|[0m         -DSNAPPY_REQUIRE_AVX2=${{ env.SNAPPY_REQUIRE_AVX2 }}
+    [1m[94m|[0m [1m[96m|____________________________________________________________-[0m [1m[96mhelp: env.CMAKE_BUILD_TYPE may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_snappy__.github__workflows__build.yml:102:7
+    [1m[94m|[0m
+[1m[94m102 |[0m       - name: Generate build config
+    [1m[94m|[0m         [1m[96m---------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m103 |[0m [1m[96m/[0m       run: >-
+[1m[94m104 |[0m [1m[96m|[0m         cmake -S "${{ github.workspace }}" -B "${{ env.CMAKE_BUILD_DIR }}"
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m108 |[0m [1m[96m|[0m         -DSNAPPY_REQUIRE_AVX=${{ env.SNAPPY_REQUIRE_AVX }}
+[1m[94m109 |[0m [1m[96m|[0m         -DSNAPPY_REQUIRE_AVX2=${{ env.SNAPPY_REQUIRE_AVX2 }}
+    [1m[94m|[0m [1m[96m|____________________________________________________________-[0m [1m[96mhelp: env.SNAPPY_FUZZING_BUILD may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_snappy__.github__workflows__build.yml:102:7
+    [1m[94m|[0m
+[1m[94m102 |[0m       - name: Generate build config
+    [1m[94m|[0m         [1m[96m---------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m103 |[0m [1m[96m/[0m       run: >-
+[1m[94m104 |[0m [1m[96m|[0m         cmake -S "${{ github.workspace }}" -B "${{ env.CMAKE_BUILD_DIR }}"
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m108 |[0m [1m[96m|[0m         -DSNAPPY_REQUIRE_AVX=${{ env.SNAPPY_REQUIRE_AVX }}
+[1m[94m109 |[0m [1m[96m|[0m         -DSNAPPY_REQUIRE_AVX2=${{ env.SNAPPY_REQUIRE_AVX2 }}
+    [1m[94m|[0m [1m[96m|____________________________________________________________-[0m [1m[96mhelp: env.SNAPPY_REQUIRE_AVX may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_snappy__.github__workflows__build.yml:102:7
+    [1m[94m|[0m
+[1m[94m102 |[0m       - name: Generate build config
+    [1m[94m|[0m         [1m[96m---------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m103 |[0m [1m[96m/[0m       run: >-
+[1m[94m104 |[0m [1m[96m|[0m         cmake -S "${{ github.workspace }}" -B "${{ env.CMAKE_BUILD_DIR }}"
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m108 |[0m [1m[96m|[0m         -DSNAPPY_REQUIRE_AVX=${{ env.SNAPPY_REQUIRE_AVX }}
+[1m[94m109 |[0m [1m[96m|[0m         -DSNAPPY_REQUIRE_AVX2=${{ env.SNAPPY_REQUIRE_AVX2 }}
+    [1m[94m|[0m [1m[96m|____________________________________________________________-[0m [1m[96mhelp: env.SNAPPY_REQUIRE_AVX2 may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_snappy__.github__workflows__build.yml:111:7
+    [1m[94m|[0m
+[1m[94m111 |[0m       - name: Build
+    [1m[94m|[0m         [1m[96m-----------[0m [1m[96mhelp: this step[0m
+[1m[94m112 |[0m [1m[96m/[0m       run: >-
+[1m[94m113 |[0m [1m[96m|[0m         cmake --build "${{ env.CMAKE_BUILD_DIR }}"
+[1m[94m114 |[0m [1m[96m|[0m         --config "${{ env.CMAKE_BUILD_TYPE }}"
+    [1m[94m|[0m [1m[96m|______________________________________________-[0m [1m[96mhelp: env.CMAKE_BUILD_DIR may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_snappy__.github__workflows__build.yml:111:7
+    [1m[94m|[0m
+[1m[94m111 |[0m       - name: Build
+    [1m[94m|[0m         [1m[96m-----------[0m [1m[96mhelp: this step[0m
+[1m[94m112 |[0m [1m[96m/[0m       run: >-
+[1m[94m113 |[0m [1m[96m|[0m         cmake --build "${{ env.CMAKE_BUILD_DIR }}"
+[1m[94m114 |[0m [1m[96m|[0m         --config "${{ env.CMAKE_BUILD_TYPE }}"
+    [1m[94m|[0m [1m[96m|______________________________________________-[0m [1m[96mhelp: env.CMAKE_BUILD_TYPE may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_snappy__.github__workflows__build.yml:116:7
+    [1m[94m|[0m
+[1m[94m116 |[0m     - name: Run C++ API Tests
+    [1m[94m|[0m       [1m[96m-----------------------[0m [1m[96mhelp: this step[0m
+[1m[94m117 |[0m       run: ${{ env.BINARY_PATH }}snappy_unittest${{ env.BINARY_SUFFIX }}
+    [1m[94m|[0m       [1m[96m------------------------------------------------------------------[0m [1m[96mhelp: env.BINARY_PATH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_snappy__.github__workflows__build.yml:116:7
+    [1m[94m|[0m
+[1m[94m116 |[0m     - name: Run C++ API Tests
+    [1m[94m|[0m       [1m[96m-----------------------[0m [1m[96mhelp: this step[0m
+[1m[94m117 |[0m       run: ${{ env.BINARY_PATH }}snappy_unittest${{ env.BINARY_SUFFIX }}
+    [1m[94m|[0m       [1m[96m------------------------------------------------------------------[0m [1m[96mhelp: env.BINARY_SUFFIX may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_snappy__.github__workflows__build.yml:119:7
+    [1m[94m|[0m
+[1m[94m119 |[0m       - name: Run Compression Fuzzer
+    [1m[94m|[0m         [1m[96m----------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m120 |[0m         if: ${{ env.SNAPPY_FUZZING_BUILD == '1' }}
+[1m[94m121 |[0m [1m[96m/[0m       run: >-
+[1m[94m122 |[0m [1m[96m|[0m         ${{ env.BINARY_PATH }}snappy_compress_fuzzer${{ env.BINARY_SUFFIX }}
+[1m[94m123 |[0m [1m[96m|[0m         -runs=1000 -close_fd_mask=3
+    [1m[94m|[0m [1m[96m|___________________________________-[0m [1m[96mhelp: env.BINARY_PATH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_snappy__.github__workflows__build.yml:119:7
+    [1m[94m|[0m
+[1m[94m119 |[0m       - name: Run Compression Fuzzer
+    [1m[94m|[0m         [1m[96m----------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m120 |[0m         if: ${{ env.SNAPPY_FUZZING_BUILD == '1' }}
+[1m[94m121 |[0m [1m[96m/[0m       run: >-
+[1m[94m122 |[0m [1m[96m|[0m         ${{ env.BINARY_PATH }}snappy_compress_fuzzer${{ env.BINARY_SUFFIX }}
+[1m[94m123 |[0m [1m[96m|[0m         -runs=1000 -close_fd_mask=3
+    [1m[94m|[0m [1m[96m|___________________________________-[0m [1m[96mhelp: env.BINARY_SUFFIX may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_snappy__.github__workflows__build.yml:125:7
+    [1m[94m|[0m
+[1m[94m125 |[0m       - name: Run Decompression Fuzzer
+    [1m[94m|[0m         [1m[96m------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m126 |[0m         if: ${{ env.SNAPPY_FUZZING_BUILD == '1' }}
+[1m[94m127 |[0m [1m[96m/[0m       run: >-
+[1m[94m128 |[0m [1m[96m|[0m         ${{ env.BINARY_PATH }}snappy_uncompress_fuzzer${{ env.BINARY_SUFFIX }}
+[1m[94m129 |[0m [1m[96m|[0m         -runs=1000 -close_fd_mask=3
+    [1m[94m|[0m [1m[96m|___________________________________-[0m [1m[96mhelp: env.BINARY_PATH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_snappy__.github__workflows__build.yml:125:7
+    [1m[94m|[0m
+[1m[94m125 |[0m       - name: Run Decompression Fuzzer
+    [1m[94m|[0m         [1m[96m------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m126 |[0m         if: ${{ env.SNAPPY_FUZZING_BUILD == '1' }}
+[1m[94m127 |[0m [1m[96m/[0m       run: >-
+[1m[94m128 |[0m [1m[96m|[0m         ${{ env.BINARY_PATH }}snappy_uncompress_fuzzer${{ env.BINARY_SUFFIX }}
+[1m[94m129 |[0m [1m[96m|[0m         -runs=1000 -close_fd_mask=3
+    [1m[94m|[0m [1m[96m|___________________________________-[0m [1m[96mhelp: env.BINARY_SUFFIX may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_snappy__.github__workflows__build.yml:131:7
+    [1m[94m|[0m
+[1m[94m131 |[0m     - name: Run Benchmarks
+    [1m[94m|[0m       [1m[96m--------------------[0m [1m[96mhelp: this step[0m
+[1m[94m132 |[0m       run: ${{ env.BINARY_PATH }}snappy_benchmark${{ env.BINARY_SUFFIX }}
+    [1m[94m|[0m       [1m[96m-------------------------------------------------------------------[0m [1m[96mhelp: env.BINARY_PATH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_snappy__.github__workflows__build.yml:131:7
+    [1m[94m|[0m
+[1m[94m131 |[0m     - name: Run Benchmarks
+    [1m[94m|[0m       [1m[96m--------------------[0m [1m[96mhelp: this step[0m
+[1m[94m132 |[0m       run: ${{ env.BINARY_PATH }}snappy_benchmark${{ env.BINARY_SUFFIX }}
+    [1m[94m|[0m       [1m[96m-------------------------------------------------------------------[0m [1m[96mhelp: env.BINARY_SUFFIX may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_snappy__.github__workflows__build.yml:134:7
+    [1m[94m|[0m
+[1m[94m134 |[0m     - name: Test CMake installation
+    [1m[94m|[0m       [1m[96m-----------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m135 |[0m       run: cmake --build "${{ env.CMAKE_BUILD_DIR }}" --target install
+    [1m[94m|[0m       [1m[96m----------------------------------------------------------------[0m [1m[96mhelp: env.CMAKE_BUILD_DIR may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m35[39m findings ([1m[93m18[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m16[39m low, [33m1[39m medium, [31m0[39m high

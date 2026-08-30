@@ -1,0 +1,20 @@
+name: trackNodeMigration
+on:
+  workflow_dispatch:
+  push:
+    branches:    
+      - master
+    paths:
+    - .github/workflows/trackNodeMigration.yml
+    - .github/workflows/trackNodeMigration.js
+
+jobs:
+  trackNodeMigration:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out the repository to get access to the workflow scripts
+      uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98 # actions/checkout@main | 932
+    - name: Check all tasks' manifests and reflect their Node version migration progress in tracking issues
+      run: |
+        cd .github/workflows
+        node trackNodeMigration.js ${{github.token}}

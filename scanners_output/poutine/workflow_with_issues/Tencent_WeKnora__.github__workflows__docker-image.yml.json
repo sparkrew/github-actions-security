@@ -1,0 +1,23 @@
+{
+  "workflow": "Tencent_WeKnora__.github__workflows__docker-image.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 231,
+      "column": "",
+      "job": "merge",
+      "step": "0",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push"
+      ]
+    }
+  ]
+}

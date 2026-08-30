@@ -1,0 +1,40 @@
+diff --git a/.github/workflows/NVIDIA_TransformerEngine__.github__workflows__build.yml b/.github/workflows/NVIDIA_TransformerEngine__.github__workflows__build.yml
+index 0f05dbc..36c9573 100644
+--- a/.github/workflows/NVIDIA_TransformerEngine__.github__workflows__build.yml
++++ b/.github/workflows/NVIDIA_TransformerEngine__.github__workflows__build.yml
+@@ -25,7 +25,7 @@ jobs:
+           apt-get install -y git python3.9 pip cudnn9-cuda-12
+           pip install cmake==3.21.0 pybind11[global] ninja
+       - name: 'Checkout'
+-        uses: actions/checkout@v3
++        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+         with:
+           submodules: recursive
+       - name: ccache
+@@ -64,7 +64,7 @@ jobs:
+         run: sudo sh -c "mv ${GITHUB_WORKSPACE}/docker/* /var/lib/docker"
+ 
+       - name: 'Checkout'
+-        uses: actions/checkout@v3
++        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+         with:
+           submodules: recursive
+ 
+@@ -98,7 +98,7 @@ jobs:
+       - name: 'Dependencies'
+         run: pip install cmake==3.21.0 pybind11[global]
+       - name: 'Checkout'
+-        uses: actions/checkout@v3
++        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+         with:
+           submodules: recursive
+       - name: ccache
+@@ -137,7 +137,7 @@ jobs:
+         run: sudo sh -c "mv ${GITHUB_WORKSPACE}/docker/* /var/lib/docker"
+ 
+       - name: 'Checkout'
+-        uses: actions/checkout@v3
++        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+         with:
+           submodules: recursive
+ 

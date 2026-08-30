@@ -1,0 +1,64 @@
+diff --git a/.github/workflows/facebookresearch_habitat-lab__.github__workflows__install_and_test.yml b/.github/workflows/facebookresearch_habitat-lab__.github__workflows__install_and_test.yml
+index d23fe0c..3fc838f 100644
+--- a/.github/workflows/facebookresearch_habitat-lab__.github__workflows__install_and_test.yml
++++ b/.github/workflows/facebookresearch_habitat-lab__.github__workflows__install_and_test.yml
+@@ -13,9 +13,9 @@ jobs:
+   pre-commit:
+     runs-on: ubuntu-latest
+     steps:
+-    - uses: actions/checkout@v4.1.1
++    - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+     - name: Setup python
+-      uses: actions/setup-python@v5.0.0
++      uses: actions/setup-python@0a5c61591373683505ea898e09a3ea4f39ef2b9c # v5.0.0
+       with:
+         python-version: '3.9.16'
+     - name: install dependencies
+@@ -30,9 +30,9 @@ jobs:
+   python_lint:
+     runs-on: ubuntu-latest
+     steps:
+-    - uses: actions/checkout@v4.1.1
++    - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+     - name: Setup python
+-      uses: actions/setup-python@v5.0.0
++      uses: actions/setup-python@0a5c61591373683505ea898e09a3ea4f39ef2b9c # v5.0.0
+       with:
+         python-version: '3.9.16'
+     - name: setup
+@@ -64,7 +64,7 @@ jobs:
+       run:
+         shell: bash -el {0}
+     steps:
+-    - uses: actions/checkout@v4.1.1
++    - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+       with:
+         path: "./habitat-lab"
+     - uses: "./habitat-lab/.github/actions/install_ubuntu_deps"
+@@ -177,7 +177,7 @@ jobs:
+         mkdir -p ../build/docs
+         ./build-public.sh
+     - name: Setup non editable install env
+-      uses: conda-incubator/setup-miniconda@v3.0.1
++      uses: conda-incubator/setup-miniconda@11b562958363ec5770fef326fe8ef0366f8cbf8a # v3.0.1
+       with:
+         miniconda-version: "latest"
+         python-version: "3.11"
+@@ -195,7 +195,7 @@ jobs:
+         pip install habitat-hitl/
+         python -c 'import habitat_hitl; print("habitat_hitl version:", habitat_hitl.__version__)'
+     - name: Setup build env
+-      uses: conda-incubator/setup-miniconda@v3.0.1
++      uses: conda-incubator/setup-miniconda@11b562958363ec5770fef326fe8ef0366f8cbf8a # v3.0.1
+       with:
+         miniconda-version: "latest"
+         python-version: "3.12"
+@@ -209,7 +209,7 @@ jobs:
+         python -m build -s -w -C--global-option=egg_info -C--global-option=--tag-date habitat-lab/
+         python -m build -s -w -C--global-option=egg_info -C--global-option=--tag-date habitat-baselines/
+     - name: Setup bdist conda env
+-      uses: conda-incubator/setup-miniconda@v3.0.1
++      uses: conda-incubator/setup-miniconda@11b562958363ec5770fef326fe8ef0366f8cbf8a # v3.0.1
+       with:
+         miniconda-version: "latest"
+         python-version: "3.11"

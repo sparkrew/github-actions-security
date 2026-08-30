@@ -1,0 +1,27 @@
+{
+  "workflow": "microsoft_msquic__.github__workflows__cifuzz.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: google/oss-fuzz/infra/cifuzz/actions/build_fuzzers@5024e8764dc450cd709662afaf569315a4c557e2",
+      "line": 11
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: google/oss-fuzz/infra/cifuzz/actions/build_fuzzers@5024e8764dc450cd709662afaf569315a4c557e2 # google/oss-fuzz/infra/cifuzz/actions/build_fuzzers@5024e8764dc450cd709662afaf569315a4c557e2",
+      "line": 17
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+      "line": 24
+    }
+  ]
+}

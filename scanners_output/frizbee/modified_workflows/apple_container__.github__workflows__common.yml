@@ -1,0 +1,145 @@
+name: container project - common jobs
+
+permissions:
+  contents: read
+
+on:
+  workflow_call:
+    inputs:
+      release:
+        type: boolean
+        description: "Publish this build for release"
+        default: false
+
+jobs:
+  buildAndTest:
+    name: Build and test the project
+    if: github.repository == 'apple/container'
+    timeout-minutes: 60
+    runs-on: [self-hosted, macos, tahoe, ARM64]
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 0
+
+      - name: Check formatting
+        run: |
+          ./scripts/install-hawkeye.sh
+          make fmt
+
+          if ! git diff --quiet -- . ; then
+            echo "❌ The following files require formatting or license header updates:"
+            git diff --name-only -- .
+            false
+          fi
+
+      - name: Check protobuf
+        run: |
+          make protos
+          if ! git diff --quiet -- . ; then
+            echo "❌ The following files require formatting or license header updates:"
+            git diff --name-only -- .
+            false
+          fi
+        env:
+          DEVELOPER_DIR: "/Applications/Xcode-latest.app/Contents/Developer"
+
+      - name: Set build configuration
+        run: |
+          echo "BUILD_CONFIGURATION=debug" >> $GITHUB_ENV
+          if [[ "${{ inputs.release }}" == "true" ]]; then
+            echo "BUILD_CONFIGURATION=release" >> $GITHUB_ENV
+          fi
+
+      - name: Make the container project and docs
+        run: |
+          make container dsym docs
+          tar cfz _site.tgz _site
+        env:
+          DEVELOPER_DIR: "/Applications/Xcode-latest.app/Contents/Developer"
+
+      - name: Create package
+        run: |
+          mkdir -p outputs
+          mv bin/${{ env.BUILD_CONFIGURATION }}/container-installer-unsigned.pkg outputs
+          mv bin/${{ env.BUILD_CONFIGURATION }}/bundle/container-dSYM.zip outputs
+
+      - name: Test the container project
+        run: |
+          APP_ROOT=$(mktemp -d -p "${RUNNER_TEMP}")
+          LOG_ROOT="${APP_ROOT}/logs"
+          echo "created data directory: ${APP_ROOT}"
+          echo "hostname: $(hostname)"
+          export NO_PROXY="${NO_PROXY},192.168.0.0/16,fe80::/10"
+          echo NO_PROXY=${NO_PROXY}
+          export no_proxy="${no_proxy},192.168.0.0/16,fe80::/10"
+          echo no_proxy=${no_proxy}
+          echo "APP_ROOT=${APP_ROOT}" >> $GITHUB_ENV
+          echo "LOG_ROOT=${LOG_ROOT}" >> $GITHUB_ENV
+          make APP_ROOT="${APP_ROOT}" LOG_ROOT="${LOG_ROOT}" test install-kernel integration
+        env:
+          DEVELOPER_DIR: "/Applications/Xcode-latest.app/Contents/Developer"
+
+      - name: Archive test logs
+        if: always()
+        run: |
+          if [ -n "${LOG_ROOT}" ] && [ -d "${LOG_ROOT}" ] ; then
+            echo "Collecting logs from ${LOG_ROOT}..."
+            tar czf container-logs.tar.gz -C "$(dirname "${LOG_ROOT}")" "$(basename "${LOG_ROOT}")"
+            echo "Log archive created: container-logs.tar.gz"
+          fi
+          if [ -n "${APP_ROOT}" ] ; then
+            rm -rf "${APP_ROOT}"
+            echo "Removed data directory ${APP_ROOT}"
+          fi
+
+      - name: Upload logs if present
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: container-test-logs
+          path: container-logs.tar.gz
+          retention-days: 14
+          if-no-files-found: ignore
+
+      - name: Save documentation artifact
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: api-docs
+          path: "./_site.tgz"
+          retention-days: 14
+
+      - name: Save package artifacts
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: container-package
+          path: ${{ github.workspace }}/outputs
+
+  uploadPages:
+    # Separate upload step required because upload-pages-artifact needs
+    # gtar which is not on the macOS runner.
+    name: Upload artifact for GitHub Pages
+    needs: buildAndTest
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Pages
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+
+      - name: Download a single artifact
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+        with:
+          name: api-docs
+
+      - name: Add API docs to documentation
+        run: |
+          tar xfz _site.tgz
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
+        with:
+          path: "./_site"

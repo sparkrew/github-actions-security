@@ -1,0 +1,40 @@
+diff --git a/.github/workflows/facebook_igl__.github__workflows__cmake-install-test.yml b/.github/workflows/facebook_igl__.github__workflows__cmake-install-test.yml
+index e3c7771..8d5a0df 100644
+--- a/.github/workflows/facebook_igl__.github__workflows__cmake-install-test.yml
++++ b/.github/workflows/facebook_igl__.github__workflows__cmake-install-test.yml
+@@ -42,7 +42,7 @@ jobs:
+     name: ${{ matrix.config.name }}
+ 
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           submodules: recursive
+ 
+@@ -58,7 +58,7 @@ jobs:
+ 
+       - name: Prepare Vulkan SDK
+         if: ${{ !contains(matrix.config.cmake_args, 'IGL_WITH_VULKAN=OFF') }}
+-        uses: jakoch/install-vulkan-sdk-action@v1.1.1
++        uses: jakoch/install-vulkan-sdk-action@40216eed6cafc7df0be5eb80620a9f0e7c7104f9 # v1.1.1
+         with:
+           vulkan_version: 1.4.304.1
+           install_runtime: true
+@@ -66,7 +66,7 @@ jobs:
+           stripdown: true
+ 
+       - name: Get the number of CPU cores
+-        uses: SimenB/github-actions-cpu-cores@v2
++        uses: SimenB/github-actions-cpu-cores@97ba232459a8e02ff6121db9362b09661c875ab8 # v2
+ 
+       - name: Configure CMake
+         shell: bash
+@@ -274,7 +274,7 @@ jobs:
+     name: "Backward Compatibility Test"
+     
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           submodules: recursive
+ 

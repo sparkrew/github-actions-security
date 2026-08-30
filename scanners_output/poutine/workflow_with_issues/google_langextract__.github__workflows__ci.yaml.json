@@ -1,0 +1,26 @@
+{
+  "workflow": "google_langextract__.github__workflows__ci.yaml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "untrusted_checkout_exec": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 54,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of `pip`",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request",
+        "pull_request_target"
+      ]
+    }
+  ]
+}

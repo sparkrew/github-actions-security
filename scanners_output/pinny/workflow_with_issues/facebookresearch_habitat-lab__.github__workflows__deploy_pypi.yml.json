@@ -1,0 +1,32 @@
+{
+  "workflow": "facebookresearch_habitat-lab__.github__workflows__deploy_pypi.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # actions/checkout@v4.1.1 | 1567",
+      "line": 20
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: conda-incubator/setup-miniconda@11b562958363ec5770fef326fe8ef0366f8cbf8a # conda-incubator/setup-miniconda@v3.0.1",
+      "line": 26
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # pypa/gh-action-pypi-publish@release/v1 | release",
+      "line": 44
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "#  uses: mxschmitt/action-tmate@b3db6e16e597d92037c8647e54acc5d2b1b48dee # mxschmitt/action-tmate@v3.18",
+      "line": 47
+    }
+  ]
+}

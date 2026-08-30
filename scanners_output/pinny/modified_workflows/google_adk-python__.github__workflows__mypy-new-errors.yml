@@ -1,0 +1,74 @@
+name: Mypy New Error Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+
+jobs:
+  mypy-diff:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11', '3.12', '3.13',]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # actions/setup-python@v6 | main,v6.2.0
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@5a095e7a2014a4212f075830d4f7277575a9d098 # astral-sh/setup-uv@v7
+
+      - name: Generate Baseline (Main)
+        run: |
+          # Switch to main branch to generate baseline
+          git checkout origin/main
+
+          git checkout ${{ github.sha }} -- pyproject.toml
+          
+          # Install dependencies for main
+          uv venv .venv
+          source .venv/bin/activate
+          uv sync --all-extras
+          
+          # Run mypy, filter for errors only, remove line numbers (file:123: -> file::), and sort
+          # We ignore exit code (|| true) because we expect errors on main
+          uv run mypy . | grep "error:" | sed 's/:\([0-9]\+\):/::/g' | sort > main_errors.txt || true
+          
+          echo "Found $(wc -l < main_errors.txt) errors on main."
+
+      - name: Check PR Branch
+        run: |
+          # Switch back to the PR commit
+          git checkout ${{ github.sha }}
+          
+          # Re-sync dependencies in case the PR changed them
+          source .venv/bin/activate
+          uv sync --all-extras
+          
+          # Run mypy on PR code, apply same processing
+          uv run mypy . | grep "error:" | sed 's/:\([0-9]\+\):/::/g' | sort > pr_errors.txt || true
+          
+          echo "Found $(wc -l < pr_errors.txt) errors on PR branch."
+
+      - name: Compare and Fail on New Errors
+        run: |
+          # 'comm -13' suppresses unique lines in file1 (main) and common lines, 
+          # leaving only lines unique to file2 (PR) -> The new errors.
+          comm -13 main_errors.txt pr_errors.txt > new_errors.txt
+          
+          if [ -s new_errors.txt ]; then
+            echo "::error::The following NEW mypy errors were introduced:"
+            cat new_errors.txt
+            exit 1
+          else
+            echo "Great job! No new mypy errors introduced."
+          fi

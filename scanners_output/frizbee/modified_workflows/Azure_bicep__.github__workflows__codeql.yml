@@ -1,0 +1,63 @@
+name: CodeQL
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  security-events: write
+
+env:
+  CI: true
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+jobs:
+  codeql:
+    name: Run CodeQL Analysis
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 0 # avoid shallow clone so nbgv can do its work.
+          submodules: true
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@89a39a4e59826350b863aa6b6252a07ad50cf83e # v4
+        with:
+          languages: csharp, javascript
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@baa11fbfe1d6520db94683bd5c7a3818018e4309 # v5
+
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@6fb02220983dee41ce7ae257b6f4d8f9bf5ed4ce # v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+        with:
+          node-version: 20
+
+      - name: Build All Projects
+        run: |
+          msbuild src/vs-bicep/BicepInVisualStudio.sln /restore /p:Configuration=Release /v:m /bl:./src/binlog/bicep_in_visual_studio_build.binlog
+          dotnet build --configuration release
+          npm --prefix src/vscode-bicep ci
+          npm --prefix src/vscode-bicep run build
+          npm --prefix src/playground ci
+          npm --prefix src/playground run build
+          npm --prefix src/Bicep.Cli.E2eTests ci
+          npm --prefix src/Bicep.Cli.E2eTests run build
+          npm --prefix src/Bicep.MSBuild.E2eTests ci
+          npm --prefix src/Bicep.MSBuild.E2eTests run build
+          npm --prefix src/textmate ci
+          npm --prefix src/textmate run build
+          npm --prefix src/highlightjs ci
+          npm --prefix src/highlightjs run build
+          npm --prefix src/monarch ci
+          npm --prefix src/monarch run build
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@89a39a4e59826350b863aa6b6252a07ad50cf83e # v4

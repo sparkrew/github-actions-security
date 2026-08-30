@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/google_perfetto__.github__workflows__linux-tests.yml b/.github/workflows/google_perfetto__.github__workflows__linux-tests.yml
+index 1e0018d..570a273 100644
+--- a/.github/workflows/google_perfetto__.github__workflows__linux-tests.yml
++++ b/.github/workflows/google_perfetto__.github__workflows__linux-tests.yml
+@@ -53,7 +53,7 @@ jobs:
+       PERFETTO_CI_BUILD_CACHE_KEY: build-cache-${{ matrix.config.name }}
+       PERFETTO_CI_JOB_ID: gh-${{ github.run_id }}-${{ matrix.config.name }}
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       - name: Setup artifacts
+         shell: bash

@@ -1,0 +1,122 @@
+{
+  "workflow": "Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 10,
+    "by_rule": {
+      "injection": 10
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "injection",
+      "line": 293,
+      "column": "",
+      "job": "windows_prebuilt",
+      "step": "3",
+      "details": "Sources: github.event.inputs.build_args github.event.inputs.build_type == 'release' && 'is_debug=false is_official_build=true clang_use_chrome_plugins=false clang_base_path=\"\"\"\"$llvmPath\"\"\"\"'  || 'is_debug=true enable_iterator_debugging=true'",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": 222,
+      "column": "",
+      "job": "android_prebuilt",
+      "step": "7",
+      "details": "Sources: github.event.inputs.build_args github.event.inputs.build_type == 'release' && 'is_debug=false is_official_build=true' || 'is_debug=true'",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": 493,
+      "column": "",
+      "job": "ios_prebuilt",
+      "step": "4",
+      "details": "Sources: github.event.inputs.build_args github.event.inputs.build_type == 'release' && 'is_debug=false is_official_build=true' || 'is_debug=true'",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": 423,
+      "column": "",
+      "job": "linux_prebuilt",
+      "step": "2",
+      "details": "Sources: github.event.inputs.build_args github.event.inputs.build_type == 'release' && 'is_debug=false is_official_build=true' || 'is_debug=true'",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": 359,
+      "column": "",
+      "job": "macos_prebuilt",
+      "step": "2",
+      "details": "Sources: github.event.inputs.build_args github.event.inputs.build_type == 'release' && 'is_debug=false is_official_build=true' || 'is_debug=true'",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": 178,
+      "column": "",
+      "job": "android_prebuilt",
+      "step": "1",
+      "details": "Sources: github.event.inputs.v8_revision",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": 474,
+      "column": "",
+      "job": "ios_prebuilt",
+      "step": "1",
+      "details": "Sources: github.event.inputs.v8_revision",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": 411,
+      "column": "",
+      "job": "linux_prebuilt",
+      "step": "0",
+      "details": "Sources: github.event.inputs.v8_revision",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": 351,
+      "column": "",
+      "job": "macos_prebuilt",
+      "step": "1",
+      "details": "Sources: github.event.inputs.v8_revision",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": 284,
+      "column": "",
+      "job": "windows_prebuilt",
+      "step": "2",
+      "details": "Sources: github.event.inputs.v8_revision",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

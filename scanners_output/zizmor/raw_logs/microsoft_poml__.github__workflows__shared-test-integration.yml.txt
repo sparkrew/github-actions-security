@@ -1,0 +1,39 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_poml__.github__workflows__shared-test-integration.yml:33:9
+   [1m[94m|[0m
+[1m[94m33 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_poml__.github__workflows__shared-test-integration.yml:73:9
+   [1m[94m|[0m
+[1m[94m73 |[0m         - name: Run ${{ inputs.integration }} baseline test
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m74 |[0m           if: inputs.integration != 'openai'
+[1m[94m...[0m
+[1m[94m84 |[0m             WANDB_API_KEY: ${{ secrets.WANDB_API_KEY }}
+[1m[94m85 |[0m [1m[91m/[0m         run: |
+[1m[94m86 |[0m [1m[91m|[0m           cd python/tests/integration
+[1m[94m87 |[0m [1m[91m|[0m           python ${{ inputs.integration }}_baseline.py
+   [1m[94m|[0m [1m[91m|______________________________________________________^[0m [1m[91minputs.integration may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_poml__.github__workflows__shared-test-integration.yml:90:9
+    [1m[94m|[0m
+[1m[94m 90 |[0m         - name: Run ${{ inputs.integration }} integration tests
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m 91 |[0m           if: inputs.integration != 'openai'
+[1m[94m...[0m
+[1m[94m101 |[0m             WANDB_API_KEY: ${{ secrets.WANDB_API_KEY }}
+[1m[94m102 |[0m [1m[91m/[0m         run: |
+[1m[94m103 |[0m [1m[91m|[0m           cd python/tests/integration
+[1m[94m104 |[0m [1m[91m|[0m           python ${{ inputs.integration }}_poml.py
+    [1m[94m|[0m [1m[91m|__________________________________________________^[0m [1m[91minputs.integration may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m7[39m findings ([1m[93m4[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m2[39m high

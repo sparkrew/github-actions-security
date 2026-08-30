@@ -1,0 +1,17 @@
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_aws-sdk-rust__.github__workflows__issue-regression-labeler.yml:24:7
+   [1m[94m|[0m
+[1m[94m24 |[0m       - name: Manage regression label
+   [1m[94m|[0m         [1m[94m-----------------------------[0m [1m[94minfo: this step[0m
+[1m[94m25 |[0m         env:
+[1m[94m26 |[0m           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+[1m[94m27 |[0m [1m[94m/[0m       run: |
+[1m[94m28 |[0m [1m[94m|[0m         if [ "${{ steps.check_regression.outputs.is_regression }}" == "true" ]; then
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m31 |[0m [1m[94m|[0m           gh issue edit ${{ github.event.issue.number }} --remove-label "potential-regression" -R ${{ github.repository }}
+[1m[94m32 |[0m [1m[94m|[0m         fi
+   [1m[94m|[0m [1m[94m|___________-[0m [1m[94minfo: steps.check_regression.outputs.is_regression may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m7[39m findings ([1m[93m6[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m0[39m medium, [31m0[39m high

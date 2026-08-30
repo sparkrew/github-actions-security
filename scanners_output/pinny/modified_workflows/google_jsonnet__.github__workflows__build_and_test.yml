@@ -1,0 +1,135 @@
+name: Build and Test
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review, review_requested]
+    branches-ignore:
+      - "gh-pages"
+  push:
+    branches:
+      - "master"
+      - "prepare-release"
+    tags:
+      - v*
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check_code_format:
+    name: Check code formatting
+    runs-on: "ubuntu-22.04"
+    # The code currently doesn't pass formatting.
+    # Enable this workflow job once it does, to detect regressions.
+    if: false
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - name: Check clang-format (make test-formatting)
+        run: |
+          make test-formatting
+
+  plain_makefile:
+    name: Build and test using plain Makefile
+    runs-on: "ubuntu-22.04"
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - name: Add system tools
+        run: |
+          sudo apt-get update && sudo apt-get install libgtest-dev help2man
+      - name: Build (make all)
+        run: |
+          make all
+      - name: Test (make test)
+        run: |
+          make test
+
+  python_module:
+    name: Build and test Python module
+    runs-on: "ubuntu-22.04"
+    strategy:
+      fail-fast: false
+      matrix:
+        # Python 3.6 isn't available on the ubuntu-22.04 GitHub runner
+        # (which is the oldest Ubuntu runner still available)
+        # Python 3.7 is too old for the version of setuptools that we request.
+        # (and we want that setuptools to be able to set certain compiler options correctly)
+        # Python 3.8 is the oldest we can easily support, I think.
+        # Note Python 3.8 and 3.9 are already _past_ end of life: https://devguide.python.org/versions/
+        # 3.8 EOL was 07 Oct 2024
+        # 3.9 EOL was 31 Oct 2025
+        python_version: ["3.8", "3.10", "3.14"]
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # actions/setup-python@v5 | releases,v5.6.0
+        with:
+          python-version: "${{ matrix.python_version }}"
+      - name: Build
+        run: |
+          pip install build
+          python -m build --sdist --wheel
+      - name: Test
+        run: |
+          python -m venv --clear trial &&
+          cd trial &&
+          source bin/activate &&
+          pip install ../dist/jsonnet-*.whl &&
+          python3 ../python/_jsonnet_test.py
+
+  cmake_build:
+    name: Build and test using CMake
+    runs-on: "ubuntu-22.04"
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - name: Configure (cmake)
+        run: |
+          cmake -GNinja -DCMAKE_BUILD_TYPE=RelWithDebInfo -B "${{github.workspace}}/build"
+      - name: Build (cmake --build)
+        working-directory: ${{github.workspace}}/build
+        run: |
+          cmake --build .
+      - name: Test (ctest))
+        working-directory: ${{github.workspace}}/build
+        run: |
+          ctest --output-on-failure
+
+  bazel_build:
+    name: Build and test using Bazel
+    runs-on: "ubuntu-22.04"
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - name: Build
+        run: |
+          bazelisk build --lockfile_mode=error -c opt //cmd:all
+      - name: Test
+        run: |
+          bazelisk test --lockfile_mode=error //...
+
+  bazel_use_module:
+    name: Build Bazel example
+    runs-on: "ubuntu-22.04"
+    strategy:
+      fail-fast: false
+      matrix:
+        bazel_version: ["7.*", "8.*", "9.*"]
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - name: Build
+        env:
+          USE_BAZEL_VERSION: ${{ matrix.bazel_version }}
+        run: |
+          cd examples/bazel
+          bazelisk build --lockfile_mode=off //...
+
+  cmake_example:
+    name: Build CMake example
+    runs-on: "ubuntu-22.04"
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - name: Build
+        run: |
+          cd examples/cmake
+          BUILD_DIR="$(mktemp -d)"
+          cmake -GNinja -DCMAKE_BUILD_TYPE=Debug -S . -B "${BUILD_DIR}" && \
+            cmake --build "${BUILD_DIR}" -- -v && \
+            ${BUILD_DIR}/jsonnet_cmake_example

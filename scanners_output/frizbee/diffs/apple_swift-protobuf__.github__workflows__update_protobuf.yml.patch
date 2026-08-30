@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/apple_swift-protobuf__.github__workflows__update_protobuf.yml b/.github/workflows/apple_swift-protobuf__.github__workflows__update_protobuf.yml
+index 684664d..dc137ba 100644
+--- a/.github/workflows/apple_swift-protobuf__.github__workflows__update_protobuf.yml
++++ b/.github/workflows/apple_swift-protobuf__.github__workflows__update_protobuf.yml
+@@ -20,7 +20,7 @@ jobs:
+       image: swift:latest
+     steps:
+     - name: Checkout
+-      uses: actions/checkout@v6
++      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         submodules: true
+         token: ${{ secrets.GITHUB_TOKEN }}
+@@ -139,7 +139,7 @@ jobs:
+ 
+     - name: Create Pull Request
+       if: steps.check_release.outputs.needs_update == 'true'
+-      uses: peter-evans/create-pull-request@v8
++      uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8
+       with:
+         token: ${{ secrets.GITHUB_TOKEN }}
+         commit-message: |

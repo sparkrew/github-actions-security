@@ -1,0 +1,27 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - mountpoint-s3-[0-9]+.*
+
+permissions:
+  contents: write
+
+
+jobs:
+  create-github-release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+    - uses: taiki-e/create-gh-release-action@56a8b3f8449593aa02b91f7b84da564f476e94f0 # v1
+      with:
+        title: "mountpoint-s3 v$version"
+        # Strip this prefix off the tag to discover the version number
+        prefix: mountpoint-s3
+        draft: true
+        changelog: mountpoint-s3/CHANGELOG.md
+        # TODO: make this mandatory once we have the format nailed down
+        allow-missing-changelog: true
+        branch: main
+        token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/awslabs_agent-squad__.github__workflows__ts-run-security-checks.yml b/.github/workflows/awslabs_agent-squad__.github__workflows__ts-run-security-checks.yml
+index f0756e3..6e1c4d9 100644
+--- a/.github/workflows/awslabs_agent-squad__.github__workflows__ts-run-security-checks.yml
++++ b/.github/workflows/awslabs_agent-squad__.github__workflows__ts-run-security-checks.yml
+@@ -17,7 +17,7 @@ jobs:
+     steps:
+       # Checkout and setup.
+       - name: Checkout repository
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           fetch-depth: 0
+ 
+@@ -31,7 +31,7 @@ jobs:
+ 
+       # GitLeaks.
+       - name: Run Gitleaks
+-        uses: gitleaks/gitleaks-action@v2
++        uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7 # v2
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}

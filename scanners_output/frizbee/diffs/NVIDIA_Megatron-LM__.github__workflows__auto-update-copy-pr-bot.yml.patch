@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/NVIDIA_Megatron-LM__.github__workflows__auto-update-copy-pr-bot.yml b/.github/workflows/NVIDIA_Megatron-LM__.github__workflows__auto-update-copy-pr-bot.yml
+index 3358a74..4569112 100644
+--- a/.github/workflows/NVIDIA_Megatron-LM__.github__workflows__auto-update-copy-pr-bot.yml
++++ b/.github/workflows/NVIDIA_Megatron-LM__.github__workflows__auto-update-copy-pr-bot.yml
+@@ -11,7 +11,7 @@ jobs:
+     if: github.repository == 'NVIDIA/Megatron-LM'
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v3
++        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+         with:
+           token: ${{ secrets.PAT }}
+           ref: main

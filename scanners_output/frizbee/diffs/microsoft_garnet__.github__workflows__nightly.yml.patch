@@ -1,0 +1,85 @@
+diff --git a/.github/workflows/microsoft_garnet__.github__workflows__nightly.yml b/.github/workflows/microsoft_garnet__.github__workflows__nightly.yml
+index 7c48e81..50ce073 100644
+--- a/.github/workflows/microsoft_garnet__.github__workflows__nightly.yml
++++ b/.github/workflows/microsoft_garnet__.github__workflows__nightly.yml
+@@ -41,7 +41,7 @@ jobs:
+               exit 1
+             }
+       - name: Check out code
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       - name: Set workaround for libaio on Ubuntu 24.04 (see https://askubuntu.com/questions/1512196/libaio1-on-noble/1512197#1512197)
+         run: |
+@@ -57,10 +57,10 @@ jobs:
+         if: ${{ matrix.os == 'windows-latest' }}
+ 
+       - name: Setup .NET
+-        uses: actions/setup-dotnet@v4
++        uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4
+ 
+       - name: Setup Node.js for Azurite
+-        uses: actions/setup-node@v4
++        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+         with:
+           node-version: '20'
+ 
+@@ -106,7 +106,7 @@ jobs:
+         timeout-minutes: 55        
+ 
+       - name: Upload test results
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: ${{ matrix.test }}-${{ matrix.os }}-${{ matrix.framework }}-${{ matrix.configuration }}
+           path: ${{ matrix.test }}-${{ matrix.os }}-${{ matrix.framework }}-${{ matrix.configuration }}
+@@ -138,7 +138,7 @@ jobs:
+      
+       # NOTE - need this to get the results names properly categorized in Allure report at Suite level - problem is that it can hit a max limit in the system if do a bug test matrix
+       - name: Upload Allure Results to artifacts
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: AllureResults-${{ matrix.os }}-${{ matrix.framework }}-${{ matrix.configuration }}-${{ matrix.test }}
+           path: test/Allure/AllResults
+@@ -169,11 +169,11 @@ jobs:
+     steps:
+       # First checkout the main repo into the default workspace root
+       - name: Checkout main repository
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       # Then checkout the allure_data_history branch into a subfolder
+       - name: Checkout allure_data_history branch
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           ref: allure_data_history
+           path: history-branch
+@@ -197,7 +197,7 @@ jobs:
+             }
+ 
+       - name: Download allure test results that were staged in artifacts and merge into one folder
+-        uses: actions/download-artifact@v4
++        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+         with:
+           path: test/Allure/AllResults
+           pattern: AllureResults-*
+@@ -250,7 +250,7 @@ jobs:
+           .\GenerateAllureReport.ps1
+ 
+       - name: Upload Allure history to artifacts so can use for debugging if needed
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: allure-history
+           path: test/Allure/allure-report/history
+@@ -271,7 +271,7 @@ jobs:
+           git push origin allure_data_history
+ 
+       - name: Upload Allure HTML report
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: allure-report
+           path: test/Allure/allure-report

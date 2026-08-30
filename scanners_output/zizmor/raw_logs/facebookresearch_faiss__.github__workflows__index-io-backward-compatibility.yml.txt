@@ -1,0 +1,160 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_faiss__.github__workflows__index-io-backward-compatibility.yml:20:9
+   [1m[94m|[0m
+[1m[94m20 |[0m         - name: Checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m21 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m22 |[0m [1m[33m|[0m
+[1m[94m23 |[0m [1m[33m|[0m       # Step 1: Build with CMake and write files
+   [1m[94m|[0m [1m[33m|________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_faiss__.github__workflows__index-io-backward-compatibility.yml:79:9
+   [1m[94m|[0m
+[1m[94m79 |[0m         - name: Checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m80 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m84 |[0m [1m[33m|[0m
+[1m[94m85 |[0m [1m[33m|[0m       # Step 1: Install conda faiss-cpu in a clean environment and write files
+   [1m[94m|[0m [1m[33m|______________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_faiss__.github__workflows__index-io-backward-compatibility.yml:29:9
+   [1m[94m|[0m
+[1m[94m29 |[0m         - name: Create shared data directory
+   [1m[94m|[0m           [1m[96m----------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m30 |[0m           shell: bash
+[1m[94m31 |[0m [1m[96m/[0m         run: |
+[1m[94m32 |[0m [1m[96m|[0m           mkdir -p ${{ env.SHARED_DATA_DIR }}
+[1m[94m33 |[0m [1m[96m|[0m           chmod 777 ${{ env.SHARED_DATA_DIR }}
+   [1m[94m|[0m [1m[96m|______________________________________________-[0m [1m[96mhelp: env.SHARED_DATA_DIR may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_faiss__.github__workflows__index-io-backward-compatibility.yml:29:9
+   [1m[94m|[0m
+[1m[94m29 |[0m         - name: Create shared data directory
+   [1m[94m|[0m           [1m[96m----------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m30 |[0m           shell: bash
+[1m[94m31 |[0m [1m[96m/[0m         run: |
+[1m[94m32 |[0m [1m[96m|[0m           mkdir -p ${{ env.SHARED_DATA_DIR }}
+[1m[94m33 |[0m [1m[96m|[0m           chmod 777 ${{ env.SHARED_DATA_DIR }}
+   [1m[94m|[0m [1m[96m|______________________________________________-[0m [1m[96mhelp: env.SHARED_DATA_DIR may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_faiss__.github__workflows__index-io-backward-compatibility.yml:35:9
+   [1m[94m|[0m
+[1m[94m35 |[0m         - name: Run CMake writer (write Faiss index and metadata)
+   [1m[94m|[0m           [1m[96m-------------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m36 |[0m           shell: bash
+[1m[94m37 |[0m [1m[96m/[0m         run: |
+[1m[94m38 |[0m [1m[96m|[0m           eval "$(conda shell.bash hook)"
+[1m[94m39 |[0m [1m[96m|[0m           conda activate
+[1m[94m40 |[0m [1m[96m|[0m           $CONDA/bin/python tests/index_io_backward_compatibility/cmake_writer.py ${{ env.SHARED_DATA_DIR }}
+   [1m[94m|[0m [1m[96m|____________________________________________________________________________________________________________-[0m [1m[96mhelp: env.SHARED_DATA_DIR may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_faiss__.github__workflows__index-io-backward-compatibility.yml:42:9
+   [1m[94m|[0m
+[1m[94m42 |[0m         - name: Verify files were written
+   [1m[94m|[0m           [1m[96m-------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m43 |[0m           shell: bash
+[1m[94m44 |[0m [1m[96m/[0m         run: |
+[1m[94m45 |[0m [1m[96m|[0m           echo "Files created by CMake build:"
+[1m[94m46 |[0m [1m[96m|[0m           ls -lh ${{ env.SHARED_DATA_DIR }}
+   [1m[94m|[0m [1m[96m|___________________________________________-[0m [1m[96mhelp: env.SHARED_DATA_DIR may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_faiss__.github__workflows__index-io-backward-compatibility.yml:58:9
+   [1m[94m|[0m
+[1m[94m58 |[0m         - name: Run Conda reader (read Faiss index and verify)
+   [1m[94m|[0m           [1m[96m----------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m59 |[0m           shell: bash
+[1m[94m60 |[0m [1m[96m/[0m         run: |
+[1m[94m61 |[0m [1m[96m|[0m           eval "$(conda shell.bash hook)"
+[1m[94m62 |[0m [1m[96m|[0m           conda activate faiss_conda_read
+[1m[94m63 |[0m [1m[96m|[0m           python tests/index_io_backward_compatibility/conda_reader.py ${{ env.SHARED_DATA_DIR }}
+   [1m[94m|[0m [1m[96m|_________________________________________________________________________________________________-[0m [1m[96mhelp: env.SHARED_DATA_DIR may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_faiss__.github__workflows__index-io-backward-compatibility.yml:95:9
+   [1m[94m|[0m
+[1m[94m95 |[0m         - name: Create shared data directory
+   [1m[94m|[0m           [1m[96m----------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m96 |[0m           shell: bash
+[1m[94m97 |[0m [1m[96m/[0m         run: |
+[1m[94m98 |[0m [1m[96m|[0m           mkdir -p ${{ env.SHARED_DATA_DIR }}
+[1m[94m99 |[0m [1m[96m|[0m           chmod 777 ${{ env.SHARED_DATA_DIR }}
+   [1m[94m|[0m [1m[96m|______________________________________________-[0m [1m[96mhelp: env.SHARED_DATA_DIR may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_faiss__.github__workflows__index-io-backward-compatibility.yml:95:9
+   [1m[94m|[0m
+[1m[94m95 |[0m         - name: Create shared data directory
+   [1m[94m|[0m           [1m[96m----------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m96 |[0m           shell: bash
+[1m[94m97 |[0m [1m[96m/[0m         run: |
+[1m[94m98 |[0m [1m[96m|[0m           mkdir -p ${{ env.SHARED_DATA_DIR }}
+[1m[94m99 |[0m [1m[96m|[0m           chmod 777 ${{ env.SHARED_DATA_DIR }}
+   [1m[94m|[0m [1m[96m|______________________________________________-[0m [1m[96mhelp: env.SHARED_DATA_DIR may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebookresearch_faiss__.github__workflows__index-io-backward-compatibility.yml:101:9
+    [1m[94m|[0m
+[1m[94m101 |[0m         - name: Run Conda writer (write Faiss index and metadata)
+    [1m[94m|[0m           [1m[96m-------------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m102 |[0m           shell: bash
+[1m[94m103 |[0m [1m[96m/[0m         run: |
+[1m[94m104 |[0m [1m[96m|[0m           eval "$(conda shell.bash hook)"
+[1m[94m105 |[0m [1m[96m|[0m           conda activate faiss_conda_write
+[1m[94m106 |[0m [1m[96m|[0m           python tests/index_io_backward_compatibility/conda_writer.py ${{ env.SHARED_DATA_DIR }}
+    [1m[94m|[0m [1m[96m|_________________________________________________________________________________________________-[0m [1m[96mhelp: env.SHARED_DATA_DIR may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebookresearch_faiss__.github__workflows__index-io-backward-compatibility.yml:108:9
+    [1m[94m|[0m
+[1m[94m108 |[0m         - name: Verify files were written
+    [1m[94m|[0m           [1m[96m-------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m109 |[0m           shell: bash
+[1m[94m110 |[0m [1m[96m/[0m         run: |
+[1m[94m111 |[0m [1m[96m|[0m           echo "Files created by Conda build:"
+[1m[94m112 |[0m [1m[96m|[0m           ls -lh ${{ env.SHARED_DATA_DIR }}
+    [1m[94m|[0m [1m[96m|___________________________________________-[0m [1m[96mhelp: env.SHARED_DATA_DIR may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebookresearch_faiss__.github__workflows__index-io-backward-compatibility.yml:120:9
+    [1m[94m|[0m
+[1m[94m120 |[0m         - name: Run CMake reader (read Faiss index and verify)
+    [1m[94m|[0m           [1m[96m----------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m121 |[0m           shell: bash
+[1m[94m122 |[0m [1m[96m/[0m         run: |
+[1m[94m123 |[0m [1m[96m|[0m           eval "$(conda shell.bash hook)"
+[1m[94m124 |[0m [1m[96m|[0m           conda activate
+[1m[94m125 |[0m [1m[96m|[0m           $CONDA/bin/python tests/index_io_backward_compatibility/cmake_reader.py ${{ env.SHARED_DATA_DIR }}
+    [1m[94m|[0m [1m[96m|____________________________________________________________________________________________________________-[0m [1m[96mhelp: env.SHARED_DATA_DIR may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m25[39m findings ([1m[93m13[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m10[39m low, [33m2[39m medium, [31m0[39m high

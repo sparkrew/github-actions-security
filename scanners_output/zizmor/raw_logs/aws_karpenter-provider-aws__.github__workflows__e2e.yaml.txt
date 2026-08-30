@@ -1,0 +1,199 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__e2e.yaml:97:9
+   [1m[94m|[0m
+[1m[94m97 |[0m         - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m98 |[0m [1m[33m|[0m         with:
+[1m[94m99 |[0m [1m[33m|[0m           ref: ${{ inputs.git_ref }}
+   [1m[94m|[0m [1m[33m|____________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__e2e.yaml:173:9
+    [1m[94m|[0m
+[1m[94m173 |[0m         - name: run the ${{ inputs.suite }} test suite
+    [1m[94m|[0m           [1m[94m--------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m174 |[0m           if: ${{ inputs.workflow_trigger != 'private_cluster' }}
+[1m[94m...[0m
+[1m[94m178 |[0m             SOURCE: ${{ inputs.source }}
+[1m[94m179 |[0m [1m[94m/[0m         run: |
+[1m[94m180 |[0m [1m[94m|[0m           aws eks update-kubeconfig --name ${{ steps.generate-cluster-name.outputs.CLUSTER_NAME }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m198 |[0m [1m[94m|[0m               CLUSTER_NAME="${{ steps.generate-cluster-name.outputs.CLUSTER_NAME }}" make upstream-e2etests
+[1m[94m199 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: steps.generate-cluster-name.outputs.CLUSTER_NAME may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__e2e.yaml:173:9
+    [1m[94m|[0m
+[1m[94m173 |[0m         - name: run the ${{ inputs.suite }} test suite
+    [1m[94m|[0m           [1m[94m--------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m174 |[0m           if: ${{ inputs.workflow_trigger != 'private_cluster' }}
+[1m[94m...[0m
+[1m[94m178 |[0m             SOURCE: ${{ inputs.source }}
+[1m[94m179 |[0m [1m[94m/[0m         run: |
+[1m[94m180 |[0m [1m[94m|[0m           aws eks update-kubeconfig --name ${{ steps.generate-cluster-name.outputs.CLUSTER_NAME }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m198 |[0m [1m[94m|[0m               CLUSTER_NAME="${{ steps.generate-cluster-name.outputs.CLUSTER_NAME }}" make upstream-e2etests
+[1m[94m199 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: vars.TIMESTREAM_REGION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__e2e.yaml:173:9
+    [1m[94m|[0m
+[1m[94m173 |[0m         - name: run the ${{ inputs.suite }} test suite
+    [1m[94m|[0m           [1m[94m--------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m174 |[0m           if: ${{ inputs.workflow_trigger != 'private_cluster' }}
+[1m[94m...[0m
+[1m[94m178 |[0m             SOURCE: ${{ inputs.source }}
+[1m[94m179 |[0m [1m[94m/[0m         run: |
+[1m[94m180 |[0m [1m[94m|[0m           aws eks update-kubeconfig --name ${{ steps.generate-cluster-name.outputs.CLUSTER_NAME }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m198 |[0m [1m[94m|[0m               CLUSTER_NAME="${{ steps.generate-cluster-name.outputs.CLUSTER_NAME }}" make upstream-e2etests
+[1m[94m199 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: steps.generate-cluster-name.outputs.CLUSTER_NAME may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__e2e.yaml:173:9
+    [1m[94m|[0m
+[1m[94m173 |[0m         - name: run the ${{ inputs.suite }} test suite
+    [1m[94m|[0m           [1m[94m--------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m174 |[0m           if: ${{ inputs.workflow_trigger != 'private_cluster' }}
+[1m[94m...[0m
+[1m[94m178 |[0m             SOURCE: ${{ inputs.source }}
+[1m[94m179 |[0m [1m[94m/[0m         run: |
+[1m[94m180 |[0m [1m[94m|[0m           aws eks update-kubeconfig --name ${{ steps.generate-cluster-name.outputs.CLUSTER_NAME }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m198 |[0m [1m[94m|[0m               CLUSTER_NAME="${{ steps.generate-cluster-name.outputs.CLUSTER_NAME }}" make upstream-e2etests
+[1m[94m199 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: steps.generate-cluster-name.outputs.CLUSTER_NAME may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__e2e.yaml:173:9
+    [1m[94m|[0m
+[1m[94m173 |[0m         - name: run the ${{ inputs.suite }} test suite
+    [1m[94m|[0m           [1m[94m--------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m174 |[0m           if: ${{ inputs.workflow_trigger != 'private_cluster' }}
+[1m[94m...[0m
+[1m[94m178 |[0m             SOURCE: ${{ inputs.source }}
+[1m[94m179 |[0m [1m[94m/[0m         run: |
+[1m[94m180 |[0m [1m[94m|[0m           aws eks update-kubeconfig --name ${{ steps.generate-cluster-name.outputs.CLUSTER_NAME }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m198 |[0m [1m[94m|[0m               CLUSTER_NAME="${{ steps.generate-cluster-name.outputs.CLUSTER_NAME }}" make upstream-e2etests
+[1m[94m199 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: steps.generate-cluster-name.outputs.CLUSTER_NAME may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__e2e.yaml:173:9
+    [1m[94m|[0m
+[1m[94m173 |[0m         - name: run the ${{ inputs.suite }} test suite
+    [1m[94m|[0m           [1m[94m--------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m174 |[0m           if: ${{ inputs.workflow_trigger != 'private_cluster' }}
+[1m[94m...[0m
+[1m[94m178 |[0m             SOURCE: ${{ inputs.source }}
+[1m[94m179 |[0m [1m[94m/[0m         run: |
+[1m[94m180 |[0m [1m[94m|[0m           aws eks update-kubeconfig --name ${{ steps.generate-cluster-name.outputs.CLUSTER_NAME }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m198 |[0m [1m[94m|[0m               CLUSTER_NAME="${{ steps.generate-cluster-name.outputs.CLUSTER_NAME }}" make upstream-e2etests
+[1m[94m199 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: steps.generate-cluster-name.outputs.CLUSTER_NAME may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__e2e.yaml:173:9
+    [1m[94m|[0m
+[1m[94m173 |[0m         - name: run the ${{ inputs.suite }} test suite
+    [1m[94m|[0m           [1m[94m--------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m174 |[0m           if: ${{ inputs.workflow_trigger != 'private_cluster' }}
+[1m[94m...[0m
+[1m[94m178 |[0m             SOURCE: ${{ inputs.source }}
+[1m[94m179 |[0m [1m[94m/[0m         run: |
+[1m[94m180 |[0m [1m[94m|[0m           aws eks update-kubeconfig --name ${{ steps.generate-cluster-name.outputs.CLUSTER_NAME }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m198 |[0m [1m[94m|[0m               CLUSTER_NAME="${{ steps.generate-cluster-name.outputs.CLUSTER_NAME }}" make upstream-e2etests
+[1m[94m199 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: vars.TIMESTREAM_REGION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__e2e.yaml:173:9
+    [1m[94m|[0m
+[1m[94m173 |[0m         - name: run the ${{ inputs.suite }} test suite
+    [1m[94m|[0m           [1m[94m--------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m174 |[0m           if: ${{ inputs.workflow_trigger != 'private_cluster' }}
+[1m[94m...[0m
+[1m[94m178 |[0m             SOURCE: ${{ inputs.source }}
+[1m[94m179 |[0m [1m[94m/[0m         run: |
+[1m[94m180 |[0m [1m[94m|[0m           aws eks update-kubeconfig --name ${{ steps.generate-cluster-name.outputs.CLUSTER_NAME }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m198 |[0m [1m[94m|[0m               CLUSTER_NAME="${{ steps.generate-cluster-name.outputs.CLUSTER_NAME }}" make upstream-e2etests
+[1m[94m199 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: steps.generate-cluster-name.outputs.CLUSTER_NAME may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__e2e.yaml:173:9
+    [1m[94m|[0m
+[1m[94m173 |[0m         - name: run the ${{ inputs.suite }} test suite
+    [1m[94m|[0m           [1m[94m--------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m174 |[0m           if: ${{ inputs.workflow_trigger != 'private_cluster' }}
+[1m[94m...[0m
+[1m[94m178 |[0m             SOURCE: ${{ inputs.source }}
+[1m[94m179 |[0m [1m[94m/[0m         run: |
+[1m[94m180 |[0m [1m[94m|[0m           aws eks update-kubeconfig --name ${{ steps.generate-cluster-name.outputs.CLUSTER_NAME }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m198 |[0m [1m[94m|[0m               CLUSTER_NAME="${{ steps.generate-cluster-name.outputs.CLUSTER_NAME }}" make upstream-e2etests
+[1m[94m199 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: steps.generate-cluster-name.outputs.CLUSTER_NAME may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__e2e.yaml:173:9
+    [1m[94m|[0m
+[1m[94m173 |[0m         - name: run the ${{ inputs.suite }} test suite
+    [1m[94m|[0m           [1m[94m--------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m174 |[0m           if: ${{ inputs.workflow_trigger != 'private_cluster' }}
+[1m[94m...[0m
+[1m[94m178 |[0m             SOURCE: ${{ inputs.source }}
+[1m[94m179 |[0m [1m[94m/[0m         run: |
+[1m[94m180 |[0m [1m[94m|[0m           aws eks update-kubeconfig --name ${{ steps.generate-cluster-name.outputs.CLUSTER_NAME }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m198 |[0m [1m[94m|[0m               CLUSTER_NAME="${{ steps.generate-cluster-name.outputs.CLUSTER_NAME }}" make upstream-e2etests
+[1m[94m199 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: steps.generate-cluster-name.outputs.CLUSTER_NAME may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__e2e.yaml:173:9
+    [1m[94m|[0m
+[1m[94m173 |[0m         - name: run the ${{ inputs.suite }} test suite
+    [1m[94m|[0m           [1m[94m--------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m174 |[0m           if: ${{ inputs.workflow_trigger != 'private_cluster' }}
+[1m[94m...[0m
+[1m[94m178 |[0m             SOURCE: ${{ inputs.source }}
+[1m[94m179 |[0m [1m[94m/[0m         run: |
+[1m[94m180 |[0m [1m[94m|[0m           aws eks update-kubeconfig --name ${{ steps.generate-cluster-name.outputs.CLUSTER_NAME }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m198 |[0m [1m[94m|[0m               CLUSTER_NAME="${{ steps.generate-cluster-name.outputs.CLUSTER_NAME }}" make upstream-e2etests
+[1m[94m199 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: steps.generate-cluster-name.outputs.CLUSTER_NAME may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m24[39m findings ([1m[93m12[39m suppressed[0m): 0 unknown, [35m11[39m informational, [36m0[39m low, [33m1[39m medium, [31m0[39m high

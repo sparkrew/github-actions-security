@@ -1,0 +1,26 @@
+diff --git a/.github/workflows/facebook_metro__.github__workflows__deploy-website.yml b/.github/workflows/facebook_metro__.github__workflows__deploy-website.yml
+index 607b48a..bf34f89 100644
+--- a/.github/workflows/facebook_metro__.github__workflows__deploy-website.yml
++++ b/.github/workflows/facebook_metro__.github__workflows__deploy-website.yml
+@@ -26,10 +26,10 @@ jobs:
+ 
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       - name: Use Node.js ${{ env.node-version }}
+-        uses: actions/setup-node@v6
++        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+         with:
+           node-version: ${{ env.node-version }}
+ 
+@@ -38,7 +38,7 @@ jobs:
+         run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+ 
+       - name: Restore yarn cache
+-        uses: actions/cache@v5
++        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+         with:
+           path: ${{ steps.yarn.outputs.dir }}
+           key: ${{ runner.os }}-yarn-${{ hashFiles(format('{0}{1}', github.workspace, '/website/yarn.lock')) }}

@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/aws_aws-sdk-java-v2__.github__workflows__merge-queue-metric.yml b/.github/workflows/aws_aws-sdk-java-v2__.github__workflows__merge-queue-metric.yml
+index ccb90dc..b76cd47 100644
+--- a/.github/workflows/aws_aws-sdk-java-v2__.github__workflows__merge-queue-metric.yml
++++ b/.github/workflows/aws_aws-sdk-java-v2__.github__workflows__merge-queue-metric.yml
+@@ -18,7 +18,7 @@ jobs:
+ 
+     steps:
+       - name: Configure AWS Credentials
+-        uses: aws-actions/configure-aws-credentials@v6
++        uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7 # v6
+         with:
+           role-to-assume: ${{ secrets.CI_AWS_ROLE_ARN }}
+           aws-region: us-west-2
+@@ -32,7 +32,7 @@ jobs:
+     if: ${{ github.repository == 'aws/aws-sdk-java-v2' && github.event.action == 'dequeued' && github.event.reason != 'MERGE'}}
+     steps:
+       - name: Configure AWS Credentials
+-        uses: aws-actions/configure-aws-credentials@v6
++        uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7 # v6
+         with:
+           role-to-assume: ${{ secrets.CI_AWS_ROLE_ARN }}
+           aws-region: us-west-2

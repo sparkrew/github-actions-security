@@ -1,0 +1,76 @@
+diff --git a/.github/workflows/facebook_react__.github__workflows__shared_lint.yml b/.github/workflows/facebook_react__.github__workflows__shared_lint.yml
+index 3c359cf..e5e0178 100644
+--- a/.github/workflows/facebook_react__.github__workflows__shared_lint.yml
++++ b/.github/workflows/facebook_react__.github__workflows__shared_lint.yml
+@@ -21,14 +21,14 @@ jobs:
+     name: Run prettier
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v4
+-      - uses: actions/setup-node@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
++      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+         with:
+           node-version-file: '.nvmrc'
+           cache: yarn
+           cache-dependency-path: yarn.lock
+       - name: Restore cached node_modules
+-        uses: actions/cache@v4
++        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+         id: node_modules
+         with:
+           path: |
+@@ -44,14 +44,14 @@ jobs:
+     name: Run eslint
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v4
+-      - uses: actions/setup-node@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
++      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+         with:
+           node-version-file: '.nvmrc'
+           cache: yarn
+           cache-dependency-path: yarn.lock
+       - name: Restore cached node_modules
+-        uses: actions/cache@v4
++        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+         id: node_modules
+         with:
+           path: |
+@@ -67,14 +67,14 @@ jobs:
+     name: Check license
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v4
+-      - uses: actions/setup-node@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
++      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+         with:
+           node-version-file: '.nvmrc'
+           cache: yarn
+           cache-dependency-path: yarn.lock
+       - name: Restore cached node_modules
+-        uses: actions/cache@v4
++        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+         id: node_modules
+         with:
+           path: |
+@@ -90,14 +90,14 @@ jobs:
+     name: Test print warnings
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v4
+-      - uses: actions/setup-node@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
++      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+         with:
+           node-version-file: '.nvmrc'
+           cache: yarn
+           cache-dependency-path: yarn.lock
+       - name: Restore cached node_modules
+-        uses: actions/cache@v4
++        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+         id: node_modules
+         with:
+           path: |

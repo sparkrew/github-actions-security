@@ -1,0 +1,19 @@
+diff --git a/.github/workflows/Azure_Azure-Sentinel__.github__workflows__data-connector-validations.yaml b/.github/workflows/Azure_Azure-Sentinel__.github__workflows__data-connector-validations.yaml
+index ad1acdc..7cb6e68 100644
+--- a/.github/workflows/Azure_Azure-Sentinel__.github__workflows__data-connector-validations.yaml
++++ b/.github/workflows/Azure_Azure-Sentinel__.github__workflows__data-connector-validations.yaml
+@@ -18,11 +18,11 @@ jobs:
+         GITHUBAPPPRIVATEKEY: ${{ secrets.APPLICATION_PRIVATE_KEY }}
+         SYSTEM_PULLREQUEST_ISFORK: ${{ github.event.pull_request.head.repo.fork }}
+       steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           fetch-depth: 2  # Need HEAD and parent for git diff
+       - run: npm install -g npm@6.14.18;which npm;npm -v
+       - name: npm install
+         run: npm install
+       - name: Data Connector Validations
+-        run: npm run tsc && node .script/dataConnectorValidator.js
+\ No newline at end of file
++        run: npm run tsc && node .script/dataConnectorValidator.js

@@ -1,0 +1,34 @@
+name: Docs
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9"]
+    steps:
+    - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # actions/checkout@v2 | releases,850,v2.7.0
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@e9aba2c848f5ebd159c070c61ea2c4e2b122355e # actions/setup-python@v2 | releases,v2.3.4
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python3.9 -m pip install --upgrade pip
+        python3.9 -m pip install numpy autodocsumm 'sphinx<6' sphinx_rtd_theme sphinx_gallery sphinxcontrib-inlinesyntaxhighlight sphinx_toolbox
+        cd python
+        python setup.py develop
+        cd ..
+    - name: Build documents with Sphinx
+      run: |
+        cd docs
+        make html
+        cd ..

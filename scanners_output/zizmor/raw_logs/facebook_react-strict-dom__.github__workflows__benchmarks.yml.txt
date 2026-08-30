@@ -1,0 +1,81 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-strict-dom__.github__workflows__benchmarks.yml:9:7
+   [1m[94m|[0m
+[1m[94m 9 |[0m       - uses: actions/checkout@v6
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m10 |[0m [1m[33m|[0m       with:
+[1m[94m11 |[0m [1m[33m|[0m         fetch-depth: 50
+   [1m[94m|[0m [1m[33m|_______________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-strict-dom__.github__workflows__benchmarks.yml:58:7
+   [1m[94m|[0m
+[1m[94m58 |[0m       - uses: actions/checkout@v6
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m59 |[0m [1m[33m|[0m       with:
+[1m[94m60 |[0m [1m[33m|[0m         fetch-depth: 50
+   [1m[94m|[0m [1m[33m|_______________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react-strict-dom__.github__workflows__benchmarks.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: benchmarks
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m101 |[0m [1m[33m|[0m           ${{ steps.collect.outputs.table }}
+[1m[94m102 |[0m [1m[33m|[0m         edit-mode: replace
+    [1m[94m|[0m [1m[33m|___________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-strict-dom__.github__workflows__benchmarks.yml:6:3
+   [1m[94m|[0m
+[1m[94m 6 |[0m [1m[33m/[0m   size:
+[1m[94m 7 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m52 |[0m [1m[33m|[0m           ${{ steps.collect.outputs.table }}
+[1m[94m53 |[0m [1m[33m|[0m         edit-mode: replace
+   [1m[94m|[0m [1m[33m|[0m                          [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|__________________________|[0m
+   [1m[94m|[0m                            [1m[33mthis job[0m
+   [1m[94m|[0m                            [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_react-strict-dom__.github__workflows__benchmarks.yml:55:3
+    [1m[94m|[0m
+[1m[94m 55 |[0m [1m[33m/[0m   perf:
+[1m[94m 56 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m101 |[0m [1m[33m|[0m           ${{ steps.collect.outputs.table }}
+[1m[94m102 |[0m [1m[33m|[0m         edit-mode: replace
+    [1m[94m|[0m [1m[33m|[0m                           [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|___________________________|[0m
+    [1m[94m|[0m                             [1m[33mthis job[0m
+    [1m[94m|[0m                             [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-strict-dom__.github__workflows__benchmarks.yml:43:7
+   [1m[94m|[0m
+[1m[94m43 |[0m       uses: edumserrano/find-create-or-update-comment@v3
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_react-strict-dom__.github__workflows__benchmarks.yml:92:7
+   [1m[94m|[0m
+[1m[94m92 |[0m       uses: edumserrano/find-create-or-update-comment@v3
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m21[39m findings ([1m[93m14[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m5[39m medium, [31m2[39m high

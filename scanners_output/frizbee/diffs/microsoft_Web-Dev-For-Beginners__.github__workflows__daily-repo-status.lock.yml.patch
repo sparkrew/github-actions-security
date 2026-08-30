@@ -1,0 +1,49 @@
+diff --git a/.github/workflows/microsoft_Web-Dev-For-Beginners__.github__workflows__daily-repo-status.lock.yml b/.github/workflows/microsoft_Web-Dev-For-Beginners__.github__workflows__daily-repo-status.lock.yml
+index 1d1bcc5..996ed27 100644
+--- a/.github/workflows/microsoft_Web-Dev-For-Beginners__.github__workflows__daily-repo-status.lock.yml
++++ b/.github/workflows/microsoft_Web-Dev-For-Beginners__.github__workflows__daily-repo-status.lock.yml
+@@ -52,7 +52,7 @@ jobs:
+       comment_repo: ""
+     steps:
+       - name: Setup Scripts
+-        uses: github/gh-aw/actions/setup@v0.42.8
++        uses: github/gh-aw/actions/setup@eb184b62aad2fa8fda1af7c372d51950e2e21c56 # v0.42.8
+         with:
+           destination: /opt/gh-aw/actions
+       - name: Check workflow file timestamps
+@@ -91,7 +91,7 @@ jobs:
+       secret_verification_result: ${{ steps.validate-secret.outputs.verification_result }}
+     steps:
+       - name: Setup Scripts
+-        uses: github/gh-aw/actions/setup@v0.42.8
++        uses: github/gh-aw/actions/setup@eb184b62aad2fa8fda1af7c372d51950e2e21c56 # v0.42.8
+         with:
+           destination: /opt/gh-aw/actions
+       - name: Checkout .github and .agents folders
+@@ -767,7 +767,7 @@ jobs:
+       total_count: ${{ steps.missing_tool.outputs.total_count }}
+     steps:
+       - name: Setup Scripts
+-        uses: github/gh-aw/actions/setup@v0.42.8
++        uses: github/gh-aw/actions/setup@eb184b62aad2fa8fda1af7c372d51950e2e21c56 # v0.42.8
+         with:
+           destination: /opt/gh-aw/actions
+       - name: Debug job inputs
+@@ -871,7 +871,7 @@ jobs:
+       success: ${{ steps.parse_results.outputs.success }}
+     steps:
+       - name: Setup Scripts
+-        uses: github/gh-aw/actions/setup@v0.42.8
++        uses: github/gh-aw/actions/setup@eb184b62aad2fa8fda1af7c372d51950e2e21c56 # v0.42.8
+         with:
+           destination: /opt/gh-aw/actions
+       - name: Download agent artifacts
+@@ -982,7 +982,7 @@ jobs:
+       process_safe_outputs_temporary_id_map: ${{ steps.process_safe_outputs.outputs.temporary_id_map }}
+     steps:
+       - name: Setup Scripts
+-        uses: github/gh-aw/actions/setup@v0.42.8
++        uses: github/gh-aw/actions/setup@eb184b62aad2fa8fda1af7c372d51950e2e21c56 # v0.42.8
+         with:
+           destination: /opt/gh-aw/actions
+       - name: Download agent output artifact

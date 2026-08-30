@@ -1,0 +1,27 @@
+{
+  "workflow": "google_clusterfuzz__.github__workflows__kubernetes-e2e-tests.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+      "line": 25
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-python@b55428b1882923874294fa556849718a1d7f2ca5",
+      "line": 31
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-java@c1e323688fd81a25caa38c78aa6df2d33d3e20d9 # actions/setup-java@v4 | releases,v4.8.0",
+      "line": 36
+    }
+  ]
+}

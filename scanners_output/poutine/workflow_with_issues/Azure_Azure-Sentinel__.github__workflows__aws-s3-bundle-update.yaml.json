@@ -1,0 +1,24 @@
+{
+  "workflow": "Azure_Azure-Sentinel__.github__workflows__aws-s3-bundle-update.yaml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "injection": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "injection",
+      "line": 81,
+      "column": "",
+      "job": "auto-update-bundles",
+      "step": "5",
+      "details": "Sources: github.event.pull_request.head.ref",
+      "event_triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

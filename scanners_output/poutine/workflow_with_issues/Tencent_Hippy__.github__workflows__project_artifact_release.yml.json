@@ -1,0 +1,78 @@
+{
+  "workflow": "Tencent_Hippy__.github__workflows__project_artifact_release.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 6,
+    "by_rule": {
+      "injection": 6
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "injection",
+      "line": 100,
+      "column": "",
+      "job": "android_release",
+      "step": "3",
+      "details": "Sources: github.event.inputs.git_ref github.event.inputs.version_name",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": 201,
+      "column": "",
+      "job": "js_release",
+      "step": "4",
+      "details": "Sources: github.event.inputs.js_npm_dist_tag_name",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": 90,
+      "column": "",
+      "job": "android_release",
+      "step": "1",
+      "details": "Sources: github.event.inputs.version_name",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": 143,
+      "column": "",
+      "job": "android_release",
+      "step": "4",
+      "details": "Sources: github.event.inputs.version_name",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": 153,
+      "column": "",
+      "job": "android_release",
+      "step": "5",
+      "details": "Sources: github.event.inputs.version_name",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": 209,
+      "column": "",
+      "job": "js_release",
+      "step": "5",
+      "details": "Sources: github.event.inputs.version_name",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

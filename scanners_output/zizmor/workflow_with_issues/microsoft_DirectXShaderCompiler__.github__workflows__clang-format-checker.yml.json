@@ -1,0 +1,77 @@
+{
+  "workflow": "microsoft_DirectXShaderCompiler__.github__workflows__clang-format-checker.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 7,
+    "by_rule": {
+      "artipacked": 4,
+      "dangerous-triggers": 1,
+      "unpinned-uses": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_DirectXShaderCompiler__.github__workflows__clang-format-checker.yml",
+      "line": 15,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_DirectXShaderCompiler__.github__workflows__clang-format-checker.yml",
+      "line": 36,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_DirectXShaderCompiler__.github__workflows__clang-format-checker.yml",
+      "line": 112,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_DirectXShaderCompiler__.github__workflows__clang-format-checker.yml",
+      "line": 145,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "dangerous-triggers",
+      "level": "error",
+      "message": "use of fundamentally insecure workflow trigger",
+      "workflow": "microsoft_DirectXShaderCompiler__.github__workflows__clang-format-checker.yml",
+      "line": 2,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "microsoft_DirectXShaderCompiler__.github__workflows__clang-format-checker.yml",
+      "line": 56,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "microsoft_DirectXShaderCompiler__.github__workflows__clang-format-checker.yml",
+      "line": 158,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

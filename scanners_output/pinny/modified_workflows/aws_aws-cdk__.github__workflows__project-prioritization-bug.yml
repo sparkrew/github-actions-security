@@ -1,0 +1,19 @@
+name: P1 Bug Prioritization
+on:
+  issues:
+    types:
+      - labeled
+
+jobs:
+  prioritize:
+    if: github.repository == 'aws/aws-cdk' && contains(github.event.issue.labels.*.name, 'bug') && contains(github.event.issue.labels.*.name, 'p1')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+      - name: Add P1 Bug to project
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # actions/github-script@v8 | v8.0.0
+        with:
+          github-token: ${{ secrets.PROJEN_GITHUB_TOKEN }}
+          script: |
+            const script = require('./scripts/prioritization/assign-bug-priority.js')
+            await script({github, context})

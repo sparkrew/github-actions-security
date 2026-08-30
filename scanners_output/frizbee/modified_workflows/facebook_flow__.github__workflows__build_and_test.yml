@@ -1,0 +1,593 @@
+name: build_and_test
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+      - v*
+    tags:
+      - v*
+env:
+  FLOW_BIN_PRIVATE_KEY_BASE64: ${{ secrets.FLOW_BIN_PRIVATE_KEY_BASE64 }}
+  FLOW_BOT_EMAIL: ${{ secrets.FLOW_BOT_EMAIL }}
+  FLOW_BOT_TOKEN: ${{ secrets.FLOW_BOT_TOKEN }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+jobs:
+  build_js:
+    runs-on: ubuntu-22.04
+    env:
+      TERM: dumb
+      OPAMYES: true
+    steps:
+    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+    - name: Install OPAM
+      uses: ./.github/actions/install-opam-linux
+      with:
+        arch: x86_64
+    - name: Create cache breaker
+      run: .circleci/make_opam_cachebreaker.sh > .circleci/opamcachebreaker
+      shell: bash
+    - name: opam cache
+      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+      with:
+        path: |-
+          ~/.opam
+          _opam
+        key: v1-opam-cache-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.circleci/opamcachebreaker') }}
+    - name: Init opam
+      run: .circleci/opam_init.sh
+    - name: Install deps from opam
+      run: make deps
+      shell: bash
+    - name: Install extra deps from opam
+      run: make deps-js
+    - name: Build flow.js
+      run: opam exec -- make js
+    - name: Test flow.js
+      run: opam exec -- make do-test-js
+    - name: Build flow_parser.js
+      run: opam exec -- make -C src/parser js
+    - name: Create artifacts
+      run: |-
+        mkdir -p dist
+        cp src/parser/flow_parser.js dist/flow_parser.js
+        cp src/parser/flow_parser.js packages/flow-parser/flow_parser.js
+    - uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+      with:
+        name: build_js_bin
+        path: bin/flow.js
+    - uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+      with:
+        name: build_js_dist
+        path: dist/flow_parser.js
+    - uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+      with:
+        name: build_js_packages
+        path: packages/flow-parser/flow_parser.js
+  build_linux:
+    runs-on: ubuntu-22.04
+    env:
+      TERM: dumb
+      OPAMYES: true
+    steps:
+    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+    - name: Install OPAM
+      uses: ./.github/actions/install-opam-linux
+      with:
+        arch: x86_64
+    - name: Create cache breaker
+      run: .circleci/make_opam_cachebreaker.sh > .circleci/opamcachebreaker
+      shell: bash
+    - name: opam cache
+      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+      with:
+        path: |-
+          ~/.opam
+          _opam
+        key: v1-opam-cache-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.circleci/opamcachebreaker') }}
+    - name: Init opam
+      run: .circleci/opam_init.sh
+    - name: Install deps from opam
+      run: make deps
+      shell: bash
+    - name: Install extra deps from opam
+      run: make deps-js
+    - name: Build flow
+      run: |-
+        opam exec -- make bin/flow dist/flow.zip
+        mkdir -p bin/linux && cp bin/flow bin/linux/flow
+    - name: Create artifacts
+      run: cp dist/flow.zip dist/flow-linux64.zip
+    - uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+      with:
+        name: build_linux_bin
+        path: bin/linux/flow
+    - uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+      with:
+        name: build_linux_dist
+        path: |
+          dist/flow-linux64.zip
+  build_linux_arm64:
+    runs-on: 4-core-ubuntu-arm
+    env:
+      TERM: dumb
+      OPAMYES: true
+    steps:
+    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+    - name: Install Missing Tools
+      run: |
+        sudo apt-get update
+        sudo apt-get install bzip2 gcc g++ rsync patch diffutils curl make zip unzip git m4 perl -y
+    - name: Install OPAM
+      uses: ./.github/actions/install-opam-linux
+      with:
+        arch: arm64
+    - name: Create cache breaker
+      run: .circleci/make_opam_cachebreaker.sh > .circleci/opamcachebreaker
+      shell: bash
+    - name: opam cache
+      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+      with:
+        path: |-
+          ~/.opam
+          _opam
+        key: v1-opam-cache-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.circleci/opamcachebreaker') }}
+    - name: Init opam
+      run: .circleci/opam_init.sh
+    - name: Install deps from opam
+      run: make deps
+      shell: bash
+    - name: Build flow
+      run: |-
+        opam exec -- make bin/flow dist/flow.zip
+        mkdir -p bin/linux && cp bin/flow bin/linux/flow
+    - name: Create artifacts
+      run: cp dist/flow.zip dist/flow-linux64-arm64.zip
+    - uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+      with:
+        name: build_linux_arm64_dist
+        path: |
+          dist/flow-linux64-arm64.zip
+  build_macos_arm64:
+    runs-on: macos-15
+    steps:
+    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+    - uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1.6.0
+      with:
+        xcode-version: '16.4.0'
+    - name: Update curl cacerts
+      run: echo "cacert $GITHUB_WORKSPACE/.circleci/cacert.pem" >> ~/.curlrc
+    - uses: ./.github/actions/install-opam-mac
+      with:
+        arch: arm64
+    - name: Create cache breaker
+      run: .circleci/make_opam_cachebreaker.sh > .circleci/opamcachebreaker
+      shell: bash
+    - name: opam cache
+      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+      with:
+        path: |-
+          ~/.opam
+          _opam
+        key: v1-opam-cache-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.circleci/opamcachebreaker') }}
+    - name: Init opam
+      run: .circleci/opam_init.sh
+    - name: Install deps from opam
+      run: make deps
+      shell: bash
+    - name: Build flow
+      run: |-
+        opam exec -- make bin/flow dist/flow.zip
+        mkdir -p bin/macos-arm64 && cp bin/flow bin/macos-arm64/flow
+    - name: Create artifacts
+      run: cp dist/flow.zip dist/flow-osx-arm64.zip
+    - uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+      with:
+        name: build_macos_arm64_bin
+        path: bin/macos-arm64/flow
+    - uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+      with:
+        name: build_macos_arm64_dist
+        path: |
+          dist/flow-osx-arm64.zip
+  build_win:
+    runs-on: windows-2022
+    env:
+      OPAMDOWNLOADJOBS: 1
+    steps:
+    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+    - name: Install dependencies
+      run: |
+        choco install --no-progress -y --source https://chocolatey.org/api/v2/ 7zip
+        setx /M PATH $($Env:PATH + ';C:\Program Files\7-Zip')
+      shell: pwsh
+    - name: Install cygwin
+      uses: cygwin/cygwin-install-action@master
+      with:
+        site: https://cygwin.mirror.constant.com/ https://mirror.clarkson.edu/cygwin/ https://mirrors.xmission.com/cygwin/ https://mirrors.kernel.org/sourceware/cygwin/
+        packages: >-
+          rsync
+          patch
+          diffutils
+          curl
+          make
+          zip
+          unzip
+          git
+          m4
+          perl
+          mingw64-x86_64-gcc-core
+          mingw64-x86_64-gcc-g++
+          mingw64-x86_64-gcc-libs
+          coreutils
+          moreutils
+    - name: Git Safe Directory
+      run: git config --global --add safe.directory /cygdrive/d/a/flow/flow
+      shell: C:\cygwin\bin\bash.exe '{0}'
+      env:
+        PATH: /usr/local/bin:/usr/bin:/cygdrive/bin:/cygdrive/c/Windows/system32:/cygdrive/c/Windows:/cygdrive/c/Windows/System32/Wbem:/cygdrive/c/Windows/System32/WindowsPowerShell/v1.0
+    - name: Install opam
+      run: .\scripts\windows\install_opam.ps1
+      shell: pwsh
+    - name: Init opam
+      run: opam init --bare --disable-sandboxing --no-setup --yes
+      shell: C:\cygwin\bin\bash.exe '{0}'
+      env:
+        PATH: /usr/local/bin:/usr/bin:/cygdrive/bin:/cygdrive/c/Windows/system32:/cygdrive/c/Windows:/cygdrive/c/Windows/System32/Wbem:/cygdrive/c/Windows/System32/WindowsPowerShell/v1.0
+    - name: Create opam switch
+      run: make deps
+      shell: D:\cygwin\bin\bash.exe '{0}'
+      env:
+        PATH: /usr/local/bin:/usr/bin:/cygdrive/bin:/cygdrive/c/Windows/system32:/cygdrive/c/Windows:/cygdrive/c/Windows/System32/Wbem:/cygdrive/c/Windows/System32/WindowsPowerShell/v1.0
+    - name: Build flow.exe
+      run: >-
+        cd $(realpath ${GITHUB_WORKSPACE});
+        echo $(opam env);
+        eval $(opam env);
+        make bin/flow.exe dist/flow.zip;
+        mkdir -p bin/win64 && cp bin/flow.exe bin/win64/flow.exe;
+        cp dist/flow.zip dist/flow-win64.zip
+      shell: D:\cygwin\bin\bash.exe -leo pipefail '{0}'
+      env:
+        PATH: /usr/local/bin:/usr/bin:/cygdrive/bin:/cygdrive/c/Windows/system32:/cygdrive/c/Windows:/cygdrive/c/Windows/System32/Wbem:/cygdrive/c/Windows/System32/WindowsPowerShell/v1.0
+    - name: Build parser test runner
+      run: >-
+        cd $(realpath ${GITHUB_WORKSPACE}) ;
+        eval $(opam env) ;
+        dune build src/parser/test/run_tests.exe ;
+        cp _build/default/src/parser/test/run_tests.exe bin/win64/run_parser_tests.exe
+      shell: D:\cygwin\bin\bash.exe -leo pipefail '{0}'
+      env:
+        PATH: /usr/local/bin:/usr/bin:/cygdrive/bin:/cygdrive/c/Windows/system32:/cygdrive/c/Windows:/cygdrive/c/Windows/System32/Wbem:/cygdrive/c/Windows/System32/WindowsPowerShell/v1.0
+    - uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+      with:
+        name: build_win_bin
+        path: |
+          bin/win64/flow.exe
+          bin/win64/run_parser_tests.exe
+    - uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+      with:
+        name: build_win_dist
+        path: |
+          dist/flow-win64.zip
+  runtests_linux:
+    runs-on: ubuntu-22.04
+    needs:
+    - build_linux
+    env:
+      FLOW_RUNTESTS_PARALLELISM: 8
+    steps:
+    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      with:
+        name: build_linux_bin
+        path: bin/linux
+    - run: chmod +x bin/linux/flow
+    - name: Run tests
+      run: ./runtests.sh bin/linux/flow
+  runtests_macos_arm:
+    runs-on: macos-15
+    needs:
+    - build_macos_arm64
+    steps:
+    - uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1.6.0
+      with:
+        xcode-version: '16.4.0'
+    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      with:
+        name: build_macos_arm64_bin
+        path: bin/macos
+    - run: chmod +x bin/macos/flow
+    - name: Run tests
+      run: ./runtests.sh bin/macos/flow
+  tool_test_linux:
+    runs-on: ubuntu-22.04
+    needs:
+    - build_linux
+    steps:
+    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      with:
+        name: build_linux_bin
+        path: bin/linux
+    - run: chmod +x bin/linux/flow
+    - name: Install tool deps from yarn
+      run: (cd packages/flow-dev-tools && yarn install | cat)
+    - name: Run tool tests
+      run: ./tool test -p 4 --bin bin/linux/flow
+  tool_test_macos:
+    runs-on: macos-15
+    needs:
+    - build_macos_arm64
+    steps:
+    - uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1.6.0
+      with:
+        xcode-version: '16.4.0'
+    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      with:
+        name: build_macos_arm64_bin
+        path: bin/macos
+    - run: chmod +x bin/macos/flow
+    - name: Install tool deps from yarn
+      run: (cd packages/flow-dev-tools && yarn install | cat)
+    - name: Run tool tests
+      run: ./tool test --bin bin/macos/flow
+  tool_test_win:
+    runs-on: windows-2022
+    needs:
+    - build_win
+    steps:
+    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      with:
+        name: build_win_bin
+        path: bin/win64
+    - name: Install tool deps from yarn
+      run: |-
+        cd packages/flow-dev-tools
+        yarn install --ignore-scripts --pure-lockfile
+    - name: Set TMP env var for consistency
+      run: |-
+        echo "TMP=$env:USERPROFILE\AppData\Local\Temp" >> $env:GITHUB_ENV
+        echo "TEMP=$env:USERPROFILE\AppData\Local\Temp" >> $env:GITHUB_ENV
+    - name: Run tool tests
+      run: node packages/flow-dev-tools/bin/tool test --bin bin/win64/flow.exe --parallelism 1
+  ounit_test_linux:
+    runs-on: ubuntu-22.04
+    env:
+      TERM: dumb
+      OPAMYES: true
+    steps:
+    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+    - name: Install OPAM
+      uses: ./.github/actions/install-opam-linux
+      with:
+        arch: x86_64
+    - name: Create cache breaker
+      run: .circleci/make_opam_cachebreaker.sh > .circleci/opamcachebreaker
+      shell: bash
+    - name: opam cache
+      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+      with:
+        path: |-
+          ~/.opam
+          _opam
+        key: v1-opam-ounit-cache-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.circleci/opamcachebreaker') }}
+    - name: Init opam
+      run: .circleci/opam_init.sh
+    - name: Install deps from opam
+      run: make deps
+      shell: bash
+    - name: Install extra deps from opam
+      run: make deps-test | cat
+    - name: Run ounit tests
+      run: opam exec -- make ounit-tests-ci
+  ounit_test_macos:
+    runs-on: macos-15
+    steps:
+    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+    - uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1.6.0
+      with:
+        xcode-version: '16.4.0'
+    - name: Update curl cacerts
+      run: echo "cacert $GITHUB_WORKSPACE/.circleci/cacert.pem" >> ~/.curlrc
+    - uses: ./.github/actions/install-opam-mac
+      with:
+        arch: arm64
+    - name: Create cache breaker
+      run: .circleci/make_opam_cachebreaker.sh > .circleci/opamcachebreaker
+      shell: bash
+    - name: opam cache
+      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+      with:
+        path: |-
+          ~/.opam
+          _opam
+        key: v1-opam-ounit-cache-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.circleci/opamcachebreaker') }}
+    - name: Init opam
+      run: .circleci/opam_init.sh
+    - name: Install deps from opam
+      run: make deps
+      shell: bash
+    - name: Install extra deps from opam
+      run: make deps-test | cat
+    - name: Run ounit tests
+      run: opam exec -- make ounit-tests-ci
+  parser_test_win:
+    runs-on: windows-latest
+    needs:
+    - build_win
+    steps:
+    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      with:
+        name: build_win_bin
+        path: bin/win64
+    - name: Test parser
+      run: |-
+        .\bin\win64\run_parser_tests.exe .\src\parser\test\flow\
+        if ($LASTEXITCODE -gt 0) {
+          Throw "flow parser hardcoded ocaml tests exited with error code: $LASTEXITCODE"
+        }
+        .\bin\win64\run_parser_tests.exe .\src\parser\test\esprima\
+        if ($LASTEXITCODE -gt 0) {
+          Throw "flow parser esprima ocaml tests exited with error code: $LASTEXITCODE"
+        }
+  npm_pack:
+    runs-on: ubuntu-22.04
+    needs:
+    - build_js
+    steps:
+    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      with:
+        name: build_js_bin
+        path: bin
+    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      with:
+        name: build_js_dist
+        path: dist
+    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      with:
+        name: build_js_packages
+        path: packages/flow-parser
+    - name: Pack flow-parser
+      run: |
+        mkdir -p packages/flow-parser/dist/
+        pwd
+        ls -lR .
+        cp dist/flow_parser.js packages/flow-parser/dist/flow_parser.js
+        make dist/npm-flow-parser.tgz
+    - name: Pack flow-remove-types and flow-node
+      run: |
+        rm -rf packages/flow-node
+        cp -r packages/flow-remove-types/ packages/flow-node/
+        sed -i '0,/flow-remove-types/s//flow-node/' packages/flow-node/package.json
+        make dist/npm-flow-remove-types.tgz
+        make dist/npm-flow-node.tgz
+    - name: Pack flow-upgrade
+      run: |
+        cd packages/flow-upgrade
+        yarn install
+        yarn build
+        yarn test
+        cd ../..
+        make dist/npm-flow-upgrade.tgz
+    - uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+      with:
+        name: npm_pack
+        path: |
+          dist/npm-flow-parser.tgz
+          dist/npm-flow-node.tgz
+          dist/npm-flow-remove-types.tgz
+          dist/npm-flow-upgrade.tgz
+    - name: Deploy to npm
+      if: contains(github.event_name, 'push') && startsWith( github.ref, 'refs/tags/v' )
+      run: .circleci/deploy_npm.sh
+  website_deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-22.04
+    needs:
+    - build_linux
+    - build_js
+    steps:
+    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      with:
+        name: build_linux_bin
+        path: bin/linux
+    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      with:
+        name: build_js_bin
+        path: dist
+    - run: chmod +x bin/linux/flow
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      with:
+        node-version: '22.x'
+    - name: Node cache
+      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+      with:
+        key: v2-website-${{ github.ref_name }}-${{ hashFiles('website/yarn.lock') }}
+        path: website/node_modules
+    - name: Install yarn deps
+      run: cd website && yarn install
+    - name: Build website
+      run: PATH=${{ github.workspace }}/bin/linux:$PATH .circleci/build_website.sh
+    - name: Publish website to GitHub Pages
+      run: |-
+        cd website
+        yarn add gh-pages
+        yarn gh-pages -d build -u "flow-bot <flow-bot@users.noreply.github.com>" --repo https://${FLOW_BOT_TOKEN}@github.com/facebook/flow.git --no-history
+  # Deploy jobs
+  github_upload:
+    if: contains(github.event_name, 'push') && startsWith( github.ref, 'refs/tags/v' )
+    runs-on: ubuntu-22.04
+    needs:
+    - build_linux
+    - build_linux_arm64
+    - build_macos_arm64
+    - build_win
+    steps:
+    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      with:
+        name: build_linux_dist
+        path: dist
+    - name: Upload Linux binary (x86_64)
+      run: .circleci/github_upload.sh dist/flow-linux64.zip "flow-linux64-${{ github.ref_name }}.zip"
+    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      with:
+        name: build_linux_arm64_dist
+        path: dist
+    - name: Upload Linux binary (arm64)
+      run: .circleci/github_upload.sh dist/flow-linux64-arm64.zip "flow-linux-arm64-${{ github.ref_name }}.zip"
+    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      with:
+        name: build_macos_arm64_dist
+        path: dist
+    - name: Upload Mac binary (arm64)
+      run: .circleci/github_upload.sh dist/flow-osx-arm64.zip "flow-osx-arm64-${{ github.ref_name }}.zip"
+    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      with:
+        name: build_win_dist
+        path: dist
+    - name: Upload Windows binary
+      run: .circleci/github_upload.sh dist/flow-win64.zip "flow-win64-${{ github.ref_name }}.zip"
+  flow_bin_deploy:
+    if: contains(github.event_name, 'push') && startsWith( github.ref, 'refs/tags/v' )
+    runs-on: ubuntu-22.04
+    needs:
+    - github_upload
+    steps:
+    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+    - name: Deploy flow-bin
+      run: .circleci/deploy_flow_bin.sh
+    - uses: facebook/dotslash-publish-release@2539c4d8ae00a42773306c8731d2dd3724d979d2 # v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        config: .github/dotslash-config.json
+        tag: ${{ github.ref_name }}
+  try_flow_deploy:
+    if: contains(github.event_name, 'push') && startsWith( github.ref, 'refs/tags/v' )
+    runs-on: ubuntu-22.04
+    needs:
+    - build_js
+    steps:
+    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+      with:
+        name: build_js_bin
+        path: dist
+    - name: Assemble files
+      run: |
+        cp dist/flow.js packages/try-flow-website-js/flow.js
+        cp -r lib packages/try-flow-website-js/flowlib
+        make dist/npm-try-flow-website-js.tgz
+    - name: Deploy to NPM
+      run: |
+        echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+        npm publish ./dist/npm-try-flow-website-js.tgz

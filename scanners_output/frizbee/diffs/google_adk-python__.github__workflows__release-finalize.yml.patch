@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/google_adk-python__.github__workflows__release-finalize.yml b/.github/workflows/google_adk-python__.github__workflows__release-finalize.yml
+index b9d6203..8214a02 100644
+--- a/.github/workflows/google_adk-python__.github__workflows__release-finalize.yml
++++ b/.github/workflows/google_adk-python__.github__workflows__release-finalize.yml
+@@ -29,7 +29,7 @@ jobs:
+             echo "is_release_pr=false" >> $GITHUB_OUTPUT
+           fi
+ 
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         if: steps.check.outputs.is_release_pr == 'true'
+         with:
+           ref: release/candidate

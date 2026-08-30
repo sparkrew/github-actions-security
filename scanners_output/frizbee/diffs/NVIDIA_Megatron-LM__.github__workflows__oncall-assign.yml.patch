@@ -1,0 +1,17 @@
+diff --git a/.github/workflows/NVIDIA_Megatron-LM__.github__workflows__oncall-assign.yml b/.github/workflows/NVIDIA_Megatron-LM__.github__workflows__oncall-assign.yml
+index d4cc47d..7c94616 100644
+--- a/.github/workflows/NVIDIA_Megatron-LM__.github__workflows__oncall-assign.yml
++++ b/.github/workflows/NVIDIA_Megatron-LM__.github__workflows__oncall-assign.yml
+@@ -30,10 +30,10 @@ jobs:
+     if: ${{ !github.event.pull_request.draft }}
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       - name: Set up Python
+-        uses: actions/setup-python@v4
++        uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+         with:
+           python-version: '3.10'
+ 

@@ -1,0 +1,59 @@
+{
+  "workflow": "microsoft_msquic__.github__workflows__stress.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "artipacked": 2,
+      "excessive-permissions": 1,
+      "template-injection": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_msquic__.github__workflows__stress.yml",
+      "line": 125,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_msquic__.github__workflows__stress.yml",
+      "line": 185,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "microsoft_msquic__.github__workflows__stress.yml",
+      "line": 34,
+      "column": 1,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "microsoft_msquic__.github__workflows__stress.yml",
+      "line": 144,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "microsoft_msquic__.github__workflows__stress.yml",
+      "line": 149,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    }
+  ]
+}

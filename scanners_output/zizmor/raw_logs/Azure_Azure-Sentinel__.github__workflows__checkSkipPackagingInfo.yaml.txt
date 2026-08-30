@@ -1,0 +1,77 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__checkSkipPackagingInfo.yaml:25:9
+   [1m[94m|[0m
+[1m[94m25 |[0m         - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m26 |[0m [1m[33m|[0m         with:
+[1m[94m27 |[0m [1m[33m|[0m           fetch-depth: 2
+[1m[94m28 |[0m [1m[33m|[0m           ref: "${{ env.BRANCH_NAME }}"
+   [1m[94m|[0m [1m[33m|_______________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__checkSkipPackagingInfo.yaml:29:9
+   [1m[94m|[0m
+[1m[94m29 |[0m   [1m[94m...[0m - name: Check Skip Packaging Status
+   [1m[94m|[0m         [1m[94m---------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m30 |[0m   [1m[94m...[0m   shell: pwsh
+[1m[94m31 |[0m   [1m[94m...[0m   id: getPackagingSkipStatus
+[1m[94m32 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m33 |[0m [1m[94m|[0m [1m[94m...[0m     $instrumentationKey = "${{ vars.APPINSIGHTS }}"
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m39 |[0m [1m[94m|[0m [1m[94m...[0m     Install-Module powershell-yaml
+[1m[94m40 |[0m [1m[94m|[0m [1m[94m...[0m     ./.script/package-automation/checkSkipPackagingInfo.ps1 $solutionName $pullRequestNumber $runId $baseFolderPath $instrumentationKey
+   [1m[94m|[0m [1m[94m|____________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: vars.APPINSIGHTS may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__checkSkipPackagingInfo.yaml:29:9
+   [1m[94m|[0m
+[1m[94m29 |[0m   [1m[94m...[0m - name: Check Skip Packaging Status
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m30 |[0m   [1m[94m...[0m   shell: pwsh
+[1m[94m31 |[0m   [1m[94m...[0m   id: getPackagingSkipStatus
+[1m[94m32 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m33 |[0m [1m[91m|[0m [1m[94m...[0m     $instrumentationKey = "${{ vars.APPINSIGHTS }}"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m39 |[0m [1m[91m|[0m [1m[94m...[0m     Install-Module powershell-yaml
+[1m[94m40 |[0m [1m[91m|[0m [1m[94m...[0m     ./.script/package-automation/checkSkipPackagingInfo.ps1 $solutionName $pullRequestNumber $runId $baseFolderPath $instrumentationKey
+   [1m[94m|[0m [1m[91m|____________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.solutionName may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__checkSkipPackagingInfo.yaml:29:9
+   [1m[94m|[0m
+[1m[94m29 |[0m   [1m[94m...[0m - name: Check Skip Packaging Status
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m30 |[0m   [1m[94m...[0m   shell: pwsh
+[1m[94m31 |[0m   [1m[94m...[0m   id: getPackagingSkipStatus
+[1m[94m32 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m33 |[0m [1m[91m|[0m [1m[94m...[0m     $instrumentationKey = "${{ vars.APPINSIGHTS }}"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m39 |[0m [1m[91m|[0m [1m[94m...[0m     Install-Module powershell-yaml
+[1m[94m40 |[0m [1m[91m|[0m [1m[94m...[0m     ./.script/package-automation/checkSkipPackagingInfo.ps1 $solutionName $pullRequestNumber $runId $baseFolderPath $instrumentationKey
+   [1m[94m|[0m [1m[91m|____________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.client_payload.pull_request.number may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__checkSkipPackagingInfo.yaml:29:9
+   [1m[94m|[0m
+[1m[94m29 |[0m   [1m[94m...[0m - name: Check Skip Packaging Status
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m30 |[0m   [1m[94m...[0m   shell: pwsh
+[1m[94m31 |[0m   [1m[94m...[0m   id: getPackagingSkipStatus
+[1m[94m32 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m33 |[0m [1m[91m|[0m [1m[94m...[0m     $instrumentationKey = "${{ vars.APPINSIGHTS }}"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m39 |[0m [1m[91m|[0m [1m[94m...[0m     Install-Module powershell-yaml
+[1m[94m40 |[0m [1m[91m|[0m [1m[94m...[0m     ./.script/package-automation/checkSkipPackagingInfo.ps1 $solutionName $pullRequestNumber $runId $baseFolderPath $instrumentationKey
+   [1m[94m|[0m [1m[91m|____________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.client_payload.pullRequestNumber may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m11[39m findings ([1m[93m6[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m1[39m medium, [31m3[39m high

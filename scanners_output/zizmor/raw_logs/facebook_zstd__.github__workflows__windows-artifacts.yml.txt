@@ -1,0 +1,115 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_zstd__.github__workflows__windows-artifacts.yml:31:9
+   [1m[94m|[0m
+[1m[94m31 |[0m         - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # tag=v6.0.2
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m32 |[0m [1m[33m|[0m
+[1m[94m33 |[0m [1m[33m|[0m       # MSYS2 setup
+   [1m[94m|[0m [1m[33m|___________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_zstd__.github__workflows__windows-artifacts.yml:82:9
+   [1m[94m|[0m
+[1m[94m82 |[0m         - name: Create artifacts (MSYS2)
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m83 |[0m           if: matrix.shell == 'msys2'
+[1m[94m84 |[0m [1m[91m/[0m         run: |
+[1m[94m85 |[0m [1m[91m|[0m           ./lib/dll/example/build_package.bat || exit 1
+[1m[94m86 |[0m [1m[91m|[0m           mv bin/ zstd-${{ github.ref_name }}-${{matrix.ziparch}}/
+   [1m[94m|[0m [1m[91m|__________________________________________________________________^[0m [1m[91mgithub.ref_name may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_zstd__.github__workflows__windows-artifacts.yml:88:9
+   [1m[94m|[0m
+[1m[94m88 |[0m         - name: Create artifacts (CMake)
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m89 |[0m           if: matrix.shell == 'cmake'
+[1m[94m90 |[0m [1m[91m/[0m         run: |
+[1m[94m91 |[0m [1m[91m|[0m           .\lib\dll\example\build_package.bat
+[1m[94m92 |[0m [1m[91m|[0m           if ($LASTEXITCODE -ne 0) { exit 1 }
+[1m[94m93 |[0m [1m[91m|[0m           mv bin/ zstd-${{ github.ref_name }}-${{matrix.ziparch}}/
+   [1m[94m|[0m [1m[91m|__________________________________________________________________^[0m [1m[91mgithub.ref_name may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_zstd__.github__workflows__windows-artifacts.yml:103:9
+    [1m[94m|[0m
+[1m[94m103 |[0m   [1m[94m...[0m - name: Package artifact for upload (MSYS2)
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m104 |[0m   [1m[94m...[0m   if: matrix.shell == 'msys2'
+[1m[94m105 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m106 |[0m [1m[91m|[0m [1m[94m...[0m     7z a -tzip -mx9 "$(cygpath -u '${{ github.workspace }}/zstd-${{ github.ref_name }}-${{ matrix.ziparch }}.zip')" "$(cygpath -u '${{ github.workspace }}/zstd-${{ github.ref_name }}-${{ matrix.ziparch }}')"
+    [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.ref_name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_zstd__.github__workflows__windows-artifacts.yml:103:9
+    [1m[94m|[0m
+[1m[94m103 |[0m   [1m[94m...[0m - name: Package artifact for upload (MSYS2)
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m104 |[0m   [1m[94m...[0m   if: matrix.shell == 'msys2'
+[1m[94m105 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m106 |[0m [1m[91m|[0m [1m[94m...[0m     7z a -tzip -mx9 "$(cygpath -u '${{ github.workspace }}/zstd-${{ github.ref_name }}-${{ matrix.ziparch }}.zip')" "$(cygpath -u '${{ github.workspace }}/zstd-${{ github.ref_name }}-${{ matrix.ziparch }}')"
+    [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.ref_name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_zstd__.github__workflows__windows-artifacts.yml:108:9
+    [1m[94m|[0m
+[1m[94m108 |[0m   [1m[94m...[0m - name: Package artifact for upload (CMake)
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m109 |[0m   [1m[94m...[0m   if: matrix.shell == 'cmake'
+[1m[94m110 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m111 |[0m [1m[91m|[0m [1m[94m...[0m     Compress-Archive -Path "zstd-${{ github.ref_name }}-${{ matrix.ziparch }}" -DestinationPath "zstd-${{ github.ref_name }}-${{ matrix.ziparch }}.zip" -CompressionLevel Optimal
+    [1m[94m|[0m [1m[91m|_____________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.ref_name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_zstd__.github__workflows__windows-artifacts.yml:108:9
+    [1m[94m|[0m
+[1m[94m108 |[0m   [1m[94m...[0m - name: Package artifact for upload (CMake)
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m109 |[0m   [1m[94m...[0m   if: matrix.shell == 'cmake'
+[1m[94m110 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m111 |[0m [1m[91m|[0m [1m[94m...[0m     Compress-Archive -Path "zstd-${{ github.ref_name }}-${{ matrix.ziparch }}" -DestinationPath "zstd-${{ github.ref_name }}-${{ matrix.ziparch }}.zip" -CompressionLevel Optimal
+    [1m[94m|[0m [1m[91m|_____________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.ref_name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_zstd__.github__workflows__windows-artifacts.yml:113:9
+    [1m[94m|[0m
+[1m[94m113 |[0m   [1m[94m...[0m - name: Upload release asset
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m114 |[0m   [1m[94m...[0m   if: github.event_name == 'release'
+[1m[94m...[0m
+[1m[94m117 |[0m   [1m[94m...[0m     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+[1m[94m118 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m119 |[0m [1m[91m|[0m [1m[94m...[0m     gh release upload "${{ github.ref_name }}" "$env:GITHUB_WORKSPACE/zstd-${{ github.ref_name }}-${{ matrix.ziparch }}.zip" --clobber
+    [1m[94m|[0m [1m[91m|__________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.ref_name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_zstd__.github__workflows__windows-artifacts.yml:113:9
+    [1m[94m|[0m
+[1m[94m113 |[0m   [1m[94m...[0m - name: Upload release asset
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m114 |[0m   [1m[94m...[0m   if: github.event_name == 'release'
+[1m[94m...[0m
+[1m[94m117 |[0m   [1m[94m...[0m     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+[1m[94m118 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m119 |[0m [1m[91m|[0m [1m[94m...[0m     gh release upload "${{ github.ref_name }}" "$env:GITHUB_WORKSPACE/zstd-${{ github.ref_name }}-${{ matrix.ziparch }}.zip" --clobber
+    [1m[94m|[0m [1m[91m|__________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.ref_name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m27[39m findings ([1m[93m18[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m8[39m high

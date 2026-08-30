@@ -1,0 +1,24 @@
+diff --git a/.github/workflows/microsoft_fluentui-system-icons__.github__workflows__bundle-size.baseline.yml b/.github/workflows/microsoft_fluentui-system-icons__.github__workflows__bundle-size.baseline.yml
+index 55fcd4e..2c5b1f3 100644
+--- a/.github/workflows/microsoft_fluentui-system-icons__.github__workflows__bundle-size.baseline.yml
++++ b/.github/workflows/microsoft_fluentui-system-icons__.github__workflows__bundle-size.baseline.yml
+@@ -20,16 +20,16 @@ jobs:
+     steps:
+       - name: Generate a token
+         id: generate-token
+-        uses: actions/create-github-app-token@v1
++        uses: actions/create-github-app-token@d72941d797fd3113feb6b93fd0dec494b13a2547 # v1
+         with:
+           app-id: ${{ secrets.GH_FLUENT_CI_APP_ID }}
+           private-key: ${{ secrets.GH_FLUENT_CI_PRIVATE_KEY }}
+ 
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           token: ${{ steps.generate-token.outputs.token }}
+ 
+-      - uses: actions/setup-node@v4
++      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+         with:
+           node-version: 22.x
+ 

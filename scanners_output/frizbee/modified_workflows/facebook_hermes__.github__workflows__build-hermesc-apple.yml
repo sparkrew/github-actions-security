@@ -1,0 +1,22 @@
+name: build-hermesc-apple
+
+on: workflow_call
+
+jobs:
+  build-hermesc-apple:
+    runs-on: macos-15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - name: Setup xcode
+        uses: ./.github/actions/setup-xcode
+      - name: Build HermesC Apple
+        shell: bash
+        run: |
+          source ./utils/build-apple-framework.sh
+          build_host_hermesc_if_needed
+      - name: Upload HermesC Artifact
+        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4.3.4
+        with:
+          name: hermesc-apple
+          path: ./build_host_hermesc

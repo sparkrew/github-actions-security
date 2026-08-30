@@ -1,0 +1,75 @@
+name: Reusable Test Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      pinned_botorch:
+        required: true
+        type: boolean
+      minimal_dependencies:
+        required: false
+        type: boolean
+        default: false
+  workflow_call:
+    inputs:
+      pinned_botorch:
+        required: true
+        type: boolean
+      minimal_dependencies:
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  tests-and-coverage:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.14"]
+      fail-fast: false
+    env:
+      # `uv pip ...` requires venv by default. This skips that requirement.
+      UV_SYSTEM_PYTHON: 1
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+    - name: Install uv
+      uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # astral-sh/setup-uv@v5
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # actions/setup-python@v6 | main,v6.2.0
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - if: ${{ inputs.pinned_botorch }}
+      name: Install dependencies with pinned BoTorch (minimal dependencies ${{ inputs.minimal_dependencies }})
+      run: |
+        # The brackets returns '.[unittest_minimal]' if using minimal dependencies and '.[unittest]'
+        # otherwise. This saves us from needing 4 install dependencies blocks by supporting two
+        # different installation options in one line.
+        uv pip install -e ${{ ((inputs.minimal_dependencies) && '.[unittest_minimal]') || '.[unittest]' }}
+
+    - if: ${{ !inputs.pinned_botorch }}
+      name: Install dependencies with latest BoTorch (minimal dependencies ${{ inputs.minimal_dependencies }})
+      run: |
+        uv pip install git+https://github.com/cornellius-gp/linear_operator.git
+        uv pip install git+https://github.com/cornellius-gp/gpytorch.git
+        uv pip install git+https://github.com/pytorch/botorch.git
+        uv pip install -e ${{ ((inputs.minimal_dependencies) && '.[unittest_minimal]') || '.[unittest]' }}
+
+    - name: Import Ax
+      run: |
+        python scripts/import_ax.py
+    - if: ${{ !inputs.minimal_dependencies }}
+      # Only run with full dependencies. Minimal does not include pytest.
+      name: Tests and coverage
+      run: |
+        pytest -ra --cov=ax
+    - if: ${{ !inputs.minimal_dependencies && matrix.python-version == 3.11 }}
+      # Only upload codecov once per workflow.
+      name: Upload coverage
+      uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # codecov/codecov-action@v5 | main
+      with:
+        # This will sometimes fail because of
+        # https://github.com/codecov/codecov-action/issues/1580
+        # Make true when closed.
+        fail_ci_if_error: false
+        token: ${{ secrets.CODECOV_TOKEN }}

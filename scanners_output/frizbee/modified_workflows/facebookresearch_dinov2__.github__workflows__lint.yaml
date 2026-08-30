@@ -1,0 +1,38 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-linters:
+    name: Run linters
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+      - name: Set up Python
+        uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+        with:
+          python-version: 3.9
+          cache: 'pip'
+          cache-dependency-path: '**/requirements*.txt'
+      - name: Install Python (development) dependencies
+        run: |
+          pip install -r requirements-dev.txt
+      - name: Run flake8
+        run: |
+          flake8
+      - name: Run black
+        if: always()
+        run: |
+          black --check dinov2
+      - name: Run pylint
+        if: always()
+        run: |
+          pylint --exit-zero dinov2

@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/NVIDIA_cuda-python__.github__workflows__build-wheel.yml b/.github/workflows/NVIDIA_cuda-python__.github__workflows__build-wheel.yml
+index d572654..0259207 100644
+--- a/.github/workflows/NVIDIA_cuda-python__.github__workflows__build-wheel.yml
++++ b/.github/workflows/NVIDIA_cuda-python__.github__workflows__build-wheel.yml
+@@ -51,7 +51,7 @@ jobs:
+ 
+       # xref: https://github.com/orgs/community/discussions/42856#discussioncomment-7678867
+       - name: Adding addtional GHA cache-related env vars
+-        uses: actions/github-script@v8
++        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+         with:
+           script: |
+             core.exportVariable('ACTIONS_CACHE_URL', process.env['ACTIONS_CACHE_URL'])
+@@ -75,7 +75,7 @@ jobs:
+ 
+       - name: Set up MSVC
+         if: ${{ startsWith(inputs.host-platform, 'win') }}
+-        uses: ilammy/msvc-dev-cmd@v1  # TODO: ask admin to allow pinning commits
++        uses: ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756 # v1  # TODO: ask admin to allow pinning commits
+ 
+       - name: Set up yq
+         # GitHub made an unprofessional decision to not provide it in their Windows VMs,

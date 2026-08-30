@@ -1,0 +1,25 @@
+{
+  "workflow": "microsoft_onnxruntime__.github__workflows__windows_dml.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 28,
+      "column": "",
+      "job": "build_x64_RelWithDebInfo",
+      "step": "",
+      "details": "runs-on: self-hosted, 1ES.Pool=onnxruntime-github-Win2022-GPU-A10, JobId=windows-dml-${{ github.run_id }}-${{ github.run_number }}-${{ github.run_attempt }}",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

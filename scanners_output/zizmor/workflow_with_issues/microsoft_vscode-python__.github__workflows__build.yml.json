@@ -1,0 +1,31 @@
+{
+  "workflow": "microsoft_vscode-python__.github__workflows__build.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "unpinned-uses": 1,
+      "cache-poisoning": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "microsoft_vscode-python__.github__workflows__build.yml",
+      "line": 273,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "cache-poisoning",
+      "level": "error",
+      "message": "runtime artifacts potentially vulnerable to a cache poisoning attack",
+      "workflow": "microsoft_vscode-python__.github__workflows__build.yml",
+      "line": 3,
+      "column": 1,
+      "note": "audit confidence \u2192 Low"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - develop
+      - "feat-*"
+  pull_request:
+  workflow_dispatch:
+  merge_group:
+    types: [checks_requested]
+
+jobs:
+  build:
+    name: ${{ matrix.os }} / ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+        python:
+          - "3.8"
+          - "3.9"
+          - "3.10"
+          - "3.11"
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+    - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # actions/setup-python@v6 | main,v6.2.0
+      with:
+        python-version: ${{ matrix.python }}
+    - run: make init
+    - run: make pr

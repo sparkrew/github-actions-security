@@ -1,0 +1,32 @@
+{
+  "workflow": "aws_aws-sdk-ruby__.github__workflows__benchmark.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: ruby/setup-ruby@09a7688d3b55cf0e976497ff046b70949eeaccfd # ruby/setup-ruby@v1 | v1.288.0",
+      "line": 32
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+      "line": 36
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: aws-actions/configure-aws-credentials@61815dcd50bd041e203e49132bacad1fd04d2708 # aws-actions/configure-aws-credentials@v5",
+      "line": 54
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: thollander/actions-comment-pull-request@e4a76dd2b0a3c2027c3fd84147a67c22ee4c90fa # thollander/actions-comment-pull-request@main",
+      "line": 76
+    }
+  ]
+}

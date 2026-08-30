@@ -1,0 +1,111 @@
+diff --git a/.github/workflows/microsoft_GSL__.github__workflows__ios.yml b/.github/workflows/microsoft_GSL__.github__workflows__ios.yml
+index 5656725..a231c9b 100644
+--- a/.github/workflows/microsoft_GSL__.github__workflows__ios.yml
++++ b/.github/workflows/microsoft_GSL__.github__workflows__ios.yml
+@@ -1,53 +1,53 @@
+-name: CI_iOS
+-on:
+-  push:
+-    branches: [ main ]
+-  pull_request:
+-    branches: [ main ]
+-
+-jobs:
+-  iOS:
+-    runs-on: macos-latest
+-    defaults:
+-      run:
+-        working-directory: build
+-    steps:
+-      - uses: actions/checkout@v4
+-
+-      - name: Create build directory
+-        run: mkdir -p build
+-        working-directory: .
+-
+-      - name: Configure
+-        run: |
+-          cmake \
+-            -Werror=dev \
+-            -GXcode \
+-            -DCMAKE_SYSTEM_NAME=iOS \
+-            "-DCMAKE_OSX_ARCHITECTURES=arm64;x86_64" \
+-            -DCMAKE_OSX_DEPLOYMENT_TARGET=12.0 \
+-            -DCMAKE_TRY_COMPILE_TARGET_TYPE=STATIC_LIBRARY \
+-            "-DMACOSX_BUNDLE_GUI_IDENTIFIER=GSL.\$(EXECUTABLE_NAME)" \
+-            -DMACOSX_BUNDLE_BUNDLE_VERSION=4.2.0 \
+-            -DMACOSX_BUNDLE_SHORT_VERSION_STRING=4.2.0 \
+-            -DCMAKE_CXX_FLAGS="-Wno-missing-include-dirs" \
+-            ..
+-
+-      - name: Build
+-        run: cmake --build . --parallel `sysctl -n hw.ncpu` --config Release -- -sdk iphonesimulator
+-
+-      - name: Start simulator
+-        run: |
+-          RUNTIME=`xcrun simctl list runtimes iOS -j|jq '.runtimes|last.identifier'`
+-          UDID=`xcrun simctl list devices iPhone available -j|jq -r ".devices[$RUNTIME]|last.udid"`
+-          xcrun simctl bootstatus $UDID -b
+-
+-      - name: Test
+-        run: |
+-          for TEST in `find tests/Release-iphonesimulator -depth 1 -name "*.app"`
+-          do
+-            xcrun simctl install booted $TEST
+-            TEST_ID=`plutil -convert json -o - $TEST/Info.plist|jq -r ".CFBundleIdentifier"`
+-            xcrun simctl launch --console booted $TEST_ID
+-            xcrun simctl uninstall booted $TEST_ID
+-          done
++name: CI_iOS
++on:
++  push:
++    branches: [ main ]
++  pull_request:
++    branches: [ main ]
++
++jobs:
++  iOS:
++    runs-on: macos-latest
++    defaults:
++      run:
++        working-directory: build
++    steps:
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
++
++      - name: Create build directory
++        run: mkdir -p build
++        working-directory: .
++
++      - name: Configure
++        run: |
++          cmake \
++            -Werror=dev \
++            -GXcode \
++            -DCMAKE_SYSTEM_NAME=iOS \
++            "-DCMAKE_OSX_ARCHITECTURES=arm64;x86_64" \
++            -DCMAKE_OSX_DEPLOYMENT_TARGET=12.0 \
++            -DCMAKE_TRY_COMPILE_TARGET_TYPE=STATIC_LIBRARY \
++            "-DMACOSX_BUNDLE_GUI_IDENTIFIER=GSL.\$(EXECUTABLE_NAME)" \
++            -DMACOSX_BUNDLE_BUNDLE_VERSION=4.2.0 \
++            -DMACOSX_BUNDLE_SHORT_VERSION_STRING=4.2.0 \
++            -DCMAKE_CXX_FLAGS="-Wno-missing-include-dirs" \
++            ..
++
++      - name: Build
++        run: cmake --build . --parallel `sysctl -n hw.ncpu` --config Release -- -sdk iphonesimulator
++
++      - name: Start simulator
++        run: |
++          RUNTIME=`xcrun simctl list runtimes iOS -j|jq '.runtimes|last.identifier'`
++          UDID=`xcrun simctl list devices iPhone available -j|jq -r ".devices[$RUNTIME]|last.udid"`
++          xcrun simctl bootstatus $UDID -b
++
++      - name: Test
++        run: |
++          for TEST in `find tests/Release-iphonesimulator -depth 1 -name "*.app"`
++          do
++            xcrun simctl install booted $TEST
++            TEST_ID=`plutil -convert json -o - $TEST/Info.plist|jq -r ".CFBundleIdentifier"`
++            xcrun simctl launch --console booted $TEST_ID
++            xcrun simctl uninstall booted $TEST_ID
++          done

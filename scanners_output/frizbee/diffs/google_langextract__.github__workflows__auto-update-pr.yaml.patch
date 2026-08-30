@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/google_langextract__.github__workflows__auto-update-pr.yaml b/.github/workflows/google_langextract__.github__workflows__auto-update-pr.yaml
+index ed5cee9..a257610 100644
+--- a/.github/workflows/google_langextract__.github__workflows__auto-update-pr.yaml
++++ b/.github/workflows/google_langextract__.github__workflows__auto-update-pr.yaml
+@@ -40,7 +40,7 @@ jobs:
+       cancel-in-progress: true
+     steps:
+       - name: Update PRs that are behind main
+-        uses: actions/github-script@v7
++        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+         with:
+           script: |
+             const prNumber = context.payload.inputs?.pr_number;

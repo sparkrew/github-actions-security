@@ -1,0 +1,50 @@
+{
+  "workflow": "IBM_plex__.github__workflows__publish-cdn.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "artipacked": 1,
+      "excessive-permissions": 1,
+      "unpinned-uses": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "IBM_plex__.github__workflows__publish-cdn.yml",
+      "line": 17,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "IBM_plex__.github__workflows__publish-cdn.yml",
+      "line": 12,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "IBM_plex__.github__workflows__publish-cdn.yml",
+      "line": 29,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "IBM_plex__.github__workflows__publish-cdn.yml",
+      "line": 40,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

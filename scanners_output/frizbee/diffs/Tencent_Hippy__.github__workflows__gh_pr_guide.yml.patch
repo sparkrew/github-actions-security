@@ -1,0 +1,36 @@
+diff --git a/.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_guide.yml b/.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_guide.yml
+index ed14410..6c06a4c 100644
+--- a/.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_guide.yml
++++ b/.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_guide.yml
+@@ -24,13 +24,13 @@ jobs:
+         :label: You can leave a comment in this PR with **`#help`** tag when you need help (e.g. some status checks run failed due to internal issue), admin team members will help asap.
+     steps:
+     - name: Token
+-      uses: navikt/github-app-token-generator@v1
++      uses: navikt/github-app-token-generator@b96ff604b2300989cd1105e3fad09199fca56681 # v1
+       id: get-token
+       with:
+         private-key: ${{ secrets.BOT_APP_KEY }}
+         app-id: ${{ secrets.BOT_APP_ID }}
+     - name: Greetings
+-      uses: actions/github-script@v6.1.0
++      uses: actions/github-script@7a5c598405937d486b0331594b5da2b14db670da # v6.1.0
+       with:
+         github-token: ${{ steps.get-token.outputs.token }}
+         script: |
+@@ -55,13 +55,13 @@ jobs:
+         > ${{ github.event.comment.body }}
+     steps:
+     - name: Token
+-      uses: navikt/github-app-token-generator@v1
++      uses: navikt/github-app-token-generator@b96ff604b2300989cd1105e3fad09199fca56681 # v1
+       id: get-token
+       with:
+         private-key: ${{ secrets.BOT_APP_KEY }}
+         app-id: ${{ secrets.BOT_APP_ID }}
+     - name: Action
+-      uses: actions/github-script@v6.3.3
++      uses: actions/github-script@d556feaca394842dc55e4734bf3bb9f685482fa0 # v6.3.3
+       with:
+         github-token: ${{ steps.get-token.outputs.token }}
+         script: |

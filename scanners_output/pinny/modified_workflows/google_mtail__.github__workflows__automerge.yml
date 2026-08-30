@@ -1,0 +1,61 @@
+# We "trust" dependabot updates once they pass tests.
+# (this still requires all other checks to pass!)
+
+# This doesn't work on forked repos per the discussion in
+# https://github.com/pascalgn/automerge-action/issues/46 so don't attempt to
+# add people other than dependabot to the if field below.
+name: dependabot-auto-merge
+on:
+  pull_request_target:
+    types:
+      # Dependabot will label the PR
+      - labeled
+      # Dependabot has rebased the PR
+      - synchronize
+
+jobs:
+  enable-automerge:
+    if: github.event.pull_request.user.login == 'dependabot[bot]' && contains(github.event.pull_request.labels.*.name, 'dependencies')
+    runs-on: ubuntu-latest
+    # https://github.com/orgs/community/discussions/24686
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - run: |
+          gh api graphql -f pullRequestId="${GITHUB_EVENT_PULL_REQUEST_NODE_ID}" -f query='
+          mutation EnablePullRequestAutoMerge($pullRequestId: ID!) {
+            enablePullRequestAutoMerge(input: {pullRequestId: $pullRequestId}) {
+              clientMutationId
+            }
+          }
+          '
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_EVENT_PULL_REQUEST_NODE_ID: ${{ github.event.pull_request.node_id }}
+
+  wait-on-checks:
+    needs: enable-automerge
+    runs-on: ubuntu-latest
+    permissions:
+      # wait-on-check requires only checks read
+      checks: read
+    steps:
+      - uses: lewagon/wait-on-check-action@ccfb013c15c8afb7bf2b7c028fb74dc5a068cccc # lewagon/wait-on-check-action@v1.3.4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          check-regexp: "test.*"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 60
+
+  approve:
+    needs: wait-on-checks
+    runs-on: ubuntu-latest
+    permissions:
+      # https://github.com/hmarr/auto-approve-action/issues/183 says
+      # auto-approve-action requires write on pull-requests
+      pull-requests: write
+    steps:
+      - uses: hmarr/auto-approve-action@f0939ea97e9205ef24d872e76833fa908a770363
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"

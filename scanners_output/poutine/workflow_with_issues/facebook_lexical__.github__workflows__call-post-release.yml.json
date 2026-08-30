@@ -1,0 +1,24 @@
+{
+  "workflow": "facebook_lexical__.github__workflows__call-post-release.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "untrusted_checkout_exec": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 31,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage the GitHub Action `actions/setup-node`",
+      "event_triggers": [
+        "workflow_dispatch",
+        "workflow_call"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "workflow": "NVIDIA_garak__.github__workflows__test_linux.yml",
+  "tool": "actionlint",
+  "summary": {
+    "total_findings": 3
+  },
+  "findings": [
+    {
+      "line": 37,
+      "column": 15,
+      "message": "the runner of \"actions/checkout@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]"
+    },
+    {
+      "line": 39,
+      "column": 15,
+      "message": "the runner of \"actions/setup-python@v4\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]"
+    },
+    {
+      "line": 44,
+      "column": 13,
+      "message": "if: condition \"${{ matrix.os }} == 'ubuntu-latest'\" is always evaluated to true because extra characters are around ${{ }} [if-cond]"
+    }
+  ]
+}

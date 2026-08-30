@@ -1,0 +1,120 @@
+{
+  "workflow": "aws_karpenter-provider-aws__.github__workflows__e2e.yaml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 9,
+    "by_rule": {
+      "untrusted_checkout_exec": 9
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 179,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of `make`",
+      "event_triggers": [
+        "workflow_dispatch",
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 229,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of a Local GitHub Action at path: `./.github/actions/commit-status/end`",
+      "event_triggers": [
+        "workflow_dispatch",
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 101,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of a Local GitHub Action at path: `./.github/actions/commit-status/start`",
+      "event_triggers": [
+        "workflow_dispatch",
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 218,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of a Local GitHub Action at path: `./.github/actions/e2e/cleanup`",
+      "event_triggers": [
+        "workflow_dispatch",
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 210,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of a Local GitHub Action at path: `./.github/actions/e2e/dump-logs`",
+      "event_triggers": [
+        "workflow_dispatch",
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 155,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of a Local GitHub Action at path: `./.github/actions/e2e/run-tests-private-cluster`",
+      "event_triggers": [
+        "workflow_dispatch",
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 135,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of a Local GitHub Action at path: `./.github/actions/e2e/setup-cluster`",
+      "event_triggers": [
+        "workflow_dispatch",
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 201,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of a Local GitHub Action at path: `./.github/actions/e2e/slack/notify`",
+      "event_triggers": [
+        "workflow_dispatch",
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 105,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of a Local GitHub Action at path: `./.github/actions/install-deps`",
+      "event_triggers": [
+        "workflow_dispatch",
+        "workflow_call"
+      ]
+    }
+  ]
+}

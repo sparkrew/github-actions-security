@@ -1,0 +1,29 @@
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_FluidFramework__.github__workflows__release-notes-issue.yml:116:9
+    [1m[94m|[0m
+[1m[94m116 |[0m         - name: Update issue title
+    [1m[94m|[0m           [1m[94m------------------------[0m [1m[94minfo: this step[0m
+[1m[94m117 |[0m           env:
+[1m[94m118 |[0m             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+[1m[94m119 |[0m [1m[94m/[0m         run: |
+[1m[94m120 |[0m [1m[94m|[0m           NEW_TITLE="Upcoming Release: FluidFramework v${{ steps.setVersion.outputs.VERSION }}"
+[1m[94m121 |[0m [1m[94m|[0m           gh issue edit ${{ env.ISSUE }} --title "$NEW_TITLE"
+    [1m[94m|[0m [1m[94m|______________________________________________________________-[0m [1m[94minfo: steps.setVersion.outputs.VERSION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_FluidFramework__.github__workflows__release-notes-issue.yml:116:9
+    [1m[94m|[0m
+[1m[94m116 |[0m         - name: Update issue title
+    [1m[94m|[0m           [1m[96m------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m117 |[0m           env:
+[1m[94m118 |[0m             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+[1m[94m119 |[0m [1m[96m/[0m         run: |
+[1m[94m120 |[0m [1m[96m|[0m           NEW_TITLE="Upcoming Release: FluidFramework v${{ steps.setVersion.outputs.VERSION }}"
+[1m[94m121 |[0m [1m[96m|[0m           gh issue edit ${{ env.ISSUE }} --title "$NEW_TITLE"
+    [1m[94m|[0m [1m[96m|______________________________________________________________-[0m [1m[96mhelp: env.ISSUE may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m4[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m1[39m low, [33m0[39m medium, [31m0[39m high

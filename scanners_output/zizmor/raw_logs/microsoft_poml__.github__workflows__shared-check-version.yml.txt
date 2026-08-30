@@ -1,0 +1,140 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_poml__.github__workflows__shared-check-version.yml:34:9
+   [1m[94m|[0m
+[1m[94m34 |[0m         - name: Checkout code
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m35 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_poml__.github__workflows__shared-check-version.yml:58:9
+   [1m[94m|[0m
+[1m[94m58 |[0m         - name: Set primary version
+   [1m[94m|[0m           [1m[94m-------------------------[0m [1m[94minfo: this step[0m
+[1m[94m59 |[0m           id: get_version
+[1m[94m60 |[0m [1m[94m/[0m         run: |
+[1m[94m61 |[0m [1m[94m|[0m           # Use pyproject.toml version as the primary version
+[1m[94m62 |[0m [1m[94m|[0m           VERSION=${{ steps.get_pypi_version.outputs.pypi_version }}
+[1m[94m63 |[0m [1m[94m|[0m           echo "version=$VERSION" >> $GITHUB_OUTPUT
+[1m[94m64 |[0m [1m[94m|[0m           echo "Primary version: $VERSION"
+   [1m[94m|[0m [1m[94m|__________________________________________-[0m [1m[94minfo: steps.get_pypi_version.outputs.pypi_version may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_poml__.github__workflows__shared-check-version.yml:66:9
+   [1m[94m|[0m
+[1m[94m66 |[0m         - name: Get tag version
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m67 |[0m           id: get_tag
+[1m[94m68 |[0m [1m[91m/[0m         run: |
+[1m[94m69 |[0m [1m[91m|[0m           if [[ "${{ github.ref }}" == refs/tags/* ]]; then
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m76 |[0m [1m[91m|[0m           echo "tag_version=$TAG_VERSION" >> $GITHUB_OUTPUT
+[1m[94m77 |[0m [1m[91m|[0m           echo "Tag version: $TAG_VERSION"
+   [1m[94m|[0m [1m[91m|__________________________________________^[0m [1m[91mgithub.ref may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_poml__.github__workflows__shared-check-version.yml:66:9
+   [1m[94m|[0m
+[1m[94m66 |[0m         - name: Get tag version
+   [1m[94m|[0m           [1m[94m---------------------[0m [1m[94minfo: this step[0m
+[1m[94m67 |[0m           id: get_tag
+[1m[94m68 |[0m [1m[94m/[0m         run: |
+[1m[94m69 |[0m [1m[94m|[0m           if [[ "${{ github.ref }}" == refs/tags/* ]]; then
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m76 |[0m [1m[94m|[0m           echo "tag_version=$TAG_VERSION" >> $GITHUB_OUTPUT
+[1m[94m77 |[0m [1m[94m|[0m           echo "Tag version: $TAG_VERSION"
+   [1m[94m|[0m [1m[94m|__________________________________________-[0m [1m[94minfo: steps.get_version.outputs.version may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_poml__.github__workflows__shared-check-version.yml:79:9
+    [1m[94m|[0m
+[1m[94m 79 |[0m         - name: Verify versions are in sync
+    [1m[94m|[0m           [1m[94m---------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m 80 |[0m [1m[94m/[0m         run: |
+[1m[94m 81 |[0m [1m[94m|[0m           NPM_VERSION=${{ steps.get_npm_version.outputs.npm_version }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m 99 |[0m [1m[94m|[0m
+[1m[94m100 |[0m [1m[94m|[0m           echo "✅ All project versions are synchronized"
+    [1m[94m|[0m [1m[94m|_________________________________________________________-[0m [1m[94minfo: steps.get_npm_version.outputs.npm_version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_poml__.github__workflows__shared-check-version.yml:79:9
+    [1m[94m|[0m
+[1m[94m 79 |[0m         - name: Verify versions are in sync
+    [1m[94m|[0m           [1m[94m---------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m 80 |[0m [1m[94m/[0m         run: |
+[1m[94m 81 |[0m [1m[94m|[0m           NPM_VERSION=${{ steps.get_npm_version.outputs.npm_version }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m 99 |[0m [1m[94m|[0m
+[1m[94m100 |[0m [1m[94m|[0m           echo "✅ All project versions are synchronized"
+    [1m[94m|[0m [1m[94m|_________________________________________________________-[0m [1m[94minfo: steps.get_browser_version.outputs.browser_version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_poml__.github__workflows__shared-check-version.yml:79:9
+    [1m[94m|[0m
+[1m[94m 79 |[0m         - name: Verify versions are in sync
+    [1m[94m|[0m           [1m[94m---------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m 80 |[0m [1m[94m/[0m         run: |
+[1m[94m 81 |[0m [1m[94m|[0m           NPM_VERSION=${{ steps.get_npm_version.outputs.npm_version }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m 99 |[0m [1m[94m|[0m
+[1m[94m100 |[0m [1m[94m|[0m           echo "✅ All project versions are synchronized"
+    [1m[94m|[0m [1m[94m|_________________________________________________________-[0m [1m[94minfo: steps.get_pypi_version.outputs.pypi_version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_poml__.github__workflows__shared-check-version.yml:102:9
+    [1m[94m|[0m
+[1m[94m102 |[0m         - name: Verify version matches tag
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m103 |[0m [1m[91m/[0m         run: |
+[1m[94m104 |[0m [1m[91m|[0m           if [[ "${{ github.ref }}" == refs/tags/* ]]; then
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m114 |[0m [1m[91m|[0m             echo "Skipping version check for workflow_dispatch"
+[1m[94m115 |[0m [1m[91m|[0m           fi
+    [1m[94m|[0m [1m[91m|_____________^[0m [1m[91mgithub.ref may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_poml__.github__workflows__shared-check-version.yml:102:9
+    [1m[94m|[0m
+[1m[94m102 |[0m         - name: Verify version matches tag
+    [1m[94m|[0m           [1m[94m--------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m103 |[0m [1m[94m/[0m         run: |
+[1m[94m104 |[0m [1m[94m|[0m           if [[ "${{ github.ref }}" == refs/tags/* ]]; then
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m114 |[0m [1m[94m|[0m             echo "Skipping version check for workflow_dispatch"
+[1m[94m115 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|_____________-[0m [1m[94minfo: steps.get_version.outputs.version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_poml__.github__workflows__shared-check-version.yml:102:9
+    [1m[94m|[0m
+[1m[94m102 |[0m         - name: Verify version matches tag
+    [1m[94m|[0m           [1m[94m--------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m103 |[0m [1m[94m/[0m         run: |
+[1m[94m104 |[0m [1m[94m|[0m           if [[ "${{ github.ref }}" == refs/tags/* ]]; then
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m114 |[0m [1m[94m|[0m             echo "Skipping version check for workflow_dispatch"
+[1m[94m115 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|_____________-[0m [1m[94minfo: steps.get_tag.outputs.tag_version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m20[39m findings ([1m[93m10[39m suppressed[0m): 0 unknown, [35m7[39m informational, [36m0[39m low, [33m1[39m medium, [31m2[39m high

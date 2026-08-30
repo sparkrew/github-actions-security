@@ -1,0 +1,31 @@
+diff --git a/.github/workflows/NVIDIA_Megatron-LM__.github__workflows__multi-approval-bot.yml b/.github/workflows/NVIDIA_Megatron-LM__.github__workflows__multi-approval-bot.yml
+index 6a92560..5e24bbc 100644
+--- a/.github/workflows/NVIDIA_Megatron-LM__.github__workflows__multi-approval-bot.yml
++++ b/.github/workflows/NVIDIA_Megatron-LM__.github__workflows__multi-approval-bot.yml
+@@ -9,7 +9,7 @@ on:
+ 
+ jobs:
+   pre-flight:
+-    uses: NVIDIA-NeMo/FW-CI-templates/.github/workflows/_cicd_preflight.yml@v0.73.2
++    uses: NVIDIA-NeMo/FW-CI-templates/.github/workflows/_cicd_preflight.yml@7872c42239a136c17582a584aa573d2cf187241a # v0.73.2
+     if: github.repository == 'NVIDIA/Megatron-LM'
+ 
+   codeowners-approval:
+@@ -26,7 +26,7 @@ jobs:
+         uses: nv-gha-runners/get-pr-info@main
+ 
+       - name: Checkout action
+-        uses: actions/checkout@v3
++        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+         with:
+           repository: noamelf/codeowner-multi-approval-action
+           ref: v0.1
+@@ -53,7 +53,7 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       - name: Result
+         env:

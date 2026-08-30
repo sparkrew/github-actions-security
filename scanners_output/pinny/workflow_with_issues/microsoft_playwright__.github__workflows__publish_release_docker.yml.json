@@ -1,0 +1,32 @@
+{
+  "workflow": "microsoft_playwright__.github__workflows__publish_release_docker.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+      "line": 21
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # actions/setup-node@v6 | main,v6.3.0",
+      "line": 22
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # docker/setup-qemu-action@v3 | releases,v3.7.0",
+      "line": 27
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: azure/login@a457da9ea143d694b1b9c7c869ebb04ebe844ef5 # azure/login@v2",
+      "line": 33
+    }
+  ]
+}

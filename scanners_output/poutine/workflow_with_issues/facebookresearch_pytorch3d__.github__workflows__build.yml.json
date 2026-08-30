@@ -1,0 +1,24 @@
+{
+  "workflow": "facebookresearch_pytorch3d__.github__workflows__build.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 11,
+      "column": "",
+      "job": "binary_linux_conda_cuda",
+      "step": "",
+      "details": "runs-on: 4-core-ubuntu-gpu-t4",
+      "event_triggers": [
+        "pull_request",
+        "push"
+      ]
+    }
+  ]
+}

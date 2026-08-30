@@ -1,0 +1,26 @@
+name: amd64 Linux Bazel
+
+on:
+  push:
+  pull_request:
+  schedule:
+    # min hours day(month) month day(week)
+    - cron: '0 0 7,22 * *'
+
+jobs:
+  # Building using the github runner environement directly.
+  bazel:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # docker/setup-qemu-action@v3 | releases,v3.7.0
+      - name: Check docker
+        run: |
+          docker info
+          docker buildx ls
+      - name: Build
+        run: make --directory=bazel/ci amd64_build
+      - name: Test
+        run: make --directory=bazel/ci amd64_test

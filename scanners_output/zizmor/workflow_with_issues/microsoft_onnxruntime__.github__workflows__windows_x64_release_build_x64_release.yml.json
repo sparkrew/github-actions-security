@@ -1,0 +1,41 @@
+{
+  "workflow": "microsoft_onnxruntime__.github__workflows__windows_x64_release_build_x64_release.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "artipacked": 1,
+      "excessive-permissions": 1,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_onnxruntime__.github__workflows__windows_x64_release_build_x64_release.yml",
+      "line": 24,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "microsoft_onnxruntime__.github__workflows__windows_x64_release_build_x64_release.yml",
+      "line": 15,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "microsoft_onnxruntime__.github__workflows__windows_x64_release_build_x64_release.yml",
+      "line": 74,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/awslabs_aws-sdk-rust__.github__workflows__issue-regression-labeler.yml b/.github/workflows/awslabs_aws-sdk-rust__.github__workflows__issue-regression-labeler.yml
+index bd00071..cb7f37f 100644
+--- a/.github/workflows/awslabs_aws-sdk-rust__.github__workflows__issue-regression-labeler.yml
++++ b/.github/workflows/awslabs_aws-sdk-rust__.github__workflows__issue-regression-labeler.yml
+@@ -11,7 +11,7 @@ jobs:
+     steps:
+     - name: Fetch template body
+       id: check_regression
+-      uses: actions/github-script@v7
++      uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+       env: 
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         TEMPLATE_BODY: ${{ github.event.issue.body }}

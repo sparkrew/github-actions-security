@@ -1,0 +1,86 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_magika__.github__workflows__cli-release.yml:18:3
+   [1m[94m|[0m
+[1m[94m18 |[0m   "contents": "write"
+   [1m[94m|[0m   [1m[91m^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontents: write is overly broad at the workflow level[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/google_magika__.github__workflows__cli-release.yml:78:9
+   [1m[94m|[0m
+[1m[94m78 |[0m          - id: plan
+   [1m[94m|[0m  [1m[91m__________^[0m
+[1m[94m79 |[0m [1m[91m|[0m          run: |
+   [1m[94m|[0m [1m[91m|[0m [1m[91m_________^[0m
+[1m[94m80 |[0m [1m[91m||[0m           dist ${{ (!github.event.pull_request && format('host --steps=create --tag={0}', github.ref_name)) || 'plan' }} --output-fo[1m[94m...[0m
+[1m[94m81 |[0m [1m[91m||[0m           echo "dist ran successfully"
+[1m[94m82 |[0m [1m[91m||[0m           cat plan-dist-manifest.json
+[1m[94m83 |[0m [1m[91m||[0m           echo "manifest=$(jq -c "." plan-dist-manifest.json)" >> "$GITHUB_OUTPUT"
+   [1m[94m|[0m [1m[91m||[0m                                                                                  [1m[91m^[0m
+   [1m[94m|[0m [1m[91m||__________________________________________________________________________________|[0m
+   [1m[94m|[0m  [1m[91m|__________________________________________________________________________________this step[0m
+   [1m[94m|[0m                                                                                     [1m[91mgithub.ref_name may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_magika__.github__workflows__cli-release.yml:134:9
+    [1m[94m|[0m
+[1m[94m134 |[0m       - name: Install dist
+    [1m[94m|[0m         [1m[33m------------------[0m [1m[33mthis step[0m
+[1m[94m135 |[0m         run: ${{ matrix.install_dist.run }}
+    [1m[94m|[0m         [1m[33m-----------------------------------[0m [1m[33mmatrix.install_dist.run may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_magika__.github__workflows__cli-release.yml:143:9
+    [1m[94m|[0m
+[1m[94m143 |[0m         - name: Install dependencies
+    [1m[94m|[0m           [1m[33m--------------------------[0m [1m[33mthis step[0m
+[1m[94m144 |[0m [1m[33m/[0m         run: |
+[1m[94m145 |[0m [1m[33m|[0m           ${{ matrix.packages_install }}
+    [1m[94m|[0m [1m[33m|________________________________________-[0m [1m[33mmatrix.packages_install may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_magika__.github__workflows__cli-release.yml:146:9
+    [1m[94m|[0m
+[1m[94m146 |[0m         - name: Build artifacts
+    [1m[94m|[0m           [1m[94m---------------------[0m [1m[94minfo: this step[0m
+[1m[94m147 |[0m [1m[94m/[0m         run: |
+[1m[94m148 |[0m [1m[94m|[0m           # Actually do builds and make zips and whatnot
+[1m[94m149 |[0m [1m[94m|[0m           dist build ${{ needs.plan.outputs.tag-flag }} --print=linkage --output-format=json ${{ matrix.dist_args }} > dist-manifes[1m[94m...[0m
+[1m[94m150 |[0m [1m[94m|[0m           echo "dist ran successfully"
+    [1m[94m|[0m [1m[94m|______________________________________-[0m [1m[94minfo: needs.plan.outputs.tag-flag may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_magika__.github__workflows__cli-release.yml:146:9
+    [1m[94m|[0m
+[1m[94m146 |[0m         - name: Build artifacts
+    [1m[94m|[0m           [1m[33m---------------------[0m [1m[33mthis step[0m
+[1m[94m147 |[0m [1m[33m/[0m         run: |
+[1m[94m148 |[0m [1m[33m|[0m           # Actually do builds and make zips and whatnot
+[1m[94m149 |[0m [1m[33m|[0m           dist build ${{ needs.plan.outputs.tag-flag }} --print=linkage --output-format=json ${{ matrix.dist_args }} > dist-manifes[1m[94m...[0m
+[1m[94m150 |[0m [1m[33m|[0m           echo "dist ran successfully"
+    [1m[94m|[0m [1m[33m|______________________________________-[0m [1m[33mmatrix.dist_args may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+   [1m[94m-->[0m ../.github/workflows/google_magika__.github__workflows__cli-release.yml:315:5
+    [1m[94m|[0m
+[1m[94m315 |[0m     uses: ./.github/workflows/cli-latest.yml
+    [1m[94m|[0m     [1m[33m----------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m316 |[0m     with:
+[1m[94m317 |[0m       plan: ${{ needs.plan.outputs.val }}
+[1m[94m318 |[0m     secrets: inherit
+    [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m12[39m findings ([1m[93m5[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m4[39m medium, [31m2[39m high

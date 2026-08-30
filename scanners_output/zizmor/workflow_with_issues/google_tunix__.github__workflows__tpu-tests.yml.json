@@ -1,0 +1,40 @@
+{
+  "workflow": "google_tunix__.github__workflows__tpu-tests.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "artipacked": 2,
+      "unpinned-images": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "google_tunix__.github__workflows__tpu-tests.yml",
+      "line": 60,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "google_tunix__.github__workflows__tpu-tests.yml",
+      "line": 149,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-images",
+      "level": "error",
+      "message": "unpinned image references",
+      "workflow": "google_tunix__.github__workflows__tpu-tests.yml",
+      "line": 44,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

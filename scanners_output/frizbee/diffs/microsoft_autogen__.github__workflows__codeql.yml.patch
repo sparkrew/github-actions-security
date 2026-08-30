@@ -1,0 +1,58 @@
+diff --git a/.github/workflows/microsoft_autogen__.github__workflows__codeql.yml b/.github/workflows/microsoft_autogen__.github__workflows__codeql.yml
+index 19a6ac7..27e34c9 100644
+--- a/.github/workflows/microsoft_autogen__.github__workflows__codeql.yml
++++ b/.github/workflows/microsoft_autogen__.github__workflows__codeql.yml
+@@ -59,10 +59,10 @@ jobs:
+         # your codebase is analyzed, see https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/codeql-code-scanning-for-compiled-languages
+     steps:
+     - name: Checkout repository
+-      uses: actions/checkout@v4
++      uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+     - name: Set up Python
+-      uses: actions/setup-python@v5
++      uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+       with:
+         python-version: 3.11
+     - name: Install jupyter and ipykernel
+@@ -73,7 +73,7 @@ jobs:
+     - name: list available kernels
+       run: |
+         python -m jupyter kernelspec list
+-    - uses: astral-sh/setup-uv@v5
++    - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5
+       with:
+         enable-cache: true
+     - run: uv sync --locked --all-extras
+@@ -83,7 +83,7 @@ jobs:
+         source ${{ github.workspace }}/python/.venv/bin/activate
+     # Initializes the CodeQL tools for scanning.
+     - name: Initialize CodeQL
+-      uses: github/codeql-action/init@v3
++      uses: github/codeql-action/init@45580472a5bb82c4681c4ac726cfdb60060c2ee1 # v3
+       with:
+         languages: ${{ matrix.language }}
+         build-mode: ${{ matrix.build-mode }}
+@@ -102,12 +102,12 @@ jobs:
+     # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
+     - if: matrix.build-mode == 'manual'
+       name: Setup .NET 8.0
+-      uses: actions/setup-dotnet@v4
++      uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4
+       with:
+         dotnet-version: '8.0.x'
+     - if: matrix.build-mode == 'manual'
+       name: Setup .NET 9.0
+-      uses: actions/setup-dotnet@v4
++      uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4
+       with:
+         dotnet-version: '9.0.x'
+     - if: matrix.build-mode == 'manual'
+@@ -119,6 +119,6 @@ jobs:
+         dotnet build --no-restore --configuration Release -bl /p:SignAssembly=true
+ 
+     - name: Perform CodeQL Analysis
+-      uses: github/codeql-action/analyze@v3
++      uses: github/codeql-action/analyze@45580472a5bb82c4681c4ac726cfdb60060c2ee1 # v3
+       with:
+         category: "/language:${{matrix.language}}"

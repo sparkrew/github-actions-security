@@ -1,0 +1,23 @@
+name: Publish
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+jobs:
+  publish-npm:
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write  # Required for OIDC npm publishing
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # actions/checkout@v5 | releases,v5.0.1
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # actions/setup-node@v5 | releases,v5.0.0
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+      # Ensure npm 11.5.1 or later is installed (for OIDC npm publishing)
+      - run: npm install -g npm@latest
+      - run: npm ci
+      - run: npm publish

@@ -1,0 +1,49 @@
+{
+  "workflow": "microsoft_Microsoft365DSC__.github__workflows__Unit Tests.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "artipacked": 2,
+      "excessive-permissions": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_Microsoft365DSC__.github__workflows__Unit Tests.yml",
+      "line": 17,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_Microsoft365DSC__.github__workflows__Unit Tests.yml",
+      "line": 61,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "error",
+      "message": "overly broad permissions",
+      "workflow": "microsoft_Microsoft365DSC__.github__workflows__Unit Tests.yml",
+      "line": 5,
+      "column": 3,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "error",
+      "message": "overly broad permissions",
+      "workflow": "microsoft_Microsoft365DSC__.github__workflows__Unit Tests.yml",
+      "line": 49,
+      "column": 3,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

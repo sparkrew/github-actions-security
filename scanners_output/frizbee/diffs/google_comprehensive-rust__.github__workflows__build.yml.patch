@@ -1,0 +1,79 @@
+diff --git a/.github/workflows/google_comprehensive-rust__.github__workflows__build.yml b/.github/workflows/google_comprehensive-rust__.github__workflows__build.yml
+index 698833e..79d8eb1 100644
+--- a/.github/workflows/google_comprehensive-rust__.github__workflows__build.yml
++++ b/.github/workflows/google_comprehensive-rust__.github__workflows__build.yml
+@@ -22,7 +22,7 @@ jobs:
+     runs-on: ${{ matrix.os }}
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       - name: Update Rust
+         run: rustup update
+@@ -53,7 +53,7 @@ jobs:
+             target: aarch64-unknown-none
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       - name: Install toolchain
+         run: |
+@@ -78,7 +78,7 @@ jobs:
+       languages: ${{ steps.find-languages.outputs.languages }}
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       - name: Find languages
+         id: find-languages
+@@ -103,7 +103,7 @@ jobs:
+       LINK_CHECKED_LANGUAGES: '["en", "fa"]'
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           fetch-depth: 0 # We need the full history for build.sh below.
+ 
+@@ -139,7 +139,7 @@ jobs:
+ 
+       # Upload the book now to retain it in case mdbook test fails.
+       - name: Upload book
+-        uses: actions/upload-artifact@v6
++        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+         with:
+           name: comprehensive-rust-${{ matrix.language }}
+           path: book/
+@@ -154,9 +154,9 @@ jobs:
+     needs: build
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: Setup Node
+-        uses: actions/setup-node@v6
++        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+         with:
+           node-version: 22
+           cache: "npm"
+@@ -165,7 +165,7 @@ jobs:
+         run: npm install
+         working-directory: ./tests
+       - name: Download english book
+-        uses: actions/download-artifact@v7
++        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+         with:
+           name: comprehensive-rust-en
+           path: book/
+@@ -177,7 +177,7 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           fetch-depth: 0
+ 

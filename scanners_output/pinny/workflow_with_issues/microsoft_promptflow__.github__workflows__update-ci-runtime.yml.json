@@ -1,0 +1,27 @@
+{
+  "workflow": "microsoft_promptflow__.github__workflows__update-ci-runtime.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+      "line": 17
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # actions/setup-python@v4 | restore-v4-release,v4.9.1",
+      "line": 20
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: azure/login@cb79c773a3cfa27f31f25eb3f677781210c9ce3d # azure/login@v1",
+      "line": 25
+    }
+  ]
+}

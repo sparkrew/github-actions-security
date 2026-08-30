@@ -1,0 +1,24 @@
+{
+  "workflow": "Azure_azure-rest-api-specs__.github__workflows__summarize-checks.yaml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 39,
+      "column": "",
+      "job": "run-summarize-checks",
+      "step": "",
+      "details": "runs-on: ubuntu-slim",
+      "event_triggers": [
+        "workflow_run",
+        "pull_request_target"
+      ]
+    }
+  ]
+}

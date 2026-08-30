@@ -1,0 +1,37 @@
+name: Build CI Main
+
+# Controls when the action will run. Triggers the workflow on pull requests
+# for the target branch
+on:
+  pull_request:
+    branches: [ main ]
+    paths-ignore: 
+      - '.github/ISSUE_TEMPLATE/**'
+      - 'docs/**'
+      - 'specs/**'
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: checkout project
+      uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+      
+    - name: setup msbuild
+      uses: microsoft/setup-msbuild@ede762b26a2de8d110bb5a3db4d7e0e080c0e917 # v1
+      
+    - name: setup nuget
+      uses: NuGet/setup-nuget@255f46e14d51fbc603743e2aa2907954463fbeb9 # v1.0.2
+
+    - name: restore project packages
+      run: nuget restore WindowsAppRuntime.sln
+
+    - name: build x86
+      run: msbuild /m /p:Configuration=Release,Platform=x86 WindowsAppRuntime.sln
+
+    - name: build x64
+      run: msbuild /m /p:Configuration=Release,Platform=x64 WindowsAppRuntime.sln
+
+    - name: build ARM64
+      run: msbuild /m /p:Configuration=Release,Platform=ARM64 WindowsAppRuntime.sln

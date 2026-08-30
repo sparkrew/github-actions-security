@@ -1,0 +1,31 @@
+diff --git a/.github/workflows/google_tamperchrome__.github__workflows__release.yml b/.github/workflows/google_tamperchrome__.github__workflows__release.yml
+index 61f7a91..f333e96 100644
+--- a/.github/workflows/google_tamperchrome__.github__workflows__release.yml
++++ b/.github/workflows/google_tamperchrome__.github__workflows__release.yml
+@@ -15,7 +15,7 @@ jobs:
+   create_draft_release:
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       
+       - name: Check version has the right format
+         run: |
+@@ -45,7 +45,7 @@ jobs:
+ 
+       - name: Create Release
+         id: create_release
+-        uses: actions/create-release@v1
++        uses: actions/create-release@0cb9c9b65d5d1901c1f53e5e66eaf4afd303e70e # v1
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         with:
+@@ -57,7 +57,7 @@ jobs:
+ 
+       - name: Upload Release Asset
+         id: upload-release-asset 
+-        uses: actions/upload-release-asset@v1
++        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         with:

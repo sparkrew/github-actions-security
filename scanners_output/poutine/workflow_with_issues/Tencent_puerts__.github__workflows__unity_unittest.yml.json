@@ -1,0 +1,25 @@
+{
+  "workflow": "Tencent_puerts__.github__workflows__unity_unittest.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 217,
+      "column": "",
+      "job": "unittest-run-android-in-linux",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request"
+      ]
+    }
+  ]
+}

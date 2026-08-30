@@ -7,6 +7,6 @@
 | HGW | Hardening Gap Weakness | Workflow does not include baseline security hardening checks. |
 | IW | Injection Weakness | Untrusted values are used in shell commands or scripts without quoting, validation, or safe handling. |
 | KVCW | Known Vulnerable Component Weakness | Workflow uses an action or component version with a known published vulnerability. |
+| PTW | Privileged Trigger Weakness | Workflow uses triggers where attacker-controlled events can run privileged code paths. |
 | SEW | Secrets Exposure Weakness | Secrets are exposed beyond intended scope, passed into untrusted code paths, inherited broadly, or printed. |
-| TMW | Trigger Misuse Weakness | Workflow uses triggers where attacker-controlled events can run privileged code paths. |
 | UDW | Unpinned Dependency Weakness | Workflow references actions or dependencies with mutable refs. |

@@ -1,0 +1,27 @@
+{
+  "workflow": "microsoft_promptflow__.github__workflows__pylint.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # actions/checkout@v2 | releases,850,v2.7.0",
+      "line": 14
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-python@e9aba2c848f5ebd159c070c61ea2c4e2b122355e # actions/setup-python@v2 | releases,v2.3.4",
+      "line": 17
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: snok/install-poetry@76e04a911780d5b312d89783f7b1cd627778900a # snok/install-poetry@v1 | master,v1.4,v1.4.1",
+      "line": 21
+    }
+  ]
+}

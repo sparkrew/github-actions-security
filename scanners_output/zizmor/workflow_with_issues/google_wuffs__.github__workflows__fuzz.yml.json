@@ -1,0 +1,40 @@
+{
+  "workflow": "google_wuffs__.github__workflows__fuzz.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "excessive-permissions": 1,
+      "unpinned-uses": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "google_wuffs__.github__workflows__fuzz.yml",
+      "line": 4,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "google_wuffs__.github__workflows__fuzz.yml",
+      "line": 8,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "google_wuffs__.github__workflows__fuzz.yml",
+      "line": 13,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

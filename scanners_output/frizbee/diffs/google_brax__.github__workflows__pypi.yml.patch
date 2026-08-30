@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/google_brax__.github__workflows__pypi.yml b/.github/workflows/google_brax__.github__workflows__pypi.yml
+index 0b80b31..b8039a1 100644
+--- a/.github/workflows/google_brax__.github__workflows__pypi.yml
++++ b/.github/workflows/google_brax__.github__workflows__pypi.yml
+@@ -15,14 +15,14 @@ jobs:
+       contents: write # Needed to create releases
+ 
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       - name: Set up Python
+-        uses: actions/setup-python@v1
++        uses: actions/setup-python@0f07f7f756721ebd886c2462646a35f78a8bc4de # v1
+         with:
+           python-version: "3.13"
+       - name: Create Release
+         id: create_release
+-        uses: actions/create-release@latest
++        uses: actions/create-release@0cb9c9b65d5d1901c1f53e5e66eaf4afd303e70e # latest
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+         with:

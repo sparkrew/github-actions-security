@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/google_mtail__.github__workflows__auto-review.yml b/.github/workflows/google_mtail__.github__workflows__auto-review.yml
+index cec2e03..eed5510 100644
+--- a/.github/workflows/google_mtail__.github__workflows__auto-review.yml
++++ b/.github/workflows/google_mtail__.github__workflows__auto-review.yml
+@@ -30,7 +30,7 @@ jobs:
+       # create review
+       pull-requests: write
+     steps:
+-      - uses: lewagon/wait-on-check-action@v1.3.4
++      - uses: lewagon/wait-on-check-action@ccfb013c15c8afb7bf2b7c028fb74dc5a068cccc # v1.3.4
+         with:
+           ref: ${{ github.event.pull_request.head.sha }}
+           repo-token: ${{ github.token }}

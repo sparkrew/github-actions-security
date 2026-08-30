@@ -1,0 +1,15 @@
+name: Compressed Size
+
+on: 
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+      - uses: preactjs/compressed-size-action@8518045ed95e94e971b83333085e1cb99aa18aa8 # preactjs/compressed-size-action@v2 | 2.9.0
+        with:
+          pattern: './packages/cherry-markdown/dist/**/*.{js,css,d.ts}'

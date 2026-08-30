@@ -1,0 +1,252 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__build_msi_installer.yml:48:9
+   [1m[94m|[0m
+[1m[94m48 |[0m         - name: Checkout Repo
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m49 |[0m [1m[33m|[0m         uses: actions/checkout@v3
+[1m[94m50 |[0m [1m[33m|[0m         with:
+[1m[94m51 |[0m [1m[33m|[0m           submodules: true
+   [1m[94m|[0m [1m[33m|__________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__build_msi_installer.yml:42:9
+   [1m[94m|[0m
+[1m[94m42 |[0m         - name: Check input parameters
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m43 |[0m [1m[91m/[0m         run: |
+[1m[94m44 |[0m [1m[91m|[0m           echo "uploadAsLatest: ${{ inputs.uploadAsLatest }}"
+[1m[94m45 |[0m [1m[91m|[0m           echo "version: ${{ inputs.version }}"
+[1m[94m46 |[0m [1m[91m|[0m           echo "set_msi_private_version: ${{ inputs.set_msi_private_version }}"
+   [1m[94m|[0m [1m[91m|_______________________________________________________________________________^[0m [1m[91minputs.uploadAsLatest may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__build_msi_installer.yml:42:9
+   [1m[94m|[0m
+[1m[94m42 |[0m         - name: Check input parameters
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m43 |[0m [1m[91m/[0m         run: |
+[1m[94m44 |[0m [1m[91m|[0m           echo "uploadAsLatest: ${{ inputs.uploadAsLatest }}"
+[1m[94m45 |[0m [1m[91m|[0m           echo "version: ${{ inputs.version }}"
+[1m[94m46 |[0m [1m[91m|[0m           echo "set_msi_private_version: ${{ inputs.set_msi_private_version }}"
+   [1m[94m|[0m [1m[91m|_______________________________________________________________________________^[0m [1m[91minputs.version may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__build_msi_installer.yml:42:9
+   [1m[94m|[0m
+[1m[94m42 |[0m         - name: Check input parameters
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m43 |[0m [1m[91m/[0m         run: |
+[1m[94m44 |[0m [1m[91m|[0m           echo "uploadAsLatest: ${{ inputs.uploadAsLatest }}"
+[1m[94m45 |[0m [1m[91m|[0m           echo "version: ${{ inputs.version }}"
+[1m[94m46 |[0m [1m[91m|[0m           echo "set_msi_private_version: ${{ inputs.set_msi_private_version }}"
+   [1m[94m|[0m [1m[91m|_______________________________________________________________________________^[0m [1m[91minputs.set_msi_private_version may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__build_msi_installer.yml:142:9
+    [1m[94m|[0m
+[1m[94m142 |[0m         - name: Build Pyinstaller project
+    [1m[94m|[0m           [1m[94m-------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m143 |[0m           working-directory: ${{ github.workspace }}/scripts/installer/windows/scripts
+[1m[94m144 |[0m [1m[94m/[0m         run: |
+[1m[94m145 |[0m [1m[94m|[0m           echo 'Version from promptflow: ${{ steps.get-version.outputs.version }}'
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m161 |[0m [1m[94m|[0m           $text | Out-File -FilePath "version_info.txt" -Encoding utf8
+[1m[94m162 |[0m [1m[94m|[0m           pyinstaller promptflow.spec
+    [1m[94m|[0m [1m[94m|_____________________________________-[0m [1m[94minfo: steps.get-version.outputs.version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__build_msi_installer.yml:142:9
+    [1m[94m|[0m
+[1m[94m142 |[0m         - name: Build Pyinstaller project
+    [1m[94m|[0m           [1m[94m-------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m143 |[0m           working-directory: ${{ github.workspace }}/scripts/installer/windows/scripts
+[1m[94m144 |[0m [1m[94m/[0m         run: |
+[1m[94m145 |[0m [1m[94m|[0m           echo 'Version from promptflow: ${{ steps.get-version.outputs.version }}'
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m161 |[0m [1m[94m|[0m           $text | Out-File -FilePath "version_info.txt" -Encoding utf8
+[1m[94m162 |[0m [1m[94m|[0m           pyinstaller promptflow.spec
+    [1m[94m|[0m [1m[94m|_____________________________________-[0m [1m[94minfo: steps.get-version.outputs.version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__build_msi_installer.yml:142:9
+    [1m[94m|[0m
+[1m[94m142 |[0m         - name: Build Pyinstaller project
+    [1m[94m|[0m           [1m[94m-------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m143 |[0m           working-directory: ${{ github.workspace }}/scripts/installer/windows/scripts
+[1m[94m144 |[0m [1m[94m/[0m         run: |
+[1m[94m145 |[0m [1m[94m|[0m           echo 'Version from promptflow: ${{ steps.get-version.outputs.version }}'
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m161 |[0m [1m[94m|[0m           $text | Out-File -FilePath "version_info.txt" -Encoding utf8
+[1m[94m162 |[0m [1m[94m|[0m           pyinstaller promptflow.spec
+    [1m[94m|[0m [1m[94m|_____________________________________-[0m [1m[94minfo: steps.get-version.outputs.version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__build_msi_installer.yml:165:9
+    [1m[94m|[0m
+[1m[94m165 |[0m   [1m[94m...[0m - name: Generate portable promptflow
+    [1m[94m|[0m         [1m[94m----------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m166 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m167 |[0m [1m[94m|[0m [1m[94m...[0m     Compress-Archive -Path ${{ github.workspace }}/scripts/installer/windows/scripts/dist/promptflow -DestinationPath promptflow-${{ steps.get-version.outputs.version }}.zip
+    [1m[94m|[0m [1m[94m|_________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.get-version.outputs.version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__build_msi_installer.yml:170:9
+    [1m[94m|[0m
+[1m[94m170 |[0m         - name: Build WIX project
+    [1m[94m|[0m           [1m[94m-----------------------[0m [1m[94minfo: this step[0m
+[1m[94m171 |[0m           working-directory: ${{ github.workspace }}/scripts/installer/windows
+[1m[94m172 |[0m [1m[94m/[0m         run: |
+[1m[94m173 |[0m [1m[94m|[0m           $text = Get-Content "promptflow.wixproj" -Raw
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m180 |[0m [1m[94m|[0m
+[1m[94m181 |[0m [1m[94m|[0m           msbuild /t:rebuild /p:Configuration=Release /p:Platform=x64 promptflow.wixproj
+    [1m[94m|[0m [1m[94m|________________________________________________________________________________________-[0m [1m[94minfo: steps.get-version.outputs.version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__build_msi_installer.yml:170:9
+    [1m[94m|[0m
+[1m[94m170 |[0m         - name: Build WIX project
+    [1m[94m|[0m           [1m[94m-----------------------[0m [1m[94minfo: this step[0m
+[1m[94m171 |[0m           working-directory: ${{ github.workspace }}/scripts/installer/windows
+[1m[94m172 |[0m [1m[94m/[0m         run: |
+[1m[94m173 |[0m [1m[94m|[0m           $text = Get-Content "promptflow.wixproj" -Raw
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m180 |[0m [1m[94m|[0m
+[1m[94m181 |[0m [1m[94m|[0m           msbuild /t:rebuild /p:Configuration=Release /p:Platform=x64 promptflow.wixproj
+    [1m[94m|[0m [1m[94m|________________________________________________________________________________________-[0m [1m[94minfo: steps.get-version.outputs.version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__build_msi_installer.yml:197:9
+    [1m[94m|[0m
+[1m[94m197 |[0m         - name: Check if version input is valid and upload JSON file
+    [1m[94m|[0m           [1m[94m----------------------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m198 |[0m [1m[94m/[0m         run: |
+[1m[94m199 |[0m [1m[94m|[0m           $version = "${{ steps.get-version.outputs.version }}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m211 |[0m [1m[94m|[0m             Write-Output "skip uploading since version input isn't greater than latest version or does not start with '1.'"
+[1m[94m212 |[0m [1m[94m|[0m           }
+    [1m[94m|[0m [1m[94m|___________-[0m [1m[94minfo: steps.get-version.outputs.version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__build_msi_installer.yml:197:9
+    [1m[94m|[0m
+[1m[94m197 |[0m         - name: Check if version input is valid and upload JSON file
+    [1m[94m|[0m           [1m[94m----------------------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m198 |[0m [1m[94m/[0m         run: |
+[1m[94m199 |[0m [1m[94m|[0m           $version = "${{ steps.get-version.outputs.version }}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m211 |[0m [1m[94m|[0m             Write-Output "skip uploading since version input isn't greater than latest version or does not start with '1.'"
+[1m[94m212 |[0m [1m[94m|[0m           }
+    [1m[94m|[0m [1m[94m|___________-[0m [1m[94minfo: steps.download-json.outputs.downloaded_version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__build_msi_installer.yml:197:9
+    [1m[94m|[0m
+[1m[94m197 |[0m         - name: Check if version input is valid and upload JSON file
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m198 |[0m [1m[91m/[0m         run: |
+[1m[94m199 |[0m [1m[91m|[0m           $version = "${{ steps.get-version.outputs.version }}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m211 |[0m [1m[91m|[0m             Write-Output "skip uploading since version input isn't greater than latest version or does not start with '1.'"
+[1m[94m212 |[0m [1m[91m|[0m           }
+    [1m[94m|[0m [1m[91m|___________^[0m [1m[91mgithub.event.inputs.uploadAsLatest may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__build_msi_installer.yml:214:9
+    [1m[94m|[0m
+[1m[94m214 |[0m         - name: Upload to Azure Storage
+    [1m[94m|[0m           [1m[94m-----------------------------[0m [1m[94minfo: this step[0m
+[1m[94m215 |[0m [1m[94m/[0m         run: |
+[1m[94m216 |[0m [1m[94m|[0m           function Upload-File($filePath, $blobName, $containerName) {
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m234 |[0m [1m[94m|[0m             Upload-File "promptflow-${{ steps.get-version.outputs.version }}.zip" "promptflow-${{ steps.get-version.outputs.version[1m[94m...[0m
+[1m[94m235 |[0m [1m[94m|[0m           }
+    [1m[94m|[0m [1m[94m|___________-[0m [1m[94minfo: steps.get-version.outputs.version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__build_msi_installer.yml:214:9
+    [1m[94m|[0m
+[1m[94m214 |[0m         - name: Upload to Azure Storage
+    [1m[94m|[0m           [1m[94m-----------------------------[0m [1m[94minfo: this step[0m
+[1m[94m215 |[0m [1m[94m/[0m         run: |
+[1m[94m216 |[0m [1m[94m|[0m           function Upload-File($filePath, $blobName, $containerName) {
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m234 |[0m [1m[94m|[0m             Upload-File "promptflow-${{ steps.get-version.outputs.version }}.zip" "promptflow-${{ steps.get-version.outputs.version[1m[94m...[0m
+[1m[94m235 |[0m [1m[94m|[0m           }
+    [1m[94m|[0m [1m[94m|___________-[0m [1m[94minfo: steps.get-version.outputs.version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__build_msi_installer.yml:214:9
+    [1m[94m|[0m
+[1m[94m214 |[0m         - name: Upload to Azure Storage
+    [1m[94m|[0m           [1m[94m-----------------------------[0m [1m[94minfo: this step[0m
+[1m[94m215 |[0m [1m[94m/[0m         run: |
+[1m[94m216 |[0m [1m[94m|[0m           function Upload-File($filePath, $blobName, $containerName) {
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m234 |[0m [1m[94m|[0m             Upload-File "promptflow-${{ steps.get-version.outputs.version }}.zip" "promptflow-${{ steps.get-version.outputs.version[1m[94m...[0m
+[1m[94m235 |[0m [1m[94m|[0m           }
+    [1m[94m|[0m [1m[94m|___________-[0m [1m[94minfo: steps.get-version.outputs.version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__build_msi_installer.yml:214:9
+    [1m[94m|[0m
+[1m[94m214 |[0m         - name: Upload to Azure Storage
+    [1m[94m|[0m           [1m[94m-----------------------------[0m [1m[94minfo: this step[0m
+[1m[94m215 |[0m [1m[94m/[0m         run: |
+[1m[94m216 |[0m [1m[94m|[0m           function Upload-File($filePath, $blobName, $containerName) {
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m234 |[0m [1m[94m|[0m             Upload-File "promptflow-${{ steps.get-version.outputs.version }}.zip" "promptflow-${{ steps.get-version.outputs.version[1m[94m...[0m
+[1m[94m235 |[0m [1m[94m|[0m           }
+    [1m[94m|[0m [1m[94m|___________-[0m [1m[94minfo: steps.get-version.outputs.version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__build_msi_installer.yml:54:9
+   [1m[94m|[0m
+[1m[94m54 |[0m         uses: microsoft/setup-msbuild@v1.1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__build_msi_installer.yml:184:9
+    [1m[94m|[0m
+[1m[94m184 |[0m       - uses: azure/login@v1
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m59[39m findings ([1m[93m40[39m suppressed[0m): 0 unknown, [35m12[39m informational, [36m0[39m low, [33m1[39m medium, [31m6[39m high

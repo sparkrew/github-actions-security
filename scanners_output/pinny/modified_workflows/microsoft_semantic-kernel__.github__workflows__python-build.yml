@@ -1,0 +1,48 @@
+name: Python Build Assets
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  python-build-assets:
+    if: github.event_name == 'release' && startsWith(github.event.release.tag_name, 'python-')
+    name: Python Build Assets and add to Release
+    runs-on: ubuntu-latest
+    environment: "integration"
+    env:
+      UV_PYTHON: "3.10"
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # actions/checkout@v5 | releases,v5.0.1
+      - name: Set up uv
+        uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # astral-sh/setup-uv@v6
+        with:
+          version: "0.5.x"
+          enable-cache: true
+          cache-suffix: ${{ runner.os }}-${{ matrix.python-version }}
+          cache-dependency-glob: "**/uv.lock"
+      - name: Check version
+        run: |
+          echo "Building and uploading Python package version: ${{ github.event.release.tag_name }}"
+      - name: Build the package
+        run: cd python && make build
+      - name: Release
+        uses: softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b # softprops/action-gh-release@v2 | v2.5.0
+        with:
+          files: |
+            python/dist/*
+      - name: Azure Login
+        uses: azure/login@a457da9ea143d694b1b9c7c869ebb04ebe844ef5 # azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: Start DevOps pipeline
+        uses: azure/cli@9f7ce6f37c31b777ec6c6b6d1dfe7db79f497956 # azure/cli@v2
+        with:
+          inlineScript: |
+            az pipelines run --id ${{ vars.ADO_PYTHON_RELEASE_ID }} --org ${{ vars.ADO_ORG }} --project ${{ vars.ADO_PROJECT_NAME }} --parameters tag=${{ github.event.release.tag_name }} delay=0

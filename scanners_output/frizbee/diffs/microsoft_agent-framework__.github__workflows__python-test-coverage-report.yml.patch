@@ -1,0 +1,25 @@
+diff --git a/.github/workflows/microsoft_agent-framework__.github__workflows__python-test-coverage-report.yml b/.github/workflows/microsoft_agent-framework__.github__workflows__python-test-coverage-report.yml
+index 92e13f9..f68bc75 100644
+--- a/.github/workflows/microsoft_agent-framework__.github__workflows__python-test-coverage-report.yml
++++ b/.github/workflows/microsoft_agent-framework__.github__workflows__python-test-coverage-report.yml
+@@ -19,9 +19,9 @@ jobs:
+       run:
+         working-directory: python
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: Download coverage report
+-        uses: actions/download-artifact@v7
++        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+         with:
+           github-token: ${{ secrets.GH_ACTIONS_PR_WRITE }}
+           run-id: ${{ github.event.workflow_run.id }}
+@@ -46,7 +46,7 @@ jobs:
+           echo "PR_NUMBER=$PR_NUMBER" >> "$GITHUB_ENV"
+       - name: Pytest coverage comment
+         id: coverageComment
+-        uses: MishaKav/pytest-coverage-comment@v1.2.0
++        uses: MishaKav/pytest-coverage-comment@ae0e8a539a3f310aefb3bfb6a2209778a21fa42b # v1.2.0
+         with:
+           github-token: ${{ secrets.GH_ACTIONS_PR_WRITE }}
+           issue-number: ${{ env.PR_NUMBER }}

@@ -1,0 +1,35 @@
+diff --git a/.github/workflows/NVIDIA_NeMo-Retriever__.github__workflows__docker-build-arm.yml b/.github/workflows/NVIDIA_NeMo-Retriever__.github__workflows__docker-build-arm.yml
+index 72b75c4..b9c5da9 100644
+--- a/.github/workflows/NVIDIA_NeMo-Retriever__.github__workflows__docker-build-arm.yml
++++ b/.github/workflows/NVIDIA_NeMo-Retriever__.github__workflows__docker-build-arm.yml
+@@ -14,18 +14,18 @@ jobs:
+     runs-on: linux-large-disk
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       - name: Get current date (yyyy.mm.dd)
+         run: echo "CURRENT_DATE=$(date +'%Y.%m.%d')" >> $GITHUB_ENV
+ 
+       # Set up QEMU emulation for arm64
+       - name: Set up QEMU
+-        uses: docker/setup-qemu-action@v3
++        uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # v3
+ 
+       # Set up Docker Buildx, useful for building multi-platform images
+       - name: Set up Docker Buildx
+-        uses: docker/setup-buildx-action@v3
++        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+ 
+       - name: Create HF token file
+         run: |
+@@ -54,7 +54,7 @@ jobs:
+           docker run --platform=linux/arm64 nv-ingest:latest pytest -rs -m "not integration" --random-selection 100 tests/service_tests client/client_tests api/api_tests
+ 
+       - name: Upload test report
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: pytest-report
+           path: coverage.xml

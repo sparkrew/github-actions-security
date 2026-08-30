@@ -1,0 +1,87 @@
+{
+  "workflow": "awslabs_mountpoint-s3__.github__workflows__integration.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        86,
+        91,
+        97,
+        103,
+        150,
+        155,
+        161,
+        167,
+        201,
+        206,
+        212,
+        244,
+        249,
+        254,
+        261,
+        294,
+        299,
+        305,
+        339,
+        342,
+        362,
+        398,
+        404
+      ],
+      "raw_details": [
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:86",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:91",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:97",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:103",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:201",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:206",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:212",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:244",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:249",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:254",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:261",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:150",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:155",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:161",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:167",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:294",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:299",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:305",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:339",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:342",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:362",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:398",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:404",
+        "Info:   0 out of   8 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of  15 third-party GitHubAction dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "workflow": "microsoft_agent-lightning__.github__workflows__tests-full.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "artipacked": 2,
+      "unpinned-uses": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_agent-lightning__.github__workflows__tests-full.yml",
+      "line": 78,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_agent-lightning__.github__workflows__tests-full.yml",
+      "line": 178,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "microsoft_agent-lightning__.github__workflows__tests-full.yml",
+      "line": 82,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "microsoft_agent-lightning__.github__workflows__tests-full.yml",
+      "line": 181,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

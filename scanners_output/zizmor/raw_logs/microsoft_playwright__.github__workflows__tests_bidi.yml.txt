@@ -1,0 +1,31 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_playwright__.github__workflows__tests_bidi.yml:42:7
+   [1m[94m|[0m
+[1m[94m42 |[0m       - uses: actions/checkout@v6
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m43 |[0m [1m[33m|[0m       if: github.event_name != 'workflow_dispatch'
+   [1m[94m|[0m [1m[33m|__________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_playwright__.github__workflows__tests_bidi.yml:44:7
+   [1m[94m|[0m
+[1m[94m44 |[0m       - uses: actions/checkout@v6
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m45 |[0m [1m[33m|[0m       if: github.event_name == 'workflow_dispatch'
+[1m[94m46 |[0m [1m[33m|[0m       with:
+[1m[94m47 |[0m [1m[33m|[0m         ref: ${{ github.event.inputs.ref }}
+   [1m[94m|[0m [1m[33m|___________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_playwright__.github__workflows__tests_bidi.yml:81:7
+   [1m[94m|[0m
+[1m[94m81 |[0m       uses: azure/login@v2
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m8[39m findings ([1m[93m5[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m1[39m high

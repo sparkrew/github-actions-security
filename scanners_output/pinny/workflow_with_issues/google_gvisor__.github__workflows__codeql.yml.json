@@ -1,0 +1,37 @@
+{
+  "workflow": "google_gvisor__.github__workflows__codeql.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "unpinned-github-actions": 5
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # actions/checkout@v5 | releases,v5.0.1",
+      "line": 42
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-go@44694675825211faa026b3c33043df3e48a5fa00 # actions/setup-go@v6.0.0",
+      "line": 45
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: github/codeql-action/init@c793b717bc78562f491db7b0e93a3a178b099162 # github/codeql-action/init@v4",
+      "line": 51
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: github/codeql-action/init@c793b717bc78562f491db7b0e93a3a178b099162 # github/codeql-action/init@v4",
+      "line": 65
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: github/codeql-action/init@c793b717bc78562f491db7b0e93a3a178b099162 # github/codeql-action/init@v4",
+      "line": 75
+    }
+  ]
+}

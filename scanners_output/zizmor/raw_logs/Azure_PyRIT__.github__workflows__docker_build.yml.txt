@@ -1,0 +1,175 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_PyRIT__.github__workflows__docker_build.yml:27:9
+   [1m[94m|[0m
+[1m[94m27 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_PyRIT__.github__workflows__docker_build.yml:61:9
+   [1m[94m|[0m
+[1m[94m61 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/Azure_PyRIT__.github__workflows__docker_build.yml:106:9
+    [1m[94m|[0m
+[1m[94m106 |[0m       - uses: actions/checkout@v4
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Azure_PyRIT__.github__workflows__docker_build.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m # Tests Docker image builds for devcontainer and production
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m318 |[0m [1m[33m|[0m           echo "✅ Jupyter mode tests passed (PyPI)"
+[1m[94m319 |[0m [1m[33m|[0m           docker stop pyrit-jupyter-pypi && docker rm pyrit-jupyter-pypi
+    [1m[94m|[0m [1m[33m|_________________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Azure_PyRIT__.github__workflows__docker_build.yml:152:3
+    [1m[94m|[0m
+[1m[94m152 |[0m [1m[33m/[0m   test-local-import:
+[1m[94m153 |[0m [1m[33m|[0m     name: Test Import (local)
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m166 |[0m [1m[33m|[0m         run: |
+[1m[94m167 |[0m [1m[33m|[0m           docker run --rm --entrypoint /opt/venv/bin/python pyrit:local-test -c "import pyrit; print(f'PyRIT version: {pyrit.__version__}')"
+    [1m[94m|[0m [1m[33m|[0m                                                                                                                                            [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________________________________________________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                                                              [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                                                              [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Azure_PyRIT__.github__workflows__docker_build.yml:169:3
+    [1m[94m|[0m
+[1m[94m169 |[0m [1m[33m/[0m   test-local-gui:
+[1m[94m170 |[0m [1m[33m|[0m     name: Test GUI (local)
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m203 |[0m [1m[33m|[0m           echo "✅ GUI mode tests passed"
+[1m[94m204 |[0m [1m[33m|[0m           docker stop pyrit-gui-test && docker rm pyrit-gui-test
+    [1m[94m|[0m [1m[33m|[0m                                                                [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|________________________________________________________________|[0m
+    [1m[94m|[0m                                                                  [1m[33mthis job[0m
+    [1m[94m|[0m                                                                  [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Azure_PyRIT__.github__workflows__docker_build.yml:206:3
+    [1m[94m|[0m
+[1m[94m206 |[0m [1m[33m/[0m   test-local-jupyter:
+[1m[94m207 |[0m [1m[33m|[0m     name: Test Jupyter (local)
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m235 |[0m [1m[33m|[0m           echo "✅ Jupyter mode tests passed"
+[1m[94m236 |[0m [1m[33m|[0m           docker stop pyrit-jupyter-test && docker rm pyrit-jupyter-test
+    [1m[94m|[0m [1m[33m|[0m                                                                        [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                          [1m[33mthis job[0m
+    [1m[94m|[0m                                                                          [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Azure_PyRIT__.github__workflows__docker_build.yml:238:3
+    [1m[94m|[0m
+[1m[94m238 |[0m [1m[33m/[0m   test-pypi-import:
+[1m[94m239 |[0m [1m[33m|[0m     name: Test Import (PyPI)
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m252 |[0m [1m[33m|[0m         run: |
+[1m[94m253 |[0m [1m[33m|[0m           docker run --rm --entrypoint /opt/venv/bin/python pyrit:pypi-test -c "import pyrit; print(f'PyRIT version: {pyrit.__version__}')"
+    [1m[94m|[0m [1m[33m|[0m                                                                                                                                           [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|___________________________________________________________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                                                             [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                                                             [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Azure_PyRIT__.github__workflows__docker_build.yml:255:3
+    [1m[94m|[0m
+[1m[94m255 |[0m [1m[33m/[0m   test-pypi-gui:
+[1m[94m256 |[0m [1m[33m|[0m     name: Test GUI (PyPI)
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m287 |[0m [1m[33m|[0m           echo "✅ GUI mode tests passed (PyPI)"
+[1m[94m288 |[0m [1m[33m|[0m           docker stop pyrit-gui-pypi && docker rm pyrit-gui-pypi
+    [1m[94m|[0m [1m[33m|[0m                                                                [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|________________________________________________________________|[0m
+    [1m[94m|[0m                                                                  [1m[33mthis job[0m
+    [1m[94m|[0m                                                                  [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Azure_PyRIT__.github__workflows__docker_build.yml:290:3
+    [1m[94m|[0m
+[1m[94m290 |[0m [1m[33m/[0m   test-pypi-jupyter:
+[1m[94m291 |[0m [1m[33m|[0m     name: Test Jupyter (PyPI)
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m318 |[0m [1m[33m|[0m           echo "✅ Jupyter mode tests passed (PyPI)"
+[1m[94m319 |[0m [1m[33m|[0m           docker stop pyrit-jupyter-pypi && docker rm pyrit-jupyter-pypi
+    [1m[94m|[0m [1m[33m|[0m                                                                         [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                           [1m[33mthis job[0m
+    [1m[94m|[0m                                                                           [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_PyRIT__.github__workflows__docker_build.yml:30:9
+   [1m[94m|[0m
+[1m[94m30 |[0m         uses: docker/setup-buildx-action@v3
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_PyRIT__.github__workflows__docker_build.yml:33:9
+   [1m[94m|[0m
+[1m[94m33 |[0m         uses: docker/build-push-action@v5
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_PyRIT__.github__workflows__docker_build.yml:72:9
+   [1m[94m|[0m
+[1m[94m72 |[0m         uses: docker/setup-buildx-action@v3
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_PyRIT__.github__workflows__docker_build.yml:77:9
+   [1m[94m|[0m
+[1m[94m77 |[0m         uses: docker/build-push-action@v5
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Azure_PyRIT__.github__workflows__docker_build.yml:124:9
+    [1m[94m|[0m
+[1m[94m124 |[0m         uses: docker/setup-buildx-action@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Azure_PyRIT__.github__workflows__docker_build.yml:129:9
+    [1m[94m|[0m
+[1m[94m129 |[0m         uses: docker/build-push-action@v5
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m16[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m10[39m medium, [31m6[39m high

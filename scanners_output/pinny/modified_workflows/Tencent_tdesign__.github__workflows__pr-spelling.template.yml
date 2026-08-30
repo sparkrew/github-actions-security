@@ -1,0 +1,14 @@
+# force copy from tencent/tdesign
+name: pr-spell-check
+on: [pull_request]
+
+jobs:
+  run:
+    name: Spell Check with Typos
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - name: Check spelling
+        uses: crate-ci/typos@ba7fb02d4a75d0e23458a33f08f927b66caaab2a # crate-ci/typos@master
+        with:
+          config: .github/workflows/typos-config.toml

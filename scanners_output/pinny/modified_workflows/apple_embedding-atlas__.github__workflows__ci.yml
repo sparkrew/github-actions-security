@@ -1,0 +1,199 @@
+name: CI Build
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  release:
+    types:
+      - published
+  workflow_dispatch:
+    inputs:
+      publish_pages:
+        description: "Publish Documentation Website"
+        required: false
+        type: boolean
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # actions/setup-node@v6 | main,v6.3.0
+        with:
+          node-version: "24"
+
+      - name: Set up Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # actions/setup-python@v6 | main,v6.2.0
+        with:
+          python-version: "3.11"
+
+      - name: Set up emsdk
+        uses: mymindstorm/setup-emsdk@6ab9eb1bda2574c4ddb79809fc9247783eaf9021 # mymindstorm/setup-emsdk@v14 | master
+        with:
+          version: 4.0.13
+
+      - name: Set up Rust for WebAssembly
+        run: |
+          rustup target add wasm32-unknown-unknown
+          cargo install -f wasm-bindgen-cli --version 0.2.100
+
+      - name: Set up uv package manager
+        uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # astral-sh/setup-uv@v5
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          cd packages/backend && uv sync --frozen
+
+      - uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # actions/cache@v5 | v5.0.3
+        id: cache-files
+        with:
+          path: ~/.cache/embedding_atlas
+          key: ${{ runner.os }}-embedding-atlas
+
+      - name: Generate cached demo data
+        run: cd packages/docs && npm run generate_cache
+
+      - name: Build WASM modules
+        run: ./scripts/build_wasm.sh
+
+      - name: Build JavaScript and Python packages
+        run: npm run build
+
+      - name: Run type checks
+        run: npm run check
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Run code format check
+        run: npm run check-format
+
+      - name: Upload node package artifact
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # actions/upload-artifact@v6 | v6.0.0
+        with:
+          name: node-dist
+          path: packages/embedding-atlas/
+
+      - name: Upload python package artifact
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # actions/upload-artifact@v6 | v6.0.0
+        with:
+          name: python-dist
+          path: packages/backend/dist/
+
+      - name: Upload docs artifact
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # actions/upload-pages-artifact@v4 | main,v4.0.0
+        with:
+          path: packages/docs/.vitepress/dist/
+
+  test-python:
+    runs-on: ubuntu-latest
+    needs: build
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # actions/setup-python@v6 | main,v6.2.0
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Download wheel
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # actions/download-artifact@v7 | v7.0.0
+        with:
+          name: python-dist
+          path: dist/
+
+      - name: Install wheel
+        run: pip install dist/*.whl
+
+      - name: Run tests
+        run: |
+          embedding-atlas --help
+
+          python -c "import embedding_atlas"
+          python -c "from embedding_atlas.projection import compute_text_projection, compute_image_projection, compute_vector_projection"
+
+          pip install jupyterlab anywidget
+          python -c "from embedding_atlas.widget import EmbeddingAtlasWidget"
+
+          pip install streamlit
+          python -c "from embedding_atlas.streamlit import embedding_atlas"
+
+  publish-pypi:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+    needs:
+      - build
+    permissions:
+      id-token: write
+
+    environment:
+      name: pypi
+      url: https://pypi.org/p/embedding-atlas
+
+    steps:
+      - name: Retrieve release distributions
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # actions/download-artifact@v7 | v7.0.0
+        with:
+          name: python-dist
+          path: dist/
+
+      - name: Publish release distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # pypa/gh-action-pypi-publish@release/v1 | release
+        with:
+          packages-dir: dist/
+
+  publish-npmjs:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+    needs:
+      - build
+    permissions:
+      contents: read
+      id-token: write
+
+    environment:
+      name: npmjs
+
+    steps:
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # actions/setup-node@v6 | main,v6.3.0
+        with:
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Retrieve release distributions
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # actions/download-artifact@v7 | v7.0.0
+        with:
+          name: node-dist
+          path: package/
+
+      - run: cd package && npm publish --provenance --access public
+
+  publish-pages:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release' || inputs.publish_pages == true
+    needs:
+      - build
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # actions/deploy-pages@v4 | v4.0.5

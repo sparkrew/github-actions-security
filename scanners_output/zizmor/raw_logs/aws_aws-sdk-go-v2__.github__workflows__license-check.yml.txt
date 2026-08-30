@@ -1,0 +1,40 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-sdk-go-v2__.github__workflows__license-check.yml:18:9
+   [1m[94m|[0m
+[1m[94m18 |[0m         - name: Checkout target
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m19 |[0m [1m[33m|[0m         uses: actions/checkout@v2
+[1m[94m20 |[0m [1m[33m|[0m         with:
+[1m[94m21 |[0m [1m[33m|[0m           path: sdkbase
+[1m[94m22 |[0m [1m[33m|[0m           ref: ${{ github.base_ref }}
+   [1m[94m|[0m [1m[33m|_____________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-sdk-go-v2__.github__workflows__license-check.yml:23:9
+   [1m[94m|[0m
+[1m[94m23 |[0m         - name: Checkout this ref
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m24 |[0m [1m[33m|[0m         uses: actions/checkout@v2
+[1m[94m25 |[0m [1m[33m|[0m         with:
+[1m[94m26 |[0m [1m[33m|[0m           path: new-ref
+[1m[94m27 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-sdk-go-v2__.github__workflows__license-check.yml:32:9
+   [1m[94m|[0m
+[1m[94m32 |[0m         - name: Checkout scancode
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m33 |[0m [1m[33m|[0m         uses: actions/checkout@v2
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m36 |[0m [1m[33m|[0m           path: scancode-toolkit
+[1m[94m37 |[0m [1m[33m|[0m           fetch-depth: 1
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m5[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m3[39m medium, [31m0[39m high

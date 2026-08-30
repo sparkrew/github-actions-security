@@ -1,0 +1,59 @@
+name: PyPI Nightly Build
+
+on:
+  schedule:
+    # Run daily at 6:00 AM UTC+8
+    - cron: '0 22 * * *'
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  publish-test-pypi:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
+      contents: read
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # actions/setup-python@v6 | main,v6.2.0
+        with:
+          python-version: '3.12'
+      - uses: astral-sh/setup-uv@5a095e7a2014a4212f075830d4f7277575a9d098 # astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+      - name: Sync dependencies
+        run: uv sync --frozen --no-default-groups --group dev
+
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # actions/setup-node@v6 | main,v6.3.0
+        with:
+          node-version: '22'
+      - name: Install JavaScript dependencies
+        run: cd dashboard && npm ci
+      - name: Build dashboard
+        run: cd dashboard && npm run build
+
+      - name: Get current version
+        id: get_version
+        run: |
+          VERSION=$(grep '^version = ' pyproject.toml | sed 's/version = "\(.*\)"/\1/')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Current version: $VERSION"
+
+      - name: Create development version
+        run: |
+          # Create a dev version with timestamp
+          TIMESTAMP=$(date +%Y%m%d%H%M%S)
+          DEV_VERSION="${{ steps.get_version.outputs.version }}.dev$TIMESTAMP"
+          echo "Creating dev version: $DEV_VERSION"
+          ./scripts/bump_version.sh "$DEV_VERSION"
+
+      - name: Build package
+        run: |
+          uv build
+
+      - name: Publish to Test PyPI
+        uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # pypa/gh-action-pypi-publish@release/v1 | release
+        with:
+          repository-url: https://test.pypi.org/legacy/

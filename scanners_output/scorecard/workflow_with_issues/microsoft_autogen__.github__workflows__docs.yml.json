@@ -1,0 +1,95 @@
+{
+  "workflow": "microsoft_autogen__.github__workflows__docs.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        226,
+        230,
+        234,
+        249,
+        258,
+        261,
+        268,
+        277,
+        281,
+        284,
+        293,
+        304,
+        308,
+        312,
+        317,
+        318,
+        319,
+        321,
+        343,
+        351,
+        359,
+        363,
+        402,
+        416,
+        428,
+        433
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:416",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:428",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:433",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:226",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:230",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:234",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:249",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:258",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:261",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:268",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:277",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:281",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:284",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:293",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:304",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:308",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:312",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:351",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:359",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:363",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:402",
+        "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:317",
+        "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:318",
+        "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:319",
+        "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:321",
+        "Warn: npmCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__docs.yml:343",
+        "Info:   0 out of  19 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of   2 third-party GitHubAction dependencies pinned",
+        "Info:   0 out of   4 pipCommand dependencies pinned",
+        "Info:   1 out of   2 npmCommand dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    }
+  ]
+}

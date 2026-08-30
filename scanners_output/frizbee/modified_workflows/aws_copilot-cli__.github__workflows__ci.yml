@@ -1,0 +1,124 @@
+name: ci
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        command: [compile-linux, compile-windows, compile-darwin]
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@be3c94b385c4f180051c996d336f57a34c397495 # v3
+        with:
+          go-version: '1.23'
+
+      - name: Set up Node
+        uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1
+        with:
+          node-version: 16.x
+
+      - name: Check out code
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+
+      - name: Package custom resources
+        run: make package-custom-resources
+
+      - name: Build binaries
+        run: make ${{matrix.command}}
+
+      - name: Cleanup
+        run: make package-custom-resources-clean
+
+  mocks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@be3c94b385c4f180051c996d336f57a34c397495 # v3
+        with:
+          go-version: '1.23'
+
+      - name: Set up Node
+        uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1
+        with:
+          node-version: 16.x
+
+      - name: Check out code
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+
+      - name: Generate mocks
+        run: make gen-mocks
+
+      - name: Print out local diff after mockgen
+        run: |
+          git status --porcelain=v1 1>gitstatus.txt
+          cat gitstatus.txt
+
+      - name: Check for nonzero diff
+        run: '[ -z "$(cat gitstatus.txt)" ] && echo "Generated mocks all match"'
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@be3c94b385c4f180051c996d336f57a34c397495 # v3
+        with:
+          go-version: '1.23'
+
+      - name: Set up Node
+        uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1
+        with:
+          node-version: 16.x
+
+      - name: Check out code
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+
+      - name: Run tests
+        run: make local-test
+
+      - name: Upload golang coverage report to CodeCov
+        uses: codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457 # v3
+        with:
+          files: ./coverage.out
+
+      - name: Upload node coverage report to CodeCov
+        uses: codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457 # v3
+        with:
+          directory: cf-custom-resources/
+
+  license:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@be3c94b385c4f180051c996d336f57a34c397495 # v3
+        with:
+          go-version: '1.23'
+
+      - name: Check out code
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+
+      - name: Run license check
+        run: ./scripts/license.sh .
+
+  conventional-commits:
+    runs-on: ubuntu-latest
+    steps:
+      - name: validate
+        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6
+        with:
+          script: |
+            // See https://gist.github.com/marcojahn/482410b728c31b221b70ea6d2c433f0c#file-conventional-commit-regex-md
+            const regex = /^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test){1}(\([\w\-\.]+\))?(!)?: ([\w ])+([\s\S]*)/g;
+
+            const pr = context.payload.pull_request;
+            const title = pr.title;
+
+            if (title.match(regex) == null) {
+              throw `PR title "${title}"" does not match conventional commits from https://www.conventionalcommits.org/en/v1.0.0/`
+            }

@@ -1,0 +1,27 @@
+diff --git a/.github/workflows/aws_aws-sdk-ruby__.github__workflows__benchmark.yml b/.github/workflows/aws_aws-sdk-ruby__.github__workflows__benchmark.yml
+index b83f5b0..dc8f58a 100644
+--- a/.github/workflows/aws_aws-sdk-ruby__.github__workflows__benchmark.yml
++++ b/.github/workflows/aws_aws-sdk-ruby__.github__workflows__benchmark.yml
+@@ -29,11 +29,11 @@ jobs:
+ 
+     steps:
+       - name: Setup Ruby
+-        uses: ruby/setup-ruby@v1
++        uses: ruby/setup-ruby@09a7688d3b55cf0e976497ff046b70949eeaccfd # v1
+         with:
+           ruby-version: ${{ matrix.ruby }}
+ 
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           submodules: recursive
+ 
+@@ -51,7 +51,7 @@ jobs:
+         run: bundle exec rake benchmark:run
+ 
+       - name: Configure AWS credentials
+-        uses: aws-actions/configure-aws-credentials@v5
++        uses: aws-actions/configure-aws-credentials@61815dcd50bd041e203e49132bacad1fd04d2708 # v5
+         continue-on-error: true
+         with:
+           role-to-assume: arn:aws:iam::373952703873:role/BenchmarkReporter

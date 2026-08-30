@@ -1,0 +1,87 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__multi-approval-bot.yml:28:9
+   [1m[94m|[0m
+[1m[94m28 |[0m         - name: Checkout action
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m29 |[0m [1m[33m|[0m         uses: actions/checkout@v3
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m32 |[0m [1m[33m|[0m           ref: v0.1
+[1m[94m33 |[0m [1m[33m|[0m           path: codeowner-multi-approval-action
+   [1m[94m|[0m [1m[33m|_______________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__multi-approval-bot.yml:55:9
+   [1m[94m|[0m
+[1m[94m55 |[0m         - name: Checkout repository
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m56 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__multi-approval-bot.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m name: "Codeowners Approval Workflow"
+[1m[94m 2 |[0m [1m[33m|[0m
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m73 |[0m [1m[33m|[0m               exit 1
+[1m[94m74 |[0m [1m[33m|[0m           fi
+   [1m[94m|[0m [1m[33m|_____________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__multi-approval-bot.yml:11:3
+   [1m[94m|[0m
+[1m[94m11 |[0m [1m[33m/[0m   pre-flight:
+[1m[94m12 |[0m [1m[33m|[0m     uses: NVIDIA-NeMo/FW-CI-templates/.github/workflows/_cicd_preflight.yml@v0.73.2
+[1m[94m13 |[0m [1m[33m|[0m     if: github.repository == 'NVIDIA/Megatron-LM'
+   [1m[94m|[0m [1m[33m|[0m                                                 [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_________________________________________________|[0m
+   [1m[94m|[0m                                                   [1m[33mthis job[0m
+   [1m[94m|[0m                                                   [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__multi-approval-bot.yml:15:3
+   [1m[94m|[0m
+[1m[94m15 |[0m [1m[33m/[0m   codeowners-approval:
+[1m[94m16 |[0m [1m[33m|[0m     needs: [pre-flight]
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m39 |[0m [1m[33m|[0m           repo-name: ${{ github.repository }}
+[1m[94m40 |[0m [1m[33m|[0m           github-token: ${{ secrets.PAT }}
+   [1m[94m|[0m [1m[33m|[0m                                          [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|__________________________________________|[0m
+   [1m[94m|[0m                                            [1m[33mthis job[0m
+   [1m[94m|[0m                                            [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__multi-approval-bot.yml:42:3
+   [1m[94m|[0m
+[1m[94m42 |[0m [1m[33m/[0m   multi-approval-bot-summary:
+[1m[94m43 |[0m [1m[33m|[0m     needs: [pre-flight, codeowners-approval]
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m73 |[0m [1m[33m|[0m               exit 1
+[1m[94m74 |[0m [1m[33m|[0m           fi
+   [1m[94m|[0m [1m[33m|[0m             [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________|[0m
+   [1m[94m|[0m               [1m[33mthis job[0m
+   [1m[94m|[0m               [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__multi-approval-bot.yml:26:9
+   [1m[94m|[0m
+[1m[94m26 |[0m         uses: nv-gha-runners/get-pr-info@main
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m7[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m6[39m medium, [31m1[39m high

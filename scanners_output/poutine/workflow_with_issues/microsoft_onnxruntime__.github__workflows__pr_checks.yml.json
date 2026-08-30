@@ -1,0 +1,23 @@
+{
+  "workflow": "microsoft_onnxruntime__.github__workflows__pr_checks.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 22,
+      "column": "",
+      "job": "auto-apply-fixes",
+      "step": "",
+      "details": "runs-on: self-hosted, 1ES.Pool=onnxruntime-github-Ubuntu2204-AMD-CPU, JobId=pr-auto-apply-fixes-${{ github.run_id }}-${{ github.run_number }}-${{ github.run_attempt }}",
+      "event_triggers": [
+        "pull_request"
+      ]
+    }
+  ]
+}

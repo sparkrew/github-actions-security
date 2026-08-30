@@ -1,0 +1,59 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_DALI__.github__workflows__lint.yml:18:9
+   [1m[94m|[0m
+[1m[94m18 |[0m       - uses: actions/checkout@v6
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_DALI__.github__workflows__lint.yml:33:9
+   [1m[94m|[0m
+[1m[94m33 |[0m       - uses: actions/checkout@v6
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_DALI__.github__workflows__lint.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m name: Lint
+[1m[94m 2 |[0m [1m[33m|[0m
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m36 |[0m [1m[33m|[0m           python-version: '3.10'
+[1m[94m37 |[0m [1m[33m|[0m       - run: python ./internal_tools/lint.py . --nproc=5
+   [1m[94m|[0m [1m[33m|_________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_DALI__.github__workflows__lint.yml:15:3
+   [1m[94m|[0m
+[1m[94m15 |[0m [1m[33m/[0m   python:
+[1m[94m16 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m28 |[0m [1m[33m|[0m       - run: flake8 --config=.flake8.ag ${{ env.AUTOGRAPH_LINT_PATHS }}
+[1m[94m29 |[0m [1m[33m|[0m       - run: bandit --config bandit.yml -r ${{ env.PYTHON_SECURITY_LINT_PATHS }}
+   [1m[94m|[0m [1m[33m|[0m                                                                                [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                  [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                  [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_DALI__.github__workflows__lint.yml:30:3
+   [1m[94m|[0m
+[1m[94m30 |[0m [1m[33m/[0m   cpp:
+[1m[94m31 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m36 |[0m [1m[33m|[0m           python-version: '3.10'
+[1m[94m37 |[0m [1m[33m|[0m       - run: python ./internal_tools/lint.py . --nproc=5
+   [1m[94m|[0m [1m[33m|[0m                                                         [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_________________________________________________________|[0m
+   [1m[94m|[0m                                                           [1m[33mthis job[0m
+   [1m[94m|[0m                                                           [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m14[39m findings ([1m[93m9[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m5[39m medium, [31m0[39m high

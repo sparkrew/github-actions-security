@@ -1,0 +1,20 @@
+diff --git a/.github/workflows/aws_aws-sdk-pandas__.github__workflows__dependabot-prs.yml b/.github/workflows/aws_aws-sdk-pandas__.github__workflows__dependabot-prs.yml
+index a936fc4..2400112 100644
+--- a/.github/workflows/aws_aws-sdk-pandas__.github__workflows__dependabot-prs.yml
++++ b/.github/workflows/aws_aws-sdk-pandas__.github__workflows__dependabot-prs.yml
+@@ -9,7 +9,7 @@ jobs:
+     steps:
+     - name: Fetch Dependabot metadata
+       id: dependabot-metadata
+-      uses: dependabot/fetch-metadata@v2
++      uses: dependabot/fetch-metadata@21025c705c08248db411dc16f3619e6b5f9ea21a # v2
+       with:
+         alert-lookup: true
+         compat-lookup: true
+@@ -19,4 +19,4 @@ jobs:
+       run: gh pr edit "$PR_URL" --add-label "vulnerability"
+       env:
+         PR_URL: ${{github.event.pull_request.html_url}}
+-        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+\ No newline at end of file
++        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

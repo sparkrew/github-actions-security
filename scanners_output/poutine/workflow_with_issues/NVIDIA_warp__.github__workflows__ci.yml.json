@@ -1,0 +1,96 @@
+{
+  "workflow": "NVIDIA_warp__.github__workflows__ci.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 6,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 6
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 229,
+      "column": "",
+      "job": "build-docs",
+      "step": "3",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_call",
+        "workflow_dispatch",
+        "push",
+        "schedule"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 253,
+      "column": "",
+      "job": "check-build-docs-output",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_call",
+        "workflow_dispatch",
+        "push",
+        "schedule"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 283,
+      "column": "",
+      "job": "check-generated-files",
+      "step": "3",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_call",
+        "workflow_dispatch",
+        "push",
+        "schedule"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 303,
+      "column": "",
+      "job": "check-unnamespaced-symbols",
+      "step": "0",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_call",
+        "workflow_dispatch",
+        "push",
+        "schedule"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 144,
+      "column": "",
+      "job": "test-warp",
+      "step": "3",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_call",
+        "workflow_dispatch",
+        "push",
+        "schedule"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 199,
+      "column": "",
+      "job": "test-warp-gpu",
+      "step": "6",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_call",
+        "workflow_dispatch",
+        "push",
+        "schedule"
+      ]
+    }
+  ]
+}

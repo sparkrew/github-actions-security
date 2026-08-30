@@ -1,0 +1,45 @@
+name: facebook/fresco/build
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+    - name: Print pre-setup debug info
+      run: ./ci/print-debug-info.sh
+    - uses: nttld/setup-ndk@ed92fe6cadad69be94a966a7ee3271275e62f779 # nttld/setup-ndk@v1
+      id: setup-ndk
+      with:
+        ndk-version: r27b
+    - name: Install JDK
+      uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # actions/setup-java@v5 | v5.2.0
+      with:
+        distribution: 'temurin'
+        java-version: |
+          11
+          17
+        cache: gradle
+    - name: Print post-setup debug info
+      run: |
+        ./ci/print-debug-info.sh
+        echo "Printing Gradle Wrapper version"
+        ./gradlew --version
+      env:
+        ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+    - name: Build & run tests
+      run: ./ci/build-and-test.sh
+      env:
+        ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }}
+    - name: Copy Results
+      run: |
+        mkdir -p ./gh_actions/test-results/junit
+        find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ./gh_actions/test-results/junit \;
+    - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # actions/upload-artifact@v6 | v6.0.0
+      with:
+        path: "./gh_actions/test-results"

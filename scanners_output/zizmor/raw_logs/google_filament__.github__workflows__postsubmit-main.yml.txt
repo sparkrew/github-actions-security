@@ -1,0 +1,171 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit-main.yml:15:9
+   [1m[94m|[0m
+[1m[94m15 |[0m         - uses: actions/checkout@v4.1.6
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m16 |[0m [1m[33m|[0m         with:
+[1m[94m17 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit-main.yml:70:9
+   [1m[94m|[0m
+[1m[94m70 |[0m         - uses: actions/checkout@v4.1.6
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m71 |[0m [1m[33m|[0m         with:
+[1m[94m72 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit-main.yml:95:9
+   [1m[94m|[0m
+[1m[94m95 |[0m         - uses: actions/checkout@v4.1.6
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m96 |[0m [1m[33m|[0m         with:
+[1m[94m97 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit-main.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: 'Postsubmit Tasks'
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m123 |[0m [1m[33m|[0m           git commit -m "Update sizeguard for filament@${COMMIT_HASH}" || echo "No changes to commit"
+[1m[94m124 |[0m [1m[33m|[0m           git push https://x-access-token:${GH_TOKEN}@github.com/google/filament-assets.git main
+    [1m[94m|[0m [1m[33m|_________________________________________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit-main.yml:11:3
+   [1m[94m|[0m
+[1m[94m11 |[0m [1m[33m/[0m   update-renderdiff-goldens:
+[1m[94m12 |[0m [1m[33m|[0m     name: update-renderdiff-goldens
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m64 |[0m [1m[33m|[0m
+[1m[94m65 |[0m [1m[33m|[0m   # Update the /docs (offiicla github-hosted Filament site) if necessary
+   [1m[94m|[0m [1m[33m|[0m                                                                        [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                          [1m[33mthis job[0m
+   [1m[94m|[0m                                                                          [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit-main.yml:66:3
+   [1m[94m|[0m
+[1m[94m66 |[0m [1m[33m/[0m   update-docs:
+[1m[94m67 |[0m [1m[33m|[0m     name: update-docs
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m89 |[0m [1m[33m|[0m   # Produce a json that describes the android artifact sizes, and will push that json to a folder in
+[1m[94m90 |[0m [1m[33m|[0m   # filament-assets
+   [1m[94m|[0m [1m[33m|[0m                   [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|___________________|[0m
+   [1m[94m|[0m                     [1m[33mthis job[0m
+   [1m[94m|[0m                     [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit-main.yml:91:3
+    [1m[94m|[0m
+[1m[94m 91 |[0m [1m[33m/[0m   update-sizeguard:
+[1m[94m 92 |[0m [1m[33m|[0m     name: update-sizeguard
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m123 |[0m [1m[33m|[0m           git commit -m "Update sizeguard for filament@${COMMIT_HASH}" || echo "No changes to commit"
+[1m[94m124 |[0m [1m[33m|[0m           git push https://x-access-token:${GH_TOKEN}@github.com/google/filament-assets.git main
+    [1m[94m|[0m [1m[33m|[0m                                                                                                 [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_________________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                   [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                   [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit-main.yml:34:9
+   [1m[94m|[0m
+[1m[94m34 |[0m         - name: Run update script
+   [1m[94m|[0m           [1m[94m-----------------------[0m [1m[94minfo: this step[0m
+[1m[94m35 |[0m           env:
+[1m[94m36 |[0m             GH_TOKEN: ${{ secrets.FILAMENTBOT_TOKEN }}
+[1m[94m37 |[0m             COMMIT_MESSAGE: ${{ steps.get_commit_msg.outputs.msg }}
+[1m[94m38 |[0m [1m[94m/[0m         run: |
+[1m[94m39 |[0m [1m[94m|[0m           GOLDEN_BRANCH=$(echo "${COMMIT_MESSAGE}" | python3 test/renderdiff/src/commit_msg.py)
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m62 |[0m [1m[94m|[0m                   --merge-to-main --filament-tag=${COMMIT_HASH} --golden-repo-token=${GH_TOKEN}
+[1m[94m63 |[0m [1m[94m|[0m           fi
+   [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: steps.get_commit_msg.outputs.hash may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit-main.yml:34:9
+   [1m[94m|[0m
+[1m[94m34 |[0m         - name: Run update script
+   [1m[94m|[0m           [1m[94m-----------------------[0m [1m[94minfo: this step[0m
+[1m[94m35 |[0m           env:
+[1m[94m36 |[0m             GH_TOKEN: ${{ secrets.FILAMENTBOT_TOKEN }}
+[1m[94m37 |[0m             COMMIT_MESSAGE: ${{ steps.get_commit_msg.outputs.msg }}
+[1m[94m38 |[0m [1m[94m/[0m         run: |
+[1m[94m39 |[0m [1m[94m|[0m           GOLDEN_BRANCH=$(echo "${COMMIT_MESSAGE}" | python3 test/renderdiff/src/commit_msg.py)
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m62 |[0m [1m[94m|[0m                   --merge-to-main --filament-tag=${COMMIT_HASH} --golden-repo-token=${GH_TOKEN}
+[1m[94m63 |[0m [1m[94m|[0m           fi
+   [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: steps.check_accept.outputs.accept may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit-main.yml:78:9
+   [1m[94m|[0m
+[1m[94m78 |[0m         - name: Run update script
+   [1m[94m|[0m           [1m[94m-----------------------[0m [1m[94minfo: this step[0m
+[1m[94m79 |[0m           env:
+[1m[94m80 |[0m             GH_TOKEN: ${{ secrets.FILAMENTBOT_TOKEN }}
+[1m[94m81 |[0m [1m[94m/[0m         run: |
+[1m[94m82 |[0m [1m[94m|[0m           bash docs_src/build/install_mdbook.sh && source ~/.bashrc
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m86 |[0m [1m[94m|[0m           git config --global credential.helper cache
+[1m[94m87 |[0m [1m[94m|[0m           bash docs_src/build/postsubmit.sh ${COMMIT_HASH} ${GH_TOKEN}
+   [1m[94m|[0m [1m[94m|______________________________________________________________________-[0m [1m[94minfo: steps.get_commit_msg.outputs.hash may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit-main.yml:105:9
+    [1m[94m|[0m
+[1m[94m105 |[0m         - name: Build and generate size report
+    [1m[94m|[0m           [1m[94m------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m106 |[0m [1m[94m/[0m         run: |
+[1m[94m107 |[0m [1m[94m|[0m           cd build/android && printf "y" | ./build.sh release all
+[1m[94m108 |[0m [1m[94m|[0m           cd ../..
+[1m[94m109 |[0m [1m[94m|[0m           COMMIT_HASH="${{ steps.get_commit_msg.outputs.hash }}"
+[1m[94m110 |[0m [1m[94m|[0m           python3 test/sizeguard/dump_artifact_size.py out/*.tgz out/*.aar > "${COMMIT_HASH}.json"
+    [1m[94m|[0m [1m[94m|__________________________________________________________________________________________________-[0m [1m[94minfo: steps.get_commit_msg.outputs.hash may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit-main.yml:111:9
+    [1m[94m|[0m
+[1m[94m111 |[0m         - name: Push to filament-assets
+    [1m[94m|[0m           [1m[94m-----------------------------[0m [1m[94minfo: this step[0m
+[1m[94m112 |[0m           env:
+[1m[94m113 |[0m             GH_TOKEN: ${{ secrets.FILAMENTBOT_TOKEN }}
+[1m[94m114 |[0m [1m[94m/[0m         run: |
+[1m[94m115 |[0m [1m[94m|[0m           COMMIT_HASH="${{ steps.get_commit_msg.outputs.hash }}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m123 |[0m [1m[94m|[0m           git commit -m "Update sizeguard for filament@${COMMIT_HASH}" || echo "No changes to commit"
+[1m[94m124 |[0m [1m[94m|[0m           git push https://x-access-token:${GH_TOKEN}@github.com/google/filament-assets.git main
+    [1m[94m|[0m [1m[94m|_________________________________________________________________________________________________-[0m [1m[94minfo: steps.get_commit_msg.outputs.hash may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m17[39m findings ([1m[93m5[39m suppressed[0m): 0 unknown, [35m5[39m informational, [36m0[39m low, [33m7[39m medium, [31m0[39m high

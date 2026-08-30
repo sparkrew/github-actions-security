@@ -1,0 +1,29 @@
+diff --git a/.github/workflows/google_adk-samples__.github__workflows__dependabot-auto-merge.yml b/.github/workflows/google_adk-samples__.github__workflows__dependabot-auto-merge.yml
+index 4d2e17c..f575fc4 100644
+--- a/.github/workflows/google_adk-samples__.github__workflows__dependabot-auto-merge.yml
++++ b/.github/workflows/google_adk-samples__.github__workflows__dependabot-auto-merge.yml
+@@ -24,7 +24,7 @@ jobs:
+     steps:
+       - name: Dependabot metadata
+         id: metadata
+-        uses: dependabot/fetch-metadata@v2
++        uses: dependabot/fetch-metadata@21025c705c08248db411dc16f3619e6b5f9ea21a # v2
+         with:
+           github-token: "${{ secrets.GITHUB_TOKEN }}"
+ 
+@@ -90,7 +90,7 @@ jobs:
+ 
+       - name: Checkout code
+         if: steps.check.outputs.is_dependabot == 'true'
+-        uses: actions/checkout@v5
++        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+         with:
+           ref: refs/pull/${{ steps.pr.outputs.number }}/head
+           fetch-depth: 0
+@@ -210,4 +210,4 @@ jobs:
+           gh pr merge ${STEPS_PR_OUTPUTS_NUMBER} --repo ${{ github.repository }} --squash
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+-          STEPS_PR_OUTPUTS_NUMBER: ${{ steps.pr.outputs.number }}
+\ No newline at end of file
++          STEPS_PR_OUTPUTS_NUMBER: ${{ steps.pr.outputs.number }}

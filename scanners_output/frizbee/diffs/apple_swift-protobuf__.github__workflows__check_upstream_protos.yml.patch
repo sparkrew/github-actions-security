@@ -1,0 +1,19 @@
+diff --git a/.github/workflows/apple_swift-protobuf__.github__workflows__check_upstream_protos.yml b/.github/workflows/apple_swift-protobuf__.github__workflows__check_upstream_protos.yml
+index 4050db0..f26158e 100644
+--- a/.github/workflows/apple_swift-protobuf__.github__workflows__check_upstream_protos.yml
++++ b/.github/workflows/apple_swift-protobuf__.github__workflows__check_upstream_protos.yml
+@@ -15,12 +15,12 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+     - name: Checkout
+-      uses: actions/checkout@v6
++      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         path: swift-protobuf
+         # Don't need the submodules since we are checking against upstream.
+     - name: Checkout protobufbuffers/protobuf
+-      uses: actions/checkout@v6
++      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         repository: protocolbuffers/protobuf
+         path: protobuf

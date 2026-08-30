@@ -1,0 +1,92 @@
+{
+  "workflow": "NVIDIA_physicsnemo__.github__workflows__github-nightly-uv.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        42,
+        45,
+        50,
+        60,
+        86,
+        98,
+        101,
+        106,
+        115,
+        133,
+        148,
+        151,
+        156,
+        165,
+        186,
+        200,
+        207
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_physicsnemo__.github__workflows__github-nightly-uv.yml:42",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_physicsnemo__.github__workflows__github-nightly-uv.yml:45",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_physicsnemo__.github__workflows__github-nightly-uv.yml:50",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_physicsnemo__.github__workflows__github-nightly-uv.yml:60",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_physicsnemo__.github__workflows__github-nightly-uv.yml:86",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_physicsnemo__.github__workflows__github-nightly-uv.yml:98",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_physicsnemo__.github__workflows__github-nightly-uv.yml:101",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_physicsnemo__.github__workflows__github-nightly-uv.yml:106",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_physicsnemo__.github__workflows__github-nightly-uv.yml:115",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_physicsnemo__.github__workflows__github-nightly-uv.yml:133",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_physicsnemo__.github__workflows__github-nightly-uv.yml:148",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_physicsnemo__.github__workflows__github-nightly-uv.yml:151",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_physicsnemo__.github__workflows__github-nightly-uv.yml:156",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_physicsnemo__.github__workflows__github-nightly-uv.yml:165",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_physicsnemo__.github__workflows__github-nightly-uv.yml:186",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_physicsnemo__.github__workflows__github-nightly-uv.yml:200",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_physicsnemo__.github__workflows__github-nightly-uv.yml:207",
+        "Info:   0 out of  14 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of   3 third-party GitHubAction dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 0,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1
+      ],
+      "raw_details": [
+        "Warn: no topLevel permission defined: .github/workflows/NVIDIA_physicsnemo__.github__workflows__github-nightly-uv.yml:1",
+        "Info: no jobLevel write permissions found"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

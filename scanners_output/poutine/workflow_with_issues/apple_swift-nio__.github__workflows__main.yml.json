@@ -1,0 +1,24 @@
+{
+  "workflow": "apple_swift-nio__.github__workflows__main.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "unverified_script_exec": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": 48,
+      "column": "",
+      "job": "construct-integration-test-matrix",
+      "step": "1",
+      "details": "Command: curl -s --retry 3 https://raw.githubusercontent.com/apple/swift-nio/main/scripts/generate_matrix.sh | bash",
+      "event_triggers": [
+        "push",
+        "schedule"
+      ]
+    }
+  ]
+}

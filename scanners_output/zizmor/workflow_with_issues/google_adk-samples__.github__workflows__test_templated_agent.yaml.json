@@ -1,0 +1,77 @@
+{
+  "workflow": "google_adk-samples__.github__workflows__test_templated_agent.yaml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 7,
+    "by_rule": {
+      "artipacked": 2,
+      "excessive-permissions": 2,
+      "unpinned-uses": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "google_adk-samples__.github__workflows__test_templated_agent.yaml",
+      "line": 16,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "google_adk-samples__.github__workflows__test_templated_agent.yaml",
+      "line": 86,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "google_adk-samples__.github__workflows__test_templated_agent.yaml",
+      "line": 1,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "google_adk-samples__.github__workflows__test_templated_agent.yaml",
+      "line": 8,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "google_adk-samples__.github__workflows__test_templated_agent.yaml",
+      "line": 23,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "google_adk-samples__.github__workflows__test_templated_agent.yaml",
+      "line": 91,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "warning",
+      "message": "unpinned action reference",
+      "workflow": "google_adk-samples__.github__workflows__test_templated_agent.yaml",
+      "line": 99,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

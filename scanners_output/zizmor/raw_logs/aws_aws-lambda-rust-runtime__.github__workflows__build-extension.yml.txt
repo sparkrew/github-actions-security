@@ -1,0 +1,33 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-lambda-rust-runtime__.github__workflows__build-extension.yml:33:9
+   [1m[94m|[0m
+[1m[94m33 |[0m       - uses: actions/checkout@v6
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-lambda-rust-runtime__.github__workflows__build-extension.yml:49:9
+   [1m[94m|[0m
+[1m[94m49 |[0m       - uses: actions/checkout@v6
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-lambda-rust-runtime__.github__workflows__build-extension.yml:51:9
+   [1m[94m|[0m
+[1m[94m51 |[0m         uses: obi1kenobi/cargo-semver-checks-action@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-lambda-rust-runtime__.github__workflows__build-extension.yml:57:9
+   [1m[94m|[0m
+[1m[94m57 |[0m         uses: obi1kenobi/cargo-semver-checks-action@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m4[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m2[39m high

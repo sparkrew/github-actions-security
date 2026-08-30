@@ -1,0 +1,60 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__macos-ci-build-and-test-workflow.yml:77:9
+   [1m[94m|[0m
+[1m[94m77 |[0m         - name: Checkout code
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m78 |[0m [1m[33m|[0m         uses: actions/checkout@v6
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__macos-ci-build-and-test-workflow.yml:111:9
+    [1m[94m|[0m
+[1m[94m111 |[0m         - name: Configure Build (build.py --update)
+    [1m[94m|[0m           [1m[96m-----------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m112 |[0m           shell: bash
+[1m[94m113 |[0m           working-directory: ${{ github.workspace }}
+[1m[94m114 |[0m [1m[96m/[0m         run: |
+[1m[94m115 |[0m [1m[96m|[0m           rm -rf ${{ github.workspace }}/build/${{ matrix.build_config }}
+[1m[94m116 |[0m [1m[96m|[0m           python ./tools/ci_build/build.py --update ${{ env.build_flags }}
+    [1m[94m|[0m [1m[96m|__________________________________________________________________________-[0m [1m[96mhelp: env.build_flags may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__macos-ci-build-and-test-workflow.yml:118:9
+    [1m[94m|[0m
+[1m[94m118 |[0m         - name: Build (build.py --build)
+    [1m[94m|[0m           [1m[96m------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m119 |[0m           shell: bash
+[1m[94m120 |[0m           working-directory: ${{ github.workspace }}
+[1m[94m121 |[0m [1m[96m/[0m         run: |
+[1m[94m122 |[0m [1m[96m|[0m           python ./tools/ci_build/build.py --build ${{ env.build_flags }}
+    [1m[94m|[0m [1m[96m|_________________________________________________________________________-[0m [1m[96mhelp: env.build_flags may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__macos-ci-build-and-test-workflow.yml:132:9
+    [1m[94m|[0m
+[1m[94m132 |[0m         - name: Running Tests (build.py --test)
+    [1m[94m|[0m           [1m[96m-------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m133 |[0m           # Skip tests when cross-compiling
+[1m[94m...[0m
+[1m[94m136 |[0m           working-directory: ${{ github.workspace }}
+[1m[94m137 |[0m [1m[96m/[0m         run: |
+[1m[94m138 |[0m [1m[96m|[0m           python ./tools/ci_build/build.py --test ${{ env.build_flags }}
+    [1m[94m|[0m [1m[96m|_________________________________________________________________________-[0m [1m[96mhelp: env.build_flags may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__macos-ci-build-and-test-workflow.yml:79:9
+   [1m[94m|[0m
+[1m[94m79 |[0m       - uses: microsoft/onnxruntime-github-actions/setup-build-tools@v0.0.9
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m18[39m findings ([1m[93m13[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m3[39m low, [33m1[39m medium, [31m1[39m high

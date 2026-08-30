@@ -1,0 +1,21 @@
+diff --git a/.github/workflows/google_oss-fuzz__.github__workflows__index_build_tests.yml b/.github/workflows/google_oss-fuzz__.github__workflows__index_build_tests.yml
+index 7746927..459c970 100644
+--- a/.github/workflows/google_oss-fuzz__.github__workflows__index_build_tests.yml
++++ b/.github/workflows/google_oss-fuzz__.github__workflows__index_build_tests.yml
+@@ -18,14 +18,14 @@ jobs:
+       group: ${{ github.workflow }}-${{ github.ref }}
+       cancel-in-progress: true
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:  # Needed for git diff to work. (get_changed_files)
+           fetch-depth: 0
+       - run: |
+           git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/master
+ 
+       - name: Setup python environment
+-        uses: actions/setup-python@v6
++        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+         with:
+           python-version: 3.11
+ 

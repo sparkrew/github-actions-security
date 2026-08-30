@@ -1,0 +1,51 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_llrt__.github__workflows__release.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m name: LLRT Release
+[1m[94m 2 |[0m [1m[33m|[0m on:
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m98 |[0m [1m[33m|[0m     secrets:
+[1m[94m99 |[0m [1m[33m|[0m       CRATES_IO_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
+   [1m[94m|[0m [1m[33m|______________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_llrt__.github__workflows__release.yml:8:3
+   [1m[94m|[0m
+[1m[94m 8 |[0m [1m[33m/[0m   build:
+[1m[94m 9 |[0m [1m[33m|[0m     strategy:
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m40 |[0m [1m[33m|[0m       release: ${{ matrix.release }}
+[1m[94m41 |[0m [1m[33m|[0m       toolchain: ${{ matrix.toolchain }}
+   [1m[94m|[0m [1m[33m|[0m                                        [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________________________________|[0m
+   [1m[94m|[0m                                          [1m[33mthis job[0m
+   [1m[94m|[0m                                          [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_llrt__.github__workflows__release.yml:92:3
+   [1m[94m|[0m
+[1m[94m92 |[0m [1m[33m/[0m   publish:
+[1m[94m93 |[0m [1m[33m|[0m     needs:
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m98 |[0m [1m[33m|[0m     secrets:
+[1m[94m99 |[0m [1m[33m|[0m       CRATES_IO_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
+   [1m[94m|[0m [1m[33m|[0m                                                      [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________________________________________|[0m
+   [1m[94m|[0m                                                        [1m[33mthis job[0m
+   [1m[94m|[0m                                                        [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_llrt__.github__workflows__release.yml:59:9
+   [1m[94m|[0m
+[1m[94m59 |[0m         uses: softprops/action-gh-release@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m4[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m3[39m medium, [31m1[39m high

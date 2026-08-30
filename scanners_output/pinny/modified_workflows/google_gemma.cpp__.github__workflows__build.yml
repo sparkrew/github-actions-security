@@ -1,0 +1,80 @@
+name: build
+
+# Trigger on push, pull request, or via manual dispatch.
+on:
+  push:
+  pull_request:
+    types: [opened, reopened, labeled, unlabeled, synchronize]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.os }} (${{ matrix.preset }}) ${{ matrix.build_type }}
+    timeout-minutes: 30
+
+    strategy:
+      fail-fast: false
+      matrix:
+        # When adding another, also add to copybara's github_check_runs.
+        os: ['ubuntu-latest', 'macos-latest', 'windows-latest']
+        build_type: ['Release']
+        preset: ['make', 'windows']
+        exclude:
+          - os: ubuntu-latest
+            preset: windows
+          - os: macos-latest
+            preset: windows
+          - os: windows-latest
+            preset: make
+
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}-${{ matrix.os }}-${{ matrix.preset }}-${{ matrix.build_type }}
+      cancel-in-progress: true
+
+    steps:
+    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+
+    # Set up ccache
+    - name: ccache
+      uses: hendrikmuhs/ccache-action@5ebbd400eff9e74630f759d94ddd7b6c26299639 # hendrikmuhs/ccache-action@v1.2
+
+    - name: Configure CMake
+      run: >
+        cmake --preset ${{ matrix.preset }}
+        -S ${{ github.workspace }} -B ${{ github.workspace }}/build
+        -D CMAKE_BUILD_TYPE=${{ matrix.build_type }}
+        -D CMAKE_C_COMPILER_LAUNCHER=ccache
+        -D CMAKE_CXX_COMPILER_LAUNCHER=ccache
+        -DCMAKE_POLICY_VERSION_MINIMUM=3.5 
+
+    - name: Build
+      run: cmake --build ${{ github.workspace }}/build --preset ${{ matrix.preset }} --config ${{ matrix.build_type }} -j 4
+
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2
+      with:
+        name: gemma-${{ matrix.os }}-${{ matrix.preset }}-${{ matrix.build_type }}
+        path: |
+          ${{ github.workspace }}/build/${{ matrix.build_type }}/gemma.exe
+          ${{ github.workspace }}/build/${{ matrix.build_type }}/libgemma.lib
+          ${{ github.workspace }}/build/gemma
+          ${{ github.workspace }}/build/libgemma.a
+
+  bazel:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0
+        with:
+          egress-policy: audit  # cannot be block - runner does git checkout
+
+      - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.0.0
+
+      - uses: bazelbuild/setup-bazelisk@b39c379c82683a5f25d34f0d062761f62693e0b2 # v3.0.0
+
+      - uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4.2.2
+        with:
+          path: ~/.cache/bazel
+          key: bazel-${{ runner.os }}
+      - run: bazel build --cxxopt=-std=c++20 //:gemma --jobs=10 --show_progress_rate_limit=1

@@ -1,0 +1,36 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+
+name: Update Cargo.lock
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  update-cargo-lock:
+    name: Update Cargo.lock file
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+      - uses: actions-rs/toolchain@16499b5e05bf2e26879000db0c1d13f7e13fa3af # actions-rs/toolchain@v1
+        with:
+          # Should stay in sync with fbcode/buck2/rust-toolchain
+          # And other similar references in this file and
+          # ci.yml
+          toolchain: nightly-2025-12-05
+          override: true
+      - name: cargo check
+        run: cargo check --features vendored --manifest-path=compiler/Cargo.toml
+      - name: pull-request
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # peter-evans/create-pull-request@v8 | v8.1.0
+        with:
+          token: ${{ secrets.RELAY_BOT_GITHUB_PAT }}
+          title: "Update Cargo.lock"
+          branch: update-cargo-lock
+          delete-branch: true

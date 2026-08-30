@@ -1,0 +1,99 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_warp__.github__workflows__build-warp-builder-images.yml:71:9
+   [1m[94m|[0m
+[1m[94m71 |[0m         - name: Checkout repository
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m72 |[0m [1m[33m|[0m         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+   [1m[94m|[0m [1m[33m|_______________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_warp__.github__workflows__build-warp-builder-images.yml:171:9
+    [1m[94m|[0m
+[1m[94m171 |[0m         - name: Checkout repository
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m172 |[0m [1m[33m|[0m         uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+    [1m[94m|[0m [1m[33m|_______________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_warp__.github__workflows__build-warp-builder-images.yml:29:3
+   [1m[94m|[0m
+[1m[94m29 |[0m   packages: write
+   [1m[94m|[0m   [1m[91m^^^^^^^^^^^^^^^[0m [1m[91mpackages: write is overly broad at the workflow level[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_warp__.github__workflows__build-warp-builder-images.yml:134:9
+    [1m[94m|[0m
+[1m[94m134 |[0m   [1m[94m...[0m - name: Report image size
+    [1m[94m|[0m         [1m[94m-----------------------[0m [1m[94minfo: this step[0m
+[1m[94m135 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m136 |[0m [1m[94m|[0m [1m[94m...[0m     IMAGE="${{ steps.meta.outputs.image_base }}:cuda${{ steps.meta.outputs.cuda_version }}-llvm${{ steps.meta.outputs.llvm_vers[1m[94m...[0m
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m145 |[0m [1m[94m|[0m [1m[94m...[0m     # Compact single-line report
+[1m[94m146 |[0m [1m[94m|[0m [1m[94m...[0m     echo "📦 **CUDA ${{ steps.meta.outputs.cuda_version }} / ${{ matrix.arch }}:** ${SIZE_HUMAN}" >> $GITHUB_STEP_SUMMARY
+    [1m[94m|[0m [1m[94m|_____________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.meta.outputs.image_base may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_warp__.github__workflows__build-warp-builder-images.yml:134:9
+    [1m[94m|[0m
+[1m[94m134 |[0m   [1m[94m...[0m - name: Report image size
+    [1m[94m|[0m         [1m[94m-----------------------[0m [1m[94minfo: this step[0m
+[1m[94m135 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m136 |[0m [1m[94m|[0m [1m[94m...[0m     IMAGE="${{ steps.meta.outputs.image_base }}:cuda${{ steps.meta.outputs.cuda_version }}-llvm${{ steps.meta.outputs.llvm_vers[1m[94m...[0m
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m145 |[0m [1m[94m|[0m [1m[94m...[0m     # Compact single-line report
+[1m[94m146 |[0m [1m[94m|[0m [1m[94m...[0m     echo "📦 **CUDA ${{ steps.meta.outputs.cuda_version }} / ${{ matrix.arch }}:** ${SIZE_HUMAN}" >> $GITHUB_STEP_SUMMARY
+    [1m[94m|[0m [1m[94m|_____________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.meta.outputs.cuda_version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_warp__.github__workflows__build-warp-builder-images.yml:134:9
+    [1m[94m|[0m
+[1m[94m134 |[0m   [1m[94m...[0m - name: Report image size
+    [1m[94m|[0m         [1m[94m-----------------------[0m [1m[94minfo: this step[0m
+[1m[94m135 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m136 |[0m [1m[94m|[0m [1m[94m...[0m     IMAGE="${{ steps.meta.outputs.image_base }}:cuda${{ steps.meta.outputs.cuda_version }}-llvm${{ steps.meta.outputs.llvm_vers[1m[94m...[0m
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m145 |[0m [1m[94m|[0m [1m[94m...[0m     # Compact single-line report
+[1m[94m146 |[0m [1m[94m|[0m [1m[94m...[0m     echo "📦 **CUDA ${{ steps.meta.outputs.cuda_version }} / ${{ matrix.arch }}:** ${SIZE_HUMAN}" >> $GITHUB_STEP_SUMMARY
+    [1m[94m|[0m [1m[94m|_____________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.meta.outputs.llvm_version_major may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_warp__.github__workflows__build-warp-builder-images.yml:134:9
+    [1m[94m|[0m
+[1m[94m134 |[0m   [1m[94m...[0m - name: Report image size
+    [1m[94m|[0m         [1m[94m-----------------------[0m [1m[94minfo: this step[0m
+[1m[94m135 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m136 |[0m [1m[94m|[0m [1m[94m...[0m     IMAGE="${{ steps.meta.outputs.image_base }}:cuda${{ steps.meta.outputs.cuda_version }}-llvm${{ steps.meta.outputs.llvm_vers[1m[94m...[0m
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m145 |[0m [1m[94m|[0m [1m[94m...[0m     # Compact single-line report
+[1m[94m146 |[0m [1m[94m|[0m [1m[94m...[0m     echo "📦 **CUDA ${{ steps.meta.outputs.cuda_version }} / ${{ matrix.arch }}:** ${SIZE_HUMAN}" >> $GITHUB_STEP_SUMMARY
+    [1m[94m|[0m [1m[94m|_____________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.meta.outputs.cuda_version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_warp__.github__workflows__build-warp-builder-images.yml:194:9
+    [1m[94m|[0m
+[1m[94m194 |[0m         - name: Test Warp build in container
+    [1m[94m|[0m           [1m[94m----------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m195 |[0m [1m[94m/[0m         run: |
+[1m[94m196 |[0m [1m[94m|[0m           IMAGE="${{ steps.meta.outputs.image_tag }}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m232 |[0m [1m[94m|[0m               du -h dist/*.whl
+[1m[94m233 |[0m [1m[94m|[0m             '
+    [1m[94m|[0m [1m[94m|_____________-[0m [1m[94minfo: steps.meta.outputs.image_tag may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m24[39m findings ([1m[93m16[39m suppressed[0m): 0 unknown, [35m5[39m informational, [36m0[39m low, [33m2[39m medium, [31m1[39m high

@@ -1,0 +1,26 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_react-native-windows__.github__workflows__update-issue-remaining-days.yml:16:9
+   [1m[94m|[0m
+[1m[94m16 |[0m         - name: Checkout repo
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m17 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_react-native-windows__.github__workflows__update-issue-remaining-days.yml:12:3
+   [1m[94m|[0m
+[1m[94m12 |[0m [1m[33m/[0m   update_remaining_days:
+[1m[94m13 |[0m [1m[33m|[0m     if: false # Ensures job won't run even if manually triggered
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m62 |[0m [1m[33m|[0m
+[1m[94m63 |[0m [1m[33m|[0m           echo "🎉 Successfully set Remaining Days = 0 for issue #${{ github.event.issue.number }}"
+   [1m[94m|[0m [1m[33m|[0m                                                                                                    [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                                      [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                                      [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m9[39m findings ([1m[93m7[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m0[39m high

@@ -1,0 +1,71 @@
+diff --git a/.github/workflows/google_mtail__.github__workflows__release.yml b/.github/workflows/google_mtail__.github__workflows__release.yml
+index 0c21e6c..6538c76 100644
+--- a/.github/workflows/google_mtail__.github__workflows__release.yml
++++ b/.github/workflows/google_mtail__.github__workflows__release.yml
+@@ -28,20 +28,20 @@ jobs:
+     steps:
+       - if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+         run: echo "flags=--snapshot" >> $GITHUB_ENV
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           fetch-depth: 0
+       - run: git fetch --force --tags
+-      - uses: actions/setup-go@v5
++      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
+         with:
+           go-version-file: 'go.mod'
+           cache: true
+-      - uses: docker/login-action@v3.3.0
++      - uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # v3.3.0
+         with:
+           registry: ${{ env.REGISTRY }}
+           username: ${{ github.actor }}
+           password: ${{ secrets.GITHUB_TOKEN }}
+-      - uses: goreleaser/goreleaser-action@v6
++      - uses: goreleaser/goreleaser-action@e435ccd777264be153ace6237001ef4d979d3a7a # v6
+         id: goreleaser
+         with:
+           version: latest
+@@ -72,7 +72,7 @@ jobs:
+       actions: read # To read the workflow path.
+       id-token: write # To sign the provenance.
+       contents: write # To add assets to a release.
+-    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v2.0.0
++    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@5a775b367a56d5bd118a224a811bba288150a563 # v2.0.0
+     with:
+       base64-subjects: "${{ needs.goreleaser.outputs.binary_hashes }}"
+       upload-assets: true # upload to a new release
+@@ -84,7 +84,7 @@ jobs:
+     permissions:
+       contents: read
+     steps:
+-      - uses: slsa-framework/slsa-verifier/actions/installer@v2.6.0
++      - uses: slsa-framework/slsa-verifier/actions/installer@3714a2a4684014deb874a0e737dffa0ee02dd647 # v2.6.0
+       - name: download assets
+         env:
+           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+@@ -115,7 +115,7 @@ jobs:
+       packages: write
+     strategy:
+       matrix: ${{ fromJSON(needs.goreleaser.outputs.image_subjects) }}
+-    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v2.0.0
++    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@5a775b367a56d5bd118a224a811bba288150a563 # v2.0.0
+     with:
+       image: ghcr.io/${{ matrix.image }}
+       digest: ${{ matrix.digest }}
+@@ -132,12 +132,12 @@ jobs:
+     strategy:
+       matrix: ${{ fromJSON(needs.goreleaser.outputs.image_subjects) }}
+     steps:
+-      - uses: docker/login-action@v3.3.0
++      - uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # v3.3.0
+         with:
+           registry: ${{ env.REGISTRY }}
+           username: ${{ github.actor }}
+           password: ${{ secrets.GITHUB_TOKEN }}
+-      - uses: sigstore/cosign-installer@v3.7.0
++      - uses: sigstore/cosign-installer@dc72c7d5c4d10cd6bcb8cf6e3fd625a9e5e537da # v3.7.0
+       - name: verify image
+         env:
+           IMAGE: ${{ matrix.image }}

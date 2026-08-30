@@ -1,0 +1,52 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_pxt__.github__workflows__pxt-buildvtag.yml:19:9
+   [1m[94m|[0m
+[1m[94m19 |[0m         - uses: actions/checkout@main
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m20 |[0m [1m[33m|[0m         with:
+[1m[94m21 |[0m [1m[33m|[0m           fetch-depth: 0
+[1m[94m22 |[0m [1m[33m|[0m           fetch-tags: true
+   [1m[94m|[0m [1m[33m|__________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_pxt__.github__workflows__pxt-buildvtag.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m name: pxt-buildvtag
+[1m[94m 2 |[0m [1m[33m|[0m
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m44 |[0m [1m[33m|[0m           DISPLAY: :99.0
+[1m[94m45 |[0m [1m[33m|[0m           CI: true
+   [1m[94m|[0m [1m[33m|___________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_pxt__.github__workflows__pxt-buildvtag.yml:9:3
+   [1m[94m|[0m
+[1m[94m 9 |[0m [1m[33m/[0m   filter-vtags:
+[1m[94m10 |[0m [1m[33m|[0m     uses: ./.github/workflows/is-vtag.yml
+   [1m[94m|[0m [1m[33m|[0m                                         [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_________________________________________|[0m
+   [1m[94m|[0m                                           [1m[33mthis job[0m
+   [1m[94m|[0m                                           [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_pxt__.github__workflows__pxt-buildvtag.yml:12:3
+   [1m[94m|[0m
+[1m[94m12 |[0m [1m[33m/[0m   buildvtag:
+[1m[94m13 |[0m [1m[33m|[0m     name: buildvtag
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m44 |[0m [1m[33m|[0m           DISPLAY: :99.0
+[1m[94m45 |[0m [1m[33m|[0m           CI: true
+   [1m[94m|[0m [1m[33m|[0m                   [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|___________________|[0m
+   [1m[94m|[0m                     [1m[33mthis job[0m
+   [1m[94m|[0m                     [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m4[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m4[39m medium, [31m0[39m high

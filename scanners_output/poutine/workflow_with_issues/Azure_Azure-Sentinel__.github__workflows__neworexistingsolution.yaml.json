@@ -1,0 +1,35 @@
+{
+  "workflow": "Azure_Azure-Sentinel__.github__workflows__neworexistingsolution.yaml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "untrusted_checkout_exec": 1,
+      "injection": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 39,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of `powershell`",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": 39,
+      "column": "",
+      "job": "masterDetails",
+      "step": "1",
+      "details": "Sources: github.event.client_payload.pull_request.number && github.event.pull_request.number || github.event.client_payload.pullRequestNumber",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+diff --git a/.github/workflows/facebook_sapling__.github__workflows__reviewstack.dev-deploy.yml b/.github/workflows/facebook_sapling__.github__workflows__reviewstack.dev-deploy.yml
+index 808a756..9c65e73 100644
+--- a/.github/workflows/facebook_sapling__.github__workflows__reviewstack.dev-deploy.yml
++++ b/.github/workflows/facebook_sapling__.github__workflows__reviewstack.dev-deploy.yml
+@@ -12,9 +12,9 @@ jobs:
+       group: ${{ github.workflow }}-${{ github.ref }}
+     steps:
+       - name: Checkout Code
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: Setup Node.js
+-        uses: actions/setup-node@v4
++        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+         with:
+           node-version: '18'
+       - name: Install Yarn
+@@ -42,7 +42,7 @@ jobs:
+ 
+       # Push to the release branch.
+       - name: Deploy
+-        uses: peaceiris/actions-gh-pages@v4
++        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4
+         if: ${{ github.ref == 'refs/heads/main' }}
+         with:
+           github_token: ${{ secrets.GITHUB_TOKEN }}

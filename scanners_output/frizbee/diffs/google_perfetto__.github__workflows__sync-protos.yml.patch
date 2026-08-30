@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/google_perfetto__.github__workflows__sync-protos.yml b/.github/workflows/google_perfetto__.github__workflows__sync-protos.yml
+index f6ea0bd..47cf4cb 100644
+--- a/.github/workflows/google_perfetto__.github__workflows__sync-protos.yml
++++ b/.github/workflows/google_perfetto__.github__workflows__sync-protos.yml
+@@ -30,7 +30,7 @@ jobs:
+     timeout-minutes: 60
+     steps:
+       - name: Checkout repository
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           ref: main  # Always use main branch
+           fetch-depth: 0
+@@ -71,7 +71,7 @@ jobs:
+ 
+       - name: Create Pull Request
+         if: steps.check_changes.outputs.has_changes == 'true'
+-        uses: peter-evans/create-pull-request@v7
++        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
+         with:
+           commit-message: |
+             Sync generated proto files

@@ -1,0 +1,80 @@
+{
+  "workflow": "aws_aws-cdk__.github__workflows__request-cli-integ-test.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "Dangerous-Workflow": 1,
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Dangerous-Workflow",
+      "score": 0,
+      "reason": "dangerous workflow patterns detected",
+      "lines": [
+        19,
+        40
+      ],
+      "raw_details": [
+        "Warn: untrusted code checkout '${{ github.event.pull_request.head.sha }}': .github/workflows/aws_aws-cdk__.github__workflows__request-cli-integ-test.yml:40",
+        "Warn: untrusted code checkout '${{ github.event.pull_request.head.sha }}': .github/workflows/aws_aws-cdk__.github__workflows__request-cli-integ-test.yml:19"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#dangerous-workflow",
+        "short": "Determines if the project's GitHub Action workflows avoid dangerous patterns."
+      }
+    },
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 8,
+      "reason": "dependency not pinned by hash detected -- score normalized to 8",
+      "lines": [
+        20,
+        41
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_aws-cdk__.github__workflows__request-cli-integ-test.yml:20",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_aws-cdk__.github__workflows__request-cli-integ-test.yml:41",
+        "Info:   0 out of   2 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   2 out of   2 third-party GitHubAction dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 0,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1
+      ],
+      "raw_details": [
+        "Warn: no topLevel permission defined: .github/workflows/aws_aws-cdk__.github__workflows__request-cli-integ-test.yml:1",
+        "Info: no jobLevel write permissions found"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

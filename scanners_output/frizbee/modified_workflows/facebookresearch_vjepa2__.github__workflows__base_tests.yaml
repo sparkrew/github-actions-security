@@ -1,0 +1,29 @@
+name: UnitTests
+
+on: [push]
+
+jobs:
+  unittests:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+
+    steps:
+    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+    - name: Set up Python 3.12
+      uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+      with:
+        python-version: '3.12'
+    - name: Add conda to system path
+      run: |
+        # $CONDA is an environment variable pointing to the root of the miniconda directory
+        echo $CONDA/bin >> $GITHUB_PATH
+    - name: Install dependencies
+      run: |
+        conda create --name test-env python=3.12
+        conda install pytest
+        echo "Starting setup from $PWD"
+        pip install -e .
+    - name: Test with pytest
+      run: |
+        pytest tests

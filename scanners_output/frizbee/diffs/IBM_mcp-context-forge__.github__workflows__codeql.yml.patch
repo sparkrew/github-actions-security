@@ -1,0 +1,46 @@
+diff --git a/.github/workflows/IBM_mcp-context-forge__.github__workflows__codeql.yml b/.github/workflows/IBM_mcp-context-forge__.github__workflows__codeql.yml
+index 8f6e8cb..c7744ec 100644
+--- a/.github/workflows/IBM_mcp-context-forge__.github__workflows__codeql.yml
++++ b/.github/workflows/IBM_mcp-context-forge__.github__workflows__codeql.yml
+@@ -61,20 +61,20 @@ jobs:
+       # 0️⃣  Checkout source
+       # -------------------------------------------------------------
+       - name: ⬇️ Checkout code
+-        uses: actions/checkout@v5
++        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+ 
+       # -------------------------------------------------------------
+       # 1️⃣  Optional setup - runtimes for specific languages
+       # -------------------------------------------------------------
+       - name: 🐍 Setup Python
+         if: matrix.language == 'python'
+-        uses: actions/setup-python@v6
++        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+         with:
+           python-version: "3.x"
+ 
+       - name: 🟢 Setup Node.js
+         if: matrix.language == 'javascript-typescript'
+-        uses: actions/setup-node@v5
++        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+         with:
+           node-version: "20"
+ 
+@@ -82,7 +82,7 @@ jobs:
+       # 2️⃣  Initialize CodeQL
+       # -------------------------------------------------------------
+       - name: 🛠️ Initialize CodeQL
+-        uses: github/codeql-action/init@v3
++        uses: github/codeql-action/init@45580472a5bb82c4681c4ac726cfdb60060c2ee1 # v3
+         with:
+           languages: ${{ matrix.language }}
+           dependency-caching: true
+@@ -102,7 +102,7 @@ jobs:
+       # 4️⃣  Perform CodeQL analysis
+       # -------------------------------------------------------------
+       - name: 🔬 Perform CodeQL analysis
+-        uses: github/codeql-action/analyze@v3
++        uses: github/codeql-action/analyze@45580472a5bb82c4681c4ac726cfdb60060c2ee1 # v3
+         with:
+           category: "/language:${{ matrix.language }}"
+           upload: false

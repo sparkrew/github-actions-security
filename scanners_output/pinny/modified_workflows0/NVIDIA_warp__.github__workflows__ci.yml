@@ -1,0 +1,349 @@
+# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: CI
+
+on:
+  workflow_call:
+  workflow_dispatch:
+  push:
+    tags:
+      - v*
+    branches:
+      - main
+      - release-*
+  schedule: # Schedule workflow only runs on the default branch
+    - cron: "45 9 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  build-warp:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-2025
+            platform: windows
+            cuda-sub-packages: '["cudart", "nvcc", "nvrtc_dev", "nvjitlink"]'
+            cuda-non-cuda-packages: ''
+          - os: ubuntu-24.04
+            platform: ubuntu-x86_64
+            cuda-sub-packages: '["cudart-dev", "nvcc", "nvrtc-dev"]'
+            cuda-non-cuda-packages: '["libnvjitlink-dev"]'
+          - os: ubuntu-24.04-arm
+            platform: ubuntu-aarch64
+            cuda-sub-packages: '["cudart-dev", "nvcc", "nvrtc-dev"]'
+            cuda-non-cuda-packages: '["libnvjitlink-dev"]'
+          - os: macos-latest
+            platform: macos
+            cuda-sub-packages: ''
+            cuda-non-cuda-packages: ''
+    outputs:
+      artifact-url: ${{ steps.native-headers.outputs.artifact-url }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+        with:
+          lfs: true
+      
+      - name: Install uv
+        uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86
+        with:
+          version: "0.8.23"
+      
+      - name: Set up Python
+        run: uv python install
+      
+      - name: Cache build artifacts
+        if: matrix.platform != 'macos'
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # actions/cache/restore@v4 | v4.3.0
+        id: cache-build
+        with:
+          path: warp/bin/
+          key: build-${{ matrix.platform }}-${{ hashFiles('build_lib.py', 'warp/build_dll.py', 'build_llvm.py', 'warp/native/**/*.cpp', 'warp/native/**/*.cu', 'warp/native/**/*.h', 'deps/libmathdx-deps.packman.xml') }}
+      
+      - name: Install CTK (with non-CUDA packages)
+        if: steps.cache-build.outputs.cache-hit != 'true' && matrix.cuda-sub-packages != '' && matrix.cuda-non-cuda-packages != ''
+        uses: Jimver/cuda-toolkit@1a3c14e26833ccf292b268f9a790fb47dea7b2da
+        with:
+          sub-packages: ${{ matrix.cuda-sub-packages }}
+          non-cuda-sub-packages: ${{ matrix.cuda-non-cuda-packages }}
+          method: 'network'
+      
+      - name: Install CTK (without non-CUDA packages)
+        if: steps.cache-build.outputs.cache-hit != 'true' && matrix.cuda-sub-packages != '' && matrix.cuda-non-cuda-packages == ''
+        uses: Jimver/cuda-toolkit@c35baa1a18fd1fc9dcf47c5bd839bf30559c0bc3  # https://github.com/Jimver/cuda-toolkit/issues/395
+        with:
+          sub-packages: ${{ matrix.cuda-sub-packages }}
+          method: 'network'
+      
+      - name: Build Warp
+        if: steps.cache-build.outputs.cache-hit != 'true'
+        run: uv run build_lib.py
+      
+      - name: Upload build artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2
+        with:
+          name: build-artifact-${{ matrix.platform }}
+          path: warp/bin/
+      
+      - name: Upload native headers
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2
+        id: native-headers
+        with:
+          name: native-headers-${{ matrix.platform }}
+          path: |
+            warp/native/exports.h
+            warp/native/version.h
+
+  test-warp:
+    runs-on: ${{ matrix.os }}
+    needs: build-warp
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-2025
+            platform: windows
+          - os: ubuntu-24.04
+            platform: ubuntu-x86_64
+          - os: ubuntu-24.04-arm
+            platform: ubuntu-aarch64
+          - os: macos-latest
+            platform: macos
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+        with:
+          lfs: true
+      
+      - name: Install uv
+        uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86
+        with:
+          version: "0.8.23"
+      
+      - name: Set up Python
+        run: uv python install
+      
+      - name: Download Warp build artifact
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: build-artifact-${{ matrix.platform }}
+          path: warp/bin/
+      
+      - name: Run Tests
+        run: uv run --extra dev -m warp.tests --junit-report-xml rspec.xml -s autodetect
+      
+      - name: Test Summary
+        uses: test-summary/action@032c8a9cec6aaa3c20228112cae6ca10a3b29336 # test-summary/action@v2.3
+        with:
+          paths: "rspec.xml"
+          show: "fail"
+        if: always()
+
+  test-warp-gpu:
+    runs-on: linux-amd64-gpu-h100-latest-1
+    needs: build-warp
+    # Only run on PRs (pull-request branches) or scheduled runs
+    if: github.repository == 'NVIDIA/warp' && (startsWith(github.ref, 'refs/heads/pull-request/') || github.event_name == 'schedule')
+    container:
+      image: ubuntu:24.04
+      options: -u root --security-opt seccomp=unconfined --shm-size 16g
+      env:
+        NVIDIA_VISIBLE_DEVICES: ${{ env.NVIDIA_VISIBLE_DEVICES }}
+    timeout-minutes: 45
+    steps:
+      - name: Display GPU information
+        run: nvidia-smi
+
+      - name: Setup proxy cache
+        uses: nv-gha-runners/setup-proxy-cache@c5e8f6fd27b493abfd6af230e6a5d4bf43d1d766 # nv-gha-runners/setup-proxy-cache@main
+        with:
+          enable-apt: true
+
+      - name: Install git and git-lfs
+        run: |
+          apt-get update
+          apt-get install -y git git-lfs
+          git lfs install
+
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+        with:
+          lfs: true
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86
+        with:
+          version: "0.8.23"
+      
+      - name: Set up Python
+        run: uv python install
+      
+      - name: Download Warp build artifact
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: build-artifact-ubuntu-x86_64
+          path: warp/bin/
+      
+      - name: Run Tests
+        run: uv run --extra dev --extra torch-cu12 -m warp.tests --junit-report-xml rspec.xml -s autodetect
+      
+      - name: Test Summary
+        uses: test-summary/action@032c8a9cec6aaa3c20228112cae6ca10a3b29336 # test-summary/action@v2.3
+        with:
+          paths: "rspec.xml"
+          show: "fail"
+        if: always()
+
+  build-docs:
+    runs-on: ubuntu-latest
+    needs: build-warp
+    outputs:
+      artifact-url: ${{ steps.build-docs-output.outputs.artifact-url }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - name: Install uv
+        uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86
+        with:
+          version: "0.8.23"
+      - name: Set up Python
+        run: uv python install
+      - name: Download Warp binaries
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: build-artifact-ubuntu-x86_64
+          path: warp/bin/
+      - name: Build Sphinx documentation
+        run: |
+          uv run --extra docs build_docs.py
+      - name: Upload artifacts
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2
+        id: build-docs-output
+        with:
+          name: build-docs-output
+          path: |
+            warp/__init__.pyi
+            docs/api_reference
+            docs/language_reference
+
+  check-build-docs-output:
+    runs-on: ubuntu-latest
+    needs: build-docs
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - name: Download build_docs.py output
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: build-docs-output
+          path: .
+      - name: Check API reference docs
+        env:
+          ARTIFACT_URL: ${{ needs.build-docs.outputs.artifact-url }}
+        run: >
+          git diff --exit-code docs/api_reference docs/language_reference ||
+          (echo "Please run build_docs.py (or download from $ARTIFACT_URL) and add docs/api_reference and docs/language_reference to your pull request." && false)
+      - name: Check stubs
+        env:
+          ARTIFACT_URL: ${{ needs.build-docs.outputs.artifact-url }}
+        run: >
+          git diff --exit-code warp/__init__.pyi ||
+          (echo "Please run build_docs.py (or download from $ARTIFACT_URL) and add warp/__init__.pyi to your pull request." && false)
+
+  check-generated-files:
+    runs-on: ubuntu-latest
+    needs: build-warp
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - name: Install uv
+        uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86
+        with:
+          version: "0.8.23"
+      - name: Set up Python
+        run: uv python install
+      - name: Download native headers
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: native-headers-ubuntu-x86_64
+          path: warp/native/
+      - name: Check version consistency
+        run: uv run --no-project tools/ci/publishing/check_version_consistency.py --verbose
+      - name: Check exports.h is committed
+        run: >
+          git diff --exit-code warp/native/exports.h ||
+          (echo "Please run build_lib.py and add warp/native/exports.h to your pull request." && false)
+      - name: Check version.h is committed
+        run: >
+          git diff --exit-code warp/native/version.h ||
+          (echo "Please run build_lib.py and add warp/native/version.h to your pull request." && false)
+
+  check-unnamespaced-symbols:
+    runs-on: ubuntu-latest
+    needs: build-warp
+    steps:
+      - name: Download Warp build artifact
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: build-artifact-ubuntu-x86_64
+          path: warp/bin/
+      - name: Check for un-namespaced symbols
+        run: |
+          echo "Checking for un-namespaced symbols..."
+          LIBRARIES_TO_CHECK="warp/bin/warp.so warp/bin/warp-clang.so"
+          found_symbols=""
+
+          for lib in $LIBRARIES_TO_CHECK; do
+            echo "--> Checking $lib"
+            if [ ! -f "$lib" ]; then
+              echo "ERROR: $lib not found"
+              found_symbols="true"
+              continue
+            fi
+            output=$(readelf -Ws "$lib" | awk '$7 ~ /^[0-9]+$/ && $8 !~ /^_?wp_/ {print $8}' | grep -Ev '^(_Z|__|\.)' || true)
+            
+            if [ -n "$output" ]; then
+              echo "ERROR: Found un-namespaced symbols in $lib:"
+              echo "$output"
+              found_symbols="true"
+            fi
+          done
+
+          if [ -n "$found_symbols" ]; then
+            echo "FAIL: Un-namespaced symbols detected. Please prefix them with 'wp_' or '_wp_'."
+            exit 1
+          fi
+
+          echo "SUCCESS: All symbols are correctly namespaced."
+
+  # Validate that the type stub file (warp/__init__.pyi) passes pyright's type checking.
+  pyright-stubs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - name: Install uv
+        uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86
+        with:
+          version: "0.8.23"
+      - name: Set up Python
+        run: uv python install
+      - name: Run pyright on stub file
+        run: uvx pyright warp/__init__.pyi

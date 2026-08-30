@@ -1,0 +1,79 @@
+# Copyright 2024 NVIDIA CORPORATION
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: Image
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        arch:
+          - amd64
+          - arm64
+    runs-on: linux-${{ matrix.arch }}-cpu4
+    permissions:
+      contents: read
+      id-token: write
+      packages: write
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+        name: Check out code
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # docker/login-action@v3 | v3.7.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup Go Proxy
+        id: setup-go-proxy
+        uses: nv-gha-runners/setup-artifactory-go-proxy@a15ec16ff434e8ca3b0f76919f902080e66ebc14 # nv-gha-runners/setup-artifactory-go-proxy@main
+      - name: Build image
+        env:
+          IMAGE_NAME: ghcr.io/nvidia/k8s-device-plugin
+          VERSION: ${{ inputs.version }}-${{ matrix.arch }}
+          PUSH_ON_BUILD: true
+          GOPROXY: ${{ steps.setup-go-proxy.outputs.goproxy-url }}
+          DOCKER_BUILD_PLATFORM_OPTIONS: "--platform=linux/${{ matrix.arch }}"
+        run: |
+          echo "${VERSION}"
+          make -f deployments/container/Makefile build
+
+  create-manifest:
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+        name: Check out code
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # docker/login-action@v3 | v3.7.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build Manifest
+        env:
+          MULTIARCH_IMAGE: ghcr.io/nvidia/k8s-device-plugin:${{ inputs.version }}
+        run: |
+          docker manifest create \
+            ${MULTIARCH_IMAGE} \
+            ghcr.io/nvidia/k8s-device-plugin:${{ inputs.version }}-amd64 \
+            ghcr.io/nvidia/k8s-device-plugin:${{ inputs.version }}-arm64
+          docker manifest push ${MULTIARCH_IMAGE}

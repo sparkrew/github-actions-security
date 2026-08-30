@@ -1,0 +1,26 @@
+{
+  "workflow": "facebook_openzl__.github__workflows__wheels.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 91,
+      "column": "",
+      "job": "upload_all",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch",
+        "pull_request",
+        "push",
+        "release"
+      ]
+    }
+  ]
+}

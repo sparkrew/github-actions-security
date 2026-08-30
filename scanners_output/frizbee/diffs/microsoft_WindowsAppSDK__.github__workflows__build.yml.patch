@@ -1,0 +1,21 @@
+diff --git a/.github/workflows/microsoft_WindowsAppSDK__.github__workflows__build.yml b/.github/workflows/microsoft_WindowsAppSDK__.github__workflows__build.yml
+index 81f5ac0..097aaf7 100644
+--- a/.github/workflows/microsoft_WindowsAppSDK__.github__workflows__build.yml
++++ b/.github/workflows/microsoft_WindowsAppSDK__.github__workflows__build.yml
+@@ -16,13 +16,13 @@ jobs:
+ 
+     steps:
+     - name: checkout project
+-      uses: actions/checkout@v2
++      uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       
+     - name: setup msbuild
+-      uses: microsoft/setup-msbuild@v1
++      uses: microsoft/setup-msbuild@ede762b26a2de8d110bb5a3db4d7e0e080c0e917 # v1
+       
+     - name: setup nuget
+-      uses: NuGet/setup-nuget@v1.0.2
++      uses: NuGet/setup-nuget@255f46e14d51fbc603743e2aa2907954463fbeb9 # v1.0.2
+ 
+     - name: restore project packages
+       run: nuget restore WindowsAppRuntime.sln

@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/aws_aws-sdk-ruby__.github__workflows__pull-request-build.yaml b/.github/workflows/aws_aws-sdk-ruby__.github__workflows__pull-request-build.yaml
+index b544e92..13c7c17 100644
+--- a/.github/workflows/aws_aws-sdk-ruby__.github__workflows__pull-request-build.yaml
++++ b/.github/workflows/aws_aws-sdk-ruby__.github__workflows__pull-request-build.yaml
+@@ -37,7 +37,7 @@ jobs:
+           aws-region: us-west-2
+       - name: Checkout
+         if: github.event_name == 'workflow_dispatch'
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+       - name: Download Build Script
+         run: |
+           aws s3 cp s3://aws-sdk-builds-github-assets-prod-us-west-2/$SCRIPT_LOCATION ./$DOWNLOAD_FOLDER/$SCRIPT_LOCATION --no-progress

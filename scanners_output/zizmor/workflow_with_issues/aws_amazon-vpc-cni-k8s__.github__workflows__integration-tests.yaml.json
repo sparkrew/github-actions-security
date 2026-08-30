@@ -1,0 +1,31 @@
+{
+  "workflow": "aws_amazon-vpc-cni-k8s__.github__workflows__integration-tests.yaml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "artipacked": 1,
+      "cache-poisoning": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "aws_amazon-vpc-cni-k8s__.github__workflows__integration-tests.yaml",
+      "line": 18,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "cache-poisoning",
+      "level": "error",
+      "message": "runtime artifacts potentially vulnerable to a cache poisoning attack",
+      "workflow": "aws_amazon-vpc-cni-k8s__.github__workflows__integration-tests.yaml",
+      "line": 3,
+      "column": 1,
+      "note": "audit confidence \u2192 Low"
+    }
+  ]
+}

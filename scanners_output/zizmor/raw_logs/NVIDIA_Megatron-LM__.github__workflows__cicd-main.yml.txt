@@ -1,0 +1,573 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:54:9
+   [1m[94m|[0m
+[1m[94m54 |[0m         - name: Checkout repository
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m55 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m56 |[0m [1m[33m|[0m         with:
+[1m[94m57 |[0m [1m[33m|[0m           token: ${{ env.GITHUB_TOKEN }}
+   [1m[94m|[0m [1m[33m|________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:147:9
+    [1m[94m|[0m
+[1m[94m147 |[0m         - name: Checkout
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m148 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m149 |[0m [1m[33m|[0m         with:
+[1m[94m150 |[0m [1m[33m|[0m           fetch-depth: 0
+    [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:210:9
+    [1m[94m|[0m
+[1m[94m210 |[0m         - name: Checkout
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m211 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+    [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:253:9
+    [1m[94m|[0m
+[1m[94m253 |[0m         - name: Checkout MBridge and create testing branch
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m254 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m258 |[0m [1m[33m|[0m           path: megatron-bridge
+[1m[94m259 |[0m [1m[33m|[0m           token: ${{ secrets.PAT }}
+    [1m[94m|[0m [1m[33m|___________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:349:9
+    [1m[94m|[0m
+[1m[94m349 |[0m         - name: Checkout
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m350 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m351 |[0m [1m[33m|[0m         with:
+[1m[94m352 |[0m [1m[33m|[0m           ref: ${{ steps.sha.outputs.main }}
+    [1m[94m|[0m [1m[33m|____________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:472:9
+    [1m[94m|[0m
+[1m[94m472 |[0m         - name: Checkout
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m473 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+    [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:512:9
+    [1m[94m|[0m
+[1m[94m512 |[0m         - name: Checkout
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m513 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+    [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:547:9
+    [1m[94m|[0m
+[1m[94m547 |[0m         - name: Checkout
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m548 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+    [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:651:9
+    [1m[94m|[0m
+[1m[94m651 |[0m         - name: Checkout
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m652 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+    [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:684:9
+    [1m[94m|[0m
+[1m[94m684 |[0m         - name: Checkout
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m685 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+    [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:749:9
+    [1m[94m|[0m
+[1m[94m749 |[0m         - name: Checkout
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m750 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+    [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:32:3
+   [1m[94m|[0m
+[1m[94m32 |[0m   id-token: write
+   [1m[94m|[0m   [1m[91m^^^^^^^^^^^^^^^[0m [1m[91mid-token: write is overly broad at the workflow level[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:666:3
+    [1m[94m|[0m
+[1m[94m666 |[0m [1m[91m/[0m   Nemo_CICD_Test:
+[1m[94m667 |[0m [1m[91m|[0m     needs:
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m681 |[0m [1m[91m|[0m     runs-on: ubuntu-latest
+[1m[94m682 |[0m [1m[91m|[0m     permissions: write-all
+    [1m[94m|[0m [1m[91m|[0m     [1m[91m^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91muses write-all permissions[0m
+[1m[94m683 |[0m [1m[91m|[0m     steps:
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m705 |[0m [1m[91m|[0m               exit 1
+[1m[94m706 |[0m [1m[91m|[0m           fi
+    [1m[94m|[0m [1m[91m|____________^[0m [1m[91mthis job[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:71:9
+    [1m[94m|[0m
+[1m[94m 71 |[0m         - name: Set maintainer status
+    [1m[94m|[0m           [1m[96m---------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m 72 |[0m           id: check-membership
+[1m[94m...[0m
+[1m[94m 76 |[0m             SCHEDULED_JOB: ${{ github.event_name == 'schedule' }}
+[1m[94m 77 |[0m [1m[96m/[0m         run: |
+[1m[94m 78 |[0m [1m[96m|[0m           # Skip SSO check for scheduled jobs, main branch, or merge groups
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m126 |[0m [1m[96m|[0m             echo "is_maintainer=false" | tee -a $GITHUB_OUTPUT
+[1m[94m127 |[0m [1m[96m|[0m           fi
+    [1m[94m|[0m [1m[96m|____________-[0m [1m[96mhelp: env.SCHEDULED_JOB may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:71:9
+    [1m[94m|[0m
+[1m[94m 71 |[0m         - name: Set maintainer status
+    [1m[94m|[0m           [1m[94m---------------------------[0m [1m[94minfo: this step[0m
+[1m[94m 72 |[0m           id: check-membership
+[1m[94m...[0m
+[1m[94m 76 |[0m             SCHEDULED_JOB: ${{ github.event_name == 'schedule' }}
+[1m[94m 77 |[0m [1m[94m/[0m         run: |
+[1m[94m 78 |[0m [1m[94m|[0m           # Skip SSO check for scheduled jobs, main branch, or merge groups
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m126 |[0m [1m[94m|[0m             echo "is_maintainer=false" | tee -a $GITHUB_OUTPUT
+[1m[94m127 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: steps.check-sso.outputs.is_member may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:71:9
+    [1m[94m|[0m
+[1m[94m 71 |[0m         - name: Set maintainer status
+    [1m[94m|[0m           [1m[96m---------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m 72 |[0m           id: check-membership
+[1m[94m...[0m
+[1m[94m 76 |[0m             SCHEDULED_JOB: ${{ github.event_name == 'schedule' }}
+[1m[94m 77 |[0m [1m[96m/[0m         run: |
+[1m[94m 78 |[0m [1m[96m|[0m           # Skip SSO check for scheduled jobs, main branch, or merge groups
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m126 |[0m [1m[96m|[0m             echo "is_maintainer=false" | tee -a $GITHUB_OUTPUT
+[1m[94m127 |[0m [1m[96m|[0m           fi
+    [1m[94m|[0m [1m[96m|____________-[0m [1m[96mhelp: env.DISABLE_EXTERNAL_CONTRIBUTOR may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:71:9
+    [1m[94m|[0m
+[1m[94m 71 |[0m         - name: Set maintainer status
+    [1m[94m|[0m           [1m[94m---------------------------[0m [1m[94minfo: this step[0m
+[1m[94m 72 |[0m           id: check-membership
+[1m[94m...[0m
+[1m[94m 76 |[0m             SCHEDULED_JOB: ${{ github.event_name == 'schedule' }}
+[1m[94m 77 |[0m [1m[94m/[0m         run: |
+[1m[94m 78 |[0m [1m[94m|[0m           # Skip SSO check for scheduled jobs, main branch, or merge groups
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m126 |[0m [1m[94m|[0m             echo "is_maintainer=false" | tee -a $GITHUB_OUTPUT
+[1m[94m127 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: steps.check-sso.outputs.is_member may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:71:9
+    [1m[94m|[0m
+[1m[94m 71 |[0m         - name: Set maintainer status
+    [1m[94m|[0m           [1m[94m---------------------------[0m [1m[94minfo: this step[0m
+[1m[94m 72 |[0m           id: check-membership
+[1m[94m...[0m
+[1m[94m 76 |[0m             SCHEDULED_JOB: ${{ github.event_name == 'schedule' }}
+[1m[94m 77 |[0m [1m[94m/[0m         run: |
+[1m[94m 78 |[0m [1m[94m|[0m           # Skip SSO check for scheduled jobs, main branch, or merge groups
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m126 |[0m [1m[94m|[0m             echo "is_maintainer=false" | tee -a $GITHUB_OUTPUT
+[1m[94m127 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: fromJSON(steps.get-pr-info.outputs.pr-info || '{}').user.login may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:166:9
+    [1m[94m|[0m
+[1m[94m166 |[0m         - name: Run linting
+    [1m[94m|[0m           [1m[94m-----------------[0m [1m[94minfo: this step[0m
+[1m[94m167 |[0m           if: startsWith(github.ref, 'refs/heads/pull-request/')
+[1m[94m168 |[0m [1m[94m/[0m         run: |
+[1m[94m169 |[0m [1m[94m|[0m           export PATH=".venv/bin:$PATH"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m174 |[0m [1m[94m|[0m           export SKIP_DOCS=false
+[1m[94m175 |[0m [1m[94m|[0m           bash tools/autoformat.sh
+    [1m[94m|[0m [1m[94m|__________________________________-[0m [1m[94minfo: fromJSON(steps.get-pr-info.outputs.pr-info).base.ref may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:187:9
+    [1m[94m|[0m
+[1m[94m187 |[0m         - name: Running CI tests
+    [1m[94m|[0m           [1m[94m----------------------[0m [1m[94minfo: this step[0m
+[1m[94m188 |[0m [1m[94m/[0m         run: |
+[1m[94m189 |[0m [1m[94m|[0m           echo "Running CI tests"
+[1m[94m190 |[0m [1m[94m|[0m           echo "is_merge_group: ${{ needs.pre-flight.outputs.is_merge_group }}"
+    [1m[94m|[0m [1m[94m|_______________________________________________________________________________-[0m [1m[94minfo: needs.pre-flight.outputs.is_merge_group may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:218:9
+    [1m[94m|[0m
+[1m[94m218 |[0m         - name: Select MBridge test suite
+    [1m[94m|[0m           [1m[94m-------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m219 |[0m           id: select-mbridge-test-suite
+[1m[94m220 |[0m           env:
+[1m[94m221 |[0m             GH_TOKEN: ${{ secrets.PAT }}
+[1m[94m222 |[0m [1m[94m/[0m         run: |
+[1m[94m223 |[0m [1m[94m|[0m           PR_NUMBER=${{ fromJSON(steps.get-pr-info.outputs.pr-info || '{}').number }}
+[1m[94m224 |[0m [1m[94m|[0m           TEST_SUITE=$(gh pr view $PR_NUMBER --json labels | jq -r 'if [.labels[].name] | any(. == "Run MBridge tests") then "all" [1m[94m...[0m
+[1m[94m225 |[0m [1m[94m|[0m           echo "main=$TEST_SUITE" | tee -a $GITHUB_OUTPUT
+    [1m[94m|[0m [1m[94m|_________________________________________________________-[0m [1m[94minfo: fromJSON(steps.get-pr-info.outputs.pr-info || '{}').number may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:261:9
+    [1m[94m|[0m
+[1m[94m261 |[0m         - name: Create testing branch
+    [1m[94m|[0m           [1m[96m---------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m262 |[0m           env:
+[1m[94m263 |[0m             MBRIDGE_BRANCH_NAME: mcore-testing-${{ fromJSON(steps.get-pr-info.outputs.pr-info || '{}').number || github.run_id }}
+[1m[94m264 |[0m [1m[96m/[0m         run: |
+[1m[94m265 |[0m [1m[96m|[0m           cd megatron-bridge
+[1m[94m266 |[0m [1m[96m|[0m           git fetch origin main
+[1m[94m267 |[0m [1m[96m|[0m           git checkout -b ${{ env.MBRIDGE_BRANCH_NAME }} origin/main
+[1m[94m268 |[0m [1m[96m|[0m           git push origin ${{ env.MBRIDGE_BRANCH_NAME }} --force
+    [1m[94m|[0m [1m[96m|________________________________________________________________-[0m [1m[96mhelp: env.MBRIDGE_BRANCH_NAME may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:261:9
+    [1m[94m|[0m
+[1m[94m261 |[0m         - name: Create testing branch
+    [1m[94m|[0m           [1m[96m---------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m262 |[0m           env:
+[1m[94m263 |[0m             MBRIDGE_BRANCH_NAME: mcore-testing-${{ fromJSON(steps.get-pr-info.outputs.pr-info || '{}').number || github.run_id }}
+[1m[94m264 |[0m [1m[96m/[0m         run: |
+[1m[94m265 |[0m [1m[96m|[0m           cd megatron-bridge
+[1m[94m266 |[0m [1m[96m|[0m           git fetch origin main
+[1m[94m267 |[0m [1m[96m|[0m           git checkout -b ${{ env.MBRIDGE_BRANCH_NAME }} origin/main
+[1m[94m268 |[0m [1m[96m|[0m           git push origin ${{ env.MBRIDGE_BRANCH_NAME }} --force
+    [1m[94m|[0m [1m[96m|________________________________________________________________-[0m [1m[96mhelp: env.MBRIDGE_BRANCH_NAME may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:270:9
+    [1m[94m|[0m
+[1m[94m270 |[0m         - name: Get merge commit sha
+    [1m[94m|[0m           [1m[94m--------------------------[0m [1m[94minfo: this step[0m
+[1m[94m271 |[0m           shell: bash -x -e -u -o pipefail {0}
+[1m[94m...[0m
+[1m[94m275 |[0m             IS_MERGE_GROUP: ${{ github.event_name == 'merge_group' }}
+[1m[94m276 |[0m [1m[94m/[0m         run: |
+[1m[94m277 |[0m [1m[94m|[0m           if [[ "$IS_PR" == "true" ]]; then
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m283 |[0m [1m[94m|[0m           fi
+[1m[94m284 |[0m [1m[94m|[0m           echo "main=${SHA}" | tee -a "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[94m|______________________________________________________-[0m [1m[94minfo: fromJSON(steps.get-pr-info.outputs.pr-info || '{}').merge_commit_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:270:9
+    [1m[94m|[0m
+[1m[94m270 |[0m         - name: Get merge commit sha
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m271 |[0m           shell: bash -x -e -u -o pipefail {0}
+[1m[94m...[0m
+[1m[94m275 |[0m             IS_MERGE_GROUP: ${{ github.event_name == 'merge_group' }}
+[1m[94m276 |[0m [1m[91m/[0m         run: |
+[1m[94m277 |[0m [1m[91m|[0m           if [[ "$IS_PR" == "true" ]]; then
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m283 |[0m [1m[91m|[0m           fi
+[1m[94m284 |[0m [1m[91m|[0m           echo "main=${SHA}" | tee -a "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|______________________________________________________^[0m [1m[91mgithub.event.merge_group.head_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:305:9
+    [1m[94m|[0m
+[1m[94m305 |[0m         - name: Delete testing branch
+    [1m[94m|[0m           [1m[96m---------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m306 |[0m           if: always()
+[1m[94m307 |[0m           env:
+[1m[94m308 |[0m             MBRIDGE_BRANCH_NAME: mcore-testing-${{ fromJSON(steps.get-pr-info.outputs.pr-info || '{}').number || github.run_id }}
+[1m[94m309 |[0m [1m[96m/[0m         run: |
+[1m[94m310 |[0m [1m[96m|[0m           cd megatron-bridge
+[1m[94m311 |[0m [1m[96m|[0m           git push origin --delete ${{ env.MBRIDGE_BRANCH_NAME }}
+    [1m[94m|[0m [1m[96m|_________________________________________________________________-[0m [1m[96mhelp: env.MBRIDGE_BRANCH_NAME may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:333:9
+    [1m[94m|[0m
+[1m[94m333 |[0m         - name: Get merge commit sha
+    [1m[94m|[0m           [1m[94m--------------------------[0m [1m[94minfo: this step[0m
+[1m[94m334 |[0m           shell: bash -x -e -u -o pipefail {0}
+[1m[94m...[0m
+[1m[94m338 |[0m             IS_MERGE_GROUP: ${{ github.event_name == 'merge_group' }}
+[1m[94m339 |[0m [1m[94m/[0m         run: |
+[1m[94m340 |[0m [1m[94m|[0m           if [[ "$IS_PR" == "true" ]]; then
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m346 |[0m [1m[94m|[0m           fi
+[1m[94m347 |[0m [1m[94m|[0m           echo "main=${SHA}" | tee -a "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[94m|______________________________________________________-[0m [1m[94minfo: fromJSON(steps.get-pr-info.outputs.pr-info || '{}').merge_commit_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:333:9
+    [1m[94m|[0m
+[1m[94m333 |[0m         - name: Get merge commit sha
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m334 |[0m           shell: bash -x -e -u -o pipefail {0}
+[1m[94m...[0m
+[1m[94m338 |[0m             IS_MERGE_GROUP: ${{ github.event_name == 'merge_group' }}
+[1m[94m339 |[0m [1m[91m/[0m         run: |
+[1m[94m340 |[0m [1m[91m|[0m           if [[ "$IS_PR" == "true" ]]; then
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m346 |[0m [1m[91m|[0m           fi
+[1m[94m347 |[0m [1m[91m|[0m           echo "main=${SHA}" | tee -a "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|______________________________________________________^[0m [1m[91mgithub.event.merge_group.head_sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:365:9
+    [1m[94m|[0m
+[1m[94m365 |[0m         - name: Has lts label
+    [1m[94m|[0m           [1m[94m-------------------[0m [1m[94minfo: this step[0m
+[1m[94m366 |[0m           id: has-lts-label
+[1m[94m367 |[0m           env:
+[1m[94m368 |[0m             GH_TOKEN: ${{ secrets.PAT }}
+[1m[94m369 |[0m [1m[94m/[0m         run: |
+[1m[94m370 |[0m [1m[94m|[0m           PR_NUMBER=${{ fromJSON(steps.get-pr-info.outputs.pr-info || '{}').number }}
+[1m[94m371 |[0m [1m[94m|[0m           HAS_LTS_LABEL=$(gh pr view $PR_NUMBER --json labels | jq '[.labels[].name] | any(. == "container::lts")') || echo "false"
+[1m[94m372 |[0m [1m[94m|[0m           echo "main=$HAS_LTS_LABEL" | tee -a $GITHUB_OUTPUT
+    [1m[94m|[0m [1m[94m|____________________________________________________________-[0m [1m[94minfo: fromJSON(steps.get-pr-info.outputs.pr-info || '{}').number may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:555:9
+    [1m[94m|[0m
+[1m[94m555 |[0m         - name: Has Run tests label
+    [1m[94m|[0m           [1m[94m-------------------------[0m [1m[94minfo: this step[0m
+[1m[94m556 |[0m           id: has-run-tests-label
+[1m[94m557 |[0m           env:
+[1m[94m558 |[0m             GH_TOKEN: ${{ secrets.PAT }}
+[1m[94m559 |[0m [1m[94m/[0m         run: |
+[1m[94m560 |[0m [1m[94m|[0m           PR_NUMBER=${{ fromJSON(steps.get-pr-info.outputs.pr-info || '{}').number }}
+[1m[94m561 |[0m [1m[94m|[0m           HAS_RUN_TESTS_LABEL=$(gh pr view $PR_NUMBER --json labels | jq '[.labels[].name] | any(. == "Run tests")') || echo "false"
+[1m[94m562 |[0m [1m[94m|[0m           echo "main=$HAS_RUN_TESTS_LABEL" | tee -a $GITHUB_OUTPUT
+    [1m[94m|[0m [1m[94m|__________________________________________________________________-[0m [1m[94minfo: fromJSON(steps.get-pr-info.outputs.pr-info || '{}').number may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:564:9
+    [1m[94m|[0m
+[1m[94m564 |[0m         - name: Has Run functional tests label
+    [1m[94m|[0m           [1m[94m------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m565 |[0m           id: has-run-functional-tests-label
+[1m[94m...[0m
+[1m[94m568 |[0m             IS_CI_WORKLOAD: ${{ needs.pre-flight.outputs.is_ci_workload }}
+[1m[94m569 |[0m [1m[94m/[0m         run: |
+[1m[94m570 |[0m [1m[94m|[0m           PR_NUMBER=${{ fromJSON(steps.get-pr-info.outputs.pr-info || '{}').number }}
+[1m[94m571 |[0m [1m[94m|[0m           HAS_RUN_FUNCTIONAL_TESTS_LABEL=$(gh pr view $PR_NUMBER --json labels | jq '[.labels[].name] | any(. == "Run functional te[1m[94m...[0m
+[1m[94m572 |[0m [1m[94m|[0m           HAS_RUN_FUNCTIONAL_TESTS_LABEL=${HAS_RUN_FUNCTIONAL_TESTS_LABEL:-$IS_CI_WORKLOAD}
+[1m[94m573 |[0m [1m[94m|[0m           echo "main=$HAS_RUN_FUNCTIONAL_TESTS_LABEL" | tee -a $GITHUB_OUTPUT
+    [1m[94m|[0m [1m[94m|_____________________________________________________________________________-[0m [1m[94minfo: fromJSON(steps.get-pr-info.outputs.pr-info || '{}').number may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:794:9
+    [1m[94m|[0m
+[1m[94m794 |[0m         - name: Extract PR number from merge group
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m795 |[0m           id: get-pr-number
+[1m[94m796 |[0m [1m[91m/[0m         run: |
+[1m[94m797 |[0m [1m[91m|[0m           # Extract PR number from merge group head_ref (format: refs/heads/gh-readonly-queue/main/pr-<number>-<sha>)
+[1m[94m798 |[0m [1m[91m|[0m           PR_NUMBER=$(echo "${{ github.event.merge_group.head_ref }}" | sed -n 's/.*\/pr-\([0-9]*\)-.*/\1/p')
+[1m[94m799 |[0m [1m[91m|[0m           echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+    [1m[94m|[0m [1m[91m|_______________________________________________________^[0m [1m[91mgithub.event.merge_group.head_ref may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:801:9
+    [1m[94m|[0m
+[1m[94m801 |[0m         - name: Comment on PR with action run URL
+    [1m[94m|[0m           [1m[94m---------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m802 |[0m           uses: actions/github-script@v7
+[1m[94m803 |[0m           with:
+[1m[94m804 |[0m             github-token: ${{ secrets.PAT }}
+[1m[94m805 |[0m [1m[94m/[0m           script: |
+[1m[94m806 |[0m [1m[94m|[0m             const prNumber = ${{ steps.get-pr-number.outputs.pr_number }};
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m813 |[0m [1m[94m|[0m               body: `🔄 Merge queue validation started!\n\nYou can track the progress here: ${runUrl}`
+[1m[94m814 |[0m [1m[94m|[0m             });
+    [1m[94m|[0m [1m[94m|_______________-[0m [1m[94minfo: steps.get-pr-number.outputs.pr_number may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:62:9
+   [1m[94m|[0m
+[1m[94m62 |[0m         uses: nv-gha-runners/get-pr-info@main
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:153:9
+    [1m[94m|[0m
+[1m[94m153 |[0m         uses: astral-sh/setup-uv@v1
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:164:9
+    [1m[94m|[0m
+[1m[94m164 |[0m         uses: nv-gha-runners/get-pr-info@main
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:216:9
+    [1m[94m|[0m
+[1m[94m216 |[0m         uses: nv-gha-runners/get-pr-info@main
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:251:9
+    [1m[94m|[0m
+[1m[94m251 |[0m         uses: nv-gha-runners/get-pr-info@main
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:287:9
+    [1m[94m|[0m
+[1m[94m287 |[0m         uses: convictional/trigger-workflow-and-wait@v1.6.5
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:331:9
+    [1m[94m|[0m
+[1m[94m331 |[0m         uses: nv-gha-runners/get-pr-info@main
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:427:9
+    [1m[94m|[0m
+[1m[94m427 |[0m         uses: docker/setup-buildx-action@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:430:9
+    [1m[94m|[0m
+[1m[94m430 |[0m         uses: docker/build-push-action@v6
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:553:9
+    [1m[94m|[0m
+[1m[94m553 |[0m         uses: nv-gha-runners/get-pr-info@main
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:774:9
+    [1m[94m|[0m
+[1m[94m774 |[0m         uses: codecov/codecov-action@v5
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#cache-poisoning\cache-poisoning]8;;\][0m: [1mruntime artifacts potentially vulnerable to a cache poisoning attack[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml:16:1
+    [1m[94m|[0m
+[1m[94m 16 |[0m [1m[91m/[0m on:
+[1m[94m 17 |[0m [1m[91m|[0m   schedule:
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m 24 |[0m [1m[91m|[0m     types: [checks_requested]
+[1m[94m 25 |[0m [1m[91m|[0m   workflow_dispatch:
+    [1m[94m|[0m [1m[91m|____________________^[0m [1m[91mgenerally used when publishing artifacts generated at runtime[0m
+[1m[94m 26 |[0m
+[1m[94m...[0m
+[1m[94m152 |[0m         - name: Install uv
+[1m[94m153 |[0m           uses: astral-sh/setup-uv@v1
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcache enabled by default here[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m68[39m findings ([1m[93m23[39m suppressed[0m): 0 unknown, [35m12[39m informational, [36m5[39m low, [33m11[39m medium, [31m17[39m high

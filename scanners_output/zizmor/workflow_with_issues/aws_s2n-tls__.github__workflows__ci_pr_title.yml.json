@@ -1,0 +1,31 @@
+{
+  "workflow": "aws_s2n-tls__.github__workflows__ci_pr_title.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "artipacked": 1,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "aws_s2n-tls__.github__workflows__ci_pr_title.yml",
+      "line": 17,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "aws_s2n-tls__.github__workflows__ci_pr_title.yml",
+      "line": 20,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_yoga__.github__workflows__validate-js.yml:22:9
+   [1m[94m|[0m
+[1m[94m22 |[0m       - uses: actions/checkout@v3
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_yoga__.github__workflows__validate-js.yml:41:9
+   [1m[94m|[0m
+[1m[94m41 |[0m       - uses: actions/checkout@v3
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_yoga__.github__workflows__validate-js.yml:60:9
+   [1m[94m|[0m
+[1m[94m60 |[0m       - uses: actions/checkout@v3
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_yoga__.github__workflows__validate-js.yml:76:9
+   [1m[94m|[0m
+[1m[94m76 |[0m       - uses: actions/checkout@v3
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_yoga__.github__workflows__validate-js.yml:88:9
+   [1m[94m|[0m
+[1m[94m88 |[0m       - uses: actions/checkout@v3
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_yoga__.github__workflows__validate-js.yml:101:9
+    [1m[94m|[0m
+[1m[94m101 |[0m       - uses: actions/checkout@v3
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_yoga__.github__workflows__validate-js.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: Validate JavaScript
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m115 |[0m [1m[33m|[0m           name: npm-package
+[1m[94m116 |[0m [1m[33m|[0m           path: javascript/yoga-layout.tar.gz
+    [1m[94m|[0m [1m[33m|______________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_yoga__.github__workflows__validate-js.yml:15:3
+   [1m[94m|[0m
+[1m[94m15 |[0m [1m[33m/[0m   benchmark:
+[1m[94m16 |[0m [1m[33m|[0m     name: Benchmark [${{ matrix.os }}]
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m31 |[0m [1m[33m|[0m         run: yarn benchmark
+[1m[94m32 |[0m [1m[33m|[0m         working-directory: javascript
+   [1m[94m|[0m [1m[33m|[0m                                     [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________________________________|[0m
+   [1m[94m|[0m                                       [1m[33mthis job[0m
+   [1m[94m|[0m                                       [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_yoga__.github__workflows__validate-js.yml:34:3
+   [1m[94m|[0m
+[1m[94m34 |[0m [1m[33m/[0m   build:
+[1m[94m35 |[0m [1m[33m|[0m     name: Build [${{ matrix.os }}]
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m50 |[0m [1m[33m|[0m         run: yarn build --verbose
+[1m[94m51 |[0m [1m[33m|[0m         working-directory: javascript
+   [1m[94m|[0m [1m[33m|[0m                                     [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________________________________|[0m
+   [1m[94m|[0m                                       [1m[33mthis job[0m
+   [1m[94m|[0m                                       [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_yoga__.github__workflows__validate-js.yml:53:3
+   [1m[94m|[0m
+[1m[94m53 |[0m [1m[33m/[0m   test:
+[1m[94m54 |[0m [1m[33m|[0m     name: Test [${{ matrix.os }}]
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m69 |[0m [1m[33m|[0m         run: yarn test
+[1m[94m70 |[0m [1m[33m|[0m         working-directory: javascript
+   [1m[94m|[0m [1m[33m|[0m                                     [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________________________________|[0m
+   [1m[94m|[0m                                       [1m[33mthis job[0m
+   [1m[94m|[0m                                       [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_yoga__.github__workflows__validate-js.yml:72:3
+   [1m[94m|[0m
+[1m[94m72 |[0m [1m[33m/[0m   lint:
+[1m[94m73 |[0m [1m[33m|[0m     name: ESLint (All Packages)
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m81 |[0m [1m[33m|[0m       - name: yarn lint
+[1m[94m82 |[0m [1m[33m|[0m         run: yarn lint
+   [1m[94m|[0m [1m[33m|[0m                      [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________|[0m
+   [1m[94m|[0m                        [1m[33mthis job[0m
+   [1m[94m|[0m                        [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_yoga__.github__workflows__validate-js.yml:84:3
+   [1m[94m|[0m
+[1m[94m84 |[0m [1m[33m/[0m   typecheck:
+[1m[94m85 |[0m [1m[33m|[0m     name: Typecheck
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m94 |[0m [1m[33m|[0m         run: yarn tsc
+[1m[94m95 |[0m [1m[33m|[0m         working-directory: javascript
+   [1m[94m|[0m [1m[33m|[0m                                     [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________________________________|[0m
+   [1m[94m|[0m                                       [1m[33mthis job[0m
+   [1m[94m|[0m                                       [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_yoga__.github__workflows__validate-js.yml:97:3
+    [1m[94m|[0m
+[1m[94m 97 |[0m [1m[33m/[0m   pack:
+[1m[94m 98 |[0m [1m[33m|[0m     name: Pack
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m115 |[0m [1m[33m|[0m           name: npm-package
+[1m[94m116 |[0m [1m[33m|[0m           path: javascript/yoga-layout.tar.gz
+    [1m[94m|[0m [1m[33m|[0m                                              [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|______________________________________________|[0m
+    [1m[94m|[0m                                                [1m[33mthis job[0m
+    [1m[94m|[0m                                                [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m13[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m13[39m medium, [31m0[39m high

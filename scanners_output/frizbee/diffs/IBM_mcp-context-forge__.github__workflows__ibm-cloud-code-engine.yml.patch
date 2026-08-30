@@ -1,0 +1,38 @@
+diff --git a/.github/workflows/IBM_mcp-context-forge__.github__workflows__ibm-cloud-code-engine.yml b/.github/workflows/IBM_mcp-context-forge__.github__workflows__ibm-cloud-code-engine.yml
+index 0dffbd2..89974bd 100644
+--- a/.github/workflows/IBM_mcp-context-forge__.github__workflows__ibm-cloud-code-engine.yml
++++ b/.github/workflows/IBM_mcp-context-forge__.github__workflows__ibm-cloud-code-engine.yml
+@@ -98,7 +98,7 @@ jobs:
+       # 0️⃣  Checkout repository
+       # -----------------------------------------------------------
+       - name: ⬇️  Checkout source
+-        uses: actions/checkout@v5
++        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+ 
+       # -----------------------------------------------------------
+       # 1️⃣  Validate required secrets & variables
+@@ -146,13 +146,13 @@ jobs:
+       # 2️⃣  Set up Docker Buildx
+       # -----------------------------------------------------------
+       - name: 🛠️  Set up Docker Buildx
+-        uses: docker/setup-buildx-action@v3.11.1
++        uses: docker/setup-buildx-action@e468171a9de216ec08956ac3ada2f0791b6bd435 # v3.11.1
+ 
+       # -----------------------------------------------------------
+       # 3️⃣  Restore BuildKit layer cache
+       # -----------------------------------------------------------
+       - name: 🔄  Restore BuildKit cache
+-        uses: actions/cache@v4
++        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+         with:
+           path: ${{ env.CACHE_DIR }}
+           key: ${{ runner.os }}-buildx-${{ github.sha }}
+@@ -162,7 +162,7 @@ jobs:
+       # 4️⃣  Install IBM Cloud CLI + plugins & login
+       # -----------------------------------------------------------
+       - name: 🧰  Install IBM Cloud CLI
+-        uses: IBM/actions-ibmcloud-cli@v1
++        uses: IBM/actions-ibmcloud-cli@953e229550655a880eda6ecfb01fbbdf12f119a5 # v1
+         with:
+           api_key: ${{ secrets.IBM_CLOUD_API_KEY }}
+           region: ${{ vars.IBM_CLOUD_REGION }}

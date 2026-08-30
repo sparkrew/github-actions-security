@@ -1,0 +1,24 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign__.github__workflows__issue-reply.temp.yml:11:3
+   [1m[94m|[0m
+[1m[94m11 |[0m [1m[33m/[0m   issue-reply:
+[1m[94m12 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m20 |[0m [1m[33m|[0m           body: |       
+[1m[94m21 |[0m [1m[33m|[0m             你好 @${{ github.event.issue.user.login }}, 我们需要你提供一个在线的重现实例以便于我们帮你排查问题。你可以通过点击 [此处](https://codesandbox.io/) 创建一个 codesandbox 或者提供一个最小化的 GitHub 仓库。请确保选择准确的版本。                                                                [1m[94m...[0m
+   [1m[94m|[0m [1m[33m|[0m                                                                                                                                                                                                                                             [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                                                                                                                                                                               [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                                                                                                                                                                               [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign__.github__workflows__issue-reply.temp.yml:16:9
+   [1m[94m|[0m
+[1m[94m16 |[0m         uses: actions-cool/issues-helper@v3
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m3[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m1[39m high

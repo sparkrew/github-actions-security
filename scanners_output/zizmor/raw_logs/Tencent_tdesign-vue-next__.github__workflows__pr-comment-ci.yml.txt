@@ -1,0 +1,138 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign-vue-next__.github__workflows__pr-comment-ci.yml:16:9
+   [1m[94m|[0m
+[1m[94m16 |[0m         - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m17 |[0m [1m[33m|[0m         with:
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m20 |[0m [1m[33m|[0m             .github/.pr-comment-ci-whitelist
+[1m[94m21 |[0m [1m[33m|[0m           sparse-checkout-cone-mode: false
+   [1m[94m|[0m [1m[33m|__________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign-vue-next__.github__workflows__pr-comment-ci.yml:73:9
+   [1m[94m|[0m
+[1m[94m73 |[0m         - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m74 |[0m [1m[33m|[0m         with:
+[1m[94m75 |[0m [1m[33m|[0m           fetch-depth: 0
+[1m[94m76 |[0m [1m[33m|[0m           token: ${{ secrets.PERSONAL_TOKEN }}
+   [1m[94m|[0m [1m[33m|______________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_tdesign-vue-next__.github__workflows__pr-comment-ci.yml:148:9
+    [1m[94m|[0m
+[1m[94m148 |[0m         - uses: actions/checkout@v4
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m149 |[0m [1m[33m|[0m         with:
+[1m[94m150 |[0m [1m[33m|[0m           fetch-depth: 0
+[1m[94m151 |[0m [1m[33m|[0m           token: ${{ secrets.PERSONAL_TOKEN }}
+    [1m[94m|[0m [1m[33m|______________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_tdesign-vue-next__.github__workflows__pr-comment-ci.yml:260:9
+    [1m[94m|[0m
+[1m[94m260 |[0m         - uses: actions/checkout@v4
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m261 |[0m [1m[33m|[0m         with:
+[1m[94m262 |[0m [1m[33m|[0m           fetch-depth: 0
+[1m[94m263 |[0m [1m[33m|[0m           token: ${{ secrets.PERSONAL_TOKEN }}
+    [1m[94m|[0m [1m[33m|______________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_tdesign-vue-next__.github__workflows__pr-comment-ci.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: PR_COMMENT_CI
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m312 |[0m [1m[33m|[0m           git status
+[1m[94m313 |[0m [1m[33m|[0m           git push || true
+    [1m[94m|[0m [1m[33m|___________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign-vue-next__.github__workflows__pr-comment-ci.yml:10:3
+   [1m[94m|[0m
+[1m[94m10 |[0m [1m[33m/[0m   check:
+[1m[94m11 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m65 |[0m [1m[33m|[0m             core.info(`next_action: ${next_action}`)
+[1m[94m66 |[0m [1m[33m|[0m             core.setOutput('next_action', next_action)
+   [1m[94m|[0m [1m[33m|[0m                                                      [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________________________________________|[0m
+   [1m[94m|[0m                                                        [1m[33mthis job[0m
+   [1m[94m|[0m                                                        [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_tdesign-vue-next__.github__workflows__pr-comment-ci.yml:68:3
+    [1m[94m|[0m
+[1m[94m 68 |[0m [1m[33m/[0m   update-common:
+[1m[94m 69 |[0m [1m[33m|[0m     needs: check
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m140 |[0m [1m[33m|[0m           git status
+[1m[94m141 |[0m [1m[33m|[0m           git push || true
+    [1m[94m|[0m [1m[33m|[0m                          [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|__________________________|[0m
+    [1m[94m|[0m                            [1m[33mthis job[0m
+    [1m[94m|[0m                            [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_tdesign-vue-next__.github__workflows__pr-comment-ci.yml:143:3
+    [1m[94m|[0m
+[1m[94m143 |[0m [1m[33m/[0m   update-snapshot:
+[1m[94m144 |[0m [1m[33m|[0m     needs: check
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m252 |[0m [1m[33m|[0m           git status
+[1m[94m253 |[0m [1m[33m|[0m           git push || true
+    [1m[94m|[0m [1m[33m|[0m                          [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|__________________________|[0m
+    [1m[94m|[0m                            [1m[33mthis job[0m
+    [1m[94m|[0m                            [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_tdesign-vue-next__.github__workflows__pr-comment-ci.yml:255:3
+    [1m[94m|[0m
+[1m[94m255 |[0m [1m[33m/[0m   update-coverage:
+[1m[94m256 |[0m [1m[33m|[0m     needs: check
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m312 |[0m [1m[33m|[0m           git status
+[1m[94m313 |[0m [1m[33m|[0m           git push || true
+    [1m[94m|[0m [1m[33m|[0m                           [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|___________________________|[0m
+    [1m[94m|[0m                             [1m[33mthis job[0m
+    [1m[94m|[0m                             [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_tdesign-vue-next__.github__workflows__pr-comment-ci.yml:230:9
+    [1m[94m|[0m
+[1m[94m230 |[0m       - uses: pnpm/action-setup@v4
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_tdesign-vue-next__.github__workflows__pr-comment-ci.yml:290:9
+    [1m[94m|[0m
+[1m[94m290 |[0m       - uses: pnpm/action-setup@v4
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m14[39m findings ([1m[93m3[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m9[39m medium, [31m2[39m high

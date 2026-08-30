@@ -1,0 +1,23 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_clusterfuzz__.github__workflows__publish-to-pypi.yaml:30:7
+   [1m[94m|[0m
+[1m[94m30 |[0m       - uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m31 |[0m [1m[33m|[0m       with:
+[1m[94m32 |[0m [1m[33m|[0m         fetch-depth: 0
+   [1m[94m|[0m [1m[33m|______________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#use-trusted-publishing\use-trusted-publishing]8;;\][0m: [1mprefer trusted publishing for authentication[0m
+  [1m[94m-->[0m ../.github/workflows/google_clusterfuzz__.github__workflows__publish-to-pypi.yaml:46:7
+   [1m[94m|[0m
+[1m[94m46 |[0m       uses: pypa/gh-action-pypi-publish@37f50c210e3d2f9450da2cd423303d6a14a6e29f # v1.4.2
+   [1m[94m|[0m       [1m[94m--------------------------------------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m47 |[0m       with:
+[1m[94m48 |[0m         password: ${{ secrets.PYPI_API_TOKEN }}
+   [1m[94m|[0m         [1m[94m---------------------------------------[0m [1m[94minfo: uses a manually-configured credential instead of Trusted Publishing[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m3[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m1[39m medium, [31m0[39m high

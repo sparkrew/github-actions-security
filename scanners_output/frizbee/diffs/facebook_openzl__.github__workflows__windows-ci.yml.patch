@@ -1,0 +1,43 @@
+diff --git a/.github/workflows/facebook_openzl__.github__workflows__windows-ci.yml b/.github/workflows/facebook_openzl__.github__workflows__windows-ci.yml
+index 3612915..2d6a6e1 100644
+--- a/.github/workflows/facebook_openzl__.github__workflows__windows-ci.yml
++++ b/.github/workflows/facebook_openzl__.github__workflows__windows-ci.yml
+@@ -30,10 +30,10 @@ jobs:
+     name: Windows Compiler Detection Script Test
+     runs-on: windows-latest
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       - name: Setup MSBuild
+-        uses: microsoft/setup-msbuild@v2
++        uses: microsoft/setup-msbuild@6fb02220983dee41ce7ae257b6f4d8f9bf5ed4ce # v2
+ 
+       - name: Test compiler detection script
+         run: |
+@@ -70,10 +70,10 @@ jobs:
+             config: Debug
+             cmake_arch: ARM64
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       - name: Setup MSBuild
+-        uses: microsoft/setup-msbuild@v2
++        uses: microsoft/setup-msbuild@6fb02220983dee41ce7ae257b6f4d8f9bf5ed4ce # v2
+ 
+       - name: Run compiler detection and verification
+         run: |
+@@ -161,10 +161,10 @@ jobs:
+       run:
+         shell: msys2 {0}
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       - name: Setup MSYS2
+-        uses: msys2/setup-msys2@v2
++        uses: msys2/setup-msys2@4f806de0a5a7294ffabaff804b38a9b435a73bda # v2
+         with:
+           msystem: ${{ matrix.msystem }}
+           install: make diffutils cmake git python

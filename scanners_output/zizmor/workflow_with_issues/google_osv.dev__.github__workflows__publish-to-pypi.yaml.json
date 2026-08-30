@@ -1,0 +1,31 @@
+{
+  "workflow": "google_osv.dev__.github__workflows__publish-to-pypi.yaml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "artipacked": 1,
+      "use-trusted-publishing": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "google_osv.dev__.github__workflows__publish-to-pypi.yaml",
+      "line": 27,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "use-trusted-publishing",
+      "level": "info",
+      "message": "prefer trusted publishing for authentication",
+      "workflow": "google_osv.dev__.github__workflows__publish-to-pypi.yaml",
+      "line": 47,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

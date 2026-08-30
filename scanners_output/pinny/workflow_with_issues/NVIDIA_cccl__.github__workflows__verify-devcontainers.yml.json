@@ -1,0 +1,32 @@
+{
+  "workflow": "NVIDIA_cccl__.github__workflows__verify-devcontainers.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+      "line": 28
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+      "line": 115
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: aws-actions/configure-aws-credentials@61815dcd50bd041e203e49132bacad1fd04d2708 # aws-actions/configure-aws-credentials@v5",
+      "line": 131
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: devcontainers/ci@8bf61b26e9c3a98f69cb6ce2f88d24ff59b785c6 # devcontainers/ci@v0.3 | v0.3.1900000417",
+      "line": 145
+    }
+  ]
+}

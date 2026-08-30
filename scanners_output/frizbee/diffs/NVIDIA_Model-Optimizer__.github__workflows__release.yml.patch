@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/NVIDIA_Model-Optimizer__.github__workflows__release.yml b/.github/workflows/NVIDIA_Model-Optimizer__.github__workflows__release.yml
+index e3e62d7..b2d0ba2 100644
+--- a/.github/workflows/NVIDIA_Model-Optimizer__.github__workflows__release.yml
++++ b/.github/workflows/NVIDIA_Model-Optimizer__.github__workflows__release.yml
+@@ -11,7 +11,7 @@ jobs:
+   build-upload:
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - uses: ./.github/actions/ubuntu-setup
+       - name: Install dependencies
+         run: pip install tox

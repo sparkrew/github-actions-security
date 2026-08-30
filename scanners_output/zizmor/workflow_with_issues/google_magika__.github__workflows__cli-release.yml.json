@@ -1,0 +1,77 @@
+{
+  "workflow": "google_magika__.github__workflows__cli-release.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 7,
+    "by_rule": {
+      "excessive-permissions": 1,
+      "template-injection": 5,
+      "secrets-inherit": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "excessive-permissions",
+      "level": "error",
+      "message": "overly broad permissions",
+      "workflow": "google_magika__.github__workflows__cli-release.yml",
+      "line": 18,
+      "column": 3,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "google_magika__.github__workflows__cli-release.yml",
+      "line": 78,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "warning",
+      "message": "code injection via template expansion",
+      "workflow": "google_magika__.github__workflows__cli-release.yml",
+      "line": 134,
+      "column": 9,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "warning",
+      "message": "code injection via template expansion",
+      "workflow": "google_magika__.github__workflows__cli-release.yml",
+      "line": 143,
+      "column": 9,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "info",
+      "message": "code injection via template expansion",
+      "workflow": "google_magika__.github__workflows__cli-release.yml",
+      "line": 146,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "warning",
+      "message": "code injection via template expansion",
+      "workflow": "google_magika__.github__workflows__cli-release.yml",
+      "line": 146,
+      "column": 9,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "secrets-inherit",
+      "level": "warning",
+      "message": "secrets unconditionally inherited by called workflow",
+      "workflow": "google_magika__.github__workflows__cli-release.yml",
+      "line": 315,
+      "column": 5,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

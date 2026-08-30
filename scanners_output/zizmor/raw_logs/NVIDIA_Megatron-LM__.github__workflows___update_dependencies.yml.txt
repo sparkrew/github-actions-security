@@ -1,0 +1,341 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml:35:9
+   [1m[94m|[0m
+[1m[94m35 |[0m         - name: Checkout repo
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m36 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m37 |[0m [1m[33m|[0m         with:
+[1m[94m38 |[0m [1m[33m|[0m           ref: ${{ env.TARGET_BRANCH }}
+   [1m[94m|[0m [1m[33m|_______________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml:62:9
+   [1m[94m|[0m
+[1m[94m62 |[0m         - name: Checkout repo
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m63 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m64 |[0m [1m[33m|[0m         with:
+[1m[94m65 |[0m [1m[33m|[0m           ref: ${{ env.SOURCE_BRANCH }}
+   [1m[94m|[0m [1m[33m|_______________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml:92:9
+   [1m[94m|[0m
+[1m[94m92 |[0m         - name: Checkout code
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m93 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m94 |[0m [1m[33m|[0m         with:
+[1m[94m95 |[0m [1m[33m|[0m           token: ${{ secrets.PAT }}
+[1m[94m96 |[0m [1m[33m|[0m           ref: ${{ env.TARGET_BRANCH }}
+   [1m[94m|[0m [1m[33m|_______________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml:49:9
+   [1m[94m|[0m
+[1m[94m49 |[0m   [1m[94m...[0m - name: Build container
+   [1m[94m|[0m         [1m[94m---------------------[0m [1m[94minfo: this step[0m
+[1m[94m50 |[0m   [1m[94m...[0m   env:
+[1m[94m51 |[0m   [1m[94m...[0m     GH_TOKEN: ${{ secrets.PAT }}
+[1m[94m52 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m53 |[0m [1m[94m|[0m [1m[94m...[0m     docker build -f docker/Dockerfile.ci.dev --build-arg FROM_IMAGE_NAME="${{ steps.ngc-version.outputs.NGC_VERSION }}" --target=main -t megatron-core .
+   [1m[94m|[0m [1m[94m|____________________________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.ngc-version.outputs.NGC_VERSION may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml:98:9
+    [1m[94m|[0m
+[1m[94m 98 |[0m         - name: Rebase against ${{ env.SOURCE_BRANCH }}
+    [1m[94m|[0m           [1m[96m---------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m 99 |[0m [1m[96m/[0m         run: |
+[1m[94m100 |[0m [1m[96m|[0m           if git ls-remote --exit-code origin ${{ env.SOURCE_BRANCH }}; then
+[1m[94m101 |[0m [1m[96m|[0m             git fetch origin ${{ env.SOURCE_BRANCH }}
+[1m[94m102 |[0m [1m[96m|[0m             git rebase -S origin/${{ env.SOURCE_BRANCH }}
+[1m[94m103 |[0m [1m[96m|[0m           fi
+    [1m[94m|[0m [1m[96m|____________-[0m [1m[96mhelp: env.SOURCE_BRANCH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml:98:9
+    [1m[94m|[0m
+[1m[94m 98 |[0m         - name: Rebase against ${{ env.SOURCE_BRANCH }}
+    [1m[94m|[0m           [1m[96m---------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m 99 |[0m [1m[96m/[0m         run: |
+[1m[94m100 |[0m [1m[96m|[0m           if git ls-remote --exit-code origin ${{ env.SOURCE_BRANCH }}; then
+[1m[94m101 |[0m [1m[96m|[0m             git fetch origin ${{ env.SOURCE_BRANCH }}
+[1m[94m102 |[0m [1m[96m|[0m             git rebase -S origin/${{ env.SOURCE_BRANCH }}
+[1m[94m103 |[0m [1m[96m|[0m           fi
+    [1m[94m|[0m [1m[96m|____________-[0m [1m[96mhelp: env.SOURCE_BRANCH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml:98:9
+    [1m[94m|[0m
+[1m[94m 98 |[0m         - name: Rebase against ${{ env.SOURCE_BRANCH }}
+    [1m[94m|[0m           [1m[96m---------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m 99 |[0m [1m[96m/[0m         run: |
+[1m[94m100 |[0m [1m[96m|[0m           if git ls-remote --exit-code origin ${{ env.SOURCE_BRANCH }}; then
+[1m[94m101 |[0m [1m[96m|[0m             git fetch origin ${{ env.SOURCE_BRANCH }}
+[1m[94m102 |[0m [1m[96m|[0m             git rebase -S origin/${{ env.SOURCE_BRANCH }}
+[1m[94m103 |[0m [1m[96m|[0m           fi
+    [1m[94m|[0m [1m[96m|____________-[0m [1m[96mhelp: env.SOURCE_BRANCH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml:131:9
+    [1m[94m|[0m
+[1m[94m131 |[0m         - name: Post /ok to test comment
+    [1m[94m|[0m           [1m[94m------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m132 |[0m           env:
+[1m[94m133 |[0m             GH_TOKEN: ${{ secrets.PAT }}
+[1m[94m134 |[0m [1m[94m/[0m         run: |
+[1m[94m135 |[0m [1m[94m|[0m           PR_NUMBER="${{ steps.create-pull-request.outputs.pull-request-number }}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m140 |[0m [1m[94m|[0m           SHA="${{ steps.create-pull-request.outputs.pull-request-head-sha }}"
+[1m[94m141 |[0m [1m[94m|[0m           gh pr comment "$PR_NUMBER" --body "/ok to test $SHA"
+    [1m[94m|[0m [1m[94m|______________________________________________________________-[0m [1m[94minfo: steps.create-pull-request.outputs.pull-request-number may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml:131:9
+    [1m[94m|[0m
+[1m[94m131 |[0m         - name: Post /ok to test comment
+    [1m[94m|[0m           [1m[94m------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m132 |[0m           env:
+[1m[94m133 |[0m             GH_TOKEN: ${{ secrets.PAT }}
+[1m[94m134 |[0m [1m[94m/[0m         run: |
+[1m[94m135 |[0m [1m[94m|[0m           PR_NUMBER="${{ steps.create-pull-request.outputs.pull-request-number }}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m140 |[0m [1m[94m|[0m           SHA="${{ steps.create-pull-request.outputs.pull-request-head-sha }}"
+[1m[94m141 |[0m [1m[94m|[0m           gh pr comment "$PR_NUMBER" --body "/ok to test $SHA"
+    [1m[94m|[0m [1m[94m|______________________________________________________________-[0m [1m[94minfo: steps.create-pull-request.outputs.pull-request-head-sha may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml:143:9
+    [1m[94m|[0m
+[1m[94m143 |[0m         - name: Wait for CI checks
+    [1m[94m|[0m           [1m[94m------------------------[0m [1m[94minfo: this step[0m
+[1m[94m144 |[0m           env:
+[1m[94m145 |[0m             GH_TOKEN: ${{ secrets.PAT }}
+[1m[94m146 |[0m [1m[94m/[0m         run: |
+[1m[94m147 |[0m [1m[94m|[0m           PR_NUMBER="${{ steps.create-pull-request.outputs.pull-request-number }}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m206 |[0m [1m[94m|[0m             sleep 30
+[1m[94m207 |[0m [1m[94m|[0m           done
+    [1m[94m|[0m [1m[94m|______________-[0m [1m[94minfo: steps.create-pull-request.outputs.pull-request-number may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml:143:9
+    [1m[94m|[0m
+[1m[94m143 |[0m         - name: Wait for CI checks
+    [1m[94m|[0m           [1m[96m------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m144 |[0m           env:
+[1m[94m145 |[0m             GH_TOKEN: ${{ secrets.PAT }}
+[1m[94m146 |[0m [1m[96m/[0m         run: |
+[1m[94m147 |[0m [1m[96m|[0m           PR_NUMBER="${{ steps.create-pull-request.outputs.pull-request-number }}"
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m206 |[0m [1m[96m|[0m             sleep 30
+[1m[94m207 |[0m [1m[96m|[0m           done
+    [1m[94m|[0m [1m[96m|______________-[0m [1m[96mhelp: env.TARGET_BRANCH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml:143:9
+    [1m[94m|[0m
+[1m[94m143 |[0m         - name: Wait for CI checks
+    [1m[94m|[0m           [1m[96m------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m144 |[0m           env:
+[1m[94m145 |[0m             GH_TOKEN: ${{ secrets.PAT }}
+[1m[94m146 |[0m [1m[96m/[0m         run: |
+[1m[94m147 |[0m [1m[96m|[0m           PR_NUMBER="${{ steps.create-pull-request.outputs.pull-request-number }}"
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m206 |[0m [1m[96m|[0m             sleep 30
+[1m[94m207 |[0m [1m[96m|[0m           done
+    [1m[94m|[0m [1m[96m|______________-[0m [1m[96mhelp: env.TARGET_BRANCH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml:143:9
+    [1m[94m|[0m
+[1m[94m143 |[0m         - name: Wait for CI checks
+    [1m[94m|[0m           [1m[96m------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m144 |[0m           env:
+[1m[94m145 |[0m             GH_TOKEN: ${{ secrets.PAT }}
+[1m[94m146 |[0m [1m[96m/[0m         run: |
+[1m[94m147 |[0m [1m[96m|[0m           PR_NUMBER="${{ steps.create-pull-request.outputs.pull-request-number }}"
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m206 |[0m [1m[96m|[0m             sleep 30
+[1m[94m207 |[0m [1m[96m|[0m           done
+    [1m[94m|[0m [1m[96m|______________-[0m [1m[96mhelp: env.TARGET_BRANCH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml:209:9
+    [1m[94m|[0m
+[1m[94m209 |[0m         - name: Merge PR
+    [1m[94m|[0m           [1m[94m--------------[0m [1m[94minfo: this step[0m
+[1m[94m210 |[0m           env:
+[1m[94m211 |[0m             title: "chore(beep boop 🤖): Bump `uv.lock` (${{ env.TARGET_BRANCH}}) (${{ needs.pre-flight.outputs.date }})"
+[1m[94m212 |[0m [1m[94m/[0m         run: |
+[1m[94m213 |[0m [1m[94m|[0m           PR_NUMBER="${{ steps.create-pull-request.outputs.pull-request-number }}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m226 |[0m [1m[94m|[0m           git push origin ${{ env.TARGET_BRANCH }}
+[1m[94m227 |[0m [1m[94m|[0m           git push origin --delete ${{ env.SOURCE_BRANCH }}
+    [1m[94m|[0m [1m[94m|____________________________________________________________-[0m [1m[94minfo: steps.create-pull-request.outputs.pull-request-number may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml:209:9
+    [1m[94m|[0m
+[1m[94m209 |[0m         - name: Merge PR
+    [1m[94m|[0m           [1m[96m--------------[0m [1m[96mhelp: this step[0m
+[1m[94m210 |[0m           env:
+[1m[94m211 |[0m             title: "chore(beep boop 🤖): Bump `uv.lock` (${{ env.TARGET_BRANCH}}) (${{ needs.pre-flight.outputs.date }})"
+[1m[94m212 |[0m [1m[96m/[0m         run: |
+[1m[94m213 |[0m [1m[96m|[0m           PR_NUMBER="${{ steps.create-pull-request.outputs.pull-request-number }}"
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m226 |[0m [1m[96m|[0m           git push origin ${{ env.TARGET_BRANCH }}
+[1m[94m227 |[0m [1m[96m|[0m           git push origin --delete ${{ env.SOURCE_BRANCH }}
+    [1m[94m|[0m [1m[96m|____________________________________________________________-[0m [1m[96mhelp: env.SOURCE_BRANCH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml:209:9
+    [1m[94m|[0m
+[1m[94m209 |[0m         - name: Merge PR
+    [1m[94m|[0m           [1m[96m--------------[0m [1m[96mhelp: this step[0m
+[1m[94m210 |[0m           env:
+[1m[94m211 |[0m             title: "chore(beep boop 🤖): Bump `uv.lock` (${{ env.TARGET_BRANCH}}) (${{ needs.pre-flight.outputs.date }})"
+[1m[94m212 |[0m [1m[96m/[0m         run: |
+[1m[94m213 |[0m [1m[96m|[0m           PR_NUMBER="${{ steps.create-pull-request.outputs.pull-request-number }}"
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m226 |[0m [1m[96m|[0m           git push origin ${{ env.TARGET_BRANCH }}
+[1m[94m227 |[0m [1m[96m|[0m           git push origin --delete ${{ env.SOURCE_BRANCH }}
+    [1m[94m|[0m [1m[96m|____________________________________________________________-[0m [1m[96mhelp: env.TARGET_BRANCH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml:209:9
+    [1m[94m|[0m
+[1m[94m209 |[0m         - name: Merge PR
+    [1m[94m|[0m           [1m[96m--------------[0m [1m[96mhelp: this step[0m
+[1m[94m210 |[0m           env:
+[1m[94m211 |[0m             title: "chore(beep boop 🤖): Bump `uv.lock` (${{ env.TARGET_BRANCH}}) (${{ needs.pre-flight.outputs.date }})"
+[1m[94m212 |[0m [1m[96m/[0m         run: |
+[1m[94m213 |[0m [1m[96m|[0m           PR_NUMBER="${{ steps.create-pull-request.outputs.pull-request-number }}"
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m226 |[0m [1m[96m|[0m           git push origin ${{ env.TARGET_BRANCH }}
+[1m[94m227 |[0m [1m[96m|[0m           git push origin --delete ${{ env.SOURCE_BRANCH }}
+    [1m[94m|[0m [1m[96m|____________________________________________________________-[0m [1m[96mhelp: env.TARGET_BRANCH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml:209:9
+    [1m[94m|[0m
+[1m[94m209 |[0m         - name: Merge PR
+    [1m[94m|[0m           [1m[96m--------------[0m [1m[96mhelp: this step[0m
+[1m[94m210 |[0m           env:
+[1m[94m211 |[0m             title: "chore(beep boop 🤖): Bump `uv.lock` (${{ env.TARGET_BRANCH}}) (${{ needs.pre-flight.outputs.date }})"
+[1m[94m212 |[0m [1m[96m/[0m         run: |
+[1m[94m213 |[0m [1m[96m|[0m           PR_NUMBER="${{ steps.create-pull-request.outputs.pull-request-number }}"
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m226 |[0m [1m[96m|[0m           git push origin ${{ env.TARGET_BRANCH }}
+[1m[94m227 |[0m [1m[96m|[0m           git push origin --delete ${{ env.SOURCE_BRANCH }}
+    [1m[94m|[0m [1m[96m|____________________________________________________________-[0m [1m[96mhelp: env.SOURCE_BRANCH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml:209:9
+    [1m[94m|[0m
+[1m[94m209 |[0m         - name: Merge PR
+    [1m[94m|[0m           [1m[96m--------------[0m [1m[96mhelp: this step[0m
+[1m[94m210 |[0m           env:
+[1m[94m211 |[0m             title: "chore(beep boop 🤖): Bump `uv.lock` (${{ env.TARGET_BRANCH}}) (${{ needs.pre-flight.outputs.date }})"
+[1m[94m212 |[0m [1m[96m/[0m         run: |
+[1m[94m213 |[0m [1m[96m|[0m           PR_NUMBER="${{ steps.create-pull-request.outputs.pull-request-number }}"
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m226 |[0m [1m[96m|[0m           git push origin ${{ env.TARGET_BRANCH }}
+[1m[94m227 |[0m [1m[96m|[0m           git push origin --delete ${{ env.SOURCE_BRANCH }}
+    [1m[94m|[0m [1m[96m|____________________________________________________________-[0m [1m[96mhelp: env.title may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml:209:9
+    [1m[94m|[0m
+[1m[94m209 |[0m         - name: Merge PR
+    [1m[94m|[0m           [1m[96m--------------[0m [1m[96mhelp: this step[0m
+[1m[94m210 |[0m           env:
+[1m[94m211 |[0m             title: "chore(beep boop 🤖): Bump `uv.lock` (${{ env.TARGET_BRANCH}}) (${{ needs.pre-flight.outputs.date }})"
+[1m[94m212 |[0m [1m[96m/[0m         run: |
+[1m[94m213 |[0m [1m[96m|[0m           PR_NUMBER="${{ steps.create-pull-request.outputs.pull-request-number }}"
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m226 |[0m [1m[96m|[0m           git push origin ${{ env.TARGET_BRANCH }}
+[1m[94m227 |[0m [1m[96m|[0m           git push origin --delete ${{ env.SOURCE_BRANCH }}
+    [1m[94m|[0m [1m[96m|____________________________________________________________-[0m [1m[96mhelp: env.TARGET_BRANCH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml:209:9
+    [1m[94m|[0m
+[1m[94m209 |[0m         - name: Merge PR
+    [1m[94m|[0m           [1m[96m--------------[0m [1m[96mhelp: this step[0m
+[1m[94m210 |[0m           env:
+[1m[94m211 |[0m             title: "chore(beep boop 🤖): Bump `uv.lock` (${{ env.TARGET_BRANCH}}) (${{ needs.pre-flight.outputs.date }})"
+[1m[94m212 |[0m [1m[96m/[0m         run: |
+[1m[94m213 |[0m [1m[96m|[0m           PR_NUMBER="${{ steps.create-pull-request.outputs.pull-request-number }}"
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m226 |[0m [1m[96m|[0m           git push origin ${{ env.TARGET_BRANCH }}
+[1m[94m227 |[0m [1m[96m|[0m           git push origin --delete ${{ env.SOURCE_BRANCH }}
+    [1m[94m|[0m [1m[96m|____________________________________________________________-[0m [1m[96mhelp: env.TARGET_BRANCH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml:209:9
+    [1m[94m|[0m
+[1m[94m209 |[0m         - name: Merge PR
+    [1m[94m|[0m           [1m[96m--------------[0m [1m[96mhelp: this step[0m
+[1m[94m210 |[0m           env:
+[1m[94m211 |[0m             title: "chore(beep boop 🤖): Bump `uv.lock` (${{ env.TARGET_BRANCH}}) (${{ needs.pre-flight.outputs.date }})"
+[1m[94m212 |[0m [1m[96m/[0m         run: |
+[1m[94m213 |[0m [1m[96m|[0m           PR_NUMBER="${{ steps.create-pull-request.outputs.pull-request-number }}"
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m226 |[0m [1m[96m|[0m           git push origin ${{ env.TARGET_BRANCH }}
+[1m[94m227 |[0m [1m[96m|[0m           git push origin --delete ${{ env.SOURCE_BRANCH }}
+    [1m[94m|[0m [1m[96m|____________________________________________________________-[0m [1m[96mhelp: env.SOURCE_BRANCH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___update_dependencies.yml:111:9
+    [1m[94m|[0m
+[1m[94m111 |[0m         uses: peter-evans/create-pull-request@v8
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m49[39m findings ([1m[93m26[39m suppressed[0m): 0 unknown, [35m5[39m informational, [36m14[39m low, [33m3[39m medium, [31m1[39m high

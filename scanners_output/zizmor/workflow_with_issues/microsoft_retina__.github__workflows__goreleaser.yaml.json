@@ -1,0 +1,68 @@
+{
+  "workflow": "microsoft_retina__.github__workflows__goreleaser.yaml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 6,
+    "by_rule": {
+      "artipacked": 2,
+      "excessive-permissions": 2,
+      "cache-poisoning": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_retina__.github__workflows__goreleaser.yaml",
+      "line": 23,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_retina__.github__workflows__goreleaser.yaml",
+      "line": 47,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "error",
+      "message": "overly broad permissions",
+      "workflow": "microsoft_retina__.github__workflows__goreleaser.yaml",
+      "line": 9,
+      "column": 3,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "error",
+      "message": "overly broad permissions",
+      "workflow": "microsoft_retina__.github__workflows__goreleaser.yaml",
+      "line": 10,
+      "column": 3,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "cache-poisoning",
+      "level": "error",
+      "message": "runtime artifacts potentially vulnerable to a cache poisoning attack",
+      "workflow": "microsoft_retina__.github__workflows__goreleaser.yaml",
+      "line": 2,
+      "column": 1,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "cache-poisoning",
+      "level": "error",
+      "message": "runtime artifacts potentially vulnerable to a cache poisoning attack",
+      "workflow": "microsoft_retina__.github__workflows__goreleaser.yaml",
+      "line": 2,
+      "column": 1,
+      "note": "audit confidence \u2192 Low"
+    }
+  ]
+}

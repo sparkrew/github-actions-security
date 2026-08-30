@@ -1,0 +1,23 @@
+{
+  "workflow": "apple_swift-nio__.github__workflows__unit_tests.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "unverified_script_exec": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": 165,
+      "column": "",
+      "job": "construct-matrix",
+      "step": "1",
+      "details": "Command: curl -s --retry 3 https://raw.githubusercontent.com/apple/swift-nio/main/scripts/generate_matrix.sh | MATRIX_LINUX_ENV_VARS_JSON=\"${linux_env_vars_json}\" MATRIX_WINDOWS_ENV_VARS_JSON=\"${windows_env_vars_json}\" bash",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    }
+  ]
+}

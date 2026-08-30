@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/facebook_zstd__.github__workflows__nightly.yml b/.github/workflows/facebook_zstd__.github__workflows__nightly.yml
+index fe29620..3f41965 100644
+--- a/.github/workflows/facebook_zstd__.github__workflows__nightly.yml
++++ b/.github/workflows/facebook_zstd__.github__workflows__nightly.yml
+@@ -12,7 +12,7 @@ jobs:
+   regression-test:
+     runs-on: ubuntu-latest
+     steps:
+-    - uses: actions/checkout@v6.0.2
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+     - name: Install dependencies
+       run: sudo apt-get update && sudo apt-get install -y libcurl4-openssl-dev
+     - name: Regression Test

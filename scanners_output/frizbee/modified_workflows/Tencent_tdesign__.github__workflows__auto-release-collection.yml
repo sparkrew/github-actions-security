@@ -1,0 +1,24 @@
+name: auto-release-collection
+on:
+  schedule:
+    # 相关语法 https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html#tag_20_25_07 would run a command on the first and fifteenth of each month
+    - cron: '0 2 1,8,15,22 * *'
+
+jobs:
+  release-collection:
+    if: github.repository == 'Tencent/tdesign'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 18
+      - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
+
+      - name: Install Dependencies
+        run: pnpm install
+      - name: run auto-release-collection
+        env:
+          GITHUB_TOKEN: ${{ secrets.TDESIGN_BOT_TOKEN }}
+        run: pnpm run auto-release-collection

@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/facebookresearch_xformers__.github__workflows__rocm_ci.yml b/.github/workflows/facebookresearch_xformers__.github__workflows__rocm_ci.yml
+index 7cac45e..f13fba1 100644
+--- a/.github/workflows/facebookresearch_xformers__.github__workflows__rocm_ci.yml
++++ b/.github/workflows/facebookresearch_xformers__.github__workflows__rocm_ci.yml
+@@ -17,7 +17,7 @@ jobs:
+       image: 'rocm/pytorch-nightly:latest'
+       options: ' --cap-add=SYS_PTRACE --security-opt seccomp=unconfined --device=/dev/kfd --device=/dev/dri --group-add video --ipc=host --shm-size 8G --memory 32G '
+     steps:
+-    - uses: actions/checkout@v4
++    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+       with:
+         path: '_xformers'
+         submodules: 'recursive'
+@@ -84,7 +84,7 @@ jobs:
+ 
+     - name: Archive logs
+       if: '!cancelled()'
+-      uses: actions/upload-artifact@v4
++      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+       with:
+         name: test results
+         path: test_mem_eff_attention.html

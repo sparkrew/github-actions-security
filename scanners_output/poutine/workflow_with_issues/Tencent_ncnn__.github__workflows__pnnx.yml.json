@@ -1,0 +1,49 @@
+{
+  "workflow": "Tencent_ncnn__.github__workflows__pnnx.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 2,
+      "if_always_true": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 69,
+      "column": "",
+      "job": "build",
+      "step": "",
+      "details": "runs-on: self-hosted, linux, ubuntu25",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 232,
+      "column": "",
+      "job": "test",
+      "step": "",
+      "details": "runs-on: self-hosted, linux, ubuntu25",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "rule_id": "if_always_true",
+      "line": 325,
+      "column": "",
+      "job": "test",
+      "step": "9",
+      "details": "",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "workflow": "NVIDIA_physicsnemo__.github__workflows__install-ci.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 7,
+    "by_rule": {
+      "artipacked": 2,
+      "excessive-permissions": 3,
+      "unpinned-uses": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "NVIDIA_physicsnemo__.github__workflows__install-ci.yml",
+      "line": 26,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "NVIDIA_physicsnemo__.github__workflows__install-ci.yml",
+      "line": 74,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "NVIDIA_physicsnemo__.github__workflows__install-ci.yml",
+      "line": 1,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "NVIDIA_physicsnemo__.github__workflows__install-ci.yml",
+      "line": 14,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "NVIDIA_physicsnemo__.github__workflows__install-ci.yml",
+      "line": 41,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "NVIDIA_physicsnemo__.github__workflows__install-ci.yml",
+      "line": 81,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "NVIDIA_physicsnemo__.github__workflows__install-ci.yml",
+      "line": 84,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

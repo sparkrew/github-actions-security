@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/facebookincubator_AITemplate__.github__workflows__rocm_ci.yml b/.github/workflows/facebookincubator_AITemplate__.github__workflows__rocm_ci.yml
+index 24445ba..3e503f2 100644
+--- a/.github/workflows/facebookincubator_AITemplate__.github__workflows__rocm_ci.yml
++++ b/.github/workflows/facebookincubator_AITemplate__.github__workflows__rocm_ci.yml
+@@ -10,7 +10,7 @@ jobs:
+     runs-on: rocm
+ 
+     steps:
+-    - uses: actions/checkout@v2
++    - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+     - name: Get CPU info on Ubuntu
+       if: contains(runner.os, 'linux')
+       run: |

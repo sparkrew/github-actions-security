@@ -1,0 +1,95 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_xformers__.github__workflows__wheels_upload_s3.yml:44:9
+   [1m[94m|[0m
+[1m[94m44 |[0m         - name: Recursive checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m45 |[0m [1m[33m|[0m         uses: actions/checkout@v3
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m50 |[0m [1m[33m|[0m
+[1m[94m51 |[0m [1m[33m|[0m       # inspired by https://github.com/jlumbroso/free-disk-space/blob/main/action.yml
+   [1m[94m|[0m [1m[33m|_____________________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_xformers__.github__workflows__wheels_upload_s3.yml:62:9
+   [1m[94m|[0m
+[1m[94m62 |[0m         - name: Extract builds to upload
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m63 |[0m [1m[91m/[0m         run: |
+[1m[94m64 |[0m [1m[91m|[0m           set -ex
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m68 |[0m [1m[91m|[0m             cp $f dist/
+[1m[94m69 |[0m [1m[91m|[0m           done;
+   [1m[94m|[0m [1m[91m|_______________^[0m [1m[91minputs.filter may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_xformers__.github__workflows__wheels_upload_s3.yml:62:9
+   [1m[94m|[0m
+[1m[94m62 |[0m         - name: Extract builds to upload
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m63 |[0m [1m[91m/[0m         run: |
+[1m[94m64 |[0m [1m[91m|[0m           set -ex
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m68 |[0m [1m[91m|[0m             cp $f dist/
+[1m[94m69 |[0m [1m[91m|[0m           done;
+   [1m[94m|[0m [1m[91m|_______________^[0m [1m[91minputs.artifact_tag may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_xformers__.github__workflows__wheels_upload_s3.yml:85:9
+   [1m[94m|[0m
+[1m[94m85 |[0m         - name: Upload wheels to ${{ inputs.s3_path }}
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m86 |[0m           if: inputs.execute
+[1m[94m87 |[0m [1m[91m/[0m         run: |
+[1m[94m88 |[0m [1m[91m|[0m           set -ex
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m92 |[0m [1m[91m|[0m           done;
+[1m[94m93 |[0m [1m[91m|[0m           aws s3 ls ${{ inputs.s3_path }}
+   [1m[94m|[0m [1m[91m|__________________________________________^[0m [1m[91minputs.s3_path may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_xformers__.github__workflows__wheels_upload_s3.yml:85:9
+   [1m[94m|[0m
+[1m[94m85 |[0m         - name: Upload wheels to ${{ inputs.s3_path }}
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m86 |[0m           if: inputs.execute
+[1m[94m87 |[0m [1m[91m/[0m         run: |
+[1m[94m88 |[0m [1m[91m|[0m           set -ex
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m92 |[0m [1m[91m|[0m           done;
+[1m[94m93 |[0m [1m[91m|[0m           aws s3 ls ${{ inputs.s3_path }}
+   [1m[94m|[0m [1m[91m|__________________________________________^[0m [1m[91minputs.aws_s3_cp_extra_args may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_xformers__.github__workflows__wheels_upload_s3.yml:85:9
+   [1m[94m|[0m
+[1m[94m85 |[0m         - name: Upload wheels to ${{ inputs.s3_path }}
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m86 |[0m           if: inputs.execute
+[1m[94m87 |[0m [1m[91m/[0m         run: |
+[1m[94m88 |[0m [1m[91m|[0m           set -ex
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m92 |[0m [1m[91m|[0m           done;
+[1m[94m93 |[0m [1m[91m|[0m           aws s3 ls ${{ inputs.s3_path }}
+   [1m[94m|[0m [1m[91m|__________________________________________^[0m [1m[91minputs.s3_path may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_xformers__.github__workflows__wheels_upload_s3.yml:74:9
+   [1m[94m|[0m
+[1m[94m74 |[0m         uses: aws-actions/configure-aws-credentials@v1.7.0
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m13[39m findings ([1m[93m6[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m6[39m high

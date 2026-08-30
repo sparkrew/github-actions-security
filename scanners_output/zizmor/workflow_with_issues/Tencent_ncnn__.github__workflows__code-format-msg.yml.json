@@ -1,0 +1,31 @@
+{
+  "workflow": "Tencent_ncnn__.github__workflows__code-format-msg.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "excessive-permissions": 1,
+      "dangerous-triggers": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "excessive-permissions",
+      "level": "error",
+      "message": "overly broad permissions",
+      "workflow": "Tencent_ncnn__.github__workflows__code-format-msg.yml",
+      "line": 13,
+      "column": 3,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "dangerous-triggers",
+      "level": "error",
+      "message": "use of fundamentally insecure workflow trigger",
+      "workflow": "Tencent_ncnn__.github__workflows__code-format-msg.yml",
+      "line": 84,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

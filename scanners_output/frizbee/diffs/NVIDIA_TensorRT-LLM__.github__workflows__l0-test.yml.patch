@@ -1,0 +1,27 @@
+diff --git a/.github/workflows/NVIDIA_TensorRT-LLM__.github__workflows__l0-test.yml b/.github/workflows/NVIDIA_TensorRT-LLM__.github__workflows__l0-test.yml
+index a482a86..6127233 100644
+--- a/.github/workflows/NVIDIA_TensorRT-LLM__.github__workflows__l0-test.yml
++++ b/.github/workflows/NVIDIA_TensorRT-LLM__.github__workflows__l0-test.yml
+@@ -34,7 +34,7 @@ jobs:
+     if: github.event_name == 'workflow_dispatch'
+     steps:
+       - name: Update commit status
+-        uses: actions/github-script@v8
++        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+         with:
+           script: |
+             state = 'pending'
+@@ -56,11 +56,11 @@ jobs:
+         run: rm -rf results && mkdir results && cd results && curl --user svc_tensorrt:${{ secrets.ARTIFACTORY_TOKEN }} -L ${{ github.event.inputs.test_results_url }} | tar -xz
+       - name: Create test summary
+         id: test_summary
+-        uses: test-summary/action@dist
++        uses: test-summary/action@14d976eb4e1453d4890c48d781cf44b1cf67bbad # dist
+         with:
+           paths: results/**/results*.xml
+       - name: Update commit status
+-        uses: actions/github-script@v8
++        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+         with:
+           script: |
+             github.rest.repos.createCommitStatus({

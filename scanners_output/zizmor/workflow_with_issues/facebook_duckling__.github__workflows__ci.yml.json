@@ -1,0 +1,41 @@
+{
+  "workflow": "facebook_duckling__.github__workflows__ci.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "artipacked": 1,
+      "excessive-permissions": 1,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "facebook_duckling__.github__workflows__ci.yml",
+      "line": 20,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "facebook_duckling__.github__workflows__ci.yml",
+      "line": 10,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "facebook_duckling__.github__workflows__ci.yml",
+      "line": 23,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

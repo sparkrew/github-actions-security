@@ -1,0 +1,106 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_mcp__.github__workflows__python.yml:20:9
+   [1m[94m|[0m
+[1m[94m20 |[0m         - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m21 |[0m [1m[33m|[0m         with:
+[1m[94m22 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_mcp__.github__workflows__python.yml:78:9
+   [1m[94m|[0m
+[1m[94m78 |[0m       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+   [1m[94m|[0m         [1m[33m------------------------------------------------------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_mcp__.github__workflows__python.yml:23:9
+   [1m[94m|[0m
+[1m[94m23 |[0m       - name: Fetch base branch
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m24 |[0m         run: git fetch origin ${{ github.base_ref }}:${{ github.base_ref }}
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mgithub.base_ref may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_mcp__.github__workflows__python.yml:23:9
+   [1m[94m|[0m
+[1m[94m23 |[0m       - name: Fetch base branch
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m24 |[0m         run: git fetch origin ${{ github.base_ref }}:${{ github.base_ref }}
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mgithub.base_ref may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mcp__.github__workflows__python.yml:112:9
+    [1m[94m|[0m
+[1m[94m112 |[0m [1m[94m...[0m - name: Security check - Bandit
+    [1m[94m|[0m       [1m[33m-----------------------------[0m [1m[33mthis step[0m
+[1m[94m113 |[0m [1m[94m...[0m   id: bandit-check
+[1m[94m114 |[0m [1m[94m...[0m   working-directory: src/${{ matrix.package }}
+[1m[94m115 |[0m [1m[94m...[0m   run: bandit -r --severity-level medium --confidence-level medium -f html -o bandit-report-${{ matrix.package }}.html -c "pyproject.toml" . || echo "status=failure" >> $GITHUB_OUTPUT
+    [1m[94m|[0m       [1m[33m-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[33mmatrix.package may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mcp__.github__workflows__python.yml:131:9
+    [1m[94m|[0m
+[1m[94m131 |[0m         - name: Verify package name consistency
+    [1m[94m|[0m           [1m[33m-------------------------------------[0m [1m[33mthis step[0m
+[1m[94m132 |[0m [1m[33m/[0m         run: |
+[1m[94m133 |[0m [1m[33m|[0m           python3 scripts/verify_package_name.py src/${{ matrix.package }}
+[1m[94m134 |[0m [1m[33m|[0m           uv run --script scripts/verify_awslabs_init.py src/${{ matrix.package }}
+    [1m[94m|[0m [1m[33m|__________________________________________________________________________________-[0m [1m[33mmatrix.package may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mcp__.github__workflows__python.yml:131:9
+    [1m[94m|[0m
+[1m[94m131 |[0m         - name: Verify package name consistency
+    [1m[94m|[0m           [1m[33m-------------------------------------[0m [1m[33mthis step[0m
+[1m[94m132 |[0m [1m[33m/[0m         run: |
+[1m[94m133 |[0m [1m[33m|[0m           python3 scripts/verify_package_name.py src/${{ matrix.package }}
+[1m[94m134 |[0m [1m[33m|[0m           uv run --script scripts/verify_awslabs_init.py src/${{ matrix.package }}
+    [1m[94m|[0m [1m[33m|__________________________________________________________________________________-[0m [1m[33mmatrix.package may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mcp__.github__workflows__python.yml:136:9
+    [1m[94m|[0m
+[1m[94m136 |[0m         - name: Run tests
+    [1m[94m|[0m           [1m[33m---------------[0m [1m[33mthis step[0m
+[1m[94m137 |[0m           working-directory: src/${{ matrix.package }}
+[1m[94m138 |[0m [1m[33m/[0m         run: |
+[1m[94m139 |[0m [1m[33m|[0m           if [ -d "tests" ]; then
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m142 |[0m [1m[33m|[0m             echo "No tests directory found, skipping tests"
+[1m[94m143 |[0m [1m[33m|[0m           fi
+    [1m[94m|[0m [1m[33m|____________-[0m [1m[33mmatrix.package may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mcp__.github__workflows__python.yml:136:9
+    [1m[94m|[0m
+[1m[94m136 |[0m         - name: Run tests
+    [1m[94m|[0m           [1m[33m---------------[0m [1m[33mthis step[0m
+[1m[94m137 |[0m           working-directory: src/${{ matrix.package }}
+[1m[94m138 |[0m [1m[33m/[0m         run: |
+[1m[94m139 |[0m [1m[33m|[0m           if [ -d "tests" ]; then
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m142 |[0m [1m[33m|[0m             echo "No tests directory found, skipping tests"
+[1m[94m143 |[0m [1m[33m|[0m           fi
+    [1m[94m|[0m [1m[33m|____________-[0m [1m[33mmatrix.package may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m16[39m findings ([1m[93m7[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m7[39m medium, [31m2[39m high

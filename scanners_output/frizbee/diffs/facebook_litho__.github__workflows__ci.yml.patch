@@ -1,0 +1,138 @@
+diff --git a/.github/workflows/facebook_litho__.github__workflows__ci.yml b/.github/workflows/facebook_litho__.github__workflows__ci.yml
+index cba4d71..b4504e7 100644
+--- a/.github/workflows/facebook_litho__.github__workflows__ci.yml
++++ b/.github/workflows/facebook_litho__.github__workflows__ci.yml
+@@ -11,36 +11,36 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v3
++        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+       - name: Set up JDK
+-        uses: actions/setup-java@v3
++        uses: actions/setup-java@17f84c3641ba7b8f6deff6309fc4c864478f5d62 # v3
+         with:
+           distribution: 'adopt'
+           java-version: 17
+       - name: Set up GCC
+-        uses: egor-tensin/setup-gcc@v1
++        uses: egor-tensin/setup-gcc@eaa888eb19115a521fa72b65cd94fe1f25bbcaac # v1
+         with:
+           version: latest
+           platform: x64
+       - name: Setup NDK
+-        uses: nttld/setup-ndk@v1
++        uses: nttld/setup-ndk@ed92fe6cadad69be94a966a7ee3271275e62f779 # v1
+         with:
+           ndk-version: r26b
+       - name: Setup Python
+-        uses: actions/setup-python@v4
++        uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+         with:
+           python-version: '3.9.16'
+       - name: Setup Android SDK
+-        uses: android-actions/setup-android@v3
++        uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407 # v3
+       - name: Install CMake
+         run: sdkmanager 'cmake;3.18.1'
+       - name: Gradle caches
+-        uses: actions/cache@v3
++        uses: actions/cache@6f8efc29b200d32929f49075959781ed54ec270c # v3
+         with:
+           path: ~/.gradle/caches
+           key: caches-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
+       - name: Gradle wrapper caches
+-        uses: actions/cache@v3
++        uses: actions/cache@6f8efc29b200d32929f49075959781ed54ec270c # v3
+         with:
+           path: ~/.gradle/wrapper
+           key: wrapper-${{ runner.os }}-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+@@ -57,32 +57,32 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v3
++        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+       - name: Set up JDK
+-        uses: actions/setup-java@v3
++        uses: actions/setup-java@17f84c3641ba7b8f6deff6309fc4c864478f5d62 # v3
+         with:
+           distribution: 'adopt'
+           java-version: 17
+       - name: Set up GCC
+-        uses: egor-tensin/setup-gcc@v1
++        uses: egor-tensin/setup-gcc@eaa888eb19115a521fa72b65cd94fe1f25bbcaac # v1
+         with:
+           version: latest
+           platform: x64
+       - name: Setup NDK
+-        uses: nttld/setup-ndk@v1
++        uses: nttld/setup-ndk@ed92fe6cadad69be94a966a7ee3271275e62f779 # v1
+         with:
+           ndk-version: r26b
+       - name: Setup Python
+-        uses: actions/setup-python@v4
++        uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+         with:
+           python-version: '3.9.16'
+       - name: Gradle caches
+-        uses: actions/cache@v3
++        uses: actions/cache@6f8efc29b200d32929f49075959781ed54ec270c # v3
+         with:
+           path: ~/.gradle/caches
+           key: caches-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
+       - name: Gradle wrapper caches
+-        uses: actions/cache@v3
++        uses: actions/cache@6f8efc29b200d32929f49075959781ed54ec270c # v3
+         with:
+           path: ~/.gradle/wrapper
+           key: wrapper-${{ runner.os }}-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}
+@@ -104,7 +104,7 @@ jobs:
+       is-snapshot: ${{ steps.check_snapshot.outputs.IS_SNAPSHOT != '' }}
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v3
++        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+       - name: Check if SNAPSHOT version
+         id: check_snapshot
+         run: |
+@@ -115,32 +115,32 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v3
++        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+       - name: Set up JDK
+-        uses: actions/setup-java@v3
++        uses: actions/setup-java@17f84c3641ba7b8f6deff6309fc4c864478f5d62 # v3
+         with:
+           distribution: 'adopt'
+           java-version: 17
+       - name: Set up GCC
+-        uses: egor-tensin/setup-gcc@v1
++        uses: egor-tensin/setup-gcc@eaa888eb19115a521fa72b65cd94fe1f25bbcaac # v1
+         with:
+           version: latest
+           platform: x64
+       - name: Setup NDK
+-        uses: nttld/setup-ndk@v1
++        uses: nttld/setup-ndk@ed92fe6cadad69be94a966a7ee3271275e62f779 # v1
+         with:
+           ndk-version: r26b
+       - name: Setup Python
+-        uses: actions/setup-python@v4
++        uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+         with:
+           python-version: '3.9.16'
+       - name: Gradle caches
+-        uses: actions/cache@v3
++        uses: actions/cache@6f8efc29b200d32929f49075959781ed54ec270c # v3
+         with:
+           path: ~/.gradle/caches
+           key: caches-${{ runner.os }}-${{ hashFiles('**/*.gradle') }}
+       - name: Gradle wrapper caches
+-        uses: actions/cache@v3
++        uses: actions/cache@6f8efc29b200d32929f49075959781ed54ec270c # v3
+         with:
+           path: ~/.gradle/wrapper
+           key: wrapper-${{ runner.os }}-${{ hashFiles('gradle/wrapper/gradle-wrapper.properties') }}

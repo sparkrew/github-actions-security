@@ -1,0 +1,114 @@
+{
+  "workflow": "Tencent_WeKnora__.github__workflows__docker-image.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        18,
+        21,
+        24,
+        31,
+        36,
+        51,
+        67,
+        70,
+        73,
+        80,
+        85,
+        100,
+        103,
+        106,
+        113,
+        118,
+        142,
+        145,
+        149,
+        156,
+        176,
+        183,
+        194,
+        218,
+        231,
+        238,
+        244,
+        248
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:100",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:103",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:106",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:113",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:118",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:142",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:145",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:149",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:156",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:176",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:183",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:194",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:218",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:231",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:238",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:244",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:248",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:18",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:21",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:24",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:31",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:36",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:51",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:67",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:70",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:73",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:80",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:85",
+        "Info:   0 out of   7 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of  21 third-party GitHubAction dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 0,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1
+      ],
+      "raw_details": [
+        "Warn: no topLevel permission defined: .github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml:1",
+        "Info: no jobLevel write permissions found"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

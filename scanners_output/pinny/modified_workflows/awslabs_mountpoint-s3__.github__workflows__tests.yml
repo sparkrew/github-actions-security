@@ -1,0 +1,404 @@
+name: Tests
+
+on:
+  push:
+    branches: [ "main", "wf-changes/**" ]
+  pull_request:
+  merge_group:
+    types: [ "checks_requested" ]
+
+permissions:
+  contents: read
+
+env:
+  RUST_BACKTRACE: 1
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: 0
+  RUST_FEATURES: fuse_tests
+
+jobs:
+  test:
+    name: Tests (FUSE ${{ matrix.fuseVersion }})
+    runs-on: ubuntu-22.04
+
+    strategy:
+      matrix:
+        fuseVersion: [2, 3]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+      with:
+        submodules: true
+    - name: Install operating system dependencies
+      uses: ./.github/actions/install-dependencies
+      with:
+        fuseVersion: ${{ matrix.fuseVersion }}
+    - name: Set up Rust toolchain
+      uses: actions-rust-lang/setup-rust-toolchain@a0b538fa0b742a6aa35d6e2c169b4bd06d225a98 # actions-rust-lang/setup-rust-toolchain@v1 | main,v1.15,v1.15.3
+      with:
+        # setup-rust-toolchain sets "-D warnings" by default, and Rust treats any warning as compile error.
+        # We need to do this currently because `mountpoint-s3-fuser` contains some warnings and it breaks the build.
+        rustflags: ""
+    - name: Install nextest
+      uses: taiki-e/install-action@205eb1d74c6feda89abb1f3a09360601953286c0 # taiki-e/install-action@v2 | v2,v2.68.18
+      with:
+        tool: nextest
+    - name: Cargo cache
+      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # actions/cache@v5 | v5.0.3
+      with:
+        path: |
+          ~/.cargo/bin/
+          ~/.cargo/registry/index/
+          ~/.cargo/registry/cache/
+          ~/.cargo/git/db/
+          target/
+        key: ${{ runner.os }}-${{ runner.arch }}-${{ github.job }}-fuse${{ matrix.fuseVersion }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+    - name: Build tests
+      run: cargo nextest run --profile ci --features $RUST_FEATURES --no-run
+    - name: Run tests
+      run: cargo nextest run --profile ci --features $RUST_FEATURES
+
+  doc-tests:
+    name: Doc-Tests
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+      with:
+        submodules: true
+    - name: Install operating system dependencies
+      uses: ./.github/actions/install-dependencies
+      with:
+        fuseVersion: 2
+    - name: Set up Rust toolchain
+      uses: actions-rust-lang/setup-rust-toolchain@a0b538fa0b742a6aa35d6e2c169b4bd06d225a98 # actions-rust-lang/setup-rust-toolchain@v1 | main,v1.15,v1.15.3
+      with:
+        rustflags: ""
+    - name: Cargo cache
+      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # actions/cache@v5 | v5.0.3
+      with:
+        path: |
+          ~/.cargo/bin/
+          ~/.cargo/registry/index/
+          ~/.cargo/registry/cache/
+          ~/.cargo/git/db/
+          target/
+        key: ${{ runner.os }}-${{ runner.arch }}-${{ github.job }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+    - name: Run doc-tests
+      # Skip `mountpoint-s3-fuser` and `mountpoint-s3-crt-sys` (prevents C docs being interpreted as rustdoc tests).
+      run: cargo test --doc --workspace --exclude mountpoint-s3-crt-sys --exclude mountpoint-s3-fuser --features $RUST_FEATURES
+
+  macos-test:
+    name: Tests (MacOS)
+
+    # We don't strictly support macOS,
+    # checking latest macOS version passes unit tests is enough.
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+      with:
+        submodules: true
+    - name: Install dependencies
+      run: |
+        brew update > /dev/null && brew install pkgconfig
+    - name: Install fuse
+      run: |
+        brew install --cask macfuse
+    - name: Set up Rust toolchain
+      uses: actions-rust-lang/setup-rust-toolchain@a0b538fa0b742a6aa35d6e2c169b4bd06d225a98 # actions-rust-lang/setup-rust-toolchain@v1 | main,v1.15,v1.15.3
+      with:
+        # setup-rust-toolchain sets "-D warnings" by default, and Rust treats any warning as compile error.
+        # We need to do this currently because `mountpoint-s3-fuser` contains some warnings and it breaks the build.
+        rustflags: ""
+    - name: Install nextest
+      uses: taiki-e/install-action@205eb1d74c6feda89abb1f3a09360601953286c0 # taiki-e/install-action@v2 | v2,v2.68.18
+      with:
+        tool: nextest
+    - name: Cargo cache
+      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # actions/cache@v5 | v5.0.3
+      with:
+        path: |
+          ~/.cargo/bin/
+          ~/.cargo/registry/index/
+          ~/.cargo/registry/cache/
+          ~/.cargo/git/db/
+          target/
+        key: ${{ runner.os }}-${{ runner.arch }}-${{ github.job }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+    - name: Build tests
+      run: cargo nextest run --profile ci --no-run
+    - name: Run tests
+      # Skip `mountpoint-s3-fuser` tests on macOS.
+      run: cargo nextest run --profile ci --workspace --exclude mountpoint-s3-fuser
+
+  check:
+    name: Check all targets
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+      with:
+        submodules: true
+    - name: Install operating system dependencies
+      uses: ./.github/actions/install-dependencies
+      with:
+        fuseVersion: 2
+    - name: Set up Rust toolchain
+      uses: actions-rust-lang/setup-rust-toolchain@a0b538fa0b742a6aa35d6e2c169b4bd06d225a98 # actions-rust-lang/setup-rust-toolchain@v1 | main,v1.15,v1.15.3
+      with:
+        # setup-rust-toolchain sets "-D warnings" by default, and Rust treats any warning as compile error.
+        # We need to do this currently because `mountpoint-s3-fuser` contains some warnings and it breaks the build.
+        rustflags: ""
+    - name: Cargo cache
+      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # actions/cache@v5 | v5.0.3
+      with:
+        path: |
+          ~/.cargo/bin/
+          ~/.cargo/registry/index/
+          ~/.cargo/registry/cache/
+          ~/.cargo/git/db/
+          target/
+        key: ${{ runner.os }}-${{ runner.arch }}-${{ github.job }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+    - name: Check all targets
+      run: cargo check --locked --all-targets --all-features
+
+  bench:
+    name: Cargo benchmarks
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+      with:
+        submodules: true
+    - name: Install operating system dependencies
+      uses: ./.github/actions/install-dependencies
+      with:
+        fuseVersion: 2
+    - name: Set up Rust toolchain
+      uses: actions-rust-lang/setup-rust-toolchain@a0b538fa0b742a6aa35d6e2c169b4bd06d225a98 # actions-rust-lang/setup-rust-toolchain@v1 | main,v1.15,v1.15.3
+      with:
+        # setup-rust-toolchain sets "-D warnings" by default, and Rust treats any warning as compile error.
+        # We need to do this currently because `mountpoint-s3-fuser` contains some warnings and it breaks the build.
+        rustflags: ""
+    - name: Cargo cache
+      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # actions/cache@v5 | v5.0.3
+      with:
+        path: |
+          ~/.cargo/bin/
+          ~/.cargo/registry/index/
+          ~/.cargo/registry/cache/
+          ~/.cargo/git/db/
+          target/
+        key: ${{ runner.os }}-${{ runner.arch }}-${{ github.job }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+    - name: Run benchmarks
+      run: cargo bench
+
+  shuttle:
+    name: Shuttle tests
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+      with:
+        submodules: true
+    - name: Set up Rust toolchain
+      uses: actions-rust-lang/setup-rust-toolchain@a0b538fa0b742a6aa35d6e2c169b4bd06d225a98 # actions-rust-lang/setup-rust-toolchain@v1 | main,v1.15,v1.15.3
+      with:
+        # setup-rust-toolchain sets "-D warnings" by default, and Rust treats any warning as compile error.
+        # We need to do this currently because `mountpoint-s3-fuser` contains some warnings and it breaks the build.
+        rustflags: ""
+    - name: Install nextest
+      uses: taiki-e/install-action@205eb1d74c6feda89abb1f3a09360601953286c0 # taiki-e/install-action@v2 | v2,v2.68.18
+      with:
+        tool: nextest
+    - name: Install operating system dependencies
+      uses: ./.github/actions/install-dependencies
+      with:
+        fuseVersion: 2
+    - name: Cargo cache
+      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # actions/cache@v5 | v5.0.3
+      with:
+        path: |
+          ~/.cargo/bin/
+          ~/.cargo/registry/index/
+          ~/.cargo/registry/cache/
+          ~/.cargo/git/db/
+          target/
+        key: ${{ runner.os }}-${{ runner.arch }}-${{ github.job }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+    - name: Run Shuttle tests
+      run: cargo nextest run --profile ci -p mountpoint-s3-fs --features shuttle -- shuttle
+
+  rustfmt:
+    name: Formatting
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+      - name: Set up Rust toolchain
+        uses: actions-rust-lang/setup-rust-toolchain@a0b538fa0b742a6aa35d6e2c169b4bd06d225a98 # actions-rust-lang/setup-rust-toolchain@v1 | main,v1.15,v1.15.3
+        with:
+          # setup-rust-toolchain sets "-D warnings" by default, and Rust treats any warning as compile error.
+          # We need to do this currently because `mountpoint-s3-fuser` contains some warnings and it breaks the build.
+          rustflags: ""
+          components: rustfmt
+      - name: Check format
+        run: make fmt-check
+
+  clippy:
+    name: Clippy
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+        with:
+          submodules: true
+      - name: Install operating system dependencies
+        uses: ./.github/actions/install-dependencies
+        with:
+          fuseVersion: 2
+      - name: Set up Rust toolchain
+        uses: actions-rust-lang/setup-rust-toolchain@a0b538fa0b742a6aa35d6e2c169b4bd06d225a98 # actions-rust-lang/setup-rust-toolchain@v1 | main,v1.15,v1.15.3
+        with:
+          # setup-rust-toolchain sets "-D warnings" by default, and Rust treats any warning as compile error.
+          # We need to do this currently because `mountpoint-s3-fuser` contains some warnings and it breaks the build.
+          rustflags: ""
+          components: clippy
+      - name: Cargo cache
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # actions/cache@v5 | v5.0.3
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-${{ runner.arch }}-${{ github.job }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+      - name: Run Clippy
+        run: make clippy
+
+  docs:
+    name: CRT docs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+        with:
+          submodules: true
+      - name: Set up Rust toolchain
+        uses: actions-rust-lang/setup-rust-toolchain@a0b538fa0b742a6aa35d6e2c169b4bd06d225a98 # actions-rust-lang/setup-rust-toolchain@v1 | main,v1.15,v1.15.3
+        with:
+          # setup-rust-toolchain sets "-D warnings" by default, and Rust treats any warning as compile error.
+          # We need to do this currently because `mountpoint-s3-fuser` contains some warnings and it breaks the build.
+          rustflags: ""
+          components: rust-docs
+      - name: Cargo cache
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # actions/cache@v5 | v5.0.3
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-${{ runner.arch }}-${{ github.job }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+      - name: Build CRT binding documentation
+        run: cargo doc --no-deps -p mountpoint-s3-crt
+
+  deny:
+    name: Licenses
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+      - name: Run cargo deny
+        uses: EmbarkStudios/cargo-deny-action@3fd3802e88374d3fe9159b834c7714ec57d6c979 # EmbarkStudios/cargo-deny-action@v2
+
+
+  benchmark-script-checks:
+    name: Benchmark script checks
+    runs-on: ubuntu-22.04
+    defaults:
+      run:
+        working-directory: ./benchmark/
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+      - name: Install uv
+        uses: astral-sh/setup-uv@5a095e7a2014a4212f075830d4f7277575a9d098 # astral-sh/setup-uv@v7
+      - name: Set up Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # actions/setup-python@v6 | main,v6.2.0
+        with:
+          python-version-file: "./benchmark/.python-version"
+      - name: Format check
+        run: uvx ruff format --diff .
+      - name: Lint check
+        run: uvx ruff check --output-format=github .
+
+
+  package-script-checks:
+    name: Packaging script checks
+    runs-on: ubuntu-22.04
+    defaults:
+      run:
+        working-directory: ./package/
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+      - name: Install uv
+        uses: astral-sh/setup-uv@5a095e7a2014a4212f075830d4f7277575a9d098 # astral-sh/setup-uv@v7
+      - name: Set up Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # actions/setup-python@v6 | main,v6.2.0
+      - name: Format check
+        run: uvx ruff format --diff .
+      - name: Lint check
+        run: uvx ruff check --output-format=github .
+
+  docker:
+    name: "Container build checks"
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Build Dockerfile using official release binaries
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # docker/build-push-action@v6 | v6.19.2
+        with:
+          push: false
+          file: docker/Dockerfile
+      - name: Build Dockerfile using Mountpoint source code
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # docker/build-push-action@v6 | v6.19.2
+        with:
+          push: false
+          file: docker/Dockerfile.source
+
+  workflow-complete:
+    name: "Tests Workflow Complete"
+    runs-on: ubuntu-latest
+    if: always()
+    needs:
+      - test
+      - doc-tests
+      - macos-test
+      - check
+      - bench
+      - shuttle
+      - rustfmt
+      - clippy
+      - docs
+      - deny
+      - benchmark-script-checks
+      - package-script-checks
+      - docker
+    steps:
+      - name: Verify jobs succeeded
+        run: echo '${{ toJSON(needs) }}' | jq -e 'to_entries | all(.value.result == "success")'

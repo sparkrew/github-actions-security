@@ -1,0 +1,89 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_react-native-macos__.github__workflows__microsoft-pr.yml:19:9
+   [1m[94m|[0m
+[1m[94m19 |[0m         - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m20 |[0m [1m[33m|[0m         with:
+[1m[94m21 |[0m [1m[33m|[0m           filter: blob:none
+[1m[94m22 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_react-native-macos__.github__workflows__microsoft-pr.yml:48:9
+   [1m[94m|[0m
+[1m[94m48 |[0m         - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m49 |[0m [1m[33m|[0m         with:
+[1m[94m50 |[0m [1m[33m|[0m           filter: blob:none
+[1m[94m51 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_react-native-macos__.github__workflows__microsoft-pr.yml:87:9
+   [1m[94m|[0m
+[1m[94m87 |[0m         - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m88 |[0m [1m[33m|[0m         with:
+[1m[94m89 |[0m [1m[33m|[0m           filter: blob:none
+[1m[94m90 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_react-native-macos__.github__workflows__microsoft-pr.yml:105:9
+    [1m[94m|[0m
+[1m[94m105 |[0m         - uses: actions/checkout@v4
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m106 |[0m [1m[33m|[0m         with:
+[1m[94m107 |[0m [1m[33m|[0m           filter: blob:none
+[1m[94m108 |[0m [1m[33m|[0m           fetch-depth: 0
+    [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_react-native-macos__.github__workflows__microsoft-pr.yml:69:9
+   [1m[94m|[0m
+[1m[94m69 |[0m         - name: Verify release config
+   [1m[94m|[0m           [1m[94m---------------------------[0m [1m[94minfo: this step[0m
+[1m[94m70 |[0m           id: prepublish
+[1m[94m71 |[0m [1m[94m/[0m         run: |
+[1m[94m72 |[0m [1m[94m|[0m           node .ado/scripts/prepublish-check.mjs --verbose --skip-auth --tag ${{ steps.config.outputs.publishTag }}
+   [1m[94m|[0m [1m[94m|___________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.config.outputs.publishTag may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_react-native-macos__.github__workflows__microsoft-pr.yml:74:9
+   [1m[94m|[0m
+[1m[94m74 |[0m         - name: Version and publish packages (dry run)
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m75 |[0m [1m[91m/[0m         run: |
+[1m[94m76 |[0m [1m[91m|[0m           echo "Target branch: ${{ github.base_ref }}"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m79 |[0m [1m[91m|[0m           # Show what additional tags would be applied
+[1m[94m80 |[0m [1m[91m|[0m           node .ado/scripts/apply-additional-tags.mjs --tags "${{ steps.prepublish.outputs.additionalTags }}" --dry-run
+   [1m[94m|[0m [1m[91m|_______________________________________________________________________________________________________________________^[0m [1m[91mgithub.base_ref may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_react-native-macos__.github__workflows__microsoft-pr.yml:74:9
+   [1m[94m|[0m
+[1m[94m74 |[0m         - name: Version and publish packages (dry run)
+   [1m[94m|[0m           [1m[94m--------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m75 |[0m [1m[94m/[0m         run: |
+[1m[94m76 |[0m [1m[94m|[0m           echo "Target branch: ${{ github.base_ref }}"
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m79 |[0m [1m[94m|[0m           # Show what additional tags would be applied
+[1m[94m80 |[0m [1m[94m|[0m           node .ado/scripts/apply-additional-tags.mjs --tags "${{ steps.prepublish.outputs.additionalTags }}" --dry-run
+   [1m[94m|[0m [1m[94m|_______________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.prepublish.outputs.additionalTags may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m12[39m findings ([1m[93m5[39m suppressed[0m): 0 unknown, [35m2[39m informational, [36m0[39m low, [33m4[39m medium, [31m1[39m high

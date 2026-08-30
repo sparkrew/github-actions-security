@@ -1,0 +1,51 @@
+{
+  "workflow": "microsoft_onnxruntime__.github__workflows__windows_webgpu.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 20,
+      "column": "",
+      "job": "webgpu_build_x64_RelWithDebInfo",
+      "step": "",
+      "details": "runs-on: self-hosted, 1ES.Pool=onnxruntime-github-Win2022-GPU-A10, JobId=webgpu_build_x64_RelWithDebInfo-${{ github.run_id }}-${{ github.run_number }}-${{ github.run_attempt }}",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 159,
+      "column": "",
+      "job": "webgpu_external_dawn_build_x64_RelWithDebInfo",
+      "step": "",
+      "details": "runs-on: self-hosted, 1ES.Pool=onnxruntime-github-Win2022-GPU-A10, JobId=webgpu_external_dawn_build_x64_RelWithDebInfo-${{ github.run_id }}-${{ github.run_number }}-${{ github.run_attempt }}",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 209,
+      "column": "",
+      "job": "webgpu_minimal_build_edge_build_x64_RelWithDebInfo",
+      "step": "",
+      "details": "runs-on: self-hosted, 1ES.Pool=onnxruntime-github-Win2022-GPU-A10, JobId=webgpu_minimal_build_edge_build_x64_RelWithDebInfo-${{ github.run_id }}-${{ github.run_number }}-${{ github.run_attempt }}",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

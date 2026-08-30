@@ -1,0 +1,145 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__build-wheel.yml:42:9
+   [1m[94m|[0m
+[1m[94m42 |[0m         - name: Checkout ${{ github.event.repository.name }}
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m43 |[0m [1m[33m|[0m         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m47 |[0m [1m[33m|[0m       # The env vars ACTIONS_CACHE_SERVICE_V2, ACTIONS_RESULTS_URL, and ACTIONS_RUNTIME_TOKEN
+[1m[94m48 |[0m [1m[33m|[0m       # are exposed by this action.
+   [1m[94m|[0m [1m[33m|___________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__build-wheel.yml:120:9
+    [1m[94m|[0m
+[1m[94m120 |[0m         - name: List the cuda.pathfinder artifacts directory
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m121 |[0m [1m[91m/[0m         run: |
+[1m[94m122 |[0m [1m[91m|[0m           if [[ "${{ inputs.host-platform }}" == win* ]]; then
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m127 |[0m [1m[91m|[0m           $CHOWN -R $(whoami) cuda_pathfinder/*.whl
+[1m[94m128 |[0m [1m[91m|[0m           ls -lahR cuda_pathfinder
+    [1m[94m|[0m [1m[91m|__________________________________^[0m [1m[91minputs.host-platform may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__build-wheel.yml:185:9
+    [1m[94m|[0m
+[1m[94m185 |[0m         - name: List the cuda.bindings artifacts directory
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m186 |[0m [1m[91m/[0m         run: |
+[1m[94m187 |[0m [1m[91m|[0m           if [[ "${{ inputs.host-platform }}" == win* ]]; then
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m192 |[0m [1m[91m|[0m           $CHOWN -R $(whoami) ${{ env.CUDA_BINDINGS_ARTIFACTS_DIR }}
+[1m[94m193 |[0m [1m[91m|[0m           ls -lahR ${{ env.CUDA_BINDINGS_ARTIFACTS_DIR }}
+    [1m[94m|[0m [1m[91m|_________________________________________________________^[0m [1m[91minputs.host-platform may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__build-wheel.yml:243:9
+    [1m[94m|[0m
+[1m[94m243 |[0m         - name: List the cuda.core artifacts directory and rename
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m244 |[0m [1m[91m/[0m         run: |
+[1m[94m245 |[0m [1m[91m|[0m           if [[ "${{ inputs.host-platform }}" == win* ]]; then
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m262 |[0m [1m[91m|[0m
+[1m[94m263 |[0m [1m[91m|[0m           ls -lahR ${{ env.CUDA_CORE_ARTIFACTS_DIR }}
+    [1m[94m|[0m [1m[91m|_____________________________________________________^[0m [1m[91minputs.host-platform may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__build-wheel.yml:274:9
+    [1m[94m|[0m
+[1m[94m274 |[0m         - name: List the cuda-python artifacts directory
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m275 |[0m           if: ${{ strategy.job-index == 0 && inputs.host-platform == 'linux-64' }}
+[1m[94m276 |[0m [1m[91m/[0m         run: |
+[1m[94m277 |[0m [1m[91m|[0m           if [[ "${{ inputs.host-platform }}" == win* ]]; then
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m282 |[0m [1m[91m|[0m           $CHOWN -R $(whoami) cuda_python/*.whl
+[1m[94m283 |[0m [1m[91m|[0m           ls -lahR cuda_python
+    [1m[94m|[0m [1m[91m|______________________________^[0m [1m[91minputs.host-platform may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__build-wheel.yml:303:9
+    [1m[94m|[0m
+[1m[94m303 |[0m         - name: Set up Python include paths
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m304 |[0m [1m[91m/[0m         run: |
+[1m[94m305 |[0m [1m[91m|[0m           if [[ "${{ inputs.host-platform }}" == linux* ]]; then
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m310 |[0m [1m[91m|[0m           # For caching
+[1m[94m311 |[0m [1m[91m|[0m           echo "PY_EXT_SUFFIX=$(python -c "import sysconfig; print(sysconfig.get_config_var('EXT_SUFFIX'))")" >> $GITHUB_ENV
+    [1m[94m|[0m [1m[91m|____________________________________________________________________________________________________________________________^[0m [1m[91minputs.host-platform may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__build-wheel.yml:303:9
+    [1m[94m|[0m
+[1m[94m303 |[0m         - name: Set up Python include paths
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m304 |[0m [1m[91m/[0m         run: |
+[1m[94m305 |[0m [1m[91m|[0m           if [[ "${{ inputs.host-platform }}" == linux* ]]; then
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m310 |[0m [1m[91m|[0m           # For caching
+[1m[94m311 |[0m [1m[91m|[0m           echo "PY_EXT_SUFFIX=$(python -c "import sysconfig; print(sysconfig.get_config_var('EXT_SUFFIX'))")" >> $GITHUB_ENV
+    [1m[94m|[0m [1m[91m|____________________________________________________________________________________________________________________________^[0m [1m[91minputs.host-platform may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__build-wheel.yml:354:9
+    [1m[94m|[0m
+[1m[94m354 |[0m         - name: Download cuda.bindings build artifacts from the prior branch
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m355 |[0m           env:
+[1m[94m356 |[0m             GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+[1m[94m357 |[0m [1m[91m/[0m         run: |
+[1m[94m358 |[0m [1m[91m|[0m           if ! (command -v gh 2>&1 >/dev/null); then
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m382 |[0m [1m[91m|[0m           mv $OLD_BASENAME/*.whl "${{ env.CUDA_BINDINGS_ARTIFACTS_DIR }}"
+[1m[94m383 |[0m [1m[91m|[0m           rmdir $OLD_BASENAME
+    [1m[94m|[0m [1m[91m|_____________________________^[0m [1m[91minputs.host-platform may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__build-wheel.yml:422:9
+    [1m[94m|[0m
+[1m[94m422 |[0m         - name: List the cuda.core artifacts directory and rename
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m423 |[0m [1m[91m/[0m         run: |
+[1m[94m424 |[0m [1m[91m|[0m           if [[ "${{ inputs.host-platform }}" == win* ]]; then
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m442 |[0m [1m[91m|[0m
+[1m[94m443 |[0m [1m[91m|[0m           ls -lahR ${{ env.CUDA_CORE_ARTIFACTS_DIR }}
+    [1m[94m|[0m [1m[91m|_____________________________________________________^[0m [1m[91minputs.host-platform may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__build-wheel.yml:61:9
+   [1m[94m|[0m
+[1m[94m61 |[0m         uses: nv-gha-runners/setup-proxy-cache@main
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__build-wheel.yml:78:9
+   [1m[94m|[0m
+[1m[94m78 |[0m         uses: ilammy/msvc-dev-cmd@v1  # TODO: ask admin to allow pinning commits
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m45[39m findings ([1m[93m34[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m10[39m high

@@ -1,0 +1,118 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__macos_tests.yml:247:9
+    [1m[94m|[0m
+[1m[94m247 |[0m          - id: generate-matrix
+    [1m[94m|[0m  [1m[91m__________^[0m
+[1m[94m248 |[0m [1m[91m|[0m          run: |
+    [1m[94m|[0m [1m[91m|[0m [1m[91m_________^[0m
+[1m[94m249 |[0m [1m[91m||[0m           # Validate and use JSON environment variables directly
+[1m[94m...[0m   [1m[91m||[0m
+[1m[94m410 |[0m [1m[91m||[0m           )"
+[1m[94m411 |[0m [1m[91m||[0m           EOM
+    [1m[94m|[0m [1m[91m||_____________^[0m [1m[91minputs.env_vars may expand into attacker-controllable code[0m
+[1m[94m412 |[0m [1m[91m|[0m          env:
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m456 |[0m [1m[91m|[0m            MATRIX_MACOS_LATEST_BETA_TEST_ARGUMENTS_OVERRIDE: ${{ inputs.xcode_latest_beta_test_arguments_override }}
+[1m[94m457 |[0m [1m[91m|[0m            MATRIX_MACOS_LATEST_BETA_SETUP_COMMAND: ${{ inputs.xcode_latest_beta_setup_command }}
+    [1m[94m|[0m [1m[91m|________________________________________________________________________________________________^[0m [1m[91mthis step[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__macos_tests.yml:474:9
+    [1m[94m|[0m
+[1m[94m474 |[0m         - name: Export environment variables
+    [1m[94m|[0m           [1m[33m----------------------------------[0m [1m[33mthis step[0m
+[1m[94m475 |[0m           if: ${{ matrix.config.env != '' && matrix.config.env != '{}'}}
+[1m[94m476 |[0m [1m[33m/[0m         run: |
+[1m[94m477 |[0m [1m[33m|[0m           echo "Exporting environment variables from matrix configuration..."
+[1m[94m478 |[0m [1m[33m|[0m           echo '${{ toJSON(matrix.config.env) }}' | jq -r 'to_entries[] | "\(.key)=\(.value)"' >> $GITHUB_ENV
+[1m[94m479 |[0m [1m[33m|[0m           echo '${{ toJSON(matrix.config.env) }}' | jq -r 'to_entries[] | "exporting \(.key)=\(.value)"'
+    [1m[94m|[0m [1m[33m|________________________________________________________________________________________________________-[0m [1m[33mmatrix.config.env may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__macos_tests.yml:474:9
+    [1m[94m|[0m
+[1m[94m474 |[0m         - name: Export environment variables
+    [1m[94m|[0m           [1m[33m----------------------------------[0m [1m[33mthis step[0m
+[1m[94m475 |[0m           if: ${{ matrix.config.env != '' && matrix.config.env != '{}'}}
+[1m[94m476 |[0m [1m[33m/[0m         run: |
+[1m[94m477 |[0m [1m[33m|[0m           echo "Exporting environment variables from matrix configuration..."
+[1m[94m478 |[0m [1m[33m|[0m           echo '${{ toJSON(matrix.config.env) }}' | jq -r 'to_entries[] | "\(.key)=\(.value)"' >> $GITHUB_ENV
+[1m[94m479 |[0m [1m[33m|[0m           echo '${{ toJSON(matrix.config.env) }}' | jq -r 'to_entries[] | "exporting \(.key)=\(.value)"'
+    [1m[94m|[0m [1m[33m|________________________________________________________________________________________________________-[0m [1m[33mmatrix.config.env may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__macos_tests.yml:484:9
+    [1m[94m|[0m
+[1m[94m484 |[0m       - name: Setup command
+    [1m[94m|[0m         [1m[33m-------------------[0m [1m[33mthis step[0m
+[1m[94m485 |[0m         if: ${{ matrix.config.setup_command != '' }}
+[1m[94m486 |[0m         run: bash -c "${{ matrix.config.setup_command }}"
+    [1m[94m|[0m         [1m[33m-------------------------------------------------[0m [1m[33mmatrix.config.setup_command may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__macos_tests.yml:487:9
+    [1m[94m|[0m
+[1m[94m487 |[0m         - name: Swift build
+    [1m[94m|[0m           [1m[33m-----------------[0m [1m[33mthis step[0m
+[1m[94m488 |[0m [1m[33m/[0m         run: |
+[1m[94m489 |[0m [1m[33m|[0m           if [ -n "${{ matrix.config.build_arguments_override }}" ]; then
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m492 |[0m [1m[33m|[0m             swift build --build-tests
+[1m[94m493 |[0m [1m[33m|[0m           fi
+    [1m[94m|[0m [1m[33m|____________-[0m [1m[33mmatrix.config.build_arguments_override may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__macos_tests.yml:487:9
+    [1m[94m|[0m
+[1m[94m487 |[0m         - name: Swift build
+    [1m[94m|[0m           [1m[33m-----------------[0m [1m[33mthis step[0m
+[1m[94m488 |[0m [1m[33m/[0m         run: |
+[1m[94m489 |[0m [1m[33m|[0m           if [ -n "${{ matrix.config.build_arguments_override }}" ]; then
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m492 |[0m [1m[33m|[0m             swift build --build-tests
+[1m[94m493 |[0m [1m[33m|[0m           fi
+    [1m[94m|[0m [1m[33m|____________-[0m [1m[33mmatrix.config.build_arguments_override may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__macos_tests.yml:494:9
+    [1m[94m|[0m
+[1m[94m494 |[0m         - name: Swift test
+    [1m[94m|[0m           [1m[33m----------------[0m [1m[33mthis step[0m
+[1m[94m495 |[0m           if: 'inputs.swift_test_enabled'
+[1m[94m496 |[0m [1m[33m/[0m         run: |
+[1m[94m497 |[0m [1m[33m|[0m           if [ -n "${{ matrix.config.test_arguments_override }}" ]; then
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m500 |[0m [1m[33m|[0m             swift test
+[1m[94m501 |[0m [1m[33m|[0m           fi
+    [1m[94m|[0m [1m[33m|____________-[0m [1m[33mmatrix.config.test_arguments_override may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__macos_tests.yml:494:9
+    [1m[94m|[0m
+[1m[94m494 |[0m         - name: Swift test
+    [1m[94m|[0m           [1m[33m----------------[0m [1m[33mthis step[0m
+[1m[94m495 |[0m           if: 'inputs.swift_test_enabled'
+[1m[94m496 |[0m [1m[33m/[0m         run: |
+[1m[94m497 |[0m [1m[33m|[0m           if [ -n "${{ matrix.config.test_arguments_override }}" ]; then
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m500 |[0m [1m[33m|[0m             swift test
+[1m[94m501 |[0m [1m[33m|[0m           fi
+    [1m[94m|[0m [1m[33m|____________-[0m [1m[33mmatrix.config.test_arguments_override may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m17[39m findings ([1m[93m9[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m7[39m medium, [31m1[39m high

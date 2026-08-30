@@ -1,0 +1,57 @@
+{
+  "workflow": "Tencent_xLua__.github__workflows__publish.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 3,
+      "injection": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 233,
+      "column": "",
+      "job": "publish",
+      "step": "0",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 239,
+      "column": "",
+      "job": "publish",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 245,
+      "column": "",
+      "job": "publish",
+      "step": "2",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": 252,
+      "column": "",
+      "job": "publish",
+      "step": "3",
+      "details": "Sources: github.event.inputs.tag_name",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

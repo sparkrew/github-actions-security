@@ -1,0 +1,76 @@
+diff --git a/.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml b/.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml
+index bbc7c53..3ef45e7 100644
+--- a/.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml
++++ b/.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml
+@@ -146,7 +146,7 @@ jobs:
+     steps:
+       - name: Get repo owner(in lowercase)
+         id: get_owner
+-        uses: ASzc/change-string-case-action@v2
++        uses: ASzc/change-string-case-action@bafc781cc39d14efd3aaa6cd793c6b5f9f94d86a # v2
+         with:
+           string: ${{ github.repository_owner }}
+ 
+@@ -181,7 +181,7 @@ jobs:
+         cd v8
+         git checkout ${{ github.event.inputs.v8_revision }}
+     - name: Fetch patch
+-      uses: actions/checkout@v2
++      uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       with:
+         path: ${{ github.repository }}
+     - name: Apply patch
+@@ -237,7 +237,7 @@ jobs:
+         cp -r gen/include/* artifact/include/v8/
+         find artifact/include/v8/. ! -name "*.h" -type f -delete
+     - name: Generate CMakeLists
+-      uses: DamianReeves/write-file-action@v1.0
++      uses: DamianReeves/write-file-action@e19fd875ed54f16fc583a3486e62547ce4a5dde8 # v1.0
+       with:
+         path: ./v8/out/artifact/CMakeLists.txt
+         write-mode: overwrite
+@@ -276,7 +276,7 @@ jobs:
+         choco install ninja
+     - name: Install Clang 15.0.1
+       id: install-clang
+-      uses: KyleMayes/install-llvm-action@v1
++      uses: KyleMayes/install-llvm-action@1a3da29f56261a1e1f937ec88f0856a9b8321d7e # v1
+       with:
+         version: "15.0.1"
+         directory:  "./llvm"
+@@ -312,7 +312,7 @@ jobs:
+         Copy-Item -r gen/include/* artifact/include/v8/
+         Get-ChildItem -Exclude *.h -Recurse -File -Path artifact/include/v8 | Remove-Item
+     - name: Generate CMakeLists
+-      uses: DamianReeves/write-file-action@v1.0
++      uses: DamianReeves/write-file-action@e19fd875ed54f16fc583a3486e62547ce4a5dde8 # v1.0
+       with:
+         path: ./v8/out/artifact/CMakeLists.txt
+         write-mode: overwrite
+@@ -373,7 +373,7 @@ jobs:
+         cp -r gen/include/* artifact/include/v8/
+         find artifact/include/v8/. ! -name "*.h" -type f -delete
+     - name: Generate CMakeLists
+-      uses: DamianReeves/write-file-action@v1.0
++      uses: DamianReeves/write-file-action@e19fd875ed54f16fc583a3486e62547ce4a5dde8 # v1.0
+       with:
+         path: ./v8/out/artifact/CMakeLists.txt
+         write-mode: overwrite
+@@ -435,7 +435,7 @@ jobs:
+         cp -r gen/include/* artifact/include/v8/
+         find artifact/include/v8/. ! -name "*.h" -type f -delete
+     - name: Generate CMakeLists
+-      uses: DamianReeves/write-file-action@v1.0
++      uses: DamianReeves/write-file-action@e19fd875ed54f16fc583a3486e62547ce4a5dde8 # v1.0
+       with:
+         path: ./v8/out/artifact/CMakeLists.txt
+         write-mode: overwrite
+@@ -507,7 +507,7 @@ jobs:
+         cp -r gen/include/* artifact/include/v8/
+         find artifact/include/v8/. ! -name "*.h" -type f -delete
+     - name: Generate CMakeLists
+-      uses: DamianReeves/write-file-action@v1.0
++      uses: DamianReeves/write-file-action@e19fd875ed54f16fc583a3486e62547ce4a5dde8 # v1.0
+       with:
+         path: ./v8/out/artifact/CMakeLists.txt
+         write-mode: overwrite

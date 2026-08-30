@@ -1,0 +1,87 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-cdk__.github__workflows__pr-linter.yml:70:9
+   [1m[94m|[0m
+[1m[94m70 |[0m         - name: Checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m71 |[0m [1m[33m|[0m         uses: actions/checkout@v6
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-cdk__.github__workflows__pr-linter.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m # https://octokit.github.io/rest.js
+[1m[94m 2 |[0m [1m[33m|[0m # https://github.com/actions/toolkit/blob/master/packages/github/src/context.ts
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m82 |[0m [1m[33m|[0m           LINTER_LOGIN: ${{ vars.LINTER_LOGIN }}
+[1m[94m83 |[0m [1m[33m|[0m           REPO_ROOT: ${{ github.workspace }}
+   [1m[94m|[0m [1m[33m|_____________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-cdk__.github__workflows__pr-linter.yml:26:3
+   [1m[94m|[0m
+[1m[94m26 |[0m [1m[33m/[0m   download-if-workflow-run:
+[1m[94m27 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m56 |[0m [1m[33m|[0m           echo "pr_number=$(cat pr/pr_number)" >> "$GITHUB_OUTPUT"
+[1m[94m57 |[0m [1m[33m|[0m           echo "pr_sha=$(cat pr/pr_sha)" >> "$GITHUB_OUTPUT"
+   [1m[94m|[0m [1m[33m|[0m                                                            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________________________________________|[0m
+   [1m[94m|[0m                                                              [1m[33mthis job[0m
+   [1m[94m|[0m                                                              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-cdk__.github__workflows__pr-linter.yml:5:1
+   [1m[94m|[0m
+[1m[94m 5 |[0m [1m[91m/[0m on:
+[1m[94m 6 |[0m [1m[91m|[0m   pull_request_target:
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m22 |[0m [1m[91m|[0m   check_suite:
+[1m[94m23 |[0m [1m[91m|[0m     types: [completed]
+   [1m[94m|[0m [1m[91m|______________________^[0m [1m[91mpull_request_target is almost always used insecurely[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-cdk__.github__workflows__pr-linter.yml:5:1
+   [1m[94m|[0m
+[1m[94m 5 |[0m [1m[91m/[0m on:
+[1m[94m 6 |[0m [1m[91m|[0m   pull_request_target:
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m22 |[0m [1m[91m|[0m   check_suite:
+[1m[94m23 |[0m [1m[91m|[0m     types: [completed]
+   [1m[94m|[0m [1m[91m|______________________^[0m [1m[91mworkflow_run is almost always used insecurely[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-cdk__.github__workflows__pr-linter.yml:44:9
+   [1m[94m|[0m
+[1m[94m44 |[0m         - name: 'Determine PR info'
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m45 |[0m           # PR info comes from the artifact if downloaded, or GitHub context if not.
+[1m[94m46 |[0m           if: github.event_name == 'workflow_run'
+[1m[94m47 |[0m           id: 'pr_output'
+[1m[94m48 |[0m [1m[91m/[0m         run: |
+[1m[94m49 |[0m [1m[91m|[0m           if [[ ! -f pr/pr_number ]]; then
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m56 |[0m [1m[91m|[0m           echo "pr_number=$(cat pr/pr_number)" >> "$GITHUB_OUTPUT"
+[1m[94m57 |[0m [1m[91m|[0m           echo "pr_sha=$(cat pr/pr_sha)" >> "$GITHUB_OUTPUT"
+   [1m[94m|[0m [1m[91m|____________________________________________________________^[0m [1m[91mgithub.event.workflow_run.head_sha may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-cdk__.github__workflows__pr-linter.yml:36:9
+   [1m[94m|[0m
+[1m[94m36 |[0m         uses: dawidd6/action-download-artifact@v15
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m9[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m3[39m medium, [31m4[39m high

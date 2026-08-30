@@ -1,0 +1,71 @@
+name: create_tools_release_tag
+on:
+  workflow_dispatch:
+    inputs:
+      TagVersion:
+        description: 'Tag version'
+        required: true
+        default: 'v1.0.0'
+        type: string
+      ReleaseName:
+        description: 'Release name'
+        required: true
+        default: 'v1.0.0'
+        type: string
+      PreRelease:
+        description: 'Whether it is a pre-release'
+        required: true
+        default: true
+        type: boolean
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0
+        with:
+          fetch-depth: 0
+
+      - name: Get last tag version
+        run: |
+          version=$(git tag -l '*-tools' | sort -V | tail -n 1)
+          echo "last_tag_version=$version" >> $GITHUB_ENV
+
+      - name: Generate release notes
+        run: |
+          echo "# **What's Changed**" > ./src/promptflow-tools/CHANGELOG.md
+          git log ${{ env.last_tag_version }}.. --pretty=format:"%H %s @%an" -- ./src/promptflow-tools/ >> ./src/promptflow-tools/CHANGELOG.md
+          echo " " >> ./src/promptflow-tools/CHANGELOG.md
+          echo " " >> ./src/promptflow-tools/CHANGELOG.md
+          echo "**Full Changelog**: https://github.com/microsoft/promptflow/compare/${{ env.last_tag_version }}...${{ inputs.TagVersion }}" >> ./src/promptflow-tools/CHANGELOG.md
+
+      - name: Zip folder
+        run: |
+          cd src
+          zip -r promptflow-tools.zip promptflow-tools
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@0cb9c9b65d5d1901c1f53e5e66eaf4afd303e70e # actions/create-release@v1 | latest,v1.1.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ inputs.TagVersion }}
+          release_name: ${{ inputs.ReleaseName }}
+          body_path: ./src/promptflow-tools/CHANGELOG.md
+          draft: false
+          prerelease: ${{ inputs.PreRelease }}
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # actions/upload-release-asset@v1 | latest,v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./src/promptflow-tools.zip
+          asset_name: promptflow-tools.zip
+          asset_content_type: application/zip

@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/facebook_pyrefly__.github__workflows__needs_triage.yml b/.github/workflows/facebook_pyrefly__.github__workflows__needs_triage.yml
+index b913b6d..d98d0c6 100644
+--- a/.github/workflows/facebook_pyrefly__.github__workflows__needs_triage.yml
++++ b/.github/workflows/facebook_pyrefly__.github__workflows__needs_triage.yml
+@@ -15,7 +15,7 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Label issues that need triage
+-        uses: actions/github-script@v8
++        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+         with:
+           github-token: ${{ secrets.GITHUB_TOKEN }}
+           script: |
+@@ -67,7 +67,7 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Label pull requests that need triage
+-        uses: actions/github-script@v8
++        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+         with:
+           github-token: ${{ secrets.GITHUB_TOKEN }}
+           script: |

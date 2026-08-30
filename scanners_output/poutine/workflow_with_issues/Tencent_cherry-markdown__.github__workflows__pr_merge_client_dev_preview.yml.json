@@ -1,0 +1,68 @@
+{
+  "workflow": "Tencent_cherry-markdown__.github__workflows__pr_merge_client_dev_preview.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "untrusted_checkout_exec": 4,
+      "known_vulnerability_in_build_component": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 92,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of `yarn`",
+      "event_triggers": [
+        "pull_request_target"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 95,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of `yarn`",
+      "event_triggers": [
+        "pull_request_target"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 98,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of `yarn`",
+      "event_triggers": [
+        "pull_request_target"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 60,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage the GitHub Action `actions/setup-node`",
+      "event_triggers": [
+        "pull_request_target"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 206,
+      "column": "",
+      "job": "post-preview-comment",
+      "step": "0",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "pull_request_target"
+      ]
+    }
+  ]
+}

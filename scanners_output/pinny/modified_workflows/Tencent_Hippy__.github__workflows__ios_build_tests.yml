@@ -1,0 +1,45 @@
+name: '[ios] build tests'
+
+on:
+  pull_request:
+    branches:
+      - master
+      - main
+      - v3.0-dev
+      - v3.0
+    paths:
+      - 'framework/ios/**'
+      - 'framework/examples/ios-demo/**'
+      - 'driver/js/src/**'
+      - 'driver/js/include/**'
+      - 'dom/include/**'
+      - 'dom/src/**'
+      - 'layout/engine/**'
+      - 'modules/ios/**'
+      - 'modules/footstone/**'
+      - 'modules/vfs/ios/**'
+      - 'modules/vfs/native/**'
+      - 'renderer/native/ios/**'
+      - 'devtools/devtools-backend/**'
+      - 'hippy.podspec'
+      
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  ios_build_tests:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        type: [Debug, Release]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0
+        with:
+          lfs: true
+      - name: Demo
+        working-directory: framework/examples/ios-demo
+        run: |
+          pod install
+          xcodebuild build -destination "generic/platform=iOS" -workspace "HippyDemo.xcworkspace" -scheme "HippyDemo" -configuration ${{matrix.type}} CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO 

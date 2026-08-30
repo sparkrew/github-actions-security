@@ -1,0 +1,51 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_detectron2__.github__workflows__needs-reply.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m name: Close/Lock issues after inactivity
+[1m[94m 2 |[0m [1m[33m|[0m
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m97 |[0m [1m[33m|[0m           process-only: 'issues'
+[1m[94m98 |[0m [1m[33m|[0m           issue-exclude-labels: 'enhancement,bug,documentation'
+   [1m[94m|[0m [1m[33m|________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_detectron2__.github__workflows__needs-reply.yml:8:3
+   [1m[94m|[0m
+[1m[94m 8 |[0m [1m[33m/[0m   close-issues-needs-more-info:
+[1m[94m 9 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m85 |[0m [1m[33m|[0m               });
+[1m[94m86 |[0m [1m[33m|[0m             }
+   [1m[94m|[0m [1m[33m|[0m             [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________|[0m
+   [1m[94m|[0m               [1m[33mthis job[0m
+   [1m[94m|[0m               [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_detectron2__.github__workflows__needs-reply.yml:88:3
+   [1m[94m|[0m
+[1m[94m88 |[0m [1m[33m/[0m   lock-issues-after-closed:
+[1m[94m89 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m97 |[0m [1m[33m|[0m           process-only: 'issues'
+[1m[94m98 |[0m [1m[33m|[0m           issue-exclude-labels: 'enhancement,bug,documentation'
+   [1m[94m|[0m [1m[33m|[0m                                                                [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________________________________________________________|[0m
+   [1m[94m|[0m                                                                  [1m[33mthis job[0m
+   [1m[94m|[0m                                                                  [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_detectron2__.github__workflows__needs-reply.yml:93:9
+   [1m[94m|[0m
+[1m[94m93 |[0m         uses: dessant/lock-threads@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m4[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m3[39m medium, [31m1[39m high

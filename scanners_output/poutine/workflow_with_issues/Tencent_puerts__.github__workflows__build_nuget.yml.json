@@ -1,0 +1,64 @@
+{
+  "workflow": "Tencent_puerts__.github__workflows__build_nuget.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 4
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 337,
+      "column": "",
+      "job": "linux_test",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 355,
+      "column": "",
+      "job": "osx_test",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 216,
+      "column": "",
+      "job": "pack_nuget",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 318,
+      "column": "",
+      "job": "windows_test",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

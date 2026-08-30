@@ -1,0 +1,41 @@
+{
+  "workflow": "microsoft_RD-Agent__.github__workflows__release.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "artipacked": 1,
+      "unpinned-uses": 1,
+      "cache-poisoning": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_RD-Agent__.github__workflows__release.yml",
+      "line": 23,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "microsoft_RD-Agent__.github__workflows__release.yml",
+      "line": 17,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "cache-poisoning",
+      "level": "error",
+      "message": "runtime artifacts potentially vulnerable to a cache poisoning attack",
+      "workflow": "microsoft_RD-Agent__.github__workflows__release.yml",
+      "line": 17,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    }
+  ]
+}

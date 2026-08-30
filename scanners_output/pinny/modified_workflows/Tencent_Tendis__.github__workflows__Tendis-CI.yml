@@ -1,0 +1,298 @@
+name: Tendis-build-CI
+# Controls when the action will run.
+on:
+  pull_request:
+    branches: [unstable, master, 2.8.tx]
+  push:
+  # set to a branch that does not exist to disable the workflow
+    branches: [notExistBranch]
+jobs:
+  cpplint-check:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0
+        with:
+          fetch-depth: 2
+      - name: Prepare Env
+        run: |
+          python3 -m pip install --upgrade pip
+          pip3 install cpplint
+          export PATH=$PATH:~/.local/bin/
+          cpplint --version
+          clang-format --version
+      - name: Lint
+        run: |
+          export PATH=$PATH:~/.local/bin/
+          files=`git diff --name-only HEAD HEAD~1`
+          exit_codes=0
+          echo "$files" | while read file
+          do
+            if [[ $file =~ \.cc$ || $file =~ \.h$ || $file =~ \.hpp$ || $file =~ \.cpp$ ]]; then
+              if [[ -f $file ]]; then
+                if [[ $file =~ ^src/tendisplus/tools/ldb_ || $file =~ src/tendisplus/include/optional.h || $file =~ src/thirdparty ]]; then
+                  echo "cpplint skip $file"
+                  continue
+                else
+                  echo "cpplint --filter=\"-runtime/reference\" $file"
+                  cpplint --filter="-runtime/reference,-whitespace/indent_namespace" $file
+                  exit_code=$?
+                  exit_codes=$((exit_codes + exit_code))
+                fi
+              fi
+            fi
+          done
+          if [[ $exit_codes -ne 0 ]]; then
+            echo "Run cpplint against $file failed..."
+            exit 1
+          fi
+      - name: format
+        run: |
+          export PATH=$PATH:~/.local/bin/
+          files=`git diff --name-only HEAD HEAD~1`
+          echo "$files" | while read file
+          do
+            if [[ $file =~ \.cc$ || $file =~ \.h$ || $file =~ \.hpp$ || $file =~ \.cpp$ ]]; then
+              if [[ -f $file ]]; then
+                if [[ $file =~ ^src/tendisplus/tools/ldb_ || $file =~ src/tendisplus/include ||
+                  $file =~ src/thirdparty ]]; then
+                  echo "clang-format skip $file"
+                  continue
+                else
+                  echo "clang-format --style=file --sort-includes $file > formatTMP"
+                  clang-format --style=file --sort-includes $file > formatTMP
+                  a=$(diff $file formatTMP | wc -l)
+                  if [[ "$a" -ne "0" ]]; then
+                    echo "Run clang-format against $file failed..."
+                    diff formatTMP $file
+                    exit 1
+                  fi
+                fi
+              fi
+            fi
+            if [[ $file =~ \.go$ ]]; then
+              if [[ -f $file ]]; then
+                if [[ $file =~ ^src/tendisplus/misc || $file =~ src/tendisplus/perftools ||
+                  $file =~ src/thirdparty ]]; then
+                  echo "gofmt skip $file"
+                  continue
+                else
+                  echo "gofmt -d $file"
+                  a=$(gofmt -d $file | wc -l)
+                  if [[ "$a" -ne "0" ]]; then
+                    echo "Run gofmt -d against $file failed..."
+                    gofmt -d $file
+                    exit 1
+                  fi
+                fi
+              fi
+            fi
+          done
+  test-unittest-sh:
+    needs: [cpplint-check]
+    name: Test-unittest.sh
+    runs-on: ubuntu-latest
+    env:
+        TEST_DIR: build/bin
+    steps:
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0
+        with:
+          fetch-depth: 2
+      - name: compile
+        uses: ./.github/actions/compile/
+      - name: Unit Test
+        run: |
+          chmod +x unittest.sh
+          ./unittest.sh
+          if [ $? -ne 0 ]; then
+            exit 10
+          fi
+          errcnt1=`grep -E "Expected|FAILED" unittest.log |wc -l`
+          if [ $errcnt1 -ne 0 ]; then
+              grep -E "Expected|FAILED" unittest.log
+              exit $errcnt1
+          fi
+          exit 0
+  test-redistest-sh:
+    needs: [cpplint-check]
+    name: Test-redistest.sh
+    runs-on: ubuntu-latest
+    env:
+        TEST_DIR: build/bin
+    steps:
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0
+        with:
+          fetch-depth: 2
+      - name: compile
+        uses: ./.github/actions/compile/
+      - name: Redis Test
+        run: |
+          chmod +x redistest.sh
+          ./redistest.sh | tee temp_redistest.log
+          if [ $? -ne 0 ]; then
+            exit 10
+          fi
+          errcnt2=`grep -E "\[err|\[exception|49merr|49mexception" redistest.log|wc -l`
+          if [ $errcnt2 -ne 0 ]; then
+              grep -E "\[err|\[exception|49merr|49mexception" redistest.log
+              exit $errcnt2
+          fi
+          exit 0
+  test-restore_test:
+    needs: [cpplint-check]
+    name: Test-restore_test
+    runs-on: ubuntu-latest
+    env:
+        TEST_DIR: build/bin
+    steps:
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0
+        with:
+          fetch-depth: 2
+      - name: compile
+        uses: ./.github/actions/compile/
+      - name: Restore Test
+        run: |
+          ./$TEST_DIR/restore_test --gtest_throw_on_failure
+  test-repl_test:
+    needs: [cpplint-check]
+    name: Test-repl_test
+    runs-on: ubuntu-latest
+    env:
+        TEST_DIR: build/bin
+    steps:
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0
+        with:
+          fetch-depth: 2
+      - name: compile
+        uses: ./.github/actions/compile/
+      - name: Repl Test
+        run: |
+         ./$TEST_DIR/repl_test --gtest_throw_on_failure
+  test-cluster_test-part1:
+    needs: [cpplint-check]
+    name: Test-cluster_test-part1
+    runs-on: ubuntu-latest
+    env:
+        TEST_DIR: build/bin
+    steps:
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0
+        with:
+          fetch-depth: 2
+      - name: compile
+        uses: ./.github/actions/compile/
+      - name: Cluster Test
+        run: |
+          ./$TEST_DIR/cluster_test --gtest_throw_on_failure --gtest_filter=ClusterMsg.*:Cluster.*
+  test-cluster_test-part2:
+    needs: [cpplint-check]
+    name: Test-cluster_test-part2
+    runs-on: ubuntu-latest
+    env:
+        TEST_DIR: build/bin
+    steps:
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0
+        with:
+          fetch-depth: 2
+      - name: compile
+        uses: ./.github/actions/compile/
+      - name: Cluster Test
+        run: |
+          ./$TEST_DIR/cluster_test --gtest_throw_on_failure --gtest_filter=Cluster2.*
+  test-gotest-normaltest-part1:
+    needs: [cpplint-check]
+    name: Test-gotest-normaltest-part1
+    runs-on: ubuntu-latest
+    env:
+        TEST_DIR: build/bin
+    steps:
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0
+        with:
+          fetch-depth: 2
+      - name: compile
+        uses: ./.github/actions/compile/
+      - name: GoTest
+        run: |
+          cd src/tendisplus/integrate_test
+          chmod +x gotest.sh
+          ./gotest.sh normaltest-part1
+  test-gotest-normaltest-part2:
+    needs: [cpplint-check]
+    name: Test-gotest-normaltest-part2
+    runs-on: ubuntu-latest
+    env:
+        TEST_DIR: build/bin
+    steps:
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0
+        with:
+          fetch-depth: 2
+      - name: compile
+        uses: ./.github/actions/compile/
+      - name: GoTest
+        run: |
+          cd src/tendisplus/integrate_test
+          chmod +x gotest.sh
+          ./gotest.sh normaltest-part2
+  test-gotest-normaltest-part3:
+    needs: [cpplint-check]
+    name: Test-gotest-normaltest-part3
+    runs-on: ubuntu-latest
+    env:
+        TEST_DIR: build/bin
+    steps:
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0
+        with:
+          fetch-depth: 2
+      - name: compile
+        uses: ./.github/actions/compile/
+      - name: GoTest
+        run: |
+          cd src/tendisplus/integrate_test
+          chmod +x gotest.sh
+          ./gotest.sh normaltest-part3
+  test-gotest-versiontest:
+    needs: [cpplint-check]
+    name: Test-gotest-versiontest
+    runs-on: ubuntu-latest
+    env:
+        GH_TOKEN: ${{ github.token }}
+        TEST_DIR: build/bin
+    steps:
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0
+        with:
+          fetch-depth: 2
+      - name: Checkout code
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0
+      - name: compile
+        uses: ./.github/actions/compile/
+      - name: GoTest
+        run: |
+          cd src/tendisplus/integrate_test
+          mkdir -p "releases"
+          threshold="2.4.0"
+          version_le() {
+            [[ "$(printf '%s\n%s\n' "$1" "$2" | sort -V | head -n1)" == "$1" ]]
+          }
+          tags=$(gh api /repos/${{ github.repository }}/releases --jq '.[].tag_name')
+          VERSIONS=""
+          for tag in $tags; do
+            ver=${tag%%-*}
+            if ! [[ $ver =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+                continue
+            fi
+            if version_le "$ver" "$threshold"; then
+                continue
+            else
+            patch=${ver##*.}
+            [[ "$patch" == "0" ]] && VERSIONS+="$tag "
+            fi
+          done
+          VERSIONS+="2.4.3-rocksdb-v5.13.4 2.3.1-rocksdb-v5.13.4"
+          for ver in $VERSIONS; do
+            gh release download $ver -D releases
+            echo "downloaded $ver"
+          done
+          chmod +x gotest.sh
+          echo "versiontest start"
+          echo "./gotest.sh versiontest $VERSIONS"
+          ./gotest.sh versiontest $VERSIONS
+          echo "versiontest done"

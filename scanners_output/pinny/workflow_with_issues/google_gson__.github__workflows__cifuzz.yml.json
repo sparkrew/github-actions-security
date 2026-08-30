@@ -1,0 +1,32 @@
+{
+  "workflow": "google_gson__.github__workflows__cifuzz.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: google/oss-fuzz/infra/cifuzz/actions/build_fuzzers@cf847f530037cea45ca4f8b6a2e1e762609df0bd # google/oss-fuzz/infra/cifuzz/actions/build_fuzzers@master",
+      "line": 14
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: google/oss-fuzz/infra/cifuzz/actions/build_fuzzers@cf847f530037cea45ca4f8b6a2e1e762609df0bd # google/oss-fuzz/infra/cifuzz/actions/build_fuzzers@master",
+      "line": 21
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f  # v6.0.0",
+      "line": 28
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: github/codeql-action/upload-sarif@5d4e8d1aca955e8d8589aabd499c5cae939e33c7  # v4.31.9",
+      "line": 35
+    }
+  ]
+}

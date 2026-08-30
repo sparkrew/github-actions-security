@@ -1,0 +1,32 @@
+{
+  "workflow": "microsoft_qlib__.github__workflows__test_qlib_from_source.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+      "line": 25
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # actions/setup-python@v4 | restore-v4-release,v4.9.1",
+      "line": 30
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: nick-fields/retry@14672906e672a08bd6eeb15720e9ed3ce869cdd4 # nick-fields/retry@v2 | v2.9.0",
+      "line": 106
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: nick-fields/retry@14672906e672a08bd6eeb15720e9ed3ce869cdd4 # nick-fields/retry@v2 | v2.9.0",
+      "line": 122
+    }
+  ]
+}

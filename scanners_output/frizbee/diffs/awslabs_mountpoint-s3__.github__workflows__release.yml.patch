@@ -1,0 +1,15 @@
+diff --git a/.github/workflows/awslabs_mountpoint-s3__.github__workflows__release.yml b/.github/workflows/awslabs_mountpoint-s3__.github__workflows__release.yml
+index 256d1fe..57c5b84 100644
+--- a/.github/workflows/awslabs_mountpoint-s3__.github__workflows__release.yml
++++ b/.github/workflows/awslabs_mountpoint-s3__.github__workflows__release.yml
+@@ -13,8 +13,8 @@ jobs:
+   create-github-release:
+     runs-on: ubuntu-latest
+     steps:
+-    - uses: actions/checkout@v6
+-    - uses: taiki-e/create-gh-release-action@v1
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
++    - uses: taiki-e/create-gh-release-action@56a8b3f8449593aa02b91f7b84da564f476e94f0 # v1
+       with:
+         title: "mountpoint-s3 v$version"
+         # Strip this prefix off the tag to discover the version number

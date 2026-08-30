@@ -1,0 +1,20 @@
+diff --git a/.github/workflows/Azure_Azure-Sentinel__.github__workflows__addCommentToRemindUpdatingTemplateVersion.yml b/.github/workflows/Azure_Azure-Sentinel__.github__workflows__addCommentToRemindUpdatingTemplateVersion.yml
+index 9e77e0b..463a82b 100644
+--- a/.github/workflows/Azure_Azure-Sentinel__.github__workflows__addCommentToRemindUpdatingTemplateVersion.yml
++++ b/.github/workflows/Azure_Azure-Sentinel__.github__workflows__addCommentToRemindUpdatingTemplateVersion.yml
+@@ -14,7 +14,7 @@ jobs:
+       hasAutoDetectionComment: ${{ steps.job1.outputs.hasAutoDetectionComment }}
+     steps:
+       - name: Find Comment
+-        uses: peter-evans/find-comment@v3
++        uses: peter-evans/find-comment@3eae4d37986fb5a8592848f6a574fdf654e61f9e # v3
+         id: fc
+         with:
+           issue-number: ${{ github.event.pull_request.number }}
+@@ -42,4 +42,4 @@ jobs:
+         I see that you changed templates under the detections/analytic rules folder. Did you remember to update the version of the templates you changed?
+         If not, and if you want customers to be aware that a new version of this template is available, please update the ``version`` property of the template you changed.
+       prNumber: "${{ github.event.pull_request.number }}"
+-    secrets: inherit
+\ No newline at end of file
++    secrets: inherit

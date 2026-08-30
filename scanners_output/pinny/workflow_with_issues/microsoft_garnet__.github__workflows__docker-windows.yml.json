@@ -1,0 +1,27 @@
+{
+  "workflow": "microsoft_garnet__.github__workflows__docker-windows.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+      "line": 22
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/metadata-action@8e1d5461f02b7886d3c1a774bfbd873650445aa2 # was v5 but now v6 with this commit for security reasons have pinned tag (commit SHA) for 3rd party",
+      "line": 26
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/login-action@327cd5a69de6c009b9ce71bce8395f28e651bf99  # was v3 but now v6 with this commit for security reasons have pinned tag (commit SHA) for 3rd party",
+      "line": 42
+    }
+  ]
+}

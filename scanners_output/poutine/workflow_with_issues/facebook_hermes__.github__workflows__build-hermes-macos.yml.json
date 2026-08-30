@@ -1,0 +1,23 @@
+{
+  "workflow": "facebook_hermes__.github__workflows__build-hermes-macos.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 25,
+      "column": "",
+      "job": "build-hermes-macos",
+      "step": "4",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+diff --git a/.github/workflows/Tencent_tdesign-vue-next__.github__workflows__preview-build.yml b/.github/workflows/Tencent_tdesign-vue-next__.github__workflows__preview-build.yml
+index 5b577a4..ac386d5 100644
+--- a/.github/workflows/Tencent_tdesign-vue-next__.github__workflows__preview-build.yml
++++ b/.github/workflows/Tencent_tdesign-vue-next__.github__workflows__preview-build.yml
+@@ -10,19 +10,19 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - run: echo ${{ github.event.number }} > pr-id.txt
+-      - uses: actions/upload-artifact@v4
++      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: pr-id
+           path: pr-id.txt
+           retention-days: 5
+ 
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           submodules: recursive
+ 
+-      - uses: pnpm/action-setup@v4
++      - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
+ 
+-      - uses: actions/setup-node@v4
++      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+         with:
+           node-version: 18
+           cache: 'pnpm'
+@@ -31,7 +31,7 @@ jobs:
+ 
+       - run: pnpm -C packages/tdesign-vue-next/site run preview
+ 
+-      - uses: actions/upload-artifact@v4
++      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: tdesign-vue-next-site
+           path: packages/tdesign-vue-next/site/dist
+@@ -40,13 +40,13 @@ jobs:
+   tdesign-vue-next-chat-site:
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           submodules: recursive
+ 
+-      - uses: pnpm/action-setup@v4
++      - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
+ 
+-      - uses: actions/setup-node@v4
++      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+         with:
+           node-version: 18
+           cache: 'pnpm'
+@@ -55,8 +55,8 @@ jobs:
+ 
+       - run: pnpm -C packages/tdesign-vue-next-chat/site run preview
+       
+-      - uses: actions/upload-artifact@v4
++      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: tdesign-vue-next-chat-site
+           path: packages/tdesign-vue-next-chat/site/dist
+-          retention-days: 5
+\ No newline at end of file
++          retention-days: 5

@@ -1,0 +1,31 @@
+{
+  "workflow": "microsoft_genaiscript__.github__workflows__genai-blog-post.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "artipacked": 1,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_genaiscript__.github__workflows__genai-blog-post.yml",
+      "line": 18,
+      "column": 15,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "microsoft_genaiscript__.github__workflows__genai-blog-post.yml",
+      "line": 34,
+      "column": 15,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

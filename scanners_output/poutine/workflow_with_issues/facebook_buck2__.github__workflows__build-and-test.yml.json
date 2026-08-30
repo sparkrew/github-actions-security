@@ -1,0 +1,38 @@
+{
+  "workflow": "facebook_buck2__.github__workflows__build-and-test.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 8,
+      "column": "",
+      "job": "linux-build-and-test",
+      "step": "",
+      "details": "runs-on: 4-core-ubuntu",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 25,
+      "column": "",
+      "job": "windows-build-and-test",
+      "step": "",
+      "details": "runs-on: windows-8-core",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

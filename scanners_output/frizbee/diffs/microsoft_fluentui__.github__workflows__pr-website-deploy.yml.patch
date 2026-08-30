@@ -1,0 +1,40 @@
+diff --git a/.github/workflows/microsoft_fluentui__.github__workflows__pr-website-deploy.yml b/.github/workflows/microsoft_fluentui__.github__workflows__pr-website-deploy.yml
+index 2b7c54f..ce84826 100644
+--- a/.github/workflows/microsoft_fluentui__.github__workflows__pr-website-deploy.yml
++++ b/.github/workflows/microsoft_fluentui__.github__workflows__pr-website-deploy.yml
+@@ -23,7 +23,7 @@ jobs:
+       actions: 'read'
+ 
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           fetch-depth: 0
+ 
+@@ -32,7 +32,7 @@ jobs:
+         with:
+           main-branch-name: 'master'
+ 
+-      - uses: actions/setup-node@v6
++      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+         with:
+           cache: 'yarn'
+           node-version: '22'
+@@ -54,7 +54,7 @@ jobs:
+ 
+       - name: Generate PR Deploy Site
+         run: yarn nx run pr-deploy-site:generate:site
+-      - uses: actions/upload-artifact@v6
++      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+         with:
+           name: pr-website-artifacts
+           retention-days: 1
+@@ -64,7 +64,7 @@ jobs:
+ 
+       - name: Save PR number
+         run: echo ${{ github.event.number }} > pr.txt
+-      - uses: actions/upload-artifact@v6
++      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+         with:
+           name: pr-number
+           retention-days: 1

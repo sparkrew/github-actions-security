@@ -1,0 +1,36 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_perfetto__.github__workflows__rust-sdk-tests.yml:34:9
+   [1m[94m|[0m
+[1m[94m34 |[0m         - name: Checkout source
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m35 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/google_perfetto__.github__workflows__rust-sdk-tests.yml:43:9
+   [1m[94m|[0m
+[1m[94m43 |[0m       - name: Fetch upstream branch
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m44 |[0m         if: ${{ github.base_ref != '' }}
+[1m[94m45 |[0m         shell: bash
+[1m[94m46 |[0m         run: git fetch origin ${{ github.base_ref }} --depth=1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mgithub.base_ref may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/google_perfetto__.github__workflows__rust-sdk-tests.yml:48:9
+   [1m[94m|[0m
+[1m[94m48 |[0m       - name: Check format
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m49 |[0m         # base_ref is "" in post-submit, skip the format check in postsubmit
+[1m[94m...[0m
+[1m[94m52 |[0m         shell: bash
+[1m[94m53 |[0m         run: tools/format-rust-sources --upstream=origin/${{ github.base_ref }} --check
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mgithub.base_ref may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m6[39m findings ([1m[93m3[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m2[39m high

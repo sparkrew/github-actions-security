@@ -1,0 +1,19 @@
+diff --git a/.github/workflows/microsoft_autogen__.github__workflows__python-package-0.2.yml b/.github/workflows/microsoft_autogen__.github__workflows__python-package-0.2.yml
+index ffa6f84..1e9c388 100644
+--- a/.github/workflows/microsoft_autogen__.github__workflows__python-package-0.2.yml
++++ b/.github/workflows/microsoft_autogen__.github__workflows__python-package-0.2.yml
+@@ -24,7 +24,7 @@ jobs:
+       id-token: write
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           ref: ${{ github.event.inputs.tag }}
+       - name: Build
+@@ -33,4 +33,4 @@ jobs:
+           pip install twine
+           python setup.py sdist bdist_wheel
+       - name: Publish package to PyPI
+-        uses: pypa/gh-action-pypi-publish@release/v1
++        uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # release/v1

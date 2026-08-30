@@ -1,0 +1,91 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_fluentui__.github__workflows__pr-website-deploy-comment.yml:28:9
+   [1m[94m|[0m
+[1m[94m28 |[0m         - uses: actions/checkout@v6
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m29 |[0m [1m[33m|[0m         with:
+[1m[94m30 |[0m [1m[33m|[0m           sparse-checkout: |
+[1m[94m31 |[0m [1m[33m|[0m             .github
+   [1m[94m|[0m [1m[33m|___________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_fluentui__.github__workflows__pr-website-deploy-comment.yml:91:9
+   [1m[94m|[0m
+[1m[94m91 |[0m       - uses: actions/checkout@v6
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+ [1m[94m-->[0m ../.github/workflows/microsoft_fluentui__.github__workflows__pr-website-deploy-comment.yml:2:1
+  [1m[94m|[0m
+[1m[94m2 |[0m [1m[91m/[0m on:
+[1m[94m3 |[0m [1m[91m|[0m   workflow_run:
+[1m[94m4 |[0m [1m[91m|[0m     workflows: ['PR Website Deploy']
+[1m[94m5 |[0m [1m[91m|[0m     types:
+[1m[94m6 |[0m [1m[91m|[0m       - completed
+  [1m[94m|[0m [1m[91m|_________________^[0m [1m[91mworkflow_run is almost always used insecurely[0m
+  [1m[94m|[0m
+  [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_fluentui__.github__workflows__pr-website-deploy-comment.yml:57:9
+   [1m[94m|[0m
+[1m[94m57 |[0m       - name: Load WEBSITE URL
+   [1m[94m|[0m         [1m[94m----------------------[0m [1m[94minfo: this step[0m
+[1m[94m58 |[0m         id: website_url
+[1m[94m59 |[0m         run: echo "id=${{env.DEPLOY_HOST_URL}}pull/${{steps.pr_number.outputs.result}}/" >> $GITHUB_OUTPUT
+   [1m[94m|[0m         [1m[94m--------------------------------------------------------------------------------------------------[0m [1m[94minfo: steps.pr_number.outputs.result may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_fluentui__.github__workflows__pr-website-deploy-comment.yml:68:9
+   [1m[94m|[0m
+[1m[94m68 |[0m         - name: Upload PR WebSite
+   [1m[94m|[0m           [1m[94m-----------------------[0m [1m[94minfo: this step[0m
+[1m[94m69 |[0m           uses: azure/cli@089eac9d8cc39f5d003e94f8b65efc51076c9cbd # v2.1.0
+[1m[94m...[0m
+[1m[94m73 |[0m             azcliversion: latest
+[1m[94m74 |[0m [1m[94m/[0m           inlineScript: |
+[1m[94m75 |[0m [1m[94m|[0m             az storage blob upload-batch \
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m80 |[0m [1m[94m|[0m               --auth-mode login \
+[1m[94m81 |[0m [1m[94m|[0m               --overwrite
+   [1m[94m|[0m [1m[94m|_________________________-[0m [1m[94minfo: steps.pr_number.outputs.result may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_fluentui__.github__workflows__pr-website-deploy-comment.yml:101:9
+    [1m[94m|[0m
+[1m[94m101 |[0m         - name: Update PR deploy site GitHub status
+    [1m[94m|[0m           [1m[94m-----------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m102 |[0m           uses: actions/github-script@v8
+[1m[94m103 |[0m           with:
+[1m[94m104 |[0m [1m[94m/[0m           script: |
+[1m[94m105 |[0m [1m[94m|[0m             const run = require('./.github/scripts/deploy-pr-site-status');
+[1m[94m106 |[0m [1m[94m|[0m             const config = { websiteUrl: '${{ needs.deploy.outputs.website_url }}', prId: '${{ needs.deploy.outputs.pr_number }}'};
+[1m[94m107 |[0m [1m[94m|[0m             await run({github,context,core,config});
+    [1m[94m|[0m [1m[94m|_____________________________________________________-[0m [1m[94minfo: needs.deploy.outputs.website_url may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_fluentui__.github__workflows__pr-website-deploy-comment.yml:101:9
+    [1m[94m|[0m
+[1m[94m101 |[0m         - name: Update PR deploy site GitHub status
+    [1m[94m|[0m           [1m[94m-----------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m102 |[0m           uses: actions/github-script@v8
+[1m[94m103 |[0m           with:
+[1m[94m104 |[0m [1m[94m/[0m           script: |
+[1m[94m105 |[0m [1m[94m|[0m             const run = require('./.github/scripts/deploy-pr-site-status');
+[1m[94m106 |[0m [1m[94m|[0m             const config = { websiteUrl: '${{ needs.deploy.outputs.website_url }}', prId: '${{ needs.deploy.outputs.pr_number }}'};
+[1m[94m107 |[0m [1m[94m|[0m             await run({github,context,core,config});
+    [1m[94m|[0m [1m[94m|_____________________________________________________-[0m [1m[94minfo: needs.deploy.outputs.pr_number may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m14[39m findings ([1m[93m7[39m suppressed[0m): 0 unknown, [35m4[39m informational, [36m0[39m low, [33m2[39m medium, [31m1[39m high

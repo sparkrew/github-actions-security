@@ -1,0 +1,49 @@
+{
+  "workflow": "microsoft_garnet__.github__workflows__nightly.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unverified_script_exec": 2,
+      "known_vulnerability_in_build_component": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": 29,
+      "column": "",
+      "job": "build-test-all",
+      "step": "0",
+      "details": "Command: iwr -useb get.scoop.sh | iex",
+      "event_triggers": [
+        "schedule",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "unverified_script_exec",
+      "line": 184,
+      "column": "",
+      "job": "generate-allure-report",
+      "step": "2",
+      "details": "Command: iwr -useb get.scoop.sh | iex",
+      "event_triggers": [
+        "schedule",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 200,
+      "column": "",
+      "job": "generate-allure-report",
+      "step": "3",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "schedule",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

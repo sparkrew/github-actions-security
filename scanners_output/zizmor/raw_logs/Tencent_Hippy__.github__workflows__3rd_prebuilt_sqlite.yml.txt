@@ -1,0 +1,89 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_sqlite.yml:99:3
+    [1m[94m|[0m
+[1m[94m 99 |[0m [1m[33m/[0m   prebuilt:
+[1m[94m100 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m132 |[0m [1m[33m|[0m         cos_key: hippy/${{ github.event.inputs.hip_sqlite_root }}/sqlite/sqlite-${{ github.event.inputs.sqlite_version }}.tgz
+[1m[94m133 |[0m [1m[33m|[0m       run: ${{ env.publish_package_script }}
+    [1m[94m|[0m [1m[33m|[0m                                             [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_____________________________________________|[0m
+    [1m[94m|[0m                                               [1m[33mthis job[0m
+    [1m[94m|[0m                                               [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_sqlite.yml:102:7
+    [1m[94m|[0m
+[1m[94m102 |[0m       - name: Download sqlite
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m103 |[0m [1m[91m/[0m       run: |
+[1m[94m104 |[0m [1m[91m|[0m         file_name=$(basename ${{github.event.inputs.sqlite_download_url}})
+[1m[94m105 |[0m [1m[91m|[0m         curl -L ${{github.event.inputs.sqlite_download_url}} -o $file_name
+[1m[94m106 |[0m [1m[91m|[0m         unzip -o $file_name
+    [1m[94m|[0m [1m[91m|___________________________^[0m [1m[91mgithub.event.inputs.sqlite_download_url may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_sqlite.yml:102:7
+    [1m[94m|[0m
+[1m[94m102 |[0m       - name: Download sqlite
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m103 |[0m [1m[91m/[0m       run: |
+[1m[94m104 |[0m [1m[91m|[0m         file_name=$(basename ${{github.event.inputs.sqlite_download_url}})
+[1m[94m105 |[0m [1m[91m|[0m         curl -L ${{github.event.inputs.sqlite_download_url}} -o $file_name
+[1m[94m106 |[0m [1m[91m|[0m         unzip -o $file_name
+    [1m[94m|[0m [1m[91m|___________________________^[0m [1m[91mgithub.event.inputs.sqlite_download_url may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_sqlite.yml:113:7
+    [1m[94m|[0m
+[1m[94m113 |[0m       - name: Prepare package
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m114 |[0m [1m[91m/[0m       run: |
+[1m[94m115 |[0m [1m[91m|[0m         unzip_directory=$(basename -s .zip ${{github.event.inputs.sqlite_download_url}})
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m118 |[0m [1m[91m|[0m         cp ./$unzip_directory/sqlite3ext.h artifact/include/sqlite
+[1m[94m119 |[0m [1m[91m|[0m         cp ./$unzip_directory/sqlite3.c artifact/src
+    [1m[94m|[0m [1m[91m|____________________________________________________^[0m [1m[91mgithub.event.inputs.sqlite_download_url may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_sqlite.yml:120:7
+    [1m[94m|[0m
+[1m[94m120 |[0m       - name: Release package
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m121 |[0m         id: release_package
+[1m[94m122 |[0m [1m[91m/[0m       run: |
+[1m[94m123 |[0m [1m[91m|[0m         tar -zcvf sqlite-${{ github.event.inputs.sqlite_version }}.tgz -C artifact .
+    [1m[94m|[0m [1m[91m|____________________________________________________________________________________^[0m [1m[91mgithub.event.inputs.sqlite_version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_sqlite.yml:128:7
+    [1m[94m|[0m
+[1m[94m128 |[0m     - name: Publish package
+    [1m[94m|[0m       [1m[96m---------------------[0m [1m[96mhelp: this step[0m
+[1m[94m129 |[0m       shell: python3 {0}
+[1m[94m...[0m
+[1m[94m132 |[0m         cos_key: hippy/${{ github.event.inputs.hip_sqlite_root }}/sqlite/sqlite-${{ github.event.inputs.sqlite_version }}.tgz
+[1m[94m133 |[0m       run: ${{ env.publish_package_script }}
+    [1m[94m|[0m       [1m[96m--------------------------------------[0m [1m[96mhelp: env.publish_package_script may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_sqlite.yml:108:7
+    [1m[94m|[0m
+[1m[94m108 |[0m       uses: DamianReeves/write-file-action@v1.0
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m13[39m findings ([1m[93m6[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m1[39m low, [33m1[39m medium, [31m5[39m high

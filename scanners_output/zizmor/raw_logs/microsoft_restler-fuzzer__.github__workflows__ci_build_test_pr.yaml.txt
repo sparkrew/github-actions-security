@@ -1,0 +1,133 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_restler-fuzzer__.github__workflows__ci_build_test_pr.yaml:33:9
+   [1m[94m|[0m
+[1m[94m33 |[0m         - name: Checkout repository
+   [1m[94m|[0m  [1m[91m_________^[0m
+[1m[94m34 |[0m [1m[91m|[0m         uses: actions/checkout@v2
+   [1m[94m|[0m [1m[91m|_________________________________^[0m [1m[91mdoes not set persist-credentials: false[0m
+[1m[94m35 |[0m           
+[1m[94m...[0m
+[1m[94m75 |[0m
+[1m[94m76 |[0m         - name: Upload build artifacts
+   [1m[94m|[0m  [1m[91m_________^[0m
+[1m[94m77 |[0m [1m[91m|[0m         uses: actions/upload-artifact@v4
+[1m[94m78 |[0m [1m[91m|[0m         with:
+[1m[94m79 |[0m [1m[91m|[0m           name: restler-drop-${{ env.RESTLER_VERSION }}-${{ runner.os }}
+[1m[94m80 |[0m [1m[91m|[0m           path: ${{ github.workspace }}/${{ runner.os }}/restlerdrop/${{ env.RESTLER_VERSION }}
+   [1m[94m|[0m [1m[91m|_______________________________________________________________________________________________^[0m [1m[91mmay leak the credentials persisted above[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_restler-fuzzer__.github__workflows__ci_build_test_pr.yaml:92:9
+   [1m[94m|[0m
+[1m[94m92 |[0m         - name: Checkout repository
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m93 |[0m [1m[33m|[0m         uses: actions/checkout@v2
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_restler-fuzzer__.github__workflows__ci_build_test_pr.yaml:133:9
+    [1m[94m|[0m
+[1m[94m133 |[0m         - name: Checkout repository
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m134 |[0m [1m[33m|[0m         uses: actions/checkout@v2
+    [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_restler-fuzzer__.github__workflows__ci_build_test_pr.yaml:165:9
+    [1m[94m|[0m
+[1m[94m165 |[0m         - name: Checkout repository
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m166 |[0m [1m[33m|[0m         uses: actions/checkout@v2
+    [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_restler-fuzzer__.github__workflows__ci_build_test_pr.yaml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: CI Build Pipeline PR validation
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m195 |[0m [1m[33m|[0m           python ./restler/end_to_end_tests/test_quick_start.py ${{ github.workspace }}/restlerDrop
+[1m[94m196 |[0m [1m[33m|[0m
+    [1m[94m|[0m [1m[33m|__-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_restler-fuzzer__.github__workflows__ci_build_test_pr.yaml:26:3
+   [1m[94m|[0m
+[1m[94m26 |[0m [1m[33m/[0m   build:
+[1m[94m27 |[0m [1m[33m|[0m     runs-on: ${{ matrix.os }}
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m79 |[0m [1m[33m|[0m           name: restler-drop-${{ env.RESTLER_VERSION }}-${{ runner.os }}
+[1m[94m80 |[0m [1m[33m|[0m           path: ${{ github.workspace }}/${{ runner.os }}/restlerdrop/${{ env.RESTLER_VERSION }}
+   [1m[94m|[0m [1m[33m|[0m                                                                                               [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                                 [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                                 [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_restler-fuzzer__.github__workflows__ci_build_test_pr.yaml:84:3
+    [1m[94m|[0m
+[1m[94m 84 |[0m [1m[33m/[0m   test-compiler:
+[1m[94m 85 |[0m [1m[33m|[0m     needs: build
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m122 |[0m [1m[33m|[0m           name: test-results-${{ runner.os }}
+[1m[94m123 |[0m [1m[33m|[0m           path: ${{ steps.set_test_results_dir.outputs.test_results_dir }}/test_results.trx
+    [1m[94m|[0m [1m[33m|[0m                                                                                           [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|___________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                             [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                             [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_restler-fuzzer__.github__workflows__ci_build_test_pr.yaml:125:3
+    [1m[94m|[0m
+[1m[94m125 |[0m [1m[33m/[0m   test-engine:
+[1m[94m126 |[0m [1m[33m|[0m     needs: build
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m152 |[0m [1m[33m|[0m           python -m pytest ./unit_tests/
+[1m[94m153 |[0m [1m[33m|[0m         working-directory: ./restler
+    [1m[94m|[0m [1m[33m|[0m                                    [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________________________|[0m
+    [1m[94m|[0m                                      [1m[33mthis job[0m
+    [1m[94m|[0m                                      [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_restler-fuzzer__.github__workflows__ci_build_test_pr.yaml:155:3
+    [1m[94m|[0m
+[1m[94m155 |[0m [1m[33m/[0m   test-endtoend:
+[1m[94m156 |[0m [1m[33m|[0m     needs: build
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m195 |[0m [1m[33m|[0m           python ./restler/end_to_end_tests/test_quick_start.py ${{ github.workspace }}/restlerDrop
+[1m[94m196 |[0m [1m[33m|[0m
+    [1m[94m|[0m [1m[33m|_--[0m [1m[33mthis job[0m
+    [1m[94m|[0m   [1m[33m|[0m
+    [1m[94m|[0m   [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_restler-fuzzer__.github__workflows__ci_build_test_pr.yaml:114:9
+    [1m[94m|[0m
+[1m[94m114 |[0m   [1m[94m...[0m - name: Run functional tests
+    [1m[94m|[0m         [1m[94m--------------------------[0m [1m[94minfo: this step[0m
+[1m[94m115 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m116 |[0m [1m[94m|[0m [1m[94m...[0m     dotnet test src/compiler/Restler.Compiler.Test/Restler.Compiler.Test.fsproj -c ${{ env.BUILD_CONFIGURATION }} --no-build --logger "trx;LogFileName=${{ steps.set_test_results_dir.outputs.test_results_dir }}/test_results.trx"
+    [1m[94m|[0m [1m[94m|_______________________________________________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.set_test_results_dir.outputs.test_results_dir may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m23[39m findings ([1m[93m13[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m8[39m medium, [31m1[39m high

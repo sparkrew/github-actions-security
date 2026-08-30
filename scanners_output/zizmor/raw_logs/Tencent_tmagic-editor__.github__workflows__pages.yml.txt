@@ -1,0 +1,44 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tmagic-editor__.github__workflows__pages.yml:13:9
+   [1m[94m|[0m
+[1m[94m13 |[0m         - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m14 |[0m [1m[33m|[0m         with:
+[1m[94m15 |[0m [1m[33m|[0m           fetch-depth: 0
+[1m[94m16 |[0m [1m[33m|[0m           ref: dev
+   [1m[94m|[0m [1m[33m|__________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tmagic-editor__.github__workflows__pages.yml:9:3
+   [1m[94m|[0m
+[1m[94m 9 |[0m [1m[33m/[0m   pages:
+[1m[94m10 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m49 |[0m [1m[33m|[0m         env:
+[1m[94m50 |[0m [1m[33m|[0m           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+   [1m[94m|[0m [1m[33m|[0m                                                    [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________________________________|[0m
+   [1m[94m|[0m                                                      [1m[33mthis job[0m
+   [1m[94m|[0m                                                      [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tmagic-editor__.github__workflows__pages.yml:19:9
+   [1m[94m|[0m
+[1m[94m19 |[0m         uses: pnpm/action-setup@v4
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tmagic-editor__.github__workflows__pages.yml:45:9
+   [1m[94m|[0m
+[1m[94m45 |[0m         uses: crazy-max/ghaction-github-pages@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m5[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m2[39m high

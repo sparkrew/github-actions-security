@@ -1,0 +1,148 @@
+{
+  "workflow": "NVIDIA_gpu-operator__.github__workflows__ci.yaml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        34,
+        36,
+        43,
+        50,
+        58,
+        65,
+        78,
+        88,
+        92,
+        99,
+        113,
+        120,
+        125,
+        137,
+        148,
+        155,
+        160,
+        167,
+        181,
+        203,
+        210,
+        227,
+        249,
+        256,
+        270,
+        278,
+        303,
+        306,
+        314,
+        343,
+        356,
+        359,
+        367,
+        396,
+        407,
+        430,
+        433
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:356",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:359",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:367",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:396",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:407",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:43",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:50",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:78",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:88",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:92",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:99",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:148",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:155",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:160",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:167",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:181",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:203",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:210",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:227",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:249",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:256",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:430",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:433",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:34",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:36",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:58",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:65",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:113",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:120",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:125",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:137",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:270",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:278",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:303",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:306",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:314",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:343",
+        "Info:   0 out of  21 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   1 out of  17 third-party GitHubAction dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 0,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1,
+        75,
+        109,
+        134,
+        144,
+        177,
+        223,
+        300,
+        353
+      ],
+      "raw_details": [
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:134",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:144",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:223",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:75",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:109",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:177",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:300",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:353",
+        "Warn: no topLevel permission defined: .github/workflows/NVIDIA_gpu-operator__.github__workflows__ci.yaml:1",
+        "Info: no jobLevel write permissions found"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

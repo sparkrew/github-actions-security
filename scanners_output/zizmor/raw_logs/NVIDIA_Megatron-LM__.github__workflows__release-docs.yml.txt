@@ -1,0 +1,55 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__release-docs.yml:84:9
+   [1m[94m|[0m
+[1m[94m84 |[0m         - uses: actions/checkout@v6
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m85 |[0m [1m[33m|[0m         with:
+[1m[94m86 |[0m [1m[33m|[0m           repository: NVIDIA-NeMo/FW-CI-templates
+[1m[94m87 |[0m [1m[33m|[0m           ref: v0.74.0
+[1m[94m88 |[0m [1m[33m|[0m           path: FW-CI-templates
+   [1m[94m|[0m [1m[33m|_______________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__release-docs.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m # Copyright (c) 2025, NVIDIA CORPORATION.
+[1m[94m  2 |[0m [1m[33m|[0m #
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m114 |[0m [1m[33m|[0m           s3-target-root: ${{ secrets.S3_BUCKET_NAME }}
+[1m[94m115 |[0m [1m[33m|[0m           s3-target-path: megatron-core/developer-guide
+    [1m[94m|[0m [1m[33m|________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__release-docs.yml:75:3
+   [1m[94m|[0m
+[1m[94m75 |[0m [1m[33m/[0m   build-docs:
+[1m[94m76 |[0m [1m[33m|[0m     uses: NVIDIA-NeMo/FW-CI-templates/.github/workflows/_build_docs.yml@v0.67.0
+[1m[94m77 |[0m [1m[33m|[0m     with:
+[1m[94m78 |[0m [1m[33m|[0m       ref: ${{ inputs.build-docs-ref }}
+   [1m[94m|[0m [1m[33m|[0m                                       [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________________________|[0m
+   [1m[94m|[0m                                         [1m[33mthis job[0m
+   [1m[94m|[0m                                         [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__release-docs.yml:80:3
+    [1m[94m|[0m
+[1m[94m 80 |[0m [1m[33m/[0m   publish-docs:
+[1m[94m 81 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m114 |[0m [1m[33m|[0m           s3-target-root: ${{ secrets.S3_BUCKET_NAME }}
+[1m[94m115 |[0m [1m[33m|[0m           s3-target-path: megatron-core/developer-guide
+    [1m[94m|[0m [1m[33m|[0m                                                        [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|________________________________________________________|[0m
+    [1m[94m|[0m                                                          [1m[33mthis job[0m
+    [1m[94m|[0m                                                          [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m4[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m4[39m medium, [31m0[39m high

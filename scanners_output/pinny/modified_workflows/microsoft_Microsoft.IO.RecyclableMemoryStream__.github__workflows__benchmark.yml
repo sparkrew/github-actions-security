@@ -1,0 +1,35 @@
+name: Benchmark Tests
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+  deployments: write
+
+jobs:
+  benchmark:
+    name: Run Benchmark.Net
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+      - uses: actions/setup-dotnet@baa11fbfe1d6520db94683bd5c7a3818018e4309 # actions/setup-dotnet@v5 | v5.1.0
+        with:
+          dotnet-version: 8.0.100
+      - name: Run benchmark
+        run: cd BenchmarkTests && dotnet run -c Release --framework net8.0 --exporters json --filter '*'
+
+      - name: Combine benchmark results
+        run: dotnet tool install -g dotnet-script && cd BenchmarkTests && dotnet script combine-bechmarks.csx
+
+      - name: Store benchmark result
+        uses: rhysd/github-action-benchmark@a7bc2366eda11037936ea57d811a43b3418d3073 # rhysd/github-action-benchmark@v1 | v1.21.0
+        with:
+          name: Benchmark.Net Benchmark
+          tool: 'benchmarkdotnet'
+          output-file-path: BenchmarkTests/BenchmarkDotNet.Artifacts/results/Combined.Benchmarks.json
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          auto-push: true
+          alert-threshold: '200%'
+          comment-on-alert: true

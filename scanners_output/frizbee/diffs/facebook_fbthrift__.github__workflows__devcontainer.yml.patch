@@ -1,0 +1,26 @@
+diff --git a/.github/workflows/facebook_fbthrift__.github__workflows__devcontainer.yml b/.github/workflows/facebook_fbthrift__.github__workflows__devcontainer.yml
+index cbccacd..0947c62 100644
+--- a/.github/workflows/facebook_fbthrift__.github__workflows__devcontainer.yml
++++ b/.github/workflows/facebook_fbthrift__.github__workflows__devcontainer.yml
+@@ -16,17 +16,17 @@ jobs:
+       packages: write
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+-      - uses: docker/login-action@v3
++      - uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+         with:
+           registry: ghcr.io
+           username: ${{ github.repository_owner }}
+           password: ${{ secrets.GITHUB_TOKEN }}
+ 
+-      - uses: docker/setup-buildx-action@v3
++      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+ 
+-      - uses: devcontainers/ci@v0.3
++      - uses: devcontainers/ci@8bf61b26e9c3a98f69cb6ce2f88d24ff59b785c6 # v0.3
+         with:
+           imageName: ghcr.io/${{ github.repository_owner }}/devcontainers/fbthrift-python
+           push: always

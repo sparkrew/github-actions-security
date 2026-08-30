@@ -1,0 +1,104 @@
+diff --git a/.github/workflows/aws_copilot-cli__.github__workflows__ci.yml b/.github/workflows/aws_copilot-cli__.github__workflows__ci.yml
+index a811563..9dfc922 100644
+--- a/.github/workflows/aws_copilot-cli__.github__workflows__ci.yml
++++ b/.github/workflows/aws_copilot-cli__.github__workflows__ci.yml
+@@ -15,17 +15,17 @@ jobs:
+         command: [compile-linux, compile-windows, compile-darwin]
+     steps:
+       - name: Set up Go
+-        uses: actions/setup-go@v3
++        uses: actions/setup-go@be3c94b385c4f180051c996d336f57a34c397495 # v3
+         with:
+           go-version: '1.23'
+ 
+       - name: Set up Node
+-        uses: actions/setup-node@v1
++        uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1
+         with:
+           node-version: 16.x
+ 
+       - name: Check out code
+-        uses: actions/checkout@v2
++        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+ 
+       - name: Package custom resources
+         run: make package-custom-resources
+@@ -40,17 +40,17 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Set up Go
+-        uses: actions/setup-go@v3
++        uses: actions/setup-go@be3c94b385c4f180051c996d336f57a34c397495 # v3
+         with:
+           go-version: '1.23'
+ 
+       - name: Set up Node
+-        uses: actions/setup-node@v1
++        uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1
+         with:
+           node-version: 16.x
+ 
+       - name: Check out code
+-        uses: actions/checkout@v2
++        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+ 
+       - name: Generate mocks
+         run: make gen-mocks
+@@ -67,28 +67,28 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Set up Go
+-        uses: actions/setup-go@v3
++        uses: actions/setup-go@be3c94b385c4f180051c996d336f57a34c397495 # v3
+         with:
+           go-version: '1.23'
+ 
+       - name: Set up Node
+-        uses: actions/setup-node@v1
++        uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # v1
+         with:
+           node-version: 16.x
+ 
+       - name: Check out code
+-        uses: actions/checkout@v2
++        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+ 
+       - name: Run tests
+         run: make local-test
+ 
+       - name: Upload golang coverage report to CodeCov
+-        uses: codecov/codecov-action@v3
++        uses: codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457 # v3
+         with:
+           files: ./coverage.out
+ 
+       - name: Upload node coverage report to CodeCov
+-        uses: codecov/codecov-action@v3
++        uses: codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457 # v3
+         with:
+           directory: cf-custom-resources/
+ 
+@@ -96,12 +96,12 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Set up Go
+-        uses: actions/setup-go@v3
++        uses: actions/setup-go@be3c94b385c4f180051c996d336f57a34c397495 # v3
+         with:
+           go-version: '1.23'
+ 
+       - name: Check out code
+-        uses: actions/checkout@v2
++        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+ 
+       - name: Run license check
+         run: ./scripts/license.sh .
+@@ -110,7 +110,7 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: validate
+-        uses: actions/github-script@v6
++        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6
+         with:
+           script: |
+             // See https://gist.github.com/marcojahn/482410b728c31b221b70ea6d2c433f0c#file-conventional-commit-regex-md

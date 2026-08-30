@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/Tencent_ncnn__.github__workflows__compare-binary-size-pr-comment.yml b/.github/workflows/Tencent_ncnn__.github__workflows__compare-binary-size-pr-comment.yml
+index 0bf1c09..68186a5 100644
+--- a/.github/workflows/Tencent_ncnn__.github__workflows__compare-binary-size-pr-comment.yml
++++ b/.github/workflows/Tencent_ncnn__.github__workflows__compare-binary-size-pr-comment.yml
+@@ -99,7 +99,7 @@ jobs:
+ 
+     - name: Post or update PR comment via actions/github-script
+       if: steps.validate.outputs.skip != 'true'
+-      uses: actions/github-script@v8
++      uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+       with:
+         github-token: ${{ secrets.COMMENTER_PAT }}
+         script: |

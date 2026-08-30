@@ -1,0 +1,56 @@
+{
+  "workflow": "awslabs_aws-lambda-web-adapter__.github__workflows__merge.yaml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 4
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 225,
+      "column": "",
+      "job": "deploy-beta",
+      "step": "6",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 241,
+      "column": "",
+      "job": "deploy-beta",
+      "step": "8",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 130,
+      "column": "",
+      "job": "package-beta",
+      "step": "5",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 152,
+      "column": "",
+      "job": "package-beta",
+      "step": "9",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+diff --git a/.github/workflows/Azure_azure-powershell__.github__workflows__issue-metrics.yml b/.github/workflows/Azure_azure-powershell__.github__workflows__issue-metrics.yml
+index a09613c..d19ad19 100644
+--- a/.github/workflows/Azure_azure-powershell__.github__workflows__issue-metrics.yml
++++ b/.github/workflows/Azure_azure-powershell__.github__workflows__issue-metrics.yml
+@@ -29,14 +29,14 @@ jobs:
+           echo "last_month=$first_day..$last_day" >> "$GITHUB_ENV"
+ 
+       - name: Run issue-metrics tool
+-        uses: github/issue-metrics@v3
++        uses: github/issue-metrics@6fa9041b3ea7b6a9dafbdc388d25d86d06b2b6af # v3
+         env:
+           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+           SEARCH_QUERY: 'repo:Azure/azure-powershell is:pr created:${{ env.last_month }}'
+           DRAFT_PR_TRACKING: 'True'
+ 
+       - name: Create issue
+-        uses: peter-evans/create-issue-from-file@v5
++        uses: peter-evans/create-issue-from-file@e8ef132d6df98ed982188e460ebb3b5d4ef3a9cd # v5
+         with:
+           title: Monthly issue metrics report
+           token: ${{ secrets.GITHUB_TOKEN }}

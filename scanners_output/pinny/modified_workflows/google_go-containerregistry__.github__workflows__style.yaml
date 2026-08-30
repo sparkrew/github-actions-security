@@ -1,0 +1,52 @@
+name: Code Style
+
+on:
+  pull_request:
+    branches: ['main']
+
+jobs:
+
+  goimports:
+    name: check goimports
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+      - uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 # actions/setup-go@v6 | v6.3.0
+        with:
+          go-version-file: go.mod
+      - uses: chainguard-dev/actions/goimports@fc204518190e8e1288f6948a9c7871e4701c3852 # chainguard-dev/actions/goimports@main
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+      - uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 # actions/setup-go@v6 | v6.3.0
+        with:
+          go-version-file: go.mod
+      - uses: golangci/golangci-lint-action@1e7e51e771db61008b38414a730f564565cf7c20 # golangci/golangci-lint-action@v9.2.0 | v9
+        with:
+          version: v2.10
+
+      - uses: chainguard-dev/actions/goimports@fc204518190e8e1288f6948a9c7871e4701c3852 # chainguard-dev/actions/goimports@main
+        if: ${{ always() }}
+
+      - uses: chainguard-dev/actions/goimports@fc204518190e8e1288f6948a9c7871e4701c3852 # chainguard-dev/actions/goimports@main
+        if: ${{ always() }}
+
+      - uses: reviewdog/action-misspell@d6429416b12b09b4e2768307d53bef58d172e962 # reviewdog/action-misspell@v1
+        if: ${{ always() }}
+        with:
+          github_token: ${{ secrets.github_token }}
+          fail_on_error: true
+          locale: "US"
+          exclude: ./vendor/*
+
+      - uses: get-woke/woke-action-reviewdog@d71fd0115146a01c3181439ce714e21a69d75e31 # get-woke/woke-action-reviewdog@v0
+        if: ${{ always() }}
+        with:
+          github-token: ${{ secrets.github_token }}
+          reporter: github-pr-check
+          level: error
+          fail-on-error: true

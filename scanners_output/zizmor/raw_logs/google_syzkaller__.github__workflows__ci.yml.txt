@@ -1,0 +1,107 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_syzkaller__.github__workflows__ci.yml:27:9
+   [1m[94m|[0m
+[1m[94m27 |[0m         - name: checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m28 |[0m [1m[33m|[0m         uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m31 |[0m [1m[33m|[0m           # This is needed for tools/check-commits.sh
+[1m[94m32 |[0m [1m[33m|[0m           fetch-depth: 100
+   [1m[94m|[0m [1m[33m|__________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_syzkaller__.github__workflows__ci.yml:59:9
+   [1m[94m|[0m
+[1m[94m59 |[0m         - name: checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m60 |[0m [1m[33m|[0m         uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+[1m[94m61 |[0m [1m[33m|[0m         with:
+[1m[94m62 |[0m [1m[33m|[0m           path: gopath/src/github.com/google/syzkaller
+   [1m[94m|[0m [1m[33m|______________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_syzkaller__.github__workflows__ci.yml:89:9
+   [1m[94m|[0m
+[1m[94m89 |[0m         - name: checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m90 |[0m [1m[33m|[0m         uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+[1m[94m91 |[0m [1m[33m|[0m         with:
+[1m[94m92 |[0m [1m[33m|[0m           path: gopath/src/github.com/google/syzkaller
+   [1m[94m|[0m [1m[33m|______________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/google_syzkaller__.github__workflows__ci.yml:122:9
+    [1m[94m|[0m
+[1m[94m122 |[0m         - name: checkout
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m123 |[0m [1m[33m|[0m         uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+[1m[94m124 |[0m [1m[33m|[0m         with:
+[1m[94m125 |[0m [1m[33m|[0m           path: gopath/src/github.com/google/syzkaller
+    [1m[94m|[0m [1m[33m|______________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/google_syzkaller__.github__workflows__ci.yml:144:9
+    [1m[94m|[0m
+[1m[94m144 |[0m         - name: checkout
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m145 |[0m [1m[33m|[0m         uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m148 |[0m [1m[33m|[0m
+[1m[94m149 |[0m [1m[33m|[0m       # https://github.com/golang/go/issues/61608 to cache -race results.
+    [1m[94m|[0m [1m[33m|_________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/google_syzkaller__.github__workflows__ci.yml:168:9
+    [1m[94m|[0m
+[1m[94m168 |[0m         - name: checkout
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m169 |[0m [1m[33m|[0m         uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+[1m[94m170 |[0m [1m[33m|[0m         with:
+[1m[94m171 |[0m [1m[33m|[0m           path: gopath/src/github.com/google/syzkaller
+    [1m[94m|[0m [1m[33m|______________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/google_syzkaller__.github__workflows__ci.yml:191:9
+    [1m[94m|[0m
+[1m[94m191 |[0m         - name: checkout
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m192 |[0m [1m[33m|[0m         uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+[1m[94m193 |[0m [1m[33m|[0m         with:
+[1m[94m194 |[0m [1m[33m|[0m           path: gopath/src/github.com/google/syzkaller
+    [1m[94m|[0m [1m[33m|______________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/google_syzkaller__.github__workflows__ci.yml:216:9
+    [1m[94m|[0m
+[1m[94m216 |[0m         - name: checkout
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m217 |[0m [1m[33m|[0m         uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
+[1m[94m218 |[0m [1m[33m|[0m         with:
+[1m[94m219 |[0m [1m[33m|[0m           path: gopath/src/github.com/google/syzkaller
+    [1m[94m|[0m [1m[33m|______________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+   [1m[94m-->[0m ../.github/workflows/google_syzkaller__.github__workflows__ci.yml:207:7
+    [1m[94m|[0m
+[1m[94m207 |[0m       image: gcr.io/syzkaller/syzbot:latest
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is pinned to latest[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m10[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m8[39m medium, [31m1[39m high

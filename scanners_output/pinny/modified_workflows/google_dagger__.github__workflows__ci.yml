@@ -1,0 +1,196 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+# Cancel in-progress jobs for the same workflow and branch except for the master branch.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+
+env:
+  USE_AGP_VERSION: '9.0.0'
+  USE_JAVA_DISTRIBUTION: 'zulu'
+  USE_JAVA_VERSION_FOR_BAZEL: '21'
+  USE_JAVA_VERSION_FOR_GRADLE: '21'
+  # The default Maven 3.9.0 has a regression so we manually install 3.8.7.
+  # https://issues.apache.org/jira/browse/MNG-7679
+  USE_MAVEN_VERSION: '3.8.7'
+
+jobs:
+  validate-latest-dagger-version:
+    name: 'Validate Dagger version'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - uses: ./.github/actions/prechecks
+  bazel-build:
+    name: 'Bazel build'
+    needs: validate-latest-dagger-version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - uses: ./.github/actions/bazel-build
+  bazel-test:
+    name: 'Bazel tests'
+    needs: validate-latest-dagger-version
+    runs-on:
+      group: large-runner-group
+      labels: ubuntu-22.04-16core
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - uses: ./.github/actions/bazel-test
+  gradle-build:
+    name: 'Gradle build'
+    runs-on:
+      group: large-runner-group
+      labels: ubuntu-22.04-16core
+    steps:
+    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+    - uses: ./.github/actions/gradle-build
+  artifact-verification-tests:
+    name: 'Artifact verification tests'
+    needs: bazel-build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - uses: ./.github/actions/artifact-verification-tests
+  artifact-java-local-tests:
+    name: 'Artifact Java local tests'
+    needs: bazel-build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - uses: ./.github/actions/artifact-java-local-tests
+  test-gradle-plugin:
+    name: 'Test Hilt Gradle plugin'
+    needs: bazel-build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - uses: ./.github/actions/test-gradle-plugin
+  artifact-android-local-tests:
+    name: 'Artifact Android local tests'
+    needs: bazel-build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - uses: ./.github/actions/artifact-android-local-tests
+  artifact-android-emulator-legacy-api-tests:
+    name: 'Artifact Android emulator tests (API ${{ matrix.api-level }})'
+    # We only run this on master push (essentially a postsubmit) since these
+    # can take a while to run
+    if: github.event_name == 'push' && github.repository == 'google/dagger' && github.ref == 'refs/heads/master'
+    needs: bazel-build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        api-level: [23, 26, 30]
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - uses: ./.github/actions/artifact-android-emulator-tests
+        timeout-minutes: 35
+        with:
+          api-level: '${{ matrix.api-level }}'
+  publish-snapshot:
+    name: 'Publish snapshot'
+    # TODO(bcorso): Consider also waiting on artifact-android-emulator-tests
+    # and artifact-android-emulator-legacy-api-tests after checking flakiness.
+    needs: [
+      bazel-test,
+      artifact-verification-tests,
+      artifact-java-local-tests,
+      artifact-android-local-tests,
+      test-gradle-plugin
+    ]
+    if: github.event_name == 'push' && github.repository == 'google/dagger' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: 'Install Java ${{ env.USE_JAVA_VERSION_FOR_BAZEL }}'
+        uses: actions/setup-java@c1e323688fd81a25caa38c78aa6df2d33d3e20d9 # actions/setup-java@v4 | releases,v4.8.0
+        with:
+          distribution: '${{ env.USE_JAVA_DISTRIBUTION }}'
+          java-version: '${{ env.USE_JAVA_VERSION_FOR_BAZEL }}'
+          server-id: sonatype-central-snapshots
+          server-username: CI_DEPLOY_USERNAME
+          server-password: CI_DEPLOY_PASSWORD
+      - name: 'Check out repository'
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - name: 'Cache local Maven repository'
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # actions/cache@v4 | v4.3.0
+        with:
+          path: |
+            ~/.m2/repository
+            !~/.m2/repository/com/google/dagger
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: 'Cache Bazel files'
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # actions/cache@v4 | v4.3.0
+        with:
+          path: ~/.cache/bazel_github # The bazel cache path set in .bazelrc.
+          key: ${{ runner.os }}-bazel-build-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-bazel-build-
+      - name: 'Cache Gradle files'
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # actions/cache@v4 | v4.3.0
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      - name: 'Publish latest docs'
+        run: ./util/generate-latest-docs.sh
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: 'Publish latest snapshot'
+        run: |
+          util/deploy-all.sh \
+            "deploy:deploy-file" \
+            "HEAD-SNAPSHOT" \
+            "-DrepositoryId=sonatype-central-snapshots" \
+            "-Durl=https://central.sonatype.com/repository/maven-snapshots"
+        shell: bash
+        env:
+          CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
+          CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
+      - name: 'Clean bazel cache'
+        run: rm -rf $(bazel info repository_cache)
+        shell: bash
+  build-gradle-plugin-latest-agp:
+    name: 'Build Hilt Gradle plugin against latest AGP version'
+    # We only run this on master push (essentially a postsubmit) since we
+    # don't want this job to prevent merges
+    if: github.event_name == 'push' && github.repository == 'google/dagger' && github.ref == 'refs/heads/master'
+    needs: bazel-build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - uses: ./.github/actions/build-gradle-plugin
+        with:
+          agp: '+'
+  cleanup-caches:
+    name: 'Clean up GitHub Action caches'
+    # TODO(bcorso): Consider also waiting on artifact-android-emulator-tests
+    # and artifact-android-emulator-legacy-api-tests after checking flakiness.
+    needs: [
+      bazel-test,
+      artifact-verification-tests,
+      artifact-java-local-tests,
+      artifact-android-local-tests,
+      test-gradle-plugin
+    ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - uses: ./.github/actions/cleanup-caches

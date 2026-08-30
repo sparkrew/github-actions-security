@@ -1,0 +1,37 @@
+{
+  "workflow": "NVIDIA_k8s-device-plugin__.github__workflows__image.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "unpinned-github-actions": 5
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+      "line": 37
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # docker/login-action@v3 | releases,v3.7.0",
+      "line": 40
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: nv-gha-runners/setup-artifactory-go-proxy@a15ec16ff434e8ca3b0f76919f902080e66ebc14 # nv-gha-runners/setup-artifactory-go-proxy@main",
+      "line": 47
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+      "line": 63
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # docker/login-action@v3 | releases,v3.7.0",
+      "line": 66
+    }
+  ]
+}

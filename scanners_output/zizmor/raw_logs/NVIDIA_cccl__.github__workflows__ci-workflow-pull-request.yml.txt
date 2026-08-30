@@ -1,0 +1,186 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m # SPDX-FileCopyrightText: Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+[1m[94m  2 |[0m [1m[33m|[0m # SPDX-License-Identifier: Apache-2.0
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m425 |[0m [1m[33m|[0m             exit 1
+[1m[94m426 |[0m [1m[33m|[0m           fi
+    [1m[94m|[0m [1m[33m|_____________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:378:3
+    [1m[94m|[0m
+[1m[94m378 |[0m [1m[33m/[0m   ci:
+[1m[94m379 |[0m [1m[33m|[0m     name: CI
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m425 |[0m [1m[33m|[0m             exit 1
+[1m[94m426 |[0m [1m[33m|[0m           fi
+    [1m[94m|[0m [1m[33m|[0m             [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_____________|[0m
+    [1m[94m|[0m               [1m[33mthis job[0m
+    [1m[94m|[0m               [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:73:9
+   [1m[94m|[0m
+[1m[94m73 |[0m         - name: Export PR info
+   [1m[94m|[0m           [1m[94m--------------------[0m [1m[94minfo: this step[0m
+[1m[94m74 |[0m           id: export-pr-info
+[1m[94m75 |[0m [1m[94m/[0m         run: |
+[1m[94m76 |[0m [1m[94m|[0m           echo "base_sha=${{ fromJSON(steps.get-pr-info.outputs.pr-info).base.sha }}" | tee -a "${GITHUB_OUTPUT}"
+[1m[94m77 |[0m [1m[94m|[0m           echo "pr_number=${{ fromJSON(steps.get-pr-info.outputs.pr-info).number }}" | tee -a "${GITHUB_OUTPUT}"
+   [1m[94m|[0m [1m[94m|________________________________________________________________________________________________________________-[0m [1m[94minfo: fromJSON(steps.get-pr-info.outputs.pr-info).base.sha may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:73:9
+   [1m[94m|[0m
+[1m[94m73 |[0m         - name: Export PR info
+   [1m[94m|[0m           [1m[94m--------------------[0m [1m[94minfo: this step[0m
+[1m[94m74 |[0m           id: export-pr-info
+[1m[94m75 |[0m [1m[94m/[0m         run: |
+[1m[94m76 |[0m [1m[94m|[0m           echo "base_sha=${{ fromJSON(steps.get-pr-info.outputs.pr-info).base.sha }}" | tee -a "${GITHUB_OUTPUT}"
+[1m[94m77 |[0m [1m[94m|[0m           echo "pr_number=${{ fromJSON(steps.get-pr-info.outputs.pr-info).number }}" | tee -a "${GITHUB_OUTPUT}"
+   [1m[94m|[0m [1m[94m|________________________________________________________________________________________________________________-[0m [1m[94minfo: fromJSON(steps.get-pr-info.outputs.pr-info).number may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:331:9
+    [1m[94m|[0m
+[1m[94m331 |[0m         - name: Check if wheel exists
+    [1m[94m|[0m           [1m[94m---------------------------[0m [1m[94minfo: this step[0m
+[1m[94m332 |[0m           id: check-wheel
+[1m[94m333 |[0m [1m[94m/[0m         run: |
+[1m[94m334 |[0m [1m[94m|[0m           if [[ "${{ steps.download.outcome }}" != "success" ]]; then
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m339 |[0m [1m[94m|[0m             echo "skip=false" >> "$GITHUB_OUTPUT"
+[1m[94m340 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: steps.download.outcome may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:393:9
+    [1m[94m|[0m
+[1m[94m393 |[0m         - name: Check results
+    [1m[94m|[0m           [1m[94m-------------------[0m [1m[94minfo: this step[0m
+[1m[94m394 |[0m [1m[94m/[0m         run: |
+[1m[94m395 |[0m [1m[94m|[0m           status="success"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m425 |[0m [1m[94m|[0m             exit 1
+[1m[94m426 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|_____________-[0m [1m[94minfo: needs.verify-workflow.result may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:393:9
+    [1m[94m|[0m
+[1m[94m393 |[0m         - name: Check results
+    [1m[94m|[0m           [1m[94m-------------------[0m [1m[94minfo: this step[0m
+[1m[94m394 |[0m [1m[94m/[0m         run: |
+[1m[94m395 |[0m [1m[94m|[0m           status="success"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m425 |[0m [1m[94m|[0m             exit 1
+[1m[94m426 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|_____________-[0m [1m[94minfo: needs.verify-devcontainers.result may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:393:9
+    [1m[94m|[0m
+[1m[94m393 |[0m         - name: Check results
+    [1m[94m|[0m           [1m[94m-------------------[0m [1m[94minfo: this step[0m
+[1m[94m394 |[0m [1m[94m/[0m         run: |
+[1m[94m395 |[0m [1m[94m|[0m           status="success"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m425 |[0m [1m[94m|[0m             exit 1
+[1m[94m426 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|_____________-[0m [1m[94minfo: needs.docs-build.result may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:393:9
+    [1m[94m|[0m
+[1m[94m393 |[0m         - name: Check results
+    [1m[94m|[0m           [1m[94m-------------------[0m [1m[94minfo: this step[0m
+[1m[94m394 |[0m [1m[94m/[0m         run: |
+[1m[94m395 |[0m [1m[94m|[0m           status="success"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m425 |[0m [1m[94m|[0m             exit 1
+[1m[94m426 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|_____________-[0m [1m[94minfo: needs.test-cpu-import.result may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:393:9
+    [1m[94m|[0m
+[1m[94m393 |[0m         - name: Check results
+    [1m[94m|[0m           [1m[94m-------------------[0m [1m[94minfo: this step[0m
+[1m[94m394 |[0m [1m[94m/[0m         run: |
+[1m[94m395 |[0m [1m[94m|[0m           status="success"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m425 |[0m [1m[94m|[0m             exit 1
+[1m[94m426 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|_____________-[0m [1m[94minfo: needs.build-workflow.outputs.branch_notes_dirt may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:72:9
+   [1m[94m|[0m
+[1m[94m72 |[0m         uses: nv-gha-runners/get-pr-info@main
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:282:5
+    [1m[94m|[0m
+[1m[94m275 |[0m     secrets: inherit
+    [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+[1m[94m276 |[0m     permissions:
+[1m[94m...[0m
+[1m[94m281 |[0m       pull-requests: read
+[1m[94m282 |[0m     uses: ./.github/workflows/build-rapids.yml
+    [1m[94m|[0m     [1m[33m------------------------------------------[0m [1m[33mthis reusable workflow[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:296:5
+    [1m[94m|[0m
+[1m[94m292 |[0m     secrets: inherit
+    [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+[1m[94m293 |[0m     permissions:
+[1m[94m294 |[0m       id-token: write
+[1m[94m295 |[0m       contents: read
+[1m[94m296 |[0m     uses: ./.github/workflows/build-matx.yml
+    [1m[94m|[0m     [1m[33m----------------------------------------[0m [1m[33mthis reusable workflow[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:310:5
+    [1m[94m|[0m
+[1m[94m306 |[0m     secrets: inherit
+    [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+[1m[94m307 |[0m     permissions:
+[1m[94m308 |[0m       id-token: write
+[1m[94m309 |[0m       contents: read
+[1m[94m310 |[0m     uses: ./.github/workflows/build-pytorch.yml
+    [1m[94m|[0m     [1m[33m-------------------------------------------[0m [1m[33mthis reusable workflow[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m28[39m findings ([1m[93m14[39m suppressed[0m): 0 unknown, [35m8[39m informational, [36m0[39m low, [33m5[39m medium, [31m1[39m high

@@ -1,0 +1,130 @@
+diff --git a/.github/workflows/microsoft_agent-framework__.github__workflows__python-sample-validation.yml b/.github/workflows/microsoft_agent-framework__.github__workflows__python-sample-validation.yml
+index 1ada1ab..34492b8 100644
+--- a/.github/workflows/microsoft_agent-framework__.github__workflows__python-sample-validation.yml
++++ b/.github/workflows/microsoft_agent-framework__.github__workflows__python-sample-validation.yml
+@@ -31,7 +31,7 @@ jobs:
+       run:
+         working-directory: python
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       - name: Setup environment
+         uses: ./.github/actions/sample-validation-setup
+@@ -46,7 +46,7 @@ jobs:
+           cd samples && uv run python -m _sample_validation --subdir 01-get-started --save-report --report-name 01-get-started
+ 
+       - name: Upload validation report
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         if: always()
+         with:
+           name: validation-report-01-get-started
+@@ -74,7 +74,7 @@ jobs:
+       run:
+         working-directory: python
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       - name: Setup environment
+         uses: ./.github/actions/sample-validation-setup
+@@ -89,7 +89,7 @@ jobs:
+           cd samples && uv run python -m _sample_validation --subdir 02-agents --save-report --report-name 02-agents
+ 
+       - name: Upload validation report
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         if: always()
+         with:
+           name: validation-report-02-agents
+@@ -111,7 +111,7 @@ jobs:
+       run:
+         working-directory: python
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       - name: Setup environment
+         uses: ./.github/actions/sample-validation-setup
+@@ -126,7 +126,7 @@ jobs:
+           cd samples && uv run python -m _sample_validation --subdir 03-workflows --save-report --report-name 03-workflows
+ 
+       - name: Upload validation report
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         if: always()
+         with:
+           name: validation-report-03-workflows
+@@ -150,7 +150,7 @@ jobs:
+       run:
+         working-directory: python
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       - name: Setup environment
+         uses: ./.github/actions/sample-validation-setup
+@@ -165,7 +165,7 @@ jobs:
+           cd samples && uv run python -m _sample_validation --subdir 04-hosting --save-report --report-name 04-hosting
+ 
+       - name: Upload validation report
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         if: always()
+         with:
+           name: validation-report-04-hosting
+@@ -194,7 +194,7 @@ jobs:
+       run:
+         working-directory: python
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       - name: Setup environment
+         uses: ./.github/actions/sample-validation-setup
+@@ -209,7 +209,7 @@ jobs:
+           cd samples && uv run python -m _sample_validation --subdir 05-end-to-end --save-report --report-name 05-end-to-end
+ 
+       - name: Upload validation report
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         if: always()
+         with:
+           name: validation-report-05-end-to-end
+@@ -234,7 +234,7 @@ jobs:
+       run:
+         working-directory: python
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       - name: Setup environment
+         uses: ./.github/actions/sample-validation-setup
+@@ -249,7 +249,7 @@ jobs:
+           cd samples && uv run python -m _sample_validation --subdir autogen-migration --save-report --report-name autogen-migration
+ 
+       - name: Upload validation report
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         if: always()
+         with:
+           name: validation-report-autogen-migration
+@@ -280,7 +280,7 @@ jobs:
+       run:
+         working-directory: python
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       - name: Setup environment
+         uses: ./.github/actions/sample-validation-setup
+@@ -295,7 +295,7 @@ jobs:
+           cd samples && uv run python -m _sample_validation --subdir semantic-kernel-migration --save-report --report-name semantic-kernel-migration
+ 
+       - name: Upload validation report
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         if: always()
+         with:
+           name: validation-report-semantic-kernel-migration

@@ -1,0 +1,36 @@
+name: commit
+
+on:
+  push:
+    branches:
+      - mainline
+
+jobs:
+  test: # same as ci/test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@be3c94b385c4f180051c996d336f57a34c397495 # actions/setup-go@v3 | restore-v3-release,v3.6.1
+        with:
+          go-version: '1.21'
+
+      - name: Set up Node
+        uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e # actions/setup-node@v1 | servicing,v1.4.6
+        with:
+          node-version: 16.x
+
+      - name: Check out code
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # actions/checkout@v2 | releases,850,v2.7.0
+
+      - name: Run tests
+        run: make local-test
+
+      - name: Upload golang coverage report to CodeCov
+        uses: codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457 # codecov/codecov-action@v3 | v3
+        with:
+          files: ./coverage.out
+
+      - name: Upload node coverage report to CodeCov
+        uses: codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457 # codecov/codecov-action@v3 | v3
+        with:
+          directory: cf-custom-resources/

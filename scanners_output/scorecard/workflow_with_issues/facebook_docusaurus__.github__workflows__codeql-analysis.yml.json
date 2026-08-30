@@ -1,0 +1,32 @@
+{
+  "workflow": "facebook_docusaurus__.github__workflows__codeql-analysis.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Token-Permissions",
+      "score": 9,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1,
+        24,
+        25
+      ],
+      "raw_details": [
+        "Info: jobLevel 'actions' permission set to 'read': .github/workflows/facebook_docusaurus__.github__workflows__codeql-analysis.yml:24",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/facebook_docusaurus__.github__workflows__codeql-analysis.yml:25",
+        "Warn: no topLevel permission defined: .github/workflows/facebook_docusaurus__.github__workflows__codeql-analysis.yml:1",
+        "Info: no jobLevel write permissions found"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

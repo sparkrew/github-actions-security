@@ -1,0 +1,491 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: "Git Bisect"
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m332 |[0m [1m[33m|[0m
+[1m[94m333 |[0m [1m[33m|[0m           exit $rc
+    [1m[94m|[0m [1m[33m|___________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:113:3
+    [1m[94m|[0m
+[1m[94m113 |[0m [1m[33m/[0m   generate-job-name:
+[1m[94m114 |[0m [1m[33m|[0m     name: Generate Unique Job Name
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m205 |[0m [1m[33m|[0m           echo "Unique job name: $unique_name"
+[1m[94m206 |[0m [1m[33m|[0m           echo "unique-name=$unique_name" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[33m|[0m                                                             [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_____________________________________________________________|[0m
+    [1m[94m|[0m                                                               [1m[33mthis job[0m
+    [1m[94m|[0m                                                               [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:119:9
+    [1m[94m|[0m
+[1m[94m119 |[0m         - name: Set unique name
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m120 |[0m           id: set-name
+[1m[94m121 |[0m [1m[91m/[0m         run: |
+[1m[94m122 |[0m [1m[91m|[0m           # Hash the inputs to create a unique identifier
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m205 |[0m [1m[91m|[0m           echo "Unique job name: $unique_name"
+[1m[94m206 |[0m [1m[91m|[0m           echo "unique-name=$unique_name" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.runner may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:119:9
+    [1m[94m|[0m
+[1m[94m119 |[0m         - name: Set unique name
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m120 |[0m           id: set-name
+[1m[94m121 |[0m [1m[91m/[0m         run: |
+[1m[94m122 |[0m [1m[91m|[0m           # Hash the inputs to create a unique identifier
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m205 |[0m [1m[91m|[0m           echo "Unique job name: $unique_name"
+[1m[94m206 |[0m [1m[91m|[0m           echo "unique-name=$unique_name" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.launch_args may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:119:9
+    [1m[94m|[0m
+[1m[94m119 |[0m         - name: Set unique name
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m120 |[0m           id: set-name
+[1m[94m121 |[0m [1m[91m/[0m         run: |
+[1m[94m122 |[0m [1m[91m|[0m           # Hash the inputs to create a unique identifier
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m205 |[0m [1m[91m|[0m           echo "Unique job name: $unique_name"
+[1m[94m206 |[0m [1m[91m|[0m           echo "unique-name=$unique_name" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.preset may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:119:9
+    [1m[94m|[0m
+[1m[94m119 |[0m         - name: Set unique name
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m120 |[0m           id: set-name
+[1m[94m121 |[0m [1m[91m/[0m         run: |
+[1m[94m122 |[0m [1m[91m|[0m           # Hash the inputs to create a unique identifier
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m205 |[0m [1m[91m|[0m           echo "Unique job name: $unique_name"
+[1m[94m206 |[0m [1m[91m|[0m           echo "unique-name=$unique_name" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.cmake_options may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:119:9
+    [1m[94m|[0m
+[1m[94m119 |[0m         - name: Set unique name
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m120 |[0m           id: set-name
+[1m[94m121 |[0m [1m[91m/[0m         run: |
+[1m[94m122 |[0m [1m[91m|[0m           # Hash the inputs to create a unique identifier
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m205 |[0m [1m[91m|[0m           echo "Unique job name: $unique_name"
+[1m[94m206 |[0m [1m[91m|[0m           echo "unique-name=$unique_name" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.build_targets may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:119:9
+    [1m[94m|[0m
+[1m[94m119 |[0m         - name: Set unique name
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m120 |[0m           id: set-name
+[1m[94m121 |[0m [1m[91m/[0m         run: |
+[1m[94m122 |[0m [1m[91m|[0m           # Hash the inputs to create a unique identifier
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m205 |[0m [1m[91m|[0m           echo "Unique job name: $unique_name"
+[1m[94m206 |[0m [1m[91m|[0m           echo "unique-name=$unique_name" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.ctest_targets may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:119:9
+    [1m[94m|[0m
+[1m[94m119 |[0m         - name: Set unique name
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m120 |[0m           id: set-name
+[1m[94m121 |[0m [1m[91m/[0m         run: |
+[1m[94m122 |[0m [1m[91m|[0m           # Hash the inputs to create a unique identifier
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m205 |[0m [1m[91m|[0m           echo "Unique job name: $unique_name"
+[1m[94m206 |[0m [1m[91m|[0m           echo "unique-name=$unique_name" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.lit_precompile_tests may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:119:9
+    [1m[94m|[0m
+[1m[94m119 |[0m         - name: Set unique name
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m120 |[0m           id: set-name
+[1m[94m121 |[0m [1m[91m/[0m         run: |
+[1m[94m122 |[0m [1m[91m|[0m           # Hash the inputs to create a unique identifier
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m205 |[0m [1m[91m|[0m           echo "Unique job name: $unique_name"
+[1m[94m206 |[0m [1m[91m|[0m           echo "unique-name=$unique_name" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.lit_tests may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:119:9
+    [1m[94m|[0m
+[1m[94m119 |[0m         - name: Set unique name
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m120 |[0m           id: set-name
+[1m[94m121 |[0m [1m[91m/[0m         run: |
+[1m[94m122 |[0m [1m[91m|[0m           # Hash the inputs to create a unique identifier
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m205 |[0m [1m[91m|[0m           echo "Unique job name: $unique_name"
+[1m[94m206 |[0m [1m[91m|[0m           echo "unique-name=$unique_name" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.good_ref may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:119:9
+    [1m[94m|[0m
+[1m[94m119 |[0m         - name: Set unique name
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m120 |[0m           id: set-name
+[1m[94m121 |[0m [1m[91m/[0m         run: |
+[1m[94m122 |[0m [1m[91m|[0m           # Hash the inputs to create a unique identifier
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m205 |[0m [1m[91m|[0m           echo "Unique job name: $unique_name"
+[1m[94m206 |[0m [1m[91m|[0m           echo "unique-name=$unique_name" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.bad_ref may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:119:9
+    [1m[94m|[0m
+[1m[94m119 |[0m         - name: Set unique name
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m120 |[0m           id: set-name
+[1m[94m121 |[0m [1m[91m/[0m         run: |
+[1m[94m122 |[0m [1m[91m|[0m           # Hash the inputs to create a unique identifier
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m205 |[0m [1m[91m|[0m           echo "Unique job name: $unique_name"
+[1m[94m206 |[0m [1m[91m|[0m           echo "unique-name=$unique_name" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.preset may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:119:9
+    [1m[94m|[0m
+[1m[94m119 |[0m         - name: Set unique name
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m120 |[0m           id: set-name
+[1m[94m121 |[0m [1m[91m/[0m         run: |
+[1m[94m122 |[0m [1m[91m|[0m           # Hash the inputs to create a unique identifier
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m205 |[0m [1m[91m|[0m           echo "Unique job name: $unique_name"
+[1m[94m206 |[0m [1m[91m|[0m           echo "unique-name=$unique_name" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.good_ref may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:119:9
+    [1m[94m|[0m
+[1m[94m119 |[0m         - name: Set unique name
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m120 |[0m           id: set-name
+[1m[94m121 |[0m [1m[91m/[0m         run: |
+[1m[94m122 |[0m [1m[91m|[0m           # Hash the inputs to create a unique identifier
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m205 |[0m [1m[91m|[0m           echo "Unique job name: $unique_name"
+[1m[94m206 |[0m [1m[91m|[0m           echo "unique-name=$unique_name" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.bad_ref may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:119:9
+    [1m[94m|[0m
+[1m[94m119 |[0m         - name: Set unique name
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m120 |[0m           id: set-name
+[1m[94m121 |[0m [1m[91m/[0m         run: |
+[1m[94m122 |[0m [1m[91m|[0m           # Hash the inputs to create a unique identifier
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m205 |[0m [1m[91m|[0m           echo "Unique job name: $unique_name"
+[1m[94m206 |[0m [1m[91m|[0m           echo "unique-name=$unique_name" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.build_targets may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:119:9
+    [1m[94m|[0m
+[1m[94m119 |[0m         - name: Set unique name
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m120 |[0m           id: set-name
+[1m[94m121 |[0m [1m[91m/[0m         run: |
+[1m[94m122 |[0m [1m[91m|[0m           # Hash the inputs to create a unique identifier
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m205 |[0m [1m[91m|[0m           echo "Unique job name: $unique_name"
+[1m[94m206 |[0m [1m[91m|[0m           echo "unique-name=$unique_name" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.ctest_targets may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:119:9
+    [1m[94m|[0m
+[1m[94m119 |[0m         - name: Set unique name
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m120 |[0m           id: set-name
+[1m[94m121 |[0m [1m[91m/[0m         run: |
+[1m[94m122 |[0m [1m[91m|[0m           # Hash the inputs to create a unique identifier
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m205 |[0m [1m[91m|[0m           echo "Unique job name: $unique_name"
+[1m[94m206 |[0m [1m[91m|[0m           echo "unique-name=$unique_name" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.lit_precompile_tests may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:119:9
+    [1m[94m|[0m
+[1m[94m119 |[0m         - name: Set unique name
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m120 |[0m           id: set-name
+[1m[94m121 |[0m [1m[91m/[0m         run: |
+[1m[94m122 |[0m [1m[91m|[0m           # Hash the inputs to create a unique identifier
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m205 |[0m [1m[91m|[0m           echo "Unique job name: $unique_name"
+[1m[94m206 |[0m [1m[91m|[0m           echo "unique-name=$unique_name" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.lit_tests may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:119:9
+    [1m[94m|[0m
+[1m[94m119 |[0m         - name: Set unique name
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m120 |[0m           id: set-name
+[1m[94m121 |[0m [1m[91m/[0m         run: |
+[1m[94m122 |[0m [1m[91m|[0m           # Hash the inputs to create a unique identifier
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m205 |[0m [1m[91m|[0m           echo "Unique job name: $unique_name"
+[1m[94m206 |[0m [1m[91m|[0m           echo "unique-name=$unique_name" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.launch_args may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:119:9
+    [1m[94m|[0m
+[1m[94m119 |[0m         - name: Set unique name
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m120 |[0m           id: set-name
+[1m[94m121 |[0m [1m[91m/[0m         run: |
+[1m[94m122 |[0m [1m[91m|[0m           # Hash the inputs to create a unique identifier
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m205 |[0m [1m[91m|[0m           echo "Unique job name: $unique_name"
+[1m[94m206 |[0m [1m[91m|[0m           echo "unique-name=$unique_name" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.runner may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:256:9
+    [1m[94m|[0m
+[1m[94m256 |[0m         - name: Run git bisect
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m257 |[0m           env:
+[1m[94m...[0m
+[1m[94m265 |[0m             AWS_REGION: ${{ env.AWS_REGION }}
+[1m[94m266 |[0m [1m[91m/[0m         run: |
+[1m[94m267 |[0m [1m[91m|[0m           echo -e "\e[1;34mLaunching devcontainer and running git bisect...\e[0m"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m332 |[0m [1m[91m|[0m
+[1m[94m333 |[0m [1m[91m|[0m           exit $rc
+    [1m[94m|[0m [1m[91m|___________________^[0m [1m[91minputs.runner may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:256:9
+    [1m[94m|[0m
+[1m[94m256 |[0m         - name: Run git bisect
+    [1m[94m|[0m           [1m[94m--------------------[0m [1m[94minfo: this step[0m
+[1m[94m257 |[0m           env:
+[1m[94m...[0m
+[1m[94m265 |[0m             AWS_REGION: ${{ env.AWS_REGION }}
+[1m[94m266 |[0m [1m[94m/[0m         run: |
+[1m[94m267 |[0m [1m[94m|[0m           echo -e "\e[1;34mLaunching devcontainer and running git bisect...\e[0m"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m332 |[0m [1m[94m|[0m
+[1m[94m333 |[0m [1m[94m|[0m           exit $rc
+    [1m[94m|[0m [1m[94m|___________________-[0m [1m[94minfo: needs.generate-job-name.outputs.job-name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:256:9
+    [1m[94m|[0m
+[1m[94m256 |[0m         - name: Run git bisect
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m257 |[0m           env:
+[1m[94m...[0m
+[1m[94m265 |[0m             AWS_REGION: ${{ env.AWS_REGION }}
+[1m[94m266 |[0m [1m[91m/[0m         run: |
+[1m[94m267 |[0m [1m[91m|[0m           echo -e "\e[1;34mLaunching devcontainer and running git bisect...\e[0m"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m332 |[0m [1m[91m|[0m
+[1m[94m333 |[0m [1m[91m|[0m           exit $rc
+    [1m[94m|[0m [1m[91m|___________________^[0m [1m[91minputs.good_ref may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:256:9
+    [1m[94m|[0m
+[1m[94m256 |[0m         - name: Run git bisect
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m257 |[0m           env:
+[1m[94m...[0m
+[1m[94m265 |[0m             AWS_REGION: ${{ env.AWS_REGION }}
+[1m[94m266 |[0m [1m[91m/[0m         run: |
+[1m[94m267 |[0m [1m[91m|[0m           echo -e "\e[1;34mLaunching devcontainer and running git bisect...\e[0m"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m332 |[0m [1m[91m|[0m
+[1m[94m333 |[0m [1m[91m|[0m           exit $rc
+    [1m[94m|[0m [1m[91m|___________________^[0m [1m[91minputs.bad_ref may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:256:9
+    [1m[94m|[0m
+[1m[94m256 |[0m         - name: Run git bisect
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m257 |[0m           env:
+[1m[94m...[0m
+[1m[94m265 |[0m             AWS_REGION: ${{ env.AWS_REGION }}
+[1m[94m266 |[0m [1m[91m/[0m         run: |
+[1m[94m267 |[0m [1m[91m|[0m           echo -e "\e[1;34mLaunching devcontainer and running git bisect...\e[0m"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m332 |[0m [1m[91m|[0m
+[1m[94m333 |[0m [1m[91m|[0m           exit $rc
+    [1m[94m|[0m [1m[91m|___________________^[0m [1m[91minputs.preset may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:256:9
+    [1m[94m|[0m
+[1m[94m256 |[0m         - name: Run git bisect
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m257 |[0m           env:
+[1m[94m...[0m
+[1m[94m265 |[0m             AWS_REGION: ${{ env.AWS_REGION }}
+[1m[94m266 |[0m [1m[91m/[0m         run: |
+[1m[94m267 |[0m [1m[91m|[0m           echo -e "\e[1;34mLaunching devcontainer and running git bisect...\e[0m"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m332 |[0m [1m[91m|[0m
+[1m[94m333 |[0m [1m[91m|[0m           exit $rc
+    [1m[94m|[0m [1m[91m|___________________^[0m [1m[91minputs.cmake_options may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:256:9
+    [1m[94m|[0m
+[1m[94m256 |[0m         - name: Run git bisect
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m257 |[0m           env:
+[1m[94m...[0m
+[1m[94m265 |[0m             AWS_REGION: ${{ env.AWS_REGION }}
+[1m[94m266 |[0m [1m[91m/[0m         run: |
+[1m[94m267 |[0m [1m[91m|[0m           echo -e "\e[1;34mLaunching devcontainer and running git bisect...\e[0m"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m332 |[0m [1m[91m|[0m
+[1m[94m333 |[0m [1m[91m|[0m           exit $rc
+    [1m[94m|[0m [1m[91m|___________________^[0m [1m[91minputs.build_targets may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:256:9
+    [1m[94m|[0m
+[1m[94m256 |[0m         - name: Run git bisect
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m257 |[0m           env:
+[1m[94m...[0m
+[1m[94m265 |[0m             AWS_REGION: ${{ env.AWS_REGION }}
+[1m[94m266 |[0m [1m[91m/[0m         run: |
+[1m[94m267 |[0m [1m[91m|[0m           echo -e "\e[1;34mLaunching devcontainer and running git bisect...\e[0m"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m332 |[0m [1m[91m|[0m
+[1m[94m333 |[0m [1m[91m|[0m           exit $rc
+    [1m[94m|[0m [1m[91m|___________________^[0m [1m[91minputs.ctest_targets may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:256:9
+    [1m[94m|[0m
+[1m[94m256 |[0m         - name: Run git bisect
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m257 |[0m           env:
+[1m[94m...[0m
+[1m[94m265 |[0m             AWS_REGION: ${{ env.AWS_REGION }}
+[1m[94m266 |[0m [1m[91m/[0m         run: |
+[1m[94m267 |[0m [1m[91m|[0m           echo -e "\e[1;34mLaunching devcontainer and running git bisect...\e[0m"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m332 |[0m [1m[91m|[0m
+[1m[94m333 |[0m [1m[91m|[0m           exit $rc
+    [1m[94m|[0m [1m[91m|___________________^[0m [1m[91minputs.lit_precompile_tests may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:256:9
+    [1m[94m|[0m
+[1m[94m256 |[0m         - name: Run git bisect
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m257 |[0m           env:
+[1m[94m...[0m
+[1m[94m265 |[0m             AWS_REGION: ${{ env.AWS_REGION }}
+[1m[94m266 |[0m [1m[91m/[0m         run: |
+[1m[94m267 |[0m [1m[91m|[0m           echo -e "\e[1;34mLaunching devcontainer and running git bisect...\e[0m"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m332 |[0m [1m[91m|[0m
+[1m[94m333 |[0m [1m[91m|[0m           exit $rc
+    [1m[94m|[0m [1m[91m|___________________^[0m [1m[91minputs.lit_tests may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__git-bisect.yml:225:9
+    [1m[94m|[0m
+[1m[94m225 |[0m         uses: aws-actions/configure-aws-credentials@v5
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m62[39m findings ([1m[93m30[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m2[39m medium, [31m29[39m high

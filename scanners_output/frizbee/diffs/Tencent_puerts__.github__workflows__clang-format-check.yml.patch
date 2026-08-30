@@ -1,0 +1,59 @@
+diff --git a/.github/workflows/Tencent_puerts__.github__workflows__clang-format-check.yml b/.github/workflows/Tencent_puerts__.github__workflows__clang-format-check.yml
+index 097d06b..8ffb4ee 100644
+--- a/.github/workflows/Tencent_puerts__.github__workflows__clang-format-check.yml
++++ b/.github/workflows/Tencent_puerts__.github__workflows__clang-format-check.yml
+@@ -1,27 +1,27 @@
+-name: clang-format Check
+-on:
+-  push:
+-    paths: 
+-      - unreal/Puerts/Source/**
+-      - .clang-format
+-  pull_request:
+-    paths: 
+-      - unreal/Puerts/Source/**
+-      - .clang-format
+-jobs:
+-  formatting-check:
+-    name: Formatting Check
+-    runs-on: ubuntu-latest
+-    strategy:
+-      matrix:
+-        path:
+-          - check: 'unreal/Puerts/Source'
+-            exclude: 'WasmCore/ThirdPart'
+-    steps:
+-    - uses: actions/checkout@v3
+-    - name: Run clang-format style check
+-      uses: jidicula/clang-format-action@v4.9.0
+-      with:
+-        clang-format-version: '12'
+-        check-path: ${{ matrix.path['check'] }}
+-        exclude-regex: ${{ matrix.path['exclude'] }}
++name: clang-format Check
++on:
++  push:
++    paths: 
++      - unreal/Puerts/Source/**
++      - .clang-format
++  pull_request:
++    paths: 
++      - unreal/Puerts/Source/**
++      - .clang-format
++jobs:
++  formatting-check:
++    name: Formatting Check
++    runs-on: ubuntu-latest
++    strategy:
++      matrix:
++        path:
++          - check: 'unreal/Puerts/Source'
++            exclude: 'WasmCore/ThirdPart'
++    steps:
++    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
++    - name: Run clang-format style check
++      uses: jidicula/clang-format-action@d9a1f8d7a0390f08058960f8af551623b3f330d7 # v4.9.0
++      with:
++        clang-format-version: '12'
++        check-path: ${{ matrix.path['check'] }}
++        exclude-regex: ${{ matrix.path['exclude'] }}

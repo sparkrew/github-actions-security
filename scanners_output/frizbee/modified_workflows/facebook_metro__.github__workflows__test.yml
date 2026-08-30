@@ -1,0 +1,31 @@
+name: test
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        type: string
+        required: false
+        default: '22.x'
+      runs-on:
+        type: string
+        required: false
+        default: 'ubuntu-latest'
+      no-lockfile:
+        type: string
+        required: false
+        default: 'false'
+
+jobs:
+  test:
+    name: "Tests [Node.js ${{ inputs.node-version }}, ${{ inputs.runs-on }}, ${{ inputs.no-lockfile == 'false' && 'Using yarn.lock' || 'Ignoring yarn.lock' }}]"
+    runs-on: ${{ inputs.runs-on }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - uses: ./.github/actions/yarn-install
+        with:
+          node-version: ${{ inputs.node-version }}
+          no-lockfile: ${{ inputs.no-lockfile }}
+      - name: Run Jest Tests
+        run: yarn jest --ci --maxWorkers 4 --reporters=default --reporters=jest-junit --rootdir='./'
+        env:
+          NIGHTLY_TESTS_NO_LOCKFILE: ${{ inputs.no-lockfile }}

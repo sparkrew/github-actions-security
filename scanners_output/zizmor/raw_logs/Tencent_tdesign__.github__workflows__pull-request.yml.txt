@@ -1,0 +1,81 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign__.github__workflows__pull-request.yml:16:9
+   [1m[94m|[0m
+[1m[94m16 |[0m         - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m17 |[0m [1m[33m|[0m         with:
+[1m[94m18 |[0m [1m[33m|[0m           fetch-depth: 100
+   [1m[94m|[0m [1m[33m|__________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign__.github__workflows__pull-request.yml:30:9
+   [1m[94m|[0m
+[1m[94m30 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign__.github__workflows__pull-request.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m name: MAIN_PULL_REQUEST
+[1m[94m 2 |[0m [1m[33m|[0m
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m39 |[0m [1m[33m|[0m           echo the preview URL is $DEPLOY_DOMAIN
+[1m[94m40 |[0m [1m[33m|[0m           echo "::set-output name=url::$DEPLOY_DOMAIN"
+   [1m[94m|[0m [1m[33m|_______________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign__.github__workflows__pull-request.yml:10:3
+   [1m[94m|[0m
+[1m[94m10 |[0m [1m[33m/[0m   modify-services:
+[1m[94m11 |[0m [1m[33m|[0m     if: github.repository == 'Tencent/tdesign' && github.event.pull_request.merged
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m22 |[0m [1m[33m|[0m           paths: services
+[1m[94m23 |[0m [1m[33m|[0m       - run: echo services changed=${{ steps.services-changed.outputs.changed }}
+   [1m[94m|[0m [1m[33m|[0m                                                                                [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                  [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                  [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign__.github__workflows__pull-request.yml:25:3
+   [1m[94m|[0m
+[1m[94m25 |[0m [1m[33m/[0m   upload-services:
+[1m[94m26 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m39 |[0m [1m[33m|[0m           echo the preview URL is $DEPLOY_DOMAIN
+[1m[94m40 |[0m [1m[33m|[0m           echo "::set-output name=url::$DEPLOY_DOMAIN"
+   [1m[94m|[0m [1m[33m|[0m                                                       [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________________________________________|[0m
+   [1m[94m|[0m                                                         [1m[33mthis job[0m
+   [1m[94m|[0m                                                         [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign__.github__workflows__pull-request.yml:23:9
+   [1m[94m|[0m
+[1m[94m23 |[0m       - run: echo services changed=${{ steps.services-changed.outputs.changed }}
+   [1m[94m|[0m         [1m[94m------------------------------------------------------------------------[0m
+   [1m[94m|[0m         [1m[94m|[0m
+   [1m[94m|[0m         [1m[94minfo: this step[0m
+   [1m[94m|[0m         [1m[94minfo: steps.services-changed.outputs.changed may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign__.github__workflows__pull-request.yml:19:9
+   [1m[94m|[0m
+[1m[94m19 |[0m       - uses: marceloprado/has-changed-path@v1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m9[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m5[39m medium, [31m1[39m high

@@ -1,0 +1,36 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__windows_x64_release_build_x64_release.yml:24:9
+   [1m[94m|[0m
+[1m[94m24 |[0m         - name: Checkout repository
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m25 |[0m [1m[33m|[0m         uses: actions/checkout@v6
+[1m[94m26 |[0m [1m[33m|[0m         with:
+[1m[94m27 |[0m [1m[33m|[0m           submodules: false
+   [1m[94m|[0m [1m[33m|___________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__windows_x64_release_build_x64_release.yml:15:3
+    [1m[94m|[0m
+[1m[94m 15 |[0m [1m[33m/[0m   build_x64_release:
+[1m[94m 16 |[0m [1m[33m|[0m     runs-on: [
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m157 |[0m [1m[33m|[0m       OnnxRuntimeBuildDirectory: ${{ github.workspace }}\build
+[1m[94m158 |[0m [1m[33m|[0m       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 'true'
+    [1m[94m|[0m [1m[33m|[0m                                                [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|________________________________________________|[0m
+    [1m[94m|[0m                                                  [1m[33mthis job[0m
+    [1m[94m|[0m                                                  [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__windows_x64_release_build_x64_release.yml:74:9
+   [1m[94m|[0m
+[1m[94m74 |[0m         uses: nuget/setup-nuget@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m15[39m findings ([1m[93m12[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m1[39m high

@@ -1,0 +1,25 @@
+{
+  "workflow": "google_magika__.github__workflows__python-test-published-rc-package.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "unverified_script_exec": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": 36,
+      "column": "",
+      "job": "unit-testing",
+      "step": "2",
+      "details": "Command: curl -LsSf https://astral.sh/uv/${{ env.UV_VERSION }}/install.sh | sh",
+      "event_triggers": [
+        "schedule",
+        "workflow_dispatch",
+        "pull_request"
+      ]
+    }
+  ]
+}

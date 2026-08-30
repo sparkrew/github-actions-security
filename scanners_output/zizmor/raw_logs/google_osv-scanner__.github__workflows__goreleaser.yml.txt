@@ -1,0 +1,30 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_osv-scanner__.github__workflows__goreleaser.yml:24:9
+   [1m[94m|[0m
+[1m[94m24 |[0m         - name: Checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m25 |[0m [1m[33m|[0m         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+[1m[94m26 |[0m [1m[33m|[0m         with:
+[1m[94m27 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#cache-poisoning\cache-poisoning]8;;\][0m: [1mruntime artifacts potentially vulnerable to a cache poisoning attack[0m
+  [1m[94m-->[0m ../.github/workflows/google_osv-scanner__.github__workflows__goreleaser.yml:3:1
+   [1m[94m|[0m
+[1m[94m 3 |[0m [1m[91m/[0m on:
+[1m[94m 4 |[0m [1m[91m|[0m   push:
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m 8 |[0m [1m[91m|[0m # Restrict jobs in this workflow to have no permissions by default; permissions
+[1m[94m 9 |[0m [1m[91m|[0m # should be granted per job as needed using a dedicated `permissions` block
+   [1m[94m|[0m [1m[91m|___________________________________________________________________________^[0m [1m[91mgenerally used when publishing artifacts generated at runtime[0m
+[1m[94m10 |[0m   permissions: {}
+[1m[94m...[0m
+[1m[94m28 |[0m         - name: Set up Go
+[1m[94m29 |[0m           uses: actions/setup-go@7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5 # v6.2.0
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcache enabled by default here[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m2[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m1[39m high

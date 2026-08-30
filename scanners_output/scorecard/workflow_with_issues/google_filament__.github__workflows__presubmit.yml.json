@@ -1,0 +1,86 @@
+{
+  "workflow": "google_filament__.github__workflows__presubmit.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        16,
+        31,
+        46,
+        58,
+        62,
+        85,
+        100,
+        113,
+        126,
+        177,
+        195,
+        208,
+        214,
+        229
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_filament__.github__workflows__presubmit.yml:195",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_filament__.github__workflows__presubmit.yml:229",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_filament__.github__workflows__presubmit.yml:31",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_filament__.github__workflows__presubmit.yml:85",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_filament__.github__workflows__presubmit.yml:113",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_filament__.github__workflows__presubmit.yml:208",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_filament__.github__workflows__presubmit.yml:16",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_filament__.github__workflows__presubmit.yml:46",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_filament__.github__workflows__presubmit.yml:58",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_filament__.github__workflows__presubmit.yml:62",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_filament__.github__workflows__presubmit.yml:100",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_filament__.github__workflows__presubmit.yml:126",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_filament__.github__workflows__presubmit.yml:177",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_filament__.github__workflows__presubmit.yml:214",
+        "Info:   0 out of  13 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of   1 pipCommand dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 0,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1
+      ],
+      "raw_details": [
+        "Warn: no topLevel permission defined: .github/workflows/google_filament__.github__workflows__presubmit.yml:1",
+        "Info: no jobLevel write permissions found"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

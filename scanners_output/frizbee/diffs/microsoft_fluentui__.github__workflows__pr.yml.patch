@@ -1,0 +1,76 @@
+diff --git a/.github/workflows/microsoft_fluentui__.github__workflows__pr.yml b/.github/workflows/microsoft_fluentui__.github__workflows__pr.yml
+index 6e52ac7..55ad27d 100644
+--- a/.github/workflows/microsoft_fluentui__.github__workflows__pr.yml
++++ b/.github/workflows/microsoft_fluentui__.github__workflows__pr.yml
+@@ -30,7 +30,7 @@ jobs:
+       actions: 'read'
+ 
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           fetch-depth: 0
+ 
+@@ -39,7 +39,7 @@ jobs:
+         with:
+           main-branch-name: 'master'
+ 
+-      - uses: actions/setup-node@v6
++      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+         with:
+           cache: 'yarn'
+           node-version: '22'
+@@ -85,7 +85,7 @@ jobs:
+     if: ${{ github.repository_owner == 'microsoft' }}
+     runs-on: macos-14-xlarge
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           fetch-depth: 0
+ 
+@@ -94,7 +94,7 @@ jobs:
+         with:
+           main-branch-name: 'master'
+ 
+-      - uses: actions/setup-node@v6
++      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+         with:
+           cache: 'yarn'
+           node-version: '22'
+@@ -117,7 +117,7 @@ jobs:
+           yarn nx affected -t test-rit--17--e2e,test-rit--18--e2e --exclude='react-19-tests-v9,react-charting,react'
+ 
+       - name: Upload Cypress screenshots if exist
+-        uses: actions/upload-artifact@v6
++        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+         if: always() && steps.e2e.outcome == 'failure'
+         with:
+           name: cypress-screenshots-react-test-rit
+@@ -140,7 +140,7 @@ jobs:
+       actions: 'read'
+ 
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           fetch-depth: 0
+ 
+@@ -149,7 +149,7 @@ jobs:
+         with:
+           main-branch-name: 'master'
+ 
+-      - uses: actions/setup-node@v6
++      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+         with:
+           cache: 'yarn'
+           node-version: '22'
+@@ -168,7 +168,7 @@ jobs:
+         run: yarn nx affected -t e2e --nxBail --parallel 1
+ 
+       - name: Upload Cypress screenshots if exist
+-        uses: actions/upload-artifact@v6
++        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+         if: failure()
+         with:
+           name: cypress-screenshots

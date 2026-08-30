@@ -1,0 +1,83 @@
+name: autotest
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  mac:
+    # the macos-latest may randomly give us macos-12.6.9 or macos-12.7.0 which may break the autotest.
+    runs-on: macos-14
+    steps:
+      - name: Check Out Repo
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Get Third-Party Cache
+        id: third-party-cache
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: |
+            third_party
+            test/baseline/.cache
+          key: third-party-autotest-${{ hashFiles('DEPS') }}-${{ hashFiles('vendor.json') }}-${{ hashFiles('test/baseline/version.json') }}
+          restore-keys: third-party-autotest-
+
+      - uses: tecolicom/actions-use-homebrew-tools@b9c066b79607fa3d71e0be05d7003bb75fd9ff34 # v1
+        with:
+          tools: ninja yasm gcovr
+
+      - name: Run depsync
+        run: |
+          npm install depsync -g
+          depsync
+        shell: bash
+
+      - name: Check Code Format
+        run: |
+          chmod +x codeformat.sh
+          ./codeformat.sh
+        shell: bash
+
+      - name: Run Autotest
+        run: |
+          mkdir -p third_party/tgfx/out/cache
+          chmod +x autotest.sh
+          ./autotest.sh USE_SWIFTSHADER
+
+      - name: Run Codecov
+        run: |
+          chmod +x codecov.sh
+          ./codecov.sh
+
+      - name: Upload Codecov
+        uses: codecov/codecov-action@b9fd7d16f6d7d1b5d2bec1a2887e65ceed900238 # v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: result/coverage.xml
+          version: 'v0.7.3'
+
+      - name: Save Third-Party Cache
+        if: ${{ (github.event_name == 'push') && (steps.third-party-cache.outputs.cache-hit != 'true') }}
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: |
+            third_party
+            test/baseline/.cache
+          key: third-party-autotest-${{ hashFiles('DEPS') }}-${{ hashFiles('vendor.json') }}-${{ hashFiles('test/baseline/version.json') }}
+
+      - name: Job Failed
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: result
+          path: result
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: result
+          path: result

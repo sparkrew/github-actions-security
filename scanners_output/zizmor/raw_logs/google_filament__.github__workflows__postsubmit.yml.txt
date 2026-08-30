@@ -1,0 +1,166 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit.yml:18:9
+   [1m[94m|[0m
+[1m[94m18 |[0m         - uses: actions/checkout@v4.1.6
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m19 |[0m [1m[33m|[0m         with:
+[1m[94m20 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit.yml:32:9
+   [1m[94m|[0m
+[1m[94m32 |[0m         - uses: actions/checkout@v4.1.6
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m33 |[0m [1m[33m|[0m         with:
+[1m[94m34 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit.yml:52:9
+   [1m[94m|[0m
+[1m[94m52 |[0m         - uses: actions/checkout@v4.1.6
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m53 |[0m [1m[33m|[0m         with:
+[1m[94m54 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit.yml:69:9
+   [1m[94m|[0m
+[1m[94m69 |[0m         - uses: actions/checkout@v4.1.6
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m70 |[0m [1m[33m|[0m         with:
+[1m[94m71 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit.yml:89:9
+   [1m[94m|[0m
+[1m[94m89 |[0m         - uses: actions/checkout@v4.1.6
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m90 |[0m [1m[33m|[0m         with:
+[1m[94m91 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit.yml:107:9
+    [1m[94m|[0m
+[1m[94m107 |[0m       - uses: actions/checkout@v4.1.6
+    [1m[94m|[0m         [1m[33m-----------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: 'Postsubmit CI'
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m114 |[0m [1m[33m|[0m           name: filament-windows
+[1m[94m115 |[0m [1m[33m|[0m           path: out/filament-windows.tgz
+    [1m[94m|[0m [1m[33m|_________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit.yml:11:3
+   [1m[94m|[0m
+[1m[94m11 |[0m [1m[33m/[0m   build-android:
+[1m[94m12 |[0m [1m[33m|[0m     name: build-android
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m24 |[0m [1m[33m|[0m         with:
+[1m[94m25 |[0m [1m[33m|[0m           build-abi: armeabi-v7a,arm64-v8a,x86_64
+   [1m[94m|[0m [1m[33m|[0m                                                 [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_________________________________________________|[0m
+   [1m[94m|[0m                                                   [1m[33mthis job[0m
+   [1m[94m|[0m                                                   [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit.yml:27:3
+   [1m[94m|[0m
+[1m[94m27 |[0m [1m[33m/[0m   build-ios:
+[1m[94m28 |[0m [1m[33m|[0m     name: build-ios
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m44 |[0m [1m[33m|[0m         run: |
+[1m[94m45 |[0m [1m[33m|[0m           cd build/ios && ./build-samples.sh continuous
+   [1m[94m|[0m [1m[33m|[0m                                                       [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________________________________________|[0m
+   [1m[94m|[0m                                                         [1m[33mthis job[0m
+   [1m[94m|[0m                                                         [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit.yml:47:3
+   [1m[94m|[0m
+[1m[94m47 |[0m [1m[33m/[0m   build-linux:
+[1m[94m48 |[0m [1m[33m|[0m     name: build-linux
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m61 |[0m [1m[33m|[0m           name: filament-linux
+[1m[94m62 |[0m [1m[33m|[0m           path: out/filament-release-linux.tgz
+   [1m[94m|[0m [1m[33m|[0m                                              [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________________________________|[0m
+   [1m[94m|[0m                                                [1m[33mthis job[0m
+   [1m[94m|[0m                                                [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit.yml:64:3
+   [1m[94m|[0m
+[1m[94m64 |[0m [1m[33m/[0m   build-mac:
+[1m[94m65 |[0m [1m[33m|[0m     name: build-mac
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m81 |[0m [1m[33m|[0m         run: |
+[1m[94m82 |[0m [1m[33m|[0m           test/check-headers/test.sh out/release/filament/include
+   [1m[94m|[0m [1m[33m|[0m                                                                 [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_________________________________________________________________|[0m
+   [1m[94m|[0m                                                                   [1m[33mthis job[0m
+   [1m[94m|[0m                                                                   [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit.yml:84:3
+    [1m[94m|[0m
+[1m[94m 84 |[0m [1m[33m/[0m   build-web:
+[1m[94m 85 |[0m [1m[33m|[0m     name: build-web
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m 99 |[0m [1m[33m|[0m           name: filament-web
+[1m[94m100 |[0m [1m[33m|[0m           path: out/filament-release-web.tgz
+    [1m[94m|[0m [1m[33m|[0m                                            [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________________________________|[0m
+    [1m[94m|[0m                                              [1m[33mthis job[0m
+    [1m[94m|[0m                                              [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_filament__.github__workflows__postsubmit.yml:102:3
+    [1m[94m|[0m
+[1m[94m102 |[0m [1m[33m/[0m   build-windows:
+[1m[94m103 |[0m [1m[33m|[0m     name: build-windows
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m114 |[0m [1m[33m|[0m           name: filament-windows
+[1m[94m115 |[0m [1m[33m|[0m           path: out/filament-windows.tgz
+    [1m[94m|[0m [1m[33m|[0m                                         [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_________________________________________|[0m
+    [1m[94m|[0m                                           [1m[33mthis job[0m
+    [1m[94m|[0m                                           [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m13[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m13[39m medium, [31m0[39m high

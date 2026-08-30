@@ -1,0 +1,128 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_build_plugins_custom.yml:24:7
+   [1m[94m|[0m
+[1m[94m24 |[0m     - uses: actions/checkout@v3
+   [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_build_plugins_custom.yml:43:7
+   [1m[94m|[0m
+[1m[94m43 |[0m     - uses: actions/checkout@v3
+   [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_build_plugins_custom.yml:54:7
+   [1m[94m|[0m
+[1m[94m54 |[0m     - uses: actions/checkout@v3
+   [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_build_plugins_custom.yml:65:7
+   [1m[94m|[0m
+[1m[94m65 |[0m     - uses: actions/checkout@v3
+   [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_build_plugins_custom.yml:76:7
+   [1m[94m|[0m
+[1m[94m76 |[0m     - uses: actions/checkout@v3
+   [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_build_plugins_custom.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m name: unity build plugins (custom backend)
+[1m[94m 2 |[0m [1m[33m|[0m
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m81 |[0m [1m[33m|[0m         backend: ${{ github.event.inputs.backend }}
+[1m[94m82 |[0m [1m[33m|[0m         config: ${{ github.event.inputs.config }}
+   [1m[94m|[0m [1m[33m|__________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_build_plugins_custom.yml:20:3
+   [1m[94m|[0m
+[1m[94m20 |[0m [1m[33m/[0m   android:
+[1m[94m21 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m37 |[0m [1m[33m|[0m         backend: ${{ github.event.inputs.backend }}
+[1m[94m38 |[0m [1m[33m|[0m         config: ${{ github.event.inputs.config }}
+   [1m[94m|[0m [1m[33m|[0m                                                 [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_________________________________________________|[0m
+   [1m[94m|[0m                                                   [1m[33mthis job[0m
+   [1m[94m|[0m                                                   [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_build_plugins_custom.yml:39:3
+   [1m[94m|[0m
+[1m[94m39 |[0m [1m[33m/[0m   ios:
+[1m[94m40 |[0m [1m[33m|[0m     runs-on: macos-14
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m48 |[0m [1m[33m|[0m         backend: ${{ github.event.inputs.backend }}
+[1m[94m49 |[0m [1m[33m|[0m         config: ${{ github.event.inputs.config }}
+   [1m[94m|[0m [1m[33m|[0m                                                 [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_________________________________________________|[0m
+   [1m[94m|[0m                                                   [1m[33mthis job[0m
+   [1m[94m|[0m                                                   [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_build_plugins_custom.yml:50:3
+   [1m[94m|[0m
+[1m[94m50 |[0m [1m[33m/[0m   osx:
+[1m[94m51 |[0m [1m[33m|[0m     runs-on: macos-14
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m59 |[0m [1m[33m|[0m         backend: ${{ github.event.inputs.backend }}
+[1m[94m60 |[0m [1m[33m|[0m         config: ${{ github.event.inputs.config }}
+   [1m[94m|[0m [1m[33m|[0m                                                 [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_________________________________________________|[0m
+   [1m[94m|[0m                                                   [1m[33mthis job[0m
+   [1m[94m|[0m                                                   [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_build_plugins_custom.yml:61:3
+   [1m[94m|[0m
+[1m[94m61 |[0m [1m[33m/[0m   windows:
+[1m[94m62 |[0m [1m[33m|[0m     runs-on: windows-2022
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m70 |[0m [1m[33m|[0m         backend: ${{ github.event.inputs.backend }}
+[1m[94m71 |[0m [1m[33m|[0m         config: ${{ github.event.inputs.config }}
+   [1m[94m|[0m [1m[33m|[0m                                                 [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_________________________________________________|[0m
+   [1m[94m|[0m                                                   [1m[33mthis job[0m
+   [1m[94m|[0m                                                   [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_build_plugins_custom.yml:72:3
+   [1m[94m|[0m
+[1m[94m72 |[0m [1m[33m/[0m   linux64:
+[1m[94m73 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m81 |[0m [1m[33m|[0m         backend: ${{ github.event.inputs.backend }}
+[1m[94m82 |[0m [1m[33m|[0m         config: ${{ github.event.inputs.config }}
+   [1m[94m|[0m [1m[33m|[0m                                                  [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|__________________________________________________|[0m
+   [1m[94m|[0m                                                    [1m[33mthis job[0m
+   [1m[94m|[0m                                                    [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m11[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m11[39m medium, [31m0[39m high

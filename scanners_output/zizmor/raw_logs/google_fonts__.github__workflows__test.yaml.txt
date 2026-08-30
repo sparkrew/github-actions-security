@@ -1,0 +1,154 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_fonts__.github__workflows__test.yaml:26:9
+   [1m[94m|[0m
+[1m[94m26 |[0m       - uses: actions/checkout@v1
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_fonts__.github__workflows__test.yaml:89:9
+   [1m[94m|[0m
+[1m[94m89 |[0m       - uses: actions/checkout@v1
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/google_fonts__.github__workflows__test.yaml:154:9
+    [1m[94m|[0m
+[1m[94m154 |[0m       - uses: actions/checkout@v1
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_fonts__.github__workflows__test.yaml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: Google Fonts QA
+[1m[94m  2 |[0m [1m[33m|[0m on:
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m165 |[0m [1m[33m|[0m       - name: Test font with ftxvalidator
+[1m[94m166 |[0m [1m[33m|[0m         run: python3 .ci/ftxvalidator.py
+    [1m[94m|[0m [1m[33m|_________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_fonts__.github__workflows__test.yaml:13:3
+   [1m[94m|[0m
+[1m[94m13 |[0m [1m[33m/[0m   diffbrowsers:
+[1m[94m14 |[0m [1m[33m|[0m     name: Build Google Fonts
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m70 |[0m [1m[33m|[0m           name: qa-${{ matrix.os }}
+[1m[94m71 |[0m [1m[33m|[0m           path: out/
+   [1m[94m|[0m [1m[33m|[0m                    [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________|[0m
+   [1m[94m|[0m                      [1m[33mthis job[0m
+   [1m[94m|[0m                      [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_fonts__.github__workflows__test.yaml:139:3
+    [1m[94m|[0m
+[1m[94m139 |[0m [1m[33m/[0m   consolidate:
+[1m[94m140 |[0m [1m[33m|[0m     needs: [diffbrowsers, diffenator]
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m147 |[0m [1m[33m|[0m           pattern: qa-*
+[1m[94m148 |[0m [1m[33m|[0m           name: qa
+    [1m[94m|[0m [1m[33m|[0m                  [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|__________________|[0m
+    [1m[94m|[0m                    [1m[33mthis job[0m
+    [1m[94m|[0m                    [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_fonts__.github__workflows__test.yaml:150:3
+    [1m[94m|[0m
+[1m[94m150 |[0m [1m[33m/[0m   ftxvalidator:
+[1m[94m151 |[0m [1m[33m|[0m     name: Run ftxvalidator on new/changed fonts
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m165 |[0m [1m[33m|[0m       - name: Test font with ftxvalidator
+[1m[94m166 |[0m [1m[33m|[0m         run: python3 .ci/ftxvalidator.py
+    [1m[94m|[0m [1m[33m|[0m                                         [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_________________________________________|[0m
+    [1m[94m|[0m                                           [1m[33mthis job[0m
+    [1m[94m|[0m                                           [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/google_fonts__.github__workflows__test.yaml:22:9
+   [1m[94m|[0m
+[1m[94m22 |[0m         uses: styfle/cancel-workflow-action@0.11.0
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/google_fonts__.github__workflows__test.yaml:36:9
+   [1m[94m|[0m
+[1m[94m36 |[0m         uses: browser-actions/setup-chrome@v1.6.2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/google_fonts__.github__workflows__test.yaml:40:9
+   [1m[94m|[0m
+[1m[94m40 |[0m         uses: nanasess/setup-chromedriver@v2.2.2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/google_fonts__.github__workflows__test.yaml:43:9
+   [1m[94m|[0m
+[1m[94m43 |[0m         uses: browser-actions/setup-firefox@latest
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/google_fonts__.github__workflows__test.yaml:45:9
+   [1m[94m|[0m
+[1m[94m45 |[0m         uses: browser-actions/setup-geckodriver@latest
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/google_fonts__.github__workflows__test.yaml:62:9
+   [1m[94m|[0m
+[1m[94m62 |[0m         uses: andstor/file-existence-action@v2.0.0
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/google_fonts__.github__workflows__test.yaml:85:9
+   [1m[94m|[0m
+[1m[94m85 |[0m         uses: styfle/cancel-workflow-action@0.11.0
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/google_fonts__.github__workflows__test.yaml:101:9
+    [1m[94m|[0m
+[1m[94m101 |[0m         uses: fonttools/setup-fontspector@main
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/google_fonts__.github__workflows__test.yaml:128:9
+    [1m[94m|[0m
+[1m[94m128 |[0m         uses: andstor/file-existence-action@v2.0.0
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m17[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m7[39m medium, [31m9[39m high

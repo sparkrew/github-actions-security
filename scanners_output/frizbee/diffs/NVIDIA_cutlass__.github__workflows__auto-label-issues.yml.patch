@@ -1,0 +1,20 @@
+diff --git a/.github/workflows/NVIDIA_cutlass__.github__workflows__auto-label-issues.yml b/.github/workflows/NVIDIA_cutlass__.github__workflows__auto-label-issues.yml
+index 09450d1..2bc3281 100644
+--- a/.github/workflows/NVIDIA_cutlass__.github__workflows__auto-label-issues.yml
++++ b/.github/workflows/NVIDIA_cutlass__.github__workflows__auto-label-issues.yml
+@@ -11,7 +11,7 @@ jobs:
+       issues: write
+     steps:
+       - name: Add component label
+-        uses: actions/github-script@v7
++        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+         with:
+           script: |
+             const issue = context.payload.issue;
+@@ -48,4 +48,4 @@ jobs:
+                 });
+                 console.log(`Added label: ${label}`);
+               }
+-            } 
+\ No newline at end of file
++            } 

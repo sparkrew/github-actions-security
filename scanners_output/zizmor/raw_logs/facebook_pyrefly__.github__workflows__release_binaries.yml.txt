@@ -1,0 +1,56 @@
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_pyrefly__.github__workflows__release_binaries.yml:157:9
+    [1m[94m|[0m
+[1m[94m157 |[0m         - name: Upload to release (Unix)
+    [1m[94m|[0m           [1m[96m------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m158 |[0m           if: runner.os != 'Windows'
+[1m[94m159 |[0m [1m[96m/[0m         run: |
+[1m[94m160 |[0m [1m[96m|[0m           gh release upload ${{ env.TAG_NAME }} \
+[1m[94m161 |[0m [1m[96m|[0m             ${{ matrix.artifact_name }}.tar.gz \
+[1m[94m162 |[0m [1m[96m|[0m             ${{ matrix.artifact_name }}.tar.gz.sha256 \
+[1m[94m163 |[0m [1m[96m|[0m             --clobber
+    [1m[94m|[0m [1m[96m|_____________________-[0m [1m[96mhelp: env.TAG_NAME may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_pyrefly__.github__workflows__release_binaries.yml:165:9
+    [1m[94m|[0m
+[1m[94m165 |[0m         - name: Upload to release (Windows)
+    [1m[94m|[0m           [1m[96m---------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m166 |[0m           if: runner.os == 'Windows'
+[1m[94m167 |[0m           shell: pwsh
+[1m[94m168 |[0m [1m[96m/[0m         run: |
+[1m[94m169 |[0m [1m[96m|[0m           gh release upload ${{ env.TAG_NAME }} `
+[1m[94m170 |[0m [1m[96m|[0m             "${{ matrix.artifact_name }}.zip" `
+[1m[94m171 |[0m [1m[96m|[0m             "${{ matrix.artifact_name }}.zip.sha256" `
+[1m[94m172 |[0m [1m[96m|[0m             --clobber
+    [1m[94m|[0m [1m[96m|______________________-[0m [1m[96mhelp: env.TAG_NAME may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_pyrefly__.github__workflows__release_binaries.yml:94:9
+   [1m[94m|[0m
+[1m[94m94 |[0m         uses: dtolnay/rust-toolchain@stable
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_pyrefly__.github__workflows__release_binaries.yml:100:9
+    [1m[94m|[0m
+[1m[94m100 |[0m         uses: Swatinem/rust-cache@v2
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_pyrefly__.github__workflows__release_binaries.yml:118:9
+    [1m[94m|[0m
+[1m[94m118 |[0m         uses: houseabsolute/actions-rust-cross@v1
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m27[39m findings ([1m[93m22[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m2[39m low, [33m0[39m medium, [31m3[39m high

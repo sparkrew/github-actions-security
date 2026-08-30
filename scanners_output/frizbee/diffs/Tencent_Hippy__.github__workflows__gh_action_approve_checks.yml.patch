@@ -1,0 +1,36 @@
+diff --git a/.github/workflows/Tencent_Hippy__.github__workflows__gh_action_approve_checks.yml b/.github/workflows/Tencent_Hippy__.github__workflows__gh_action_approve_checks.yml
+index 85bd6da..88da5e2 100644
+--- a/.github/workflows/Tencent_Hippy__.github__workflows__gh_action_approve_checks.yml
++++ b/.github/workflows/Tencent_Hippy__.github__workflows__gh_action_approve_checks.yml
+@@ -23,13 +23,13 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+     - name: Token
+-      uses: navikt/github-app-token-generator@v1
++      uses: navikt/github-app-token-generator@b96ff604b2300989cd1105e3fad09199fca56681 # v1
+       id: get-token
+       with:
+         private-key: ${{ secrets.ACTION_PRIVATE_KEY }}
+         app-id: ${{ secrets.ACTION_APP_ID }}
+     - name: Action
+-      uses: actions/github-script@v6.3.3
++      uses: actions/github-script@d556feaca394842dc55e4734bf3bb9f685482fa0 # v6.3.3
+       env:
+         COMMENT_MESSAGE: |
+           :lock: The current `approve-checks` action execution requires privilege escalation.
+@@ -121,13 +121,13 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+     - name: Token
+-      uses: navikt/github-app-token-generator@v1
++      uses: navikt/github-app-token-generator@b96ff604b2300989cd1105e3fad09199fca56681 # v1
+       id: get-token
+       with:
+         private-key: ${{ secrets.ACTION_PRIVATE_KEY }}
+         app-id: ${{ secrets.ACTION_APP_ID }}
+     - name: Action
+-      uses: actions/github-script@v6.3.3
++      uses: actions/github-script@d556feaca394842dc55e4734bf3bb9f685482fa0 # v6.3.3
+       with:
+         github-token: ${{ steps.get-token.outputs.token }}
+         script: |

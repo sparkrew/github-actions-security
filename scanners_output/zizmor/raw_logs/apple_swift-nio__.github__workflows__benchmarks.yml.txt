@@ -1,0 +1,21 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__benchmarks.yml:95:9
+    [1m[94m|[0m
+[1m[94m 95 |[0m    [1m[94m...[0m - id: generate-matrix
+    [1m[94m|[0m  [1m[91m________^[0m
+[1m[94m 96 |[0m [1m[91m|[0m  [1m[94m...[0m   run: |
+    [1m[94m|[0m [1m[91m|[0m [1m[91m_______^[0m
+[1m[94m 97 |[0m [1m[91m||[0m [1m[94m...[0m     # Validate JSON environment variables
+[1m[94m...[0m   [1m[91m||[0m
+[1m[94m104 |[0m [1m[91m||[0m [1m[94m...[0m
+[1m[94m105 |[0m [1m[91m||[0m [1m[94m...[0m     echo "benchmarks-matrix=$(curl -s --retry 3 https://raw.githubusercontent.com/apple/swift-nio/main/scripts/generate_matrix.sh | MATRIX_LINUX_ENV_VARS_JSON="${linux_env_vars_json}" bash)" >> "$GITHUB_OUTPUT"
+    [1m[94m|[0m [1m[91m||______________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.linux_env_vars may expand into attacker-controllable code[0m
+[1m[94m106 |[0m [1m[91m|[0m  [1m[94m...[0m   env:
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m115 |[0m [1m[91m|[0m  [1m[94m...[0m     MATRIX_LINUX_NIGHTLY_NEXT_ENABLED: ${{ inputs.linux_nightly_6_1_enabled && inputs.linux_nightly_next_enabled  }}
+[1m[94m116 |[0m [1m[91m|[0m  [1m[94m...[0m     MATRIX_LINUX_NIGHTLY_MAIN_ENABLED: ${{ inputs.linux_nightly_main_enabled }}
+    [1m[94m|[0m [1m[91m|____________________________________________________________________________________^[0m [1m[91mthis step[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m2[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m0[39m medium, [31m1[39m high

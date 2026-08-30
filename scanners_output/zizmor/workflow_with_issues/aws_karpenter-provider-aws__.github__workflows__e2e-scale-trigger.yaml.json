@@ -1,0 +1,40 @@
+{
+  "workflow": "aws_karpenter-provider-aws__.github__workflows__e2e-scale-trigger.yaml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "excessive-permissions": 2,
+      "dangerous-triggers": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "aws_karpenter-provider-aws__.github__workflows__e2e-scale-trigger.yaml",
+      "line": 1,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "aws_karpenter-provider-aws__.github__workflows__e2e-scale-trigger.yaml",
+      "line": 26,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "dangerous-triggers",
+      "level": "error",
+      "message": "use of fundamentally insecure workflow trigger",
+      "workflow": "aws_karpenter-provider-aws__.github__workflows__e2e-scale-trigger.yaml",
+      "line": 2,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    }
+  ]
+}

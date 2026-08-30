@@ -1,0 +1,49 @@
+{
+  "workflow": "microsoft_ebpf-for-windows__.github__workflows__cicd.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "artipacked": 1,
+      "excessive-permissions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_ebpf-for-windows__.github__workflows__cicd.yml",
+      "line": 209,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "error",
+      "message": "overly broad permissions",
+      "workflow": "microsoft_ebpf-for-windows__.github__workflows__cicd.yml",
+      "line": 36,
+      "column": 3,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "microsoft_ebpf-for-windows__.github__workflows__cicd.yml",
+      "line": 39,
+      "column": 3,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "error",
+      "message": "overly broad permissions",
+      "workflow": "microsoft_ebpf-for-windows__.github__workflows__cicd.yml",
+      "line": 40,
+      "column": 3,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

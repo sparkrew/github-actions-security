@@ -1,0 +1,33 @@
+diff --git a/.github/workflows/google_earthengine-api__.github__workflows__publish-to-npm.yml b/.github/workflows/google_earthengine-api__.github__workflows__publish-to-npm.yml
+index d6adf5b..61218a6 100644
+--- a/.github/workflows/google_earthengine-api__.github__workflows__publish-to-npm.yml
++++ b/.github/workflows/google_earthengine-api__.github__workflows__publish-to-npm.yml
+@@ -11,7 +11,7 @@ jobs:
+     permissions:
+       id-token: write
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+       - name: Authenticate with Google Cloud
+         id: "auth"
+         uses: 'google-github-actions/auth@v2'
+@@ -19,7 +19,7 @@ jobs:
+           service_account: ${{ secrets.SERVICE_ACCOUNT }}
+           workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+           token_format: "access_token"
+-      - uses: actions/setup-node@v4
++      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+         with:
+           node-version: 16
+           registry-url: https://registry.npmjs.org/
+@@ -36,8 +36,8 @@ jobs:
+     needs: smoke-test
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v4
+-      - uses: actions/setup-node@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
++      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+         with:
+           node-version: 16
+           registry-url: https://registry.npmjs.org/

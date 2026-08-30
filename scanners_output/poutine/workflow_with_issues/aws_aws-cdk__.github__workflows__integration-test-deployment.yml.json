@@ -1,0 +1,77 @@
+{
+  "workflow": "aws_aws-cdk__.github__workflows__integration-test-deployment.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "untrusted_checkout_exec": 5
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 80,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of `yarn`",
+      "event_triggers": [
+        "workflow_dispatch",
+        "merge_group",
+        "pull_request_target"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 83,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of `yarn`",
+      "event_triggers": [
+        "workflow_dispatch",
+        "merge_group",
+        "pull_request_target"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 90,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of `yarn`",
+      "event_triggers": [
+        "workflow_dispatch",
+        "merge_group",
+        "pull_request_target"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 44,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage the GitHub Action `actions/setup-node`",
+      "event_triggers": [
+        "workflow_dispatch",
+        "merge_group",
+        "pull_request_target"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 52,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage the GitHub Action `docker/setup-buildx-action`",
+      "event_triggers": [
+        "workflow_dispatch",
+        "merge_group",
+        "pull_request_target"
+      ]
+    }
+  ]
+}

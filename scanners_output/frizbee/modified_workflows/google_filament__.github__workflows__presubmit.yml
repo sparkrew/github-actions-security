@@ -1,0 +1,243 @@
+name: 'Presubmit CI'
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-desktop-mac:
+    name: build-mac
+    runs-on: macos-14-xlarge
+    steps:
+      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/mac-prereq
+      - name: Run build script
+        run: |
+          cd build/mac && printf "y" | ./build.sh presubmit-with-test
+      - name: Test material parser
+        run: |
+          out/cmake-release/filament/test/test_material_parser
+
+  build-desktop-linux:
+    name: build-linux
+    runs-on: 'ubuntu-24.04-16core'
+    steps:
+      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/linux-prereq
+      - name: Run build script
+        run: |
+          cd build/linux && printf "y" | ./build.sh presubmit
+      - name: Test material parser
+        run: |
+          out/cmake-release/filament/test/test_material_parser
+
+  build-windows:
+    name: build-windows
+    runs-on: windows-2022-32core
+    steps:
+      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        with:
+          fetch-depth: 0
+      - name: Run build script
+        run: |
+          build\windows\build-github.bat presubmit
+        shell: cmd
+
+  build-android:
+    name: build-android
+    runs-on: 'ubuntu-24.04-16core'
+    steps:
+      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/linux-prereq
+      - uses: actions/setup-java@17f84c3641ba7b8f6deff6309fc4c864478f5d62 # v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - name: Run build script
+        # Only build 1 64 bit target during presubmit to cut down build times during presubmit
+        # Continuous builds will build everything
+        run: |
+          pushd .
+          cd build/android && printf "y" | ./build.sh presubmit-with-archive arm64-v8a
+          popd
+      - name: Check artifact sizes
+        run: |
+          python3 test/sizeguard/dump_artifact_size.py out/*.aar > current_size.json
+          python3 test/sizeguard/check_size.py current_size.json \
+              --target-branch origin/main \
+              --threshold 20480 \
+              --artifacts filament-android-release.aar/jni/arm64-v8a/libfilament-jni.so
+
+  build-ios:
+    name: build-iOS
+    runs-on: macos-14-xlarge
+    steps:
+      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/mac-prereq
+      - name: Run build script
+        run: |
+          cd build/ios && printf "y" | ./build.sh presubmit
+      - name: Build iOS samples
+        run: |
+          cd build/ios && ./build-samples.sh presubmit
+
+  build-web:
+    name: build-web
+    runs-on: 'ubuntu-24.04-16core'
+    steps:
+      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/linux-prereq
+      - uses: ./.github/actions/web-prereq
+      - name: Run build script
+        run: |
+          cd build/web && printf "y" | ./build.sh presubmit
+
+  validate-docs:
+    name: validate-docs
+    runs-on: 'ubuntu-24.04-4core'
+    steps:
+      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        with:
+          fetch-depth: 0
+      - id: get_commit_msg
+        uses: ./.github/actions/get-commit-msg
+      - name: Check for manual edits to /docs
+        run: |
+          bash docs_src/build/presubmit_check.sh ${{ steps.get_commit_msg.outputs.hash }}
+
+  test-renderdiff:
+    name: test-renderdiff
+    runs-on: macos-14-xlarge
+    steps:
+      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        with:
+          fetch-depth: 0
+      - id: get_commit_msg
+        uses: ./.github/actions/get-commit-msg
+      - name: Check if accepting new goldens
+        id: check_accept
+        env:
+          COMMIT_MESSAGE: ${{ steps.get_commit_msg.outputs.msg }}
+        run: |
+          if echo "${COMMIT_MESSAGE}" | python3 test/renderdiff/src/commit_msg.py --mode=accept_new_goldens; then
+            echo "accept=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "accept=false" >> "$GITHUB_OUTPUT"
+          fi
+        shell: bash
+      - name: Renderdiff Generate
+        if: steps.check_accept.outputs.accept != 'true'
+        uses: ./.github/actions/renderdiff-generate
+      - name: Render and compare
+        if: steps.check_accept.outputs.accept != 'true'
+        id: render_compare
+        env:
+          COMMIT_MESSAGE: ${{ steps.get_commit_msg.outputs.msg }}
+        run: |
+          TEST_DIR=test/renderdiff
+          source ${TEST_DIR}/src/preamble.sh
+          set -eux
+          GOLDEN_BRANCH=$(echo "${COMMIT_MESSAGE}" | python3 ${TEST_DIR}/src/commit_msg.py)
+
+          python3 ${TEST_DIR}/src/golden_manager.py \
+                  --branch=${GOLDEN_BRANCH} \
+                  --output=${GOLDEN_OUTPUT_DIR}
+
+          # Note that we need to upload the output even if comparison fails, so we undo `set -eux`
+          set +eux
+
+          python3 ${TEST_DIR}/src/compare.py \
+              --src=${GOLDEN_OUTPUT_DIR} \
+              --dest=${RENDER_OUTPUT_DIR} \
+              --out=${DIFF_OUTPUT_DIR} \
+              --diffimg="$(pwd)/out/cmake-release/tools/diffimg/diffimg" \
+              --test="${TEST_DIR}/tests/presubmit.json" 2>&1 | tee compare_output.txt
+
+          if grep "Failed" compare_output.txt > /dev/null; then
+             DELIMITER="EOF_FILE_CONTENT_$(date +%s)" # Using timestamp to make it more unique
+             echo "err<<$DELIMITER" >> "$GITHUB_OUTPUT"
+             cat compare_output.txt >> "$GITHUB_OUTPUT"
+             echo "$DELIMITER" >> "$GITHUB_OUTPUT"
+          fi
+        shell: bash
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: steps.check_accept.outputs.accept != 'true'
+        with:
+          name: presubmit-renderdiff-result
+          path: ./out/renderdiff
+      - name: Compare result
+        if: steps.check_accept.outputs.accept != 'true'
+        run: |
+          ERROR_STR="${{ steps.render_compare.outputs.err }}"
+          if [ -n "${ERROR_STR}" ]; then
+              echo "${ERROR_STR}"
+              exit 1
+          fi
+
+  validate-wgsl-webgpu:
+    name: validate-wgsl-webgpu
+    runs-on: 'ubuntu-24.04-16core'
+    steps:
+      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/linux-prereq
+      - name: Run build script
+        run: ./build.sh -W debug test_filamat filament gltf_viewer
+      - name: Run test
+        run: ./out/cmake-debug/libs/filamat/test_filamat --gtest_filter=MaterialCompiler.Wgsl*
+
+  test-code-correctness:
+    name: test-code-correctness
+    runs-on: 'macos-14-xlarge'
+    steps:
+      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/mac-prereq
+      - name: Install clang-tidy and deps
+        run: |
+          pip install pyyaml
+          brew install llvm@${GITHUB_LLVM_VERSION}
+          sudo ln -s "$(brew --prefix llvm)@${GITHUB_LLVM_VERSION}/bin/clang-tidy" "/usr/local/bin/clang-tidy"
+      - name: Run build script
+        # We need to build before clang-tidy can run analysis
+        run: |
+          # This will build for all three desktop backends on mac
+          ./build.sh -p desktop debug gltf_viewer
+      - name: Run test
+        run: bash test/code-correctness/test.sh
+
+  test-backend:
+    name: test-backend
+    runs-on: macos-14-xlarge
+    steps:
+      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/mac-prereq
+      - uses: ./.github/actions/get-mesa
+      - uses: ./.github/actions/get-vulkan-sdk
+      - name: Prerequisites
+        run: |
+          # Must have at least clang-16 for a webgpu/dawn build.
+          sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
+        shell: bash
+      - name: Run backend tests
+        shell: bash
+        run: |
+          bash test/backend/test.sh

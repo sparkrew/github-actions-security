@@ -1,0 +1,48 @@
+name: publish-site-components
+
+permissions:
+  contents: read
+  id-token: write
+
+on:
+  pull_request:
+    branches: [main]
+    types: [closed]
+    paths:
+      - packages/site-components/package.json
+
+  workflow_dispatch:
+
+jobs:
+  publish-site-components:
+    if: github.event_name == 'workflow_dispatch' || (github.repository == 'Tencent/tdesign' && startsWith(github.head_ref, 'release/'))
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+
+      - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # pnpm/action-setup@v4
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | releases,v4.4.0
+        with:
+          node-version-file: .node-version
+
+      - run: pnpm install
+
+      - run: pnpm -F @tdesign/site-components run build
+
+      - run: npm i -g npm@latest
+
+      - name: Publish Package
+        run: pnpm -F @tdesign/site-components publish --no-git-checks
+
+  auto-upgrade-tdesign-site-components:
+    needs: publish-site-components
+    runs-on: ubuntu-latest
+    steps:
+      - name: upgrade @tdesign/site-components
+        uses: TDesignOteam/tdesign-pr-trigger-action@2132a2beda9e094018f542b066e7b874e3e70030 # TDesignOteam/tdesign-pr-trigger-action@develop
+        with:
+          token: ${{ secrets.TDESIGN_BOT_TOKEN }}
+          trigger: /upgrade-deps
+          deps: '@tdesign/site-components'
+          package-manager: pnpm

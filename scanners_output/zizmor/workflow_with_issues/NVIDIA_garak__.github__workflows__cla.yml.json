@@ -1,0 +1,31 @@
+{
+  "workflow": "NVIDIA_garak__.github__workflows__cla.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "dangerous-triggers": 1,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "dangerous-triggers",
+      "level": "error",
+      "message": "use of fundamentally insecure workflow trigger",
+      "workflow": "NVIDIA_garak__.github__workflows__cla.yml",
+      "line": 2,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "NVIDIA_garak__.github__workflows__cla.yml",
+      "line": 30,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

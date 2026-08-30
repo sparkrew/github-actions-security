@@ -1,0 +1,19 @@
+diff --git a/.github/workflows/aws_aws-cli__.github__workflows__changelog.yml b/.github/workflows/aws_aws-cli__.github__workflows__changelog.yml
+index 3beaa59..3e343de 100644
+--- a/.github/workflows/aws_aws-cli__.github__workflows__changelog.yml
++++ b/.github/workflows/aws_aws-cli__.github__workflows__changelog.yml
+@@ -49,12 +49,12 @@ jobs:
+     runs-on: Ubuntu-latest
+ 
+     steps:
+-    - uses: actions/checkout@v6.0.1
++    - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+       with:
+         ref: ${{ github.event.inputs.ref }}
+ 
+     - name: Set up Python ${{ matrix.python-version }}
+-      uses: actions/setup-python@v6
++      uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+       with:
+         python-version: "3.11"
+     - name: Create changelog

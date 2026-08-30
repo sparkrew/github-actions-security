@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/awslabs_aws-sdk-rust__.github__workflows__audit.yaml b/.github/workflows/awslabs_aws-sdk-rust__.github__workflows__audit.yaml
+index 94e5d17..15bb2c7 100644
+--- a/.github/workflows/awslabs_aws-sdk-rust__.github__workflows__audit.yaml
++++ b/.github/workflows/awslabs_aws-sdk-rust__.github__workflows__audit.yaml
+@@ -30,7 +30,7 @@ jobs:
+     name: Audit Latest Dependencies
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v3
++      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+       - uses: dtolnay/rust-toolchain@master
+         with:
+           toolchain: ${{ env.rust_version }}
+@@ -44,7 +44,7 @@ jobs:
+     name: Audit Minimal Versions
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v3
++      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+       - uses: dtolnay/rust-toolchain@master
+         with:
+           toolchain: ${{ env.rust_version }}

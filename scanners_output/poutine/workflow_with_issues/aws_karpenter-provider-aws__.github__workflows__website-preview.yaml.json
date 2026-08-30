@@ -1,0 +1,45 @@
+{
+  "workflow": "aws_karpenter-provider-aws__.github__workflows__website-preview.yaml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "untrusted_checkout_exec": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 90,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of a Local GitHub Action at path: `./.github/actions/commit-status/end`",
+      "event_triggers": [
+        "workflow_run"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 29,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of a Local GitHub Action at path: `./.github/actions/commit-status/start`",
+      "event_triggers": [
+        "workflow_run"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 44,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of a Local GitHub Action at path: `./.github/actions/deploy-website`",
+      "event_triggers": [
+        "workflow_run"
+      ]
+    }
+  ]
+}

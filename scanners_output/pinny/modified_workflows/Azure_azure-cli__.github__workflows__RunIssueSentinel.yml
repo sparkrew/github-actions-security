@@ -1,0 +1,17 @@
+name: Run issue sentinel
+on:
+  issues:
+    types: [opened, edited, closed]
+
+jobs:
+  Issue:
+    permissions:
+        issues: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Issue Sentinel
+        uses: Azure/issue-sentinel@90a0a10b1fc9726af6212f3a68e9a316ddfe1afd # Azure/issue-sentinel@v1
+        with:
+          enable-similar-issues-scanning: true
+          enable-security-issues-scanning: true
+          enable-ux-tag: true

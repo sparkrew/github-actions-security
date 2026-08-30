@@ -1,0 +1,79 @@
+{
+  "workflow": "microsoft_LightGBM__.github__workflows__r_valgrind.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        69
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_LightGBM__.github__workflows__r_valgrind.yml:69",
+        "Info:   0 out of   1 GitHub-owned GitHubAction dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 0,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        25,
+        26,
+        27,
+        28,
+        29,
+        31,
+        32,
+        33,
+        35,
+        36,
+        37
+      ],
+      "raw_details": [
+        "Warn: topLevel 'actions' permission set to 'write': .github/workflows/microsoft_LightGBM__.github__workflows__r_valgrind.yml:25",
+        "Info: found token with 'none' permissions: .github/workflows/microsoft_LightGBM__.github__workflows__r_valgrind.yml:28",
+        "Info: found token with 'none' permissions: .github/workflows/microsoft_LightGBM__.github__workflows__r_valgrind.yml:29",
+        "Info: found token with 'none' permissions: .github/workflows/microsoft_LightGBM__.github__workflows__r_valgrind.yml:31",
+        "Info: found token with 'none' permissions: .github/workflows/microsoft_LightGBM__.github__workflows__r_valgrind.yml:32",
+        "Info: found token with 'none' permissions: .github/workflows/microsoft_LightGBM__.github__workflows__r_valgrind.yml:33",
+        "Info: found token with 'none' permissions: .github/workflows/microsoft_LightGBM__.github__workflows__r_valgrind.yml:35",
+        "Warn: topLevel 'checks' permission set to 'write': .github/workflows/microsoft_LightGBM__.github__workflows__r_valgrind.yml:26",
+        "Info: topLevel 'contents' permission set to 'read': .github/workflows/microsoft_LightGBM__.github__workflows__r_valgrind.yml:27",
+        "Info: found token with 'none' permissions: .github/workflows/microsoft_LightGBM__.github__workflows__r_valgrind.yml:36",
+        "Warn: topLevel 'statuses' permission set to 'write': .github/workflows/microsoft_LightGBM__.github__workflows__r_valgrind.yml:37",
+        "Info: no jobLevel write permissions found"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

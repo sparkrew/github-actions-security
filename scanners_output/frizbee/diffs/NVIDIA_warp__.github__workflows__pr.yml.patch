@@ -1,0 +1,26 @@
+diff --git a/.github/workflows/NVIDIA_warp__.github__workflows__pr.yml b/.github/workflows/NVIDIA_warp__.github__workflows__pr.yml
+index 67084da..7ab124a 100644
+--- a/.github/workflows/NVIDIA_warp__.github__workflows__pr.yml
++++ b/.github/workflows/NVIDIA_warp__.github__workflows__pr.yml
+@@ -42,10 +42,10 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+       
+       - name: Cache cppcheck build directory
+-        uses: actions/cache@v4
++        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+         with:
+           path: _build/.cppcheck
+           key: cppcheck-${{ github.run_id }}
+@@ -101,7 +101,7 @@ jobs:
+       
+       - name: Upload cppcheck report
+         if: always()
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: cppcheck-report
+           path: cppcheck-report.xml

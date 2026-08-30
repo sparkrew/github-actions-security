@@ -1,0 +1,51 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__cmake_tests.yml:41:9
+   [1m[94m|[0m
+[1m[94m41 |[0m   [1m[94m...[0m - name: Check CMakeLists files
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m42 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m43 |[0m [1m[91m|[0m [1m[94m...[0m     which curl jq || apt -q update
+[1m[94m44 |[0m [1m[91m|[0m [1m[94m...[0m     which curl || apt -yq install curl
+[1m[94m45 |[0m [1m[91m|[0m [1m[94m...[0m     which jq || apt -yq install jq
+[1m[94m46 |[0m [1m[91m|[0m [1m[94m...[0m     curl -s --retry 3 https://raw.githubusercontent.com/apple/swift-nio/main/scripts/update-cmake-lists.sh | CONFIG_JSON='${{ inputs.update_cmake_lists_config }}' FAIL_ON_CHANGES=true bash
+   [1m[94m|[0m [1m[91m|________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.update_cmake_lists_config may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__cmake_tests.yml:47:9
+   [1m[94m|[0m
+[1m[94m47 |[0m   [1m[94m...[0m - name: CMake build
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m48 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m49 |[0m [1m[91m|[0m [1m[94m...[0m     which curl cmake ninja || apt -q update
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m52 |[0m [1m[91m|[0m [1m[94m...[0m     which ninja || apt -yq install ninja-build
+[1m[94m53 |[0m [1m[91m|[0m [1m[94m...[0m     curl -s --retry 3 https://raw.githubusercontent.com/apple/swift-nio/main/scripts/cmake-build.sh | TARGET_DIRECTORY="${{ inputs.cmake_build_target_directory }}" CMAKE_VERSION="${{ inputs.cmake_version }}" bash
+   [1m[94m|[0m [1m[91m|_________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.cmake_build_target_directory may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__cmake_tests.yml:47:9
+   [1m[94m|[0m
+[1m[94m47 |[0m   [1m[94m...[0m - name: CMake build
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m48 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m49 |[0m [1m[91m|[0m [1m[94m...[0m     which curl cmake ninja || apt -q update
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m52 |[0m [1m[91m|[0m [1m[94m...[0m     which ninja || apt -yq install ninja-build
+[1m[94m53 |[0m [1m[91m|[0m [1m[94m...[0m     curl -s --retry 3 https://raw.githubusercontent.com/apple/swift-nio/main/scripts/cmake-build.sh | TARGET_DIRECTORY="${{ inputs.cmake_build_target_directory }}" CMAKE_VERSION="${{ inputs.cmake_version }}" bash
+   [1m[94m|[0m [1m[91m|_________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.cmake_version may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+  [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__cmake_tests.yml:31:7
+   [1m[94m|[0m
+[1m[94m31 |[0m       image: ${{ inputs.image }}
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is unpinned[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m7[39m findings ([1m[93m3[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m0[39m medium, [31m4[39m high

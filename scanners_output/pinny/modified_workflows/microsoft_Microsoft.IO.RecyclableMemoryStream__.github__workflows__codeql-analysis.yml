@@ -1,0 +1,37 @@
+name: CodeQL Analysis
+
+on:
+  pull_request:
+  schedule:
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+    permissions:
+        contents: read
+        actions: read
+        security-events: write
+    steps:
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@baa11fbfe1d6520db94683bd5c7a3818018e4309 # actions/setup-dotnet@v5 | v5.1.0
+        with:
+          dotnet-version: 8.0.100
+
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@c793b717bc78562f491db7b0e93a3a178b099162 # github/codeql-action/init@v4
+        with:
+          queries: security-and-quality
+
+      - name: Perform CodeQL Autobuild
+        uses: github/codeql-action/init@c793b717bc78562f491db7b0e93a3a178b099162 # github/codeql-action/init@v4
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/init@c793b717bc78562f491db7b0e93a3a178b099162 # github/codeql-action/init@v4
+
+# Built with ❤ by [Pipeline Foundation](https://pipeline.foundation)

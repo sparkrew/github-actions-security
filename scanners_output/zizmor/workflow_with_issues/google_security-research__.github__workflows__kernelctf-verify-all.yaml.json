@@ -1,0 +1,40 @@
+{
+  "workflow": "google_security-research__.github__workflows__kernelctf-verify-all.yaml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-uses": 2,
+      "secrets-inherit": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "google_security-research__.github__workflows__kernelctf-verify-all.yaml",
+      "line": 38,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "google_security-research__.github__workflows__kernelctf-verify-all.yaml",
+      "line": 43,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "secrets-inherit",
+      "level": "warning",
+      "message": "secrets unconditionally inherited by called workflow",
+      "workflow": "google_security-research__.github__workflows__kernelctf-verify-all.yaml",
+      "line": 21,
+      "column": 5,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

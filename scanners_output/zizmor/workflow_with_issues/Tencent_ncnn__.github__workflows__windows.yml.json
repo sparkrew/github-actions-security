@@ -1,0 +1,40 @@
+{
+  "workflow": "Tencent_ncnn__.github__workflows__windows.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "artipacked": 2,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "Tencent_ncnn__.github__workflows__windows.yml",
+      "line": 62,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "Tencent_ncnn__.github__workflows__windows.yml",
+      "line": 114,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "Tencent_ncnn__.github__workflows__windows.yml",
+      "line": 87,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

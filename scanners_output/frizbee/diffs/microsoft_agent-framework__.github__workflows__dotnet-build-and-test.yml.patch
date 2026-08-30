@@ -1,0 +1,76 @@
+diff --git a/.github/workflows/microsoft_agent-framework__.github__workflows__dotnet-build-and-test.yml b/.github/workflows/microsoft_agent-framework__.github__workflows__dotnet-build-and-test.yml
+index 2204740..634b378 100644
+--- a/.github/workflows/microsoft_agent-framework__.github__workflows__dotnet-build-and-test.yml
++++ b/.github/workflows/microsoft_agent-framework__.github__workflows__dotnet-build-and-test.yml
+@@ -38,8 +38,8 @@ jobs:
+       dotnetChanges: ${{ steps.filter.outputs.dotnet }}
+       cosmosDbChanges: ${{ steps.filter.outputs.cosmosdb }}
+     steps:
+-      - uses: actions/checkout@v6
+-      - uses: dorny/paths-filter@v3
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
++      - uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36 # v3
+         id: filter
+         with:
+           filters: |
+@@ -74,7 +74,7 @@ jobs:
+     runs-on: ${{ matrix.os }}
+     environment: ${{ matrix.environment }}
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+             persist-credentials: false
+             sparse-checkout: |
+@@ -95,7 +95,7 @@ jobs:
+           echo "COSMOSDB_EMULATOR_AVAILABLE=true" >> $env:GITHUB_ENV
+ 
+       - name: Setup dotnet
+-        uses: actions/setup-dotnet@v5.1.0
++        uses: actions/setup-dotnet@baa11fbfe1d6520db94683bd5c7a3818018e4309 # v5.1.0
+         with:
+           global-json-file: ${{ github.workspace }}/dotnet/global.json
+       - name: Build dotnet solutions
+@@ -170,7 +170,7 @@ jobs:
+ 
+       - name: Azure CLI Login
+         if: github.event_name != 'pull_request' && matrix.integration-tests
+-        uses: azure/login@v2
++        uses: azure/login@a457da9ea143d694b1b9c7c869ebb04ebe844ef5 # v2
+         with:
+           client-id: ${{ secrets.AZURE_CLIENT_ID }}
+           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+@@ -220,7 +220,7 @@ jobs:
+       # Generate test reports and check coverage
+       - name: Generate test reports
+         if: matrix.targetFramework == env.COVERAGE_FRAMEWORK
+-        uses: danielpalme/ReportGenerator-GitHub-Action@5.5.1
++        uses: danielpalme/ReportGenerator-GitHub-Action@ee0ae774f6d3afedcbd1683c1ab21b83670bdf8e # 5.5.1
+         with:
+           reports: "./TestResults/Coverage/**/coverage.cobertura.xml"
+           targetdir: "./TestResults/Reports"
+@@ -228,7 +228,7 @@ jobs:
+ 
+       - name: Upload coverage report artifact
+         if: matrix.targetFramework == env.COVERAGE_FRAMEWORK
+-        uses: actions/upload-artifact@v6
++        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+         with:
+           name: CoverageReport-${{ matrix.os }}-${{ matrix.targetFramework }}-${{ matrix.configuration }} # Artifact name
+           path: ./TestResults/Reports # Directory containing files to upload
+@@ -270,13 +270,13 @@ jobs:
+       - name: Fail workflow if tests failed
+         id: check_tests_failed
+         if: contains(join(needs.*.result, ','), 'failure')
+-        uses: actions/github-script@v8
++        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+         with:
+           script: core.setFailed('Integration Tests Failed!')
+ 
+       - name: Fail workflow if tests cancelled
+         id: check_tests_cancelled
+         if: contains(join(needs.*.result, ','), 'cancelled')
+-        uses: actions/github-script@v8
++        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+         with:
+           script: core.setFailed('Integration Tests Cancelled!')

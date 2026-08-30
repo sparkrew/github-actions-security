@@ -1,0 +1,45 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__cleanup-pr-previews.yml:30:9
+   [1m[94m|[0m
+[1m[94m30 |[0m         - name: Checkout repository
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m31 |[0m [1m[33m|[0m         uses: actions/checkout@v6.0.2
+[1m[94m32 |[0m [1m[33m|[0m         with:
+[1m[94m33 |[0m [1m[33m|[0m           # Fetch all history and branches for worktree operations
+[1m[94m34 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__cleanup-pr-previews.yml:41:9
+   [1m[94m|[0m
+[1m[94m41 |[0m         - name: Run PR preview cleanup script
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m42 |[0m           env:
+[1m[94m43 |[0m             GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+[1m[94m44 |[0m [1m[91m/[0m         run: |
+[1m[94m45 |[0m [1m[91m|[0m           # Determine if we should run in dry-run mode
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m51 |[0m [1m[91m|[0m             ./ci/cleanup-pr-previews --push
+[1m[94m52 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|____________^[0m [1m[91minputs.dry-run may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__cleanup-pr-previews.yml:54:9
+   [1m[94m|[0m
+[1m[94m54 |[0m   [1m[94m...[0m - name: Summary
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m55 |[0m   [1m[94m...[0m   if: always()
+[1m[94m56 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m57 |[0m [1m[91m|[0m [1m[94m...[0m     echo "### PR Preview Cleanup Summary" >> $GITHUB_STEP_SUMMARY
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m65 |[0m [1m[91m|[0m [1m[94m...[0m     echo "" >> $GITHUB_STEP_SUMMARY
+[1m[94m66 |[0m [1m[91m|[0m [1m[94m...[0m     echo "Workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY
+   [1m[94m|[0m [1m[91m|_________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.dry-run may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m9[39m findings ([1m[93m6[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m2[39m high

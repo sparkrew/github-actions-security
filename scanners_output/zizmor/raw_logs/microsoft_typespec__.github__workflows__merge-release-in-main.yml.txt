@@ -1,0 +1,44 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_typespec__.github__workflows__merge-release-in-main.yml:23:9
+   [1m[94m|[0m
+[1m[94m23 |[0m         - name: Checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m24 |[0m [1m[33m|[0m         uses: actions/checkout@v3
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_typespec__.github__workflows__merge-release-in-main.yml:26:9
+   [1m[94m|[0m
+[1m[94m26 |[0m         - name: Generate branch name
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m27 |[0m           id: branchname
+[1m[94m28 |[0m [1m[91m/[0m         run: |
+[1m[94m29 |[0m [1m[91m|[0m           echo "branchname=backmerge/${{ github.ref_name }}-$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+   [1m[94m|[0m [1m[91m|__________________________________________________________________________________________________^[0m [1m[91mgithub.ref_name may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_typespec__.github__workflows__merge-release-in-main.yml:30:9
+   [1m[94m|[0m
+[1m[94m30 |[0m         - name: Create branch
+   [1m[94m|[0m           [1m[94m-------------------[0m [1m[94minfo: this step[0m
+[1m[94m31 |[0m [1m[94m/[0m         run: |
+[1m[94m32 |[0m [1m[94m|[0m           branch="${{ steps.branchname.outputs.branchname }}"
+[1m[94m33 |[0m [1m[94m|[0m           git checkout -b $branch
+[1m[94m34 |[0m [1m[94m|[0m           git push --set-upstream origin $branch
+   [1m[94m|[0m [1m[94m|________________________________________________-[0m [1m[94minfo: steps.branchname.outputs.branchname may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_typespec__.github__workflows__merge-release-in-main.yml:38:9
+   [1m[94m|[0m
+[1m[94m38 |[0m         uses: repo-sync/pull-request@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m9[39m findings ([1m[93m5[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m1[39m medium, [31m2[39m high

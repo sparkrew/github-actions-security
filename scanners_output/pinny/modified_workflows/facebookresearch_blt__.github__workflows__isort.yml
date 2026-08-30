@@ -1,0 +1,10 @@
+name: Lint with isort
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - uses: isort/isort-action@754522c780bf51012c35d6e3b47a52e3900a8ed4 # isort/isort-action@master

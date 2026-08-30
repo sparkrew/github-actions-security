@@ -1,0 +1,43 @@
+{
+  "workflow": "awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 6,
+    "by_rule": {
+      "unpinned-github-actions": 5,
+      "unpinned-docker-image": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # actions/checkout@v2 | releases,850,v2.7.0",
+      "line": 12
+    },
+    {
+      "rule": "unpinned-docker-image",
+      "pinned": "#   uses: docker://ghcr.io/scottbrenner/cfn-lint-action@sha256:359405ee3a03ae20eab66d5bbf7047f8a016d571dd1b696f68ba3fe8f632cee8 # docker://ghcr.io/scottbrenner/cfn-lint-action:master",
+      "line": 15
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: stelligent/cfn_nag@8b5f03da74202ba323a145e9d037ddce6cab9dec # stelligent/cfn_nag@master",
+      "line": 19
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: 8398a7/action-slack@77eaa4f1c608a7d68b38af4e3f739dcd8cba273e # 8398a7/action-slack@v3 | v3.19.0",
+      "line": 25
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "#   - uses: 8398a7/action-slack@77eaa4f1c608a7d68b38af4e3f739dcd8cba273e # 8398a7/action-slack@v3 | v3.19.0",
+      "line": 40
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "#   uses: stelligent/cfn_nag@fe42d1c6af19fb6a37b2c2e4dacffa89d2f7db4c # stelligent/cfn_nag@v0.5.48",
+      "line": 54
+    }
+  ]
+}

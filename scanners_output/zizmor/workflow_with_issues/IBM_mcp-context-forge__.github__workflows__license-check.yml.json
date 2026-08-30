@@ -1,0 +1,31 @@
+{
+  "workflow": "IBM_mcp-context-forge__.github__workflows__license-check.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "artipacked": 1,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "IBM_mcp-context-forge__.github__workflows__license-check.yml",
+      "line": 35,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "IBM_mcp-context-forge__.github__workflows__license-check.yml",
+      "line": 51,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

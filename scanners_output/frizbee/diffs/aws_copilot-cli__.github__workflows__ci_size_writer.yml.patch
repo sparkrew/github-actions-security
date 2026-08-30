@@ -1,0 +1,44 @@
+diff --git a/.github/workflows/aws_copilot-cli__.github__workflows__ci_size_writer.yml b/.github/workflows/aws_copilot-cli__.github__workflows__ci_size_writer.yml
+index c83d9c6..0ed970b 100644
+--- a/.github/workflows/aws_copilot-cli__.github__workflows__ci_size_writer.yml
++++ b/.github/workflows/aws_copilot-cli__.github__workflows__ci_size_writer.yml
+@@ -11,7 +11,7 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Download artifacts
+-        uses: actions/github-script@v6
++        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6
+         with:
+           script: |
+             let allArtifacts = await github.rest.actions.listWorkflowRunArtifacts({
+@@ -36,7 +36,7 @@ jobs:
+           
+       - name: Calculate size change
+         id: diff
+-        uses: actions/github-script@v6
++        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6
+         with:
+           result-encoding: string
+           script: |
+@@ -94,7 +94,7 @@ jobs:
+           echo "PR_NUMBER=$(cat pr_number)" >> $GITHUB_OUTPUT
+       
+       - name: Find comment
+-        uses: peter-evans/find-comment@v2
++        uses: peter-evans/find-comment@a54c31d7fa095754bfef525c0c8e5e5674c4b4b1 # v2
+         id: fc
+         with:
+           issue-number: ${{ steps.find-pr-number.outputs.PR_NUMBER }}
+@@ -102,9 +102,9 @@ jobs:
+           body-includes: 'Here are the new binary sizes'
+ 
+       - name: Create or update comment
+-        uses: peter-evans/create-or-update-comment@v2
++        uses: peter-evans/create-or-update-comment@67dcc547d311b736a8e6c5c236542148a47adc3d # v2
+         with:
+           comment-id: ${{ steps.fc.outputs.comment-id }}
+           issue-number: ${{ steps.find-pr-number.outputs.PR_NUMBER }}
+           body: ${{ steps.diff.outputs.result }}
+-          edit-mode: replace
+\ No newline at end of file
++          edit-mode: replace

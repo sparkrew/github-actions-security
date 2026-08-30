@@ -1,0 +1,32 @@
+{
+  "workflow": "aws_karpenter-provider-aws__.github__workflows__codeql-analysis.yaml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Token-Permissions",
+      "score": 9,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1,
+        17,
+        35
+      ],
+      "raw_details": [
+        "Info: jobLevel 'actions' permission set to 'read': .github/workflows/aws_karpenter-provider-aws__.github__workflows__codeql-analysis.yaml:17",
+        "Info: jobLevel 'actions' permission set to 'read': .github/workflows/aws_karpenter-provider-aws__.github__workflows__codeql-analysis.yaml:35",
+        "Warn: no topLevel permission defined: .github/workflows/aws_karpenter-provider-aws__.github__workflows__codeql-analysis.yaml:1",
+        "Info: no jobLevel write permissions found"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

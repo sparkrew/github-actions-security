@@ -1,0 +1,59 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_azuredatastudio__.github__workflows__basic.yml:20:9
+   [1m[94m|[0m
+[1m[94m20 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_azuredatastudio__.github__workflows__basic.yml:95:9
+   [1m[94m|[0m
+[1m[94m95 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_azuredatastudio__.github__workflows__basic.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: Basic checks
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m193 |[0m [1m[33m|[0m   #         ELECTRON_SKIP_BINARY_DOWNLOAD: 1
+[1m[94m194 |[0m [1m[33m|[0m   #       run: yarn --frozen-lockfile --network-timeout 180000
+    [1m[94m|[0m [1m[33m|_______________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_azuredatastudio__.github__workflows__basic.yml:12:3
+   [1m[94m|[0m
+[1m[94m12 |[0m [1m[33m/[0m   main:
+[1m[94m13 |[0m [1m[33m|[0m     if: github.ref != 'refs/heads/main'
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m84 |[0m [1m[33m|[0m         id: electron-integration-tests
+[1m[94m85 |[0m [1m[33m|[0m         run: DISPLAY=:10 ./scripts/test-integration.sh
+   [1m[94m|[0m [1m[33m|[0m                                                      [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________________________________________|[0m
+   [1m[94m|[0m                                                        [1m[33mthis job[0m
+   [1m[94m|[0m                                                        [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_azuredatastudio__.github__workflows__basic.yml:87:3
+    [1m[94m|[0m
+[1m[94m 87 |[0m [1m[33m/[0m   hygiene:
+[1m[94m 88 |[0m [1m[33m|[0m     if: github.ref != 'refs/heads/main'
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m193 |[0m [1m[33m|[0m   #         ELECTRON_SKIP_BINARY_DOWNLOAD: 1
+[1m[94m194 |[0m [1m[33m|[0m   #       run: yarn --frozen-lockfile --network-timeout 180000
+    [1m[94m|[0m [1m[33m|[0m                                                               [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_______________________________________________________________|[0m
+    [1m[94m|[0m                                                                 [1m[33mthis job[0m
+    [1m[94m|[0m                                                                 [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m5[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m5[39m medium, [31m0[39m high

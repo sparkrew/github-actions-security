@@ -1,0 +1,20 @@
+diff --git a/.github/workflows/aws_aws-sdk-go-v2__.github__workflows__integration-tests.yml b/.github/workflows/aws_aws-sdk-go-v2__.github__workflows__integration-tests.yml
+index c7e1db3..f17263e 100644
+--- a/.github/workflows/aws_aws-sdk-go-v2__.github__workflows__integration-tests.yml
++++ b/.github/workflows/aws_aws-sdk-go-v2__.github__workflows__integration-tests.yml
+@@ -22,13 +22,13 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Configure AWS credentials
+-        uses: aws-actions/configure-aws-credentials@v4
++        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4
+         with:
+           role-to-assume: ${{ secrets.CI_AWS_ROLE_ARN }}
+           aws-region: us-west-2
+       - name: Run tests
+         id: integration-tests
+-        uses: aws-actions/aws-codebuild-run-build@v1
++        uses: aws-actions/aws-codebuild-run-build@4d15a47425739ac2296ba5e7eee3bdd4bfbdd767 # v1
+         with:
+           project-name: aws-sdk-go-v2-integrationtests
+       - name: Cancel tests

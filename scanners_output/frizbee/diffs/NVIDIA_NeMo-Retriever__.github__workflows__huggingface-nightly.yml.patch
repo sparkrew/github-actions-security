@@ -1,0 +1,48 @@
+diff --git a/.github/workflows/NVIDIA_NeMo-Retriever__.github__workflows__huggingface-nightly.yml b/.github/workflows/NVIDIA_NeMo-Retriever__.github__workflows__huggingface-nightly.yml
+index 671a693..1984305 100644
+--- a/.github/workflows/NVIDIA_NeMo-Retriever__.github__workflows__huggingface-nightly.yml
++++ b/.github/workflows/NVIDIA_NeMo-Retriever__.github__workflows__huggingface-nightly.yml
+@@ -50,10 +50,10 @@ jobs:
+ 
+     steps:
+       - name: Checkout orchestrator repo
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       - name: Set up Python
+-        uses: actions/setup-python@v5
++        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+         with:
+           python-version: "3.12"
+ 
+@@ -117,7 +117,7 @@ jobs:
+ 
+       - name: Upload build artifacts (GH Actions)
+         if: always()
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: dist-${{ matrix.repo.id }}
+           path: dist-out/${{ matrix.repo.id }}/*
+@@ -148,10 +148,10 @@ jobs:
+           git lfs install
+ 
+       - name: Checkout orchestrator repo
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       - name: Set up Python
+-        uses: actions/setup-python@v5
++        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+         with:
+           python-version: "3.12"
+ 
+@@ -251,7 +251,7 @@ jobs:
+ 
+       - name: Upload build artifacts (GH Actions)
+         if: always()
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: dist-nemotron-ocr-v1
+           path: dist-out/nemotron-ocr-v1/*

@@ -1,0 +1,160 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:17:9
+   [1m[94m|[0m
+[1m[94m17 |[0m       - uses: actions/checkout@v5
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:60:9
+   [1m[94m|[0m
+[1m[94m60 |[0m       - uses: actions/checkout@v5
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:84:9
+   [1m[94m|[0m
+[1m[94m84 |[0m       - uses: actions/checkout@v5
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:128:9
+    [1m[94m|[0m
+[1m[94m128 |[0m       - uses: actions/checkout@v5
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:34:9
+   [1m[94m|[0m
+[1m[94m34 |[0m       - name: Set canary version
+   [1m[94m|[0m         [1m[94m------------------------[0m [1m[94minfo: this step[0m
+[1m[94m35 |[0m         id: canary-version
+[1m[94m36 |[0m         run: echo "version=${{ steps.version.outputs.version }}-alpha-${{ steps.date.outputs.date }}" >> $GITHUB_OUTPUT
+   [1m[94m|[0m         [1m[94m---------------------------------------------------------------------------------------------------------------[0m [1m[94minfo: steps.version.outputs.version may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:34:9
+   [1m[94m|[0m
+[1m[94m34 |[0m       - name: Set canary version
+   [1m[94m|[0m         [1m[94m------------------------[0m [1m[94minfo: this step[0m
+[1m[94m35 |[0m         id: canary-version
+[1m[94m36 |[0m         run: echo "version=${{ steps.version.outputs.version }}-alpha-${{ steps.date.outputs.date }}" >> $GITHUB_OUTPUT
+   [1m[94m|[0m         [1m[94m---------------------------------------------------------------------------------------------------------------[0m [1m[94minfo: steps.date.outputs.date may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:38:9
+   [1m[94m|[0m
+[1m[94m38 |[0m         - name: Update package.json version
+   [1m[94m|[0m           [1m[94m---------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m39 |[0m [1m[94m/[0m         run: |
+[1m[94m40 |[0m [1m[94m|[0m           npm version ${{ steps.canary-version.outputs.version }} --no-git-tag-version
+   [1m[94m|[0m [1m[94m|______________________________________________________________________________________-[0m [1m[94minfo: steps.canary-version.outputs.version may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:108:9
+    [1m[94m|[0m
+[1m[94m108 |[0m         - name: Set oras tags
+    [1m[94m|[0m           [1m[94m-------------------[0m [1m[94minfo: this step[0m
+[1m[94m109 |[0m [1m[94m/[0m         run: |
+[1m[94m110 |[0m [1m[94m|[0m           attach_eol_manifest() {
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m119 |[0m [1m[94m|[0m             attach_eol_manifest $tag
+[1m[94m120 |[0m [1m[94m|[0m           done
+    [1m[94m|[0m [1m[94m|______________-[0m [1m[94minfo: steps.build-push.outputs.metadata['image.name'] may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:142:9
+    [1m[94m|[0m
+[1m[94m142 |[0m         - name: Package extension
+    [1m[94m|[0m           [1m[94m-----------------------[0m [1m[94minfo: this step[0m
+[1m[94m143 |[0m           working-directory: ./packages/extension
+[1m[94m144 |[0m [1m[94m/[0m         run: |
+[1m[94m145 |[0m [1m[94m|[0m           cd dist
+[1m[94m146 |[0m [1m[94m|[0m           zip -r ../playwright-mcp-extension-${{ steps.get-version.outputs.version }}.zip .
+[1m[94m147 |[0m [1m[94m|[0m           cd ..
+    [1m[94m|[0m [1m[94m|_______________-[0m [1m[94minfo: steps.get-version.outputs.version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:148:9
+    [1m[94m|[0m
+[1m[94m148 |[0m   [1m[94m...[0m - name: Upload extension to release
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m149 |[0m   [1m[94m...[0m   env:
+[1m[94m150 |[0m   [1m[94m...[0m      GITHUB_TOKEN: ${{ github.token }}
+[1m[94m151 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m152 |[0m [1m[91m|[0m [1m[94m...[0m       gh release upload ${{github.event.release.tag_name}} ./packages/extension/playwright-mcp-extension-${{ steps.get-version.outputs.version }}.zip
+    [1m[94m|[0m [1m[91m|__________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.release.tag_name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:148:9
+    [1m[94m|[0m
+[1m[94m148 |[0m   [1m[94m...[0m - name: Upload extension to release
+    [1m[94m|[0m         [1m[94m---------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m149 |[0m   [1m[94m...[0m   env:
+[1m[94m150 |[0m   [1m[94m...[0m      GITHUB_TOKEN: ${{ github.token }}
+[1m[94m151 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m152 |[0m [1m[94m|[0m [1m[94m...[0m       gh release upload ${{github.event.release.tag_name}} ./packages/extension/playwright-mcp-extension-${{ steps.get-version.outputs.version }}.zip
+    [1m[94m|[0m [1m[94m|__________________________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.get-version.outputs.version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:86:9
+   [1m[94m|[0m
+[1m[94m86 |[0m         uses: docker/setup-qemu-action@v3
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:88:9
+   [1m[94m|[0m
+[1m[94m88 |[0m         uses: docker/setup-buildx-action@v3
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:90:9
+   [1m[94m|[0m
+[1m[94m90 |[0m         uses: azure/login@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:99:9
+   [1m[94m|[0m
+[1m[94m99 |[0m         uses: docker/build-push-action@v6
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:107:9
+    [1m[94m|[0m
+[1m[94m107 |[0m       - uses: oras-project/setup-oras@v1
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m24[39m findings ([1m[93m8[39m suppressed[0m): 0 unknown, [35m6[39m informational, [36m0[39m low, [33m4[39m medium, [31m6[39m high

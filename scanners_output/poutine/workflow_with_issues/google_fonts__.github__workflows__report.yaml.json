@@ -1,0 +1,25 @@
+{
+  "workflow": "google_fonts__.github__workflows__report.yaml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "unverified_script_exec": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": 33,
+      "column": "",
+      "job": "gen_report",
+      "step": "4",
+      "details": "Command: curl https://install.duckdb.org | sh",
+      "event_triggers": [
+        "workflow_dispatch",
+        "pull_request",
+        "schedule"
+      ]
+    }
+  ]
+}

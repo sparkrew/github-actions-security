@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/aws_aws-sdk-js__.github__workflows__git-sync.yml b/.github/workflows/aws_aws-sdk-js__.github__workflows__git-sync.yml
+index 493f9b3..1f10841 100644
+--- a/.github/workflows/aws_aws-sdk-js__.github__workflows__git-sync.yml
++++ b/.github/workflows/aws_aws-sdk-js__.github__workflows__git-sync.yml
+@@ -15,7 +15,7 @@ jobs:
+           git_sync_destination_repo: ${{ secrets.GIT_SYNC_DESTINATION_REPO }}
+           git_sync_ssh_private_key: ${{ secrets.GIT_SYNC_SSH_PRIVATE_KEY }}
+         if: env.git_sync_destination_repo && env.git_sync_ssh_private_key
+-        uses: wei/git-sync@v3
++        uses: wei/git-sync@55c6b63b4f21607da0e9877ca9b4d11a29fc6d83 # v3
+         with:
+           source_repo: "git@github.com:aws/aws-sdk-js.git"
+           source_branch: "master"

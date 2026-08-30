@@ -1,0 +1,51 @@
+{
+  "workflow": "microsoft_msquic__.github__workflows__code-coverage.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 53,
+      "column": "",
+      "job": "bvt-winlatest",
+      "step": "",
+      "details": "runs-on: self-hosted, 1ES.Pool=1es-msquic-pool, 1ES.ImageOverride=WinServerPrerelease-LatestPwsh",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 146,
+      "column": "",
+      "job": "recvfuzz-winlatest",
+      "step": "",
+      "details": "runs-on: self-hosted, 1ES.Pool=1es-msquic-pool, 1ES.ImageOverride=WinServerPrerelease-LatestPwsh",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 96,
+      "column": "",
+      "job": "stress-winlatest",
+      "step": "",
+      "details": "runs-on: self-hosted, 1ES.Pool=1es-msquic-pool, 1ES.ImageOverride=WinServerPrerelease-LatestPwsh",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request"
+      ]
+    }
+  ]
+}

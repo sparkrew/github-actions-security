@@ -1,0 +1,27 @@
+diff --git a/.github/workflows/facebook_lexical__.github__workflows__call-post-release.yml b/.github/workflows/facebook_lexical__.github__workflows__call-post-release.yml
+index 5d50e04..46a3d87 100644
+--- a/.github/workflows/facebook_lexical__.github__workflows__call-post-release.yml
++++ b/.github/workflows/facebook_lexical__.github__workflows__call-post-release.yml
+@@ -25,18 +25,18 @@ jobs:
+           owner: facebook
+           repo: lexical
+           excludes: draft
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           ref: ${{ inputs.ref }}
+-      - uses: actions/setup-node@v4
++      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+         with:
+           node-version: 22.x
+-      - uses: pnpm/action-setup@v4
++      - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
+         with:
+           version: 9
+       - run: |
+           pnpm install && pnpm run update-examples
+-      - uses: stefanzweifel/git-auto-commit-action@v6
++      - uses: stefanzweifel/git-auto-commit-action@778341af668090896ca464160c2def5d1d1a3eb0 # v6
+         with:
+           commit_message: 'Update examples for ${{ steps.latest.outputs.release }}'
+           commit_user_name: 'Lexical GitHub Actions Bot'

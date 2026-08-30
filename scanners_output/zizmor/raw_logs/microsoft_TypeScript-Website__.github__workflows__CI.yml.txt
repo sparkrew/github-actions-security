@@ -1,0 +1,77 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_TypeScript-Website__.github__workflows__CI.yml:26:9
+   [1m[94m|[0m
+[1m[94m26 |[0m       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+   [1m[94m|[0m         [1m[33m------------------------------------------------------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_TypeScript-Website__.github__workflows__CI.yml:83:7
+   [1m[94m|[0m
+[1m[94m83 |[0m       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m84 |[0m [1m[33m|[0m       with:
+[1m[94m85 |[0m [1m[33m|[0m         fetch-depth: 0
+   [1m[94m|[0m [1m[33m|______________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_TypeScript-Website__.github__workflows__CI.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: CI
+[1m[94m  2 |[0m [1m[33m|[0m on:
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m119 |[0m [1m[33m|[0m         run: |
+[1m[94m120 |[0m [1m[33m|[0m           ! echo $NEEDS | jq -e 'to_entries[] | { job: .key, result: .value.result } | select(.result != "success")'
+    [1m[94m|[0m [1m[33m|_____________________________________________________________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_TypeScript-Website__.github__workflows__CI.yml:14:3
+   [1m[94m|[0m
+[1m[94m14 |[0m [1m[33m/[0m   tests:
+[1m[94m15 |[0m [1m[33m|[0m     strategy:
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m76 |[0m [1m[33m|[0m           name: missing.patch
+[1m[94m77 |[0m [1m[33m|[0m           path: missing.patch
+   [1m[94m|[0m [1m[33m|[0m                             [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________________________|[0m
+   [1m[94m|[0m                               [1m[33mthis job[0m
+   [1m[94m|[0m                               [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_TypeScript-Website__.github__workflows__CI.yml:79:3
+    [1m[94m|[0m
+[1m[94m 79 |[0m [1m[33m/[0m   changesets:
+[1m[94m 80 |[0m [1m[33m|[0m     name: changesets
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m105 |[0m [1m[33m|[0m         # git checkout origin/v2 -- <ignored files>
+[1m[94m106 |[0m [1m[33m|[0m         pnpm changeset status --since=origin/v2
+    [1m[94m|[0m [1m[33m|[0m                                               [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_______________________________________________|[0m
+    [1m[94m|[0m                                                 [1m[33mthis job[0m
+    [1m[94m|[0m                                                 [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_TypeScript-Website__.github__workflows__CI.yml:108:3
+    [1m[94m|[0m
+[1m[94m108 |[0m [1m[33m/[0m   required:
+[1m[94m109 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m119 |[0m [1m[33m|[0m         run: |
+[1m[94m120 |[0m [1m[33m|[0m           ! echo $NEEDS | jq -e 'to_entries[] | { job: .key, result: .value.result } | select(.result != "success")'
+    [1m[94m|[0m [1m[33m|[0m                                                                                                                     [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_____________________________________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                                       [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                                       [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m6[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m6[39m medium, [31m0[39m high

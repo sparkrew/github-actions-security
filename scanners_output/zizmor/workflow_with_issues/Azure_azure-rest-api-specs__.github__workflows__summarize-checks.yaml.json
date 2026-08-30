@@ -1,0 +1,40 @@
+{
+  "workflow": "Azure_azure-rest-api-specs__.github__workflows__summarize-checks.yaml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "artipacked": 1,
+      "dangerous-triggers": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "Azure_azure-rest-api-specs__.github__workflows__summarize-checks.yaml",
+      "line": 46,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "dangerous-triggers",
+      "level": "error",
+      "message": "use of fundamentally insecure workflow trigger",
+      "workflow": "Azure_azure-rest-api-specs__.github__workflows__summarize-checks.yaml",
+      "line": 3,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "dangerous-triggers",
+      "level": "error",
+      "message": "use of fundamentally insecure workflow trigger",
+      "workflow": "Azure_azure-rest-api-specs__.github__workflows__summarize-checks.yaml",
+      "line": 3,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    }
+  ]
+}

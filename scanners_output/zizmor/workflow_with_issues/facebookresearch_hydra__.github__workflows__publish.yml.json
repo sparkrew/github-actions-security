@@ -1,0 +1,50 @@
+{
+  "workflow": "facebookresearch_hydra__.github__workflows__publish.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "artipacked": 1,
+      "excessive-permissions": 2,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "facebookresearch_hydra__.github__workflows__publish.yml",
+      "line": 22,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "facebookresearch_hydra__.github__workflows__publish.yml",
+      "line": 1,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "facebookresearch_hydra__.github__workflows__publish.yml",
+      "line": 17,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "facebookresearch_hydra__.github__workflows__publish.yml",
+      "line": 71,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

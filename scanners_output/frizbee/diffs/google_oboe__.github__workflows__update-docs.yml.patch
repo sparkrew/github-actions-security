@@ -1,0 +1,24 @@
+diff --git a/.github/workflows/google_oboe__.github__workflows__update-docs.yml b/.github/workflows/google_oboe__.github__workflows__update-docs.yml
+index 8cbcb84..cfc7215 100644
+--- a/.github/workflows/google_oboe__.github__workflows__update-docs.yml
++++ b/.github/workflows/google_oboe__.github__workflows__update-docs.yml
+@@ -12,16 +12,16 @@ jobs:
+     runs-on: ubuntu-latest
+ 
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+     - name: Doxygen Action
+-      uses: mattnotmitt/doxygen-action@v1.12.0
++      uses: mattnotmitt/doxygen-action@b84fe17600245bb5db3d6c247cc274ea98c15a3b # v1.12.0
+       with:
+         doxyfile-path: "./Doxyfile"
+         working-directory: "."
+ 
+     - name: Deploy
+-      uses: peaceiris/actions-gh-pages@v4
++      uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4
+       with:
+         github_token: ${{ secrets.GITHUB_TOKEN }}
+         publish_dir: ./docs/reference

@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/facebook_rocksdb__.github__workflows__clang-tidy.yml b/.github/workflows/facebook_rocksdb__.github__workflows__clang-tidy.yml
+index aca48e0..2cfcf1c 100644
+--- a/.github/workflows/facebook_rocksdb__.github__workflows__clang-tidy.yml
++++ b/.github/workflows/facebook_rocksdb__.github__workflows__clang-tidy.yml
+@@ -13,7 +13,7 @@ jobs:
+     container:
+       image: ghcr.io/facebook/rocksdb_ubuntu:24.0
+     steps:
+-    - uses: actions/checkout@v4.1.0
++    - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+       with:
+         fetch-depth: 2
+     - name: Mark workspace as safe for git
+@@ -62,7 +62,7 @@ jobs:
+       run: echo "${{ github.event.pull_request.number }}" > pr_number.txt
+     - name: Upload clang-tidy results
+       if: always()
+-      uses: actions/upload-artifact@v4.0.0
++      uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392 # v4.0.0
+       with:
+         name: clang-tidy-result
+         path: |

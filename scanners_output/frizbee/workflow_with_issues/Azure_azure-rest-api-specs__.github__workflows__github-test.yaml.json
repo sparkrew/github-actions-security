@@ -1,0 +1,30 @@
+{
+  "workflow": "Azure_azure-rest-api-specs__.github__workflows__github-test.yaml",
+  "tool": "frizbee",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "original": "actions/checkout@v6",
+      "pinned": "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+      "line": 32
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "original": "actions/github-script@v8",
+      "pinned": "actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd",
+      "line": 43
+    },
+    {
+      "rule": "unpinned-docker-image",
+      "original": "docker://rhysd/actionlint:1.7.11",
+      "pinned": "docker://index.docker.io/rhysd/actionlint@sha256:6f03470d0152251d7f07f7c4dc019dbe7024c72cd952f839544c7798843efa8f",
+      "line": 72
+    }
+  ]
+}

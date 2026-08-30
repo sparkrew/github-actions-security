@@ -1,0 +1,60 @@
+{
+  "workflow": "microsoft_vscode-copilot-chat__.github__workflows__pr.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 4
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 58,
+      "column": "",
+      "job": "check-telemetry",
+      "step": "",
+      "details": "runs-on: self-hosted, 1ES.Pool=1es-vscode-ubuntu-22.04-x64",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 19,
+      "column": "",
+      "job": "check-test-cache",
+      "step": "",
+      "details": "runs-on: self-hosted, 1ES.Pool=1es-vscode-ubuntu-22.04-x64",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 74,
+      "column": "",
+      "job": "linux-tests",
+      "step": "",
+      "details": "runs-on: self-hosted, 1ES.Pool=1es-vscode-ubuntu-22.04-x64",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 167,
+      "column": "",
+      "job": "windows-tests",
+      "step": "",
+      "details": "runs-on: self-hosted, 1ES.Pool=1es-vscode-windows-2022-x64",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    }
+  ]
+}

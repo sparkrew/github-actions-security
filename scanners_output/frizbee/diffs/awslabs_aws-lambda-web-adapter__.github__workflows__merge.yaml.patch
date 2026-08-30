@@ -1,0 +1,256 @@
+diff --git a/.github/workflows/awslabs_aws-lambda-web-adapter__.github__workflows__merge.yaml b/.github/workflows/awslabs_aws-lambda-web-adapter__.github__workflows__merge.yaml
+index 4ccb85a..fb4b32f 100644
+--- a/.github/workflows/awslabs_aws-lambda-web-adapter__.github__workflows__merge.yaml
++++ b/.github/workflows/awslabs_aws-lambda-web-adapter__.github__workflows__merge.yaml
+@@ -30,10 +30,10 @@ jobs:
+     runs-on: ubuntu-24.04
+     steps:
+       - name: Checkout sources
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       - name: Configure Rust cache
+-        uses: Swatinem/rust-cache@v2
++        uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # v2
+ 
+       - name: Install cargo-nextest
+         run: curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C ${CARGO_HOME:-~/.cargo}/bin
+@@ -50,13 +50,13 @@ jobs:
+     needs: [test]
+     runs-on: ubuntu-24.04
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+-      - uses: actions/setup-python@v4
++      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+         with:
+           python-version: "3.13"
+ 
+-      - uses: aws-actions/setup-sam@v2
++      - uses: aws-actions/setup-sam@d78e1a4a9656d3b223e59b80676a797f20093133 # v2
+         with:
+           use-installer: true
+           token: ${{ secrets.GITHUB_TOKEN }}
+@@ -70,7 +70,7 @@ jobs:
+         run: pip3 install cargo-lambda
+ 
+       - name: Configure Rust cache
+-        uses: Swatinem/rust-cache@v2
++        uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # v2
+ 
+       - name: Add cargo pkg version to env vars
+         run: |
+@@ -82,7 +82,7 @@ jobs:
+       - name: Tar files
+         run: tar -cvf build-x86_64.tar build-x86_64
+ 
+-      - uses: actions/upload-artifact@v4
++      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: aws-sam-build-x86_64
+           path: build-x86_64.tar
+@@ -93,7 +93,7 @@ jobs:
+       - name: Tar files
+         run: tar -cvf build-arm64.tar build-arm64
+ 
+-      - uses: actions/upload-artifact@v4
++      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: aws-sam-build-arm64
+           path: build-arm64.tar
+@@ -102,23 +102,23 @@ jobs:
+     needs: [build]
+     runs-on: ubuntu-24.04
+     steps:
+-      - uses: actions/checkout@v4
+-      - uses: actions/setup-python@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
++      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+         with:
+           python-version: "3.13"
+-      - uses: aws-actions/setup-sam@v2
++      - uses: aws-actions/setup-sam@d78e1a4a9656d3b223e59b80676a797f20093133 # v2
+         with:
+           use-installer: true
+           token: ${{ secrets.GITHUB_TOKEN }}
+ 
+       - name: Assume the github runner role
+-        uses: aws-actions/configure-aws-credentials@v4
++        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4
+         with:
+           aws-region: ${{ env.BETA_REGION }}
+           role-to-assume: ${{ env.GITHUB_RUNNER_ROLE }}
+ 
+       - name: Assume the beta pipeline user role
+-        uses: aws-actions/configure-aws-credentials@v4
++        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4
+         with:
+           aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+           aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+@@ -127,7 +127,7 @@ jobs:
+           aws-region: ${{ env.BETA_REGION }}
+           role-to-assume: ${{ env.BETA_PIPELINE_EXECUTION_ROLE }}
+ 
+-      - uses: actions/download-artifact@v4
++      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+         with:
+           name: aws-sam-build-x86_64
+ 
+@@ -144,12 +144,12 @@ jobs:
+             --region ${BETA_REGION} \
+             --output-template-file packaged-beta-x86_64.yaml
+ 
+-      - uses: actions/upload-artifact@v4
++      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: packaged-beta-x86_64.yaml
+           path: packaged-beta-x86_64.yaml
+ 
+-      - uses: actions/download-artifact@v4
++      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+         with:
+           name: aws-sam-build-arm64
+ 
+@@ -166,7 +166,7 @@ jobs:
+             --region ${BETA_REGION} \
+             --output-template-file packaged-beta-arm64.yaml
+ 
+-      - uses: actions/upload-artifact@v4
++      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: packaged-beta-arm64.yaml
+           path: packaged-beta-arm64.yaml
+@@ -193,23 +193,23 @@ jobs:
+     needs: [package-beta]
+     runs-on: ubuntu-24.04
+     steps:
+-      - uses: actions/checkout@v4
+-      - uses: actions/setup-python@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
++      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+         with:
+           python-version: "3.13"
+-      - uses: aws-actions/setup-sam@v2
++      - uses: aws-actions/setup-sam@d78e1a4a9656d3b223e59b80676a797f20093133 # v2
+         with:
+           use-installer: true
+           token: ${{ secrets.GITHUB_TOKEN }}
+ 
+       - name: Assume the github runner role
+-        uses: aws-actions/configure-aws-credentials@v4
++        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4
+         with:
+           aws-region: ${{ env.BETA_REGION }}
+           role-to-assume: ${{ env.GITHUB_RUNNER_ROLE }}
+ 
+       - name: Assume the beta pipeline user role
+-        uses: aws-actions/configure-aws-credentials@v4
++        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4
+         with:
+           aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+           aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+@@ -222,7 +222,7 @@ jobs:
+         run: |
+           echo "CARGO_PKG_VERSION=$(cargo metadata --no-deps --format-version=1 | jq -r '.packages[0].version')" >> $GITHUB_ENV
+ 
+-      - uses: actions/download-artifact@v4
++      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+         with:
+           name: packaged-beta-x86_64.yaml
+ 
+@@ -238,7 +238,7 @@ jobs:
+             --no-fail-on-empty-changeset \
+             --role-arn ${BETA_CLOUDFORMATION_EXECUTION_ROLE}
+ 
+-      - uses: actions/download-artifact@v4
++      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+         with:
+           name: packaged-beta-arm64.yaml
+ 
+@@ -258,7 +258,7 @@ jobs:
+     needs: [deploy-beta]
+     runs-on: ubuntu-24.04
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       - name: Install stable toolchain
+         run: |
+@@ -268,28 +268,28 @@ jobs:
+         run: pip3 install cargo-lambda
+ 
+       - name: Configure Rust cache
+-        uses: Swatinem/rust-cache@v2
++        uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # v2
+ 
+       - name: Install cargo-nextest
+         run: curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C ${CARGO_HOME:-~/.cargo}/bin
+ 
+-      - uses: actions/setup-python@v4
++      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+         with:
+           python-version: "3.13"
+ 
+-      - uses: aws-actions/setup-sam@v2
++      - uses: aws-actions/setup-sam@d78e1a4a9656d3b223e59b80676a797f20093133 # v2
+         with:
+           use-installer: true
+           token: ${{ secrets.GITHUB_TOKEN }}
+ 
+       - name: Assume the github runner role
+-        uses: aws-actions/configure-aws-credentials@v4
++        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4
+         with:
+           aws-region: ${{ env.BETA_REGION }}
+           role-to-assume: ${{ env.GITHUB_RUNNER_ROLE }}
+ 
+       - name: Assume the beta pipeline user role
+-        uses: aws-actions/configure-aws-credentials@v4
++        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4
+         with:
+           aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+           aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+@@ -321,7 +321,7 @@ jobs:
+     needs: [deploy-beta]
+     runs-on: ubuntu-24.04
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       - name: Install stable toolchain
+         run: |
+@@ -331,28 +331,28 @@ jobs:
+         run: pip3 install cargo-lambda
+ 
+       - name: Configure Rust cache
+-        uses: Swatinem/rust-cache@v2
++        uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # v2
+ 
+       - name: Install cargo-nextest
+         run: curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C ${CARGO_HOME:-~/.cargo}/bin
+ 
+-      - uses: actions/setup-python@v4
++      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+         with:
+           python-version: "3.13"
+ 
+-      - uses: aws-actions/setup-sam@v2
++      - uses: aws-actions/setup-sam@d78e1a4a9656d3b223e59b80676a797f20093133 # v2
+         with:
+           use-installer: true
+           token: ${{ secrets.GITHUB_TOKEN }}
+ 
+       - name: Assume the github runner role
+-        uses: aws-actions/configure-aws-credentials@v4
++        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4
+         with:
+           aws-region: ${{ env.BETA_REGION }}
+           role-to-assume: ${{ env.GITHUB_RUNNER_ROLE }}
+ 
+       - name: Assume the beta pipeline user role
+-        uses: aws-actions/configure-aws-credentials@v4
++        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4
+         with:
+           aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+           aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}

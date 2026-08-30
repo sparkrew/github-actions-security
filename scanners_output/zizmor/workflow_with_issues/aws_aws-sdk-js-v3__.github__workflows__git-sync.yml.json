@@ -1,0 +1,31 @@
+{
+  "workflow": "aws_aws-sdk-js-v3__.github__workflows__git-sync.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "excessive-permissions": 1,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "aws_aws-sdk-js-v3__.github__workflows__git-sync.yml",
+      "line": 9,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "aws_aws-sdk-js-v3__.github__workflows__git-sync.yml",
+      "line": 18,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

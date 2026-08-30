@@ -1,0 +1,58 @@
+{
+  "workflow": "NVIDIA_k8s-device-plugin__.github__workflows__basic-checks.yaml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "excessive-permissions": 4,
+      "secrets-inherit": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "NVIDIA_k8s-device-plugin__.github__workflows__basic-checks.yaml",
+      "line": 14,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "NVIDIA_k8s-device-plugin__.github__workflows__basic-checks.yaml",
+      "line": 17,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "NVIDIA_k8s-device-plugin__.github__workflows__basic-checks.yaml",
+      "line": 25,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "NVIDIA_k8s-device-plugin__.github__workflows__basic-checks.yaml",
+      "line": 32,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "secrets-inherit",
+      "level": "warning",
+      "message": "secrets unconditionally inherited by called workflow",
+      "workflow": "NVIDIA_k8s-device-plugin__.github__workflows__basic-checks.yaml",
+      "line": 20,
+      "column": 5,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

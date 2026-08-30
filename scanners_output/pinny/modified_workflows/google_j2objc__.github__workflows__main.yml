@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    env:
+      MAKE_CMD: "env TRANSLATE_GLOBAL_FLAGS=--swift-friendly ENV_J2OBJC_ARCHS=macosx_iphone64 make -j32"
+
+    steps:
+      - name: java_21_env
+        run: echo "JAVA_21_HOME=$(/usr/libexec/java_home -v 21)" >> $GITHUB_ENV
+      
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+
+      # Build everything but protobuf targets, which require that the public
+      # protobuf distribution be installed.
+      - name: build_all
+        run: $MAKE_CMD JAVA_HOME=$JAVA_21_HOME frameworks examples_dist
+      
+      # Test command-line tools.
+      - name: test_tools
+        run: $MAKE_CMD JAVA_HOME=$JAVA_21_HOME test_translator test_cycle_finder test_jre_cycles

@@ -1,0 +1,120 @@
+# Copyright 2025 NVIDIA CORPORATION
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: End-to-end Tests
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+    secrets:
+      AWS_ACCESS_KEY_ID:
+        required: true
+      AWS_SECRET_ACCESS_KEY:
+        required: true
+      AWS_SSH_KEY:
+        required: true
+      E2E_SSH_USER:
+        required: true
+      SLACK_BOT_TOKEN:
+        required: true
+      SLACK_CHANNEL_ID:
+        required: true
+
+jobs:
+  e2e-tests:
+    runs-on: linux-amd64-cpu4
+    strategy:
+      matrix:
+        ispr:
+          - ${{ github.ref_name != 'main' && !startsWith( github.ref_name, 'release-' ) }}
+        driver_branch:
+          # LTS branch. EOL June 2026
+          - 535
+          # Production branch. EOL February 2026
+          - 570
+          # LTS branch. EOL August 2028
+          - 580
+        exclude:
+          - ispr: true
+            driver_branch: 570
+          - ispr: true
+            driver_branch: 580
+    steps:
+      - name: Check out code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+
+      - name: Calculate build vars
+        id: vars
+        run: |
+          echo "COMMIT_SHORT_SHA=${GITHUB_SHA:0:8}" >> $GITHUB_ENV
+          echo "LOWERCASE_REPO_OWNER=$(echo "${GITHUB_REPOSITORY_OWNER}" | awk '{print tolower($0)}')" >> $GITHUB_ENV
+          GOLANG_VERSION=$(./hack/golang-version.sh)
+          echo "GOLANG_VERSION=${GOLANG_VERSION##GOLANG_VERSION := }" >> $GITHUB_ENV
+
+      - name: Install Go
+        uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 # actions/setup-go@v6 | v6.3.0
+        with:
+          go-version: ${{ env.GOLANG_VERSION }}
+
+      - name: Set up Holodeck (${{ matrix.driver_branch }})
+        uses: NVIDIA/holodeck@eddefe3812ee9c8cc1425bfc69ab9585596abd9f # NVIDIA/holodeck@v0.2.13
+        with:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_ssh_key: ${{ secrets.AWS_SSH_KEY }}
+          holodeck_config: tests/e2e/infra/driver-branch-${{ matrix.driver_branch }}.yaml
+
+      - name: Get public dns name
+        id: holodeck_public_dns_name
+        uses: mikefarah/yq@88a31ae8c6b34aad77d2efdecc146113cb3315d0 # mikefarah/yq@master
+        with:
+          cmd: yq '.status.properties[] | select(.name == "public-dns-name") | .value' /github/workspace/.cache/holodeck.yaml
+
+      - name: Run e2e tests (${{ matrix.driver_branch }})
+        env:
+          E2E_INSTALL_CTK: "true"
+          E2E_IMAGE_NAME: ghcr.io/nvidia/container-toolkit
+          E2E_IMAGE_TAG: ${{ inputs.version }}
+          E2E_SSH_USER: ${{ secrets.E2E_SSH_USER }}
+          E2E_SSH_HOST: ${{ steps.holodeck_public_dns_name.outputs.result }}
+        run: |
+          e2e_ssh_key=$(mktemp)
+          echo "${{ secrets.AWS_SSH_KEY }}" > "$e2e_ssh_key"
+          chmod 600 "$e2e_ssh_key"
+          export E2E_SSH_KEY="$e2e_ssh_key"
+
+          make -f tests/e2e/Makefile test
+
+      - name: Archive Ginkgo logs
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # actions/upload-artifact@v6 | v6.0.0
+        with:
+          name: ginkgo-logs-${{ matrix.driver_branch }}
+          path: ginkgo.json
+          retention-days: 15
+
+      - name: Send Slack alert notification
+        if: ${{ failure() }}
+        uses: slackapi/slack-github-action@91efab103c0de0a537f72a35f6b8cda0ee76bf0a # slackapi/slack-github-action@v2.1.1 | release,v2,v2.1
+        with:
+          method: chat.postMessage
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          payload: |
+            channel: ${{ secrets.SLACK_CHANNEL_ID }}
+            text: |
+              :x: On repository ${{ github.repository }}, the Workflow *${{ github.workflow }}-driver-branch-${{ matrix.driver_branch }}* has failed.
+
+              Details: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}

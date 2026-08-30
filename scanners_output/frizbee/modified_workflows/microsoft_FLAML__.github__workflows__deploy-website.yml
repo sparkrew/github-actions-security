@@ -1,0 +1,101 @@
+name: docs
+
+on:
+  pull_request:
+    branches: [main]
+    path:
+      - 'flaml/*'
+      - 'website/*'
+      - '.github/workflows/deploy-website.yml'
+  push:
+    branches: [main]
+    path:
+      - 'flaml/*'
+      - 'website/*'
+      - '.github/workflows/deploy-website.yml'
+  workflow_dispatch:
+  merge_group:
+    types: [checks_requested]
+
+permissions:
+  contents: write
+
+jobs:
+  checks:
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: website
+    steps:
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+      - uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3
+        with:
+          node-version: 14.x
+          # cache: yarn
+          # cache-dependency-path: '**/yarn.lock'
+      - name: setup python
+        uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+        with:
+          python-version: "3.12"
+      - name: pydoc-markdown install
+        run: |
+          python -m pip install --upgrade pip
+          pip install pydoc-markdown==4.7.0 "setuptools<82"
+      - name: pydoc-markdown run
+        run: |
+          pydoc-markdown
+      - name: Test Build
+        run: |
+          if [ -e yarn.lock ]; then
+          yarn install --frozen-lockfile --ignore-engines
+          yarn build
+          elif [ -e package-lock.json ]; then
+          npm ci
+          npm run build
+          else
+          npm i --legacy-peer-deps
+          npm run build
+          fi
+  gh-release:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: website
+    steps:
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+      - uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3
+        with:
+          node-version: 14.x
+          # cache: yarn
+          # cache-dependency-path: '**/yarn.lock'
+      - name: setup python
+        uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+        with:
+          python-version: "3.12"
+      - name: pydoc-markdown install
+        run: |
+          python -m pip install --upgrade pip
+          pip install pydoc-markdown==4.7.0 "setuptools<82"
+      - name: pydoc-markdown run
+        run: |
+          pydoc-markdown
+      - name: Build website
+        run: |
+          if [ -e yarn.lock ]; then
+          yarn install --frozen-lockfile --ignore-engines
+          yarn build
+          elif [ -e package-lock.json ]; then
+          npm ci
+          npm run build
+          else
+          npm i --legacy-peer-deps
+          npm run build
+          fi
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@373f7f263a76c20808c831209c920827a82a2847 # v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Build output to publish to the `gh-pages` branch:
+          publish_dir: ./website/build

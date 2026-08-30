@@ -1,0 +1,194 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__release-upload.yml:43:9
+   [1m[94m|[0m
+[1m[94m43 |[0m         - name: Checkout Source
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m44 |[0m [1m[33m|[0m         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+[1m[94m45 |[0m [1m[33m|[0m         with:
+[1m[94m46 |[0m [1m[33m|[0m           fetch-depth: 0
+[1m[94m47 |[0m [1m[33m|[0m           ref: ${{ inputs.git-tag }}
+   [1m[94m|[0m [1m[33m|____________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__release-upload.yml:52:9
+   [1m[94m|[0m
+[1m[94m52 |[0m         - name: Archive Source
+   [1m[94m|[0m           [1m[96m--------------------[0m [1m[96mhelp: this step[0m
+[1m[94m53 |[0m [1m[96m/[0m         run: >
+[1m[94m54 |[0m [1m[96m|[0m           git archive
+[1m[94m...[0m  [1m[96m|[0m
+[1m[94m57 |[0m [1m[96m|[0m           --output="release/${{ env.ARCHIVE_NAME }}.tar.gz"
+[1m[94m58 |[0m [1m[96m|[0m           ${{ inputs.git-tag }}
+   [1m[94m|[0m [1m[96m|_______________________________-[0m [1m[96mhelp: env.ARCHIVE_NAME may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__release-upload.yml:52:9
+   [1m[94m|[0m
+[1m[94m52 |[0m         - name: Archive Source
+   [1m[94m|[0m           [1m[96m--------------------[0m [1m[96mhelp: this step[0m
+[1m[94m53 |[0m [1m[96m/[0m         run: >
+[1m[94m54 |[0m [1m[96m|[0m           git archive
+[1m[94m...[0m  [1m[96m|[0m
+[1m[94m57 |[0m [1m[96m|[0m           --output="release/${{ env.ARCHIVE_NAME }}.tar.gz"
+[1m[94m58 |[0m [1m[96m|[0m           ${{ inputs.git-tag }}
+   [1m[94m|[0m [1m[96m|_______________________________-[0m [1m[96mhelp: env.ARCHIVE_NAME may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__release-upload.yml:52:9
+   [1m[94m|[0m
+[1m[94m52 |[0m         - name: Archive Source
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m53 |[0m [1m[91m/[0m         run: >
+[1m[94m54 |[0m [1m[91m|[0m           git archive
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m57 |[0m [1m[91m|[0m           --output="release/${{ env.ARCHIVE_NAME }}.tar.gz"
+[1m[94m58 |[0m [1m[91m|[0m           ${{ inputs.git-tag }}
+   [1m[94m|[0m [1m[91m|_______________________________^[0m [1m[91minputs.git-tag may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__release-upload.yml:60:9
+   [1m[94m|[0m
+[1m[94m60 |[0m         - name: Compute Checksum
+   [1m[94m|[0m           [1m[96m----------------------[0m [1m[96mhelp: this step[0m
+[1m[94m61 |[0m [1m[96m/[0m         run: >
+[1m[94m62 |[0m [1m[96m|[0m           sha256sum "release/${{ env.ARCHIVE_NAME }}.tar.gz"
+[1m[94m63 |[0m [1m[96m|[0m           | awk '{print $1}'
+[1m[94m64 |[0m [1m[96m|[0m           > "release/${{ env.ARCHIVE_NAME }}.tar.gz.sha256sum"
+   [1m[94m|[0m [1m[96m|______________________________________________________________-[0m [1m[96mhelp: env.ARCHIVE_NAME may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__release-upload.yml:60:9
+   [1m[94m|[0m
+[1m[94m60 |[0m         - name: Compute Checksum
+   [1m[94m|[0m           [1m[96m----------------------[0m [1m[96mhelp: this step[0m
+[1m[94m61 |[0m [1m[96m/[0m         run: >
+[1m[94m62 |[0m [1m[96m|[0m           sha256sum "release/${{ env.ARCHIVE_NAME }}.tar.gz"
+[1m[94m63 |[0m [1m[96m|[0m           | awk '{print $1}'
+[1m[94m64 |[0m [1m[96m|[0m           > "release/${{ env.ARCHIVE_NAME }}.tar.gz.sha256sum"
+   [1m[94m|[0m [1m[96m|______________________________________________________________-[0m [1m[96mhelp: env.ARCHIVE_NAME may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__release-upload.yml:66:9
+   [1m[94m|[0m
+[1m[94m66 |[0m         - name: Upload Archive
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m67 |[0m           env:
+[1m[94m68 |[0m             GH_TOKEN: ${{ github.token }}
+[1m[94m69 |[0m [1m[91m/[0m         run: >
+[1m[94m70 |[0m [1m[91m|[0m           gh release upload
+[1m[94m71 |[0m [1m[91m|[0m           --clobber "${{ inputs.git-tag }}"
+[1m[94m72 |[0m [1m[91m|[0m           --repo "${{ github.repository }}"
+[1m[94m73 |[0m [1m[91m|[0m           release/*
+   [1m[94m|[0m [1m[91m|___________________^[0m [1m[91minputs.git-tag may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__release-upload.yml:75:9
+   [1m[94m|[0m
+[1m[94m75 |[0m         - name: Download and Upload Wheels
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m76 |[0m           env:
+[1m[94m77 |[0m             GH_TOKEN: ${{ github.token }}
+[1m[94m78 |[0m [1m[91m/[0m         run: |
+[1m[94m79 |[0m [1m[91m|[0m           # Use the shared script to download wheels
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m88 |[0m [1m[91m|[0m             gh release upload --clobber "${{ inputs.git-tag }}" --repo "${{ github.repository }}" release/wheels/*
+[1m[94m89 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|_____________^[0m [1m[91minputs.run-id may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__release-upload.yml:75:9
+   [1m[94m|[0m
+[1m[94m75 |[0m         - name: Download and Upload Wheels
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m76 |[0m           env:
+[1m[94m77 |[0m             GH_TOKEN: ${{ github.token }}
+[1m[94m78 |[0m [1m[91m/[0m         run: |
+[1m[94m79 |[0m [1m[91m|[0m           # Use the shared script to download wheels
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m88 |[0m [1m[91m|[0m             gh release upload --clobber "${{ inputs.git-tag }}" --repo "${{ github.repository }}" release/wheels/*
+[1m[94m89 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|_____________^[0m [1m[91minputs.component may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__release-upload.yml:75:9
+   [1m[94m|[0m
+[1m[94m75 |[0m         - name: Download and Upload Wheels
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m76 |[0m           env:
+[1m[94m77 |[0m             GH_TOKEN: ${{ github.token }}
+[1m[94m78 |[0m [1m[91m/[0m         run: |
+[1m[94m79 |[0m [1m[91m|[0m           # Use the shared script to download wheels
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m88 |[0m [1m[91m|[0m             gh release upload --clobber "${{ inputs.git-tag }}" --repo "${{ github.repository }}" release/wheels/*
+[1m[94m89 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|_____________^[0m [1m[91minputs.git-tag may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__release-upload.yml:75:9
+   [1m[94m|[0m
+[1m[94m75 |[0m         - name: Download and Upload Wheels
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m76 |[0m           env:
+[1m[94m77 |[0m             GH_TOKEN: ${{ github.token }}
+[1m[94m78 |[0m [1m[91m/[0m         run: |
+[1m[94m79 |[0m [1m[91m|[0m           # Use the shared script to download wheels
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m88 |[0m [1m[91m|[0m             gh release upload --clobber "${{ inputs.git-tag }}" --repo "${{ github.repository }}" release/wheels/*
+[1m[94m89 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|_____________^[0m [1m[91minputs.component may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__release-upload.yml:75:9
+   [1m[94m|[0m
+[1m[94m75 |[0m         - name: Download and Upload Wheels
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m76 |[0m           env:
+[1m[94m77 |[0m             GH_TOKEN: ${{ github.token }}
+[1m[94m78 |[0m [1m[91m/[0m         run: |
+[1m[94m79 |[0m [1m[91m|[0m           # Use the shared script to download wheels
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m88 |[0m [1m[91m|[0m             gh release upload --clobber "${{ inputs.git-tag }}" --repo "${{ github.repository }}" release/wheels/*
+[1m[94m89 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|_____________^[0m [1m[91minputs.git-tag may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cuda-python__.github__workflows__release-upload.yml:75:9
+   [1m[94m|[0m
+[1m[94m75 |[0m         - name: Download and Upload Wheels
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m76 |[0m           env:
+[1m[94m77 |[0m             GH_TOKEN: ${{ github.token }}
+[1m[94m78 |[0m [1m[91m/[0m         run: |
+[1m[94m79 |[0m [1m[91m|[0m           # Use the shared script to download wheels
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m88 |[0m [1m[91m|[0m             gh release upload --clobber "${{ inputs.git-tag }}" --repo "${{ github.repository }}" release/wheels/*
+[1m[94m89 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|_____________^[0m [1m[91minputs.git-tag may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m29[39m findings ([1m[93m16[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m4[39m low, [33m1[39m medium, [31m8[39m high

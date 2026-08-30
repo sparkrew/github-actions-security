@@ -1,0 +1,58 @@
+name: Validate PRs
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+    - main
+    - releases/*
+  pull_request:
+    branches:
+    - main
+    - releases/*
+    - features/*
+
+jobs:
+  build_linux:
+    runs-on: ubuntu-latest
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: 0
+
+    steps:
+    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      with:
+        fetch-depth: 0
+
+    - name: Cache multiple paths
+      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+      env:
+        cache-name: cache-node-modules
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+
+    - name: Install package dependencies
+      run: npm ci
+
+    - name: Check for the presence of changed files inside ./change
+      run: npm run checkchange
+
+    - name: Testing Prettier format
+      run: npm run format:check
+
+    - name: Build workspaces
+      run: npm run build
+
+    - name: Install playwright dependencies and browsers
+      run: |
+        npx playwright install --with-deps
+
+    - name: Testing unit tests
+      run: npm run test
+
+    - name: Testing final validation
+      run: npm run test:validation

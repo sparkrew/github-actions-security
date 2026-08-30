@@ -1,0 +1,197 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_publish.yml:17:9
+   [1m[94m|[0m
+[1m[94m17 |[0m       - uses: actions/checkout@v3
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_publish.yml:61:9
+   [1m[94m|[0m
+[1m[94m61 |[0m       - uses: actions/checkout@v3
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_publish.yml:100:9
+    [1m[94m|[0m
+[1m[94m100 |[0m       - uses: actions/checkout@v3
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_publish.yml:136:9
+    [1m[94m|[0m
+[1m[94m136 |[0m       - uses: actions/checkout@v3
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_publish.yml:178:9
+    [1m[94m|[0m
+[1m[94m178 |[0m       - uses: actions/checkout@v3
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_publish.yml:229:9
+    [1m[94m|[0m
+[1m[94m229 |[0m       - uses: actions/checkout@v3
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_publish.yml:280:9
+    [1m[94m|[0m
+[1m[94m280 |[0m       - uses: actions/checkout@v3
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_publish.yml:301:9
+    [1m[94m|[0m
+[1m[94m301 |[0m       - uses: actions/checkout@v3
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_publish.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: unity publish
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m436 |[0m [1m[33m|[0m       #   run: |
+[1m[94m437 |[0m [1m[33m|[0m       #     curl -XPOST -u "${{ secrets.PAT_USERNAME}}:${{secrets.PAT_TOKEN}}" -H "Accept: application/vnd.github.v3+json" -H "Content-Type: application/json" https://api.github.com/repos/zombieyang/puerts_unity_demo/actions/workflows/sync-package.yml/dispatches -d '{"ref": "master", "inputs": {"push_tag_version": "${{ github.event.inputs.tag_name }}"}}'
+    [1m[94m|[0m [1m[33m|_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_publish.yml:14:3
+   [1m[94m|[0m
+[1m[94m14 |[0m [1m[33m/[0m   android:
+[1m[94m15 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m55 |[0m [1m[33m|[0m           backend: wsppaddon
+[1m[94m56 |[0m [1m[33m|[0m           websocket: 1
+   [1m[94m|[0m [1m[33m|[0m                      [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________|[0m
+   [1m[94m|[0m                        [1m[33mthis job[0m
+   [1m[94m|[0m                        [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_publish.yml:58:3
+   [1m[94m|[0m
+[1m[94m58 |[0m [1m[33m/[0m   ohos:
+[1m[94m59 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m94 |[0m [1m[33m|[0m           backend: wsppaddon
+[1m[94m95 |[0m [1m[33m|[0m           websocket: 1
+   [1m[94m|[0m [1m[33m|[0m                      [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________|[0m
+   [1m[94m|[0m                        [1m[33mthis job[0m
+   [1m[94m|[0m                        [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_publish.yml:97:3
+    [1m[94m|[0m
+[1m[94m 97 |[0m [1m[33m/[0m   ios:
+[1m[94m 98 |[0m [1m[33m|[0m     runs-on: macos-14
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m130 |[0m [1m[33m|[0m           backend: wsppaddon
+[1m[94m131 |[0m [1m[33m|[0m           websocket: 1
+    [1m[94m|[0m [1m[33m|[0m                      [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|______________________|[0m
+    [1m[94m|[0m                        [1m[33mthis job[0m
+    [1m[94m|[0m                        [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_publish.yml:133:3
+    [1m[94m|[0m
+[1m[94m133 |[0m [1m[33m/[0m   osx:
+[1m[94m134 |[0m [1m[33m|[0m     runs-on: macos-latest
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m172 |[0m [1m[33m|[0m           backend: wsppaddon
+[1m[94m173 |[0m [1m[33m|[0m           websocket: 1
+    [1m[94m|[0m [1m[33m|[0m                      [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|______________________|[0m
+    [1m[94m|[0m                        [1m[33mthis job[0m
+    [1m[94m|[0m                        [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_publish.yml:175:3
+    [1m[94m|[0m
+[1m[94m175 |[0m [1m[33m/[0m   windows:
+[1m[94m176 |[0m [1m[33m|[0m     runs-on: windows-2022
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m223 |[0m [1m[33m|[0m           arch: x64
+[1m[94m224 |[0m [1m[33m|[0m           websocket: 1
+    [1m[94m|[0m [1m[33m|[0m                      [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|______________________|[0m
+    [1m[94m|[0m                        [1m[33mthis job[0m
+    [1m[94m|[0m                        [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_publish.yml:226:3
+    [1m[94m|[0m
+[1m[94m226 |[0m [1m[33m/[0m   linux64:
+[1m[94m227 |[0m [1m[33m|[0m     runs-on: ubuntu-22.04
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m274 |[0m [1m[33m|[0m           backend: wsppaddon
+[1m[94m275 |[0m [1m[33m|[0m           websocket: 1
+    [1m[94m|[0m [1m[33m|[0m                      [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|______________________|[0m
+    [1m[94m|[0m                        [1m[33mthis job[0m
+    [1m[94m|[0m                        [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_publish.yml:277:3
+    [1m[94m|[0m
+[1m[94m277 |[0m [1m[33m/[0m   wasm:
+[1m[94m278 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m294 |[0m [1m[33m|[0m           github_token: ${{ secrets.GITHUB_TOKEN }}
+[1m[94m295 |[0m [1m[33m|[0m           backend: papi-lua
+    [1m[94m|[0m [1m[33m|[0m                           [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|___________________________|[0m
+    [1m[94m|[0m                             [1m[33mthis job[0m
+    [1m[94m|[0m                             [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unity_publish.yml:297:3
+    [1m[94m|[0m
+[1m[94m297 |[0m [1m[33m/[0m   publish:
+[1m[94m298 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m436 |[0m [1m[33m|[0m       #   run: |
+[1m[94m437 |[0m [1m[33m|[0m       #     curl -XPOST -u "${{ secrets.PAT_USERNAME}}:${{secrets.PAT_TOKEN}}" -H "Accept: application/vnd.github.v3+json" -H "Content-Type: application/json" https://api.github.com/repos/zombieyang/puerts_unity_demo/actions/workflows/sync-package.yml/dispatches -d '{"ref": "master", "inputs": {"push_tag_version": "${{ github.event.inputs.tag_name }}"}}'
+    [1m[94m|[0m [1m[33m|[0m                                                                                                                                                                                                                                                                                                                                                                     [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                                                                                                                                                                                                                                                                                       [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                                                                                                                                                                                                                                                                                       [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m17[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m17[39m medium, [31m0[39m high

@@ -1,0 +1,139 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__mac.yml:82:9
+   [1m[94m|[0m
+[1m[94m82 |[0m         - name: Checkout code
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m83 |[0m [1m[33m|[0m         uses: actions/checkout@v6
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__mac.yml:130:9
+    [1m[94m|[0m
+[1m[94m130 |[0m         - name: Checkout code
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m131 |[0m [1m[33m|[0m         uses: actions/checkout@v6
+    [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__mac.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: "MacOS CI Pipeline"
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m177 |[0m [1m[33m|[0m             ./onnxruntime/core/platform/apple/logging/apple_log_sink.mm \
+[1m[94m178 |[0m [1m[33m|[0m             ./onnxruntime/core/providers/coreml/model/*.mm
+    [1m[94m|[0m [1m[33m|___________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__mac.yml:22:3
+   [1m[94m|[0m
+[1m[94m22 |[0m [1m[33m/[0m   cpu:
+[1m[94m23 |[0m [1m[33m|[0m     uses: ./.github/workflows/macos-ci-build-and-test-workflow.yml
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m30 |[0m [1m[33m|[0m         ]
+[1m[94m31 |[0m [1m[33m|[0m       python_version: "3.14"
+   [1m[94m|[0m [1m[33m|[0m                            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________|[0m
+   [1m[94m|[0m                              [1m[33mthis job[0m
+   [1m[94m|[0m                              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__mac.yml:33:3
+   [1m[94m|[0m
+[1m[94m33 |[0m [1m[33m/[0m   coreml:
+[1m[94m34 |[0m [1m[33m|[0m     uses: ./.github/workflows/macos-ci-build-and-test-workflow.yml
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m42 |[0m [1m[33m|[0m         ]
+[1m[94m43 |[0m [1m[33m|[0m       python_version: "3.14"
+   [1m[94m|[0m [1m[33m|[0m                            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________|[0m
+   [1m[94m|[0m                              [1m[33mthis job[0m
+   [1m[94m|[0m                              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__mac.yml:45:3
+   [1m[94m|[0m
+[1m[94m45 |[0m [1m[33m/[0m   xnnpack:
+[1m[94m46 |[0m [1m[33m|[0m     uses: ./.github/workflows/macos-ci-build-and-test-workflow.yml
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m53 |[0m [1m[33m|[0m         ]
+[1m[94m54 |[0m [1m[33m|[0m       python_version: "3.14"
+   [1m[94m|[0m [1m[33m|[0m                            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________|[0m
+   [1m[94m|[0m                              [1m[33mthis job[0m
+   [1m[94m|[0m                              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__mac.yml:56:3
+   [1m[94m|[0m
+[1m[94m56 |[0m [1m[33m/[0m   webgpu:
+[1m[94m57 |[0m [1m[33m|[0m     uses: ./.github/workflows/macos-ci-build-and-test-workflow.yml
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m65 |[0m [1m[33m|[0m         ]
+[1m[94m66 |[0m [1m[33m|[0m       python_version: "3.14"
+   [1m[94m|[0m [1m[33m|[0m                            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________|[0m
+   [1m[94m|[0m                              [1m[33mthis job[0m
+   [1m[94m|[0m                              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__mac.yml:68:3
+    [1m[94m|[0m
+[1m[94m 68 |[0m [1m[33m/[0m   iphone_simulator:
+[1m[94m 69 |[0m [1m[33m|[0m     runs-on: macos-15
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m118 |[0m [1m[33m|[0m         env:
+[1m[94m119 |[0m [1m[33m|[0m           ORT_GET_SIMULATOR_DEVICE_INFO_REQUESTED_RUNTIME_VERSION: ${{ env.simulator_runtime_version }}
+    [1m[94m|[0m [1m[33m|[0m                                                                                                       [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_______________________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                         [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                         [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__mac.yml:121:3
+    [1m[94m|[0m
+[1m[94m121 |[0m [1m[33m/[0m   Objective-C-StaticAnalysis:
+[1m[94m122 |[0m [1m[33m|[0m     runs-on: macos-14
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m177 |[0m [1m[33m|[0m             ./onnxruntime/core/platform/apple/logging/apple_log_sink.mm \
+[1m[94m178 |[0m [1m[33m|[0m             ./onnxruntime/core/providers/coreml/model/*.mm
+    [1m[94m|[0m [1m[33m|[0m                                                           [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|___________________________________________________________|[0m
+    [1m[94m|[0m                                                             [1m[33mthis job[0m
+    [1m[94m|[0m                                                             [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__mac.yml:84:9
+   [1m[94m|[0m
+[1m[94m84 |[0m       - uses: microsoft/onnxruntime-github-actions/setup-build-tools@v0.0.9
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__mac.yml:132:9
+    [1m[94m|[0m
+[1m[94m132 |[0m       - uses: microsoft/onnxruntime-github-actions/setup-build-tools@v0.0.9
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m12[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m9[39m medium, [31m2[39m high

@@ -1,0 +1,36 @@
+diff --git a/.github/workflows/Tencent_ncnn__.github__workflows__macos.yml b/.github/workflows/Tencent_ncnn__.github__workflows__macos.yml
+index cb6e55b..17310e2 100644
+--- a/.github/workflows/Tencent_ncnn__.github__workflows__macos.yml
++++ b/.github/workflows/Tencent_ncnn__.github__workflows__macos.yml
+@@ -77,13 +77,13 @@ jobs:
+         -DNCNN_VULKAN=ON \
+ 
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         submodules: true
+ 
+     - name: cache-openmp
+       id: cache-openmp
+-      uses: actions/cache@v5
++      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+       with:
+         path: openmp-install
+         key: openmp-macos-install-20251004
+@@ -134,13 +134,13 @@ jobs:
+ 
+     - name: cache-swiftshader
+       id: cache-swiftshader
+-      uses: actions/cache@v5
++      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+       with:
+         path: swiftshader-install
+         key: swiftshader-macos-install-20251004
+     - name: checkout-swiftshader
+       if: steps.cache-swiftshader.outputs.cache-hit != 'true'
+-      uses: actions/checkout@v6
++      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         repository: google/swiftshader
+         path: swiftshader

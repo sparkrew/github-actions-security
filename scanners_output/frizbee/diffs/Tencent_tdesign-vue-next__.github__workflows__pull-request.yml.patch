@@ -1,0 +1,102 @@
+diff --git a/.github/workflows/Tencent_tdesign-vue-next__.github__workflows__pull-request.yml b/.github/workflows/Tencent_tdesign-vue-next__.github__workflows__pull-request.yml
+index b0279fe..5520fbe 100644
+--- a/.github/workflows/Tencent_tdesign-vue-next__.github__workflows__pull-request.yml
++++ b/.github/workflows/Tencent_tdesign-vue-next__.github__workflows__pull-request.yml
+@@ -21,7 +21,7 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       # 检出代码仓库
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       # 检查 GitHub 提交记录中的邮箱
+       - name: check_github_primary_email
+@@ -43,7 +43,7 @@ jobs:
+           fi
+ 
+       # 再次检出代码仓库，这次使用 PR 的源分支的 SHA
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           ref: ${{ github.event.pull_request.head.sha }}
+ 
+@@ -73,16 +73,16 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       # 检出代码仓库，并递归初始化子模块
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           submodules: recursive
+ 
+       # 设置 pnpm
+       - name: Setup pnpm
+-        uses: pnpm/action-setup@v4
++        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
+ 
+       # 设置 Node.js 环境，版本为 18
+-      - uses: actions/setup-node@v4
++      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+         with:
+           node-version: 18
+           cache: 'pnpm'
+@@ -100,16 +100,16 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       # 检出代码仓库，并递归初始化子模块
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           submodules: recursive
+ 
+       # 设置 pnpm
+       - name: Setup pnpm
+-        uses: pnpm/action-setup@v4
++        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
+ 
+       # 设置 Node.js 环境，版本为 18
+-      - uses: actions/setup-node@v4
++      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+         with:
+           node-version: 18
+           cache: 'pnpm'
+@@ -128,16 +128,16 @@ jobs:
+     # needs: build
+     steps:
+       # 检出代码仓库，并递归初始化子模块
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           submodules: recursive
+ 
+       # 设置 pnpm
+       - name: Setup pnpm
+-        uses: pnpm/action-setup@v4
++        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
+ 
+       # 设置 Node.js 环境，版本为 18
+-      - uses: actions/setup-node@v4
++      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+         with:
+           node-version: 18
+           cache: 'pnpm'
+@@ -159,16 +159,16 @@ jobs:
+     # needs: build
+     steps:
+       # 检出代码仓库，并递归初始化子模块
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           submodules: recursive
+ 
+       # 设置 pnpm
+       - name: Setup pnpm
+-        uses: pnpm/action-setup@v4
++        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
+ 
+       # 设置 Node.js 环境，版本为 18
+-      - uses: actions/setup-node@v4
++      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+         with:
+           node-version: 18
+           cache: 'pnpm'

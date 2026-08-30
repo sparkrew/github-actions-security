@@ -1,0 +1,167 @@
+diff --git a/.github/workflows/NVIDIA_warp__.github__workflows__ci.yml b/.github/workflows/NVIDIA_warp__.github__workflows__ci.yml
+index 38df12d..297c2a2 100644
+--- a/.github/workflows/NVIDIA_warp__.github__workflows__ci.yml
++++ b/.github/workflows/NVIDIA_warp__.github__workflows__ci.yml
+@@ -57,7 +57,7 @@ jobs:
+       artifact-url: ${{ steps.native-headers.outputs.artifact-url }}
+     steps:
+       - name: Checkout repository
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           lfs: true
+       
+@@ -71,7 +71,7 @@ jobs:
+       
+       - name: Cache build artifacts
+         if: matrix.platform != 'macos'
+-        uses: actions/cache@v4
++        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+         id: cache-build
+         with:
+           path: warp/bin/
+@@ -97,13 +97,13 @@ jobs:
+         run: uv run build_lib.py
+       
+       - name: Upload build artifact
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: build-artifact-${{ matrix.platform }}
+           path: warp/bin/
+       
+       - name: Upload native headers
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         id: native-headers
+         with:
+           name: native-headers-${{ matrix.platform }}
+@@ -128,7 +128,7 @@ jobs:
+             platform: macos
+     steps:
+       - name: Checkout repository
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           lfs: true
+       
+@@ -141,7 +141,7 @@ jobs:
+         run: uv python install
+       
+       - name: Download Warp build artifact
+-        uses: actions/download-artifact@v4
++        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+         with:
+           name: build-artifact-${{ matrix.platform }}
+           path: warp/bin/
+@@ -150,7 +150,7 @@ jobs:
+         run: uv run --extra dev -m warp.tests --junit-report-xml rspec.xml -s autodetect
+       
+       - name: Test Summary
+-        uses: test-summary/action@v2.3
++        uses: test-summary/action@032c8a9cec6aaa3c20228112cae6ca10a3b29336 # v2.3
+         with:
+           paths: "rspec.xml"
+           show: "fail"
+@@ -183,7 +183,7 @@ jobs:
+           git lfs install
+ 
+       - name: Checkout repository
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           lfs: true
+ 
+@@ -196,7 +196,7 @@ jobs:
+         run: uv python install
+       
+       - name: Download Warp build artifact
+-        uses: actions/download-artifact@v4
++        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+         with:
+           name: build-artifact-ubuntu-x86_64
+           path: warp/bin/
+@@ -205,7 +205,7 @@ jobs:
+         run: uv run --extra dev --extra torch-cu12 -m warp.tests --junit-report-xml rspec.xml -s autodetect
+       
+       - name: Test Summary
+-        uses: test-summary/action@v2.3
++        uses: test-summary/action@032c8a9cec6aaa3c20228112cae6ca10a3b29336 # v2.3
+         with:
+           paths: "rspec.xml"
+           show: "fail"
+@@ -218,7 +218,7 @@ jobs:
+       artifact-url: ${{ steps.build-docs-output.outputs.artifact-url }}
+     steps:
+       - name: Checkout repository
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+       - name: Install uv
+         uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86
+         with:
+@@ -226,7 +226,7 @@ jobs:
+       - name: Set up Python
+         run: uv python install
+       - name: Download Warp binaries
+-        uses: actions/download-artifact@v4
++        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+         with:
+           name: build-artifact-ubuntu-x86_64
+           path: warp/bin/
+@@ -234,7 +234,7 @@ jobs:
+         run: |
+           uv run --extra docs build_docs.py
+       - name: Upload artifacts
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         id: build-docs-output
+         with:
+           name: build-docs-output
+@@ -248,9 +248,9 @@ jobs:
+     needs: build-docs
+     steps:
+       - name: Checkout repository
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+       - name: Download build_docs.py output
+-        uses: actions/download-artifact@v4
++        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+         with:
+           name: build-docs-output
+           path: .
+@@ -272,7 +272,7 @@ jobs:
+     needs: build-warp
+     steps:
+       - name: Checkout repository
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+       - name: Install uv
+         uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86
+         with:
+@@ -280,7 +280,7 @@ jobs:
+       - name: Set up Python
+         run: uv python install
+       - name: Download native headers
+-        uses: actions/download-artifact@v4
++        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+         with:
+           name: native-headers-ubuntu-x86_64
+           path: warp/native/
+@@ -300,7 +300,7 @@ jobs:
+     needs: build-warp
+     steps:
+       - name: Download Warp build artifact
+-        uses: actions/download-artifact@v4
++        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+         with:
+           name: build-artifact-ubuntu-x86_64
+           path: warp/bin/
+@@ -338,7 +338,7 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+       - name: Install uv
+         uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86
+         with:

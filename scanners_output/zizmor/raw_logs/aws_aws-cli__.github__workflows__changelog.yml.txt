@@ -1,0 +1,45 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-cli__.github__workflows__changelog.yml:52:7
+   [1m[94m|[0m
+[1m[94m52 |[0m       - uses: actions/checkout@v6.0.1
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m53 |[0m [1m[33m|[0m       with:
+[1m[94m54 |[0m [1m[33m|[0m         ref: ${{ github.event.inputs.ref }}
+   [1m[94m|[0m [1m[33m|___________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-cli__.github__workflows__changelog.yml:60:7
+   [1m[94m|[0m
+[1m[94m60 |[0m       - name: Create changelog
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m61 |[0m [1m[91m/[0m       run: |
+[1m[94m62 |[0m [1m[91m|[0m         python scripts/new-change -t '${{ github.event.inputs.type }}' -c '${{ github.event.inputs.category }}' -d '${{ github.event.inputs.description }}'
+   [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.inputs.type may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-cli__.github__workflows__changelog.yml:60:7
+   [1m[94m|[0m
+[1m[94m60 |[0m       - name: Create changelog
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m61 |[0m [1m[91m/[0m       run: |
+[1m[94m62 |[0m [1m[91m|[0m         python scripts/new-change -t '${{ github.event.inputs.type }}' -c '${{ github.event.inputs.category }}' -d '${{ github.event.inputs.description }}'
+   [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.inputs.category may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-cli__.github__workflows__changelog.yml:60:7
+   [1m[94m|[0m
+[1m[94m60 |[0m       - name: Create changelog
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m61 |[0m [1m[91m/[0m       run: |
+[1m[94m62 |[0m [1m[91m|[0m         python scripts/new-change -t '${{ github.event.inputs.type }}' -c '${{ github.event.inputs.category }}' -d '${{ github.event.inputs.description }}'
+   [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.inputs.description may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m8[39m findings ([1m[93m4[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m3[39m high

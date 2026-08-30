@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/facebookresearch_xformers__.github__workflows__wheels_build.yml b/.github/workflows/facebookresearch_xformers__.github__workflows__wheels_build.yml
+index f2549d8..dddf920 100644
+--- a/.github/workflows/facebookresearch_xformers__.github__workflows__wheels_build.yml
++++ b/.github/workflows/facebookresearch_xformers__.github__workflows__wheels_build.yml
+@@ -64,7 +64,7 @@ jobs:
+       - if: runner.os == 'Windows'
+         run: git config --system core.longpaths true
+       - name: Recursive checkout
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           submodules: recursive
+           path: "."
+@@ -128,7 +128,7 @@ jobs:
+           PLAT_ARG: ${{ contains(inputs.os, 'ubuntu') && '--plat-name manylinux_2_28_x86_64' || '' }}
+ 
+       - run: du -h dist/*
+-      - uses: actions/upload-artifact@v4
++      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: ${{ inputs.os }}-py${{ inputs.python }}-torch${{ inputs.torch_version }}+${{ contains(inputs.toolkit_type, 'cuda') && 'cu' || 'rocm' }}${{ inputs.toolkit_short_version }}_${{ inputs.artifact_tag }}
+           path: dist/*.whl

@@ -1,0 +1,109 @@
+diff --git a/.github/workflows/aws_aws-sdk-java-v2__.github__workflows__s3-regression-tests.yml b/.github/workflows/aws_aws-sdk-java-v2__.github__workflows__s3-regression-tests.yml
+index ea37785..1c9a2f1 100644
+--- a/.github/workflows/aws_aws-sdk-java-v2__.github__workflows__s3-regression-tests.yml
++++ b/.github/workflows/aws_aws-sdk-java-v2__.github__workflows__s3-regression-tests.yml
+@@ -17,7 +17,7 @@ jobs:
+     outputs:
+       run_tests: ${{ contains(github.event.pull_request.labels.*.name, 'force-s3-regression-tests') || steps.check-changes.outputs.has_s3_related_changes }}
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           fetch-depth: 0
+       - name: Check for changes related to s3
+@@ -44,13 +44,13 @@ jobs:
+       HAS_S3_CHANGES: ${{ needs.check-s3-related-changes.outputs.run_tests }}
+     steps:
+       - name: Configure AWS Credentials
+-        uses: aws-actions/configure-aws-credentials@v6
++        uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7 # v6
+         with:
+           role-to-assume: ${{ secrets.CI_AWS_ROLE_ARN }}
+           aws-region: us-west-2
+           role-duration-seconds: 7200
+       - name: Run s3 regression tests for downloads
+-        uses: aws-actions/aws-codebuild-run-build@v1
++        uses: aws-actions/aws-codebuild-run-build@4d15a47425739ac2296ba5e7eee3bdd4bfbdd767 # v1
+         with:
+           project-name: aws-sdk-java-v2-s3-regression-tests
+           env-vars-for-codebuild: REGRESSION_TEST,HAS_S3_CHANGES
+@@ -65,13 +65,13 @@ jobs:
+       HAS_S3_CHANGES: ${{ needs.check-s3-related-changes.outputs.run_tests }}
+     steps:
+       - name: Configure AWS Credentials
+-        uses: aws-actions/configure-aws-credentials@v6
++        uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7 # v6
+         with:
+           role-to-assume: ${{ secrets.CI_AWS_ROLE_ARN }}
+           aws-region: us-west-2
+           role-duration-seconds: 7200
+       - name: Run s3 regression tests for control plane
+-        uses: aws-actions/aws-codebuild-run-build@v1
++        uses: aws-actions/aws-codebuild-run-build@4d15a47425739ac2296ba5e7eee3bdd4bfbdd767 # v1
+         with:
+           project-name: aws-sdk-java-v2-s3-regression-tests
+           env-vars-for-codebuild: REGRESSION_TEST,HAS_S3_CHANGES
+@@ -86,13 +86,13 @@ jobs:
+       HAS_S3_CHANGES: ${{ needs.check-s3-related-changes.outputs.run_tests }}
+     steps:
+       - name: Configure AWS Credentials
+-        uses: aws-actions/configure-aws-credentials@v6
++        uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7 # v6
+         with:
+           role-to-assume: ${{ secrets.CI_AWS_ROLE_ARN }}
+           aws-region: us-west-2
+           role-duration-seconds: 7200
+       - name: Run s3 regression tests for uploads
+-        uses: aws-actions/aws-codebuild-run-build@v1
++        uses: aws-actions/aws-codebuild-run-build@4d15a47425739ac2296ba5e7eee3bdd4bfbdd767 # v1
+         with:
+           project-name: aws-sdk-java-v2-s3-regression-tests
+           env-vars-for-codebuild: REGRESSION_TEST,HAS_S3_CHANGES
+@@ -107,13 +107,13 @@ jobs:
+       HAS_S3_CHANGES: ${{ needs.check-s3-related-changes.outputs.run_tests }}
+     steps:
+       - name: Configure AWS Credentials
+-        uses: aws-actions/configure-aws-credentials@v6
++        uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7 # v6
+         with:
+           role-to-assume: ${{ secrets.CI_AWS_ROLE_ARN }}
+           aws-region: us-west-2
+           role-duration-seconds: 7200
+       - name: Run s3 regression tests for uploads
+-        uses: aws-actions/aws-codebuild-run-build@v1
++        uses: aws-actions/aws-codebuild-run-build@4d15a47425739ac2296ba5e7eee3bdd4bfbdd767 # v1
+         with:
+           project-name: aws-sdk-java-v2-s3-regression-tests
+           env-vars-for-codebuild: REGRESSION_TEST,HAS_S3_CHANGES
+@@ -128,13 +128,13 @@ jobs:
+       HAS_S3_CHANGES: ${{ needs.check-s3-related-changes.outputs.run_tests }}
+     steps:
+       - name: Configure AWS Credentials
+-        uses: aws-actions/configure-aws-credentials@v6
++        uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7 # v6
+         with:
+           role-to-assume: ${{ secrets.CI_AWS_ROLE_ARN }}
+           aws-region: us-west-2
+           role-duration-seconds: 7200
+       - name: Run s3 regression tests for uploads
+-        uses: aws-actions/aws-codebuild-run-build@v1
++        uses: aws-actions/aws-codebuild-run-build@4d15a47425739ac2296ba5e7eee3bdd4bfbdd767 # v1
+         with:
+           project-name: aws-sdk-java-v2-s3-regression-tests
+           env-vars-for-codebuild: REGRESSION_TEST,HAS_S3_CHANGES
+@@ -149,13 +149,13 @@ jobs:
+       HAS_S3_CHANGES: ${{ needs.check-s3-related-changes.outputs.run_tests }}
+     steps:
+       - name: Configure AWS Credentials
+-        uses: aws-actions/configure-aws-credentials@v6
++        uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7 # v6
+         with:
+           role-to-assume: ${{ secrets.CI_AWS_ROLE_ARN }}
+           aws-region: us-west-2
+           role-duration-seconds: 7200
+       - name: Run s3 regression tests for uploads
+-        uses: aws-actions/aws-codebuild-run-build@v1
++        uses: aws-actions/aws-codebuild-run-build@4d15a47425739ac2296ba5e7eee3bdd4bfbdd767 # v1
+         with:
+           project-name: aws-sdk-java-v2-s3-regression-tests
+           env-vars-for-codebuild: REGRESSION_TEST,HAS_S3_CHANGES

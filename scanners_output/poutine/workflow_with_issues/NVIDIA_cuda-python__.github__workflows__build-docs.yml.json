@@ -1,0 +1,89 @@
+{
+  "workflow": "NVIDIA_cuda-python__.github__workflows__build-docs.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 7,
+    "by_rule": {
+      "untrusted_checkout_exec": 7
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 210,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of `bash`",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 225,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of `bash`",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 88,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of `make`",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 182,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of `pip`",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 254,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of a Local GitHub Action at path: `./.github/actions/doc_preview`",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 82,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of a Local GitHub Action at path: `./.github/actions/fetch_ctk`",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    },
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 200,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of a Local GitHub Action at path: `./.github/actions/get_pr_number`",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    }
+  ]
+}

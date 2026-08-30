@@ -1,0 +1,24 @@
+diff --git a/.github/workflows/aws_s2n-tls__.github__workflows__dependencies.yml b/.github/workflows/aws_s2n-tls__.github__workflows__dependencies.yml
+index cf0d2bf..e26c95a 100644
+--- a/.github/workflows/aws_s2n-tls__.github__workflows__dependencies.yml
++++ b/.github/workflows/aws_s2n-tls__.github__workflows__dependencies.yml
+@@ -27,16 +27,16 @@ jobs:
+       issues: write   # Open/update issues.
+       checks: write   # Create/update a check run.
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: Install Rust toolchain
+         id: toolchain
+         run: |
+           rustup toolchain install stable
+           rustup override set stable
+-      - uses: camshaft/rust-cache@v1
++      - uses: camshaft/rust-cache@4e624f91f97659a169f77c115e998fe8d4d050d0 # v1
+       - name: Generate
+         run: ${{env.ROOT_PATH}}/generate.sh
+-      - uses: rustsec/audit-check@v2.0.0
++      - uses: rustsec/audit-check@69366f33c96575abad1ee0dba8212993eecbe998 # v2.0.0
+         with:
+           token: ${{ secrets.GITHUB_TOKEN }}
+           working-directory: ${{env.ROOT_PATH}}

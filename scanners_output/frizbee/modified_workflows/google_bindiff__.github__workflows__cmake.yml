@@ -1,0 +1,78 @@
+name: cmake-build
+
+on: [push, pull_request]
+
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - os: ubuntu-22.04
+        - os: macos-12
+        - os: windows-2022
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      with:
+        path: bindiff
+    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      with:
+        repository: google/binexport
+        path: binexport
+
+    - name: Install ninja-build tool
+      uses: turtlesec-no/get-ninja@d7a7c37af896a14495405252c4657afbc7a7b6fa # 1.1.0
+
+    - name: Create Build Environment
+      env:
+        IDASDK_SECRET: ${{ secrets.IDASDK_SECRET }}
+      working-directory: ${{ github.workspace }}
+      shell: bash
+      run: |
+        mkdir -p "${{ runner.workspace }}/build" \
+                 ida/idasdk
+        mv binexport/ida/idasdk/idasdk*.gpg \
+           ida/idasdk/
+        binexport/.github/scripts/decrypt_secret.sh
+        unzip -q "${{ runner.workspace }}/build/idasdk_teams82.zip" \
+              -d "${{ runner.workspace }}/build/"
+
+    - name: Enable Developer Command Prompt (Windows)
+      if: matrix.os == 'windows-2022'
+      uses: ilammy/msvc-dev-cmd@cec98b9d092141f74527d0afa6feb2af698cfe89 # v1.12.1
+
+    - name: Enable mold linker (Linux)
+      if: matrix.os == 'ubuntu-22.04'
+      uses: rui314/setup-mold@725a8794d15fc7563f59595bd9556495c0564878 # v1
+
+    - name: Configure CMake
+      working-directory: ${{ runner.workspace }}/build
+      shell: bash
+      run: |
+        cmake "${{ github.workspace }}/bindiff" -G Ninja \
+          "-DCMAKE_BUILD_TYPE=${BUILD_TYPE}" \
+          "-DIdaSdk_ROOT_DIR=${{ runner.workspace }}/build/idasdk_teams82"
+
+    - name: Build
+      working-directory: ${{ runner.workspace }}/build
+      shell: bash
+      run: cmake --build . --config "${BUILD_TYPE}"
+
+    - name: Test
+      working-directory: ${{ runner.workspace }}/build
+      shell: bash
+      run: ctest --build-config "${BUILD_TYPE}" --output-on-failure -R '^[A-Z]'
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3.1.2
+      with:
+        name: BinDiff-${{ runner.os }}
+        path: |
+          ${{ runner.workspace }}/build/bindiff
+          ${{ runner.workspace }}/build/ida/bindiff*
+          ${{ runner.workspace }}/build/tools/bindiff*

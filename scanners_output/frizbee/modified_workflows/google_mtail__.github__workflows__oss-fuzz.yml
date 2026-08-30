@@ -1,0 +1,34 @@
+name: OSS-Fuzz
+on:
+  pull_request:
+    paths:
+      - '**.go'
+      - 'internal/runtime/compiler/parser/parser.y'
+      - 'Makefile'
+      - 'Dockerfile'
+
+permissions:
+  # Secret code for "the github token should have no tokens at all"
+  actions: none
+
+jobs:
+  oss-fuzz:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Build Fuzzers
+      id: build
+      uses: google/oss-fuzz/infra/cifuzz/actions/build_fuzzers@master
+      with:
+        oss-fuzz-project-name: 'mtail'
+        dry-run: false
+    - name: Run Fuzzers
+      uses: google/oss-fuzz/infra/cifuzz/actions/run_fuzzers@master
+      with:
+        oss-fuzz-project-name: 'mtail'
+        dry-run: false
+    - name: Upload Crash
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+      if: failure() && steps.build.outcome == 'success'
+      with:
+        name: artifacts
+        path: ./out/artifacts

@@ -1,0 +1,28 @@
+name: Validate tar based distributions
+
+on:
+  pull_request:
+    paths: ['distributions/**']
+
+jobs:
+  check:
+    name: Validate tar based distributions changes
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout repo
+          uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+          with:
+            fetch-depth: 0
+
+        - name: Install pip packages
+          run: pip install -r distributions/requirements.txt
+          shell: bash
+
+        - name: Run validation
+          run: | 
+            python distributions/validate-modern.py \
+            --repo-path . \
+            --compare-with-branch 'origin/${{ github.base_ref }}' \
+            --manifest distributions/DistributionInfo.json \
+
+          shell: bash

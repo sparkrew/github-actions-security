@@ -1,0 +1,98 @@
+diff --git a/.github/workflows/google_zx__.github__workflows__publish.yml b/.github/workflows/google_zx__.github__workflows__publish.yml
+index 073f72e..b656766 100644
+--- a/.github/workflows/google_zx__.github__workflows__publish.yml
++++ b/.github/workflows/google_zx__.github__workflows__publish.yml
+@@ -15,10 +15,10 @@ jobs:
+   build:
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           persist-credentials: false
+-      - uses: actions/setup-node@v6
++      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+         with:
+           node-version: 24
+           cache: 'npm'
+@@ -37,7 +37,7 @@ jobs:
+       - run: npm test
+         env:
+           FORCE_COLOR: 3
+-      - uses: actions/upload-artifact@v6
++      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+         with:
+           name: build-${{ github.run_id }}
+           path: |
+@@ -54,7 +54,7 @@ jobs:
+       v: ${{ steps.ref.outputs.ZX_VERSION }}
+       lite: ${{ steps.ref.outputs.ZX_VERSION }}-lite
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           persist-credentials: false
+       - id: ref
+@@ -78,10 +78,10 @@ jobs:
+       GH_NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       ZX_VERSION: ${{ needs.version.outputs.v }}
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           persist-credentials: false
+-      - uses: actions/setup-node@v6
++      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+         with:
+           node-version: 24
+           cache: 'npm'
+@@ -89,7 +89,7 @@ jobs:
+         run: |
+           echo "//${{ env.GOOGLE_NPM_REGISTRY }}/:_authToken=$GOOGLE_NPM_TOKEN" >> .npmrc
+           echo "//${{ env.GH_NPM_REGISTRY }}/:_authToken=$GH_NPM_TOKEN" >> .npmrc
+-      - uses: actions/download-artifact@v7
++      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+         with:
+           name: build-${{ github.run_id }}
+ 
+@@ -115,14 +115,14 @@ jobs:
+       contents: read
+       id-token: write
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           persist-credentials: false
+-      - uses: actions/setup-node@v6
++      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+         with:
+           node-version: 24
+           cache: 'npm'
+-      - uses: actions/download-artifact@v7
++      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+         with:
+           name: build-${{ github.run_id }}
+       - name: pushing to jsr.io
+@@ -144,11 +144,11 @@ jobs:
+       id-token: write
+     steps:
+       - name: Checkout repository
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           persist-credentials: false
+ 
+-      - uses: actions/download-artifact@v7
++      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+         with:
+           name: build-${{ github.run_id }}
+ 
+@@ -177,7 +177,7 @@ jobs:
+           labels: ${{ steps.meta.outputs.labels }}
+ 
+       - name: Generate artifact attestation
+-        uses: actions/attest-build-provenance@v3
++        uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a # v3
+         with:
+           subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
+           subject-digest: ${{ steps.push.outputs.digest }}

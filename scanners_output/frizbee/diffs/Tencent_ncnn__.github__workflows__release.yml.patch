@@ -1,0 +1,625 @@
+diff --git a/.github/workflows/Tencent_ncnn__.github__workflows__release.yml b/.github/workflows/Tencent_ncnn__.github__workflows__release.yml
+index 822f9b2..753c336 100644
+--- a/.github/workflows/Tencent_ncnn__.github__workflows__release.yml
++++ b/.github/workflows/Tencent_ncnn__.github__workflows__release.yml
+@@ -39,7 +39,7 @@ jobs:
+     env:
+       PACKAGENAME: ncnn-${{ needs.setup.outputs.VERSION }}-full-source
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         submodules: true
+     - name: package
+@@ -48,7 +48,7 @@ jobs:
+         rm -f /tmp/${{ env.PACKAGENAME }}.zip
+         zip -9 -y -r /tmp/${{ env.PACKAGENAME }}.zip .
+     - name: upload-zip
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: ${{ env.PACKAGENAME }}
+         path: /tmp/${{ env.PACKAGENAME }}.zip
+@@ -66,7 +66,7 @@ jobs:
+     env:
+       PACKAGENAME: ncnn-${{ needs.setup.outputs.VERSION }}-${{ matrix.opt.id }}
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         submodules: true
+     - name: apt
+@@ -87,7 +87,7 @@ jobs:
+         rm -f ${{ env.PACKAGENAME }}.zip
+         zip -9 -y -r ${{ env.PACKAGENAME }}.zip ${{ env.PACKAGENAME }}
+     - name: upload-zip
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: ${{ env.PACKAGENAME }}
+         path: ${{ env.PACKAGENAME }}.zip
+@@ -110,13 +110,13 @@ jobs:
+     steps:
+     - name: cache-openmp
+       id: cache-openmp
+-      uses: actions/cache@v5
++      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+       with:
+         path: openmp-install
+         key: openmp-macos-release-18.1.2-20251004
+     - name: checkout
+       if: steps.cache-openmp.outputs.cache-hit != 'true'
+-      uses: actions/checkout@v6
++      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+     - name: openmp
+       if: steps.cache-openmp.outputs.cache-hit != 'true'
+       run: |
+@@ -158,7 +158,7 @@ jobs:
+             openmp-${{ env.OPENMP_VERSION }}.src/build-arm64/install/lib/libomp.a \
+             -o $GITHUB_WORKSPACE/openmp-install/lib/libomp.a
+     - name: upload
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: openmp-macos
+         path: openmp-install
+@@ -191,11 +191,11 @@ jobs:
+         -DNCNN_VULKAN=${{ matrix.opt.vulkan }} \
+ 
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         submodules: true
+     - name: download-openmp-macos
+-      uses: actions/download-artifact@v8
++      uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8
+       with:
+         name: openmp-macos
+         path: openmp-macos
+@@ -271,7 +271,7 @@ jobs:
+         rm -f ${{ env.PACKAGENAME }}.zip
+         zip -9 -y -r ${{ env.PACKAGENAME }}.zip openmp.framework glslang.framework ncnn.framework
+     - name: upload-zip
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: ${{ env.PACKAGENAME }}
+         path: ${{ env.PACKAGENAME }}.zip
+@@ -294,13 +294,13 @@ jobs:
+     steps:
+     - name: cache-openmp
+       id: cache-openmp
+-      uses: actions/cache@v5
++      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+       with:
+         path: openmp-install
+         key: openmp-ios-release-18.1.2-20251004
+     - name: checkout
+       if: steps.cache-openmp.outputs.cache-hit != 'true'
+-      uses: actions/checkout@v6
++      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+     - name: openmp
+       if: steps.cache-openmp.outputs.cache-hit != 'true'
+       run: |
+@@ -331,7 +331,7 @@ jobs:
+         mkdir -p $GITHUB_WORKSPACE/openmp-install/lib
+         cp openmp-${{ env.OPENMP_VERSION }}.src/build-arm64/install/lib/libomp.a $GITHUB_WORKSPACE/openmp-install/lib/libomp.a
+     - name: upload
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: openmp-ios
+         path: openmp-install
+@@ -362,11 +362,11 @@ jobs:
+         -DNCNN_VULKAN=${{ matrix.opt.vulkan }} \
+ 
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         submodules: true
+     - name: download-openmp-ios
+-      uses: actions/download-artifact@v8
++      uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8
+       with:
+         name: openmp-ios
+         path: openmp-ios
+@@ -432,7 +432,7 @@ jobs:
+         rm -f ${{ env.PACKAGENAME }}.zip
+         zip -9 -y -r ${{ env.PACKAGENAME }}.zip openmp.framework glslang.framework ncnn.framework
+     - name: upload-zip
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: ${{ env.PACKAGENAME }}
+         path: ${{ env.PACKAGENAME }}.zip
+@@ -455,13 +455,13 @@ jobs:
+     steps:
+     - name: cache-openmp
+       id: cache-openmp
+-      uses: actions/cache@v5
++      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+       with:
+         path: openmp-install
+         key: openmp-ios-simulator-release-18.1.2-20251004
+     - name: checkout
+       if: steps.cache-openmp.outputs.cache-hit != 'true'
+-      uses: actions/checkout@v6
++      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+     - name: openmp
+       if: steps.cache-openmp.outputs.cache-hit != 'true'
+       run: |
+@@ -503,7 +503,7 @@ jobs:
+             openmp-${{ env.OPENMP_VERSION }}.src/build-arm64/install/lib/libomp.a \
+             -o $GITHUB_WORKSPACE/openmp-install/lib/libomp.a
+     - name: upload
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: openmp-ios-simulator
+         path: openmp-install
+@@ -534,11 +534,11 @@ jobs:
+         -DNCNN_VULKAN=${{ matrix.opt.vulkan }} \
+ 
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         submodules: true
+     - name: download-openmp-ios-simulator
+-      uses: actions/download-artifact@v8
++      uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8
+       with:
+         name: openmp-ios-simulator
+         path: openmp-ios-simulator
+@@ -620,7 +620,7 @@ jobs:
+         rm -f ${{ env.PACKAGENAME }}.zip
+         zip -9 -y -r ${{ env.PACKAGENAME }}.zip openmp.framework glslang.framework ncnn.framework
+     - name: upload-zip
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: ${{ env.PACKAGENAME }}
+         path: ${{ env.PACKAGENAME }}.zip
+@@ -643,13 +643,13 @@ jobs:
+     steps:
+     - name: cache-openmp
+       id: cache-openmp
+-      uses: actions/cache@v5
++      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+       with:
+         path: openmp-install
+         key: openmp-mac-catalyst-release-18.1.2-20251004
+     - name: checkout
+       if: steps.cache-openmp.outputs.cache-hit != 'true'
+-      uses: actions/checkout@v6
++      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+     - name: openmp
+       if: steps.cache-openmp.outputs.cache-hit != 'true'
+       run: |
+@@ -691,7 +691,7 @@ jobs:
+             openmp-${{ env.OPENMP_VERSION }}.src/build-arm64/install/lib/libomp.a \
+             -o $GITHUB_WORKSPACE/openmp-install/lib/libomp.a
+     - name: upload
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: openmp-mac-catalyst
+         path: openmp-install
+@@ -722,11 +722,11 @@ jobs:
+         -DNCNN_VULKAN=${{ matrix.opt.vulkan }} \
+ 
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         submodules: true
+     - name: download-openmp-mac-catalyst
+-      uses: actions/download-artifact@v8
++      uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8
+       with:
+         name: openmp-mac-catalyst
+         path: openmp-mac-catalyst
+@@ -808,7 +808,7 @@ jobs:
+         rm -f ${{ env.PACKAGENAME }}.zip
+         zip -9 -y -r ${{ env.PACKAGENAME }}.zip openmp.framework glslang.framework ncnn.framework
+     - name: upload-zip
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: ${{ env.PACKAGENAME }}
+         path: ${{ env.PACKAGENAME }}.zip
+@@ -831,13 +831,13 @@ jobs:
+     steps:
+     - name: cache-openmp
+       id: cache-openmp
+-      uses: actions/cache@v5
++      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+       with:
+         path: openmp-install
+         key: openmp-watchos-release-18.1.2-20251004
+     - name: checkout
+       if: steps.cache-openmp.outputs.cache-hit != 'true'
+-      uses: actions/checkout@v6
++      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+     - name: openmp
+       if: steps.cache-openmp.outputs.cache-hit != 'true'
+       run: |
+@@ -879,7 +879,7 @@ jobs:
+             openmp-${{ env.OPENMP_VERSION }}.src/build-arm64_32/install/lib/libomp.a \
+             -o $GITHUB_WORKSPACE/openmp-install/lib/libomp.a
+     - name: upload
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: openmp-watchos
+         path: openmp-install
+@@ -904,9 +904,9 @@ jobs:
+         -DNCNN_BUILD_BENCHMARK=OFF \
+ 
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+     - name: download-openmp-watchos
+-      uses: actions/download-artifact@v8
++      uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8
+       with:
+         name: openmp-watchos
+         path: openmp-watchos
+@@ -956,7 +956,7 @@ jobs:
+         rm -f ${{ env.PACKAGENAME }}.zip
+         zip -9 -y -r ${{ env.PACKAGENAME }}.zip openmp.framework ncnn.framework
+     - name: upload-zip
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: ${{ env.PACKAGENAME }}
+         path: ${{ env.PACKAGENAME }}.zip
+@@ -979,13 +979,13 @@ jobs:
+     steps:
+     - name: cache-openmp
+       id: cache-openmp
+-      uses: actions/cache@v5
++      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+       with:
+         path: openmp-install
+         key: openmp-watchos-simulator-release-18.1.2-20251004
+     - name: checkout
+       if: steps.cache-openmp.outputs.cache-hit != 'true'
+-      uses: actions/checkout@v6
++      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+     - name: openmp
+       if: steps.cache-openmp.outputs.cache-hit != 'true'
+       run: |
+@@ -1027,7 +1027,7 @@ jobs:
+             openmp-${{ env.OPENMP_VERSION }}.src/build-arm64/install/lib/libomp.a \
+             -o $GITHUB_WORKSPACE/openmp-install/lib/libomp.a
+     - name: upload
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: openmp-watchos-simulator
+         path: openmp-install
+@@ -1052,9 +1052,9 @@ jobs:
+         -DNCNN_BUILD_BENCHMARK=OFF \
+ 
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+     - name: download-openmp-watchos-simulator
+-      uses: actions/download-artifact@v8
++      uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8
+       with:
+         name: openmp-watchos-simulator
+         path: openmp-watchos-simulator
+@@ -1104,7 +1104,7 @@ jobs:
+         rm -f ${{ env.PACKAGENAME }}.zip
+         zip -9 -y -r ${{ env.PACKAGENAME }}.zip openmp.framework ncnn.framework
+     - name: upload-zip
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: ${{ env.PACKAGENAME }}
+         path: ${{ env.PACKAGENAME }}.zip
+@@ -1127,13 +1127,13 @@ jobs:
+     steps:
+     - name: cache-openmp
+       id: cache-openmp
+-      uses: actions/cache@v5
++      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+       with:
+         path: openmp-install
+         key: openmp-tvos-release-18.1.2-20251004
+     - name: checkout
+       if: steps.cache-openmp.outputs.cache-hit != 'true'
+-      uses: actions/checkout@v6
++      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+     - name: openmp
+       if: steps.cache-openmp.outputs.cache-hit != 'true'
+       run: |
+@@ -1175,7 +1175,7 @@ jobs:
+             openmp-${{ env.OPENMP_VERSION }}.src/build-arm64e/install/lib/libomp.a \
+             -o $GITHUB_WORKSPACE/openmp-install/lib/libomp.a
+     - name: upload
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: openmp-tvos
+         path: openmp-install
+@@ -1206,11 +1206,11 @@ jobs:
+         -DNCNN_VULKAN=${{ matrix.opt.vulkan }} \
+ 
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         submodules: true
+     - name: download-openmp-tvos
+-      uses: actions/download-artifact@v8
++      uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8
+       with:
+         name: openmp-tvos
+         path: openmp-tvos
+@@ -1292,7 +1292,7 @@ jobs:
+         rm -f ${{ env.PACKAGENAME }}.zip
+         zip -9 -y -r ${{ env.PACKAGENAME }}.zip openmp.framework glslang.framework ncnn.framework
+     - name: upload-zip
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: ${{ env.PACKAGENAME }}
+         path: ${{ env.PACKAGENAME }}.zip
+@@ -1315,13 +1315,13 @@ jobs:
+     steps:
+     - name: cache-openmp
+       id: cache-openmp
+-      uses: actions/cache@v5
++      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+       with:
+         path: openmp-install
+         key: openmp-tvos-simulator-release-18.1.2-20251004
+     - name: checkout
+       if: steps.cache-openmp.outputs.cache-hit != 'true'
+-      uses: actions/checkout@v6
++      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+     - name: openmp
+       if: steps.cache-openmp.outputs.cache-hit != 'true'
+       run: |
+@@ -1363,7 +1363,7 @@ jobs:
+             openmp-${{ env.OPENMP_VERSION }}.src/build-arm64/install/lib/libomp.a \
+             -o $GITHUB_WORKSPACE/openmp-install/lib/libomp.a
+     - name: upload
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: openmp-tvos-simulator
+         path: openmp-install
+@@ -1394,11 +1394,11 @@ jobs:
+         -DNCNN_VULKAN=${{ matrix.opt.vulkan }} \
+ 
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         submodules: true
+     - name: download-openmp-tvos-simulator
+-      uses: actions/download-artifact@v8
++      uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8
+       with:
+         name: openmp-tvos-simulator
+         path: openmp-tvos-simulator
+@@ -1480,7 +1480,7 @@ jobs:
+         rm -f ${{ env.PACKAGENAME }}.zip
+         zip -9 -y -r ${{ env.PACKAGENAME }}.zip openmp.framework glslang.framework ncnn.framework
+     - name: upload-zip
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: ${{ env.PACKAGENAME }}
+         path: ${{ env.PACKAGENAME }}.zip
+@@ -1503,13 +1503,13 @@ jobs:
+     steps:
+     - name: cache-openmp
+       id: cache-openmp
+-      uses: actions/cache@v5
++      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+       with:
+         path: openmp-install
+         key: openmp-visionos-release-18.1.2-20251004
+     - name: checkout
+       if: steps.cache-openmp.outputs.cache-hit != 'true'
+-      uses: actions/checkout@v6
++      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+     - name: openmp
+       if: steps.cache-openmp.outputs.cache-hit != 'true'
+       run: |
+@@ -1540,7 +1540,7 @@ jobs:
+         mkdir -p $GITHUB_WORKSPACE/openmp-install/lib
+         cp openmp-${{ env.OPENMP_VERSION }}.src/build-arm64/install/lib/libomp.a $GITHUB_WORKSPACE/openmp-install/lib/libomp.a
+     - name: upload
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: openmp-visionos
+         path: openmp-install
+@@ -1571,11 +1571,11 @@ jobs:
+         -DNCNN_VULKAN=${{ matrix.opt.vulkan }} \
+ 
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         submodules: true
+     - name: download-openmp-visionos
+-      uses: actions/download-artifact@v8
++      uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8
+       with:
+         name: openmp-visionos
+         path: openmp-visionos
+@@ -1641,7 +1641,7 @@ jobs:
+         rm -f ${{ env.PACKAGENAME }}.zip
+         zip -9 -y -r ${{ env.PACKAGENAME }}.zip openmp.framework glslang.framework ncnn.framework
+     - name: upload-zip
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: ${{ env.PACKAGENAME }}
+         path: ${{ env.PACKAGENAME }}.zip
+@@ -1664,13 +1664,13 @@ jobs:
+     steps:
+     - name: cache-openmp
+       id: cache-openmp
+-      uses: actions/cache@v5
++      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+       with:
+         path: openmp-install
+         key: openmp-visionos-simulator-release-18.1.2-20251004
+     - name: checkout
+       if: steps.cache-openmp.outputs.cache-hit != 'true'
+-      uses: actions/checkout@v6
++      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+     - name: openmp
+       if: steps.cache-openmp.outputs.cache-hit != 'true'
+       run: |
+@@ -1712,7 +1712,7 @@ jobs:
+             openmp-${{ env.OPENMP_VERSION }}.src/build-arm64/install/lib/libomp.a \
+             -o $GITHUB_WORKSPACE/openmp-install/lib/libomp.a
+     - name: upload
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: openmp-visionos-simulator
+         path: openmp-install
+@@ -1743,11 +1743,11 @@ jobs:
+         -DNCNN_VULKAN=${{ matrix.opt.vulkan }} \
+ 
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         submodules: true
+     - name: download-openmp-visionos-simulator
+-      uses: actions/download-artifact@v8
++      uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8
+       with:
+         name: openmp-visionos-simulator
+         path: openmp-visionos-simulator
+@@ -1829,7 +1829,7 @@ jobs:
+         rm -f ${{ env.PACKAGENAME }}.zip
+         zip -9 -y -r ${{ env.PACKAGENAME }}.zip openmp.framework glslang.framework ncnn.framework
+     - name: upload-zip
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: ${{ env.PACKAGENAME }}
+         path: ${{ env.PACKAGENAME }}.zip
+@@ -1859,7 +1859,7 @@ jobs:
+         -DNCNN_SHARED_LIB=${{ matrix.opt.shared-lib }} \
+ 
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         submodules: true
+     - name: ndk-fix-debug
+@@ -1906,7 +1906,7 @@ jobs:
+         rm -f ${{ env.PACKAGENAME }}.zip
+         zip -9 -y -r ${{ env.PACKAGENAME }}.zip ${{ env.PACKAGENAME }}
+     - name: upload-zip
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: ${{ env.PACKAGENAME }}
+         path: ${{ env.PACKAGENAME }}.zip
+@@ -1917,7 +1917,7 @@ jobs:
+     env:
+       PACKAGENAME: ncnn-${{ needs.setup.outputs.VERSION }}-webassembly
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+     - name: emsdk
+       run: |
+         git clone https://github.com/emscripten-core/emsdk.git
+@@ -1971,7 +1971,7 @@ jobs:
+         rm -f ${{ env.PACKAGENAME }}.zip
+         zip -9 -y -r ${{ env.PACKAGENAME }}.zip ${{ env.PACKAGENAME }}
+     - name: upload-zip
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: ${{ env.PACKAGENAME }}
+         path: ${{ env.PACKAGENAME }}.zip
+@@ -2005,7 +2005,7 @@ jobs:
+         -DNCNN_SHARED_LIB=${{ matrix.opt.shared-lib }} `
+ 
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         submodules: true
+ 
+@@ -2030,13 +2030,13 @@ jobs:
+         echo "INCLUDE=$($lines[1])" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+         echo "LIB=$($lines[2])" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+ 
+-    - uses: GuillaumeFalourd/setup-windows10-sdk-action@v2.4
++    - uses: GuillaumeFalourd/setup-windows10-sdk-action@9979bedbf6ae74f038cc338622ba015942ed2408 # v2.4
+       with:
+         sdk-version: ${{ matrix.opt.windows-sdk-version }}
+ 
+     - name: cache-protobuf
+       id: cache-protobuf
+-      uses: actions/cache@v5
++      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+       with:
+         path: "protobuf-install"
+         key: protobuf-${{ matrix.opt.toolset-version }}-x86-x64-install
+@@ -2095,7 +2095,7 @@ jobs:
+         Copy-Item -Verbose -Recurse -Path "build-arm64\install\*" -Destination "${{ env.PACKAGENAME }}\arm64"
+         7z a -r ${{ env.PACKAGENAME }}.zip ${{ env.PACKAGENAME }}
+     - name: upload-zip
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: ${{ env.PACKAGENAME }}
+         path: ${{ env.PACKAGENAME }}.zip
+@@ -2108,7 +2108,7 @@ jobs:
+     steps:
+     - run: sudo xcode-select --switch /Applications/Xcode_16.4.0.app
+     - name: download
+-      uses: actions/download-artifact@v8
++      uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8
+       with:
+         path: artifacts
+ 
+@@ -2229,12 +2229,12 @@ jobs:
+         rm -f ${{ env.PACKAGENAME }}-vulkan.zip
+         zip -9 -y -r ${{ env.PACKAGENAME }}-vulkan.zip openmp.xcframework glslang.xcframework ncnn.xcframework
+     - name: upload-zip
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: ${{ env.PACKAGENAME }}
+         path: ${{ env.PACKAGENAME }}.zip
+     - name: upload-zip-vulkan
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       with:
+         name: ${{ env.PACKAGENAME }}-vulkan
+         path: ${{ env.PACKAGENAME }}-vulkan.zip
+@@ -2246,12 +2246,12 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+     - name: download
+-      uses: actions/download-artifact@v8
++      uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # v8
+       with:
+         path: artifacts
+ 
+     - name: create-release
+-      uses: softprops/action-gh-release@v2
++      uses: softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b # v2
+       with:
+         token: ${{ secrets.GITHUB_TOKEN }}
+         tag_name: ${{ needs.setup.outputs.VERSION }}

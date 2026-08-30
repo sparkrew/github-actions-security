@@ -1,0 +1,32 @@
+{
+  "workflow": "google_tamperchrome__.github__workflows__post-commit.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # actions/checkout@v2 | releases,850,v2.7.0",
+      "line": 14
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: nick-invision/retry@14672906e672a08bd6eeb15720e9ed3ce869cdd4 # nick-invision/retry@v2 | v2.9.0",
+      "line": 20
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # actions/checkout@v2 | releases,850,v2.7.0",
+      "line": 30
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: GabrielBB/xvfb-action@86d97bde4a65fe9b290c0b3fb92c2c4ed0e5302d # GabrielBB/xvfb-action@v1 | v1.6",
+      "line": 36
+    }
+  ]
+}

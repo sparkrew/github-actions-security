@@ -1,0 +1,78 @@
+{
+  "workflow": "NVIDIA_cccl__.github__workflows__project_automation_sync_pr_issues.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 7,
+    "by_rule": {
+      "excessive-permissions": 1,
+      "dangerous-triggers": 1,
+      "unpinned-uses": 1,
+      "github-env": 4
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "NVIDIA_cccl__.github__workflows__project_automation_sync_pr_issues.yml",
+      "line": 37,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "dangerous-triggers",
+      "level": "error",
+      "message": "use of fundamentally insecure workflow trigger",
+      "workflow": "NVIDIA_cccl__.github__workflows__project_automation_sync_pr_issues.yml",
+      "line": 144,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "NVIDIA_cccl__.github__workflows__project_automation_sync_pr_issues.yml",
+      "line": 44,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "github-env",
+      "level": "error",
+      "message": "dangerous use of environment file",
+      "workflow": "NVIDIA_cccl__.github__workflows__project_automation_sync_pr_issues.yml",
+      "line": 53,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "github-env",
+      "level": "error",
+      "message": "dangerous use of environment file",
+      "workflow": "NVIDIA_cccl__.github__workflows__project_automation_sync_pr_issues.yml",
+      "line": 90,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "github-env",
+      "level": "error",
+      "message": "dangerous use of environment file",
+      "workflow": "NVIDIA_cccl__.github__workflows__project_automation_sync_pr_issues.yml",
+      "line": 90,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "github-env",
+      "level": "error",
+      "message": "dangerous use of environment file",
+      "workflow": "NVIDIA_cccl__.github__workflows__project_automation_sync_pr_issues.yml",
+      "line": 90,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    }
+  ]
+}

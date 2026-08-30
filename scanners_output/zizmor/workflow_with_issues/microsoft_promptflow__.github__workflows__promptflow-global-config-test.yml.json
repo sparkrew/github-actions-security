@@ -1,0 +1,59 @@
+{
+  "workflow": "microsoft_promptflow__.github__workflows__promptflow-global-config-test.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "artipacked": 2,
+      "excessive-permissions": 1,
+      "unpinned-uses": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_promptflow__.github__workflows__promptflow-global-config-test.yml",
+      "line": 38,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_promptflow__.github__workflows__promptflow-global-config-test.yml",
+      "line": 114,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "error",
+      "message": "overly broad permissions",
+      "workflow": "microsoft_promptflow__.github__workflows__promptflow-global-config-test.yml",
+      "line": 55,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "microsoft_promptflow__.github__workflows__promptflow-global-config-test.yml",
+      "line": 54,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "microsoft_promptflow__.github__workflows__promptflow-global-config-test.yml",
+      "line": 76,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

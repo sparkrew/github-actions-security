@@ -1,0 +1,29 @@
+name: CIFuzz
+on: [pull_request]
+jobs:
+ Fuzzing:
+   runs-on: ubuntu-latest
+   strategy:
+     fail-fast: false
+     matrix:
+       sanitizer: [address, undefined]
+   steps:
+   - name: Build Fuzzers (${{ matrix.sanitizer }})
+     uses: google/oss-fuzz/infra/cifuzz/actions/build_fuzzers@cf847f530037cea45ca4f8b6a2e1e762609df0bd # google/oss-fuzz/infra/cifuzz/actions/build_fuzzers@master
+     with:
+       oss-fuzz-project-name: 'bloaty'
+       dry-run: false
+       sanitizer: ${{ matrix.sanitizer }}
+   - name: Run Fuzzers (${{ matrix.sanitizer }})
+     uses: google/oss-fuzz/infra/cifuzz/actions/build_fuzzers@cf847f530037cea45ca4f8b6a2e1e762609df0bd # google/oss-fuzz/infra/cifuzz/actions/build_fuzzers@master
+     with:
+       oss-fuzz-project-name: 'bloaty'
+       fuzz-seconds: 600
+       dry-run: false
+       sanitizer: ${{ matrix.sanitizer }}
+   - name: Upload Crash
+     uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2
+     if: failure()
+     with:
+       name: ${{ matrix.sanitizer }}-artifacts
+       path: ./out/artifacts

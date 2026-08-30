@@ -1,0 +1,64 @@
+name: Publish_Any_Commit
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'packages/site-components/**'
+      - 'packages/theme-generator/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'packages/site-components/**'
+      - 'packages/theme-generator/**'
+      - 'site/**'
+
+jobs:
+  build:
+    if: github.repository == 'Tencent/tdesign'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: .node-version
+
+      - run: pnpm install
+
+      - run: pnpm --filter '@tdesign/site-components' --filter '@tdesign/theme-generator' run build
+
+      - run: pnpm dlx pkg-pr-new publish './packages/site-components' './packages/theme-generator'
+
+  build-site:
+    if: github.repository == 'Tencent/tdesign' && github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ github.event.number }} > pr-id.txt
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: pr-id
+          path: pr-id.txt
+          retention-days: 5
+
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: .node-version
+
+      - run: pnpm install
+
+      - run: pnpm run site:preview
+
+      - run: cp _site/index.html _site/404.html
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: tdesign-site
+          path: _site
+          retention-days: 5

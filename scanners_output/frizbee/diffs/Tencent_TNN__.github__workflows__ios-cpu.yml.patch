@@ -1,0 +1,21 @@
+diff --git a/.github/workflows/Tencent_TNN__.github__workflows__ios-cpu.yml b/.github/workflows/Tencent_TNN__.github__workflows__ios-cpu.yml
+index 3aeb4af..3d48556 100644
+--- a/.github/workflows/Tencent_TNN__.github__workflows__ios-cpu.yml
++++ b/.github/workflows/Tencent_TNN__.github__workflows__ios-cpu.yml
+@@ -13,7 +13,7 @@ jobs:
+     outputs:
+       CONDITION: ${{ steps.preflight.outputs.CONDITION }}
+     steps:
+-    - uses: actions/checkout@v2
++    - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+     - name: Preflight
+       id: preflight
+       run: |
+@@ -25,6 +25,6 @@ jobs:
+     if: ${{ needs.setup.outputs.CONDITION != '11' }}
+     runs-on: macos-latest
+     steps:
+-    - uses: actions/checkout@v2
++    - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+     - name: build
+       run: ./scripts/build_framework_ios.sh

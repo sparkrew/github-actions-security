@@ -1,0 +1,27 @@
+{
+  "workflow": "google_tarpc__.github__workflows__pr_review.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+      "line": 7
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: dtolnay/rust-toolchain@631a55b12751854ce901bb631d5902ceb48146f7 # dtolnay/rust-toolchain@stable",
+      "line": 8
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: giraffate/clippy-action@13b9d32482f25d29ead141b79e7e04e7900281e0 # giraffate/clippy-action@v1 | v1.0.1",
+      "line": 11
+    }
+  ]
+}

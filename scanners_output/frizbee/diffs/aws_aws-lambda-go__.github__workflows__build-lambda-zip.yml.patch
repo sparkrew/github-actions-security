@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/aws_aws-lambda-go__.github__workflows__build-lambda-zip.yml b/.github/workflows/aws_aws-lambda-go__.github__workflows__build-lambda-zip.yml
+index b3b76c4..9bc2b61 100644
+--- a/.github/workflows/aws_aws-lambda-go__.github__workflows__build-lambda-zip.yml
++++ b/.github/workflows/aws_aws-lambda-go__.github__workflows__build-lambda-zip.yml
+@@ -16,7 +16,7 @@ jobs:
+         platform: [ubuntu-latest, macos-latest, windows-latest]
+     steps:
+       - name: Setup Go
+-        uses: actions/setup-go@v6
++        uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 # v6
+         with:
+           go-version: ${{ matrix.go-version }}
+ 

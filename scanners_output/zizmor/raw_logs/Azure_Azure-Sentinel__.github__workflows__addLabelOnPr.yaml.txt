@@ -1,0 +1,18 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__addLabelOnPr.yaml:27:9
+   [1m[94m|[0m
+[1m[94m27 |[0m           name: Add Label To Pull Request
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m28 |[0m           env:
+[1m[94m...[0m
+[1m[94m31 |[0m             github-token: ${{ env.APPTOKEN }}
+[1m[94m32 |[0m [1m[91m/[0m           script: |
+[1m[94m33 |[0m [1m[91m|[0m             $labelName = "${{ inputs.labelName }}"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m39 |[0m [1m[91m|[0m                 labels: [$labelName]
+[1m[94m40 |[0m [1m[91m|[0m             })
+   [1m[94m|[0m [1m[91m|______________^[0m [1m[91minputs.labelName may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m4[39m findings ([1m[93m3[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m0[39m medium, [31m1[39m high

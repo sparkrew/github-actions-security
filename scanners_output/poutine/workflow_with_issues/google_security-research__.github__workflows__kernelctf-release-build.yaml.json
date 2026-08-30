@@ -1,0 +1,24 @@
+{
+  "workflow": "google_security-research__.github__workflows__kernelctf-release-build.yaml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 163,
+      "column": "",
+      "job": "upload",
+      "step": "0",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch",
+        "workflow_call"
+      ]
+    }
+  ]
+}

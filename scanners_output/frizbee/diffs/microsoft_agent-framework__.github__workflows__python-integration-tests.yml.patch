@@ -1,0 +1,100 @@
+diff --git a/.github/workflows/microsoft_agent-framework__.github__workflows__python-integration-tests.yml b/.github/workflows/microsoft_agent-framework__.github__workflows__python-integration-tests.yml
+index 56525b4..29cd4da 100644
+--- a/.github/workflows/microsoft_agent-framework__.github__workflows__python-integration-tests.yml
++++ b/.github/workflows/microsoft_agent-framework__.github__workflows__python-integration-tests.yml
+@@ -36,7 +36,7 @@ jobs:
+       run:
+         working-directory: python
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           ref: ${{ inputs.checkout-ref }}
+           persist-credentials: false
+@@ -69,7 +69,7 @@ jobs:
+       run:
+         working-directory: python
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           ref: ${{ inputs.checkout-ref }}
+           persist-credentials: false
+@@ -103,7 +103,7 @@ jobs:
+       run:
+         working-directory: python
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           ref: ${{ inputs.checkout-ref }}
+           persist-credentials: false
+@@ -114,7 +114,7 @@ jobs:
+           python-version: ${{ env.UV_PYTHON }}
+           os: ${{ runner.os }}
+       - name: Azure CLI Login
+-        uses: azure/login@v2
++        uses: azure/login@a457da9ea143d694b1b9c7c869ebb04ebe844ef5 # v2
+         with:
+           client-id: ${{ secrets.AZURE_CLIENT_ID }}
+           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+@@ -142,7 +142,7 @@ jobs:
+       run:
+         working-directory: python
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           ref: ${{ inputs.checkout-ref }}
+           persist-credentials: false
+@@ -184,7 +184,7 @@ jobs:
+       run:
+         working-directory: python
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           ref: ${{ inputs.checkout-ref }}
+           persist-credentials: false
+@@ -195,7 +195,7 @@ jobs:
+           python-version: ${{ env.UV_PYTHON }}
+           os: ${{ runner.os }}
+       - name: Azure CLI Login
+-        uses: azure/login@v2
++        uses: azure/login@a457da9ea143d694b1b9c7c869ebb04ebe844ef5 # v2
+         with:
+           client-id: ${{ secrets.AZURE_CLIENT_ID }}
+           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+@@ -227,7 +227,7 @@ jobs:
+       run:
+         working-directory: python
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           ref: ${{ inputs.checkout-ref }}
+           persist-credentials: false
+@@ -238,7 +238,7 @@ jobs:
+           python-version: ${{ env.UV_PYTHON }}
+           os: ${{ runner.os }}
+       - name: Azure CLI Login
+-        uses: azure/login@v2
++        uses: azure/login@a457da9ea143d694b1b9c7c869ebb04ebe844ef5 # v2
+         with:
+           client-id: ${{ secrets.AZURE_CLIENT_ID }}
+           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+@@ -262,12 +262,12 @@ jobs:
+     steps:
+       - name: Fail workflow if tests failed
+         if: contains(join(needs.*.result, ','), 'failure')
+-        uses: actions/github-script@v8
++        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+         with:
+           script: core.setFailed('Integration Tests Failed!')
+ 
+       - name: Fail workflow if tests cancelled
+         if: contains(join(needs.*.result, ','), 'cancelled')
+-        uses: actions/github-script@v8
++        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+         with:
+           script: core.setFailed('Integration Tests Cancelled!')

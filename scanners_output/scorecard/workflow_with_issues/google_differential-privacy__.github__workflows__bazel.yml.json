@@ -1,0 +1,90 @@
+{
+  "workflow": "google_differential-privacy__.github__workflows__bazel.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        11,
+        13,
+        39,
+        41,
+        62,
+        64,
+        102,
+        104,
+        119,
+        121,
+        126,
+        127,
+        129,
+        143,
+        153,
+        163
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_differential-privacy__.github__workflows__bazel.yml:39",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_differential-privacy__.github__workflows__bazel.yml:41",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_differential-privacy__.github__workflows__bazel.yml:62",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_differential-privacy__.github__workflows__bazel.yml:64",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_differential-privacy__.github__workflows__bazel.yml:102",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_differential-privacy__.github__workflows__bazel.yml:104",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_differential-privacy__.github__workflows__bazel.yml:119",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_differential-privacy__.github__workflows__bazel.yml:121",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_differential-privacy__.github__workflows__bazel.yml:129",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_differential-privacy__.github__workflows__bazel.yml:11",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_differential-privacy__.github__workflows__bazel.yml:13",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_differential-privacy__.github__workflows__bazel.yml:126",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_differential-privacy__.github__workflows__bazel.yml:127",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_differential-privacy__.github__workflows__bazel.yml:143",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_differential-privacy__.github__workflows__bazel.yml:153",
+        "Warn: pipCommand not pinned by hash: .github/workflows/google_differential-privacy__.github__workflows__bazel.yml:163",
+        "Info:   0 out of  11 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of   5 pipCommand dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 0,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1
+      ],
+      "raw_details": [
+        "Warn: no topLevel permission defined: .github/workflows/google_differential-privacy__.github__workflows__bazel.yml:1",
+        "Info: no jobLevel write permissions found"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

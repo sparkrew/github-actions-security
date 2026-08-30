@@ -1,0 +1,27 @@
+{
+  "workflow": "aws_eks-anywhere__.github__workflows__go-coverage.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+      "line": 19
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # actions/setup-go@v5 | releases,v5.6.0",
+      "line": 20
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: codecov/codecov-action@18283e04ce6e62d37312384ff67231eb8fd56d24 # codecov/codecov-action@v5.4.3",
+      "line": 28
+    }
+  ]
+}

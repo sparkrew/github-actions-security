@@ -1,0 +1,70 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__triage_rotation.yml:27:3
+   [1m[94m|[0m
+[1m[94m27 |[0m [1m[33m/[0m   assign_issues:
+[1m[94m28 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m69 |[0m [1m[33m|[0m              Thanks for submitting this issue - the CCCL team has been notified and we'll get back to you as soon as we can!
+[1m[94m70 |[0m [1m[33m|[0m              In the mean time, feel free to add any relevant information to this issue."
+   [1m[94m|[0m [1m[33m|[0m                                                                                         [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_________________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                           [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                           [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__triage_rotation.yml:47:9
+   [1m[94m|[0m
+[1m[94m47 |[0m         - name: Assign issue
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m48 |[0m [1m[91m/[0m         run: |
+[1m[94m49 |[0m [1m[91m|[0m            gh api graphql -f query='
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m55 |[0m [1m[91m|[0m                                    { clientMutationId }
+[1m[94m56 |[0m [1m[91m|[0m                                }'
+   [1m[94m|[0m [1m[91m|_________________________________^[0m [1m[91mgithub.event.issue.node_id may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__triage_rotation.yml:58:9
+   [1m[94m|[0m
+[1m[94m58 |[0m         - name: add-triage-label
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m59 |[0m [1m[91m/[0m         run: |
+[1m[94m60 |[0m [1m[91m|[0m           issue_url=${{ github.event.issue.html_url }}
+[1m[94m61 |[0m [1m[91m|[0m           gh issue edit ${issue_url} --add-label "Needs Triage"
+   [1m[94m|[0m [1m[91m|_______________________________________________________________^[0m [1m[91mgithub.event.issue.html_url may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__triage_rotation.yml:63:9
+   [1m[94m|[0m
+[1m[94m63 |[0m         - name: add-comment-to-issue
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m64 |[0m [1m[91m/[0m         run: |
+[1m[94m65 |[0m [1m[91m|[0m            issue_url=${{ github.event.issue.html_url }}
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m69 |[0m [1m[91m|[0m              Thanks for submitting this issue - the CCCL team has been notified and we'll get back to you as soon as we can!
+[1m[94m70 |[0m [1m[91m|[0m              In the mean time, feel free to add any relevant information to this issue."
+   [1m[94m|[0m [1m[91m|_________________________________________________________________________________________^[0m [1m[91mgithub.event.issue.html_url may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__triage_rotation.yml:63:9
+   [1m[94m|[0m
+[1m[94m63 |[0m         - name: add-comment-to-issue
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m64 |[0m [1m[91m/[0m         run: |
+[1m[94m65 |[0m [1m[91m|[0m            issue_url=${{ github.event.issue.html_url }}
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m69 |[0m [1m[91m|[0m              Thanks for submitting this issue - the CCCL team has been notified and we'll get back to you as soon as we can!
+[1m[94m70 |[0m [1m[91m|[0m              In the mean time, feel free to add any relevant information to this issue."
+   [1m[94m|[0m [1m[91m|_________________________________________________________________________________________^[0m [1m[91mgithub.event.issue.user.login may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m12[39m findings ([1m[93m7[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m4[39m high

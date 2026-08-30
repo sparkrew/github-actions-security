@@ -1,0 +1,29 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_fluentui__.github__workflows__vrt-baseline.yml:24:9
+   [1m[94m|[0m
+[1m[94m24 |[0m         - uses: actions/checkout@v6
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m25 |[0m [1m[33m|[0m         with:
+[1m[94m26 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_fluentui__.github__workflows__vrt-baseline.yml:59:9
+   [1m[94m|[0m
+[1m[94m59 |[0m         - name: Run baseline
+   [1m[94m|[0m           [1m[94m------------------[0m [1m[94minfo: this step[0m
+[1m[94m60 |[0m           env:
+[1m[94m...[0m
+[1m[94m63 |[0m             PRINCIPAL_CLIENT_ID: ${{ secrets.AZURE_VRT_CLIENT_ID }}
+[1m[94m64 |[0m [1m[94m/[0m         run: |
+[1m[94m65 |[0m [1m[94m|[0m           npx vr-approval-cli@0.5.1 run-diff \
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m74 |[0m [1m[94m|[0m             --pipelineId '301' \
+[1m[94m75 |[0m [1m[94m|[0m             --cumThreshold '1'
+   [1m[94m|[0m [1m[94m|_______________________________-[0m [1m[94minfo: steps.screenshots_root.outputs.result may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m4[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m1[39m medium, [31m0[39m high

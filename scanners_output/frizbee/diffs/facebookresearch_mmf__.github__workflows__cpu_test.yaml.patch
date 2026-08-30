@@ -1,0 +1,35 @@
+diff --git a/.github/workflows/facebookresearch_mmf__.github__workflows__cpu_test.yaml b/.github/workflows/facebookresearch_mmf__.github__workflows__cpu_test.yaml
+index 12e0658..0667a80 100644
+--- a/.github/workflows/facebookresearch_mmf__.github__workflows__cpu_test.yaml
++++ b/.github/workflows/facebookresearch_mmf__.github__workflows__cpu_test.yaml
+@@ -19,10 +19,10 @@ jobs:
+ 
+     steps:
+     - name: Checkout branch 🛎️
+-      uses: actions/checkout@v2
++      uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+ 
+     - name: Setup Conda Environment
+-      uses: conda-incubator/setup-miniconda@v2
++      uses: conda-incubator/setup-miniconda@9f54435e0e72c53962ee863144e47a4b094bfd35 # v2
+       with:
+         activate-environment: mmf
+         python-version: ${{ matrix.python-version }}
+@@ -30,7 +30,7 @@ jobs:
+         use-only-tar-bz2: true
+ 
+     - name: Cache Conda Environment
+-      uses: actions/cache@v2
++      uses: actions/cache@8492260343ad570701412c2f464a5877dc76bace # v2
+       env:
+         # Increase this value to reset cache if nothing has not changed but you still
+         # want to invalidate the cache
+@@ -80,7 +80,7 @@ jobs:
+         pytest --junitxml=artifacts/junit-${{ matrix.platform }}-python${{ matrix.python-version }}.xml -v .
+ 
+     - name: Upload Test Results
+-      uses: actions/upload-artifact@v1
++      uses: actions/upload-artifact@3446296876d12d4e3a0f3145a3c87e67bf0a16b5 # v1
+       with:
+         name: pytest-results-${{ matrix.platform }}-python${{ matrix.python-version }}
+         path: tests/artifacts/junit-${{ matrix.platform }}-python${{ matrix.python-version }}.xml

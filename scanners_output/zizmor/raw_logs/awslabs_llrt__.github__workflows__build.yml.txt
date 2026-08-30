@@ -1,0 +1,228 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_llrt__.github__workflows__build.yml:31:9
+   [1m[94m|[0m
+[1m[94m31 |[0m         - name: Checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m32 |[0m [1m[33m|[0m         uses: actions/checkout@v6
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_llrt__.github__workflows__build.yml:86:9
+    [1m[94m|[0m
+[1m[94m 86 |[0m         - name: Map crypto to features
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m 87 |[0m           id: features
+[1m[94m 88 |[0m           if: inputs.crypto != ''
+[1m[94m 89 |[0m           shell: bash
+[1m[94m 90 |[0m [1m[91m/[0m         run: |
+[1m[94m 91 |[0m [1m[91m|[0m           case "${{ inputs.crypto }}" in
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m111 |[0m [1m[91m|[0m               ;;
+[1m[94m112 |[0m [1m[91m|[0m           esac
+    [1m[94m|[0m [1m[91m|______________^[0m [1m[91minputs.crypto may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_llrt__.github__workflows__build.yml:86:9
+    [1m[94m|[0m
+[1m[94m 86 |[0m         - name: Map crypto to features
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m 87 |[0m           id: features
+[1m[94m 88 |[0m           if: inputs.crypto != ''
+[1m[94m 89 |[0m           shell: bash
+[1m[94m 90 |[0m [1m[91m/[0m         run: |
+[1m[94m 91 |[0m [1m[91m|[0m           case "${{ inputs.crypto }}" in
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m111 |[0m [1m[91m|[0m               ;;
+[1m[94m112 |[0m [1m[91m|[0m           esac
+    [1m[94m|[0m [1m[91m|______________^[0m [1m[91minputs.platform may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_llrt__.github__workflows__build.yml:86:9
+    [1m[94m|[0m
+[1m[94m 86 |[0m         - name: Map crypto to features
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m 87 |[0m           id: features
+[1m[94m 88 |[0m           if: inputs.crypto != ''
+[1m[94m 89 |[0m           shell: bash
+[1m[94m 90 |[0m [1m[91m/[0m         run: |
+[1m[94m 91 |[0m [1m[91m|[0m           case "${{ inputs.crypto }}" in
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m111 |[0m [1m[91m|[0m               ;;
+[1m[94m112 |[0m [1m[91m|[0m           esac
+    [1m[94m|[0m [1m[91m|______________^[0m [1m[91minputs.crypto may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_llrt__.github__workflows__build.yml:127:9
+    [1m[94m|[0m
+[1m[94m127 |[0m         - name: Build Linux binaries
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m128 |[0m           if: inputs.release && inputs.platform == 'linux'
+[1m[94m129 |[0m [1m[91m/[0m         run: |
+[1m[94m130 |[0m [1m[91m|[0m           make libs-${{ inputs.release }}
+[1m[94m131 |[0m [1m[91m|[0m           make release-aws-${{ inputs.release }}
+[1m[94m132 |[0m [1m[91m|[0m           make release-aws-${{ inputs.release }}-no-sdk
+[1m[94m133 |[0m [1m[91m|[0m           make release-aws-${{ inputs.release }}-full-sdk
+    [1m[94m|[0m [1m[91m|_________________________________________________________^[0m [1m[91minputs.release may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_llrt__.github__workflows__build.yml:127:9
+    [1m[94m|[0m
+[1m[94m127 |[0m         - name: Build Linux binaries
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m128 |[0m           if: inputs.release && inputs.platform == 'linux'
+[1m[94m129 |[0m [1m[91m/[0m         run: |
+[1m[94m130 |[0m [1m[91m|[0m           make libs-${{ inputs.release }}
+[1m[94m131 |[0m [1m[91m|[0m           make release-aws-${{ inputs.release }}
+[1m[94m132 |[0m [1m[91m|[0m           make release-aws-${{ inputs.release }}-no-sdk
+[1m[94m133 |[0m [1m[91m|[0m           make release-aws-${{ inputs.release }}-full-sdk
+    [1m[94m|[0m [1m[91m|_________________________________________________________^[0m [1m[91minputs.release may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_llrt__.github__workflows__build.yml:127:9
+    [1m[94m|[0m
+[1m[94m127 |[0m         - name: Build Linux binaries
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m128 |[0m           if: inputs.release && inputs.platform == 'linux'
+[1m[94m129 |[0m [1m[91m/[0m         run: |
+[1m[94m130 |[0m [1m[91m|[0m           make libs-${{ inputs.release }}
+[1m[94m131 |[0m [1m[91m|[0m           make release-aws-${{ inputs.release }}
+[1m[94m132 |[0m [1m[91m|[0m           make release-aws-${{ inputs.release }}-no-sdk
+[1m[94m133 |[0m [1m[91m|[0m           make release-aws-${{ inputs.release }}-full-sdk
+    [1m[94m|[0m [1m[91m|_________________________________________________________^[0m [1m[91minputs.release may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_llrt__.github__workflows__build.yml:127:9
+    [1m[94m|[0m
+[1m[94m127 |[0m         - name: Build Linux binaries
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m128 |[0m           if: inputs.release && inputs.platform == 'linux'
+[1m[94m129 |[0m [1m[91m/[0m         run: |
+[1m[94m130 |[0m [1m[91m|[0m           make libs-${{ inputs.release }}
+[1m[94m131 |[0m [1m[91m|[0m           make release-aws-${{ inputs.release }}
+[1m[94m132 |[0m [1m[91m|[0m           make release-aws-${{ inputs.release }}-no-sdk
+[1m[94m133 |[0m [1m[91m|[0m           make release-aws-${{ inputs.release }}-full-sdk
+    [1m[94m|[0m [1m[91m|_________________________________________________________^[0m [1m[91minputs.release may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_llrt__.github__workflows__build.yml:134:9
+    [1m[94m|[0m
+[1m[94m134 |[0m         - name: Build Darwin binaries
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m135 |[0m           if: inputs.release && inputs.platform == 'darwin'
+[1m[94m136 |[0m [1m[91m/[0m         run: |
+[1m[94m137 |[0m [1m[91m|[0m           make llrt-darwin-${{ inputs.release }}.zip
+[1m[94m138 |[0m [1m[91m|[0m           make llrt-darwin-${{ inputs.release }}-no-sdk.zip
+[1m[94m139 |[0m [1m[91m|[0m           make llrt-darwin-${{ inputs.release }}-full-sdk.zip
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.release may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_llrt__.github__workflows__build.yml:134:9
+    [1m[94m|[0m
+[1m[94m134 |[0m         - name: Build Darwin binaries
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m135 |[0m           if: inputs.release && inputs.platform == 'darwin'
+[1m[94m136 |[0m [1m[91m/[0m         run: |
+[1m[94m137 |[0m [1m[91m|[0m           make llrt-darwin-${{ inputs.release }}.zip
+[1m[94m138 |[0m [1m[91m|[0m           make llrt-darwin-${{ inputs.release }}-no-sdk.zip
+[1m[94m139 |[0m [1m[91m|[0m           make llrt-darwin-${{ inputs.release }}-full-sdk.zip
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.release may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_llrt__.github__workflows__build.yml:134:9
+    [1m[94m|[0m
+[1m[94m134 |[0m         - name: Build Darwin binaries
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m135 |[0m           if: inputs.release && inputs.platform == 'darwin'
+[1m[94m136 |[0m [1m[91m/[0m         run: |
+[1m[94m137 |[0m [1m[91m|[0m           make llrt-darwin-${{ inputs.release }}.zip
+[1m[94m138 |[0m [1m[91m|[0m           make llrt-darwin-${{ inputs.release }}-no-sdk.zip
+[1m[94m139 |[0m [1m[91m|[0m           make llrt-darwin-${{ inputs.release }}-full-sdk.zip
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.release may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_llrt__.github__workflows__build.yml:140:9
+    [1m[94m|[0m
+[1m[94m140 |[0m         - name: Build Windows binaries
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m141 |[0m           if: inputs.release && inputs.platform == 'windows'
+[1m[94m142 |[0m           shell: msys2 {0}
+[1m[94m143 |[0m [1m[91m/[0m         run: |
+[1m[94m144 |[0m [1m[91m|[0m           # HACK: Add scoop/shims to PATH
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m149 |[0m [1m[91m|[0m           make llrt-windows-${{ inputs.release }}-no-sdk.zip
+[1m[94m150 |[0m [1m[91m|[0m           make llrt-windows-${{ inputs.release }}-full-sdk.zip
+    [1m[94m|[0m [1m[91m|______________________________________________________________^[0m [1m[91minputs.release may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_llrt__.github__workflows__build.yml:140:9
+    [1m[94m|[0m
+[1m[94m140 |[0m         - name: Build Windows binaries
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m141 |[0m           if: inputs.release && inputs.platform == 'windows'
+[1m[94m142 |[0m           shell: msys2 {0}
+[1m[94m143 |[0m [1m[91m/[0m         run: |
+[1m[94m144 |[0m [1m[91m|[0m           # HACK: Add scoop/shims to PATH
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m149 |[0m [1m[91m|[0m           make llrt-windows-${{ inputs.release }}-no-sdk.zip
+[1m[94m150 |[0m [1m[91m|[0m           make llrt-windows-${{ inputs.release }}-full-sdk.zip
+    [1m[94m|[0m [1m[91m|______________________________________________________________^[0m [1m[91minputs.release may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_llrt__.github__workflows__build.yml:140:9
+    [1m[94m|[0m
+[1m[94m140 |[0m         - name: Build Windows binaries
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m141 |[0m           if: inputs.release && inputs.platform == 'windows'
+[1m[94m142 |[0m           shell: msys2 {0}
+[1m[94m143 |[0m [1m[91m/[0m         run: |
+[1m[94m144 |[0m [1m[91m|[0m           # HACK: Add scoop/shims to PATH
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m149 |[0m [1m[91m|[0m           make llrt-windows-${{ inputs.release }}-no-sdk.zip
+[1m[94m150 |[0m [1m[91m|[0m           make llrt-windows-${{ inputs.release }}-full-sdk.zip
+    [1m[94m|[0m [1m[91m|______________________________________________________________^[0m [1m[91minputs.release may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_llrt__.github__workflows__build.yml:62:9
+   [1m[94m|[0m
+[1m[94m62 |[0m         uses: msys2/setup-msys2@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_llrt__.github__workflows__build.yml:83:9
+   [1m[94m|[0m
+[1m[94m83 |[0m         uses: actions-rust-lang/setup-rust-toolchain@v1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m31[39m findings ([1m[93m15[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m15[39m high

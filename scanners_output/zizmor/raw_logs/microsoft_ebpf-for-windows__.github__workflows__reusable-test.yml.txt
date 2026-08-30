@@ -1,0 +1,876 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:110:9
+    [1m[94m|[0m
+[1m[94m110 |[0m         - uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m111 |[0m [1m[33m|[0m         # Only check out source code if code coverage is being gathered.
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m116 |[0m [1m[33m|[0m
+[1m[94m117 |[0m [1m[33m|[0m       # Perform shallow checkout for self-hosted runner.
+    [1m[94m|[0m [1m[33m|________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:118:9
+    [1m[94m|[0m
+[1m[94m118 |[0m         - uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m119 |[0m [1m[33m|[0m         if: (contains(inputs.environment, 'ebpf_cicd') || contains(inputs.environment, '1ES')) && (steps.skip_check.outputs.should_[1m[94m...[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m122 |[0m [1m[33m|[0m
+[1m[94m123 |[0m [1m[33m|[0m       # Check if .github/workflows/reusable-test.yml exists locally.
+    [1m[94m|[0m [1m[33m|____________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:133:9
+    [1m[94m|[0m
+[1m[94m133 |[0m         - uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m134 |[0m [1m[33m|[0m         if: (steps.check_reusable_test_locally.outputs.files_exists != 'true') && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m137 |[0m [1m[33m|[0m             .github/workflows/reusable-test.yml
+[1m[94m138 |[0m [1m[33m|[0m           sparse-checkout-cone-mode: false
+    [1m[94m|[0m [1m[33m|__________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:174:9
+    [1m[94m|[0m
+[1m[94m174 |[0m   [1m[94m...[0m - name: Configure Windows Error Reporting to make a local copy of any crashes that occur.
+    [1m[94m|[0m         [1m[96m---------------------------------------------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m175 |[0m   [1m[94m...[0m   id: configure_windows_error_reporting
+[1m[94m176 |[0m   [1m[94m...[0m   if: (inputs.gather_dumps == true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m177 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m178 |[0m [1m[96m|[0m [1m[94m...[0m     mkdir ${{env.DUMP_PATH}}
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m181 |[0m [1m[96m|[0m [1m[94m...[0m     $dump_path = "${{env.DUMP_PATH}}".Replace("/", "\")
+[1m[94m182 |[0m [1m[96m|[0m [1m[94m...[0m     New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps" -Name "DumpFolder" -Value "$dump_path" -PropertyType ExpandString -ErrorAction SilentlyContinue
+    [1m[94m|[0m [1m[96m|____________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.DUMP_PATH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:174:9
+    [1m[94m|[0m
+[1m[94m174 |[0m   [1m[94m...[0m - name: Configure Windows Error Reporting to make a local copy of any crashes that occur.
+    [1m[94m|[0m         [1m[96m---------------------------------------------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m175 |[0m   [1m[94m...[0m   id: configure_windows_error_reporting
+[1m[94m176 |[0m   [1m[94m...[0m   if: (inputs.gather_dumps == true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m177 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m178 |[0m [1m[96m|[0m [1m[94m...[0m     mkdir ${{env.DUMP_PATH}}
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m181 |[0m [1m[96m|[0m [1m[94m...[0m     $dump_path = "${{env.DUMP_PATH}}".Replace("/", "\")
+[1m[94m182 |[0m [1m[96m|[0m [1m[94m...[0m     New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps" -Name "DumpFolder" -Value "$dump_path" -PropertyType ExpandString -ErrorAction SilentlyContinue
+    [1m[94m|[0m [1m[96m|____________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.DUMP_PATH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:184:9
+    [1m[94m|[0m
+[1m[94m184 |[0m   [1m[94m...[0m - name: Remove existing artifacts
+    [1m[94m|[0m         [1m[96m-------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m185 |[0m   [1m[94m...[0m   if: (inputs.environment == 'ebpf_cicd_tests_ws2019' || inputs.environment == 'ebpf_cicd_tests_ws2022' || inputs.environment == 'ebpf_cicd_perf_[1m[94m...[0m
+[1m[94m186 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m187 |[0m [1m[96m|[0m [1m[94m...[0m     Remove-Item -Path ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}} -Recurse -Force -ErrorAction SilentlyContinue
+    [1m[94m|[0m [1m[96m|__________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:184:9
+    [1m[94m|[0m
+[1m[94m184 |[0m   [1m[94m...[0m - name: Remove existing artifacts
+    [1m[94m|[0m         [1m[96m-------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m185 |[0m   [1m[94m...[0m   if: (inputs.environment == 'ebpf_cicd_tests_ws2019' || inputs.environment == 'ebpf_cicd_tests_ws2022' || inputs.environment == 'ebpf_cicd_perf_[1m[94m...[0m
+[1m[94m186 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m187 |[0m [1m[96m|[0m [1m[94m...[0m     Remove-Item -Path ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}} -Recurse -Force -ErrorAction SilentlyContinue
+    [1m[94m|[0m [1m[96m|__________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:197:9
+    [1m[94m|[0m
+[1m[94m197 |[0m         - name: Extract build artifact
+    [1m[94m|[0m           [1m[96m----------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m198 |[0m           if: steps.skip_check.outputs.should_skip != 'true'
+[1m[94m199 |[0m           working-directory: ${{github.workspace}}
+[1m[94m200 |[0m [1m[96m/[0m         run: |
+[1m[94m201 |[0m [1m[96m|[0m           mkdir ${{env.BUILD_PLATFORM}}
+[1m[94m202 |[0m [1m[96m|[0m           Expand-Archive .\build-${{ matrix.configurations }}.zip -DestinationPath .\${{env.BUILD_PLATFORM}}
+    [1m[94m|[0m [1m[96m|____________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:197:9
+    [1m[94m|[0m
+[1m[94m197 |[0m         - name: Extract build artifact
+    [1m[94m|[0m           [1m[33m----------------------------[0m [1m[33mthis step[0m
+[1m[94m198 |[0m           if: steps.skip_check.outputs.should_skip != 'true'
+[1m[94m199 |[0m           working-directory: ${{github.workspace}}
+[1m[94m200 |[0m [1m[33m/[0m         run: |
+[1m[94m201 |[0m [1m[33m|[0m           mkdir ${{env.BUILD_PLATFORM}}
+[1m[94m202 |[0m [1m[33m|[0m           Expand-Archive .\build-${{ matrix.configurations }}.zip -DestinationPath .\${{env.BUILD_PLATFORM}}
+    [1m[94m|[0m [1m[33m|____________________________________________________________________________________________________________-[0m [1m[33mmatrix.configurations may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:197:9
+    [1m[94m|[0m
+[1m[94m197 |[0m         - name: Extract build artifact
+    [1m[94m|[0m           [1m[96m----------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m198 |[0m           if: steps.skip_check.outputs.should_skip != 'true'
+[1m[94m199 |[0m           working-directory: ${{github.workspace}}
+[1m[94m200 |[0m [1m[96m/[0m         run: |
+[1m[94m201 |[0m [1m[96m|[0m           mkdir ${{env.BUILD_PLATFORM}}
+[1m[94m202 |[0m [1m[96m|[0m           Expand-Archive .\build-${{ matrix.configurations }}.zip -DestinationPath .\${{env.BUILD_PLATFORM}}
+    [1m[94m|[0m [1m[96m|____________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:204:9
+    [1m[94m|[0m
+[1m[94m204 |[0m         - name: Create generated artifact folder
+    [1m[94m|[0m           [1m[96m--------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m205 |[0m           if: (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m206 |[0m [1m[96m/[0m         run: |
+[1m[94m207 |[0m [1m[96m|[0m           mkdir ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\Artifacts
+    [1m[94m|[0m [1m[96m|____________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:204:9
+    [1m[94m|[0m
+[1m[94m204 |[0m         - name: Create generated artifact folder
+    [1m[94m|[0m           [1m[96m--------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m205 |[0m           if: (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m206 |[0m [1m[96m/[0m         run: |
+[1m[94m207 |[0m [1m[96m|[0m           mkdir ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\Artifacts
+    [1m[94m|[0m [1m[96m|____________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:209:9
+    [1m[94m|[0m
+[1m[94m209 |[0m         - name: Start ETW tracing
+    [1m[94m|[0m           [1m[96m-----------------------[0m [1m[96mhelp: this step[0m
+[1m[94m210 |[0m           id: start_etw_tracing
+[1m[94m211 |[0m           if: (inputs.capture_etw == true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m212 |[0m           shell: cmd
+[1m[94m213 |[0m [1m[96m/[0m         run: |
+[1m[94m214 |[0m [1m[96m|[0m           mkdir ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\TestLogs
+[1m[94m215 |[0m [1m[96m|[0m           wpr.exe -start ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\ebpfforwindows.wprp -filemode
+    [1m[94m|[0m [1m[96m|_________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:209:9
+    [1m[94m|[0m
+[1m[94m209 |[0m         - name: Start ETW tracing
+    [1m[94m|[0m           [1m[96m-----------------------[0m [1m[96mhelp: this step[0m
+[1m[94m210 |[0m           id: start_etw_tracing
+[1m[94m211 |[0m           if: (inputs.capture_etw == true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m212 |[0m           shell: cmd
+[1m[94m213 |[0m [1m[96m/[0m         run: |
+[1m[94m214 |[0m [1m[96m|[0m           mkdir ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\TestLogs
+[1m[94m215 |[0m [1m[96m|[0m           wpr.exe -start ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\ebpfforwindows.wprp -filemode
+    [1m[94m|[0m [1m[96m|_________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:209:9
+    [1m[94m|[0m
+[1m[94m209 |[0m         - name: Start ETW tracing
+    [1m[94m|[0m           [1m[96m-----------------------[0m [1m[96mhelp: this step[0m
+[1m[94m210 |[0m           id: start_etw_tracing
+[1m[94m211 |[0m           if: (inputs.capture_etw == true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m212 |[0m           shell: cmd
+[1m[94m213 |[0m [1m[96m/[0m         run: |
+[1m[94m214 |[0m [1m[96m|[0m           mkdir ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\TestLogs
+[1m[94m215 |[0m [1m[96m|[0m           wpr.exe -start ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\ebpfforwindows.wprp -filemode
+    [1m[94m|[0m [1m[96m|_________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:209:9
+    [1m[94m|[0m
+[1m[94m209 |[0m         - name: Start ETW tracing
+    [1m[94m|[0m           [1m[96m-----------------------[0m [1m[96mhelp: this step[0m
+[1m[94m210 |[0m           id: start_etw_tracing
+[1m[94m211 |[0m           if: (inputs.capture_etw == true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m212 |[0m           shell: cmd
+[1m[94m213 |[0m [1m[96m/[0m         run: |
+[1m[94m214 |[0m [1m[96m|[0m           mkdir ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\TestLogs
+[1m[94m215 |[0m [1m[96m|[0m           wpr.exe -start ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\ebpfforwindows.wprp -filemode
+    [1m[94m|[0m [1m[96m|_________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:248:9
+    [1m[94m|[0m
+[1m[94m248 |[0m         - name: Run pre test command
+    [1m[94m|[0m           [1m[96m--------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m249 |[0m           if: steps.skip_check.outputs.should_skip != 'true' && (!contains(inputs.environment, 'ebpf_cicd') && !contains(inputs.envir[1m[94m...[0m
+[1m[94m250 |[0m           id: run_pre_test_command
+[1m[94m251 |[0m           working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m252 |[0m [1m[96m/[0m         run: |
+[1m[94m253 |[0m [1m[96m|[0m           ${{env.PRE_COMMAND}}
+    [1m[94m|[0m [1m[96m|______________________________-[0m [1m[96mhelp: env.PRE_COMMAND may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:255:9
+    [1m[94m|[0m
+[1m[94m255 |[0m   [1m[94m...[0m - name: Run pre test command on self-hosted runner
+    [1m[94m|[0m         [1m[96m------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m256 |[0m   [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true' && contains(inputs.environment, 'ebpf_cicd')
+[1m[94m257 |[0m   [1m[94m...[0m   id: run_pre_test_command_self_hosted
+[1m[94m258 |[0m   [1m[94m...[0m   working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m259 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m260 |[0m [1m[96m|[0m [1m[94m...[0m     ${{env.PRE_COMMAND}} -LogFileName ${{ runner.name }}.log -SelfHostedRunnerName ${{ runner.name }} -RegressionArtifactsConfiguration ${{env.BUILD_CONFIGURATION}}
+    [1m[94m|[0m [1m[96m|________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.PRE_COMMAND may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:255:9
+    [1m[94m|[0m
+[1m[94m255 |[0m   [1m[94m...[0m - name: Run pre test command on self-hosted runner
+    [1m[94m|[0m         [1m[94m------------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m256 |[0m   [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true' && contains(inputs.environment, 'ebpf_cicd')
+[1m[94m257 |[0m   [1m[94m...[0m   id: run_pre_test_command_self_hosted
+[1m[94m258 |[0m   [1m[94m...[0m   working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m259 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m260 |[0m [1m[94m|[0m [1m[94m...[0m     ${{env.PRE_COMMAND}} -LogFileName ${{ runner.name }}.log -SelfHostedRunnerName ${{ runner.name }} -RegressionArtifactsConfiguration ${{env.BUILD_CONFIGURATION}}
+    [1m[94m|[0m [1m[94m|________________________________________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: runner.name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:255:9
+    [1m[94m|[0m
+[1m[94m255 |[0m   [1m[94m...[0m - name: Run pre test command on self-hosted runner
+    [1m[94m|[0m         [1m[94m------------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m256 |[0m   [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true' && contains(inputs.environment, 'ebpf_cicd')
+[1m[94m257 |[0m   [1m[94m...[0m   id: run_pre_test_command_self_hosted
+[1m[94m258 |[0m   [1m[94m...[0m   working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m259 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m260 |[0m [1m[94m|[0m [1m[94m...[0m     ${{env.PRE_COMMAND}} -LogFileName ${{ runner.name }}.log -SelfHostedRunnerName ${{ runner.name }} -RegressionArtifactsConfiguration ${{env.BUILD_CONFIGURATION}}
+    [1m[94m|[0m [1m[94m|________________________________________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: runner.name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:255:9
+    [1m[94m|[0m
+[1m[94m255 |[0m   [1m[94m...[0m - name: Run pre test command on self-hosted runner
+    [1m[94m|[0m         [1m[96m------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m256 |[0m   [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true' && contains(inputs.environment, 'ebpf_cicd')
+[1m[94m257 |[0m   [1m[94m...[0m   id: run_pre_test_command_self_hosted
+[1m[94m258 |[0m   [1m[94m...[0m   working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m259 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m260 |[0m [1m[96m|[0m [1m[94m...[0m     ${{env.PRE_COMMAND}} -LogFileName ${{ runner.name }}.log -SelfHostedRunnerName ${{ runner.name }} -RegressionArtifactsConfiguration ${{env.BUILD_CONFIGURATION}}
+    [1m[94m|[0m [1m[96m|________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:262:9
+    [1m[94m|[0m
+[1m[94m262 |[0m   [1m[94m...[0m - name: Run pre test command on 1ES runner
+    [1m[94m|[0m         [1m[96m----------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m263 |[0m   [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true' && contains(inputs.environment, '1ES')
+[1m[94m264 |[0m   [1m[94m...[0m   id: run_pre_test_command_1es
+[1m[94m265 |[0m   [1m[94m...[0m   working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m266 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m267 |[0m [1m[96m|[0m [1m[94m...[0m     ${{env.PRE_COMMAND}} -LogFileName ${{ runner.name }}.log -SelfHostedRunnerName '1ESRunner' -RegressionArtifactsConfiguration ${{env.BUILD_CONFIGURATION}}
+    [1m[94m|[0m [1m[96m|_________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.PRE_COMMAND may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:262:9
+    [1m[94m|[0m
+[1m[94m262 |[0m   [1m[94m...[0m - name: Run pre test command on 1ES runner
+    [1m[94m|[0m         [1m[94m----------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m263 |[0m   [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true' && contains(inputs.environment, '1ES')
+[1m[94m264 |[0m   [1m[94m...[0m   id: run_pre_test_command_1es
+[1m[94m265 |[0m   [1m[94m...[0m   working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m266 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m267 |[0m [1m[94m|[0m [1m[94m...[0m     ${{env.PRE_COMMAND}} -LogFileName ${{ runner.name }}.log -SelfHostedRunnerName '1ESRunner' -RegressionArtifactsConfiguration ${{env.BUILD_CONFIGURATION}}
+    [1m[94m|[0m [1m[94m|_________________________________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: runner.name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:262:9
+    [1m[94m|[0m
+[1m[94m262 |[0m   [1m[94m...[0m - name: Run pre test command on 1ES runner
+    [1m[94m|[0m         [1m[96m----------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m263 |[0m   [1m[94m...[0m   if: steps.skip_check.outputs.should_skip != 'true' && contains(inputs.environment, '1ES')
+[1m[94m264 |[0m   [1m[94m...[0m   id: run_pre_test_command_1es
+[1m[94m265 |[0m   [1m[94m...[0m   working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m266 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m267 |[0m [1m[96m|[0m [1m[94m...[0m     ${{env.PRE_COMMAND}} -LogFileName ${{ runner.name }}.log -SelfHostedRunnerName '1ESRunner' -RegressionArtifactsConfiguration ${{env.BUILD_CONFIGURATION}}
+    [1m[94m|[0m [1m[96m|_________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:270:9
+    [1m[94m|[0m
+[1m[94m270 |[0m   [1m[94m...[0m - name: Run test with Code Coverage in VS Dev environment
+    [1m[94m|[0m         [1m[96m-------------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m271 |[0m   [1m[94m...[0m   if: (inputs.code_coverage == true) && (inputs.vs_dev == true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m272 |[0m   [1m[94m...[0m   id: run_test_with_code_coverage_in_vs_dev
+[1m[94m273 |[0m   [1m[94m...[0m   shell: cmd
+[1m[94m274 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m275 |[0m [1m[96m|[0m [1m[94m...[0m       call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsDevCmd.bat"
+[1m[94m276 |[0m [1m[96m|[0m [1m[94m...[0m       set EBPF_ENABLE_WER_REPORT=yes
+[1m[94m277 |[0m [1m[96m|[0m [1m[94m...[0m       OpenCppCoverage.exe -q --cover_children --sources %CD% --excluded_sources %CD%\external\Catch2 --export_type cobertura:ebpf_for_windows.xml --working_dir ${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}} -- ${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\${{env.TEST_COMMAND}}
+    [1m[94m|[0m [1m[96m|______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:270:9
+    [1m[94m|[0m
+[1m[94m270 |[0m   [1m[94m...[0m - name: Run test with Code Coverage in VS Dev environment
+    [1m[94m|[0m         [1m[96m-------------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m271 |[0m   [1m[94m...[0m   if: (inputs.code_coverage == true) && (inputs.vs_dev == true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m272 |[0m   [1m[94m...[0m   id: run_test_with_code_coverage_in_vs_dev
+[1m[94m273 |[0m   [1m[94m...[0m   shell: cmd
+[1m[94m274 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m275 |[0m [1m[96m|[0m [1m[94m...[0m       call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsDevCmd.bat"
+[1m[94m276 |[0m [1m[96m|[0m [1m[94m...[0m       set EBPF_ENABLE_WER_REPORT=yes
+[1m[94m277 |[0m [1m[96m|[0m [1m[94m...[0m       OpenCppCoverage.exe -q --cover_children --sources %CD% --excluded_sources %CD%\external\Catch2 --export_type cobertura:ebpf_for_windows.xml --working_dir ${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}} -- ${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\${{env.TEST_COMMAND}}
+    [1m[94m|[0m [1m[96m|______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:270:9
+    [1m[94m|[0m
+[1m[94m270 |[0m   [1m[94m...[0m - name: Run test with Code Coverage in VS Dev environment
+    [1m[94m|[0m         [1m[96m-------------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m271 |[0m   [1m[94m...[0m   if: (inputs.code_coverage == true) && (inputs.vs_dev == true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m272 |[0m   [1m[94m...[0m   id: run_test_with_code_coverage_in_vs_dev
+[1m[94m273 |[0m   [1m[94m...[0m   shell: cmd
+[1m[94m274 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m275 |[0m [1m[96m|[0m [1m[94m...[0m       call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsDevCmd.bat"
+[1m[94m276 |[0m [1m[96m|[0m [1m[94m...[0m       set EBPF_ENABLE_WER_REPORT=yes
+[1m[94m277 |[0m [1m[96m|[0m [1m[94m...[0m       OpenCppCoverage.exe -q --cover_children --sources %CD% --excluded_sources %CD%\external\Catch2 --export_type cobertura:ebpf_for_windows.xml --working_dir ${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}} -- ${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\${{env.TEST_COMMAND}}
+    [1m[94m|[0m [1m[96m|______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:270:9
+    [1m[94m|[0m
+[1m[94m270 |[0m   [1m[94m...[0m - name: Run test with Code Coverage in VS Dev environment
+    [1m[94m|[0m         [1m[96m-------------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m271 |[0m   [1m[94m...[0m   if: (inputs.code_coverage == true) && (inputs.vs_dev == true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m272 |[0m   [1m[94m...[0m   id: run_test_with_code_coverage_in_vs_dev
+[1m[94m273 |[0m   [1m[94m...[0m   shell: cmd
+[1m[94m274 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m275 |[0m [1m[96m|[0m [1m[94m...[0m       call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsDevCmd.bat"
+[1m[94m276 |[0m [1m[96m|[0m [1m[94m...[0m       set EBPF_ENABLE_WER_REPORT=yes
+[1m[94m277 |[0m [1m[96m|[0m [1m[94m...[0m       OpenCppCoverage.exe -q --cover_children --sources %CD% --excluded_sources %CD%\external\Catch2 --export_type cobertura:ebpf_for_windows.xml --working_dir ${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}} -- ${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\${{env.TEST_COMMAND}}
+    [1m[94m|[0m [1m[96m|______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:270:9
+    [1m[94m|[0m
+[1m[94m270 |[0m   [1m[94m...[0m - name: Run test with Code Coverage in VS Dev environment
+    [1m[94m|[0m         [1m[96m-------------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m271 |[0m   [1m[94m...[0m   if: (inputs.code_coverage == true) && (inputs.vs_dev == true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m272 |[0m   [1m[94m...[0m   id: run_test_with_code_coverage_in_vs_dev
+[1m[94m273 |[0m   [1m[94m...[0m   shell: cmd
+[1m[94m274 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m275 |[0m [1m[96m|[0m [1m[94m...[0m       call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsDevCmd.bat"
+[1m[94m276 |[0m [1m[96m|[0m [1m[94m...[0m       set EBPF_ENABLE_WER_REPORT=yes
+[1m[94m277 |[0m [1m[96m|[0m [1m[94m...[0m       OpenCppCoverage.exe -q --cover_children --sources %CD% --excluded_sources %CD%\external\Catch2 --export_type cobertura:ebpf_for_windows.xml --working_dir ${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}} -- ${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\${{env.TEST_COMMAND}}
+    [1m[94m|[0m [1m[96m|______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.TEST_COMMAND may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:279:9
+    [1m[94m|[0m
+[1m[94m279 |[0m   [1m[94m...[0m - name: Run test with Code Coverage and low resource simulation
+    [1m[94m|[0m         [1m[96m-------------------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m280 |[0m   [1m[94m...[0m   if: (inputs.code_coverage == true) && (inputs.fault_injection == true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m281 |[0m   [1m[94m...[0m   id: run_test_with_code_coverage_in_fault_injection
+[1m[94m282 |[0m   [1m[94m...[0m   shell: cmd
+[1m[94m283 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m284 |[0m [1m[96m|[0m [1m[94m...[0m       set EBPF_ENABLE_WER_REPORT=yes
+[1m[94m285 |[0m [1m[96m|[0m [1m[94m...[0m       OpenCppCoverage.exe -q --cover_children --sources %CD% --excluded_sources %CD%\external\Catch2 --export_type cobertura:ebpf_for_windows.xml --working_dir ${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}} -- powershell.exe .\Test-FaultInjection.ps1 ${{env.DUMP_PATH}} ${{env.TEST_TIMEOUT}} ${{env.TEST_COMMAND}} 8
+    [1m[94m|[0m [1m[96m|_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:279:9
+    [1m[94m|[0m
+[1m[94m279 |[0m   [1m[94m...[0m - name: Run test with Code Coverage and low resource simulation
+    [1m[94m|[0m         [1m[96m-------------------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m280 |[0m   [1m[94m...[0m   if: (inputs.code_coverage == true) && (inputs.fault_injection == true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m281 |[0m   [1m[94m...[0m   id: run_test_with_code_coverage_in_fault_injection
+[1m[94m282 |[0m   [1m[94m...[0m   shell: cmd
+[1m[94m283 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m284 |[0m [1m[96m|[0m [1m[94m...[0m       set EBPF_ENABLE_WER_REPORT=yes
+[1m[94m285 |[0m [1m[96m|[0m [1m[94m...[0m       OpenCppCoverage.exe -q --cover_children --sources %CD% --excluded_sources %CD%\external\Catch2 --export_type cobertura:ebpf_for_windows.xml --working_dir ${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}} -- powershell.exe .\Test-FaultInjection.ps1 ${{env.DUMP_PATH}} ${{env.TEST_TIMEOUT}} ${{env.TEST_COMMAND}} 8
+    [1m[94m|[0m [1m[96m|_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:279:9
+    [1m[94m|[0m
+[1m[94m279 |[0m   [1m[94m...[0m - name: Run test with Code Coverage and low resource simulation
+    [1m[94m|[0m         [1m[96m-------------------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m280 |[0m   [1m[94m...[0m   if: (inputs.code_coverage == true) && (inputs.fault_injection == true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m281 |[0m   [1m[94m...[0m   id: run_test_with_code_coverage_in_fault_injection
+[1m[94m282 |[0m   [1m[94m...[0m   shell: cmd
+[1m[94m283 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m284 |[0m [1m[96m|[0m [1m[94m...[0m       set EBPF_ENABLE_WER_REPORT=yes
+[1m[94m285 |[0m [1m[96m|[0m [1m[94m...[0m       OpenCppCoverage.exe -q --cover_children --sources %CD% --excluded_sources %CD%\external\Catch2 --export_type cobertura:ebpf_for_windows.xml --working_dir ${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}} -- powershell.exe .\Test-FaultInjection.ps1 ${{env.DUMP_PATH}} ${{env.TEST_TIMEOUT}} ${{env.TEST_COMMAND}} 8
+    [1m[94m|[0m [1m[96m|_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.DUMP_PATH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:279:9
+    [1m[94m|[0m
+[1m[94m279 |[0m   [1m[94m...[0m - name: Run test with Code Coverage and low resource simulation
+    [1m[94m|[0m         [1m[96m-------------------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m280 |[0m   [1m[94m...[0m   if: (inputs.code_coverage == true) && (inputs.fault_injection == true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m281 |[0m   [1m[94m...[0m   id: run_test_with_code_coverage_in_fault_injection
+[1m[94m282 |[0m   [1m[94m...[0m   shell: cmd
+[1m[94m283 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m284 |[0m [1m[96m|[0m [1m[94m...[0m       set EBPF_ENABLE_WER_REPORT=yes
+[1m[94m285 |[0m [1m[96m|[0m [1m[94m...[0m       OpenCppCoverage.exe -q --cover_children --sources %CD% --excluded_sources %CD%\external\Catch2 --export_type cobertura:ebpf_for_windows.xml --working_dir ${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}} -- powershell.exe .\Test-FaultInjection.ps1 ${{env.DUMP_PATH}} ${{env.TEST_TIMEOUT}} ${{env.TEST_COMMAND}} 8
+    [1m[94m|[0m [1m[96m|_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.TEST_COMMAND may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:287:9
+    [1m[94m|[0m
+[1m[94m287 |[0m         - name: Run test with low resource simulation
+    [1m[94m|[0m           [1m[96m-------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m288 |[0m           if: (inputs.code_coverage != true) && (inputs.fault_injection == true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m...[0m
+[1m[94m291 |[0m           working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m292 |[0m [1m[96m/[0m         run: |
+[1m[94m293 |[0m [1m[96m|[0m             set EBPF_ENABLE_WER_REPORT=yes
+[1m[94m294 |[0m [1m[96m|[0m             powershell.exe .\Test-FaultInjection.ps1 ${{env.DUMP_PATH}} ${{env.TEST_TIMEOUT}} ${{env.TEST_COMMAND}} 16
+    [1m[94m|[0m [1m[96m|______________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.DUMP_PATH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:287:9
+    [1m[94m|[0m
+[1m[94m287 |[0m         - name: Run test with low resource simulation
+    [1m[94m|[0m           [1m[96m-------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m288 |[0m           if: (inputs.code_coverage != true) && (inputs.fault_injection == true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m...[0m
+[1m[94m291 |[0m           working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m292 |[0m [1m[96m/[0m         run: |
+[1m[94m293 |[0m [1m[96m|[0m             set EBPF_ENABLE_WER_REPORT=yes
+[1m[94m294 |[0m [1m[96m|[0m             powershell.exe .\Test-FaultInjection.ps1 ${{env.DUMP_PATH}} ${{env.TEST_TIMEOUT}} ${{env.TEST_COMMAND}} 16
+    [1m[94m|[0m [1m[96m|______________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.TEST_COMMAND may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:296:9
+    [1m[94m|[0m
+[1m[94m296 |[0m   [1m[94m...[0m - name: Run test with Code Coverage
+    [1m[94m|[0m         [1m[96m---------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m297 |[0m   [1m[94m...[0m   if: (inputs.code_coverage == true) && (inputs.vs_dev != true) && (inputs.fault_injection != true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m298 |[0m   [1m[94m...[0m   id: run_test_with_code_coverage
+[1m[94m299 |[0m   [1m[94m...[0m   shell: cmd
+[1m[94m300 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m301 |[0m [1m[96m|[0m [1m[94m...[0m       set EBPF_ENABLE_WER_REPORT=yes
+[1m[94m302 |[0m [1m[96m|[0m [1m[94m...[0m       OpenCppCoverage.exe -q --sources %CD% --excluded_sources %CD%\external\Catch2 --export_type cobertura:ebpf_for_windows.xml --working_dir ${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}} -- powershell .\Run-Test.ps1 ${{env.DUMP_PATH}} ${{env.TEST_TIMEOUT}} ${{env.TEST_COMMAND}}
+    [1m[94m|[0m [1m[96m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:296:9
+    [1m[94m|[0m
+[1m[94m296 |[0m   [1m[94m...[0m - name: Run test with Code Coverage
+    [1m[94m|[0m         [1m[96m---------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m297 |[0m   [1m[94m...[0m   if: (inputs.code_coverage == true) && (inputs.vs_dev != true) && (inputs.fault_injection != true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m298 |[0m   [1m[94m...[0m   id: run_test_with_code_coverage
+[1m[94m299 |[0m   [1m[94m...[0m   shell: cmd
+[1m[94m300 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m301 |[0m [1m[96m|[0m [1m[94m...[0m       set EBPF_ENABLE_WER_REPORT=yes
+[1m[94m302 |[0m [1m[96m|[0m [1m[94m...[0m       OpenCppCoverage.exe -q --sources %CD% --excluded_sources %CD%\external\Catch2 --export_type cobertura:ebpf_for_windows.xml --working_dir ${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}} -- powershell .\Run-Test.ps1 ${{env.DUMP_PATH}} ${{env.TEST_TIMEOUT}} ${{env.TEST_COMMAND}}
+    [1m[94m|[0m [1m[96m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:296:9
+    [1m[94m|[0m
+[1m[94m296 |[0m   [1m[94m...[0m - name: Run test with Code Coverage
+    [1m[94m|[0m         [1m[96m---------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m297 |[0m   [1m[94m...[0m   if: (inputs.code_coverage == true) && (inputs.vs_dev != true) && (inputs.fault_injection != true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m298 |[0m   [1m[94m...[0m   id: run_test_with_code_coverage
+[1m[94m299 |[0m   [1m[94m...[0m   shell: cmd
+[1m[94m300 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m301 |[0m [1m[96m|[0m [1m[94m...[0m       set EBPF_ENABLE_WER_REPORT=yes
+[1m[94m302 |[0m [1m[96m|[0m [1m[94m...[0m       OpenCppCoverage.exe -q --sources %CD% --excluded_sources %CD%\external\Catch2 --export_type cobertura:ebpf_for_windows.xml --working_dir ${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}} -- powershell .\Run-Test.ps1 ${{env.DUMP_PATH}} ${{env.TEST_TIMEOUT}} ${{env.TEST_COMMAND}}
+    [1m[94m|[0m [1m[96m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.DUMP_PATH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:296:9
+    [1m[94m|[0m
+[1m[94m296 |[0m   [1m[94m...[0m - name: Run test with Code Coverage
+    [1m[94m|[0m         [1m[96m---------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m297 |[0m   [1m[94m...[0m   if: (inputs.code_coverage == true) && (inputs.vs_dev != true) && (inputs.fault_injection != true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m298 |[0m   [1m[94m...[0m   id: run_test_with_code_coverage
+[1m[94m299 |[0m   [1m[94m...[0m   shell: cmd
+[1m[94m300 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m301 |[0m [1m[96m|[0m [1m[94m...[0m       set EBPF_ENABLE_WER_REPORT=yes
+[1m[94m302 |[0m [1m[96m|[0m [1m[94m...[0m       OpenCppCoverage.exe -q --sources %CD% --excluded_sources %CD%\external\Catch2 --export_type cobertura:ebpf_for_windows.xml --working_dir ${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}} -- powershell .\Run-Test.ps1 ${{env.DUMP_PATH}} ${{env.TEST_TIMEOUT}} ${{env.TEST_COMMAND}}
+    [1m[94m|[0m [1m[96m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.TEST_COMMAND may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:304:9
+    [1m[94m|[0m
+[1m[94m304 |[0m   [1m[94m...[0m - name: Run test on self-hosted runner
+    [1m[94m|[0m         [1m[96m------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m305 |[0m   [1m[94m...[0m   if: (inputs.code_coverage == false) && (steps.skip_check.outputs.should_skip != 'true') && contains(inputs.environment, 'ebpf_cicd') && (inpu[1m[94m...[0m
+[1m[94m306 |[0m   [1m[94m...[0m   id: run_test_self_hosted
+[1m[94m307 |[0m   [1m[94m...[0m   working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m308 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m309 |[0m [1m[96m|[0m [1m[94m...[0m     ${{env.TEST_COMMAND}} -LogFileName ${{ runner.name }}.log -SelfHostedRunnerName ${{ runner.name }} -TestJobTimeout ${{env.TEST_TIMEOUT}}
+    [1m[94m|[0m [1m[96m|________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.TEST_COMMAND may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:304:9
+    [1m[94m|[0m
+[1m[94m304 |[0m   [1m[94m...[0m - name: Run test on self-hosted runner
+    [1m[94m|[0m         [1m[94m------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m305 |[0m   [1m[94m...[0m   if: (inputs.code_coverage == false) && (steps.skip_check.outputs.should_skip != 'true') && contains(inputs.environment, 'ebpf_cicd') && (inpu[1m[94m...[0m
+[1m[94m306 |[0m   [1m[94m...[0m   id: run_test_self_hosted
+[1m[94m307 |[0m   [1m[94m...[0m   working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m308 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m309 |[0m [1m[94m|[0m [1m[94m...[0m     ${{env.TEST_COMMAND}} -LogFileName ${{ runner.name }}.log -SelfHostedRunnerName ${{ runner.name }} -TestJobTimeout ${{env.TEST_TIMEOUT}}
+    [1m[94m|[0m [1m[94m|________________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: runner.name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:304:9
+    [1m[94m|[0m
+[1m[94m304 |[0m   [1m[94m...[0m - name: Run test on self-hosted runner
+    [1m[94m|[0m         [1m[94m------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m305 |[0m   [1m[94m...[0m   if: (inputs.code_coverage == false) && (steps.skip_check.outputs.should_skip != 'true') && contains(inputs.environment, 'ebpf_cicd') && (inpu[1m[94m...[0m
+[1m[94m306 |[0m   [1m[94m...[0m   id: run_test_self_hosted
+[1m[94m307 |[0m   [1m[94m...[0m   working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m308 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m309 |[0m [1m[94m|[0m [1m[94m...[0m     ${{env.TEST_COMMAND}} -LogFileName ${{ runner.name }}.log -SelfHostedRunnerName ${{ runner.name }} -TestJobTimeout ${{env.TEST_TIMEOUT}}
+    [1m[94m|[0m [1m[94m|________________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: runner.name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:311:9
+    [1m[94m|[0m
+[1m[94m311 |[0m   [1m[94m...[0m - name: Run test on 1ES runner
+    [1m[94m|[0m         [1m[96m----------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m312 |[0m   [1m[94m...[0m   if: (inputs.code_coverage == false) && (steps.skip_check.outputs.should_skip != 'true') && contains(inputs.environment, '1ES') && (inp[1m[94m...[0m
+[1m[94m313 |[0m   [1m[94m...[0m   id: run_test_1es
+[1m[94m314 |[0m   [1m[94m...[0m   working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m315 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m316 |[0m [1m[96m|[0m [1m[94m...[0m     ${{env.TEST_COMMAND}} -LogFileName ${{ runner.name }}.log -SelfHostedRunnerName '1ESRunner' -TestJobTimeout ${{env.TEST_TIMEOUT}}
+    [1m[94m|[0m [1m[96m|_________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.TEST_COMMAND may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:311:9
+    [1m[94m|[0m
+[1m[94m311 |[0m   [1m[94m...[0m - name: Run test on 1ES runner
+    [1m[94m|[0m         [1m[94m----------------------------[0m [1m[94minfo: this step[0m
+[1m[94m312 |[0m   [1m[94m...[0m   if: (inputs.code_coverage == false) && (steps.skip_check.outputs.should_skip != 'true') && contains(inputs.environment, '1ES') && (inp[1m[94m...[0m
+[1m[94m313 |[0m   [1m[94m...[0m   id: run_test_1es
+[1m[94m314 |[0m   [1m[94m...[0m   working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m315 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m316 |[0m [1m[94m|[0m [1m[94m...[0m     ${{env.TEST_COMMAND}} -LogFileName ${{ runner.name }}.log -SelfHostedRunnerName '1ESRunner' -TestJobTimeout ${{env.TEST_TIMEOUT}}
+    [1m[94m|[0m [1m[94m|_________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: runner.name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:318:9
+    [1m[94m|[0m
+[1m[94m318 |[0m         - name: Run test on github runner
+    [1m[94m|[0m           [1m[96m-------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m319 |[0m           if: (inputs.code_coverage == false) && (steps.skip_check.outputs.should_skip != 'true') && (inputs.build_platform == 'arm64[1m[94m...[0m
+[1m[94m320 |[0m           id: run_test_github_runner
+[1m[94m321 |[0m           working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m322 |[0m [1m[96m/[0m         run: |
+[1m[94m323 |[0m [1m[96m|[0m           ${{env.TEST_COMMAND}} -LogFileName arm64_runner.log
+    [1m[94m|[0m [1m[96m|_____________________________________________________________-[0m [1m[96mhelp: env.TEST_COMMAND may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:325:9
+    [1m[94m|[0m
+[1m[94m325 |[0m         - name: Run test without Code Coverage
+    [1m[94m|[0m           [1m[96m------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m326 |[0m           if: (inputs.code_coverage == false) && (steps.skip_check.outputs.should_skip != 'true') && (!contains(inputs.environment, '[1m[94m...[0m
+[1m[94m...[0m
+[1m[94m329 |[0m           shell: cmd
+[1m[94m330 |[0m [1m[96m/[0m         run: |
+[1m[94m331 |[0m [1m[96m|[0m           set EBPF_ENABLE_WER_REPORT=yes
+[1m[94m332 |[0m [1m[96m|[0m           cd /d ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}
+[1m[94m333 |[0m [1m[96m|[0m           powershell.exe .\Run-Test.ps1 ${{env.DUMP_PATH}} ${{env.TEST_TIMEOUT}} ${{env.TEST_COMMAND}}
+    [1m[94m|[0m [1m[96m|______________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:325:9
+    [1m[94m|[0m
+[1m[94m325 |[0m         - name: Run test without Code Coverage
+    [1m[94m|[0m           [1m[96m------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m326 |[0m           if: (inputs.code_coverage == false) && (steps.skip_check.outputs.should_skip != 'true') && (!contains(inputs.environment, '[1m[94m...[0m
+[1m[94m...[0m
+[1m[94m329 |[0m           shell: cmd
+[1m[94m330 |[0m [1m[96m/[0m         run: |
+[1m[94m331 |[0m [1m[96m|[0m           set EBPF_ENABLE_WER_REPORT=yes
+[1m[94m332 |[0m [1m[96m|[0m           cd /d ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}
+[1m[94m333 |[0m [1m[96m|[0m           powershell.exe .\Run-Test.ps1 ${{env.DUMP_PATH}} ${{env.TEST_TIMEOUT}} ${{env.TEST_COMMAND}}
+    [1m[94m|[0m [1m[96m|______________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:325:9
+    [1m[94m|[0m
+[1m[94m325 |[0m         - name: Run test without Code Coverage
+    [1m[94m|[0m           [1m[96m------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m326 |[0m           if: (inputs.code_coverage == false) && (steps.skip_check.outputs.should_skip != 'true') && (!contains(inputs.environment, '[1m[94m...[0m
+[1m[94m...[0m
+[1m[94m329 |[0m           shell: cmd
+[1m[94m330 |[0m [1m[96m/[0m         run: |
+[1m[94m331 |[0m [1m[96m|[0m           set EBPF_ENABLE_WER_REPORT=yes
+[1m[94m332 |[0m [1m[96m|[0m           cd /d ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}
+[1m[94m333 |[0m [1m[96m|[0m           powershell.exe .\Run-Test.ps1 ${{env.DUMP_PATH}} ${{env.TEST_TIMEOUT}} ${{env.TEST_COMMAND}}
+    [1m[94m|[0m [1m[96m|______________________________________________________________________________________________________-[0m [1m[96mhelp: env.DUMP_PATH may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:325:9
+    [1m[94m|[0m
+[1m[94m325 |[0m         - name: Run test without Code Coverage
+    [1m[94m|[0m           [1m[96m------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m326 |[0m           if: (inputs.code_coverage == false) && (steps.skip_check.outputs.should_skip != 'true') && (!contains(inputs.environment, '[1m[94m...[0m
+[1m[94m...[0m
+[1m[94m329 |[0m           shell: cmd
+[1m[94m330 |[0m [1m[96m/[0m         run: |
+[1m[94m331 |[0m [1m[96m|[0m           set EBPF_ENABLE_WER_REPORT=yes
+[1m[94m332 |[0m [1m[96m|[0m           cd /d ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}
+[1m[94m333 |[0m [1m[96m|[0m           powershell.exe .\Run-Test.ps1 ${{env.DUMP_PATH}} ${{env.TEST_TIMEOUT}} ${{env.TEST_COMMAND}}
+    [1m[94m|[0m [1m[96m|______________________________________________________________________________________________________-[0m [1m[96mhelp: env.TEST_COMMAND may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:335:9
+    [1m[94m|[0m
+[1m[94m335 |[0m         - name: Run post test command
+    [1m[94m|[0m           [1m[96m---------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m336 |[0m           # Run the post test command even if the workflow has failed.
+[1m[94m...[0m
+[1m[94m339 |[0m           working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m340 |[0m [1m[96m/[0m         run: |
+[1m[94m341 |[0m [1m[96m|[0m           ${{env.POST_COMMAND}}
+    [1m[94m|[0m [1m[96m|_______________________________-[0m [1m[96mhelp: env.POST_COMMAND may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:343:9
+    [1m[94m|[0m
+[1m[94m343 |[0m         - name: Run post test command on self-hosted runner
+    [1m[94m|[0m           [1m[96m-------------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m344 |[0m           # Run the post test command even if the workflow has failed.
+[1m[94m...[0m
+[1m[94m347 |[0m           working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m348 |[0m [1m[96m/[0m         run: |
+[1m[94m349 |[0m [1m[96m|[0m           ${{env.POST_COMMAND}} -LogFileName ${{ runner.name }}.log -SelfHostedRunnerName ${{ runner.name }}
+    [1m[94m|[0m [1m[96m|____________________________________________________________________________________________________________-[0m [1m[96mhelp: env.POST_COMMAND may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:343:9
+    [1m[94m|[0m
+[1m[94m343 |[0m         - name: Run post test command on self-hosted runner
+    [1m[94m|[0m           [1m[94m-------------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m344 |[0m           # Run the post test command even if the workflow has failed.
+[1m[94m...[0m
+[1m[94m347 |[0m           working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m348 |[0m [1m[94m/[0m         run: |
+[1m[94m349 |[0m [1m[94m|[0m           ${{env.POST_COMMAND}} -LogFileName ${{ runner.name }}.log -SelfHostedRunnerName ${{ runner.name }}
+    [1m[94m|[0m [1m[94m|____________________________________________________________________________________________________________-[0m [1m[94minfo: runner.name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:343:9
+    [1m[94m|[0m
+[1m[94m343 |[0m         - name: Run post test command on self-hosted runner
+    [1m[94m|[0m           [1m[94m-------------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m344 |[0m           # Run the post test command even if the workflow has failed.
+[1m[94m...[0m
+[1m[94m347 |[0m           working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m348 |[0m [1m[94m/[0m         run: |
+[1m[94m349 |[0m [1m[94m|[0m           ${{env.POST_COMMAND}} -LogFileName ${{ runner.name }}.log -SelfHostedRunnerName ${{ runner.name }}
+    [1m[94m|[0m [1m[94m|____________________________________________________________________________________________________________-[0m [1m[94minfo: runner.name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:351:9
+    [1m[94m|[0m
+[1m[94m351 |[0m         - name: Run post test command on 1ES runner
+    [1m[94m|[0m           [1m[96m-----------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m352 |[0m           # Run the post test command even if the workflow has failed.
+[1m[94m...[0m
+[1m[94m355 |[0m           working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m356 |[0m [1m[96m/[0m         run: |
+[1m[94m357 |[0m [1m[96m|[0m           ${{env.POST_COMMAND}} -LogFileName ${{ runner.name }}.log -SelfHostedRunnerName '1ESRunner'
+    [1m[94m|[0m [1m[96m|_____________________________________________________________________________________________________-[0m [1m[96mhelp: env.POST_COMMAND may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:351:9
+    [1m[94m|[0m
+[1m[94m351 |[0m         - name: Run post test command on 1ES runner
+    [1m[94m|[0m           [1m[94m-----------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m352 |[0m           # Run the post test command even if the workflow has failed.
+[1m[94m...[0m
+[1m[94m355 |[0m           working-directory: ./${{env.BUILD_PLATFORM}}/${{env.BUILD_CONFIGURATION}}
+[1m[94m356 |[0m [1m[94m/[0m         run: |
+[1m[94m357 |[0m [1m[94m|[0m           ${{env.POST_COMMAND}} -LogFileName ${{ runner.name }}.log -SelfHostedRunnerName '1ESRunner'
+    [1m[94m|[0m [1m[94m|_____________________________________________________________________________________________________-[0m [1m[94minfo: runner.name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:431:9
+    [1m[94m|[0m
+[1m[94m431 |[0m         - name: Stop ETW tracing
+    [1m[94m|[0m           [1m[96m----------------------[0m [1m[96mhelp: this step[0m
+[1m[94m432 |[0m           id: stop_etw_tracing
+[1m[94m433 |[0m           if: always() && (inputs.capture_etw == true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m434 |[0m           shell: cmd
+[1m[94m435 |[0m [1m[96m/[0m         run: |
+[1m[94m436 |[0m [1m[96m|[0m             wpr.exe -stop ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\TestLogs\ebpfforwindows.etl
+    [1m[94m|[0m [1m[96m|________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:431:9
+    [1m[94m|[0m
+[1m[94m431 |[0m         - name: Stop ETW tracing
+    [1m[94m|[0m           [1m[96m----------------------[0m [1m[96mhelp: this step[0m
+[1m[94m432 |[0m           id: stop_etw_tracing
+[1m[94m433 |[0m           if: always() && (inputs.capture_etw == true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m434 |[0m           shell: cmd
+[1m[94m435 |[0m [1m[96m/[0m         run: |
+[1m[94m436 |[0m [1m[96m|[0m             wpr.exe -stop ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\TestLogs\ebpfforwindows.etl
+    [1m[94m|[0m [1m[96m|________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:438:9
+    [1m[94m|[0m
+[1m[94m438 |[0m   [1m[94m...[0m - name: Copy any bpf2c test logs to TestLogs
+    [1m[94m|[0m         [1m[96m------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m439 |[0m   [1m[94m...[0m   if: (inputs.name == 'bpf2c') && (inputs.capture_etw == true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m440 |[0m   [1m[94m...[0m   shell: cmd
+[1m[94m441 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m442 |[0m [1m[96m|[0m [1m[94m...[0m       copy ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\*.log ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\TestLogs
+    [1m[94m|[0m [1m[96m|___________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:438:9
+    [1m[94m|[0m
+[1m[94m438 |[0m   [1m[94m...[0m - name: Copy any bpf2c test logs to TestLogs
+    [1m[94m|[0m         [1m[96m------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m439 |[0m   [1m[94m...[0m   if: (inputs.name == 'bpf2c') && (inputs.capture_etw == true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m440 |[0m   [1m[94m...[0m   shell: cmd
+[1m[94m441 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m442 |[0m [1m[96m|[0m [1m[94m...[0m       copy ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\*.log ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\TestLogs
+    [1m[94m|[0m [1m[96m|___________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:438:9
+    [1m[94m|[0m
+[1m[94m438 |[0m   [1m[94m...[0m - name: Copy any bpf2c test logs to TestLogs
+    [1m[94m|[0m         [1m[96m------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m439 |[0m   [1m[94m...[0m   if: (inputs.name == 'bpf2c') && (inputs.capture_etw == true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m440 |[0m   [1m[94m...[0m   shell: cmd
+[1m[94m441 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m442 |[0m [1m[96m|[0m [1m[94m...[0m       copy ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\*.log ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\TestLogs
+    [1m[94m|[0m [1m[96m|___________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_PLATFORM may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml:438:9
+    [1m[94m|[0m
+[1m[94m438 |[0m   [1m[94m...[0m - name: Copy any bpf2c test logs to TestLogs
+    [1m[94m|[0m         [1m[96m------------------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m439 |[0m   [1m[94m...[0m   if: (inputs.name == 'bpf2c') && (inputs.capture_etw == true) && (steps.skip_check.outputs.should_skip != 'true')
+[1m[94m440 |[0m   [1m[94m...[0m   shell: cmd
+[1m[94m441 |[0m [1m[96m/[0m [1m[94m...[0m   run: |
+[1m[94m442 |[0m [1m[96m|[0m [1m[94m...[0m       copy ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\*.log ${{github.workspace}}\${{env.BUILD_PLATFORM}}\${{env.BUILD_CONFIGURATION}}\TestLogs
+    [1m[94m|[0m [1m[96m|___________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.BUILD_CONFIGURATION may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m140[39m findings ([1m[93m79[39m suppressed[0m): 0 unknown, [35m9[39m informational, [36m48[39m low, [33m4[39m medium, [31m0[39m high

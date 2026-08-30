@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/aws_s2n-tls__.github__workflows__proof_ci.yaml b/.github/workflows/aws_s2n-tls__.github__workflows__proof_ci.yaml
+index 2d71762..ba6faf0 100644
+--- a/.github/workflows/aws_s2n-tls__.github__workflows__proof_ci.yaml
++++ b/.github/workflows/aws_s2n-tls__.github__workflows__proof_ci.yaml
+@@ -34,7 +34,7 @@ jobs:
+       pull-requests: read
+     steps:
+       - name: Check out repository and submodules recursively
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           submodules: 'recursive'
+       - name: Parse config file
+@@ -228,7 +228,7 @@ jobs:
+             && mv $FINAL_REPORT_DIR/${{ steps.artifact.outputs.name }}.zip .
+       - name: Upload zip artifact of CBMC proof results to GitHub Actions
+         if: ${{ env.REPO_VISIBILITY == 'public' }}
+-        uses: actions/upload-artifact@v7
++        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7
+         with:
+           name: ${{ steps.artifact.outputs.name }}
+           path: ${{ steps.artifact.outputs.name }}.zip

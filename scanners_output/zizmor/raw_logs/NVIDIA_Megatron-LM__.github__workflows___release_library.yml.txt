@@ -1,0 +1,179 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___release_library.yml:112:9
+    [1m[94m|[0m
+[1m[94m112 |[0m         - name: Checkout repository
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m113 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m118 |[0m [1m[33m|[0m           fetch-tags: true
+[1m[94m119 |[0m [1m[33m|[0m           ref: ${{ inputs.release-ref }}
+    [1m[94m|[0m [1m[33m|________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___release_library.yml:366:9
+    [1m[94m|[0m
+[1m[94m366 |[0m         - name: Checkout repository
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m367 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m370 |[0m [1m[33m|[0m           ref: ${{ inputs.release-ref }}
+[1m[94m371 |[0m [1m[33m|[0m           token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
+    [1m[94m|[0m [1m[33m|___________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___release_library.yml:497:9
+    [1m[94m|[0m
+[1m[94m497 |[0m         - name: Checkout
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m498 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m501 |[0m [1m[33m|[0m           ref: v0.17.0
+[1m[94m502 |[0m [1m[33m|[0m           path: send-slack-alert
+    [1m[94m|[0m [1m[33m|________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___release_library.yml:197:9
+    [1m[94m|[0m
+[1m[94m197 |[0m         - name: Create and push deployment branch
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m198 |[0m           env:
+[1m[94m199 |[0m             GH_TOKEN: ${{ secrets.PAT }}
+[1m[94m200 |[0m [1m[91m/[0m         run: |
+[1m[94m201 |[0m [1m[91m|[0m           cd ${{ github.run_id }}
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m220 |[0m [1m[91m|[0m           # Extract PR number from URL
+[1m[94m221 |[0m [1m[91m|[0m           PR_NUMBER=$(echo $PR_URL | grep -o '[0-9]*$')
+    [1m[94m|[0m [1m[91m|_______________________________________________________^[0m [1m[91minputs.version-bump-branch may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___release_library.yml:291:9
+    [1m[94m|[0m
+[1m[94m291 |[0m         - name: Merge into ${{ inputs.version-bump-branch }}
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m292 |[0m [1m[91m/[0m         run: |
+[1m[94m293 |[0m [1m[91m|[0m           cd ${{ github.run_id }}
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m330 |[0m [1m[91m|[0m             done
+[1m[94m331 |[0m [1m[91m|[0m           fi
+    [1m[94m|[0m [1m[91m|____________^[0m [1m[91minputs.version-bump-branch may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___release_library.yml:291:9
+    [1m[94m|[0m
+[1m[94m291 |[0m         - name: Merge into ${{ inputs.version-bump-branch }}
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m292 |[0m [1m[91m/[0m         run: |
+[1m[94m293 |[0m [1m[91m|[0m           cd ${{ github.run_id }}
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m330 |[0m [1m[91m|[0m             done
+[1m[94m331 |[0m [1m[91m|[0m           fi
+    [1m[94m|[0m [1m[91m|____________^[0m [1m[91minputs.version-bump-branch may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___release_library.yml:291:9
+    [1m[94m|[0m
+[1m[94m291 |[0m         - name: Merge into ${{ inputs.version-bump-branch }}
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m292 |[0m [1m[91m/[0m         run: |
+[1m[94m293 |[0m [1m[91m|[0m           cd ${{ github.run_id }}
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m330 |[0m [1m[91m|[0m             done
+[1m[94m331 |[0m [1m[91m|[0m           fi
+    [1m[94m|[0m [1m[91m|____________^[0m [1m[91minputs.version-bump-branch may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___release_library.yml:291:9
+    [1m[94m|[0m
+[1m[94m291 |[0m         - name: Merge into ${{ inputs.version-bump-branch }}
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m292 |[0m [1m[91m/[0m         run: |
+[1m[94m293 |[0m [1m[91m|[0m           cd ${{ github.run_id }}
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m330 |[0m [1m[91m|[0m             done
+[1m[94m331 |[0m [1m[91m|[0m           fi
+    [1m[94m|[0m [1m[91m|____________^[0m [1m[91minputs.version-bump-branch may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___release_library.yml:291:9
+    [1m[94m|[0m
+[1m[94m291 |[0m         - name: Merge into ${{ inputs.version-bump-branch }}
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m292 |[0m [1m[91m/[0m         run: |
+[1m[94m293 |[0m [1m[91m|[0m           cd ${{ github.run_id }}
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m330 |[0m [1m[91m|[0m             done
+[1m[94m331 |[0m [1m[91m|[0m           fi
+    [1m[94m|[0m [1m[91m|____________^[0m [1m[91minputs.version-bump-branch may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___release_library.yml:373:9
+    [1m[94m|[0m
+[1m[94m373 |[0m         - name: Determine fromTag for changelog
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m374 |[0m           id: determine-from-tag
+[1m[94m375 |[0m           if: inputs.gh-release-use-changelog-builder == true
+[1m[94m376 |[0m [1m[91m/[0m         run: |
+[1m[94m377 |[0m [1m[91m|[0m           cd ${{ github.run_id }}
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m392 |[0m [1m[91m|[0m
+[1m[94m393 |[0m [1m[91m|[0m           echo "from-tag=$FROM_TAG" >> $GITHUB_OUTPUT
+    [1m[94m|[0m [1m[91m|_____________________________________________________^[0m [1m[91minputs.gh-release-from-tag may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___release_library.yml:373:9
+    [1m[94m|[0m
+[1m[94m373 |[0m         - name: Determine fromTag for changelog
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m374 |[0m           id: determine-from-tag
+[1m[94m375 |[0m           if: inputs.gh-release-use-changelog-builder == true
+[1m[94m376 |[0m [1m[91m/[0m         run: |
+[1m[94m377 |[0m [1m[91m|[0m           cd ${{ github.run_id }}
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m392 |[0m [1m[91m|[0m
+[1m[94m393 |[0m [1m[91m|[0m           echo "from-tag=$FROM_TAG" >> $GITHUB_OUTPUT
+    [1m[94m|[0m [1m[91m|_____________________________________________________^[0m [1m[91minputs.gh-release-from-tag may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___release_library.yml:398:9
+    [1m[94m|[0m
+[1m[94m398 |[0m         uses: mikepenz/release-changelog-builder-action@v6.1.0
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___release_library.yml:474:5
+    [1m[94m|[0m
+[1m[94m474 |[0m     uses: ./.github/workflows/release-docs.yml
+    [1m[94m|[0m     [1m[33m------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m475 |[0m     if: |
+[1m[94m...[0m
+[1m[94m485 |[0m       build-docs-ref: ${{ inputs.release-ref }}
+[1m[94m486 |[0m     secrets: inherit
+    [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m33[39m findings ([1m[93m20[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m4[39m medium, [31m9[39m high

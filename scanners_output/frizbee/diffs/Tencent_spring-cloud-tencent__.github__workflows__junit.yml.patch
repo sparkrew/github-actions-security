@@ -1,0 +1,31 @@
+diff --git a/.github/workflows/Tencent_spring-cloud-tencent__.github__workflows__junit.yml b/.github/workflows/Tencent_spring-cloud-tencent__.github__workflows__junit.yml
+index 564057e..b542db0 100644
+--- a/.github/workflows/Tencent_spring-cloud-tencent__.github__workflows__junit.yml
++++ b/.github/workflows/Tencent_spring-cloud-tencent__.github__workflows__junit.yml
+@@ -68,14 +68,14 @@ jobs:
+     needs: set-jdks
+     steps:
+       - name: Checkout codes
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: Set up JDK ${{ matrix.java }}
+-        uses: actions/setup-java@v5
++        uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5
+         with:
+           distribution: 'temurin'
+           java-version: ${{ matrix.java }}
+       - name: Cache local Maven repository
+-        uses: actions/cache@v4
++        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+         with:
+           path: ~/.m2/repository
+           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+@@ -85,7 +85,7 @@ jobs:
+         run: mvn clean test -B -U -Psonatype
+       - name: Upload coverage to Codecov
+         if: matrix.os == 'ubuntu-latest' && matrix.java == 17
+-        uses: codecov/codecov-action@v5
++        uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5
+         env:
+           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+         with:

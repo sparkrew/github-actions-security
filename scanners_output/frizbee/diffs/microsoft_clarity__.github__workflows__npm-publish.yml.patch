@@ -1,0 +1,26 @@
+diff --git a/.github/workflows/microsoft_clarity__.github__workflows__npm-publish.yml b/.github/workflows/microsoft_clarity__.github__workflows__npm-publish.yml
+index 57c4ac7..1fcc2cd 100644
+--- a/.github/workflows/microsoft_clarity__.github__workflows__npm-publish.yml
++++ b/.github/workflows/microsoft_clarity__.github__workflows__npm-publish.yml
+@@ -17,8 +17,8 @@ jobs:
+     if: false
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v4
+-      - uses: actions/setup-node@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
++      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+         with:
+           node-version: 22.17.0
+       - run: yarn install
+@@ -44,8 +44,8 @@ jobs:
+     needs: build
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v4
+-      - uses: actions/setup-node@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
++      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+         with:
+           node-version: 18.20.6
+           registry-url: https://registry.npmjs.org/

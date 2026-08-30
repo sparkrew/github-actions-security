@@ -1,0 +1,18 @@
+diff --git a/.github/workflows/google_filament__.github__workflows__npm-deploy.yml b/.github/workflows/google_filament__.github__workflows__npm-deploy.yml
+index 44ef2db..21306f2 100644
+--- a/.github/workflows/google_filament__.github__workflows__npm-deploy.yml
++++ b/.github/workflows/google_filament__.github__workflows__npm-deploy.yml
+@@ -13,11 +13,11 @@ jobs:
+     name: npm-deploy
+     runs-on: macos-14
+     steps:
+-      - uses: actions/checkout@v4.1.6
++      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+         with:
+           ref: ${{ github.event.inputs.release_tag }}
+       # Setup .npmrc file to publish to npm
+-      - uses: actions/setup-node@v3
++      - uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3
+         with:
+           node-version: '18.x'
+           registry-url: 'https://registry.npmjs.org'

@@ -1,0 +1,32 @@
+{
+  "workflow": "aws_amazon-vpc-cni-k8s__.github__workflows__generate-limits.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # refs/tags/v4.1.7",
+      "line": 19
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-go@44694675825211faa026b3c33043df3e48a5fa00 # refs/tags/v6.0.0",
+      "line": 24
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: aws-actions/configure-aws-credentials@5579c002bb4778aa43395ef1df492868a9a1c83f # refs/tags/v4.0.2",
+      "line": 29
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # refs/tags/v8.1.0",
+      "line": 49
+    }
+  ]
+}

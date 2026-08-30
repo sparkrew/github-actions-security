@@ -1,0 +1,14 @@
+{
+  "workflow": "microsoft_fluentui__.github__workflows__pr-website-deploy-comment.yml",
+  "tool": "actionlint",
+  "summary": {
+    "total_findings": 1
+  },
+  "findings": [
+    {
+      "line": 20,
+      "column": 9,
+      "message": "if: condition \"${{ github.repository_owner == 'microsoft' }} && ${{ github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success' }}\" is always evaluated to true because extra characters are around ${{ }} [if-cond]"
+    }
+  ]
+}

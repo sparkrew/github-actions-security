@@ -1,0 +1,31 @@
+diff --git a/.github/workflows/facebookresearch_xformers__.github__workflows__wheels_upload_s3.yml b/.github/workflows/facebookresearch_xformers__.github__workflows__wheels_upload_s3.yml
+index 6a626b1..18098f6 100644
+--- a/.github/workflows/facebookresearch_xformers__.github__workflows__wheels_upload_s3.yml
++++ b/.github/workflows/facebookresearch_xformers__.github__workflows__wheels_upload_s3.yml
+@@ -42,7 +42,7 @@ jobs:
+         shell: bash
+     steps:
+       - name: Recursive checkout
+-        uses: actions/checkout@v3
++        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+         with:
+           submodules: recursive
+           path: "."
+@@ -54,7 +54,7 @@ jobs:
+           sudo rm -rf /usr/local/lib/android || true
+           sudo rm -rf /usr/share/dotnet || true
+ 
+-      - uses: actions/download-artifact@v4
++      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+         with:
+           path: dist
+       # Filter builds (eg vN+cu118 for instance)
+@@ -71,7 +71,7 @@ jobs:
+ 
+       - name: configure aws credentials
+         if: inputs.execute
+-        uses: aws-actions/configure-aws-credentials@v1.7.0
++        uses: aws-actions/configure-aws-credentials@67fbcbb121271f7775d2e7715933280b06314838 # v1.7.0
+         with:
+           role-to-assume: ${{ inputs.aws_role }}
+           role-session-name: GitHub_CI

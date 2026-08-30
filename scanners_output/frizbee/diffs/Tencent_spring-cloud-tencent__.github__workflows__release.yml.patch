@@ -1,0 +1,23 @@
+diff --git a/.github/workflows/Tencent_spring-cloud-tencent__.github__workflows__release.yml b/.github/workflows/Tencent_spring-cloud-tencent__.github__workflows__release.yml
+index aed02c3..341c266 100644
+--- a/.github/workflows/Tencent_spring-cloud-tencent__.github__workflows__release.yml
++++ b/.github/workflows/Tencent_spring-cloud-tencent__.github__workflows__release.yml
+@@ -8,9 +8,9 @@ jobs:
+   release:
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: Set up JDK 17
+-        uses: actions/setup-java@v5
++        uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5
+         with:
+           java-version: '17'
+           distribution: 'temurin'
+@@ -25,4 +25,4 @@ jobs:
+           MAVEN_GPG_PASSPHRASE: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
+         run: |
+           cat <(echo -e "${{ secrets.OSSRH_GPG_SECRET_KEY }}") | gpg --batch --import;
+-          mvn clean deploy -B -U -P release -Dmaven.test.skip=true
+\ No newline at end of file
++          mvn clean deploy -B -U -P release -Dmaven.test.skip=true

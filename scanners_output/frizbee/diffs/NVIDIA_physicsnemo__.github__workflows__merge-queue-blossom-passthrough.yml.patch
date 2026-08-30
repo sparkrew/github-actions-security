@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/NVIDIA_physicsnemo__.github__workflows__merge-queue-blossom-passthrough.yml b/.github/workflows/NVIDIA_physicsnemo__.github__workflows__merge-queue-blossom-passthrough.yml
+index 61424fe..846266a 100644
+--- a/.github/workflows/NVIDIA_physicsnemo__.github__workflows__merge-queue-blossom-passthrough.yml
++++ b/.github/workflows/NVIDIA_physicsnemo__.github__workflows__merge-queue-blossom-passthrough.yml
+@@ -37,7 +37,7 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Post blossom-ci status
+-        uses: actions/github-script@v7
++        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+         with:
+           script: |
+             await github.rest.repos.createCommitStatus({

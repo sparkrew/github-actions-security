@@ -1,0 +1,50 @@
+name: Publish https://reviewstack.dev
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 1-5'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '18'
+      - name: Install Yarn
+        run: npm install -g yarn
+      - name: Grant Access
+        run: git config --global --add safe.directory "$PWD"
+      - name: Install dependencies
+        working-directory: ./eden/contrib/
+        run: yarn install
+
+      # Build codegen and then do some sanity checks so we don't push the site
+      # when the tests are broken.
+      - name: GraphQL/TextMate codegen
+        working-directory: ./eden/contrib/reviewstack
+        run: yarn codegen
+      - name: ESLint
+        working-directory: ./eden/contrib/reviewstack
+        run: yarn eslint
+      - name: Unit tests
+        working-directory: ./eden/contrib/reviewstack
+        run: yarn test --watchAll=false
+      - name: Build the static site
+        working-directory: ./eden/contrib/reviewstack.dev
+        run: yarn release
+
+      # Push to the release branch.
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: reviewstack.dev-prod
+          publish_dir: ./eden/contrib/reviewstack.dev/build

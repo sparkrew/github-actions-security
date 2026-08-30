@@ -1,0 +1,132 @@
+# Copyright (c) eBPF for Windows contributors
+# SPDX-License-Identifier: MIT
+
+# This workflow checks if a pull request is linked to an issue.
+# It is designed to be called from other workflows, allowing for conditional execution based on whether the PR is from a fork or not.
+# The workflow will only run if the PR is from a fork when configured to do so, or if it is from the main repository when configured otherwise.
+# It checks the PR title and body for issue references and comments on the PR if no valid issue is found.
+---
+name: Ensure PR linked to issue
+
+on:
+  workflow_call:
+    inputs:
+      run_on_fork:
+        required: true
+        type: boolean
+
+jobs:
+  conditional-check:
+    runs-on: ubuntu-latest
+    outputs:
+      run_checks: ${{ steps.compatibility.outputs.run_checks }}
+    steps:
+      - name: Detect if PR is from a fork
+        id: check-fork
+        run: |
+          echo "Base repo: ${{ github.repository }}"
+          echo "Head repo: ${{ github.event.pull_request.head.repo.full_name }}"
+
+          if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.repository }}" ]; then
+            echo "is_fork=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "is_fork=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Check run compatibility
+        id: compatibility
+        run: |
+          IS_FORK="${{ steps.check-fork.outputs.is_fork }}"
+          RUN_ON_FORK="${{ inputs.run_on_fork }}"
+
+          echo "This PR is from a fork: $IS_FORK"
+          echo "This job is configured to run on fork: $RUN_ON_FORK"
+
+          if [ "$IS_FORK" != "$RUN_ON_FORK" ]; then
+            echo "run_checks=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping: context does not match configuration."
+            exit 0
+          fi
+
+          echo "run_checks=true" >> "$GITHUB_OUTPUT"
+
+  ensure-issue-linked:
+    needs: conditional-check
+    if: needs.conditional-check.outputs.run_checks == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout base branch safely
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6.0.2 | v6
+        with:
+          repository: ${{ github.repository }}
+          ref: ${{ github.event.pull_request.base.ref }}
+
+      - name: Validate issue references
+        id: validate
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          REPO="${{ github.repository }}"
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          echo "Checking PR #$PR_NUMBER in $REPO..."
+
+          PR_DATA=$(curl -s -H "Authorization: Bearer $GH_TOKEN" \
+                           -H "Accept: application/vnd.github+json" \
+                           "https://api.github.com/repos/$REPO/pulls/$PR_NUMBER")
+
+          TITLE=$(echo "$PR_DATA" | jq -r .title)
+          BODY=$(echo "$PR_DATA" | jq -r .body)
+          CONTENT="${TITLE}${BODY}"
+          CONTENT_NO_NEWLINES=$(echo "$CONTENT" | tr -d '\n\r')
+
+          RAW_ISSUES=$(echo "$CONTENT_NO_NEWLINES" | grep -oE "#[0-9]+" || true)
+          ISSUE_NUMBERS=$(echo "$RAW_ISSUES" | tr -d '#' | sort -u)
+
+          VALID_ISSUE_FOUND=false
+
+          if [ -z "$ISSUE_NUMBERS" ]; then
+            echo "No issue references found."
+          else
+            echo "Found references: $ISSUE_NUMBERS"
+
+            for ISSUE in $ISSUE_NUMBERS; do
+              ISSUE_URL="https://api.github.com/repos/$REPO/issues/$ISSUE"
+              RESP=$(curl -s -w "%{http_code}" -H "Authorization: Bearer $GH_TOKEN" \
+                          -H "Accept: application/vnd.github+json" "$ISSUE_URL")
+              STATUS="${RESP: -3}"
+              JSON="${RESP:: -3}"
+
+              if [ "$STATUS" = "200" ]; then
+                IS_PR=$(echo "$JSON" | jq 'has("pull_request")')
+                if [ "$IS_PR" = "false" ]; then
+                  VALID_ISSUE_FOUND=true
+                  break
+                fi
+              fi
+            done
+          fi
+
+          echo "valid_issue=$VALID_ISSUE_FOUND" >> "$GITHUB_OUTPUT"
+
+          if [ "$VALID_ISSUE_FOUND" = false ]; then
+            # Friendly comment on the PR itself
+            MSG="This pull request isn't linked to any GitHub issue. Please reference an issue with a keyword such as Fixes #123, Closes #456, etc., so the work can be tracked."
+            PAYLOAD=$(jq -n --arg body "$MSG" '{body:$body}')
+
+            # Try to post the comment and capture status/output
+            RESPONSE=$(curl -i -s -w "%{http_code}" -o /tmp/resp.out \
+              -X POST \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              -H "Content-Type: application/json" \
+              -d "$PAYLOAD" \
+              "https://api.github.com/repos/$REPO/issues/$PR_NUMBER/comments")
+
+            cat /tmp/resp.out
+            echo "HTTP Status: $RESPONSE"
+
+            if [ "$RESPONSE" -ne 201 ]; then
+              echo "::error ::Failed to comment on PR. HTTP $RESPONSE"
+            fi
+          fi

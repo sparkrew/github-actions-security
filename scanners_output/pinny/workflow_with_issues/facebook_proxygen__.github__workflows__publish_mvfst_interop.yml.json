@@ -1,0 +1,32 @@
+{
+  "workflow": "facebook_proxygen__.github__workflows__publish_mvfst_interop.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # actions/checkout@v5 | releases,v5.0.1",
+      "line": 25
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/login-action@184bdaa0721073962dff0199f1fb9940f07167d1",
+      "line": 28
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/metadata-action@c1e51972afc2121e065aed6d45c65596fe445f3f",
+      "line": 36
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/build-push-action@1dc73863535b631f98b2378be8619f83b136f4a0",
+      "line": 41
+    }
+  ]
+}

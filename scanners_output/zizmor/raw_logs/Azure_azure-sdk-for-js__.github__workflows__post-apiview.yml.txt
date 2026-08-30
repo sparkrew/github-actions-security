@@ -1,0 +1,25 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_azure-sdk-for-js__.github__workflows__post-apiview.yml:21:9
+   [1m[94m|[0m
+[1m[94m21 |[0m         - name: Checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m22 |[0m [1m[33m|[0m         uses: actions/checkout@v6
+[1m[94m23 |[0m [1m[33m|[0m         with:
+[1m[94m24 |[0m [1m[33m|[0m           sparse-checkout: 'eng/common'
+   [1m[94m|[0m [1m[33m|_______________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_azure-sdk-for-js__.github__workflows__post-apiview.yml:26:9
+   [1m[94m|[0m
+[1m[94m26 |[0m   [1m[94m...[0m - name: Create APIView Comment on PR
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m27 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m28 |[0m [1m[91m|[0m [1m[94m...[0m     . "eng/common/scripts/Helpers/ApiView-Helpers.ps1"
+[1m[94m29 |[0m [1m[91m|[0m [1m[94m...[0m     Set-ApiViewCommentForRelatedIssues -HeadCommitish ${{ github.event.check_run.head_sha }} -AuthToken ${{ secrets.GITHUB_TOKEN }}
+   [1m[94m|[0m [1m[91m|_______________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.check_run.head_sha may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m6[39m findings ([1m[93m4[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m1[39m high

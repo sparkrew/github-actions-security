@@ -1,0 +1,75 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_retina__.github__workflows__goreleaser.yaml:23:9
+   [1m[94m|[0m
+[1m[94m23 |[0m         - name: Checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m24 |[0m [1m[33m|[0m         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+[1m[94m25 |[0m [1m[33m|[0m         with:
+[1m[94m26 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_retina__.github__workflows__goreleaser.yaml:47:9
+   [1m[94m|[0m
+[1m[94m47 |[0m         - name: Checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m48 |[0m [1m[33m|[0m         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+[1m[94m49 |[0m [1m[33m|[0m         with:
+[1m[94m50 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+ [1m[94m-->[0m ../.github/workflows/microsoft_retina__.github__workflows__goreleaser.yaml:9:3
+  [1m[94m|[0m
+[1m[94m9 |[0m   contents: write
+  [1m[94m|[0m   [1m[91m^^^^^^^^^^^^^^^[0m [1m[91mcontents: write is overly broad at the workflow level[0m
+  [1m[94m|[0m
+  [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_retina__.github__workflows__goreleaser.yaml:10:3
+   [1m[94m|[0m
+[1m[94m10 |[0m   packages: write
+   [1m[94m|[0m   [1m[91m^^^^^^^^^^^^^^^[0m [1m[91mpackages: write is overly broad at the workflow level[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#cache-poisoning\cache-poisoning]8;;\][0m: [1mruntime artifacts potentially vulnerable to a cache poisoning attack[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_retina__.github__workflows__goreleaser.yaml:2:1
+   [1m[94m|[0m
+[1m[94m 2 |[0m [1m[91m/[0m on:
+[1m[94m 3 |[0m [1m[91m|[0m   pull_request:
+[1m[94m 4 |[0m [1m[91m|[0m     branches: [main]
+[1m[94m 5 |[0m [1m[91m|[0m   push:
+[1m[94m 6 |[0m [1m[91m|[0m     tags: ["v*"]
+   [1m[94m|[0m [1m[91m|________________^[0m [1m[91mgenerally used when publishing artifacts generated at runtime[0m
+[1m[94m 7 |[0m
+[1m[94m...[0m
+[1m[94m27 |[0m         - name: Set up Go
+[1m[94m28 |[0m           uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 # v6.3.0
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcache enabled by default here[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#cache-poisoning\cache-poisoning]8;;\][0m: [1mruntime artifacts potentially vulnerable to a cache poisoning attack[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_retina__.github__workflows__goreleaser.yaml:2:1
+   [1m[94m|[0m
+[1m[94m 2 |[0m [1m[91m/[0m on:
+[1m[94m 3 |[0m [1m[91m|[0m   pull_request:
+[1m[94m 4 |[0m [1m[91m|[0m     branches: [main]
+[1m[94m 5 |[0m [1m[91m|[0m   push:
+[1m[94m 6 |[0m [1m[91m|[0m     tags: ["v*"]
+   [1m[94m|[0m [1m[91m|________________^[0m [1m[91mgenerally used when publishing artifacts generated at runtime[0m
+[1m[94m 7 |[0m
+[1m[94m...[0m
+[1m[94m51 |[0m         - name: Set up Go
+[1m[94m52 |[0m           uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 # v6.3.0
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcache enabled by default here[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m6[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m4[39m high

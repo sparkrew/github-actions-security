@@ -1,0 +1,27 @@
+{
+  "workflow": "microsoft_agent-lightning__.github__workflows__examples-tinker.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+      "line": 44
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: astral-sh/setup-uv@5a095e7a2014a4212f075830d4f7277575a9d098 # astral-sh/setup-uv@v7",
+      "line": 47
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # actions/upload-artifact@v6 | v6.0.0",
+      "line": 65
+    }
+  ]
+}

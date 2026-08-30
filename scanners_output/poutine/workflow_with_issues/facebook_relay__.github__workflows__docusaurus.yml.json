@@ -1,0 +1,23 @@
+{
+  "workflow": "facebook_relay__.github__workflows__docusaurus.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "unverified_script_exec": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": 30,
+      "column": "",
+      "job": "build-compiler-explorer",
+      "step": "2",
+      "details": "Command: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh",
+      "event_triggers": [
+        "push"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "workflow": "microsoft_vscode__.github__workflows__pr-linux-cli-test.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "unverified_script_exec": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": 22,
+      "column": "",
+      "job": "linux-cli-test",
+      "step": "1",
+      "details": "Command: curl https://sh.rustup.rs -sSf | sh",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    }
+  ]
+}

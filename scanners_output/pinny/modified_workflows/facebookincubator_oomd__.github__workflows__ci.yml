@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+jobs:
+  build:
+    name: Build and test repo
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - cc: gcc
+            cxx: g++
+          - cc: clang
+            cxx: clang++
+          - cc: clang
+            cxx: clang++
+            cxxflags: -fsanitize=address -g
+    env:
+      CC: ${{ matrix.cc }}
+      CXX: ${{ matrix.cxx }}
+      CXXFLAGS: ${{ matrix.cxxflags }}
+    steps:
+      - run: sudo apt-get update
+      - name: Install dependencies
+        run: >
+          sudo apt-get install
+          pkg-config
+          libsystemd-dev
+          libjsoncpp-dev
+          googletest
+          meson
+          g++
+      - name: Checkout code
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # actions/checkout@v2 | releases,850,v2.7.0
+      - run: meson build/
+      - run: ninja -C build/
+      - run: ninja -C build/ test

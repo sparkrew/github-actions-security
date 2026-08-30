@@ -1,0 +1,29 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__backport-prs.yml:30:9
+   [1m[94m|[0m
+[1m[94m30 |[0m       - uses: actions/checkout@v6
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+ [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__backport-prs.yml:2:1
+  [1m[94m|[0m
+[1m[94m2 |[0m [1m[91m/[0m on:
+[1m[94m3 |[0m [1m[91m|[0m   pull_request_target:
+[1m[94m4 |[0m [1m[91m|[0m     types: [closed]
+[1m[94m5 |[0m [1m[91m|[0m   issue_comment:
+[1m[94m6 |[0m [1m[91m|[0m     types: [created]
+  [1m[94m|[0m [1m[91m|____________________^[0m [1m[91mpull_request_target is almost always used insecurely[0m
+  [1m[94m|[0m
+  [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__backport-prs.yml:32:9
+   [1m[94m|[0m
+[1m[94m32 |[0m         uses: korthout/backport-action@v3
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m5[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m2[39m high

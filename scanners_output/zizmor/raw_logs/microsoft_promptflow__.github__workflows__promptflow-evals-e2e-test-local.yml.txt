@@ -1,0 +1,88 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-evals-e2e-test-local.yml:33:9
+   [1m[94m|[0m
+[1m[94m33 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-evals-e2e-test-local.yml:17:3
+   [1m[94m|[0m
+[1m[94m17 |[0m   id-token: write
+   [1m[94m|[0m   [1m[91m^^^^^^^^^^^^^^^[0m [1m[91mid-token: write is overly broad at the workflow level[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-evals-e2e-test-local.yml:68:9
+   [1m[94m|[0m
+[1m[94m68 |[0m   [1m[94m...[0m - name: run e2e tests
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m69 |[0m   [1m[94m...[0m   id: run_e2e_tests_local
+[1m[94m70 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m71 |[0m [1m[91m|[0m [1m[94m...[0m     poetry run pytest -m localtest tests/evals/e2etests --cov=promptflow --cov-config=pyproject.toml --cov-report=term --cov-report=html --cov-report=xml
+[1m[94m72 |[0m [1m[91m|[0m [1m[94m...[0m     poetry run python ../../scripts/code_qa/report_to_app_insights.py --activity e2e_tests_local --junit-xml test-results.xml --git-hub-action-run-id ${{ github.run_id }} --git-hub-workflow ${{ github.workflow }} --git-hub-action ${{ github.action }} --git-branch ${{ github.ref }}
+   [1m[94m|[0m [1m[91m|_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.workflow may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-evals-e2e-test-local.yml:68:9
+   [1m[94m|[0m
+[1m[94m68 |[0m   [1m[94m...[0m - name: run e2e tests
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m69 |[0m   [1m[94m...[0m   id: run_e2e_tests_local
+[1m[94m70 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m71 |[0m [1m[91m|[0m [1m[94m...[0m     poetry run pytest -m localtest tests/evals/e2etests --cov=promptflow --cov-config=pyproject.toml --cov-report=term --cov-report=html --cov-report=xml
+[1m[94m72 |[0m [1m[91m|[0m [1m[94m...[0m     poetry run python ../../scripts/code_qa/report_to_app_insights.py --activity e2e_tests_local --junit-xml test-results.xml --git-hub-action-run-id ${{ github.run_id }} --git-hub-workflow ${{ github.workflow }} --git-hub-action ${{ github.action }} --git-branch ${{ github.ref }}
+   [1m[94m|[0m [1m[91m|_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.action may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-evals-e2e-test-local.yml:68:9
+   [1m[94m|[0m
+[1m[94m68 |[0m   [1m[94m...[0m - name: run e2e tests
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m69 |[0m   [1m[94m...[0m   id: run_e2e_tests_local
+[1m[94m70 |[0m [1m[91m/[0m [1m[94m...[0m   run: |
+[1m[94m71 |[0m [1m[91m|[0m [1m[94m...[0m     poetry run pytest -m localtest tests/evals/e2etests --cov=promptflow --cov-config=pyproject.toml --cov-report=term --cov-report=html --cov-report=xml
+[1m[94m72 |[0m [1m[91m|[0m [1m[94m...[0m     poetry run python ../../scripts/code_qa/report_to_app_insights.py --activity e2e_tests_local --junit-xml test-results.xml --git-hub-action-run-id ${{ github.run_id }} --git-hub-workflow ${{ github.workflow }} --git-hub-action ${{ github.action }} --git-branch ${{ github.ref }}
+   [1m[94m|[0m [1m[91m|_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.ref may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-evals-e2e-test-local.yml:41:9
+   [1m[94m|[0m
+[1m[94m41 |[0m       - uses: snok/install-poetry@v1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-evals-e2e-test-local.yml:60:9
+   [1m[94m|[0m
+[1m[94m60 |[0m       - uses: azure/login@v1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-evals-e2e-test-local.yml:94:9
+   [1m[94m|[0m
+[1m[94m94 |[0m       - uses: EnricoMi/publish-unit-test-result-action@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-evals-e2e-test-local.yml:99:9
+   [1m[94m|[0m
+[1m[94m99 |[0m       - uses: irongut/CodeCoverageSummary@v1.3.0
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m14[39m findings ([1m[93m5[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m8[39m high

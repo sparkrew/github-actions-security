@@ -1,0 +1,67 @@
+name: Run integration tests
+
+permissions:
+  id-token: write
+  contents: read
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  run-integration-tests:
+    # Only run on the main repo, not forks
+    if: ${{ github.repository_owner == 'aws' }}
+    runs-on: ubuntu-latest
+    steps:
+        - name: install Cargo Lambda
+          uses: jaxxstorm/action-install-gh-release@6096f2a2bbfee498ced520b6922ac2c06e990ed2 # jaxxstorm/action-install-gh-release@v2.1.0
+          with:
+            repo: cargo-lambda/cargo-lambda
+            platform: linux
+            arch: x86_64
+        - name: install Zig toolchain
+          uses: mlugg/setup-zig@d1434d08867e3ee9daa34448df10607b98908d29 # mlugg/setup-zig@v2 | main,v2.2.1
+          with:
+            version: 0.10.0
+        - name: install SAM
+          uses: aws-actions/setup-sam@d78e1a4a9656d3b223e59b80676a797f20093133 # aws-actions/setup-sam@v2 | main
+          with:
+            use-installer: true
+        - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+        - name: configure aws credentials
+          uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7 # aws-actions/configure-aws-credentials@v6.0.0
+          with:
+            role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+            role-session-name: ${{ secrets.ROLE_SESSION_NAME }}
+            aws-region: ${{ secrets.AWS_REGION }}
+        - name: build  stack
+          run: cd lambda-integration-tests && sam build --beta-features
+        - name: validate stack
+          run: cd lambda-integration-tests && sam validate --lint
+        - name: deploy stack
+          id: deploy_stack
+          env:
+            AWS_REGION: ${{ secrets.AWS_REGION }}
+          run: |
+            cd lambda-integration-tests
+            stackName="aws-lambda-rust-integ-test-$GITHUB_RUN_ID"
+            echo "STACK_NAME=$stackName" >> "$GITHUB_OUTPUT"
+            echo "Stack name = $stackName"
+            sam deploy --stack-name "${stackName}" --parameter-overrides "ParameterKey=SecretToken,ParameterValue=${{ secrets.SECRET_TOKEN }}" "ParameterKey=LambdaRole,ParameterValue=${{ secrets.AWS_LAMBDA_ROLE }}" --no-confirm-changeset  --no-progressbar  > disable_output
+            TEST_ENDPOINT=$(sam list stack-outputs --stack-name "${stackName}" --output json | jq -r '.[] | select(.OutputKey=="HelloApiEndpoint") | .OutputValue')
+            TENANT_ID_TEST_FUNCTION=$(sam list stack-outputs --stack-name "${stackName}" --output json | jq -r '.[] | select(.OutputKey=="TenantIdTestFunction") | .OutputValue')
+            echo "TEST_ENDPOINT=$TEST_ENDPOINT" >> "$GITHUB_OUTPUT"
+            echo "TENANT_ID_TEST_FUNCTION=$TENANT_ID_TEST_FUNCTION" >> "$GITHUB_OUTPUT"
+        - name: run test
+          env:
+            SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
+            TEST_ENDPOINT: ${{ steps.deploy_stack.outputs.TEST_ENDPOINT }}
+            TENANT_ID_TEST_FUNCTION: ${{ steps.deploy_stack.outputs.TENANT_ID_TEST_FUNCTION }}
+          run: cd lambda-integration-tests && cargo test
+        - name: cleanup
+          if: always() && steps.deploy_stack.outputs.STACK_NAME
+          env:
+            AWS_REGION: ${{ secrets.AWS_REGION }}
+            STACK_NAME: ${{ steps.deploy_stack.outputs.STACK_NAME }}
+          run: sam delete --stack-name "${STACK_NAME}" --no-prompts

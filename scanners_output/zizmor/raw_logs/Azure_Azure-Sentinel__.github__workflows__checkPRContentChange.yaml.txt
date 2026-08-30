@@ -1,0 +1,139 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__checkPRContentChange.yaml:29:9
+   [1m[94m|[0m
+[1m[94m29 |[0m         - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m30 |[0m [1m[33m|[0m         with:
+[1m[94m31 |[0m [1m[33m|[0m           fetch-depth: 2
+[1m[94m32 |[0m [1m[33m|[0m           ref: "${{ env.BRANCH_NAME }}"
+   [1m[94m|[0m [1m[33m|_______________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__checkPRContentChange.yaml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m name: Check For PR Content And Add Label
+[1m[94m 2 |[0m [1m[33m|[0m
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m50 |[0m [1m[33m|[0m       labelName: "Content-Package"
+[1m[94m51 |[0m [1m[33m|[0m     secrets: inherit
+   [1m[94m|[0m [1m[33m|____________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__checkPRContentChange.yaml:14:3
+   [1m[94m|[0m
+[1m[94m14 |[0m [1m[33m/[0m   solutionNameDetails:
+[1m[94m15 |[0m [1m[33m|[0m     if: ${{ github.actor != 'dependabot[bot]' && !github.event.pull_request.head.repo.fork && !contains(github.event.pull_request.la[1m[94m...[0m
+[1m[94m16 |[0m [1m[33m|[0m     uses: ./.github/workflows/getSolutionName.yaml
+[1m[94m17 |[0m [1m[33m|[0m     secrets: inherit
+   [1m[94m|[0m [1m[33m|[0m                    [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________|[0m
+   [1m[94m|[0m                      [1m[33mthis job[0m
+   [1m[94m|[0m                      [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__checkPRContentChange.yaml:19:3
+   [1m[94m|[0m
+[1m[94m19 |[0m [1m[33m/[0m   checkPRContent:
+[1m[94m20 |[0m [1m[33m|[0m     if: ${{ github.actor != 'dependabot[bot]' && needs.solutionNameDetails.outputs.solutionName != '' && !github.event.pull_request.[1m[94m...[0m
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m41 |[0m [1m[33m|[0m           Write-Host "PR Number $pullRequestNumber , solutionName $solutionName"
+[1m[94m42 |[0m [1m[33m|[0m           ./.script/package-automation/checkPRContentChange.ps1 $solutionName $pullRequestNumber $runId $instrumentationKey
+   [1m[94m|[0m [1m[33m|[0m                                                                                                                           [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|___________________________________________________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                                                             [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                                                             [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__checkPRContentChange.yaml:44:3
+   [1m[94m|[0m
+[1m[94m44 |[0m [1m[33m/[0m   addLabelWhenContentPackage:
+[1m[94m45 |[0m [1m[33m|[0m     name: Add Label of Content Package
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m50 |[0m [1m[33m|[0m       labelName: "Content-Package"
+[1m[94m51 |[0m [1m[33m|[0m     secrets: inherit
+   [1m[94m|[0m [1m[33m|[0m                    [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________|[0m
+   [1m[94m|[0m                      [1m[33mthis job[0m
+   [1m[94m|[0m                      [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__checkPRContentChange.yaml:33:9
+   [1m[94m|[0m
+[1m[94m33 |[0m         - name: Identify Changes in PR
+   [1m[94m|[0m           [1m[94m----------------------------[0m [1m[94minfo: this step[0m
+[1m[94m34 |[0m           shell: pwsh
+[1m[94m35 |[0m           id: changesInPR
+[1m[94m36 |[0m [1m[94m/[0m         run: |
+[1m[94m37 |[0m [1m[94m|[0m           $instrumentationKey = "${{ vars.APPINSIGHTS }}"
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m41 |[0m [1m[94m|[0m           Write-Host "PR Number $pullRequestNumber , solutionName $solutionName"
+[1m[94m42 |[0m [1m[94m|[0m           ./.script/package-automation/checkPRContentChange.ps1 $solutionName $pullRequestNumber $runId $instrumentationKey
+   [1m[94m|[0m [1m[94m|___________________________________________________________________________________________________________________________-[0m [1m[94minfo: vars.APPINSIGHTS may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__checkPRContentChange.yaml:33:9
+   [1m[94m|[0m
+[1m[94m33 |[0m         - name: Identify Changes in PR
+   [1m[94m|[0m           [1m[94m----------------------------[0m [1m[94minfo: this step[0m
+[1m[94m34 |[0m           shell: pwsh
+[1m[94m35 |[0m           id: changesInPR
+[1m[94m36 |[0m [1m[94m/[0m         run: |
+[1m[94m37 |[0m [1m[94m|[0m           $instrumentationKey = "${{ vars.APPINSIGHTS }}"
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m41 |[0m [1m[94m|[0m           Write-Host "PR Number $pullRequestNumber , solutionName $solutionName"
+[1m[94m42 |[0m [1m[94m|[0m           ./.script/package-automation/checkPRContentChange.ps1 $solutionName $pullRequestNumber $runId $instrumentationKey
+   [1m[94m|[0m [1m[94m|___________________________________________________________________________________________________________________________-[0m [1m[94minfo: needs.solutionNameDetails.outputs.solutionName may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__checkPRContentChange.yaml:33:9
+   [1m[94m|[0m
+[1m[94m33 |[0m         - name: Identify Changes in PR
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m34 |[0m           shell: pwsh
+[1m[94m35 |[0m           id: changesInPR
+[1m[94m36 |[0m [1m[91m/[0m         run: |
+[1m[94m37 |[0m [1m[91m|[0m           $instrumentationKey = "${{ vars.APPINSIGHTS }}"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m41 |[0m [1m[91m|[0m           Write-Host "PR Number $pullRequestNumber , solutionName $solutionName"
+[1m[94m42 |[0m [1m[91m|[0m           ./.script/package-automation/checkPRContentChange.ps1 $solutionName $pullRequestNumber $runId $instrumentationKey
+   [1m[94m|[0m [1m[91m|___________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.client_payload.pullRequestNumber may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__checkPRContentChange.yaml:16:5
+   [1m[94m|[0m
+[1m[94m16 |[0m     uses: ./.github/workflows/getSolutionName.yaml
+   [1m[94m|[0m     [1m[33m----------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m17 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__checkPRContentChange.yaml:48:5
+   [1m[94m|[0m
+[1m[94m48 |[0m     uses: ./.github/workflows/addLabelOnPr.yaml
+   [1m[94m|[0m     [1m[33m-------------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m49 |[0m     with:
+[1m[94m50 |[0m       labelName: "Content-Package"
+[1m[94m51 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m14[39m findings ([1m[93m4[39m suppressed[0m): 0 unknown, [35m2[39m informational, [36m0[39m low, [33m7[39m medium, [31m1[39m high

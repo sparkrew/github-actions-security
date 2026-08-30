@@ -1,0 +1,31 @@
+diff --git a/.github/workflows/apple_swift-collections__.github__workflows__pull_request.yml b/.github/workflows/apple_swift-collections__.github__workflows__pull_request.yml
+index d0f8abb..fdd4688 100644
+--- a/.github/workflows/apple_swift-collections__.github__workflows__pull_request.yml
++++ b/.github/workflows/apple_swift-collections__.github__workflows__pull_request.yml
+@@ -10,7 +10,7 @@ on:
+ jobs:
+   tests:
+     name: Test
+-    uses: swiftlang/github-workflows/.github/workflows/swift_package_test.yml@0.0.7
++    uses: swiftlang/github-workflows/.github/workflows/swift_package_test.yml@e96b1ad30d9a253d7bd9d253b2e4ef189965dd3d # 0.0.7
+     with:
+       linux_exclude_swift_versions: '[{"swift_version": "5.8"}, {"swift_version": "5.9"}, {"swift_version": "5.10"}]'
+       windows_exclude_swift_versions: '[{"swift_version": "5.9"}, {"swift_version": "5.10"}]'
+@@ -20,7 +20,7 @@ jobs:
+ 
+   embedded-swift:
+     name: Build with Embedded Swift
+-    uses: swiftlang/github-workflows/.github/workflows/swift_package_test.yml@0.0.7
++    uses: swiftlang/github-workflows/.github/workflows/swift_package_test.yml@e96b1ad30d9a253d7bd9d253b2e4ef189965dd3d # 0.0.7
+     with:
+       enable_linux_checks: false
+       enable_macos_checks: false
+@@ -31,7 +31,7 @@ jobs:
+ 
+   soundness:
+     name: Soundness
+-    uses: swiftlang/github-workflows/.github/workflows/soundness.yml@0.0.7
++    uses: swiftlang/github-workflows/.github/workflows/soundness.yml@e96b1ad30d9a253d7bd9d253b2e4ef189965dd3d # 0.0.7
+     with:
+       license_header_check_project_name: "Swift.org"
+       # https://github.com/apple/swift-collections/issues/428

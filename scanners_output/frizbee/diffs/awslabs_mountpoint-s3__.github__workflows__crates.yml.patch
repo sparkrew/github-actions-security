@@ -1,0 +1,18 @@
+diff --git a/.github/workflows/awslabs_mountpoint-s3__.github__workflows__crates.yml b/.github/workflows/awslabs_mountpoint-s3__.github__workflows__crates.yml
+index 36840bd..691b91f 100644
+--- a/.github/workflows/awslabs_mountpoint-s3__.github__workflows__crates.yml
++++ b/.github/workflows/awslabs_mountpoint-s3__.github__workflows__crates.yml
+@@ -23,11 +23,11 @@ jobs:
+ 
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           submodules: true
+       - name: Set up Rust toolchain
+-        uses: actions-rust-lang/setup-rust-toolchain@v1
++        uses: actions-rust-lang/setup-rust-toolchain@1780873c7b576612439a134613cc4cc74ce5538c # v1
+         with:
+           # setup-rust-toolchain sets "-D warnings" by default, and Rust treats any warning as compile error.
+           # We need to do this currently because `mountpoint-s3-fuser` contains some warnings and it breaks the build.

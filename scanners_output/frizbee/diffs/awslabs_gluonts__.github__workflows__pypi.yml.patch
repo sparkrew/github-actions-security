@@ -1,0 +1,26 @@
+diff --git a/.github/workflows/awslabs_gluonts__.github__workflows__pypi.yml b/.github/workflows/awslabs_gluonts__.github__workflows__pypi.yml
+index 25ff90f..3fc7e50 100644
+--- a/.github/workflows/awslabs_gluonts__.github__workflows__pypi.yml
++++ b/.github/workflows/awslabs_gluonts__.github__workflows__pypi.yml
+@@ -9,10 +9,10 @@ jobs:
+     runs-on: ubuntu-latest
+ 
+     steps:
+-    - uses: actions/checkout@v4
++    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+     - name: Get tags
+       run: git fetch --tags origin
+-    - uses: actions/setup-python@v4
++    - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+       with:
+         python-version: '3.11'
+     - name: Install dependencies
+@@ -23,7 +23,7 @@ jobs:
+       run: |
+         python setup.py sdist bdist_wheel
+     - name: Publish package
+-      uses: pypa/gh-action-pypi-publish@release/v1
++      uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # release/v1
+       with:
+         user: __token__
+         password: ${{ secrets.PYPI_API_TOKEN }}

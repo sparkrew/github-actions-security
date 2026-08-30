@@ -1,0 +1,759 @@
+name: Release
+
+on:
+  release:
+    types:
+      - released
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+  SAM_TEMPLATE_X86_64: template-x86_64.yaml
+  SAM_TEMPLATE_ARM64: template-arm64.yaml
+  GITHUB_RUNNER_ROLE: arn:aws:iam::621808641063:role/GitHubRunnerRole
+  GITHUB_RUNNER_CHINA_ROLE: arn:aws-cn:iam::075528433517:role/GitHubRunnerRole
+  PROD_ECR_PIPELINE_EXECUTION_ROLE: arn:aws:iam::373534280245:role/aws-sam-cli-managed-prod-ecr-PipelineExecutionRole-12FE9QIHNFYOI
+  PROD_ARTIFACTS_BUCKET: aws-sam-cli-managed-prod-ecr-pipe-artifactsbucket-1mjporc66dkgn
+  PROD_IMAGE_REPOSITORY: 373534280245.dkr.ecr.us-east-1.amazonaws.com/aws-sam-cli-managed-prod-ecr-pipeline-resources-imagerepository-fhpoty0tapro
+  PROD_ECR_REGION: us-east-1
+  RUST_BACKTRACE: full
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+
+      - name: Configure Rust cache
+        uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # Swatinem/rust-cache@v2
+
+      - name: Install cargo-nextest
+        run: curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C ${CARGO_HOME:-~/.cargo}/bin
+
+      - name: linting
+        run: |
+          cargo fmt --all -- --check
+          cargo clippy -- -Dwarnings
+
+      - name: run unit and integration tests
+        run: cargo nextest run --profile ci
+
+  build:
+    needs: [test]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+
+      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # actions/setup-python@v4 | restore-v4-release,v4.9.1
+        with:
+          python-version: "3.13"
+
+      - uses: aws-actions/setup-sam@d78e1a4a9656d3b223e59b80676a797f20093133 # aws-actions/setup-sam@v2 | main
+        with:
+          use-installer: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install stable toolchain
+        run: |
+          rustup target add x86_64-unknown-linux-musl
+          rustup target add aarch64-unknown-linux-musl
+
+      - name: Install cargo lambda
+        run: pip3 install cargo-lambda
+
+      - name: Configure Rust cache
+        uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # Swatinem/rust-cache@v2
+
+      - name: Add cargo pkg version to env vars
+        run: |
+          echo "CARGO_PKG_VERSION=$(cargo metadata --no-deps --format-version=1 | jq -r '.packages[0].version')" >> $GITHUB_ENV
+
+      - name: Build x86_64 Layer
+        run: sam build --template ${SAM_TEMPLATE_X86_64} --parameter-overrides CargoPkgVersion=${CARGO_PKG_VERSION} -b build-x86_64
+
+      - name: Tar files
+        run: tar -cvf build-x86_64.tar build-x86_64
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2
+        with:
+          name: aws-sam-build-x86_64
+          path: build-x86_64.tar
+
+      - name: Build arm64 Layer
+        run: sam build --template ${SAM_TEMPLATE_ARM64} --parameter-overrides CargoPkgVersion=${CARGO_PKG_VERSION} -b build-arm64
+
+      - name: Tar files
+        run: tar -cvf build-arm64.tar build-arm64
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2
+        with:
+          name: aws-sam-build-arm64
+          path: build-arm64.tar
+
+  load-matrices:
+    needs: [build]
+    runs-on: ubuntu-24.04
+    outputs:
+      gamma: ${{ steps.gamma.outputs.matrix }}
+      prod: ${{ steps.prod.outputs.matrix }}
+      china-gamma: ${{ steps.china-gamma.outputs.matrix }}
+      china-prod: ${{ steps.china-prod.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - id: gamma
+        run: echo "matrix={\"include\":$(jq -r tostring .github/workflows/gamma.json)}" >> $GITHUB_OUTPUT
+      - id: prod
+        run: echo "matrix={\"include\":$(jq -r tostring .github/workflows/prod.json)}" >> $GITHUB_OUTPUT
+      - id: china-gamma
+        run: echo "matrix={\"include\":$(jq -r tostring .github/workflows/cn-gamma.json)}" >> $GITHUB_OUTPUT
+      - id: china-prod
+        run: echo "matrix={\"include\":$(jq -r tostring .github/workflows/cn-prod.json)}" >> $GITHUB_OUTPUT
+
+  package-gamma:
+    needs: [build, load-matrices]
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix: ${{fromJSON(needs.load-matrices.outputs.gamma)}}
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # actions/setup-python@v4 | restore-v4-release,v4.9.1
+        with:
+          python-version: "3.13"
+      - uses: aws-actions/setup-sam@d78e1a4a9656d3b223e59b80676a797f20093133 # aws-actions/setup-sam@v2 | main
+        with:
+          use-installer: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Assume the github runner role
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ matrix.region }}
+          role-to-assume: ${{ env.GITHUB_RUNNER_ROLE }}
+
+      - name: Assume the gamma pipeline user role
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ env.AWS_SESSION_TOKEN }}
+          role-skip-session-tagging: true
+          aws-region: ${{ matrix.region }}
+          role-to-assume: ${{ matrix.pipeline_execution_role }}
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: aws-sam-build-x86_64
+
+      - name: extract build_x86_64
+        run: |
+          tar -xvf build-x86_64.tar
+
+      - name: Upload x86_64 layer to gamma artifact buckets
+        run: |
+          sam package \
+            --template build-x86_64/template.yaml \
+            --s3-bucket ${{ matrix.artifacts_bucket }} \
+            --image-repository ${{ matrix.image_repository }} \
+            --region ${{ matrix.region }} \
+            --output-template-file packaged-gamma-x86_64-${{ matrix.region }}.yaml
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2
+        with:
+          name: packaged-gamma-x86_64-${{ matrix.region }}.yaml
+          path: packaged-gamma-x86_64-${{ matrix.region }}.yaml
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: aws-sam-build-arm64
+
+      - name: extract build_arm64
+        run: |
+          tar -xvf build-arm64.tar
+
+      - name: Upload arm64 layer to gamma artifact buckets
+        run: |
+          sam package \
+            --template build-arm64/template.yaml \
+            --s3-bucket ${{ matrix.artifacts_bucket }} \
+            --image-repository ${{ matrix.image_repository }} \
+            --region ${{ matrix.region }} \
+            --output-template-file packaged-gamma-arm64-${{ matrix.region }}.yaml
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2
+        with:
+          name: packaged-gamma-arm64-${{ matrix.region }}.yaml
+          path: packaged-gamma-arm64-${{ matrix.region }}.yaml
+
+  package-prod:
+    needs: [build, load-matrices]
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix: ${{fromJSON(needs.load-matrices.outputs.prod)}}
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # actions/setup-python@v4 | restore-v4-release,v4.9.1
+        with:
+          python-version: "3.13"
+      - uses: aws-actions/setup-sam@d78e1a4a9656d3b223e59b80676a797f20093133 # aws-actions/setup-sam@v2 | main
+        with:
+          use-installer: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Assume the github runner role
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ matrix.region }}
+          role-to-assume: ${{ env.GITHUB_RUNNER_ROLE }}
+
+      - name: Assume the prod pipeline user role
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ env.AWS_SESSION_TOKEN }}
+          role-skip-session-tagging: true
+          aws-region: ${{ matrix.region }}
+          role-to-assume: ${{ matrix.pipeline_execution_role }}
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: aws-sam-build-x86_64
+
+      - name: extract build_x86_64
+        run: |
+          tar -xvf build-x86_64.tar
+
+      - name: Upload x86_64 layer to prod artifact buckets
+        run: |
+          sam package \
+            --template build-x86_64/template.yaml \
+            --s3-bucket ${{ matrix.artifacts_bucket }} \
+            --image-repository ${{ matrix.image_repository }} \
+            --region ${{ matrix.region }} \
+            --output-template-file packaged-prod-x86_64-${{ matrix.region }}.yaml
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2
+        with:
+          name: packaged-prod-x86_64-${{ matrix.region }}.yaml
+          path: packaged-prod-x86_64-${{ matrix.region }}.yaml
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: aws-sam-build-arm64
+
+      - name: extract build_arm64
+        run: |
+          tar -xvf build-arm64.tar
+
+      - name: Upload arm64 layer to prod artifact buckets
+        run: |
+          sam package \
+            --template build-arm64/template.yaml \
+            --s3-bucket ${{ matrix.artifacts_bucket }} \
+            --image-repository ${{ matrix.image_repository }} \
+            --region ${{ matrix.region }} \
+            --output-template-file packaged-prod-arm64-${{ matrix.region }}.yaml
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2
+        with:
+          name: packaged-prod-arm64-${{ matrix.region }}.yaml
+          path: packaged-prod-arm64-${{ matrix.region }}.yaml
+
+  package-china-gamma:
+    needs: [build, load-matrices]
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix: ${{fromJSON(needs.load-matrices.outputs.china-gamma)}}
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # actions/setup-python@v4 | restore-v4-release,v4.9.1
+        with:
+          python-version: "3.13"
+      - uses: aws-actions/setup-sam@d78e1a4a9656d3b223e59b80676a797f20093133 # aws-actions/setup-sam@v2 | main
+        with:
+          use-installer: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Assume the github runner role
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ matrix.region }}
+          role-to-assume: ${{ env.GITHUB_RUNNER_CHINA_ROLE }}
+          audience: sts.amazonaws.com.cn
+
+      - name: Assume the china pipeline user role
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ env.AWS_SESSION_TOKEN }}
+          role-skip-session-tagging: true
+          audience: sts.amazonaws.com.cn
+          aws-region: ${{ matrix.region }}
+          role-to-assume: ${{ matrix.pipeline_execution_role }}
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: aws-sam-build-x86_64
+
+      - name: extract build_x86_64
+        run: |
+          tar -xvf build-x86_64.tar
+
+      - name: Upload x86_64 layer to gamma artifact buckets
+        run: |
+          sam package \
+            --template build-x86_64/template.yaml \
+            --s3-bucket ${{ matrix.artifacts_bucket }} \
+            --image-repository ${{ matrix.image_repository }} \
+            --region ${{ matrix.region }} \
+            --output-template-file packaged-china-gamma-x86_64-${{ matrix.region }}.yaml
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2
+        with:
+          name: packaged-china-gamma-x86_64-${{ matrix.region }}.yaml
+          path: packaged-china-gamma-x86_64-${{ matrix.region }}.yaml
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: aws-sam-build-arm64
+
+      - name: extract build_arm64
+        run: |
+          tar -xvf build-arm64.tar
+
+      - name: Upload arm64 layer to gamma artifact buckets
+        run: |
+          sam package \
+            --template build-arm64/template.yaml \
+            --s3-bucket ${{ matrix.artifacts_bucket }} \
+            --image-repository ${{ matrix.image_repository }} \
+            --region ${{ matrix.region }} \
+            --output-template-file packaged-china-gamma-arm64-${{ matrix.region }}.yaml
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2
+        with:
+          name: packaged-china-gamma-arm64-${{ matrix.region }}.yaml
+          path: packaged-china-gamma-arm64-${{ matrix.region }}.yaml
+
+  package-china-prod:
+    needs: [build, load-matrices]
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix: ${{fromJSON(needs.load-matrices.outputs.china-prod)}}
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # actions/setup-python@v4 | restore-v4-release,v4.9.1
+        with:
+          python-version: "3.13"
+      - uses: aws-actions/setup-sam@d78e1a4a9656d3b223e59b80676a797f20093133 # aws-actions/setup-sam@v2 | main
+        with:
+          use-installer: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Assume the github runner role
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ matrix.region }}
+          role-to-assume: ${{ env.GITHUB_RUNNER_CHINA_ROLE }}
+          audience: sts.amazonaws.com.cn
+
+      - name: Assume the china pipeline user role
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ env.AWS_SESSION_TOKEN }}
+          role-skip-session-tagging: true
+          audience: sts.amazonaws.com.cn
+          aws-region: ${{ matrix.region }}
+          role-to-assume: ${{ matrix.pipeline_execution_role }}
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: aws-sam-build-x86_64
+
+      - name: extract build_x86_64
+        run: |
+          tar -xvf build-x86_64.tar
+
+      - name: Upload x86_64 layer to prod artifact buckets
+        run: |
+          sam package \
+            --template build-x86_64/template.yaml \
+            --s3-bucket ${{ matrix.artifacts_bucket }} \
+            --image-repository ${{ matrix.image_repository }} \
+            --region ${{ matrix.region }} \
+            --output-template-file packaged-china-prod-x86_64-${{ matrix.region }}.yaml
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2
+        with:
+          name: packaged-china-prod-x86_64-${{ matrix.region }}.yaml
+          path: packaged-china-prod-x86_64-${{ matrix.region }}.yaml
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: aws-sam-build-arm64
+
+      - name: extract build_arm64
+        run: |
+          tar -xvf build-arm64.tar
+
+      - name: Upload arm64 layer to prod artifact buckets
+        run: |
+          sam package \
+            --template build-arm64/template.yaml \
+            --s3-bucket ${{ matrix.artifacts_bucket }} \
+            --image-repository ${{ matrix.image_repository }} \
+            --region ${{ matrix.region }} \
+            --output-template-file packaged-china-prod-arm64-${{ matrix.region }}.yaml
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2
+        with:
+          name: packaged-china-prod-arm64-${{ matrix.region }}.yaml
+          path: packaged-china-prod-arm64-${{ matrix.region }}.yaml
+
+  deploy-gamma:
+    needs: [load-matrices, package-gamma]
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix: ${{fromJSON(needs.load-matrices.outputs.gamma)}}
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # actions/setup-python@v4 | restore-v4-release,v4.9.1
+        with:
+          python-version: "3.13"
+      - uses: aws-actions/setup-sam@d78e1a4a9656d3b223e59b80676a797f20093133 # aws-actions/setup-sam@v2 | main
+        with:
+          use-installer: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Assume the github runner role
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ matrix.region }}
+          role-to-assume: ${{ env.GITHUB_RUNNER_ROLE }}
+
+      - name: Assume the gamma pipeline user role
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ env.AWS_SESSION_TOKEN }}
+          role-skip-session-tagging: true
+          aws-region: ${{ matrix.region }}
+          role-to-assume: ${{ matrix.pipeline_execution_role }}
+
+      - name: Add cargo pkg version to env vars
+        run: |
+          echo "CARGO_PKG_VERSION=$(cargo metadata --no-deps --format-version=1 | jq -r '.packages[0].version')" >> $GITHUB_ENV
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: packaged-gamma-x86_64-${{ matrix.region }}.yaml
+
+      - name: Deploy x86_64 Layer to all regions in gamma account
+        run: |
+          sam deploy --stack-name lambda-adapter-gamma-x86-${{ matrix.region }} \
+            --template packaged-gamma-x86_64-${{ matrix.region }}.yaml \
+            --parameter-overrides CargoPkgVersion=${CARGO_PKG_VERSION} \
+            --capabilities CAPABILITY_IAM \
+            --region ${{ matrix.region }} \
+            --s3-bucket ${{ matrix.artifacts_bucket }} \
+            --image-repository ${{ matrix.image_repository }} \
+            --no-fail-on-empty-changeset \
+            --role-arn ${{ matrix.cloudformation_execution_role }}
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: packaged-gamma-arm64-${{ matrix.region }}.yaml
+
+      - name: Deploy arm64 Layer to supported regions in gamma account
+        if: ${{ matrix.arm64_supported }}
+        run: |
+          sam deploy --stack-name lambda-adapter-gamma-arm64-${{ matrix.region }} \
+            --template packaged-gamma-arm64-${{ matrix.region }}.yaml \
+            --parameter-overrides CargoPkgVersion=${CARGO_PKG_VERSION} \
+            --capabilities CAPABILITY_IAM \
+            --region ${{ matrix.region }} \
+            --s3-bucket ${{ matrix.artifacts_bucket }} \
+            --image-repository ${{ matrix.image_repository }} \
+            --no-fail-on-empty-changeset \
+            --role-arn ${{ matrix.cloudformation_execution_role }}
+
+  deploy-prod:
+    needs: [load-matrices, deploy-gamma, package-prod]
+    runs-on: ubuntu-24.04
+    environment: prod
+    strategy:
+      matrix: ${{fromJSON(needs.load-matrices.outputs.prod)}}
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # actions/setup-python@v4 | restore-v4-release,v4.9.1
+        with:
+          python-version: "3.13"
+      - uses: aws-actions/setup-sam@d78e1a4a9656d3b223e59b80676a797f20093133 # aws-actions/setup-sam@v2 | main
+        with:
+          use-installer: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Assume the github runner role
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ matrix.region }}
+          role-to-assume: ${{ env.GITHUB_RUNNER_ROLE }}
+
+      - name: Assume the prod pipeline user role
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ env.AWS_SESSION_TOKEN }}
+          role-skip-session-tagging: true
+          aws-region: ${{ matrix.region }}
+          role-to-assume: ${{ matrix.pipeline_execution_role }}
+
+      - name: Add cargo pkg version to env vars
+        run: |
+          echo "CARGO_PKG_VERSION=$(cargo metadata --no-deps --format-version=1 | jq -r '.packages[0].version')" >> $GITHUB_ENV
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: packaged-prod-x86_64-${{ matrix.region }}.yaml
+
+      - name: Deploy x86_64 Layer to all regions in prod account
+        run: |
+          sam deploy --stack-name lambda-adapter-prod-x86-${{ matrix.region }} \
+            --template packaged-prod-x86_64-${{ matrix.region }}.yaml \
+            --parameter-overrides CargoPkgVersion=${CARGO_PKG_VERSION} \
+            --capabilities CAPABILITY_IAM \
+            --region ${{ matrix.region }} \
+            --s3-bucket ${{ matrix.artifacts_bucket }} \
+            --image-repository ${{ matrix.image_repository }} \
+            --no-fail-on-empty-changeset \
+            --role-arn ${{ matrix.cloudformation_execution_role }}
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: packaged-prod-arm64-${{ matrix.region }}.yaml
+
+      - name: Deploy arm64 Layer to supported regions in prod account
+        if: ${{ matrix.arm64_supported }}
+        run: |
+          sam deploy --stack-name lambda-adapter-prod-arm64-${{ matrix.region }} \
+            --template packaged-prod-arm64-${{ matrix.region }}.yaml \
+            --parameter-overrides CargoPkgVersion=${CARGO_PKG_VERSION} \
+            --capabilities CAPABILITY_IAM \
+            --region ${{ matrix.region }} \
+            --s3-bucket ${{ matrix.artifacts_bucket }} \
+            --image-repository ${{ matrix.image_repository }} \
+            --no-fail-on-empty-changeset \
+            --role-arn ${{ matrix.cloudformation_execution_role }}
+
+  deploy-china-gamma:
+    needs: [load-matrices, package-china-gamma]
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix: ${{fromJSON(needs.load-matrices.outputs.china-gamma)}}
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # actions/setup-python@v4 | restore-v4-release,v4.9.1
+        with:
+          python-version: "3.13"
+      - uses: aws-actions/setup-sam@d78e1a4a9656d3b223e59b80676a797f20093133 # aws-actions/setup-sam@v2 | main
+        with:
+          use-installer: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Assume the github runner role
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ matrix.region }}
+          role-to-assume: ${{ env.GITHUB_RUNNER_CHINA_ROLE }}
+          audience: sts.amazonaws.com.cn
+
+      - name: Assume the china pipeline user role
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ env.AWS_SESSION_TOKEN }}
+          role-skip-session-tagging: true
+          audience: sts.amazonaws.com.cn
+          aws-region: ${{ matrix.region }}
+          role-to-assume: ${{ matrix.pipeline_execution_role }}
+
+      - name: Add cargo pkg version to env vars
+        run: |
+          echo "CARGO_PKG_VERSION=$(cargo metadata --no-deps --format-version=1 | jq -r '.packages[0].version')" >> $GITHUB_ENV
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: packaged-china-gamma-x86_64-${{ matrix.region }}.yaml
+
+      - name: Deploy x86_64 Layer to all regions in china
+        run: |
+          sam deploy --stack-name lambda-adapter-gamma-x86-${{ matrix.region }} \
+            --template packaged-china-gamma-x86_64-${{ matrix.region }}.yaml \
+            --parameter-overrides CargoPkgVersion=${CARGO_PKG_VERSION} \
+            --capabilities CAPABILITY_IAM \
+            --region ${{ matrix.region }} \
+            --s3-bucket ${{ matrix.artifacts_bucket }} \
+            --image-repository ${{ matrix.image_repository }} \
+            --no-fail-on-empty-changeset \
+            --role-arn ${{ matrix.cloudformation_execution_role }}
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: packaged-china-gamma-arm64-${{ matrix.region }}.yaml
+
+      - name: Deploy arm64 Layer to supported china regions
+        if: ${{ matrix.arm64_supported }}
+        run: |
+          sam deploy --stack-name lambda-adapter-gamma-arm64-${{ matrix.region }} \
+            --template packaged-china-gamma-arm64-${{ matrix.region }}.yaml \
+            --parameter-overrides CargoPkgVersion=${CARGO_PKG_VERSION} \
+            --capabilities CAPABILITY_IAM \
+            --region ${{ matrix.region }} \
+            --s3-bucket ${{ matrix.artifacts_bucket }} \
+            --image-repository ${{ matrix.image_repository }} \
+            --no-fail-on-empty-changeset \
+            --role-arn ${{ matrix.cloudformation_execution_role }}
+
+  deploy-china-prod:
+    needs: [load-matrices, deploy-china-gamma, package-china-prod]
+    runs-on: ubuntu-24.04
+    environment: prod
+    strategy:
+      matrix: ${{fromJSON(needs.load-matrices.outputs.china-prod)}}
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # actions/setup-python@v4 | restore-v4-release,v4.9.1
+        with:
+          python-version: "3.13"
+      - uses: aws-actions/setup-sam@d78e1a4a9656d3b223e59b80676a797f20093133 # aws-actions/setup-sam@v2 | main
+        with:
+          use-installer: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Assume the github runner role
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ matrix.region }}
+          role-to-assume: ${{ env.GITHUB_RUNNER_CHINA_ROLE }}
+          audience: sts.amazonaws.com.cn
+
+      - name: Assume the china pipeline user role
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ env.AWS_SESSION_TOKEN }}
+          role-skip-session-tagging: true
+          audience: sts.amazonaws.com.cn
+          aws-region: ${{ matrix.region }}
+          role-to-assume: ${{ matrix.pipeline_execution_role }}
+
+      - name: Add cargo pkg version to env vars
+        run: |
+          echo "CARGO_PKG_VERSION=$(cargo metadata --no-deps --format-version=1 | jq -r '.packages[0].version')" >> $GITHUB_ENV
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: packaged-china-prod-x86_64-${{ matrix.region }}.yaml
+
+      - name: Deploy x86_64 Layer to all regions in china
+        run: |
+          sam deploy --stack-name lambda-adapter-prod-x86-${{ matrix.region }} \
+            --template packaged-china-prod-x86_64-${{ matrix.region }}.yaml \
+            --parameter-overrides CargoPkgVersion=${CARGO_PKG_VERSION} \
+            --capabilities CAPABILITY_IAM \
+            --region ${{ matrix.region }} \
+            --s3-bucket ${{ matrix.artifacts_bucket }} \
+            --image-repository ${{ matrix.image_repository }} \
+            --no-fail-on-empty-changeset \
+            --role-arn ${{ matrix.cloudformation_execution_role }}
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: packaged-china-prod-arm64-${{ matrix.region }}.yaml
+
+      - name: Deploy arm64 Layer to supported china regions
+        if: ${{ matrix.arm64_supported }}
+        run: |
+          sam deploy --stack-name lambda-adapter-prod-arm64-${{ matrix.region }} \
+            --template packaged-china-prod-arm64-${{ matrix.region }}.yaml \
+            --parameter-overrides CargoPkgVersion=${CARGO_PKG_VERSION} \
+            --capabilities CAPABILITY_IAM \
+            --region ${{ matrix.region }} \
+            --s3-bucket ${{ matrix.artifacts_bucket }} \
+            --image-repository ${{ matrix.image_repository }} \
+            --no-fail-on-empty-changeset \
+            --role-arn ${{ matrix.cloudformation_execution_role }}
+
+  publish-to-public-ecr:
+    needs: [deploy-prod]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+
+      - name: Assume the github runner role
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ env.PROD_ECR_REGION }}
+          role-to-assume: ${{ env.GITHUB_RUNNER_ROLE }}
+
+      - name: Assume the prod pipeline user role
+        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ env.AWS_SESSION_TOKEN }}
+          role-skip-session-tagging: true
+          aws-region: ${{ env.PROD_ECR_REGION }}
+          role-to-assume: ${{ env.PROD_ECR_PIPELINE_EXECUTION_ROLE }}
+
+      - name: Add cargo pkg version to env vars
+        run: |
+          echo "CARGO_PKG_VERSION=$(cargo metadata --no-deps --format-version=1 | jq -r '.packages[0].version')" >> $GITHUB_ENV
+
+      - name: login ECR Public Registry
+        run: |
+          aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: aws-sam-build-x86_64
+
+      - name: extract build_x86_64
+        run: |
+          tar -xvf build-x86_64.tar
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: aws-sam-build-arm64
+
+      - name: extract build_arm64
+        run: |
+          tar -xvf build-arm64.tar
+
+      - name: Create and push the x86_64 docker image to prod ecr public repo
+        run: |
+          printf 'FROM scratch\nADD build-x86_64/LambdaAdapterLayerX86/extensions/. /\n' | docker build --provenance=false --platform=linux/amd64 -t public.ecr.aws/awsguru/aws-lambda-adapter:${CARGO_PKG_VERSION}-x86_64 -f- .
+          docker push public.ecr.aws/awsguru/aws-lambda-adapter:${CARGO_PKG_VERSION}-x86_64
+
+      - name: Create and push the arm64 docker image to prod ecr public repo
+        run: |
+          printf 'FROM scratch\nADD build-arm64/LambdaAdapterLayerArm64/extensions/. /\n' | docker build --provenance=false --platform=linux/arm64 -t public.ecr.aws/awsguru/aws-lambda-adapter:${CARGO_PKG_VERSION}-aarch64 -f- .
+          docker push public.ecr.aws/awsguru/aws-lambda-adapter:${CARGO_PKG_VERSION}-aarch64
+
+      - name: create and push the multi-arch manifest to prod ecr public repo
+        run: |
+          docker manifest create public.ecr.aws/awsguru/aws-lambda-adapter:${CARGO_PKG_VERSION} \
+              public.ecr.aws/awsguru/aws-lambda-adapter:${CARGO_PKG_VERSION}-x86_64 \
+              public.ecr.aws/awsguru/aws-lambda-adapter:${CARGO_PKG_VERSION}-aarch64
+          docker manifest push public.ecr.aws/awsguru/aws-lambda-adapter:${CARGO_PKG_VERSION}

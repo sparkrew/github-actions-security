@@ -1,0 +1,23 @@
+{
+  "workflow": "microsoft_msquic__.github__workflows__validate-linux-packages-reuse.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "unverified_script_exec": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": 528,
+      "column": "",
+      "job": "validate-packages",
+      "step": "7",
+      "details": "Command: curl ca-certificates || yum install -y python",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    }
+  ]
+}

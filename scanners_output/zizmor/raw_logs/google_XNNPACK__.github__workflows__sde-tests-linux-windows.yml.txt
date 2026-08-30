@@ -1,0 +1,40 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_XNNPACK__.github__workflows__sde-tests-linux-windows.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: Run Linux and Windows (x86, x64) Tests with Intel SDE Processors
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m110 |[0m [1m[33m|[0m         working-directory: ${{ env.BUILD_PATH }}
+[1m[94m111 |[0m [1m[33m|[0m         shell: pwsh
+    [1m[94m|[0m [1m[33m|___________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_XNNPACK__.github__workflows__sde-tests-linux-windows.yml:12:3
+   [1m[94m|[0m
+[1m[94m12 |[0m [1m[33m/[0m   build:
+[1m[94m13 |[0m [1m[33m|[0m     uses: ./.github/workflows/build-linux-windows.yml
+   [1m[94m|[0m [1m[33m|[0m                                                     [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________________________________________________|[0m
+   [1m[94m|[0m                                                       [1m[33mthis job[0m
+   [1m[94m|[0m                                                       [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_XNNPACK__.github__workflows__sde-tests-linux-windows.yml:15:3
+    [1m[94m|[0m
+[1m[94m 15 |[0m [1m[33m/[0m   run-sde-tests:
+[1m[94m 16 |[0m [1m[33m|[0m     strategy:
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m110 |[0m [1m[33m|[0m         working-directory: ${{ env.BUILD_PATH }}
+[1m[94m111 |[0m [1m[33m|[0m         shell: pwsh
+    [1m[94m|[0m [1m[33m|[0m                   [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|___________________|[0m
+    [1m[94m|[0m                     [1m[33mthis job[0m
+    [1m[94m|[0m                     [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m14[39m findings ([1m[93m11[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m3[39m medium, [31m0[39m high

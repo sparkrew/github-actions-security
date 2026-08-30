@@ -1,0 +1,24 @@
+diff --git a/.github/workflows/facebook_relay__.github__workflows__update-cargo-lock.yml b/.github/workflows/facebook_relay__.github__workflows__update-cargo-lock.yml
+index a618e48..4dbfd3f 100644
+--- a/.github/workflows/facebook_relay__.github__workflows__update-cargo-lock.yml
++++ b/.github/workflows/facebook_relay__.github__workflows__update-cargo-lock.yml
+@@ -17,8 +17,8 @@ jobs:
+     name: Update Cargo.lock file
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v6
+-      - uses: actions-rs/toolchain@v1
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
++      - uses: actions-rs/toolchain@16499b5e05bf2e26879000db0c1d13f7e13fa3af # v1
+         with:
+           # Should stay in sync with fbcode/buck2/rust-toolchain
+           # And other similar references in this file and
+@@ -28,7 +28,7 @@ jobs:
+       - name: cargo check
+         run: cargo check --features vendored --manifest-path=compiler/Cargo.toml
+       - name: pull-request
+-        uses: peter-evans/create-pull-request@v8
++        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8
+         with:
+           token: ${{ secrets.RELAY_BOT_GITHUB_PAT }}
+           title: "Update Cargo.lock"

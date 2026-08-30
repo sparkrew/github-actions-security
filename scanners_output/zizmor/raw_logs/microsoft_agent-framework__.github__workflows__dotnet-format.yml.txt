@@ -1,0 +1,71 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_agent-framework__.github__workflows__dotnet-format.yml:20:3
+   [1m[94m|[0m
+[1m[94m20 |[0m [1m[33m/[0m   check-format:
+[1m[94m21 |[0m [1m[33m|[0m     strategy:
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m95 |[0m [1m[33m|[0m             docker run --rm -v $(pwd):/app -w /app mcr.microsoft.com/dotnet/sdk:${{ matrix.dotnet }} /bin/sh -c "dotnet format $cspr[1m[94m...[0m
+[1m[94m96 |[0m [1m[33m|[0m           done
+   [1m[94m|[0m [1m[33m|[0m               [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________|[0m
+   [1m[94m|[0m                 [1m[33mthis job[0m
+   [1m[94m|[0m                 [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_agent-framework__.github__workflows__dotnet-format.yml:54:9
+   [1m[94m|[0m
+[1m[94m54 |[0m         - name: Find csproj files
+   [1m[94m|[0m           [1m[94m-----------------------[0m [1m[94minfo: this step[0m
+[1m[94m55 |[0m           id: find-csproj
+[1m[94m56 |[0m           if: github.event_name != 'pull_request' || steps.changed-files.outputs.added_modified != '' || steps.changed-files.outcome =[1m[94m...[0m
+[1m[94m57 |[0m [1m[94m/[0m         run: |
+[1m[94m58 |[0m [1m[94m|[0m           csproj_files=()
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m81 |[0m [1m[94m|[0m           echo "Found ${#csproj_files[@]} unique csproj/slnx files: ${csproj_files[*]}"
+[1m[94m82 |[0m [1m[94m|[0m           echo "csproj_files=${csproj_files[*]}" >> $GITHUB_OUTPUT
+   [1m[94m|[0m [1m[94m|__________________________________________________________________-[0m [1m[94minfo: steps.changed-files.outcome may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_agent-framework__.github__workflows__dotnet-format.yml:54:9
+   [1m[94m|[0m
+[1m[94m54 |[0m         - name: Find csproj files
+   [1m[94m|[0m           [1m[94m-----------------------[0m [1m[94minfo: this step[0m
+[1m[94m55 |[0m           id: find-csproj
+[1m[94m56 |[0m           if: github.event_name != 'pull_request' || steps.changed-files.outputs.added_modified != '' || steps.changed-files.outcome =[1m[94m...[0m
+[1m[94m57 |[0m [1m[94m/[0m         run: |
+[1m[94m58 |[0m [1m[94m|[0m           csproj_files=()
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m81 |[0m [1m[94m|[0m           echo "Found ${#csproj_files[@]} unique csproj/slnx files: ${csproj_files[*]}"
+[1m[94m82 |[0m [1m[94m|[0m           echo "csproj_files=${csproj_files[*]}" >> $GITHUB_OUTPUT
+   [1m[94m|[0m [1m[94m|__________________________________________________________________-[0m [1m[94minfo: steps.changed-files.outputs.added_modified may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_agent-framework__.github__workflows__dotnet-format.yml:90:9
+   [1m[94m|[0m
+[1m[94m90 |[0m         - name: Run dotnet format
+   [1m[94m|[0m           [1m[94m-----------------------[0m [1m[94minfo: this step[0m
+[1m[94m91 |[0m           if: steps.find-csproj.outputs.csproj_files != ''
+[1m[94m92 |[0m [1m[94m/[0m         run: |
+[1m[94m93 |[0m [1m[94m|[0m           for csproj in ${{ steps.find-csproj.outputs.csproj_files }}; do
+[1m[94m94 |[0m [1m[94m|[0m             echo "Running dotnet format on $csproj"
+[1m[94m95 |[0m [1m[94m|[0m             docker run --rm -v $(pwd):/app -w /app mcr.microsoft.com/dotnet/sdk:${{ matrix.dotnet }} /bin/sh -c "dotnet format $cspr[1m[94m...[0m
+[1m[94m96 |[0m [1m[94m|[0m           done
+   [1m[94m|[0m [1m[94m|_______________-[0m [1m[94minfo: steps.find-csproj.outputs.csproj_files may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_agent-framework__.github__workflows__dotnet-format.yml:45:9
+   [1m[94m|[0m
+[1m[94m45 |[0m         uses: jitterbit/get-changed-files@v1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m11[39m findings ([1m[93m6[39m suppressed[0m): 0 unknown, [35m3[39m informational, [36m0[39m low, [33m1[39m medium, [31m1[39m high

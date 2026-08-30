@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/facebook_relay__.github__workflows__update-yarn-lock.yml b/.github/workflows/facebook_relay__.github__workflows__update-yarn-lock.yml
+index a3b17ec..2443d2c 100644
+--- a/.github/workflows/facebook_relay__.github__workflows__update-yarn-lock.yml
++++ b/.github/workflows/facebook_relay__.github__workflows__update-yarn-lock.yml
+@@ -14,14 +14,14 @@ jobs:
+     name: Update yarn.lock file
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v2
+-      - uses: actions/setup-node@v3
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
++      - uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3
+         with:
+           node-version: '18'
+       - name: yarn install
+         run: yarn install
+       - name: pull-request
+-        uses: peter-evans/create-pull-request@v4
++        uses: peter-evans/create-pull-request@38e0b6e68b4c852a5500a94740f0e535e0d7ba54 # v4
+         with:
+           title: "Update yarn.lock"
+           branch: update-yarn-lock

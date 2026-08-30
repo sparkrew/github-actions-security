@@ -1,0 +1,93 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_security-research__.github__workflows__kernelctf-release-build.yaml:29:9
+   [1m[94m|[0m
+[1m[94m29 |[0m         - name: Checkout repo
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m30 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/google_security-research__.github__workflows__kernelctf-release-build.yaml:32:9
+   [1m[94m|[0m
+[1m[94m32 |[0m         - name: Detect build type
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m33 |[0m           id: detect
+[1m[94m34 |[0m [1m[91m/[0m         run: |
+[1m[94m35 |[0m [1m[91m|[0m           # Detect Android builds by prefix, assume Linux for everything else
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m41 |[0m [1m[91m|[0m             echo "Detected Linux build (default)"
+[1m[94m42 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|____________^[0m [1m[91minputs.releaseId may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/google_security-research__.github__workflows__kernelctf-release-build.yaml:44:9
+   [1m[94m|[0m
+[1m[94m44 |[0m         - name: Check release does not exist yet
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m45 |[0m [1m[91m/[0m         run: |
+[1m[94m46 |[0m [1m[91m|[0m           RELEASE_ID="${{inputs.releaseId}}"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m61 |[0m [1m[91m|[0m           
+[1m[94m62 |[0m [1m[91m|[0m           echo "Release ${RELEASE_ID} does not exist yet, proceeding with build"
+   [1m[94m|[0m [1m[91m|________________________________________________________________________________^[0m [1m[91minputs.releaseId may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/google_security-research__.github__workflows__kernelctf-release-build.yaml:89:9
+   [1m[94m|[0m
+[1m[94m89 |[0m       - name: Build Linux kernel
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m90 |[0m         if: steps.detect.outputs.type == 'linux'
+[1m[94m91 |[0m         run: ./build_release.sh ${{inputs.releaseId}} ${{inputs.branch}}
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91minputs.releaseId may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/google_security-research__.github__workflows__kernelctf-release-build.yaml:89:9
+   [1m[94m|[0m
+[1m[94m89 |[0m       - name: Build Linux kernel
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m90 |[0m         if: steps.detect.outputs.type == 'linux'
+[1m[94m91 |[0m         run: ./build_release.sh ${{inputs.releaseId}} ${{inputs.branch}}
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91minputs.branch may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_security-research__.github__workflows__kernelctf-release-build.yaml:93:9
+    [1m[94m|[0m
+[1m[94m 93 |[0m         - name: Build Android kernel
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m 94 |[0m           if: steps.detect.outputs.type == 'android'
+[1m[94m 95 |[0m [1m[91m/[0m         run: |
+[1m[94m 96 |[0m [1m[91m|[0m           RELEASE_ID="${{inputs.releaseId}}"
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m144 |[0m [1m[91m|[0m           
+[1m[94m145 |[0m [1m[91m|[0m           echo "Android artifacts downloaded to $RELEASE_DIR"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________^[0m [1m[91minputs.releaseId may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/google_security-research__.github__workflows__kernelctf-release-build.yaml:169:9
+    [1m[94m|[0m
+[1m[94m169 |[0m         uses: google-github-actions/auth@v2
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/google_security-research__.github__workflows__kernelctf-release-build.yaml:174:9
+    [1m[94m|[0m
+[1m[94m174 |[0m         uses: 'google-github-actions/upload-cloud-storage@v2'
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m13[39m findings ([1m[93m5[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m7[39m high

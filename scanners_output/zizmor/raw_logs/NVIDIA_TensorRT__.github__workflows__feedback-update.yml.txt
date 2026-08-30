@@ -1,0 +1,32 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_TensorRT__.github__workflows__feedback-update.yml:12:9
+   [1m[94m|[0m
+[1m[94m12 |[0m       - uses: actions/checkout@v2
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_TensorRT__.github__workflows__feedback-update.yml:8:3
+   [1m[94m|[0m
+[1m[94m 8 |[0m [1m[33m/[0m   remove_label:
+[1m[94m 9 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m15 |[0m [1m[33m|[0m           github_token: ${{ secrets.GITHUB_TOKEN }}
+[1m[94m16 |[0m [1m[33m|[0m           labels: "waiting for feedback"
+   [1m[94m|[0m [1m[33m|[0m                                         [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_________________________________________|[0m
+   [1m[94m|[0m                                           [1m[33mthis job[0m
+   [1m[94m|[0m                                           [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_TensorRT__.github__workflows__feedback-update.yml:13:9
+   [1m[94m|[0m
+[1m[94m13 |[0m       - uses: actions-ecosystem/action-remove-labels@v1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m4[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m1[39m high

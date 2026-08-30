@@ -1,0 +1,27 @@
+{
+  "workflow": "aws_aws-cli__.github__workflows__run-tests.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # actions/checkout@v6.0.1 | 2333",
+      "line": 22
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # actions/setup-python@v6 | main,v6.2.0",
+      "line": 24
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # codecov/codecov-action@v5 | main",
+      "line": 36
+    }
+  ]
+}

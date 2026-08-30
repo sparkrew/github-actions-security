@@ -1,0 +1,23 @@
+{
+  "workflow": "apple_swift-nio__.github__workflows__swift_matrix.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "unverified_script_exec": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": 169,
+      "column": "",
+      "job": "linux",
+      "step": "2",
+      "details": "Command: curl -s --retry 3 https://raw.githubusercontent.com/apple/swift-nio/main/scripts/check-matrix-job.sh | bash",
+      "event_triggers": [
+        "workflow_call"
+      ]
+    }
+  ]
+}

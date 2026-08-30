@@ -1,0 +1,42 @@
+{
+  "workflow": "NVIDIA_nvidia-container-toolkit__.github__workflows__e2e.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 6,
+    "by_rule": {
+      "unpinned-github-actions": 6
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+      "line": 58
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 # actions/setup-go@v6 | v6.3.0",
+      "line": 69
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: NVIDIA/holodeck@eddefe3812ee9c8cc1425bfc69ab9585596abd9f # NVIDIA/holodeck@v0.2.13",
+      "line": 74
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: mikefarah/yq@88a31ae8c6b34aad77d2efdecc146113cb3315d0 # mikefarah/yq@master",
+      "line": 83
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # actions/upload-artifact@v6 | v6.0.0",
+      "line": 103
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: slackapi/slack-github-action@91efab103c0de0a537f72a35f6b8cda0ee76bf0a # slackapi/slack-github-action@v2.1.1 | release,v2,v2.1",
+      "line": 111
+    }
+  ]
+}

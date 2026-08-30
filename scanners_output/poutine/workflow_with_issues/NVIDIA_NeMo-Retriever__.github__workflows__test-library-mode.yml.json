@@ -1,0 +1,63 @@
+{
+  "workflow": "NVIDIA_NeMo-Retriever__.github__workflows__test-library-mode.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "untrusted_checkout_exec": 1,
+      "known_vulnerability_in_build_component": 1,
+      "pr_runs_on_self_hosted": 1,
+      "default_permissions_on_risky_events": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "untrusted_checkout_exec",
+      "line": 45,
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "Detected usage of `bash`",
+      "event_triggers": [
+        "pull_request_target",
+        "push"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 79,
+      "column": "",
+      "job": "test",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "pull_request_target",
+        "push"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 20,
+      "column": "",
+      "job": "build",
+      "step": "",
+      "details": "runs-on: linux-large-disk",
+      "event_triggers": [
+        "pull_request_target",
+        "push"
+      ]
+    },
+    {
+      "rule_id": "default_permissions_on_risky_events",
+      "line": "",
+      "column": "",
+      "job": "",
+      "step": "",
+      "details": "",
+      "event_triggers": [
+        "pull_request_target",
+        "push"
+      ]
+    }
+  ]
+}

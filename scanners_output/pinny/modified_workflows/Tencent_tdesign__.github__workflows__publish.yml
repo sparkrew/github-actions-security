@@ -1,0 +1,75 @@
+name: PUBLISH
+
+on:
+  workflow_call:
+    secrets:
+      PERSONAL_TOKEN:
+        required: false
+      TDESIGN_SURGE_TOKEN:
+        required: true
+
+jobs:
+  TAG_PUSH:
+    runs-on: ubuntu-latest
+    if: github.event.ref_type == 'tag'
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | releases,v4.4.0
+        with:
+          node-version: 18
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # actions/cache@v4 | v4.3.0
+        env:
+          cache-name: cache-nodemodules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - run: npm install
+      - name: Build site
+        run: npm run site:preview
+      - name: upload surge service
+        id: deploy
+        run: |
+          repository=${{github.repository}}
+          project_name=${repository#*/}
+          ref_name=${{ github.ref_name }}
+          tag_name=${ref_name//./_}
+          export DEPLOY_DOMAIN=https://$tag_name-$project_name.surge.sh
+          npx surge --project _site --domain $DEPLOY_DOMAIN --token ${{ secrets.TDESIGN_SURGE_TOKEN }}
+          echo $DEPLOY_DOMAIN
+      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - run: npm run build
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # actions/setup-node@v6 | main,v6.3.0
+        with:
+          node-version: 24
+      - name: publish
+        id: publish
+        uses: JS-DevTools/npm-publish@0fd2f4369c5d6bcfcde6091a7c527d810b9b5c3f # JS-DevTools/npm-publish@v4
+        with:
+          tag: ${{ contains(github.ref_name, 'beta') && 'beta' || 'latest' }}
+      - if: steps.publish.outputs.type != 'none'
+        run: |
+          echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
+  UPDATE_OFFICIAL_WEBSITE:
+    runs-on: ubuntu-latest
+    if: github.event.ref_type == 'tag'
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+        with:
+          ref: main
+          fetch-depth: 0
+          token: ${{ secrets.PERSONAL_TOKEN }}
+          submodules: recursive
+      - name: update official website
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git status
+          git fetch origin
+          git merge origin/develop -X theirs
+          git push origin main

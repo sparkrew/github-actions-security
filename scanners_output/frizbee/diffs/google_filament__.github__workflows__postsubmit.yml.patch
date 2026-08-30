@@ -1,0 +1,97 @@
+diff --git a/.github/workflows/google_filament__.github__workflows__postsubmit.yml b/.github/workflows/google_filament__.github__workflows__postsubmit.yml
+index e10f698..680a819 100644
+--- a/.github/workflows/google_filament__.github__workflows__postsubmit.yml
++++ b/.github/workflows/google_filament__.github__workflows__postsubmit.yml
+@@ -15,7 +15,7 @@ jobs:
+     runs-on: 'ubuntu-24.04-16core'
+ 
+     steps:
+-      - uses: actions/checkout@v4.1.6
++      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+         with:
+           fetch-depth: 0
+       - uses: ./.github/actions/linux-prereq
+@@ -29,14 +29,14 @@ jobs:
+     runs-on: macos-14-xlarge
+ 
+     steps:
+-      - uses: actions/checkout@v4.1.6
++      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+         with:
+           fetch-depth: 0
+       - uses: ./.github/actions/mac-prereq
+       - name: Run build script
+         run: |
+           cd build/ios && printf "y" | ./build.sh continuous
+-      - uses: actions/upload-artifact@v4
++      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: filament-ios
+           path: out/filament-release-ios.tgz
+@@ -49,14 +49,14 @@ jobs:
+     runs-on: 'ubuntu-24.04-16core'
+ 
+     steps:
+-      - uses: actions/checkout@v4.1.6
++      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+         with:
+           fetch-depth: 0
+       - uses: ./.github/actions/linux-prereq
+       - name: Run build script
+         run: |
+           cd build/linux && printf "y" | ./build.sh continuous
+-      - uses: actions/upload-artifact@v4
++      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: filament-linux
+           path: out/filament-release-linux.tgz
+@@ -66,14 +66,14 @@ jobs:
+     runs-on: macos-14-xlarge
+ 
+     steps:
+-      - uses: actions/checkout@v4.1.6
++      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+         with:
+           fetch-depth: 0
+       - uses: ./.github/actions/mac-prereq
+       - name: Run build script
+         run: |
+           cd build/mac && printf "y" | ./build.sh continuous
+-      - uses: actions/upload-artifact@v4
++      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: filament-mac
+           path: out/filament-release-darwin.tgz
+@@ -86,7 +86,7 @@ jobs:
+     runs-on: 'ubuntu-24.04-16core'
+ 
+     steps:
+-      - uses: actions/checkout@v4.1.6
++      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+         with:
+           fetch-depth: 0
+       - uses: ./.github/actions/linux-prereq
+@@ -94,7 +94,7 @@ jobs:
+       - name: Run build script
+         run: |
+           cd build/web && printf "y" | ./build.sh continuous
+-      - uses: actions/upload-artifact@v4
++      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: filament-web
+           path: out/filament-release-web.tgz
+@@ -104,12 +104,12 @@ jobs:
+     runs-on: windows-2022-32core
+ 
+     steps:
+-      - uses: actions/checkout@v4.1.6
++      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+       - name: Run build script
+         run: |
+           build\windows\build-github.bat continuous
+         shell: cmd
+-      - uses: actions/upload-artifact@v4
++      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: filament-windows
+           path: out/filament-windows.tgz

@@ -1,0 +1,53 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_AKS__.github__workflows__website-check.yml:22:9
+   [1m[94m|[0m
+[1m[94m22 |[0m         - name: Checkout repository
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m23 |[0m [1m[33m|[0m         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+[1m[94m24 |[0m [1m[33m|[0m         with:
+[1m[94m25 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_AKS__.github__workflows__website-check.yml:43:9
+   [1m[94m|[0m
+[1m[94m43 |[0m         - name: Checkout repository
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m44 |[0m [1m[33m|[0m         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+[1m[94m45 |[0m [1m[33m|[0m         with:
+[1m[94m46 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_AKS__.github__workflows__website-check.yml:72:9
+   [1m[94m|[0m
+[1m[94m72 |[0m         - name: Checkout repository
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m73 |[0m [1m[33m|[0m         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+[1m[94m74 |[0m [1m[33m|[0m         with:
+[1m[94m75 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_AKS__.github__workflows__website-check.yml:11:3
+   [1m[94m|[0m
+[1m[94m11 |[0m   pull-requests: write
+   [1m[94m|[0m   [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91mpull-requests: write is overly broad at the workflow level[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_AKS__.github__workflows__website-check.yml:12:3
+   [1m[94m|[0m
+[1m[94m12 |[0m   statuses: write
+   [1m[94m|[0m   [1m[96m---------------[0m [1m[96mhelp: statuses: write is overly broad at the workflow level[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m5[39m findings: 0 unknown, [35m0[39m informational, [36m1[39m low, [33m3[39m medium, [31m1[39m high

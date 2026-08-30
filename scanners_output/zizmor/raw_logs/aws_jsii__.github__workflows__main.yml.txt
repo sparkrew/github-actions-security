@@ -1,0 +1,333 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/aws_jsii__.github__workflows__main.yml:25:9
+   [1m[94m|[0m
+[1m[94m25 |[0m         - name: Check out
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m26 |[0m [1m[33m|[0m         uses: actions/checkout@v6
+[1m[94m27 |[0m [1m[33m|[0m       # Set up all of our standard runtimes
+   [1m[94m|[0m [1m[33m|___________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/aws_jsii__.github__workflows__main.yml:107:9
+    [1m[94m|[0m
+[1m[94m107 |[0m         - name: Check out
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m108 |[0m [1m[33m|[0m         uses: actions/checkout@v6
+[1m[94m109 |[0m [1m[33m|[0m       # Set up all of our standard runtimes
+    [1m[94m|[0m [1m[33m|___________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/aws_jsii__.github__workflows__main.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m # Workflows pertaining to the main branch
+[1m[94m  2 |[0m [1m[33m|[0m name: Main
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m491 |[0m [1m[33m|[0m         name: Set status based on matrix build
+[1m[94m492 |[0m [1m[33m|[0m         run: exit 1
+    [1m[94m|[0m [1m[33m|____________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/aws_jsii__.github__workflows__main.yml:401:3
+    [1m[94m|[0m
+[1m[94m401 |[0m [1m[33m/[0m   test-ok:
+[1m[94m402 |[0m [1m[33m|[0m     name: Unit Tests
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m411 |[0m [1m[33m|[0m         name: Set status based on matrix build
+[1m[94m412 |[0m [1m[33m|[0m         run: exit 1
+    [1m[94m|[0m [1m[33m|[0m                   [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|___________________|[0m
+    [1m[94m|[0m                     [1m[33mthis job[0m
+    [1m[94m|[0m                     [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/aws_jsii__.github__workflows__main.yml:413:3
+    [1m[94m|[0m
+[1m[94m413 |[0m [1m[33m/[0m   pacmak-integration-test:
+[1m[94m414 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m479 |[0m [1m[33m|[0m           name: integtest_aws-cdk-lib
+[1m[94m480 |[0m [1m[33m|[0m           path: ./node_modules/aws-cdk-lib/dist/
+    [1m[94m|[0m [1m[33m|[0m                                                [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|________________________________________________|[0m
+    [1m[94m|[0m                                                  [1m[33mthis job[0m
+    [1m[94m|[0m                                                  [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/aws_jsii__.github__workflows__main.yml:481:3
+    [1m[94m|[0m
+[1m[94m481 |[0m [1m[33m/[0m   pacmak-integration-test-ok:
+[1m[94m482 |[0m [1m[33m|[0m     name: Integration test (jsii-pacmak)
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m491 |[0m [1m[33m|[0m         name: Set status based on matrix build
+[1m[94m492 |[0m [1m[33m|[0m         run: exit 1
+    [1m[94m|[0m [1m[33m|[0m                    [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________|[0m
+    [1m[94m|[0m                      [1m[33mthis job[0m
+    [1m[94m|[0m                      [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_jsii__.github__workflows__main.yml:408:9
+    [1m[94m|[0m
+[1m[94m408 |[0m       - name: Build result
+    [1m[94m|[0m         [1m[94m------------------[0m [1m[94minfo: this step[0m
+[1m[94m409 |[0m         run: echo ${{ needs.test.result }}
+    [1m[94m|[0m         [1m[94m----------------------------------[0m [1m[94minfo: needs.test.result may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_jsii__.github__workflows__main.yml:488:9
+    [1m[94m|[0m
+[1m[94m488 |[0m       - name: Build result
+    [1m[94m|[0m         [1m[94m------------------[0m [1m[94minfo: this step[0m
+[1m[94m489 |[0m         run: echo ${{ needs.pacmak-integration-test.result }}
+    [1m[94m|[0m         [1m[94m-----------------------------------------------------[0m [1m[94minfo: needs.pacmak-integration-test.result may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#cache-poisoning\cache-poisoning]8;;\][0m: [1mruntime artifacts potentially vulnerable to a cache poisoning attack[0m
+  [1m[94m-->[0m ../.github/workflows/aws_jsii__.github__workflows__main.yml:3:1
+   [1m[94m|[0m
+[1m[94m 3 |[0m [1m[91m/[0m on:
+[1m[94m 4 |[0m [1m[91m|[0m   merge_group: {}
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m 7 |[0m [1m[91m|[0m   push:
+[1m[94m 8 |[0m [1m[91m|[0m     branches: [main, release]
+   [1m[94m|[0m [1m[91m|_____________________________^[0m [1m[91mgenerally used when publishing artifacts generated at runtime[0m
+[1m[94m 9 |[0m   env:
+[1m[94m...[0m
+[1m[94m32 |[0m         - name: Set up Go 1.25
+[1m[94m33 |[0m           uses: actions/setup-go@v6
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcache enabled by default here[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#cache-poisoning\cache-poisoning]8;;\][0m: [1mruntime artifacts potentially vulnerable to a cache poisoning attack[0m
+  [1m[94m-->[0m ../.github/workflows/aws_jsii__.github__workflows__main.yml:3:1
+   [1m[94m|[0m
+[1m[94m 3 |[0m [1m[91m/[0m on:
+[1m[94m 4 |[0m [1m[91m|[0m   merge_group: {}
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m 7 |[0m [1m[91m|[0m   push:
+[1m[94m 8 |[0m [1m[91m|[0m     branches: [main, release]
+   [1m[94m|[0m [1m[91m|_____________________________^[0m [1m[91mgenerally used when publishing artifacts generated at runtime[0m
+[1m[94m 9 |[0m   env:
+[1m[94m...[0m
+[1m[94m42 |[0m           uses: actions/setup-node@v6
+[1m[94m43 |[0m [1m[91m/[0m         with:
+[1m[94m44 |[0m [1m[91m|[0m           cache: yarn
+[1m[94m45 |[0m [1m[91m|[0m           node-version: "lts/*"
+   [1m[94m|[0m [1m[91m|_______________________________^[0m [1m[91mopt-in for caching here[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#cache-poisoning\cache-poisoning]8;;\][0m: [1mruntime artifacts potentially vulnerable to a cache poisoning attack[0m
+  [1m[94m-->[0m ../.github/workflows/aws_jsii__.github__workflows__main.yml:3:1
+   [1m[94m|[0m
+[1m[94m 3 |[0m [1m[91m/[0m on:
+[1m[94m 4 |[0m [1m[91m|[0m   merge_group: {}
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m 7 |[0m [1m[91m|[0m   push:
+[1m[94m 8 |[0m [1m[91m|[0m     branches: [main, release]
+   [1m[94m|[0m [1m[91m|_____________________________^[0m [1m[91mgenerally used when publishing artifacts generated at runtime[0m
+[1m[94m 9 |[0m   env:
+[1m[94m...[0m
+[1m[94m47 |[0m           uses: actions/setup-python@v6
+[1m[94m48 |[0m [1m[91m/[0m         with:
+[1m[94m49 |[0m [1m[91m|[0m           python-version: "3.9"
+[1m[94m50 |[0m [1m[91m|[0m           cache: pip
+   [1m[94m|[0m [1m[91m|____________________^[0m [1m[91mopt-in for caching here[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#cache-poisoning\cache-poisoning]8;;\][0m: [1mruntime artifacts potentially vulnerable to a cache poisoning attack[0m
+  [1m[94m-->[0m ../.github/workflows/aws_jsii__.github__workflows__main.yml:3:1
+   [1m[94m|[0m
+[1m[94m 3 |[0m [1m[91m/[0m on:
+[1m[94m 4 |[0m [1m[91m|[0m   merge_group: {}
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m 7 |[0m [1m[91m|[0m   push:
+[1m[94m 8 |[0m [1m[91m|[0m     branches: [main, release]
+   [1m[94m|[0m [1m[91m|_____________________________^[0m [1m[91mgenerally used when publishing artifacts generated at runtime[0m
+[1m[94m 9 |[0m   env:
+[1m[94m...[0m
+[1m[94m53 |[0m         - name: Cache
+[1m[94m54 |[0m           uses: actions/cache@v5
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcache enabled by default here[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#cache-poisoning\cache-poisoning]8;;\][0m: [1mruntime artifacts potentially vulnerable to a cache poisoning attack[0m
+   [1m[94m-->[0m ../.github/workflows/aws_jsii__.github__workflows__main.yml:3:1
+    [1m[94m|[0m
+[1m[94m  3 |[0m [1m[91m/[0m on:
+[1m[94m  4 |[0m [1m[91m|[0m   merge_group: {}
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m  7 |[0m [1m[91m|[0m   push:
+[1m[94m  8 |[0m [1m[91m|[0m     branches: [main, release]
+    [1m[94m|[0m [1m[91m|_____________________________^[0m [1m[91mgenerally used when publishing artifacts generated at runtime[0m
+[1m[94m  9 |[0m   env:
+[1m[94m...[0m
+[1m[94m114 |[0m         - name: Set up Go 1.25
+[1m[94m115 |[0m           uses: actions/setup-go@v6
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcache enabled by default here[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#cache-poisoning\cache-poisoning]8;;\][0m: [1mruntime artifacts potentially vulnerable to a cache poisoning attack[0m
+   [1m[94m-->[0m ../.github/workflows/aws_jsii__.github__workflows__main.yml:3:1
+    [1m[94m|[0m
+[1m[94m  3 |[0m [1m[91m/[0m on:
+[1m[94m  4 |[0m [1m[91m|[0m   merge_group: {}
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m  7 |[0m [1m[91m|[0m   push:
+[1m[94m  8 |[0m [1m[91m|[0m     branches: [main, release]
+    [1m[94m|[0m [1m[91m|_____________________________^[0m [1m[91mgenerally used when publishing artifacts generated at runtime[0m
+[1m[94m  9 |[0m   env:
+[1m[94m...[0m
+[1m[94m124 |[0m           uses: actions/setup-node@v6
+[1m[94m125 |[0m [1m[91m/[0m         with:
+[1m[94m126 |[0m [1m[91m|[0m           cache: yarn
+[1m[94m127 |[0m [1m[91m|[0m           node-version: "lts/*"
+    [1m[94m|[0m [1m[91m|_______________________________^[0m [1m[91mopt-in for caching here[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#cache-poisoning\cache-poisoning]8;;\][0m: [1mruntime artifacts potentially vulnerable to a cache poisoning attack[0m
+   [1m[94m-->[0m ../.github/workflows/aws_jsii__.github__workflows__main.yml:3:1
+    [1m[94m|[0m
+[1m[94m  3 |[0m [1m[91m/[0m on:
+[1m[94m  4 |[0m [1m[91m|[0m   merge_group: {}
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m  7 |[0m [1m[91m|[0m   push:
+[1m[94m  8 |[0m [1m[91m|[0m     branches: [main, release]
+    [1m[94m|[0m [1m[91m|_____________________________^[0m [1m[91mgenerally used when publishing artifacts generated at runtime[0m
+[1m[94m  9 |[0m   env:
+[1m[94m...[0m
+[1m[94m129 |[0m           uses: actions/setup-python@v6
+[1m[94m130 |[0m [1m[91m/[0m         with:
+[1m[94m131 |[0m [1m[91m|[0m           python-version: "3.9"
+[1m[94m132 |[0m [1m[91m|[0m           cache: pip
+    [1m[94m|[0m [1m[91m|____________________^[0m [1m[91mopt-in for caching here[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#cache-poisoning\cache-poisoning]8;;\][0m: [1mruntime artifacts potentially vulnerable to a cache poisoning attack[0m
+   [1m[94m-->[0m ../.github/workflows/aws_jsii__.github__workflows__main.yml:3:1
+    [1m[94m|[0m
+[1m[94m  3 |[0m [1m[91m/[0m on:
+[1m[94m  4 |[0m [1m[91m|[0m   merge_group: {}
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m  7 |[0m [1m[91m|[0m   push:
+[1m[94m  8 |[0m [1m[91m|[0m     branches: [main, release]
+    [1m[94m|[0m [1m[91m|_____________________________^[0m [1m[91mgenerally used when publishing artifacts generated at runtime[0m
+[1m[94m  9 |[0m   env:
+[1m[94m...[0m
+[1m[94m135 |[0m         - name: Cache
+[1m[94m136 |[0m           uses: actions/cache@v5
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcache enabled by default here[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#cache-poisoning\cache-poisoning]8;;\][0m: [1mruntime artifacts potentially vulnerable to a cache poisoning attack[0m
+   [1m[94m-->[0m ../.github/workflows/aws_jsii__.github__workflows__main.yml:3:1
+    [1m[94m|[0m
+[1m[94m  3 |[0m [1m[91m/[0m on:
+[1m[94m  4 |[0m [1m[91m|[0m   merge_group: {}
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m  7 |[0m [1m[91m|[0m   push:
+[1m[94m  8 |[0m [1m[91m|[0m     branches: [main, release]
+    [1m[94m|[0m [1m[91m|_____________________________^[0m [1m[91mgenerally used when publishing artifacts generated at runtime[0m
+[1m[94m  9 |[0m   env:
+[1m[94m...[0m
+[1m[94m342 |[0m         - name: Set up Go ${{ matrix.go }}
+[1m[94m343 |[0m           uses: actions/setup-go@v6
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcache enabled by default here[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#cache-poisoning\cache-poisoning]8;;\][0m: [1mruntime artifacts potentially vulnerable to a cache poisoning attack[0m
+   [1m[94m-->[0m ../.github/workflows/aws_jsii__.github__workflows__main.yml:3:1
+    [1m[94m|[0m
+[1m[94m  3 |[0m [1m[91m/[0m on:
+[1m[94m  4 |[0m [1m[91m|[0m   merge_group: {}
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m  7 |[0m [1m[91m|[0m   push:
+[1m[94m  8 |[0m [1m[91m|[0m     branches: [main, release]
+    [1m[94m|[0m [1m[91m|_____________________________^[0m [1m[91mgenerally used when publishing artifacts generated at runtime[0m
+[1m[94m  9 |[0m   env:
+[1m[94m...[0m
+[1m[94m352 |[0m           uses: actions/setup-node@v6
+[1m[94m353 |[0m [1m[91m/[0m         with:
+[1m[94m354 |[0m [1m[91m|[0m           cache: yarn
+[1m[94m355 |[0m [1m[91m|[0m           node-version: ${{ matrix.node }}
+    [1m[94m|[0m [1m[91m|__________________________________________^[0m [1m[91mopt-in for caching here[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#cache-poisoning\cache-poisoning]8;;\][0m: [1mruntime artifacts potentially vulnerable to a cache poisoning attack[0m
+   [1m[94m-->[0m ../.github/workflows/aws_jsii__.github__workflows__main.yml:3:1
+    [1m[94m|[0m
+[1m[94m  3 |[0m [1m[91m/[0m on:
+[1m[94m  4 |[0m [1m[91m|[0m   merge_group: {}
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m  7 |[0m [1m[91m|[0m   push:
+[1m[94m  8 |[0m [1m[91m|[0m     branches: [main, release]
+    [1m[94m|[0m [1m[91m|_____________________________^[0m [1m[91mgenerally used when publishing artifacts generated at runtime[0m
+[1m[94m  9 |[0m   env:
+[1m[94m...[0m
+[1m[94m357 |[0m           uses: actions/setup-python@v6
+[1m[94m358 |[0m [1m[91m/[0m         with:
+[1m[94m359 |[0m [1m[91m|[0m           python-version: ${{ matrix.python }}
+[1m[94m360 |[0m [1m[91m|[0m           cache: pip
+    [1m[94m|[0m [1m[91m|____________________^[0m [1m[91mopt-in for caching here[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#cache-poisoning\cache-poisoning]8;;\][0m: [1mruntime artifacts potentially vulnerable to a cache poisoning attack[0m
+   [1m[94m-->[0m ../.github/workflows/aws_jsii__.github__workflows__main.yml:3:1
+    [1m[94m|[0m
+[1m[94m  3 |[0m [1m[91m/[0m on:
+[1m[94m  4 |[0m [1m[91m|[0m   merge_group: {}
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m  7 |[0m [1m[91m|[0m   push:
+[1m[94m  8 |[0m [1m[91m|[0m     branches: [main, release]
+    [1m[94m|[0m [1m[91m|_____________________________^[0m [1m[91mgenerally used when publishing artifacts generated at runtime[0m
+[1m[94m  9 |[0m   env:
+[1m[94m...[0m
+[1m[94m369 |[0m         - name: Cache
+[1m[94m370 |[0m           uses: actions/cache@v5
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcache enabled by default here[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#cache-poisoning\cache-poisoning]8;;\][0m: [1mruntime artifacts potentially vulnerable to a cache poisoning attack[0m
+   [1m[94m-->[0m ../.github/workflows/aws_jsii__.github__workflows__main.yml:3:1
+    [1m[94m|[0m
+[1m[94m  3 |[0m [1m[91m/[0m on:
+[1m[94m  4 |[0m [1m[91m|[0m   merge_group: {}
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m  7 |[0m [1m[91m|[0m   push:
+[1m[94m  8 |[0m [1m[91m|[0m     branches: [main, release]
+    [1m[94m|[0m [1m[91m|_____________________________^[0m [1m[91mgenerally used when publishing artifacts generated at runtime[0m
+[1m[94m  9 |[0m   env:
+[1m[94m...[0m
+[1m[94m434 |[0m         - name: Set up Go 1.25
+[1m[94m435 |[0m           uses: actions/setup-go@v6
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcache enabled by default here[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m31[39m findings ([1m[93m10[39m suppressed[0m): 0 unknown, [35m2[39m informational, [36m0[39m low, [33m6[39m medium, [31m13[39m high

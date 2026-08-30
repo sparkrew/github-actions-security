@@ -1,0 +1,56 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_hermes__.github__workflows__publish.yml:27:9
+   [1m[94m|[0m
+[1m[94m27 |[0m         - name: Checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m28 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_hermes__.github__workflows__publish.yml:89:9
+   [1m[94m|[0m
+[1m[94m89 |[0m         - name: Publish artifacts
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m90 |[0m           shell: bash
+[1m[94m91 |[0m [1m[91m/[0m         run: |
+[1m[94m92 |[0m [1m[91m|[0m           node ./utils/scripts/hermes/publish-artifacts.js -t ${{ inputs.release-type }}
+   [1m[94m|[0m [1m[91m|________________________________________________________________________________________^[0m [1m[91minputs.release-type may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_hermes__.github__workflows__publish.yml:93:9
+   [1m[94m|[0m
+[1m[94m93 |[0m       - name: Set npm credentials
+   [1m[94m|[0m         [1m[96m-------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m94 |[0m         if: ${{ inputs.release-type == 'release' ||
+[1m[94m95 |[0m           inputs.release-type == 'commitly' }}
+[1m[94m96 |[0m         shell: bash
+[1m[94m97 |[0m         run: echo "//registry.npmjs.org/:_authToken=${{ env.GHA_NPM_TOKEN }}" > ~/.npmrc
+   [1m[94m|[0m         [1m[96m--------------------------------------------------------------------------------[0m [1m[96mhelp: env.GHA_NPM_TOKEN may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_hermes__.github__workflows__publish.yml:98:9
+    [1m[94m|[0m
+[1m[94m 98 |[0m         - name: Publish to npm
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m 99 |[0m           shell: bash
+[1m[94m100 |[0m [1m[91m/[0m         run: |
+[1m[94m101 |[0m [1m[91m|[0m           node ./utils/scripts/hermes/publish-npm.js -t ${{ inputs.release-type }}
+    [1m[94m|[0m [1m[91m|__________________________________________________________________________________^[0m [1m[91minputs.release-type may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_hermes__.github__workflows__publish.yml:15:7
+   [1m[94m|[0m
+[1m[94m15 |[0m       image: reactnativecommunity/react-native-android:latest
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is pinned to latest[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m10[39m findings ([1m[93m5[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m1[39m low, [33m1[39m medium, [31m3[39m high

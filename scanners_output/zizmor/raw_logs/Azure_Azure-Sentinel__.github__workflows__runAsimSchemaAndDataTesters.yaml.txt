@@ -1,0 +1,125 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__runAsimSchemaAndDataTesters.yaml:46:9
+   [1m[94m|[0m
+[1m[94m46 |[0m         - name: Checkout pull request branch
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m47 |[0m [1m[33m|[0m         if: github.event.pull_request != null
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m51 |[0m [1m[33m|[0m           repository: ${{ github.event.pull_request.head.repo.full_name }}
+[1m[94m52 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__runAsimSchemaAndDataTesters.yaml:54:9
+    [1m[94m|[0m
+[1m[94m 54 |[0m         - name: Check if PR needs approval
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m 55 |[0m           id: check-approval
+[1m[94m 56 |[0m [1m[91m/[0m         run: |
+[1m[94m 57 |[0m [1m[91m|[0m           # Function to log with consistent formatting
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m105 |[0m [1m[91m|[0m             echo "comment_needed=false" >> $GITHUB_OUTPUT
+[1m[94m106 |[0m [1m[91m|[0m           fi
+    [1m[94m|[0m [1m[91m|____________^[0m [1m[91mgithub.event.pull_request.labels.*.name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__runAsimSchemaAndDataTesters.yaml:54:9
+    [1m[94m|[0m
+[1m[94m 54 |[0m         - name: Check if PR needs approval
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m 55 |[0m           id: check-approval
+[1m[94m 56 |[0m [1m[91m/[0m         run: |
+[1m[94m 57 |[0m [1m[91m|[0m           # Function to log with consistent formatting
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m105 |[0m [1m[91m|[0m             echo "comment_needed=false" >> $GITHUB_OUTPUT
+[1m[94m106 |[0m [1m[91m|[0m           fi
+    [1m[94m|[0m [1m[91m|____________^[0m [1m[91mgithub.event.action may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__runAsimSchemaAndDataTesters.yaml:108:9
+    [1m[94m|[0m
+[1m[94m108 |[0m         - name: Prevent fork modifications to test infrastructure
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m109 |[0m           if: github.event.pull_request.head.repo.fork == true
+[1m[94m110 |[0m           shell: bash
+[1m[94m111 |[0m [1m[91m/[0m         run: |
+[1m[94m112 |[0m [1m[91m|[0m           set -euo pipefail
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m137 |[0m [1m[91m|[0m           
+[1m[94m138 |[0m [1m[91m|[0m           log_success "No modifications to asimParsersTest folder detected"
+    [1m[94m|[0m [1m[91m|___________________________________________________________________________^[0m [1m[91mgithub.event.pull_request.base.ref may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__runAsimSchemaAndDataTesters.yaml:108:9
+    [1m[94m|[0m
+[1m[94m108 |[0m         - name: Prevent fork modifications to test infrastructure
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m109 |[0m           if: github.event.pull_request.head.repo.fork == true
+[1m[94m110 |[0m           shell: bash
+[1m[94m111 |[0m [1m[91m/[0m         run: |
+[1m[94m112 |[0m [1m[91m|[0m           set -euo pipefail
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m137 |[0m [1m[91m|[0m           
+[1m[94m138 |[0m [1m[91m|[0m           log_success "No modifications to asimParsersTest folder detected"
+    [1m[94m|[0m [1m[91m|___________________________________________________________________________^[0m [1m[91mgithub.event.pull_request.base.ref may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__runAsimSchemaAndDataTesters.yaml:140:9
+    [1m[94m|[0m
+[1m[94m140 |[0m         - name: Comment on fork PR for approval guidance
+    [1m[94m|[0m           [1m[94m----------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m141 |[0m           if: |
+[1m[94m...[0m
+[1m[94m146 |[0m           with:
+[1m[94m147 |[0m [1m[94m/[0m           script: |
+[1m[94m148 |[0m [1m[94m|[0m             // Helper function for consistent logging
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m229 |[0m [1m[94m|[0m               log('warning', 'Comment posting failed, but continuing workflow...');
+[1m[94m230 |[0m [1m[94m|[0m             }
+    [1m[94m|[0m [1m[94m|_____________-[0m [1m[94minfo: steps.check-approval.outputs.needs_approval may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__runAsimSchemaAndDataTesters.yaml:322:9
+    [1m[94m|[0m
+[1m[94m322 |[0m         uses: azure/login@v2
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__runAsimSchemaAndDataTesters.yaml:359:9
+    [1m[94m|[0m
+[1m[94m359 |[0m         uses: azure/login@v2
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__runAsimSchemaAndDataTesters.yaml:381:9
+    [1m[94m|[0m
+[1m[94m381 |[0m         uses: azure/powershell@v2
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__runAsimSchemaAndDataTesters.yaml:445:9
+    [1m[94m|[0m
+[1m[94m445 |[0m         uses: azure/login@v2
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m18[39m findings ([1m[93m8[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m1[39m medium, [31m8[39m high

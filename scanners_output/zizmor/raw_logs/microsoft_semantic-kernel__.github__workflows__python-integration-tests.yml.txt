@@ -1,0 +1,412 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:86:9
+   [1m[94m|[0m
+[1m[94m86 |[0m       - uses: actions/checkout@v5
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:121:9
+    [1m[94m|[0m
+[1m[94m121 |[0m       - uses: actions/checkout@v5
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:176:9
+    [1m[94m|[0m
+[1m[94m176 |[0m       - uses: actions/checkout@v5
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:217:9
+    [1m[94m|[0m
+[1m[94m217 |[0m       - uses: actions/checkout@v5
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:266:9
+    [1m[94m|[0m
+[1m[94m266 |[0m       - uses: actions/checkout@v5
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:331:9
+    [1m[94m|[0m
+[1m[94m331 |[0m       - uses: actions/checkout@v5
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:389:9
+    [1m[94m|[0m
+[1m[94m389 |[0m       - uses: actions/checkout@v5
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:18:3
+   [1m[94m|[0m
+[1m[94m18 |[0m   id-token: "write"
+   [1m[94m|[0m   [1m[91m^^^^^^^^^^^^^^^^^[0m [1m[91mid-token: write is overly broad at the workflow level[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:283:9
+    [1m[94m|[0m
+[1m[94m283 |[0m         - name: Pull model in Ollama
+    [1m[94m|[0m           [1m[94m--------------------------[0m [1m[94minfo: this step[0m
+[1m[94m284 |[0m           if: matrix.os == 'ubuntu-latest'
+[1m[94m285 |[0m [1m[94m/[0m         run: |
+[1m[94m286 |[0m [1m[94m|[0m           ollama pull ${{ vars.OLLAMA_CHAT_MODEL_ID }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m290 |[0m [1m[94m|[0m           ollama pull ${{ vars.OLLAMA_EMBEDDING_MODEL_ID }}
+[1m[94m291 |[0m [1m[94m|[0m           ollama list
+    [1m[94m|[0m [1m[94m|_____________________-[0m [1m[94minfo: vars.OLLAMA_CHAT_MODEL_ID may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:283:9
+    [1m[94m|[0m
+[1m[94m283 |[0m         - name: Pull model in Ollama
+    [1m[94m|[0m           [1m[94m--------------------------[0m [1m[94minfo: this step[0m
+[1m[94m284 |[0m           if: matrix.os == 'ubuntu-latest'
+[1m[94m285 |[0m [1m[94m/[0m         run: |
+[1m[94m286 |[0m [1m[94m|[0m           ollama pull ${{ vars.OLLAMA_CHAT_MODEL_ID }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m290 |[0m [1m[94m|[0m           ollama pull ${{ vars.OLLAMA_EMBEDDING_MODEL_ID }}
+[1m[94m291 |[0m [1m[94m|[0m           ollama list
+    [1m[94m|[0m [1m[94m|_____________________-[0m [1m[94minfo: vars.OLLAMA_CHAT_MODEL_ID_IMAGE may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:283:9
+    [1m[94m|[0m
+[1m[94m283 |[0m         - name: Pull model in Ollama
+    [1m[94m|[0m           [1m[94m--------------------------[0m [1m[94minfo: this step[0m
+[1m[94m284 |[0m           if: matrix.os == 'ubuntu-latest'
+[1m[94m285 |[0m [1m[94m/[0m         run: |
+[1m[94m286 |[0m [1m[94m|[0m           ollama pull ${{ vars.OLLAMA_CHAT_MODEL_ID }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m290 |[0m [1m[94m|[0m           ollama pull ${{ vars.OLLAMA_EMBEDDING_MODEL_ID }}
+[1m[94m291 |[0m [1m[94m|[0m           ollama list
+    [1m[94m|[0m [1m[94m|_____________________-[0m [1m[94minfo: vars.OLLAMA_CHAT_MODEL_ID_TOOL_CALL may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:283:9
+    [1m[94m|[0m
+[1m[94m283 |[0m         - name: Pull model in Ollama
+    [1m[94m|[0m           [1m[94m--------------------------[0m [1m[94minfo: this step[0m
+[1m[94m284 |[0m           if: matrix.os == 'ubuntu-latest'
+[1m[94m285 |[0m [1m[94m/[0m         run: |
+[1m[94m286 |[0m [1m[94m|[0m           ollama pull ${{ vars.OLLAMA_CHAT_MODEL_ID }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m290 |[0m [1m[94m|[0m           ollama pull ${{ vars.OLLAMA_EMBEDDING_MODEL_ID }}
+[1m[94m291 |[0m [1m[94m|[0m           ollama list
+    [1m[94m|[0m [1m[94m|_____________________-[0m [1m[94minfo: vars.OLLAMA_TEXT_MODEL_ID may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:283:9
+    [1m[94m|[0m
+[1m[94m283 |[0m         - name: Pull model in Ollama
+    [1m[94m|[0m           [1m[94m--------------------------[0m [1m[94minfo: this step[0m
+[1m[94m284 |[0m           if: matrix.os == 'ubuntu-latest'
+[1m[94m285 |[0m [1m[94m/[0m         run: |
+[1m[94m286 |[0m [1m[94m|[0m           ollama pull ${{ vars.OLLAMA_CHAT_MODEL_ID }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m290 |[0m [1m[94m|[0m           ollama pull ${{ vars.OLLAMA_EMBEDDING_MODEL_ID }}
+[1m[94m291 |[0m [1m[94m|[0m           ollama list
+    [1m[94m|[0m [1m[94m|_____________________-[0m [1m[94minfo: vars.OLLAMA_EMBEDDING_MODEL_ID may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:406:9
+    [1m[94m|[0m
+[1m[94m406 |[0m         - name: Pull model in Ollama
+    [1m[94m|[0m           [1m[94m--------------------------[0m [1m[94minfo: this step[0m
+[1m[94m407 |[0m           # Ollama tests are very unstable at the moment. It often fails to pull models from the Ollama server. Thus, Ollama is disab[1m[94m...[0m
+[1m[94m408 |[0m           if: false && matrix.os == 'ubuntu-latest'
+[1m[94m409 |[0m [1m[94m/[0m         run: |
+[1m[94m410 |[0m [1m[94m|[0m           ollama pull ${{ vars.OLLAMA_CHAT_MODEL_ID }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m414 |[0m [1m[94m|[0m           ollama pull ${{ vars.OLLAMA_EMBEDDING_MODEL_ID }}
+[1m[94m415 |[0m [1m[94m|[0m           ollama list
+    [1m[94m|[0m [1m[94m|_____________________-[0m [1m[94minfo: vars.OLLAMA_CHAT_MODEL_ID may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:406:9
+    [1m[94m|[0m
+[1m[94m406 |[0m         - name: Pull model in Ollama
+    [1m[94m|[0m           [1m[94m--------------------------[0m [1m[94minfo: this step[0m
+[1m[94m407 |[0m           # Ollama tests are very unstable at the moment. It often fails to pull models from the Ollama server. Thus, Ollama is disab[1m[94m...[0m
+[1m[94m408 |[0m           if: false && matrix.os == 'ubuntu-latest'
+[1m[94m409 |[0m [1m[94m/[0m         run: |
+[1m[94m410 |[0m [1m[94m|[0m           ollama pull ${{ vars.OLLAMA_CHAT_MODEL_ID }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m414 |[0m [1m[94m|[0m           ollama pull ${{ vars.OLLAMA_EMBEDDING_MODEL_ID }}
+[1m[94m415 |[0m [1m[94m|[0m           ollama list
+    [1m[94m|[0m [1m[94m|_____________________-[0m [1m[94minfo: vars.OLLAMA_CHAT_MODEL_ID_IMAGE may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:406:9
+    [1m[94m|[0m
+[1m[94m406 |[0m         - name: Pull model in Ollama
+    [1m[94m|[0m           [1m[94m--------------------------[0m [1m[94minfo: this step[0m
+[1m[94m407 |[0m           # Ollama tests are very unstable at the moment. It often fails to pull models from the Ollama server. Thus, Ollama is disab[1m[94m...[0m
+[1m[94m408 |[0m           if: false && matrix.os == 'ubuntu-latest'
+[1m[94m409 |[0m [1m[94m/[0m         run: |
+[1m[94m410 |[0m [1m[94m|[0m           ollama pull ${{ vars.OLLAMA_CHAT_MODEL_ID }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m414 |[0m [1m[94m|[0m           ollama pull ${{ vars.OLLAMA_EMBEDDING_MODEL_ID }}
+[1m[94m415 |[0m [1m[94m|[0m           ollama list
+    [1m[94m|[0m [1m[94m|_____________________-[0m [1m[94minfo: vars.OLLAMA_CHAT_MODEL_ID_TOOL_CALL may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:406:9
+    [1m[94m|[0m
+[1m[94m406 |[0m         - name: Pull model in Ollama
+    [1m[94m|[0m           [1m[94m--------------------------[0m [1m[94minfo: this step[0m
+[1m[94m407 |[0m           # Ollama tests are very unstable at the moment. It often fails to pull models from the Ollama server. Thus, Ollama is disab[1m[94m...[0m
+[1m[94m408 |[0m           if: false && matrix.os == 'ubuntu-latest'
+[1m[94m409 |[0m [1m[94m/[0m         run: |
+[1m[94m410 |[0m [1m[94m|[0m           ollama pull ${{ vars.OLLAMA_CHAT_MODEL_ID }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m414 |[0m [1m[94m|[0m           ollama pull ${{ vars.OLLAMA_EMBEDDING_MODEL_ID }}
+[1m[94m415 |[0m [1m[94m|[0m           ollama list
+    [1m[94m|[0m [1m[94m|_____________________-[0m [1m[94minfo: vars.OLLAMA_TEXT_MODEL_ID may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:406:9
+    [1m[94m|[0m
+[1m[94m406 |[0m         - name: Pull model in Ollama
+    [1m[94m|[0m           [1m[94m--------------------------[0m [1m[94minfo: this step[0m
+[1m[94m407 |[0m           # Ollama tests are very unstable at the moment. It often fails to pull models from the Ollama server. Thus, Ollama is disab[1m[94m...[0m
+[1m[94m408 |[0m           if: false && matrix.os == 'ubuntu-latest'
+[1m[94m409 |[0m [1m[94m/[0m         run: |
+[1m[94m410 |[0m [1m[94m|[0m           ollama pull ${{ vars.OLLAMA_CHAT_MODEL_ID }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m414 |[0m [1m[94m|[0m           ollama pull ${{ vars.OLLAMA_EMBEDDING_MODEL_ID }}
+[1m[94m415 |[0m [1m[94m|[0m           ollama list
+    [1m[94m|[0m [1m[94m|_____________________-[0m [1m[94minfo: vars.OLLAMA_EMBEDDING_MODEL_ID may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:87:9
+   [1m[94m|[0m
+[1m[94m87 |[0m       - uses: dorny/paths-filter@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:123:9
+    [1m[94m|[0m
+[1m[94m123 |[0m         uses: astral-sh/setup-uv@v6
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:133:9
+    [1m[94m|[0m
+[1m[94m133 |[0m         uses: google-github-actions/auth@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:138:9
+    [1m[94m|[0m
+[1m[94m138 |[0m         uses: google-github-actions/setup-gcloud@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:140:9
+    [1m[94m|[0m
+[1m[94m140 |[0m         uses: aws-actions/configure-aws-credentials@v5
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:147:9
+    [1m[94m|[0m
+[1m[94m147 |[0m         uses: azure/login@v2
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:178:9
+    [1m[94m|[0m
+[1m[94m178 |[0m         uses: astral-sh/setup-uv@v6
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:188:9
+    [1m[94m|[0m
+[1m[94m188 |[0m         uses: azure/login@v2
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:219:9
+    [1m[94m|[0m
+[1m[94m219 |[0m         uses: astral-sh/setup-uv@v6
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:228:9
+    [1m[94m|[0m
+[1m[94m228 |[0m         uses: aws-actions/configure-aws-credentials@v5
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:235:9
+    [1m[94m|[0m
+[1m[94m235 |[0m         uses: azure/login@v2
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:268:9
+    [1m[94m|[0m
+[1m[94m268 |[0m         uses: astral-sh/setup-uv@v6
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:333:9
+    [1m[94m|[0m
+[1m[94m333 |[0m         uses: astral-sh/setup-uv@v6
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:344:9
+    [1m[94m|[0m
+[1m[94m344 |[0m         uses: azure/login@v2
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:391:9
+    [1m[94m|[0m
+[1m[94m391 |[0m         uses: astral-sh/setup-uv@v6
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:417:9
+    [1m[94m|[0m
+[1m[94m417 |[0m         uses: google-github-actions/auth@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:422:9
+    [1m[94m|[0m
+[1m[94m422 |[0m         uses: google-github-actions/setup-gcloud@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:424:9
+    [1m[94m|[0m
+[1m[94m424 |[0m         uses: aws-actions/configure-aws-credentials@v5
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:437:9
+    [1m[94m|[0m
+[1m[94m437 |[0m         uses: azure/login@v2
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:548:9
+    [1m[94m|[0m
+[1m[94m548 |[0m         uses: skitionek/notify-microsoft-teams@v1.0.9
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:558:9
+    [1m[94m|[0m
+[1m[94m558 |[0m         uses: skitionek/notify-microsoft-teams@v1.0.9
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#obfuscation\obfuscation]8;;\][0m: [1mobfuscated usage of GitHub Actions features[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:24:45
+   [1m[94m|[0m
+[1m[94m24 |[0m   INTEGRATION_TEST_SERVICE_SETUP_EXCEPTION: ${{ true }}
+   [1m[94m|[0m                                             [1m[96m-----------[0m [1m[96mhelp: expression can be replaced by its static evaluation[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:321:9
+    [1m[94m|[0m
+[1m[94m321 |[0m         image: redis/redis-stack-server:latest
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is pinned to latest[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml:379:9
+    [1m[94m|[0m
+[1m[94m379 |[0m         image: redis/redis-stack-server:latest
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is pinned to latest[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m55[39m findings ([1m[93m13[39m suppressed[0m): 0 unknown, [35m10[39m informational, [36m1[39m low, [33m7[39m medium, [31m24[39m high

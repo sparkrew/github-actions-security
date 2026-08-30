@@ -1,0 +1,86 @@
+{
+  "workflow": "NVIDIA_cuda-python__.github__workflows__test-wheel-linux.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 8,
+    "by_rule": {
+      "artipacked": 2,
+      "template-injection": 5,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "NVIDIA_cuda-python__.github__workflows__test-wheel-linux.yml",
+      "line": 41,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "NVIDIA_cuda-python__.github__workflows__test-wheel-linux.yml",
+      "line": 92,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "NVIDIA_cuda-python__.github__workflows__test-wheel-linux.yml",
+      "line": 51,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "info",
+      "message": "code injection via template expansion",
+      "workflow": "NVIDIA_cuda-python__.github__workflows__test-wheel-linux.yml",
+      "line": 137,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "NVIDIA_cuda-python__.github__workflows__test-wheel-linux.yml",
+      "line": 137,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "error",
+      "message": "code injection via template expansion",
+      "workflow": "NVIDIA_cuda-python__.github__workflows__test-wheel-linux.yml",
+      "line": 247,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "template-injection",
+      "level": "warning",
+      "message": "code injection via template expansion",
+      "workflow": "NVIDIA_cuda-python__.github__workflows__test-wheel-linux.yml",
+      "line": 280,
+      "column": 9,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "NVIDIA_cuda-python__.github__workflows__test-wheel-linux.yml",
+      "line": 96,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

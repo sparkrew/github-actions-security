@@ -1,0 +1,21 @@
+name: Renovate
+
+on:
+  schedule:
+     - cron: "0 9 * * *" # every day at 9:00 AM UTC
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+
+      - name: Run Renovate
+        uses: renovatebot/github-action@8d75b92f43899d483728e9a8a7fd44238020f6e6 # renovatebot/github-action@v46.1.2
+        with:
+          configurationFile: .github/renovate.json
+        env:
+          RENOVATE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RENOVATE_REPOSITORIES: '["NVIDIA/gpu-operator"]'
+          RENOVATE_ONBOARDING: false

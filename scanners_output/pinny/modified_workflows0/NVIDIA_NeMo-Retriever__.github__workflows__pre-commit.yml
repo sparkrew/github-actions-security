@@ -1,0 +1,16 @@
+name: nv-ingest pre-commit
+
+on:
+    pull_request:
+    push:
+      branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+
+      - uses: actions/setup-python@3542bca2639a428e1796aaa6a2ffef0c0f575566 # actions/setup-python@v3 | releases,v3.1.4
+      - uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd # pre-commit/action@v3.0.1

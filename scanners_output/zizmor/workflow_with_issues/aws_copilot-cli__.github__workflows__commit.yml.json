@@ -1,0 +1,50 @@
+{
+  "workflow": "aws_copilot-cli__.github__workflows__commit.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "artipacked": 1,
+      "excessive-permissions": 1,
+      "unpinned-uses": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "aws_copilot-cli__.github__workflows__commit.yml",
+      "line": 22,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "aws_copilot-cli__.github__workflows__commit.yml",
+      "line": 9,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "aws_copilot-cli__.github__workflows__commit.yml",
+      "line": 29,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "aws_copilot-cli__.github__workflows__commit.yml",
+      "line": 34,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+name: Check Lambda Events
+
+on:
+  push:
+    paths:
+      - "lambda-events/**"
+      - "Cargo.toml"
+  pull_request:
+    paths:
+      - "lambda-events/**"
+      - "Cargo.toml"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        toolchain:
+          - "1.84.0" # Current MSRV
+          - stable
+    env:
+      RUST_BACKTRACE: 1
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - name: Build events
+        uses: ./.github/actions/rust-build
+        with:
+          package: aws_lambda_events
+          toolchain: ${{ matrix.toolchain}}
+  check-event-features:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - uses: dtolnay/rust-toolchain@631a55b12751854ce901bb631d5902ceb48146f7 # stable
+      - uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # v2
+      - name: Test individual event features
+        run: make check-event-features
+  semver:
+    name: semver
+    needs: [build, check-event-features]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - name: Check `aws_lambda_events` semver with only default features
+        uses: obi1kenobi/cargo-semver-checks-action@5b298c9520f7096a4683c0bd981a7ac5a7e249ae # v2
+        with:
+          rust-toolchain: stable
+          package: aws_lambda_events
+          feature-group: default-features
+      - name: Check `aws_lambda_events` semver with all features
+        uses: obi1kenobi/cargo-semver-checks-action@5b298c9520f7096a4683c0bd981a7ac5a7e249ae # v2
+        with:
+          rust-toolchain: stable
+          package: aws_lambda_events
+          feature-group: all-features

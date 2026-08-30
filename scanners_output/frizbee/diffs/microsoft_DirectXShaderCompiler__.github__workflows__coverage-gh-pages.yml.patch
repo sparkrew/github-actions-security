@@ -1,0 +1,33 @@
+diff --git a/.github/workflows/microsoft_DirectXShaderCompiler__.github__workflows__coverage-gh-pages.yml b/.github/workflows/microsoft_DirectXShaderCompiler__.github__workflows__coverage-gh-pages.yml
+index 07e6358..4f2f22e 100644
+--- a/.github/workflows/microsoft_DirectXShaderCompiler__.github__workflows__coverage-gh-pages.yml
++++ b/.github/workflows/microsoft_DirectXShaderCompiler__.github__workflows__coverage-gh-pages.yml
+@@ -26,11 +26,11 @@ jobs:
+     timeout-minutes: 240
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           submodules: true
+       - name: Setup Pages
+-        uses: actions/configure-pages@v5
++        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+       - name: Install dependencies
+         run: sudo apt install -y ninja-build
+       - name: Configure
+@@ -44,7 +44,7 @@ jobs:
+       - name: Force artifact permissions
+         run: chmod -c -R +rX ${{github.workspace}}/build/report
+       - name: Upload artifact
+-        uses: actions/upload-pages-artifact@v3
++        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+         with:
+           path: ${{github.workspace}}/build/report
+         
+@@ -60,4 +60,4 @@ jobs:
+     steps:
+       - name: Deploy to GitHub Pages
+         id: deployment
+-        uses: actions/deploy-pages@v4
++        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

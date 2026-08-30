@@ -1,0 +1,40 @@
+name: "publish release - Docker"
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+env:
+  ELECTRON_SKIP_BINARY_DOWNLOAD: 1
+
+jobs:
+  publish-docker-release:
+    name: "publish to DockerHub"
+    runs-on: ubuntu-22.04
+    permissions:
+      id-token: write   # This is required for OIDC login (azure/login) to succeed
+      contents: read    # This is required for actions/checkout to succeed
+    if: github.repository == 'microsoft/playwright'
+    environment: allow-publishing-docker-to-acr
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+    - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # actions/setup-node@v6 | main,v6.3.0
+      with:
+        node-version: 20
+        registry-url: 'https://registry.npmjs.org'
+    - name: Set up Docker QEMU for arm64 docker builds
+      uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # docker/setup-qemu-action@v3 | releases,v3.7.0
+      with:
+        platforms: arm64
+    - run: npm ci
+    - run: npm run build
+    - name: Azure Login
+      uses: azure/login@a457da9ea143d694b1b9c7c869ebb04ebe844ef5 # azure/login@v2
+      with:
+        client-id: ${{ secrets.AZURE_DOCKER_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_DOCKER_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_DOCKER_SUBSCRIPTION_ID }}
+    - name: Login to ACR via OIDC
+      run: az acr login --name playwright
+    - run: ./utils/docker/publish_docker.sh stable

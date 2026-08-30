@@ -1,0 +1,27 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_bicep__.github__workflows__run-compile-samples.yml:19:9
+   [1m[94m|[0m
+[1m[94m19 |[0m         - uses: actions/checkout@v6
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m20 |[0m [1m[33m|[0m         with:
+[1m[94m21 |[0m [1m[33m|[0m           fetch-depth: 0 # avoid shallow clone so nbgv can do its work.
+[1m[94m22 |[0m [1m[33m|[0m           submodules: true
+   [1m[94m|[0m [1m[33m|__________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_bicep__.github__workflows__run-compile-samples.yml:24:9
+   [1m[94m|[0m
+[1m[94m24 |[0m         - name: Fetch Bicep
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m25 |[0m           env:
+[1m[94m26 |[0m             GITHUB_TOKEN: ${{ github.token }}
+[1m[94m27 |[0m [1m[91m/[0m         run: |
+[1m[94m28 |[0m [1m[91m|[0m           gh run download ${{ github.event.inputs.run_id }} -n bicep-release-linux-x64 -D /tmp/bicep-release-linux-x64
+[1m[94m29 |[0m [1m[91m|[0m           chmod +x /tmp/bicep-release-linux-x64/bicep
+   [1m[94m|[0m [1m[91m|_____________________________________________________^[0m [1m[91mgithub.event.inputs.run_id may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m3[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m1[39m high

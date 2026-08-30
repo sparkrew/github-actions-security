@@ -1,0 +1,57 @@
+name: Lint
+permissions:
+  contents: read
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  clippy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+
+      - name: Setup Rust cache
+        uses: ./.github/workflows/setup-rust-cache
+
+      - name: Clippy
+        run: cargo clippy -- -Dwarnings
+
+  format:
+    runs-on: ubuntu-latest
+    env:
+      NIGHTLY_VERSION: nightly-2025-09-01
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+
+      - name: Install formatting dependencies
+        uses: ./.github/workflows/apt-get-install
+        with:
+          packages: gettext yapf3
+
+      - name: Install pinned nightly for rustfmt
+        run: |
+          rustup toolchain install --profile minimal "$NIGHTLY_VERSION"
+          rustup component add rustfmt --toolchain "$NIGHTLY_VERSION"
+
+      - name: Check formatting
+        uses: dprint/check@9cb3a2b17a8e606d37aae341e49df3654933fc23 # dprint/check@v2.3 | main
+
+  typos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+
+      - name: Check for typos
+        uses: crate-ci/typos@06d010dfe4c84fdab1a25ea02b57b3585018ba80 # crate-ci/typos@v1.42.3
+        with:
+          config: ./.github/typos.toml

@@ -1,0 +1,32 @@
+{
+  "workflow": "facebookresearch_mmf__.github__workflows__cpu_test.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # actions/checkout@v2 | releases,850,v2.7.0",
+      "line": 22
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: conda-incubator/setup-miniconda@9f54435e0e72c53962ee863144e47a4b094bfd35 # conda-incubator/setup-miniconda@v2",
+      "line": 25
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/cache@8492260343ad570701412c2f464a5877dc76bace # actions/cache@v2 | update_v2,1135",
+      "line": 33
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/upload-artifact@3446296876d12d4e3a0f3145a3c87e67bf0a16b5 # actions/upload-artifact@v1",
+      "line": 83
+    }
+  ]
+}

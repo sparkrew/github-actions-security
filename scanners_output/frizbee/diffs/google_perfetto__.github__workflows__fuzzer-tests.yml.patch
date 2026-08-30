@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/google_perfetto__.github__workflows__fuzzer-tests.yml b/.github/workflows/google_perfetto__.github__workflows__fuzzer-tests.yml
+index 4129974..3c2eea8 100644
+--- a/.github/workflows/google_perfetto__.github__workflows__fuzzer-tests.yml
++++ b/.github/workflows/google_perfetto__.github__workflows__fuzzer-tests.yml
+@@ -32,7 +32,7 @@ jobs:
+       PERFETTO_CI_BUILD_CACHE_KEY: build-cache-fuzzer
+       PERFETTO_TEST_GN_ARGS: 'is_debug=false is_fuzzer=true is_asan=true cc_wrapper=\"ccache\"'
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       - name: Restore cache
+         uses: ./.github/actions/cache-on-google-cloud-storage/restore

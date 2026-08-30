@@ -1,0 +1,37 @@
+{
+  "workflow": "microsoft_pyright__.github__workflows__build.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "unpinned-github-actions": 5
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+      "line": 20
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # actions/setup-node@v6 | main,v6.3.0",
+      "line": 24
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+      "line": 40
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0",
+      "line": 55
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: ncipollo/release-action@b7eabc95ff50cbeeedec83973935c8f306dfcd0b # ncipollo/release-action@v1 | v1.20.0",
+      "line": 62
+    }
+  ]
+}

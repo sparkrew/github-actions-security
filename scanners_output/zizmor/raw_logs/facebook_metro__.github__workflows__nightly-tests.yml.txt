@@ -1,0 +1,62 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_metro__.github__workflows__nightly-tests.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m # In order to be updated when nightlies fail, please subscribe for updates on PR:
+[1m[94m 2 |[0m [1m[33m|[0m # ---> https://github.com/facebook/metro/pull/1314 <---
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m49 |[0m [1m[33m|[0m               body: 'The nightly workflow `${{ github.workflow }}` failed in [run ${{ github.run_id }}](${{ github.server_url }}/${{[1m[94m...[0m
+[1m[94m50 |[0m [1m[33m|[0m             });
+   [1m[94m|[0m [1m[33m|________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_metro__.github__workflows__nightly-tests.yml:16:3
+   [1m[94m|[0m
+[1m[94m16 |[0m [1m[33m/[0m   test:
+[1m[94m17 |[0m [1m[33m|[0m     strategy:
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m33 |[0m [1m[33m|[0m       runs-on: ${{ matrix.runs-on }}
+[1m[94m34 |[0m [1m[33m|[0m       no-lockfile: ${{ matrix.no-lockfile }}
+   [1m[94m|[0m [1m[33m|[0m                                            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________________________|[0m
+   [1m[94m|[0m                                              [1m[33mthis job[0m
+   [1m[94m|[0m                                              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_metro__.github__workflows__nightly-tests.yml:36:3
+   [1m[94m|[0m
+[1m[94m36 |[0m [1m[33m/[0m   comment-on-pr-for-failures:
+[1m[94m37 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m49 |[0m [1m[33m|[0m               body: 'The nightly workflow `${{ github.workflow }}` failed in [run ${{ github.run_id }}](${{ github.server_url }}/${{[1m[94m...[0m
+[1m[94m50 |[0m [1m[33m|[0m             });
+   [1m[94m|[0m [1m[33m|[0m                [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________|[0m
+   [1m[94m|[0m                  [1m[33mthis job[0m
+   [1m[94m|[0m                  [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_metro__.github__workflows__nightly-tests.yml:41:9
+   [1m[94m|[0m
+[1m[94m41 |[0m          - uses: actions/github-script@v8
+   [1m[94m|[0m  [1m[91m__________^[0m
+[1m[94m42 |[0m [1m[91m|[0m          with:
+[1m[94m43 |[0m [1m[91m|[0m            script: |
+   [1m[94m|[0m [1m[91m|[0m [1m[91m___________^[0m
+[1m[94m44 |[0m [1m[91m||[0m             github.rest.issues.createComment({
+[1m[94m...[0m  [1m[91m||[0m
+[1m[94m49 |[0m [1m[91m||[0m               body: 'The nightly workflow `${{ github.workflow }}` failed in [run ${{ github.run_id }}](${{ github.server_url }}/${{[1m[94m...[0m
+[1m[94m50 |[0m [1m[91m||[0m             });
+   [1m[94m|[0m [1m[91m||[0m                [1m[91m^[0m
+   [1m[94m|[0m [1m[91m||________________|[0m
+   [1m[94m|[0m  [1m[91m|________________this step[0m
+   [1m[94m|[0m                   [1m[91mgithub.workflow may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m9[39m findings ([1m[93m5[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m3[39m medium, [31m1[39m high

@@ -1,0 +1,23 @@
+{
+  "workflow": "Azure_bicep__.github__workflows__run-compile-samples.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "injection": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "injection",
+      "line": 27,
+      "column": "",
+      "job": "run-benchmarks",
+      "step": "1",
+      "details": "Sources: github.event.inputs.run_id",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "workflow": "aws_jsii__.github__workflows__main.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        26,
+        29,
+        33,
+        37,
+        42,
+        47,
+        54,
+        83,
+        108,
+        111,
+        115,
+        119,
+        124,
+        129,
+        136,
+        176,
+        327,
+        339,
+        343,
+        347,
+        352,
+        357,
+        370,
+        425,
+        431,
+        435,
+        439,
+        444,
+        448,
+        460,
+        477
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:425",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:431",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:435",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:439",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:444",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:448",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:477",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:26",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:29",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:33",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:37",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:42",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:47",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:54",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:83",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:108",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:111",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:115",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:119",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:124",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:129",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:136",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:176",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:327",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:339",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:343",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:347",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:352",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:357",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:370",
+        "Warn: npmCommand not pinned by hash: .github/workflows/aws_jsii__.github__workflows__main.yml:460",
+        "Info:   0 out of  30 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of   1 npmCommand dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 0,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1,
+        21,
+        103,
+        182
+      ],
+      "raw_details": [
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/aws_jsii__.github__workflows__main.yml:21",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/aws_jsii__.github__workflows__main.yml:103",
+        "Info: found token with 'none' permissions: .github/workflows/aws_jsii__.github__workflows__main.yml:182",
+        "Warn: no topLevel permission defined: .github/workflows/aws_jsii__.github__workflows__main.yml:1",
+        "Info: no jobLevel write permissions found"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/NVIDIA_Megatron-LM__.github__workflows__build-test-publish-wheel.yml b/.github/workflows/NVIDIA_Megatron-LM__.github__workflows__build-test-publish-wheel.yml
+index 00711b5..9b48b0d 100644
+--- a/.github/workflows/NVIDIA_Megatron-LM__.github__workflows__build-test-publish-wheel.yml
++++ b/.github/workflows/NVIDIA_Megatron-LM__.github__workflows__build-test-publish-wheel.yml
+@@ -33,7 +33,7 @@ permissions:
+ 
+ jobs:
+   pre-flight:
+-    uses: NVIDIA-NeMo/FW-CI-templates/.github/workflows/_cicd_preflight.yml@v0.73.2
++    uses: NVIDIA-NeMo/FW-CI-templates/.github/workflows/_cicd_preflight.yml@7872c42239a136c17582a584aa573d2cf187241a # v0.73.2
+     if: github.repository == 'NVIDIA/Megatron-LM'
+ 
+   build-test-publish-wheels:
+@@ -58,7 +58,7 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repository
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       - name: Result
+         env:

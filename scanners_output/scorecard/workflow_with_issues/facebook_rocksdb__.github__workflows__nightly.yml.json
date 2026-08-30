@@ -1,0 +1,62 @@
+{
+  "workflow": "facebook_rocksdb__.github__workflows__nightly.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        16,
+        40,
+        55,
+        70,
+        89,
+        104,
+        111,
+        121,
+        138,
+        151,
+        166
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_rocksdb__.github__workflows__nightly.yml:121",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_rocksdb__.github__workflows__nightly.yml:151",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_rocksdb__.github__workflows__nightly.yml:16",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_rocksdb__.github__workflows__nightly.yml:70",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_rocksdb__.github__workflows__nightly.yml:89",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_rocksdb__.github__workflows__nightly.yml:111",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_rocksdb__.github__workflows__nightly.yml:138",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_rocksdb__.github__workflows__nightly.yml:166",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_rocksdb__.github__workflows__nightly.yml:40",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_rocksdb__.github__workflows__nightly.yml:55",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_rocksdb__.github__workflows__nightly.yml:104",
+        "Info:   0 out of  11 GitHub-owned GitHubAction dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    }
+  ]
+}

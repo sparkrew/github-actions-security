@@ -1,0 +1,27 @@
+{
+  "workflow": "NVIDIA_cuda-python__.github__workflows__codeql.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2",
+      "line": 31
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: github/codeql-action/init@f985be5b50bd175586d44aac9ac52926adf12893  # v3.31.8",
+      "line": 34
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: github/codeql-action/init@f985be5b50bd175586d44aac9ac52926adf12893 # github/codeql-action/init@f985be5b50bd175586d44aac9ac52926adf12893",
+      "line": 41
+    }
+  ]
+}

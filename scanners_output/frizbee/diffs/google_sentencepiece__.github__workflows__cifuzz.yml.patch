@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/google_sentencepiece__.github__workflows__cifuzz.yml b/.github/workflows/google_sentencepiece__.github__workflows__cifuzz.yml
+index 50fe219..7ef421a 100644
+--- a/.github/workflows/google_sentencepiece__.github__workflows__cifuzz.yml
++++ b/.github/workflows/google_sentencepiece__.github__workflows__cifuzz.yml
+@@ -23,7 +23,7 @@ jobs:
+         dry-run: false
+         language: c++
+     - name: Upload Crash
+-      uses: actions/upload-artifact@v6
++      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+       if: failure() && steps.build.outcome == 'success'
+       with:
+         name: artifacts

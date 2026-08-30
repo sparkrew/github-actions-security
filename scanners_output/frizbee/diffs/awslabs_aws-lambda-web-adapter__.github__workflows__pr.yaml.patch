@@ -1,0 +1,43 @@
+diff --git a/.github/workflows/awslabs_aws-lambda-web-adapter__.github__workflows__pr.yaml b/.github/workflows/awslabs_aws-lambda-web-adapter__.github__workflows__pr.yaml
+index cbe30b2..0723c74 100644
+--- a/.github/workflows/awslabs_aws-lambda-web-adapter__.github__workflows__pr.yaml
++++ b/.github/workflows/awslabs_aws-lambda-web-adapter__.github__workflows__pr.yaml
+@@ -22,10 +22,10 @@ jobs:
+     runs-on: ubuntu-24.04
+     steps:
+       - name: Checkout sources
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       - name: Configure Rust cache
+-        uses: Swatinem/rust-cache@v2
++        uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # v2
+ 
+       - name: Install cargo-nextest
+         run: curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C ${CARGO_HOME:-~/.cargo}/bin
+@@ -42,13 +42,13 @@ jobs:
+     needs: [test]
+     runs-on: ubuntu-24.04
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+-      - uses: actions/setup-python@v4
++      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+         with:
+           python-version: "3.13"
+ 
+-      - uses: aws-actions/setup-sam@v2
++      - uses: aws-actions/setup-sam@d78e1a4a9656d3b223e59b80676a797f20093133 # v2
+         with:
+           use-installer: true
+           token: ${{ secrets.GITHUB_TOKEN }}
+@@ -62,7 +62,7 @@ jobs:
+         run: pip3 install cargo-lambda
+ 
+       - name: Configure Rust cache
+-        uses: Swatinem/rust-cache@v2
++        uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # v2
+ 
+       - name: Add cargo pkg version to env vars
+         run: |

@@ -1,0 +1,70 @@
+diff --git a/.github/workflows/facebook_infer__.github__workflows__install.yml b/.github/workflows/facebook_infer__.github__workflows__install.yml
+index 35fca6b..b629395 100644
+--- a/.github/workflows/facebook_infer__.github__workflows__install.yml
++++ b/.github/workflows/facebook_infer__.github__workflows__install.yml
+@@ -21,7 +21,7 @@ jobs:
+       - name: Create Release
+         id: create-release
+         if: startsWith(github.ref, 'refs/tags/v')
+-        uses: actions/create-release@v1
++        uses: actions/create-release@0cb9c9b65d5d1901c1f53e5e66eaf4afd303e70e # v1
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         with:
+@@ -68,7 +68,7 @@ jobs:
+ 
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       - name: Install Required Apt Packages for Ubuntu
+         run: |
+@@ -81,25 +81,25 @@ jobs:
+         if: runner.os == 'macOS'
+ 
+       - name: Setup Java SDK
+-        uses: actions/setup-java@v5
++        uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5
+         with:
+           distribution: 'temurin'
+           java-version: '11'
+ 
+       - name: Setup Python
+-        uses: actions/setup-python@v6
++        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+         with:
+           python-version: '3.10'
+ 
+       - name: Get OS version
+-        uses: sersoft-gmbh/os-version-action@v1
++        uses: sersoft-gmbh/os-version-action@bd88a4269c7724a69cd5a73f8149f3e4ab14ad38 # v1
+         id: os-version
+ 
+       - name: Force the use of test dependencies
+         run: cp opam/infer-tests.opam.locked opam/infer.opam.locked
+ 
+       - name: Use OCaml ${{ matrix.ocaml-compiler }}
+-        uses: ocaml/setup-ocaml@v3
++        uses: ocaml/setup-ocaml@dec6499fef64fc5d7ed43d43a87251b7b1c306f5 # v3
+         with:
+           ocaml-compiler: ${{ matrix.ocaml-compiler }}
+ 
+@@ -110,7 +110,7 @@ jobs:
+ 
+       - name: Attempt to get clang from the cache
+         id: cache-clang
+-        uses: actions/cache@v5
++        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+         with:
+           path: facebook-clang-plugins/clang/install
+           key: clang-${{ runner.os }}-${{ runner.arch }}-${{ steps.clang-hash.outputs.value }}
+@@ -153,7 +153,7 @@ jobs:
+ 
+       - name: Upload Release Asset
+         if: startsWith(github.ref, 'refs/tags/v')
+-        uses: actions/upload-release-asset@v1
++        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         with:

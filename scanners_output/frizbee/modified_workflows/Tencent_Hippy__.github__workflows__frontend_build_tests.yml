@@ -1,0 +1,43 @@
+name: '[front-end] build tests'
+
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+      - v3.0-dev
+      - v3.0
+    paths:
+      - 'driver/js/packages/**'
+      - 'package*.json'
+      - 'driver/js/examples/hippy-*-demo/**'
+      - 'driver/js/lib/**'
+      - 'driver/js/scripts/**'
+defaults:
+  run:
+    working-directory: driver/js
+jobs:
+  frontend_build_tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ 16.x, 17.x ]
+    steps:
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+      - name: setup-node
+        uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3
+        with:
+          node-version: ${{ matrix.node }}
+          registry-url: https://npm.pkg.github.com
+          cache: 'npm'
+          cache-dependency-path: driver/js/package-lock.json
+      - name: install
+        run: |
+          npm install && npx lerna bootstrap --no-ci
+      - name: lint & build
+        run: npm run lint & npm run build
+      - name: test
+        run: npm run coverage
+      - name: coverage
+        if: matrix.node == '16.x'
+        uses: codecov/codecov-action@f32b3a3741e1053eb607407145bc9619351dc93b # v2

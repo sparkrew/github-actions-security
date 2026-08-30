@@ -1,0 +1,26 @@
+{
+  "workflow": "aws_aws-cdk__.github__workflows__pr-build.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 24,
+      "column": "",
+      "job": "pr-build",
+      "step": "",
+      "details": "runs-on: aws-cdk_ubuntu-latest_32-core",
+      "event_triggers": [
+        "workflow_dispatch",
+        "merge_group",
+        "push",
+        "pull_request"
+      ]
+    }
+  ]
+}

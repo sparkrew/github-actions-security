@@ -1,0 +1,40 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_closure-compiler__.github__workflows__run_tests.yaml:59:9
+   [1m[94m|[0m
+[1m[94m59 |[0m         - name: Checkout Current closure-compiler Commit
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m60 |[0m [1m[33m|[0m         # https://github.com/marketplace/actions/checkout
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m64 |[0m [1m[33m|[0m
+[1m[94m65 |[0m [1m[33m|[0m       # https://github.com/bazel-contrib/setup-bazel
+   [1m[94m|[0m [1m[33m|____________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/google_closure-compiler__.github__workflows__run_tests.yaml:118:9
+    [1m[94m|[0m
+[1m[94m118 |[0m         - name: Checkout Current closure-compiler-npm Commit
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m119 |[0m [1m[33m|[0m         # https://github.com/marketplace/actions/checkout
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m125 |[0m [1m[33m|[0m         # Clone closure-compiler repo from the commit under test into the npm repo compiler
+[1m[94m126 |[0m [1m[33m|[0m         # submodule
+    [1m[94m|[0m [1m[33m|___________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/google_closure-compiler__.github__workflows__run_tests.yaml:127:9
+    [1m[94m|[0m
+[1m[94m127 |[0m         - name: Checkout Current closure-compiler Commit
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m128 |[0m [1m[33m|[0m         # https://github.com/marketplace/actions/checkout
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m134 |[0m [1m[33m|[0m         # Grab the compiler binary that was shared from `build-and-test` and put the file into
+[1m[94m135 |[0m [1m[33m|[0m         # ./compiler/bazel-bin.
+    [1m[94m|[0m [1m[33m|_______________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m6[39m findings ([1m[93m3[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m3[39m medium, [31m0[39m high

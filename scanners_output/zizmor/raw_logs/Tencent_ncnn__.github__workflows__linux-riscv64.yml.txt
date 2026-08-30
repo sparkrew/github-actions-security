@@ -1,0 +1,67 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__linux-riscv64.yml:51:7
+   [1m[94m|[0m
+[1m[94m51 |[0m     - uses: actions/checkout@v6
+   [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__linux-riscv64.yml:64:7
+   [1m[94m|[0m
+[1m[94m64 |[0m       - name: checkout-qemu
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m65 |[0m [1m[33m|[0m       if: steps.cache-qemu.outputs.cache-hit != 'true'
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m69 |[0m [1m[33m|[0m         path: qemu
+[1m[94m70 |[0m [1m[33m|[0m         ref: f5643914a9e8f79c606a76e6a9d7ea82a3fc3e65
+   [1m[94m|[0m [1m[33m|_____________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__linux-riscv64.yml:110:7
+    [1m[94m|[0m
+[1m[94m110 |[0m     - uses: actions/checkout@v6
+    [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__linux-riscv64.yml:142:7
+    [1m[94m|[0m
+[1m[94m142 |[0m       - uses: actions/checkout@v6
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m143 |[0m [1m[33m|[0m
+[1m[94m144 |[0m [1m[33m|[0m     # https://archive.spacemit.com/toolchain/spacemit-toolchain-linux-glibc-x86_64-v1.1.2.tar.xz
+    [1m[94m|[0m [1m[33m|________________________________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__linux-riscv64.yml:191:7
+    [1m[94m|[0m
+[1m[94m191 |[0m       - uses: actions/checkout@v6
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m192 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m257 |[0m [1m[33m|[0m       #if: steps.cache-riscv.outputs.cache-hit != 'true'
+[1m[94m258 |[0m [1m[33m|[0m       #run: find $GITHUB_WORKSPACE/riscv -type f | xargs -i strip -g {} || true
+    [1m[94m|[0m [1m[33m|_______________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__linux-riscv64.yml:280:7
+    [1m[94m|[0m
+[1m[94m280 |[0m       - uses: actions/checkout@v6
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m281 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m357 |[0m [1m[33m|[0m     #     make -j16
+[1m[94m358 |[0m [1m[33m|[0m     #     make install
+    [1m[94m|[0m [1m[33m|______________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m32[39m findings ([1m[93m26[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m6[39m medium, [31m0[39m high

@@ -1,0 +1,46 @@
+name: Build CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: write
+  security-events: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+    - name: set up JDK 18
+      uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # actions/setup-java@v5 | v5.2.0
+      with:
+        distribution: 'temurin'
+        java-version: 18
+
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407 # android-actions/setup-android@v3 | main,v3.2.2
+    
+    - name: build samples and apps
+      uses: github/codeql-action/init@c793b717bc78562f491db7b0e93a3a178b099162 # github/codeql-action/init@v4
+      with:
+        languages: cpp
+    - run: |
+        pushd samples
+        chmod +x gradlew
+        ./gradlew -q clean bundleDebug
+        popd
+        pushd apps/OboeTester
+        chmod +x gradlew
+        ./gradlew -q clean bundleDebug
+        popd
+        pushd apps/fxlab
+        chmod +x gradlew
+        ./gradlew -q clean bundleDebug
+        popd
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/init@c793b717bc78562f491db7b0e93a3a178b099162 # github/codeql-action/init@v4

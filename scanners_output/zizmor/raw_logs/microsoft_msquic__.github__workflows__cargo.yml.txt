@@ -1,0 +1,29 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_msquic__.github__workflows__cargo.yml:36:7
+   [1m[94m|[0m
+[1m[94m36 |[0m       - name: Checkout repository
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m37 |[0m [1m[33m|[0m       uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+   [1m[94m|[0m [1m[33m|_____________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_msquic__.github__workflows__cargo.yml:138:7
+    [1m[94m|[0m
+[1m[94m138 |[0m       - name: Checkout repository
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m139 |[0m [1m[33m|[0m       uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+    [1m[94m|[0m [1m[33m|_____________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_msquic__.github__workflows__cargo.yml:16:3
+   [1m[94m|[0m
+[1m[94m16 |[0m   pull-requests: write
+   [1m[94m|[0m   [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91mpull-requests: write is overly broad at the workflow level[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m10[39m findings ([1m[93m7[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m1[39m high

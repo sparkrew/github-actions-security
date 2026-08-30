@@ -1,0 +1,61 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_fresco__.github__workflows__release.yml:17:7
+   [1m[94m|[0m
+[1m[94m17 |[0m     - uses: actions/checkout@v6
+   [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_fresco__.github__workflows__release.yml:14:3
+   [1m[94m|[0m
+[1m[94m14 |[0m [1m[33m/[0m   build:
+[1m[94m15 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m50 |[0m [1m[33m|[0m       if: always()
+[1m[94m51 |[0m [1m[33m|[0m       run: rm /tmp/secring.gpg
+   [1m[94m|[0m [1m[33m|[0m                               [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________________|[0m
+   [1m[94m|[0m                                 [1m[33mthis job[0m
+   [1m[94m|[0m                                 [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_fresco__.github__workflows__release.yml:27:7
+   [1m[94m|[0m
+[1m[94m27 |[0m       uses: android-actions/setup-android@v3
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_fresco__.github__workflows__release.yml:30:7
+   [1m[94m|[0m
+[1m[94m30 |[0m       uses: nttld/setup-ndk@v1
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#cache-poisoning\cache-poisoning]8;;\][0m: [1mruntime artifacts potentially vulnerable to a cache poisoning attack[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_fresco__.github__workflows__release.yml:3:1
+   [1m[94m|[0m
+[1m[94m 3 |[0m [1m[91m/[0m on:
+[1m[94m 4 |[0m [1m[91m|[0m   push:
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m10 |[0m [1m[91m|[0m         description: "Tag to upload artifacts to"
+[1m[94m11 |[0m [1m[91m|[0m         required: false
+   [1m[94m|[0m [1m[91m|_______________________^[0m [1m[91mgenerally used when publishing artifacts generated at runtime[0m
+[1m[94m12 |[0m
+[1m[94m...[0m
+[1m[94m19 |[0m         uses: actions/setup-java@v5
+[1m[94m20 |[0m [1m[91m/[0m       with:
+[1m[94m21 |[0m [1m[91m|[0m         distribution: 'temurin'
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m24 |[0m [1m[91m|[0m           17
+[1m[94m25 |[0m [1m[91m|[0m         cache: gradle
+   [1m[94m|[0m [1m[91m|_____________________^[0m [1m[91mopt-in for caching here[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m11[39m findings ([1m[93m6[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m3[39m high

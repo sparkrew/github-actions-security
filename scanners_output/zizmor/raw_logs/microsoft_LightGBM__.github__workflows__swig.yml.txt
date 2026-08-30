@@ -1,0 +1,51 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_LightGBM__.github__workflows__swig.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m name: SWIG
+[1m[94m 2 |[0m [1m[33m|[0m
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m94 |[0m [1m[33m|[0m         with:
+[1m[94m95 |[0m [1m[33m|[0m           jobs: ${{ toJSON(needs) }}
+   [1m[94m|[0m [1m[33m|_____________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_LightGBM__.github__workflows__swig.yml:28:3
+   [1m[94m|[0m
+[1m[94m28 |[0m [1m[33m/[0m   test-swig:
+[1m[94m29 |[0m [1m[33m|[0m     name: swig (${{ matrix.os-display-name || matrix.os }}, ${{ matrix.compiler }})
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m84 |[0m [1m[33m|[0m           path: ${{ env.BUILD_ARTIFACTSTAGINGDIRECTORY }}/*.jar
+[1m[94m85 |[0m [1m[33m|[0m           if-no-files-found: error
+   [1m[94m|[0m [1m[33m|[0m                                  [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|__________________________________|[0m
+   [1m[94m|[0m                                    [1m[33mthis job[0m
+   [1m[94m|[0m                                    [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_LightGBM__.github__workflows__swig.yml:86:3
+   [1m[94m|[0m
+[1m[94m86 |[0m [1m[33m/[0m   all-swig-jobs-successful:
+[1m[94m87 |[0m [1m[33m|[0m     if: always()
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m94 |[0m [1m[33m|[0m         with:
+[1m[94m95 |[0m [1m[33m|[0m           jobs: ${{ toJSON(needs) }}
+   [1m[94m|[0m [1m[33m|[0m                                     [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________________________________|[0m
+   [1m[94m|[0m                                       [1m[33mthis job[0m
+   [1m[94m|[0m                                       [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_LightGBM__.github__workflows__swig.yml:93:9
+   [1m[94m|[0m
+[1m[94m93 |[0m         uses: re-actors/alls-green@v1.2.2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m7[39m findings ([1m[93m3[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m3[39m medium, [31m1[39m high

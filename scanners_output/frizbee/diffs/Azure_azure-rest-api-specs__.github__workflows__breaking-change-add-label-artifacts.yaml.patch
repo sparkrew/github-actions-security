@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/Azure_azure-rest-api-specs__.github__workflows__breaking-change-add-label-artifacts.yaml b/.github/workflows/Azure_azure-rest-api-specs__.github__workflows__breaking-change-add-label-artifacts.yaml
+index da03eb8..894a571 100644
+--- a/.github/workflows/Azure_azure-rest-api-specs__.github__workflows__breaking-change-add-label-artifacts.yaml
++++ b/.github/workflows/Azure_azure-rest-api-specs__.github__workflows__breaking-change-add-label-artifacts.yaml
+@@ -26,7 +26,7 @@ jobs:
+       # For workflows that are triggered by the pull_request_target event, the workflow runs in the
+       # context of the base of the pull request.  You should make sure that you do not check out,
+       # build, or run untrusted code from the head of the pull request.
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           # Only needs .github folder for automation, not the files in the PR (analyzed in a
+           # separate workflow).
+@@ -38,7 +38,7 @@ jobs:
+ 
+       - id: get-label-actions
+         name: Get Label Actions
+-        uses: actions/github-script@v8
++        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+         with:
+           script: |
+             const { default: getLabelActions } =

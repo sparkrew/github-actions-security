@@ -1,0 +1,67 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-sdk-cli-test.yml:48:7
+   [1m[94m|[0m
+[1m[94m48 |[0m     - uses: actions/checkout@v4
+   [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-sdk-cli-test.yml:114:7
+    [1m[94m|[0m
+[1m[94m114 |[0m       - name: checkout
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m115 |[0m [1m[33m|[0m       uses: actions/checkout@v4
+    [1m[94m|[0m [1m[33m|_______________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-sdk-cli-test.yml:22:3
+   [1m[94m|[0m
+[1m[94m22 |[0m   id-token: write
+   [1m[94m|[0m   [1m[91m^^^^^^^^^^^^^^^[0m [1m[91mid-token: write is overly broad at the workflow level[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-sdk-cli-test.yml:44:7
+   [1m[94m|[0m
+[1m[94m44 |[0m       - name: set test mode
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m45 |[0m [1m[91m/[0m       run: |
+[1m[94m46 |[0m [1m[91m|[0m         echo "PROMPT_FLOW_TEST_MODE=$(if [[ "${{ github.event_name }}" == "pull_request" ]]; then echo replay; else echo live; fi)" >> $GITHUB_ENV
+[1m[94m47 |[0m [1m[91m|[0m         echo "FILE_PATHS=$(if [[ "${{ inputs.filepath }}" == "" ]]; then echo "./tests/sdk_cli_test ./tests/sdk_pfs_test"; else echo ${{ inputs.filepath }}; fi)" >> $GITHUB_ENV
+   [1m[94m|[0m [1m[91m|________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.filepath may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-sdk-cli-test.yml:44:7
+   [1m[94m|[0m
+[1m[94m44 |[0m       - name: set test mode
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m45 |[0m [1m[91m/[0m       run: |
+[1m[94m46 |[0m [1m[91m|[0m         echo "PROMPT_FLOW_TEST_MODE=$(if [[ "${{ github.event_name }}" == "pull_request" ]]; then echo replay; else echo live; fi)" >> $GITHUB_ENV
+[1m[94m47 |[0m [1m[91m|[0m         echo "FILE_PATHS=$(if [[ "${{ inputs.filepath }}" == "" ]]; then echo "./tests/sdk_cli_test ./tests/sdk_pfs_test"; else echo ${{ inputs.filepath }}; fi)" >> $GITHUB_ENV
+   [1m[94m|[0m [1m[91m|________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91minputs.filepath may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-sdk-cli-test.yml:52:7
+   [1m[94m|[0m
+[1m[94m52 |[0m     - uses: snok/install-poetry@v1
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_promptflow__.github__workflows__promptflow-sdk-cli-test.yml:65:7
+   [1m[94m|[0m
+[1m[94m65 |[0m       uses: azure/login@v1
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m13[39m findings ([1m[93m6[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m5[39m high

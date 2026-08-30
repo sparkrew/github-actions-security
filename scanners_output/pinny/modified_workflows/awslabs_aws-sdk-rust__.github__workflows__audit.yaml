@@ -1,0 +1,80 @@
+name: Security audit
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+env:
+  rust_version: nightly-2025-08-06
+
+  # RUSTSEC-2020-0071 , RUSTSEC-2020-0159
+  # chrono, a Rust date-time crate we use for timestamp parsing was added
+  # to the RustSec vulnerability database because of a call to localtime_r.
+  # We use chrono for an extremely narrow use case of converting epoch timestamps to UTC dates
+  # (so we never invoke the problematic behavior that results from attempting to determine
+  # the local time of the current platform).
+  #
+  # Chrono's only use is as an optional feature in `aws-smithy-types-convert`, for
+  # the narrow use-case of converting from the SDK's `DateTime` into chrono types,
+  # and we never invoke the problematic behavior that results from attempting to
+  # determine the local time of the current platform.
+  #
+  # RUSTSEC-2021-0127
+  # serde_cbor is being imported by criterion, a benchmarking crate. More info here https://github.com/awslabs/smithy-rs/issues/1044
+  cargo_audit_flags: --ignore RUSTSEC-2020-0071 --ignore RUSTSEC-2020-0159 --ignore RUSTSEC-2021-0127
+
+permissions:
+  contents: read
+
+jobs:
+  audit-latest:
+    name: Audit Latest Dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0
+      - uses: dtolnay/rust-toolchain@efa25f7f19611383d5b0ccf2d1c8914531636bf9 # dtolnay/rust-toolchain@master
+        with:
+          toolchain: ${{ env.rust_version }}
+      - name: install cargo audit
+        run: cargo install cargo-audit
+      - name: Run audit
+        run: |
+          cargo audit ${{ env.cargo_audit_flags }}
+
+  audit-minimal-versions:
+    name: Audit Minimal Versions
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0
+      - uses: dtolnay/rust-toolchain@efa25f7f19611383d5b0ccf2d1c8914531636bf9 # dtolnay/rust-toolchain@master
+        with:
+          toolchain: ${{ env.rust_version }}
+      - name: install cargo audit
+        run: cargo install cargo-audit
+      - name: Run audit
+        run: |
+          set -eux
+          mkdir min-version-audit
+          cd min-version-audit
+
+          # Create an empty library crate to test against so that the SDK examples
+          # can be excluded from the min-version audit.
+          cargo init --lib .
+          echo '[workspace]' >> Cargo.toml
+
+          # Add every sdk/* crate as a dependency
+          for path in ../sdk/*; do
+              if [[ -d "${path}" ]]; then
+                  # The generated crates are missing the aws-sdk- prefix on the directories
+                  if [[ "${path}" != "../sdk/aws-"* ]]; then
+                      echo "[dependencies.aws-sdk-${path#../sdk/}]" >> Cargo.toml
+                      echo "path = \"${path}\"" >> Cargo.toml
+                  else
+                      echo "[dependencies.${path#../sdk/}]" >> Cargo.toml
+                      echo "path = \"${path}\"" >> Cargo.toml
+                  fi
+              fi
+          done
+
+          # Generate a lockfile at the minimum possible versions
+          cargo generate-lockfile -Zdirect-minimal-versions
+          cargo audit ${{ env.cargo_audit_flags }}

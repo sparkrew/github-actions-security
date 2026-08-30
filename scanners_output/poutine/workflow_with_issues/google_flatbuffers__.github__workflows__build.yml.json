@@ -1,0 +1,54 @@
+{
+  "workflow": "google_flatbuffers__.github__workflows__build.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 230,
+      "column": "",
+      "job": "build-mac-intel",
+      "step": "",
+      "details": "runs-on: macos-15-intel",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request",
+        "schedule"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 194,
+      "column": "",
+      "job": "build-dotnet-windows",
+      "step": "",
+      "details": "runs-on: windows-2022-64core",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request",
+        "schedule"
+      ]
+    },
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 449,
+      "column": "",
+      "job": "build-rust-windows",
+      "step": "",
+      "details": "runs-on: windows-2022-64core",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request",
+        "schedule"
+      ]
+    }
+  ]
+}

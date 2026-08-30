@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/facebookresearch_pytorch3d__.github__workflows__build.yml b/.github/workflows/facebookresearch_pytorch3d__.github__workflows__build.yml
+index 618e3f2..77789d5 100644
+--- a/.github/workflows/facebookresearch_pytorch3d__.github__workflows__build.yml
++++ b/.github/workflows/facebookresearch_pytorch3d__.github__workflows__build.yml
+@@ -16,7 +16,7 @@ jobs:
+       CU_VERSION: "cu121"
+       JUST_TESTRUN: 1
+     steps:
+-    - uses: actions/checkout@v4
++    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+     - name: Build and run tests
+       run: |-
+         conda create --name env --yes --quiet conda-build

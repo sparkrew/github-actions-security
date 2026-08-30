@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/google_j2objc__.github__workflows__main.yml b/.github/workflows/google_j2objc__.github__workflows__main.yml
+index 8d780d8..bb7ff85 100644
+--- a/.github/workflows/google_j2objc__.github__workflows__main.yml
++++ b/.github/workflows/google_j2objc__.github__workflows__main.yml
+@@ -20,7 +20,7 @@ jobs:
+       - name: java_21_env
+         run: echo "JAVA_21_HOME=$(/usr/libexec/java_home -v 21)" >> $GITHUB_ENV
+       
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       # Build everything but protobuf targets, which require that the public
+       # protobuf distribution be installed.

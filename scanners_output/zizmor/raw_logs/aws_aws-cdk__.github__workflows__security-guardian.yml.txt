@@ -1,0 +1,56 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-cdk__.github__workflows__security-guardian.yml:21:9
+   [1m[94m|[0m
+[1m[94m21 |[0m         - name: Checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m22 |[0m [1m[33m|[0m         uses: actions/checkout@v6
+[1m[94m23 |[0m [1m[33m|[0m         with:
+[1m[94m24 |[0m [1m[33m|[0m           ref: ${{ github.event.pull_request.head.sha }}
+[1m[94m25 |[0m [1m[33m|[0m           fetch-depth: 0  
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-cdk__.github__workflows__security-guardian.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m name: Security Guardian
+[1m[94m 2 |[0m [1m[33m|[0m on:
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m56 |[0m [1m[33m|[0m           name: security-guardian-reports
+[1m[94m57 |[0m [1m[33m|[0m           path: test-results/
+   [1m[94m|[0m [1m[33m|______________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-cdk__.github__workflows__security-guardian.yml:8:3
+   [1m[94m|[0m
+[1m[94m 8 |[0m [1m[33m/[0m   log-skip:
+[1m[94m 9 |[0m [1m[33m|[0m     if: |
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m13 |[0m [1m[33m|[0m     steps:
+[1m[94m14 |[0m [1m[33m|[0m       - run: echo "Skipping Security Guardian for release/merge-back PR"
+   [1m[94m|[0m [1m[33m|[0m                                                                        [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                          [1m[33mthis job[0m
+   [1m[94m|[0m                                                                          [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/aws_aws-cdk__.github__workflows__security-guardian.yml:15:3
+   [1m[94m|[0m
+[1m[94m15 |[0m [1m[33m/[0m   run-security-guardian:
+[1m[94m16 |[0m [1m[33m|[0m     if: |
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m56 |[0m [1m[33m|[0m           name: security-guardian-reports
+[1m[94m57 |[0m [1m[33m|[0m           path: test-results/
+   [1m[94m|[0m [1m[33m|[0m                              [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________________|[0m
+   [1m[94m|[0m                                [1m[33mthis job[0m
+   [1m[94m|[0m                                [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m6[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m4[39m medium, [31m0[39m high

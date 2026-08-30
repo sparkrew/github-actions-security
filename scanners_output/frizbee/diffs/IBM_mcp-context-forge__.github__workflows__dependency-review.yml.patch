@@ -1,0 +1,21 @@
+diff --git a/.github/workflows/IBM_mcp-context-forge__.github__workflows__dependency-review.yml b/.github/workflows/IBM_mcp-context-forge__.github__workflows__dependency-review.yml
+index 297f17f..fe086b4 100644
+--- a/.github/workflows/IBM_mcp-context-forge__.github__workflows__dependency-review.yml
++++ b/.github/workflows/IBM_mcp-context-forge__.github__workflows__dependency-review.yml
+@@ -69,14 +69,14 @@ jobs:
+       # 0️⃣  Check out the repository
+       # -----------------------------------------------------------
+       - name: ⬇️  Checkout code
+-        uses: actions/checkout@v5
++        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+ 
+       # -----------------------------------------------------------
+       # 1️⃣  Dependency & License gate
+       # -----------------------------------------------------------
+       - name: 🔍  Dependency Review
+         id: dep-scan
+-        uses: actions/dependency-review-action@v4
++        uses: actions/dependency-review-action@05fe4576374b728f0c523d6a13d64c25081e0803 # v4
+         with:
+           # ───────── Vulnerability policy ─────────
+           fail-on-severity: moderate # MODERATE, HIGH, CRITICAL ⇒ ❌

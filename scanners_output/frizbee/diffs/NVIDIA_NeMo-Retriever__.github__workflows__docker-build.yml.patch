@@ -1,0 +1,30 @@
+diff --git a/.github/workflows/NVIDIA_NeMo-Retriever__.github__workflows__docker-build.yml b/.github/workflows/NVIDIA_NeMo-Retriever__.github__workflows__docker-build.yml
+index b2111c9..d5d83c7 100644
+--- a/.github/workflows/NVIDIA_NeMo-Retriever__.github__workflows__docker-build.yml
++++ b/.github/workflows/NVIDIA_NeMo-Retriever__.github__workflows__docker-build.yml
+@@ -16,14 +16,14 @@ jobs:
+     runs-on: linux-large-disk
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       - name: Get current date (yyyy.mm.dd)
+         run: echo "CURRENT_DATE=$(date +'%Y.%m.%d')" >> $GITHUB_ENV
+ 
+       # Set up Docker Buildx, useful for building multi-platform images
+       - name: Set up Docker Buildx
+-        uses: docker/setup-buildx-action@v3
++        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+ 
+       # Build the Docker image using the Dockerfile
+       # Github does not allowing access secrets on pull requests. Therefore for this action we use the open source ubuntu
+@@ -50,7 +50,7 @@ jobs:
+           docker run nv-ingest:latest pytest -rs -m "not integration" --cov nv_ingest --cov nv_ingest_client --cov nv_ingest_api --cov-report term --cov-report xml:coverage.xml tests/service_tests client/client_tests api/api_tests
+ 
+       - name: Upload test report
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: pytest-report
+           path: coverage.xml

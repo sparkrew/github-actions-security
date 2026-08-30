@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/microsoft_Microsoft365DSC__.github__workflows__SchemaDefinition.yml b/.github/workflows/microsoft_Microsoft365DSC__.github__workflows__SchemaDefinition.yml
+index be41cf2..f9362a0 100644
+--- a/.github/workflows/microsoft_Microsoft365DSC__.github__workflows__SchemaDefinition.yml
++++ b/.github/workflows/microsoft_Microsoft365DSC__.github__workflows__SchemaDefinition.yml
+@@ -16,7 +16,7 @@ jobs:
+     if: github.repository == 'microsoft/Microsoft365DSC' && github.event.pull_request.merged == true
+     steps:
+       - name: Checkout repository
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       - name: Import Module and Generate Schema Definition
+         shell: pwsh

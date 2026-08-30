@@ -1,0 +1,32 @@
+{
+  "workflow": "aws_aws-lambda-rust-runtime__.github__workflows__dockerized-test.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+      "line": 18
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: dtolnay/rust-toolchain@631a55b12751854ce901bb631d5902ceb48146f7 # dtolnay/rust-toolchain@stable",
+      "line": 20
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # Swatinem/rust-cache@v2",
+      "line": 21
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: aws/containerized-test-runner-for-aws-lambda@1caf56a008892641e7e079b8d44848705d8b583d # aws/containerized-test-runner-for-aws-lambda@main",
+      "line": 43
+    }
+  ]
+}

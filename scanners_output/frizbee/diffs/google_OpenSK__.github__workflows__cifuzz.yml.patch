@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/google_OpenSK__.github__workflows__cifuzz.yml b/.github/workflows/google_OpenSK__.github__workflows__cifuzz.yml
+index 91d9df1..43a212a 100644
+--- a/.github/workflows/google_OpenSK__.github__workflows__cifuzz.yml
++++ b/.github/workflows/google_OpenSK__.github__workflows__cifuzz.yml
+@@ -21,7 +21,7 @@ jobs:
+         fuzz-seconds: 600
+         dry-run: false
+     - name: Upload Crash
+-      uses: actions/upload-artifact@v4
++      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+       if: failure() && steps.build.outcome == 'success'
+       with:
+         name: artifacts

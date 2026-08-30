@@ -1,0 +1,24 @@
+{
+  "workflow": "NVIDIA_NeMo-Retriever__.github__workflows__pypi-nightly-publish.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "injection": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "injection",
+      "line": 32,
+      "column": "",
+      "job": "build",
+      "step": "0",
+      "details": "Sources: github.event.inputs.RELEASE_TYPE github.event.inputs.VERSION github.event.inputs.environment",
+      "event_triggers": [
+        "schedule",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

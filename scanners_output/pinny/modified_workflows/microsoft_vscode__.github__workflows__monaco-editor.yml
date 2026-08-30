@@ -1,0 +1,100 @@
+name: Monaco Editor checks
+
+on:
+  push:
+    branches:
+      - main
+      - release/*
+  pull_request:
+    branches:
+      - main
+      - release/*
+permissions: {}
+
+jobs:
+  main:
+    name: Monaco Editor checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # actions/setup-node@v6 | main,v6.3.0
+        with:
+          node-version-file: .nvmrc
+
+      - name: Compute node modules cache key
+        id: nodeModulesCacheKey
+        run: echo "value=$(node build/azure-pipelines/common/computeNodeModulesCacheKey.ts)" >> $GITHUB_OUTPUT
+      - name: Cache node modules
+        id: cacheNodeModules
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # actions/cache@v5 | v5.0.3
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-cacheNodeModules20-${{ steps.nodeModulesCacheKey.outputs.value }}
+          restore-keys: ${{ runner.os }}-cacheNodeModules20-
+      - name: Get npm cache directory path
+        id: npmCacheDirPath
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        run: echo "dir=$(npm config get cache)" >> $GITHUB_OUTPUT
+      - name: Cache npm directory
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # actions/cache@v5 | v5.0.3
+        with:
+          path: ${{ steps.npmCacheDirPath.outputs.dir }}
+          key: ${{ runner.os }}-npmCacheDir-${{ steps.nodeModulesCacheKey.outputs.value }}
+          restore-keys: ${{ runner.os }}-npmCacheDir-
+      - name: Install system dependencies
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        run: |
+          sudo apt update
+          sudo apt install -y libxkbfile-dev pkg-config libkrb5-dev libxss1
+      - name: Execute npm
+        if: ${{ steps.cacheNodeModules.outputs.cache-hit != 'true' }}
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+          ELECTRON_SKIP_BINARY_DOWNLOAD: 1
+        run: |
+          npm ci
+
+      - name: Download Playwright
+        run: npm run playwright-install
+
+      - name: Run Monaco Editor Checks
+        run: npm run monaco-compile-check
+
+      - name: Editor Distro & ESM
+        run: npm run gulp editor-distro
+
+      - name: Editor ESM sources check
+        working-directory: ./test/monaco
+        run: npm run esm-check
+
+      - name: Typings validation prep
+        run: |
+          mkdir typings-test
+
+      - name: Typings validation
+        working-directory: ./typings-test
+        run: |
+          npm init -yp
+          ../node_modules/.bin/tsc --init
+          echo "import '../out-monaco-editor-core';" > a.ts
+          ../node_modules/.bin/tsc --noEmit
+
+      - name: Package Editor with Webpack
+        working-directory: ./test/monaco
+        run: npm run bundle-webpack
+
+      - name: Compile Editor Tests
+        working-directory: ./test/monaco
+        run: npm run compile
+
+      - name: Run Editor Tests
+        timeout-minutes: 5
+        working-directory: ./test/monaco
+        run: npm run test

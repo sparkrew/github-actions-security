@@ -1,0 +1,56 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "docs/**"
+      - "website/**"
+      - ".github/workflows/deploy-website.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    permissions:
+      contents: write # to deploy
+    runs-on: ubuntu-latest
+
+    if: github.repository == 'facebook/metro'
+
+    env:
+      working-directory: website
+      node-version: lts/*
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Use Node.js ${{ env.node-version }}
+        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+        with:
+          node-version: ${{ env.node-version }}
+
+      - name: Get yarn cache directory
+        id: yarn
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      - name: Restore yarn cache
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+        with:
+          path: ${{ steps.yarn.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles(format('{0}{1}', github.workspace, '/website/yarn.lock')) }}
+
+      - name: Install packages
+        working-directory: ${{ env.working-directory }}
+        run: yarn --frozen-lockfile
+
+      - name: Deploy to GitHub Pages
+        working-directory: ${{ env.working-directory }}
+        run: |
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git config --global user.name "${GITHUB_ACTOR}"
+          echo "machine github.com login ${GITHUB_ACTOR} password ${{ secrets.GITHUB_TOKEN }}" > ~/.netrc
+          GIT_USER=${GITHUB_ACTOR} yarn deploy

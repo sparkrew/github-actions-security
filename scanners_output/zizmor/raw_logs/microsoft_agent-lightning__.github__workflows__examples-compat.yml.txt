@@ -1,0 +1,44 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_agent-lightning__.github__workflows__examples-compat.yml:46:9
+   [1m[94m|[0m
+[1m[94m46 |[0m   [1m[94m...[0m - uses: actions/checkout@v6
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m47 |[0m [1m[33m|[0m [1m[94m...[0m   with:
+[1m[94m48 |[0m [1m[33m|[0m [1m[94m...[0m     ref: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.pr_ref || (github.event.pull_request.number && format('refs/pull/{0}/merge', github.event.pull_request.number)) || github.ref }}
+   [1m[94m|[0m [1m[33m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_agent-lightning__.github__workflows__examples-compat.yml:145:9
+    [1m[94m|[0m
+[1m[94m145 |[0m   [1m[94m...[0m - name: Validate Calc-X training
+    [1m[94m|[0m         [1m[94m------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m146 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m147 |[0m [1m[94m|[0m [1m[94m...[0m     set -ex
+[1m[94m148 |[0m [1m[94m|[0m [1m[94m...[0m     uv run scripts/validate_example_wandb.py ${{ steps.calc_x_train.outputs.project_name }} ${{ steps.calc_x_train.outputs.run_name }}
+    [1m[94m|[0m [1m[94m|__________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.calc_x_train.outputs.project_name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_agent-lightning__.github__workflows__examples-compat.yml:145:9
+    [1m[94m|[0m
+[1m[94m145 |[0m   [1m[94m...[0m - name: Validate Calc-X training
+    [1m[94m|[0m         [1m[94m------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m146 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m147 |[0m [1m[94m|[0m [1m[94m...[0m     set -ex
+[1m[94m148 |[0m [1m[94m|[0m [1m[94m...[0m     uv run scripts/validate_example_wandb.py ${{ steps.calc_x_train.outputs.project_name }} ${{ steps.calc_x_train.outputs.run_name }}
+    [1m[94m|[0m [1m[94m|__________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.calc_x_train.outputs.run_name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_agent-lightning__.github__workflows__examples-compat.yml:49:9
+   [1m[94m|[0m
+[1m[94m49 |[0m       - uses: astral-sh/setup-uv@v7
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m8[39m findings ([1m[93m4[39m suppressed[0m): 0 unknown, [35m2[39m informational, [36m0[39m low, [33m1[39m medium, [31m1[39m high

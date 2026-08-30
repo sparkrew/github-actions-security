@@ -1,0 +1,35 @@
+name: 'Build Cherry Markdown Release'
+
+permissions:
+  contents: read
+  id-token: write
+
+on:
+  workflow_call:
+jobs:
+  release-npm-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | releases,v4.4.0
+        with:
+          node-version-file: .node-version
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: |
+          yarn
+          yarn build
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | releases,v4.4.0
+        with:
+          node-version: 24
+
+      - name: Publish cherry-markdown
+        run: |
+          cp README*.md packages/cherry-markdown/
+           
+          cd packages/cherry-markdown
+          npm publish --access public

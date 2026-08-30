@@ -1,0 +1,35 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/google_draco__.github__workflows__gemini-cli.yml:116:9
+    [1m[94m|[0m
+[1m[94m116 |[0m         - name: 'Checkout PR branch'
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m117 |[0m [1m[33m|[0m         if: |-
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m123 |[0m [1m[33m|[0m           ref: 'refs/pull/${{ steps.get_context.outputs.issue_number }}/head'
+[1m[94m124 |[0m [1m[33m|[0m           fetch-depth: 0
+    [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/google_draco__.github__workflows__gemini-cli.yml:126:9
+    [1m[94m|[0m
+[1m[94m126 |[0m         - name: 'Checkout main branch'
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m127 |[0m [1m[33m|[0m         if: |-
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m132 |[0m [1m[33m|[0m           repository: '${{ github.repository }}'
+[1m[94m133 |[0m [1m[33m|[0m           fetch-depth: 0
+    [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/google_draco__.github__workflows__gemini-cli.yml:191:9
+    [1m[94m|[0m
+[1m[94m191 |[0m         uses: 'google-github-actions/run-gemini-cli@v0'
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m7[39m findings ([1m[93m4[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m1[39m high

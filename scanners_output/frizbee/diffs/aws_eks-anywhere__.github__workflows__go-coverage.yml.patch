@@ -1,0 +1,24 @@
+diff --git a/.github/workflows/aws_eks-anywhere__.github__workflows__go-coverage.yml b/.github/workflows/aws_eks-anywhere__.github__workflows__go-coverage.yml
+index 8ecca04..4079b29 100644
+--- a/.github/workflows/aws_eks-anywhere__.github__workflows__go-coverage.yml
++++ b/.github/workflows/aws_eks-anywhere__.github__workflows__go-coverage.yml
+@@ -16,8 +16,8 @@ jobs:
+   build:
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v4
+-      - uses: actions/setup-go@v5
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
++      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
+         with:
+           go-version: '1.24'
+           check-latest: true
+@@ -25,7 +25,7 @@ jobs:
+       - name: Run go test with coverage
+         run: COVER_PROFILE=coverage.txt make coverage-unit-test
+       - name: Codecov upload
+-        uses: codecov/codecov-action@v5.4.3
++        uses: codecov/codecov-action@18283e04ce6e62d37312384ff67231eb8fd56d24 # v5.4.3
+         with:
+           files: ./coverage.txt
+           token: ${{ secrets.CODECOV_TOKEN }}

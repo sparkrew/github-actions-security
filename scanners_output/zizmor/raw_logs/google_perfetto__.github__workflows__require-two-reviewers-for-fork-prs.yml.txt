@@ -1,0 +1,49 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+  [1m[94m-->[0m ../.github/workflows/google_perfetto__.github__workflows__require-two-reviewers-for-fork-prs.yml:20:1
+   [1m[94m|[0m
+[1m[94m20 |[0m [1m[91m/[0m on:
+[1m[94m21 |[0m [1m[91m|[0m   pull_request_target:
+[1m[94m22 |[0m [1m[91m|[0m     types: [opened, synchronize, labeled, edited, auto_merge_enabled, auto_merge_disabled]
+   [1m[94m|[0m [1m[91m|__________________________________________________________________________________________^[0m [1m[91mpull_request_target is almost always used insecurely[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/google_perfetto__.github__workflows__require-two-reviewers-for-fork-prs.yml:37:9
+   [1m[94m|[0m
+[1m[94m37 |[0m         - name: Check if PR is from a fork
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m38 |[0m           id: fork_check
+[1m[94m39 |[0m           shell: bash
+[1m[94m40 |[0m [1m[91m/[0m         run: |
+[1m[94m41 |[0m [1m[91m|[0m           echo "is_fork=${{ github.event.pull_request.head.repo.full_name != github.repository }}" >> $GITHUB_ENV
+[1m[94m42 |[0m [1m[91m|[0m           echo "Triggered by: ${{ github.event_name }}, ${{ github.event.review.state }} by ${{ github.event.review.user.login }}"
+   [1m[94m|[0m [1m[91m|__________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.review.state may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/google_perfetto__.github__workflows__require-two-reviewers-for-fork-prs.yml:37:9
+   [1m[94m|[0m
+[1m[94m37 |[0m         - name: Check if PR is from a fork
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m38 |[0m           id: fork_check
+[1m[94m39 |[0m           shell: bash
+[1m[94m40 |[0m [1m[91m/[0m         run: |
+[1m[94m41 |[0m [1m[91m|[0m           echo "is_fork=${{ github.event.pull_request.head.repo.full_name != github.repository }}" >> $GITHUB_ENV
+[1m[94m42 |[0m [1m[91m|[0m           echo "Triggered by: ${{ github.event_name }}, ${{ github.event.review.state }} by ${{ github.event.review.user.login }}"
+   [1m[94m|[0m [1m[91m|__________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.review.user.login may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#github-env\github-env]8;;\][0m: [1mdangerous use of environment file[0m
+  [1m[94m-->[0m ../.github/workflows/google_perfetto__.github__workflows__require-two-reviewers-for-fork-prs.yml:40:9
+   [1m[94m|[0m
+[1m[94m40 |[0m [1m[91m/[0m         run: |
+[1m[94m41 |[0m [1m[91m|[0m           echo "is_fork=${{ github.event.pull_request.head.repo.full_name != github.repository }}" >> $GITHUB_ENV
+[1m[94m42 |[0m [1m[91m|[0m           echo "Triggered by: ${{ github.event_name }}, ${{ github.event.review.state }} by ${{ github.event.review.user.login }}"
+   [1m[94m|[0m [1m[91m|__________________________________________________________________________________________________________________________________^[0m [1m[91mwrite to GITHUB_ENV may allow code execution[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m13[39m findings ([1m[93m9[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m0[39m medium, [31m4[39m high

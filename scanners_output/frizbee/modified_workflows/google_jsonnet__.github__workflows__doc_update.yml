@@ -1,0 +1,248 @@
+name: Rebuild Docs
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review, review_requested]
+    branches-ignore:
+      - "gh-pages"
+  push:
+    branches:
+      - "master"
+  workflow_dispatch:
+    inputs:
+      build_wasm:
+        description: "Rebuild libjsonnet.wasm from source"
+        default: false
+        type: boolean
+        required: false
+      build_wasm_from_branch:
+        description: "go-jsonnet branch, tag or SHA to build from"
+        default: "master"
+        type: string
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  build_libjsonnet_wasm:
+    name: Build libjsonnet.wasm for website
+    if: ${{ inputs.build_wasm }}
+    runs-on: "ubuntu-24.04"
+    outputs:
+      libjsonnet_wasm_sha256: ${{ steps.build.outputs.libjsonnet_wasm_sha256 }}
+      libjsonnet_wasm_artifact_id: ${{ steps.upload-wasm.outputs.artifact_id }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          repository: google/go-jsonnet
+          ref: ${{ inputs.build_wasm_from_branch }}
+          submodules: false
+      - uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+        with:
+          path: |
+            ~/.cache/bazel
+            ~/.cache/bazelisk
+          key: ${{ runner.os }}-bazel-cache
+      - id: build
+        run: |
+          bazelisk test --lockfile_mode=error //...
+          bazelisk build --lockfile_mode=error //cmd/wasm:libjsonnet.wasm
+          WHERE="$(bazelisk cquery //cmd/wasm:libjsonnet.wasm --output files)"
+          cp "${WHERE}" ./
+          { printf 'libjsonnet_wasm_sha256='; sha256sum --binary ./libjsonnet.wasm; } >> "$GITHUB_OUTPUT"
+      - name: Upload libjsonnet.wasm
+        id: upload-wasm
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          path: ./libjsonnet.wasm
+          name: libjsonnet-wasm
+          if-no-files-found: "error"
+          retention-days: 4
+          include-hidden-files: false
+
+  build_website:
+    name: Build website
+    # Ordering dependency - this must run after building libjsonnet.wasm.
+    needs: build_libjsonnet_wasm
+    # Don't run if libjsonnet.wasm build _failed_ or the workflow cancelled, but run if it was skipped.
+    if: always() && !failure() && !cancelled()
+    runs-on: "ubuntu-24.04"
+    outputs:
+      diff_status: ${{ steps.diff-generated.outputs.diff_status }}
+      # Note upload-pages-artifact output name is artifact_id (with underscore).
+      pages_artifact_id: ${{ steps.upload-pages-package.outputs.artifact_id }}
+      # Note upload-artifact output name is artifact-id (with dash).
+      branch_content_artifact_id: ${{ steps.upload-full-archive.outputs.artifact-id }}
+      git_tree_hash: ${{ steps.diff-generated.outputs.git_tree_hash }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - name: Setup Pages
+        if: ${{ github.repository == 'google/jsonnet' }}
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+      - name: Create Gemfile
+        run: |
+          echo $'source "https://rubygems.org"\n\ngem "jekyll"\n' > Gemfile
+      - name: Setup Ruby and Jekyll
+        uses: ruby/setup-ruby@8d27f39a5e7ad39aebbcbd1324f7af020229645c # v1.287.0
+        with:
+          ruby-version: "4.0.1"
+          bundler-cache: true
+      - name: Cache jsonnet binary
+        id: cache-jsonnet-binary
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+        with:
+          key: jsonnet-bin-${{ hashFiles('include/*', 'core/*', 'cmd/*', 'cpp/*', 'third_party/**/*', 'stdlib/std.jsonnet') }}
+          path: ./jsonnet
+      - name: Build jsonnet binary
+        if: ${{ steps.cache-jsonnet-binary.outputs.cache-hit != 'true' }}
+        run: |
+          make jsonnet
+      - id: get_built_libjsonnet_wasm
+        continue-on-error: true
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+        with:
+          artifact-ids: ${{ needs.build_libjsonnet_wasm.outputs.libjsonnet_wasm_artifact_id }}
+          path: built_libjsonnet_wasm
+      - name: Set up output dir
+        id: make-output-dir
+        run: |
+          WORKDIR="$(mktemp -d)"
+          # If the workflow runs on a fork that doesn't have a gh-pages branch
+          # (which should be most forks) then we still want to be able to build
+          # the docs (so the repo owner can examine them), but we have no baseline.
+          # So we just build as though this is the first time.
+          if git fetch origin gh-pages; then
+            git worktree add --no-checkout --detach "$WORKDIR"/work FETCH_HEAD
+          else
+           echo "Repo has no gh-pages! Creating new orphan branch instead."
+            git worktree add --orphan -b gh-pages "$WORKDIR"/work
+          fi
+          echo "doc_output_dir=$WORKDIR" >> "$GITHUB_OUTPUT"
+      - name: Build website
+        env:
+          WORKDIR: ${{ steps.make-output-dir.outputs.doc_output_dir }}
+          WANT_BUILT_LIBJSONNET_WASM_PATH: ${{ steps.get_built_libjsonnet_wasm.outputs.download-path }}
+          WANT_BUILT_LIBJSONNET_WASM_SHA256: ${{ needs.build_libjsonnet_wasm.outputs.libjsonnet_wasm_sha256 }}
+        run: |
+          tools/scripts/update_web_content.sh
+          bundler exec jekyll build -s doc -d "$WORKDIR"/work
+          cd "$WORKDIR"/work
+          if [[ -z "${WANT_BUILT_LIBJSONNET_WASM_SHA256}" ]]; then
+            # Keep existing libjsonnet.wasm.
+            git checkout HEAD -- js/libjsonnet.wasm || echo "Could not find existing js/libjsonnet.wasm"
+          else
+            # Use a newly build libjsonnet.wasm.
+            cp "${WANT_BUILT_LIBJSONNET_WASM_PATH}"/libjsonnet.wasm ./js/libjsonnet.wasm
+            # Safety check - check that we transferred the file correctly.
+            echo "${WANT_BUILT_LIBJSONNET_WASM_SHA256}" | (cd ./js && sha256sum --check --strict)
+          fi
+          # Want a .nojekyll file while we're still publishing by pushing to gh-pages branch.
+          touch .nojekyll
+          git add .
+      - name: Diff docs
+        id: diff-generated
+        env:
+          WORKDIR: ${{ steps.make-output-dir.outputs.doc_output_dir }}
+        run: |
+          cd "$WORKDIR"/work
+          if git rev-parse --quiet --verify HEAD > /dev/null; then
+            git diff --cached --stat
+            # Only show the first 5000 lines of the diff output, for sanity.
+            git diff --cached | head -n5000
+            if git diff-index --quiet HEAD; then
+              echo "Generated docs are identical to existing gh-pages branch."
+              echo "diff_status=clean" >> "$GITHUB_OUTPUT"
+            else
+              echo "Generated docs differ from existing gh-pages branch."
+              echo "diff_status=changed" >> "$GITHUB_OUTPUT"
+            fi
+          else
+            echo "No HEAD revision; probably on an orphan branch. Skipping diff step."
+            echo "diff_status=changed" >> "$GITHUB_OUTPUT"
+          fi
+          TREE_SHA1=$(git write-tree)
+          echo "Computed sha1 for new gh-pages tree: $TREE_SHA1"
+          echo "git_tree_hash=$TREE_SHA1" >> "$GITHUB_OUTPUT"
+          git archive --format=tar -o ../gh-pages-content.tar "$TREE_SHA1"
+      - name: Upload full archive
+        id: upload-full-archive
+        if: ${{ steps.diff-generated.outputs.diff_status == 'changed' }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          path: ${{ steps.make-output-dir.outputs.doc_output_dir }}/gh-pages-content.tar
+          name: full-gh-pages-content
+          if-no-files-found: "error"
+          retention-days: 4
+          include-hidden-files: true
+      - name: Upload Pages package
+        id: upload-pages-package
+        if: ${{ github.repository == 'google/jsonnet' && steps.diff-generated.outputs.diff_status == 'changed' }}
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
+        with:
+          path: ${{ steps.make-output-dir.outputs.doc_output_dir }}/work/
+
+  push_pages_branch:
+    name: Update gh-pages branch
+    needs: build_website
+    if: always() && github.repository == 'google/jsonnet' && contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) && needs.build_website.result == 'success' && needs.build_website.outputs.diff_status == 'changed'
+    permissions:
+      contents: write
+    environment:
+      name: pages-via-branch-push
+    runs-on: "ubuntu-24.04"
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          ref: gh-pages
+          path: repo
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+        with:
+          artifact-ids: ${{ needs.build_website.outputs.branch_content_artifact_id }}
+          path: built
+      - name: Extract and push
+        env:
+          WANT_TREE_SHA1: ${{ needs.build_website.outputs.git_tree_hash }}
+          GIT_AUTHOR_NAME: "github-actions[bot]"
+          GIT_AUTHOR_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
+          GIT_COMMITTER_NAME: "github-actions[bot]"
+          GIT_COMMITTER_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
+        run: |
+          [[ ! -z "$WANT_TREE_SHA1" ]] || {
+            >&2 echo "did not get valid sha1 hash for expected git tree from builder job"
+            exit 1
+          }
+          cd repo
+          rm --one-file-system -r -- $(git ls-tree --name-only HEAD)
+          echo "Cleared working dir. Content is now:"
+          ls -R "$GITHUB_WORKSPACE"
+          echo "Unpacking artifact from builder job."
+          tar -xf ../built/gh-pages-content.tar
+          git add .
+          git diff --cached --stat
+          UNPACKED_TREE_SHA1=$(git write-tree)
+          echo "Expect   tree SHA1: $WANT_TREE_SHA1 (computed in build step)"
+          echo "Unpacked tree SHA1: $UNPACKED_TREE_SHA1"
+          [[ "$WANT_TREE_SHA1" = "$UNPACKED_TREE_SHA1" ]] || {
+            >&2 echo "builder-produced tree differs from extracted tree"
+            exit 1
+          }
+          git commit -m 'Update docs.'
+          git log -n1
+          git push
+
+  publish_pages:
+    name: Direct publish pages
+    needs: build_website
+    if: false && github.repository == 'google/jsonnet' && contains(fromJSON('["push", "workflow_dispatch"]'), github.event_name) && needs.build_website.result == 'success' && needs.build_website.outputs.diff_status == 'changed'
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: "ubuntu-24.04"
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

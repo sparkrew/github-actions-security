@@ -1,0 +1,49 @@
+{
+  "workflow": "apple_embedding-atlas__.github__workflows__ci.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "artipacked": 1,
+      "unpinned-uses": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "apple_embedding-atlas__.github__workflows__ci.yml",
+      "line": 27,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "apple_embedding-atlas__.github__workflows__ci.yml",
+      "line": 41,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "apple_embedding-atlas__.github__workflows__ci.yml",
+      "line": 51,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "apple_embedding-atlas__.github__workflows__ci.yml",
+      "line": 153,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

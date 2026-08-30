@@ -1,0 +1,32 @@
+{
+  "workflow": "NVIDIA_cuda-python__.github__workflows__bandit.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2",
+      "line": 23
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: astral-sh/setup-uv@803947b9bd8e9f986429fa0c5a41c367cd732b41  # v7.2.1",
+      "line": 26
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: astral-sh/ruff-action@4919ec5cf1f49eff0871dbcea0da843445b837e6  # v3.6.1",
+      "line": 41
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: github/codeql-action/upload-sarif@b20883b0cd1f46c72ae0ba6d1090936928f9fa30 # github/codeql-action/upload-sarif@v4.32.0",
+      "line": 45
+    }
+  ]
+}

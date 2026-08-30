@@ -1,0 +1,70 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_azurelinux__.github__workflows__check-package-cgmanifest.yml:19:7
+   [1m[94m|[0m
+[1m[94m19 |[0m       - name: Check out code
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m20 |[0m [1m[33m|[0m       uses: actions/checkout@v4
+[1m[94m21 |[0m [1m[33m|[0m
+[1m[94m22 |[0m [1m[33m|[0m     # This PR runner uses an older Ubuntu with rpm version 4.17, which doesn't understand some newer macros like %bcond
+   [1m[94m|[0m [1m[33m|_______________________________________________________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_azurelinux__.github__workflows__check-package-cgmanifest.yml:14:3
+   [1m[94m|[0m
+[1m[94m14 |[0m [1m[33m/[0m   build:
+[1m[94m15 |[0m [1m[33m|[0m     name: Check Package CGManifests
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m55 |[0m [1m[33m|[0m       if: ${{ env.updated-specs != '' }}
+[1m[94m56 |[0m [1m[33m|[0m       run: .github/workflows/validate-cg-manifest.sh build/worker/worker_chroot.tar.gz ${{ env.updated-specs }}
+   [1m[94m|[0m [1m[33m|[0m                                                                                                                [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________________________________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                                                  [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                                                  [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_azurelinux__.github__workflows__check-package-cgmanifest.yml:29:7
+   [1m[94m|[0m
+[1m[94m29 |[0m       - name: Get base commit for PRs
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m30 |[0m         if: ${{ github.event_name == 'pull_request' }}
+[1m[94m31 |[0m [1m[91m/[0m       run: |
+[1m[94m32 |[0m [1m[91m|[0m         git fetch origin ${{ github.base_ref }}
+[1m[94m33 |[0m [1m[91m|[0m         echo "base_sha=$(git rev-parse origin/${{ github.base_ref }})" >> $GITHUB_ENV
+[1m[94m34 |[0m [1m[91m|[0m         echo "Merging ${{ github.sha }} into ${{ github.base_ref }}"
+   [1m[94m|[0m [1m[91m|____________________________________________________________________^[0m [1m[91mgithub.base_ref may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_azurelinux__.github__workflows__check-package-cgmanifest.yml:29:7
+   [1m[94m|[0m
+[1m[94m29 |[0m       - name: Get base commit for PRs
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m30 |[0m         if: ${{ github.event_name == 'pull_request' }}
+[1m[94m31 |[0m [1m[91m/[0m       run: |
+[1m[94m32 |[0m [1m[91m|[0m         git fetch origin ${{ github.base_ref }}
+[1m[94m33 |[0m [1m[91m|[0m         echo "base_sha=$(git rev-parse origin/${{ github.base_ref }})" >> $GITHUB_ENV
+[1m[94m34 |[0m [1m[91m|[0m         echo "Merging ${{ github.sha }} into ${{ github.base_ref }}"
+   [1m[94m|[0m [1m[91m|____________________________________________________________________^[0m [1m[91mgithub.base_ref may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_azurelinux__.github__workflows__check-package-cgmanifest.yml:29:7
+   [1m[94m|[0m
+[1m[94m29 |[0m       - name: Get base commit for PRs
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m30 |[0m         if: ${{ github.event_name == 'pull_request' }}
+[1m[94m31 |[0m [1m[91m/[0m       run: |
+[1m[94m32 |[0m [1m[91m|[0m         git fetch origin ${{ github.base_ref }}
+[1m[94m33 |[0m [1m[91m|[0m         echo "base_sha=$(git rev-parse origin/${{ github.base_ref }})" >> $GITHUB_ENV
+[1m[94m34 |[0m [1m[91m|[0m         echo "Merging ${{ github.sha }} into ${{ github.base_ref }}"
+   [1m[94m|[0m [1m[91m|____________________________________________________________________^[0m [1m[91mgithub.base_ref may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m19[39m findings ([1m[93m14[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m3[39m high

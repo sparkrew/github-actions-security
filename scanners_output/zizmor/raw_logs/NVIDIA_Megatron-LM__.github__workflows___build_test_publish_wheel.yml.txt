@@ -1,0 +1,27 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___build_test_publish_wheel.yml:45:9
+   [1m[94m|[0m
+[1m[94m45 |[0m         - name: Checkout repository
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m46 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m47 |[0m [1m[33m|[0m         with:
+[1m[94m48 |[0m [1m[33m|[0m           ref: ${{ inputs.ref }}
+   [1m[94m|[0m [1m[33m|________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows___build_test_publish_wheel.yml:104:9
+    [1m[94m|[0m
+[1m[94m104 |[0m         - name: Test wheels
+    [1m[94m|[0m           [1m[94m-----------------[0m [1m[94minfo: this step[0m
+[1m[94m105 |[0m [1m[94m/[0m         run: |
+[1m[94m106 |[0m [1m[94m|[0m           ls -al dist/
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m135 |[0m [1m[94m|[0m           RELEASE_NUMBER=$(python -c "import $ROOTPATH; print($ROOTPATH.__version__)")
+[1m[94m136 |[0m [1m[94m|[0m           test "${{ steps.build-wheel.outputs.expected-release-number }}" == "$RELEASE_NUMBER"
+    [1m[94m|[0m [1m[94m|______________________________________________________________________________________________-[0m [1m[94minfo: steps.build-wheel.outputs.expected-release-number may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m6[39m findings ([1m[93m4[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m1[39m medium, [31m0[39m high

@@ -1,0 +1,26 @@
+diff --git a/.github/workflows/microsoft_agent-lightning__.github__workflows__examples-azure.yml b/.github/workflows/microsoft_agent-lightning__.github__workflows__examples-azure.yml
+index 1654f72..370d40d 100644
+--- a/.github/workflows/microsoft_agent-lightning__.github__workflows__examples-azure.yml
++++ b/.github/workflows/microsoft_agent-lightning__.github__workflows__examples-azure.yml
+@@ -39,10 +39,10 @@ jobs:
+     steps:
+       - name: Check disk space
+         run: df -h
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           ref: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.pr_ref || (github.event.pull_request.number && format('refs/pull/{0}/merge', github.event.pull_request.number)) || github.ref }}
+-      - uses: astral-sh/setup-uv@v7
++      - uses: astral-sh/setup-uv@5a095e7a2014a4212f075830d4f7277575a9d098 # v7
+         with:
+           enable-cache: true
+           python-version: ${{ matrix.python-version }}
+@@ -60,7 +60,7 @@ jobs:
+           echo "UV_LOCKED=1" >> $GITHUB_ENV
+           echo "UV_NO_SYNC=1" >> $GITHUB_ENV
+       - name: Upload dependencies artifact
+-        uses: actions/upload-artifact@v6
++        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+         with:
+           name: dependencies-azure-${{ matrix.python-version }}-${{ matrix.setup-script }}
+           path: requirements-freeze.txt

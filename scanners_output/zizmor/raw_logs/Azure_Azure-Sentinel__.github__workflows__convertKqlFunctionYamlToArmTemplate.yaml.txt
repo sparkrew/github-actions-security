@@ -1,0 +1,40 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__convertKqlFunctionYamlToArmTemplate.yaml:25:3
+    [1m[94m|[0m
+[1m[94m 25 |[0m [1m[33m/[0m   kqlFuncYaml2Arm:
+[1m[94m 26 |[0m [1m[33m|[0m     # The workflow should not run on forked repositories for security reasons
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m101 |[0m [1m[33m|[0m           repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
+[1m[94m102 |[0m [1m[33m|[0m           allow-repeats: false # This is the default
+    [1m[94m|[0m [1m[33m|[0m                                                     [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_____________________________________________________|[0m
+    [1m[94m|[0m                                                       [1m[33mthis job[0m
+    [1m[94m|[0m                                                       [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__convertKqlFunctionYamlToArmTemplate.yaml:53:9
+   [1m[94m|[0m
+[1m[94m53 |[0m         uses: BSFishy/pip-action@v1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__convertKqlFunctionYamlToArmTemplate.yaml:87:9
+   [1m[94m|[0m
+[1m[94m87 |[0m         uses: ad-m/github-push-action@master
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_Azure-Sentinel__.github__workflows__convertKqlFunctionYamlToArmTemplate.yaml:94:9
+   [1m[94m|[0m
+[1m[94m94 |[0m         uses: mshick/add-pr-comment@v1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m5[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m3[39m high

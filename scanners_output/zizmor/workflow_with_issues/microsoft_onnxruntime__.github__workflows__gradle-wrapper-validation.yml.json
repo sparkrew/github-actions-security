@@ -1,0 +1,41 @@
+{
+  "workflow": "microsoft_onnxruntime__.github__workflows__gradle-wrapper-validation.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "artipacked": 1,
+      "excessive-permissions": 1,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_onnxruntime__.github__workflows__gradle-wrapper-validation.yml",
+      "line": 22,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "microsoft_onnxruntime__.github__workflows__gradle-wrapper-validation.yml",
+      "line": 14,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "microsoft_onnxruntime__.github__workflows__gradle-wrapper-validation.yml",
+      "line": 23,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "workflow": "awslabs_agent-squad__.github__workflows__on-docs-update.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "artipacked": 1,
+      "excessive-permissions": 2,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "awslabs_agent-squad__.github__workflows__on-docs-update.yml",
+      "line": 22,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "error",
+      "message": "overly broad permissions",
+      "workflow": "awslabs_agent-squad__.github__workflows__on-docs-update.yml",
+      "line": 13,
+      "column": 3,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "error",
+      "message": "overly broad permissions",
+      "workflow": "awslabs_agent-squad__.github__workflows__on-docs-update.yml",
+      "line": 14,
+      "column": 3,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "awslabs_agent-squad__.github__workflows__on-docs-update.yml",
+      "line": 25,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

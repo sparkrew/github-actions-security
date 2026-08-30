@@ -1,0 +1,102 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/aws_sagemaker-python-sdk__.github__workflows__security-monitoring.yml:12:3
+   [1m[94m|[0m
+[1m[94m12 |[0m   id-token: write
+   [1m[94m|[0m   [1m[91m^^^^^^^^^^^^^^^[0m [1m[91mid-token: write is overly broad at the workflow level[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/aws_sagemaker-python-sdk__.github__workflows__security-monitoring.yml:20:9
+   [1m[94m|[0m
+[1m[94m20 |[0m         - name: Check for security alerts
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m21 |[0m           id: check-code-scanning-alerts
+[1m[94m...[0m
+[1m[94m24 |[0m             github-token: ${{ secrets.GH_PAT }}
+[1m[94m25 |[0m [1m[91m/[0m           script: |
+[1m[94m26 |[0m [1m[91m|[0m             async function checkAlerts() {
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m38 |[0m [1m[91m|[0m             }
+[1m[94m39 |[0m [1m[91m|[0m             await checkAlerts();
+   [1m[94m|[0m [1m[91m|________________________________^[0m [1m[91mgithub.event.repository.name may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/aws_sagemaker-python-sdk__.github__workflows__security-monitoring.yml:46:9
+   [1m[94m|[0m
+[1m[94m46 |[0m         - name: Check for dependabot alerts
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m47 |[0m           id: check-dependabot-alerts
+[1m[94m...[0m
+[1m[94m50 |[0m             github-token: ${{ secrets.GH_PAT }}
+[1m[94m51 |[0m [1m[91m/[0m           script: |
+[1m[94m52 |[0m [1m[91m|[0m             async function checkAlerts() {
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m65 |[0m [1m[91m|[0m             }
+[1m[94m66 |[0m [1m[91m|[0m             await checkAlerts();
+   [1m[94m|[0m [1m[91m|________________________________^[0m [1m[91mgithub.event.repository.name may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/aws_sagemaker-python-sdk__.github__workflows__security-monitoring.yml:73:9
+   [1m[94m|[0m
+[1m[94m73 |[0m         - name: Check for secret scanning alerts
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m74 |[0m           id: check-secret-scanning-alerts
+[1m[94m...[0m
+[1m[94m77 |[0m             github-token: ${{ secrets.GH_PAT }}
+[1m[94m78 |[0m [1m[91m/[0m           script: |
+[1m[94m79 |[0m [1m[91m|[0m             async function checkAlerts() {
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m89 |[0m [1m[91m|[0m             }
+[1m[94m90 |[0m [1m[91m|[0m             await checkAlerts();
+   [1m[94m|[0m [1m[91m|________________________________^[0m [1m[91mgithub.event.repository.name may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_sagemaker-python-sdk__.github__workflows__security-monitoring.yml:101:9
+    [1m[94m|[0m
+[1m[94m101 |[0m         - name: Put Code Scanning Alert Metric Data
+    [1m[94m|[0m           [1m[94m-----------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m102 |[0m [1m[94m/[0m         run: |
+[1m[94m103 |[0m [1m[94m|[0m           if [ "${{ needs.check-code-scanning-alerts.outputs.code_scanning_alert_status }}" == "1" ]; then
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m106 |[0m [1m[94m|[0m             aws cloudwatch put-metric-data --metric-name CodeScanningAlert --namespace SecurityMonitoringMetrics --value 0 --unit C[1m[94m...[0m
+[1m[94m107 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: needs.check-code-scanning-alerts.outputs.code_scanning_alert_status may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_sagemaker-python-sdk__.github__workflows__security-monitoring.yml:108:9
+    [1m[94m|[0m
+[1m[94m108 |[0m         - name: Put Dependabot Alert Metric Data
+    [1m[94m|[0m           [1m[94m--------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m109 |[0m [1m[94m/[0m         run: |
+[1m[94m110 |[0m [1m[94m|[0m           if [ "${{ needs.check-dependabot-alerts.outputs.dependabot_alert_status }}" == "1" ]; then
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m113 |[0m [1m[94m|[0m             aws cloudwatch put-metric-data --metric-name DependabotAlert --namespace SecurityMonitoringMetrics --value 0 --unit Cou[1m[94m...[0m
+[1m[94m114 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: needs.check-dependabot-alerts.outputs.dependabot_alert_status may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_sagemaker-python-sdk__.github__workflows__security-monitoring.yml:115:9
+    [1m[94m|[0m
+[1m[94m115 |[0m         - name: Put Secret Scanning Alert Metric Data
+    [1m[94m|[0m           [1m[94m-------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m116 |[0m [1m[94m/[0m         run: |
+[1m[94m117 |[0m [1m[94m|[0m           if [ "${{ needs.check-secret-scanning-alerts.outputs.secret_scanning_alert_status }}" == "1" ]; then
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m120 |[0m [1m[94m|[0m             aws cloudwatch put-metric-data --metric-name SecretScanningAlert --namespace SecurityMonitoringMetrics --value 0 --unit[1m[94m...[0m
+[1m[94m121 |[0m [1m[94m|[0m           fi
+    [1m[94m|[0m [1m[94m|____________-[0m [1m[94minfo: needs.check-secret-scanning-alerts.outputs.secret_scanning_alert_status may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m16[39m findings ([1m[93m9[39m suppressed[0m): 0 unknown, [35m3[39m informational, [36m0[39m low, [33m0[39m medium, [31m4[39m high

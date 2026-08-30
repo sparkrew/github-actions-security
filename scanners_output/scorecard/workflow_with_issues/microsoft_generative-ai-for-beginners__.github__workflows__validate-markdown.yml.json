@@ -1,0 +1,85 @@
+{
+  "workflow": "microsoft_generative-ai-for-beginners__.github__workflows__validate-markdown.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Dangerous-Workflow": 1,
+      "Pinned-Dependencies": 1,
+      "SAST": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Dangerous-Workflow",
+      "score": 0,
+      "reason": "dangerous workflow patterns detected",
+      "lines": [
+        24,
+        42,
+        60,
+        78,
+        95
+      ],
+      "raw_details": [
+        "Warn: untrusted code checkout '${{ github.event.pull_request.head.sha }}': .github/workflows/microsoft_generative-ai-for-beginners__.github__workflows__validate-markdown.yml:24",
+        "Warn: untrusted code checkout '${{ github.event.pull_request.head.sha }}': .github/workflows/microsoft_generative-ai-for-beginners__.github__workflows__validate-markdown.yml:42",
+        "Warn: untrusted code checkout '${{ github.event.pull_request.head.sha }}': .github/workflows/microsoft_generative-ai-for-beginners__.github__workflows__validate-markdown.yml:60",
+        "Warn: untrusted code checkout '${{ github.event.pull_request.head.sha }}': .github/workflows/microsoft_generative-ai-for-beginners__.github__workflows__validate-markdown.yml:78",
+        "Warn: untrusted code checkout '${{ github.event.pull_request.head.sha }}': .github/workflows/microsoft_generative-ai-for-beginners__.github__workflows__validate-markdown.yml:95"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#dangerous-workflow",
+        "short": "Determines if the project's GitHub Action workflows avoid dangerous patterns."
+      }
+    },
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        25,
+        30,
+        43,
+        48,
+        61,
+        66,
+        79,
+        84,
+        96,
+        101
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_generative-ai-for-beginners__.github__workflows__validate-markdown.yml:61",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_generative-ai-for-beginners__.github__workflows__validate-markdown.yml:66",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_generative-ai-for-beginners__.github__workflows__validate-markdown.yml:79",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_generative-ai-for-beginners__.github__workflows__validate-markdown.yml:84",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_generative-ai-for-beginners__.github__workflows__validate-markdown.yml:96",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_generative-ai-for-beginners__.github__workflows__validate-markdown.yml:101",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_generative-ai-for-beginners__.github__workflows__validate-markdown.yml:25",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_generative-ai-for-beginners__.github__workflows__validate-markdown.yml:30",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_generative-ai-for-beginners__.github__workflows__validate-markdown.yml:43",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_generative-ai-for-beginners__.github__workflows__validate-markdown.yml:48",
+        "Info:   0 out of   5 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of   5 third-party GitHubAction dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    }
+  ]
+}

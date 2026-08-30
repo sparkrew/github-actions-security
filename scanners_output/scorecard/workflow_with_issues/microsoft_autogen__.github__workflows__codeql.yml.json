@@ -1,0 +1,74 @@
+{
+  "workflow": "microsoft_autogen__.github__workflows__codeql.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        62,
+        65,
+        70,
+        71,
+        72,
+        76,
+        86,
+        105,
+        110,
+        118,
+        122
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__codeql.yml:62",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__codeql.yml:65",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__codeql.yml:76",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__codeql.yml:86",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__codeql.yml:105",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__codeql.yml:110",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__codeql.yml:122",
+        "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__codeql.yml:70",
+        "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__codeql.yml:71",
+        "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__codeql.yml:72",
+        "Warn: nugetCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__codeql.yml:118: pin your dependecies by either enabling central package management (https://learn.microsoft.com/nuget/consume-packages/Central-Package-Management) or using a lockfile (https://learn.microsoft.com/nuget/consume-packages/package-references-in-project-files#locking-dependencies)",
+        "Info:   0 out of   6 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of   1 third-party GitHubAction dependencies pinned",
+        "Info:   0 out of   3 pipCommand dependencies pinned",
+        "Info:   0 out of   1 nugetCommand dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 9,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1,
+        36,
+        39,
+        40
+      ],
+      "raw_details": [
+        "Info: jobLevel 'packages' permission set to 'read': .github/workflows/microsoft_autogen__.github__workflows__codeql.yml:36",
+        "Info: jobLevel 'actions' permission set to 'read': .github/workflows/microsoft_autogen__.github__workflows__codeql.yml:39",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/microsoft_autogen__.github__workflows__codeql.yml:40",
+        "Warn: no topLevel permission defined: .github/workflows/microsoft_autogen__.github__workflows__codeql.yml:1",
+        "Info: no jobLevel write permissions found"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

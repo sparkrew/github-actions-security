@@ -1,0 +1,46 @@
+diff --git a/.github/workflows/facebook_pyrefly__.github__workflows__mypy_primer.yml b/.github/workflows/facebook_pyrefly__.github__workflows__mypy_primer.yml
+index a5b8e0f..fc0221e 100644
+--- a/.github/workflows/facebook_pyrefly__.github__workflows__mypy_primer.yml
++++ b/.github/workflows/facebook_pyrefly__.github__workflows__mypy_primer.yml
+@@ -24,12 +24,12 @@ jobs:
+       fail-fast: false
+     timeout-minutes: 120
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           path: pyrefly_to_test
+           fetch-depth: 0
+           persist-credentials: false
+-      - uses: actions/setup-python@v6
++      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+         with:
+           python-version: "3.13"
+       - name: Install dependencies
+@@ -71,7 +71,7 @@ jobs:
+         run: |
+           echo ${{ github.event.pull_request.number }} | tee pr_number.txt
+       - name: Upload mypy_primer diff + PR number
+-        uses: actions/upload-artifact@v6
++        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+         if: ${{ matrix.shard-index == 0 }}
+         with:
+           name: mypy_primer_diffs-${{ matrix.shard-index }}
+@@ -79,7 +79,7 @@ jobs:
+             diff_${{ matrix.shard-index }}.txt
+             pr_number.txt
+       - name: Upload mypy_primer diff
+-        uses: actions/upload-artifact@v6
++        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+         if: ${{ matrix.shard-index != 0 }}
+         with:
+           name: mypy_primer_diffs-${{ matrix.shard-index }}
+@@ -91,7 +91,7 @@ jobs:
+     needs: [mypy_primer]
+     steps:
+       - name: Merge artifacts
+-        uses: actions/upload-artifact/merge@v4
++        uses: actions/upload-artifact/merge@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: mypy_primer_diffs
+           pattern: mypy_primer_diffs-*

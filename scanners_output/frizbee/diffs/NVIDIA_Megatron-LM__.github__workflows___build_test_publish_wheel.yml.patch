@@ -1,0 +1,31 @@
+diff --git a/.github/workflows/NVIDIA_Megatron-LM__.github__workflows___build_test_publish_wheel.yml b/.github/workflows/NVIDIA_Megatron-LM__.github__workflows___build_test_publish_wheel.yml
+index 0b71577..e41e626 100644
+--- a/.github/workflows/NVIDIA_Megatron-LM__.github__workflows___build_test_publish_wheel.yml
++++ b/.github/workflows/NVIDIA_Megatron-LM__.github__workflows___build_test_publish_wheel.yml
+@@ -43,7 +43,7 @@ jobs:
+       PUBLISH_DRYRUN: ${{ inputs.dry-run }}
+     steps:
+       - name: Checkout repository
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           ref: ${{ inputs.ref }}
+ 
+@@ -136,7 +136,7 @@ jobs:
+           test "${{ steps.build-wheel.outputs.expected-release-number }}" == "$RELEASE_NUMBER"
+ 
+       - name: Upload wheels
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: wheels-${{ matrix.PACKAGE }}-${{ matrix.PLATFORM }}-${{ inputs.dry-run && 'dry-run' || 'release' }}
+           path: dist/
+@@ -159,7 +159,7 @@ jobs:
+       PACKAGE: ${{ matrix.PACKAGE }}
+     steps:
+       - name: Download wheels
+-        uses: actions/download-artifact@v4
++        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+         with:
+           name: wheels-${{ matrix.PACKAGE }}-${{ matrix.PLATFORM }}-${{ inputs.dry-run && 'dry-run' || 'release' }}
+           path: dist/

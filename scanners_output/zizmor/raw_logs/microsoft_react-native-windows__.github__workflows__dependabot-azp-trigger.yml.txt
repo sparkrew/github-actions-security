@@ -1,0 +1,26 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_react-native-windows__.github__workflows__dependabot-azp-trigger.yml:8:3
+   [1m[94m|[0m
+[1m[94m 8 |[0m [1m[33m/[0m   trigger-azp:
+[1m[94m 9 |[0m [1m[33m|[0m     if: github.event.pull_request.user.login == 'dependabot[bot]'
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m17 |[0m [1m[33m|[0m             --repo "${{ github.repository }}" \
+[1m[94m18 |[0m [1m[33m|[0m             --body "/azp run PR"
+   [1m[94m|[0m [1m[33m|[0m                                 [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_________________________________|[0m
+   [1m[94m|[0m                                   [1m[33mthis job[0m
+   [1m[94m|[0m                                   [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+ [1m[94m-->[0m ../.github/workflows/microsoft_react-native-windows__.github__workflows__dependabot-azp-trigger.yml:3:1
+  [1m[94m|[0m
+[1m[94m3 |[0m [1m[91m/[0m on:
+[1m[94m4 |[0m [1m[91m|[0m   pull_request_target:
+[1m[94m5 |[0m [1m[91m|[0m     types: [opened, synchronize, reopened]
+  [1m[94m|[0m [1m[91m|__________________________________________^[0m [1m[91mpull_request_target is almost always used insecurely[0m
+  [1m[94m|[0m
+  [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m5[39m findings ([1m[93m3[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m1[39m high

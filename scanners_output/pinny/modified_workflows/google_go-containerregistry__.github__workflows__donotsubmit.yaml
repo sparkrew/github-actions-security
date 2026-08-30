@@ -1,0 +1,15 @@
+name: Do Not Submit
+
+on:
+  pull_request:
+    branches: ['main']
+
+jobs:
+
+  donotsubmit:
+    name: Do Not Submit
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+    - uses: chainguard-dev/actions/donotsubmit@fc204518190e8e1288f6948a9c7871e4701c3852 # chainguard-dev/actions/donotsubmit@main

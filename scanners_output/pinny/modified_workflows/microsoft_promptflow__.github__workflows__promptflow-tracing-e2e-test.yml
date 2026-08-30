@@ -1,0 +1,109 @@
+name: promptflow-tracing-e2e-test
+
+on:
+  schedule:
+    - cron: "40 18 * * *" # 2:40 Beijing Time (GMT+8) every day
+  pull_request:
+    paths:
+      - src/promptflow-tracing/**
+      - .github/workflows/promptflow-tracing-e2e-test.yml
+  workflow_dispatch:
+
+env:
+  IS_IN_CI_PIPELINE: "true"
+  PF_DISABLE_TRACING: "false"
+  WORKING_DIRECTORY: ${{ github.workspace }}/src/promptflow-tracing
+  RECORD_DIRECTORY: ${{ github.workspace }}/src/promptflow-recording
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+    - uses: snok/install-poetry@76e04a911780d5b312d89783f7b1cd627778900a # snok/install-poetry@v1 | master,v1.4,v1.4.1
+    - name: build
+      run: poetry build
+      working-directory: ${{ env.WORKING_DIRECTORY }}
+    - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2
+      with:
+        name: promptflow-tracing
+        path: ${{ env.WORKING_DIRECTORY }}/dist/promptflow_tracing-*.whl
+
+  tracing-e2e-test:
+    needs: build
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-13]
+        python-version: ['3.9', '3.10', '3.11']
+      fail-fast: false
+    # snok/install-poetry need this to support Windows
+    defaults:
+      run:
+        shell: bash
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - name: set test mode
+        run: echo "PROMPT_FLOW_TEST_MODE=$(if [[ "${{ github.event_name }}" == "pull_request" ]]; then echo replay; else echo live; fi)" >> $GITHUB_ENV
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # actions/setup-python@v5 | releases,v5.6.0
+        with:
+          python-version: ${{ matrix.python-version }}
+      - uses: snok/install-poetry@76e04a911780d5b312d89783f7b1cd627778900a # snok/install-poetry@v1 | master,v1.4,v1.4.1
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          name: promptflow-tracing
+          path: ${{ env.WORKING_DIRECTORY }}
+      - name: install promptflow-tracing from wheel
+        # wildcard expansion (*) does not work in Windows, so leverage python to find and install
+        run: poetry run pip install $(python -c "import glob; print(glob.glob('promptflow_tracing-*.whl')[0])")
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+      - name: install test dependency group
+        run: poetry install --only test
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+      - name: install recording
+        run: poetry install
+        working-directory: ${{ env.RECORD_DIRECTORY }}
+      - name: generate end-to-end test config from secret
+        run: echo '${{ secrets.PF_TRACING_E2E_TEST_CONFIG }}' >> connections.json
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+      - name: run e2e tests
+        run: poetry run pytest -m e2etest --cov=promptflow --cov-config=pyproject.toml --cov-report=term --cov-report=html --cov-report=xml --tb=short
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+      - name: upload coverage report
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2
+        with:
+          name: report-${{ matrix.os }}-py${{ matrix.python-version }}
+          path: |
+            ${{ env.WORKING_DIRECTORY }}/*.xml
+            ${{ env.WORKING_DIRECTORY }}/htmlcov/
+
+  report:
+    needs: tracing-e2e-test
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      pull-requests: write
+      contents: read
+      issues: read
+    steps:
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          path: artifacts
+      - uses: EnricoMi/publish-unit-test-result-action@c950f6fb443cb5af20a377fd0dfaa78838901040 # EnricoMi/publish-unit-test-result-action@v2
+        with:
+          check_name: promptflow-tracing test result
+          comment_title: promptflow-tracing test result
+          files: "artifacts/**/test-results.xml"  # align with `--junit-xml` in pyproject.toml
+      - uses: irongut/CodeCoverageSummary@51cc3a756ddcd398d447c044c02cb6aa83fdae95 # irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: "artifacts/report-ubuntu-latest-py3.9/coverage.xml"
+          badge: true
+          fail_below_min: true
+          format: markdown
+          hide_complexity: true
+          output: both
+          thresholds: 40 80

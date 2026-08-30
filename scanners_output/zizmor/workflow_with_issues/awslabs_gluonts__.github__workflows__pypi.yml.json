@@ -1,0 +1,51 @@
+{
+  "workflow": "awslabs_gluonts__.github__workflows__pypi.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "artipacked": 1,
+      "excessive-permissions": 1,
+      "use-trusted-publishing": 1,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "awslabs_gluonts__.github__workflows__pypi.yml",
+      "line": 12,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "awslabs_gluonts__.github__workflows__pypi.yml",
+      "line": 8,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "use-trusted-publishing",
+      "level": "info",
+      "message": "prefer trusted publishing for authentication",
+      "workflow": "awslabs_gluonts__.github__workflows__pypi.yml",
+      "line": 26,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "awslabs_gluonts__.github__workflows__pypi.yml",
+      "line": 26,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

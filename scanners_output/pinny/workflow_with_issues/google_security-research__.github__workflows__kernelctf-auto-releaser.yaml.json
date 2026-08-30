@@ -1,0 +1,27 @@
+{
+  "workflow": "google_security-research__.github__workflows__kernelctf-auto-releaser.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: google-github-actions/auth@c200f3691d83b41bf9bbd8638997a462592937ed # google-github-actions/auth@v2 | release,v2.1.13",
+      "line": 17
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+      "line": 23
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # actions/setup-go@v5 | releases,v5.6.0",
+      "line": 26
+    }
+  ]
+}

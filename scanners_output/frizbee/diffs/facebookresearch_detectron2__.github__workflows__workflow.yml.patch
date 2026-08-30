@@ -1,0 +1,84 @@
+diff --git a/.github/workflows/facebookresearch_detectron2__.github__workflows__workflow.yml b/.github/workflows/facebookresearch_detectron2__.github__workflows__workflow.yml
+index d1fb7ab..30ea225 100644
+--- a/.github/workflows/facebookresearch_detectron2__.github__workflows__workflow.yml
++++ b/.github/workflows/facebookresearch_detectron2__.github__workflows__workflow.yml
+@@ -12,9 +12,9 @@ jobs:
+     # run on PRs, or commits to facebookresearch (not internal)
+     if: ${{ github.repository_owner == 'facebookresearch' || github.event_name == 'pull_request' }}
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+       - name: Set up Python 3.9
+-        uses: actions/setup-python@v4
++        uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+         with:
+           python-version: 3.9
+       - name: Install dependencies
+@@ -51,13 +51,13 @@ jobs:
+       DETECTRON2_DATASETS: ~/.torch/datasets
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+       - name: Set up Python 3.8
+-        uses: actions/setup-python@v4
++        uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+         with:
+           python-version: 3.8
+       - name: Cache dependencies
+-        uses: actions/cache@v4
++        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+         with:
+           path: |
+             ${{ env.pythonLocation }}/lib/python3.8/site-packages
+@@ -100,15 +100,15 @@ jobs:
+       DETECTRON2_DATASETS: ~/.torch/datasets
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       - name: Set up Python 3.8
+-        uses: actions/setup-python@v4
++        uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+         with:
+           python-version: 3.8
+ 
+       - name: Cache dependencies
+-        uses: actions/cache@v4
++        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+         id: load-cache
+         with:
+           path: |
+@@ -156,15 +156,15 @@ jobs:
+       DETECTRON2_DATASETS: ~/.torch/datasets
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       - name: Set up Python 3.8
+-        uses: actions/setup-python@v4
++        uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+         with:
+           python-version: 3.8
+ 
+       - name: Cache dependencies
+-        uses: actions/cache@v4
++        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+         id: load-cache
+         with:
+           path: |
+@@ -207,10 +207,10 @@ jobs:
+       DETECTRON2_DATASETS: ~/.torch/datasets
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       - name: Set up Python 3.8
+-        uses: actions/setup-python@v4
++        uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+         with:
+           python-version: 3.8
+ 

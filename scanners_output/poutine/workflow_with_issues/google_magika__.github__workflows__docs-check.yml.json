@@ -1,0 +1,26 @@
+{
+  "workflow": "google_magika__.github__workflows__docs-check.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "unverified_script_exec": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": 30,
+      "column": "",
+      "job": "run-check-docs",
+      "step": "1",
+      "details": "Command: curl -LsSf https://astral.sh/uv/0.5.22/install.sh | sh",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request",
+        "schedule"
+      ]
+    }
+  ]
+}

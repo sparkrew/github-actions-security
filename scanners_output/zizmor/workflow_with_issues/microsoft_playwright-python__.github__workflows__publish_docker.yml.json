@@ -1,0 +1,40 @@
+{
+  "workflow": "microsoft_playwright-python__.github__workflows__publish_docker.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "artipacked": 1,
+      "unpinned-uses": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_playwright-python__.github__workflows__publish_docker.yml",
+      "line": 18,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "microsoft_playwright-python__.github__workflows__publish_docker.yml",
+      "line": 20,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "microsoft_playwright-python__.github__workflows__publish_docker.yml",
+      "line": 32,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

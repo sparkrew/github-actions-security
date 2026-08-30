@@ -1,0 +1,24 @@
+{
+  "workflow": "Tencent_ncnn__.github__workflows__linux-x64-gpu-clang.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 41,
+      "column": "",
+      "job": "linux-clang-gpu",
+      "step": "",
+      "details": "runs-on: self-hosted, linux, ubuntu25",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    }
+  ]
+}

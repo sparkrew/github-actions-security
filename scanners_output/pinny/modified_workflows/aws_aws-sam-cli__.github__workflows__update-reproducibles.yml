@@ -1,0 +1,37 @@
+name: Update reproducible requirements
+on:
+  pull_request:
+    branches: [develop]
+    paths:
+      # run this GHA if the following files have changed
+      - requirements/base.txt
+      - requirements/reproducible-linux.txt
+      - requirements/reproducible-mac.txt
+      - requirements/reproducible-win.txt
+
+jobs:
+  update-reqs:
+    permissions:
+      pull-requests: write
+      contents: write
+    if: github.repository_owner == 'aws'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # actions/setup-python@v6 | main,v6.2.0
+        with:
+          python-version: "3.11"
+      - name: Install uv
+        uses: astral-sh/setup-uv@5a095e7a2014a4212f075830d4f7277575a9d098 # astral-sh/setup-uv@v7
+      - name: Update all reproducible requirements
+        run: make update-reproducible-reqs-uv
+      - name: Push changes
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git add requirements/reproducible-*.txt
+          git commit -m "Update reproducible requirements" || echo "nothing to commit"
+          git push

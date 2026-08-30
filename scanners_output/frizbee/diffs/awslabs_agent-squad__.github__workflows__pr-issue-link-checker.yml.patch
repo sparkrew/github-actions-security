@@ -1,0 +1,20 @@
+diff --git a/.github/workflows/awslabs_agent-squad__.github__workflows__pr-issue-link-checker.yml b/.github/workflows/awslabs_agent-squad__.github__workflows__pr-issue-link-checker.yml
+index 55c983a..6f069a2 100644
+--- a/.github/workflows/awslabs_agent-squad__.github__workflows__pr-issue-link-checker.yml
++++ b/.github/workflows/awslabs_agent-squad__.github__workflows__pr-issue-link-checker.yml
+@@ -9,7 +9,7 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Check for Linked Issue
+-        uses: actions/github-script@v6
++        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6
+         with:
+           github-token: ${{ secrets.GITHUB_TOKEN }}
+           script: |
+@@ -73,4 +73,4 @@ jobs:
+             
+             if (!hasIssueLink) {
+               core.setFailed('Pull request must be linked to an issue. Please add a reference to an issue in your PR description (e.g., "Fixes #123") or link an issue through the GitHub UI.');
+-            }
+\ No newline at end of file
++            }

@@ -1,0 +1,35 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__cicd.yml:209:9
+    [1m[94m|[0m
+[1m[94m209 |[0m         - name: Checkout code
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m210 |[0m [1m[33m|[0m         uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98  # v4.2.2
+    [1m[94m|[0m [1m[33m|_________________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__cicd.yml:36:3
+   [1m[94m|[0m
+[1m[94m36 |[0m   id-token: write  # Required to log in to Azure.
+   [1m[94m|[0m   [1m[91m^^^^^^^^^^^^^^^[0m [1m[91mid-token: write is overly broad at the workflow level[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__cicd.yml:39:3
+   [1m[94m|[0m
+[1m[94m39 |[0m   security-events: write  # Required by codeql task.
+   [1m[94m|[0m   [1m[33m----------------------[0m [1m[33msecurity-events: write is overly broad at the workflow level[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_ebpf-for-windows__.github__workflows__cicd.yml:40:3
+   [1m[94m|[0m
+[1m[94m40 |[0m   issues: write  # Required to create issues.
+   [1m[94m|[0m   [1m[91m^^^^^^^^^^^^^[0m [1m[91missues: write is overly broad at the workflow level[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m4[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m2[39m high

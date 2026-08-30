@@ -1,0 +1,40 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__e2e-scale-trigger.yaml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m name: E2EScaleTrigger
+[1m[94m 2 |[0m [1m[33m|[0m on:
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m47 |[0m [1m[33m|[0m     secrets:
+[1m[94m48 |[0m [1m[33m|[0m       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+   [1m[94m|[0m [1m[33m|__________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__e2e-scale-trigger.yaml:26:3
+   [1m[94m|[0m
+[1m[94m26 |[0m [1m[33m/[0m   resolve:
+[1m[94m27 |[0m [1m[33m|[0m     if: (github.repository == 'aws/karpenter-provider-aws' && (github.event_name != 'workflow_run' || github.event.workflow_run.conc[1m[94m...[0m
+[1m[94m28 |[0m [1m[33m|[0m     uses: ./.github/workflows/resolve-args.yaml
+[1m[94m29 |[0m [1m[33m|[0m     with:
+[1m[94m30 |[0m [1m[33m|[0m       allowed_comment: "scale"
+   [1m[94m|[0m [1m[33m|[0m                              [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________________|[0m
+   [1m[94m|[0m                                [1m[33mthis job[0m
+   [1m[94m|[0m                                [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+  [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__e2e-scale-trigger.yaml:2:1
+   [1m[94m|[0m
+[1m[94m 2 |[0m [1m[91m/[0m on:
+[1m[94m 3 |[0m [1m[91m|[0m   schedule:
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m23 |[0m [1m[91m|[0m         default: false
+[1m[94m24 |[0m [1m[91m|[0m         type: boolean
+   [1m[94m|[0m [1m[91m|_____________________^[0m [1m[91mworkflow_run is almost always used insecurely[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m3[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m1[39m high

@@ -1,0 +1,131 @@
+{
+  "workflow": "microsoft_autogen__.github__workflows__dotnet-build.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        33,
+        34,
+        65,
+        68,
+        71,
+        80,
+        84,
+        89,
+        123,
+        130,
+        150,
+        153,
+        156,
+        165,
+        169,
+        181,
+        204,
+        209,
+        213,
+        230,
+        234,
+        239,
+        240,
+        241,
+        245,
+        248,
+        253,
+        258,
+        265,
+        288,
+        293,
+        307,
+        313,
+        317
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:230",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:234",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:245",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:248",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:253",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:258",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:288",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:293",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:307",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:313",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:317",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:33",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:34",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:65",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:68",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:71",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:80",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:84",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:123",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:130",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:150",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:153",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:156",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:165",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:169",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:204",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:209",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:213",
+        "Warn: nugetCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:89: pin your dependecies by either enabling central package management (https://learn.microsoft.com/nuget/consume-packages/Central-Package-Management) or using a lockfile (https://learn.microsoft.com/nuget/consume-packages/package-references-in-project-files#locking-dependencies)",
+        "Warn: nugetCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:181: pin your dependecies by either enabling central package management (https://learn.microsoft.com/nuget/consume-packages/Central-Package-Management) or using a lockfile (https://learn.microsoft.com/nuget/consume-packages/package-references-in-project-files#locking-dependencies)",
+        "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:239",
+        "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:240",
+        "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:241",
+        "Warn: nugetCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:265: pin your dependecies by either enabling central package management (https://learn.microsoft.com/nuget/consume-packages/Central-Package-Management) or using a lockfile (https://learn.microsoft.com/nuget/consume-packages/package-references-in-project-files#locking-dependencies)",
+        "Info:   0 out of  23 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of   5 third-party GitHubAction dependencies pinned",
+        "Info:   0 out of   3 nugetCommand dependencies pinned",
+        "Info:   0 out of   3 pipCommand dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 0,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        20,
+        21,
+        27
+      ],
+      "raw_details": [
+        "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:27",
+        "Info: topLevel 'contents' permission set to 'read': .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:20",
+        "Warn: topLevel 'packages' permission set to 'write': .github/workflows/microsoft_autogen__.github__workflows__dotnet-build.yml:21"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

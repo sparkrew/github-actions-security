@@ -1,0 +1,26 @@
+{
+  "workflow": "facebookincubator_velox__.github__workflows__scheduled.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 95,
+      "column": "",
+      "job": "compile",
+      "step": "",
+      "details": "runs-on: 32-core-ubuntu",
+      "event_triggers": [
+        "pull_request",
+        "push",
+        "schedule",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

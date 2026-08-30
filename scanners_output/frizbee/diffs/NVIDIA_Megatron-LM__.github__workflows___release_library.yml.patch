@@ -1,0 +1,49 @@
+diff --git a/.github/workflows/NVIDIA_Megatron-LM__.github__workflows___release_library.yml b/.github/workflows/NVIDIA_Megatron-LM__.github__workflows___release_library.yml
+index fc4c442..7444009 100644
+--- a/.github/workflows/NVIDIA_Megatron-LM__.github__workflows___release_library.yml
++++ b/.github/workflows/NVIDIA_Megatron-LM__.github__workflows___release_library.yml
+@@ -110,7 +110,7 @@ jobs:
+       IS_DRY_RUN: ${{ inputs.dry-run }}
+     steps:
+       - name: Checkout repository
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           path: ${{ github.run_id }}
+           token: ${{ secrets.PAT }}
+@@ -221,7 +221,7 @@ jobs:
+           PR_NUMBER=$(echo $PR_URL | grep -o '[0-9]*$')
+ 
+       - name: Wait for status checks on tmp branch
+-        uses: actions/github-script@v7
++        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+         id: wait-status
+         with:
+           github-token: ${{ secrets.PAT }}
+@@ -364,7 +364,7 @@ jobs:
+       TAG_PREFIX: core_
+     steps:
+       - name: Checkout repository
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           path: ${{ github.run_id }}
+           ref: ${{ inputs.release-ref }}
+@@ -395,7 +395,7 @@ jobs:
+       - name: Build Changelog
+         id: build-changelog
+         if: inputs.gh-release-use-changelog-builder == true
+-        uses: mikepenz/release-changelog-builder-action@v6.1.0
++        uses: mikepenz/release-changelog-builder-action@6faf020194b7c8853f9e55c4fd92e40b02122a04 # v6.1.0
+         env:
+           GITHUB_TOKEN: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
+         with:
+@@ -495,7 +495,7 @@ jobs:
+       VERSION: ${{ needs.build-test-publish-wheels.outputs.version }}
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           repository: NVIDIA-NeMo/FW-CI-templates
+           ref: v0.17.0

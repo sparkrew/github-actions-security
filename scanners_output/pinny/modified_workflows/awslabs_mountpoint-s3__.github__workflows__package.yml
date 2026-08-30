@@ -1,0 +1,53 @@
+name: Packaging
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  merge_group:
+    types: [ "checks_requested" ]
+
+permissions:
+  contents: read
+
+jobs:
+  packages:
+    name: Package ${{ matrix.runner.name }}
+    runs-on: ${{ matrix.runner.tags }}
+
+    strategy:
+      matrix:
+        runner:
+        - name: x86_64
+          tags: [ubuntu-22.04] # GitHub-hosted
+        - name: aarch64
+          tags: [self-hosted, linux, arm64]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+        with:
+          submodules: true
+      - name: Install operating system dependencies
+        uses: ./.github/actions/install-dependencies
+        with:
+          fuseVersion: 2
+      - name: Build Docker image
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # docker/build-push-action@v6 | v6.19.2
+        with:
+          tags: mountpoint-builder
+          context: ./package
+          # https://github.com/docker/buildx/issues/379
+          ulimit: nofile=100000
+      - name: Package an unofficial release
+        run: docker run --mount type=bind,source=$(pwd),target=/mountpoint mountpoint-builder
+      - name: Check release binary
+        run: mkdir ./pkg-out && tar -xzf ./out/mount-s3*.tar.gz -C ./pkg-out && ./pkg-out/bin/mount-s3 --version
+      - name: Upload unofficial packages
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # actions/upload-artifact@v6 | v6.0.0
+        with:
+          name: packages-${{ matrix.runner.name }}
+          path:  ./out/*
+          retention-days: 3
+          if-no-files-found: error

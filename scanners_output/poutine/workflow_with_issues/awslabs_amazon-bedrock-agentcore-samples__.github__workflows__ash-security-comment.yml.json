@@ -1,0 +1,23 @@
+{
+  "workflow": "awslabs_amazon-bedrock-agentcore-samples__.github__workflows__ash-security-comment.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 19,
+      "column": "",
+      "job": "comment",
+      "step": "0",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_run"
+      ]
+    }
+  ]
+}

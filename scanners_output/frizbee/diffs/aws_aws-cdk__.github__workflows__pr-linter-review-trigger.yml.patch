@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/aws_aws-cdk__.github__workflows__pr-linter-review-trigger.yml b/.github/workflows/aws_aws-cdk__.github__workflows__pr-linter-review-trigger.yml
+index ef3d61e..649e76d 100644
+--- a/.github/workflows/aws_aws-cdk__.github__workflows__pr-linter-review-trigger.yml
++++ b/.github/workflows/aws_aws-cdk__.github__workflows__pr-linter-review-trigger.yml
+@@ -26,7 +26,7 @@ jobs:
+           mkdir -p ./pr
+           echo $PR_NUMBER > ./pr/pr_number
+           echo $PR_SHA > ./pr/pr_sha
+-      - uses: actions/upload-artifact@v6
++      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+         with:
+           name: pr_info
+           path: pr/

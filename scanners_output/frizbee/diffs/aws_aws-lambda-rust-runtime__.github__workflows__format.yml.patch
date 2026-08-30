@@ -1,0 +1,37 @@
+diff --git a/.github/workflows/aws_aws-lambda-rust-runtime__.github__workflows__format.yml b/.github/workflows/aws_aws-lambda-rust-runtime__.github__workflows__format.yml
+index 507b3dc..32313c8 100644
+--- a/.github/workflows/aws_aws-lambda-rust-runtime__.github__workflows__format.yml
++++ b/.github/workflows/aws_aws-lambda-rust-runtime__.github__workflows__format.yml
+@@ -10,11 +10,11 @@ jobs:
+     name: Cargo fmt
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v6
+-      - uses: dtolnay/rust-toolchain@nightly
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
++      - uses: dtolnay/rust-toolchain@0f1b44df7e9cbb178d781a242338dfa5e243ad7f # nightly
+         with:
+           components: rustfmt
+-      - uses: Swatinem/rust-cache@v2
++      - uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # v2
+       - name: Run fmt check
+         id: cargoFmt
+         shell: bash
+@@ -23,12 +23,12 @@ jobs:
+     name: Cargo clippy
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v6
+-      - uses: dtolnay/rust-toolchain@stable
+-      - uses: Swatinem/rust-cache@v2
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
++      - uses: dtolnay/rust-toolchain@631a55b12751854ce901bb631d5902ceb48146f7 # stable
++      - uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # v2
+       - name: Run clippy check
+         id: cargoClippy
+         shell: bash
+         run: cargo clippy --workspace --all-features -- -D warnings
+       
+-      
+\ No newline at end of file
++      

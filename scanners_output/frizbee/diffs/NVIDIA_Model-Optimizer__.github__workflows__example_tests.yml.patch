@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/NVIDIA_Model-Optimizer__.github__workflows__example_tests.yml b/.github/workflows/NVIDIA_Model-Optimizer__.github__workflows__example_tests.yml
+index b8f5cfe..c0f594a 100644
+--- a/.github/workflows/NVIDIA_Model-Optimizer__.github__workflows__example_tests.yml
++++ b/.github/workflows/NVIDIA_Model-Optimizer__.github__workflows__example_tests.yml
+@@ -20,7 +20,7 @@ jobs:
+     outputs:
+       any_changed: ${{ steps.changed-tests.outputs.any_changed }}
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           fetch-depth: 0
+       - id: get-pr-info
+@@ -34,7 +34,7 @@ jobs:
+           (echo -n "merge-base="; git merge-base "$BASE_SHA" "$PR_SHA") | tee --append "${GITHUB_OUTPUT}"
+       - name: Check for changes in test-relevant directories
+         id: changed-tests
+-        uses: step-security/changed-files@v46.0.5
++        uses: step-security/changed-files@95b56dadb92a30ca9036f16423fd3c088a71ee94 # v46.0.5
+         with:
+           base_sha: ${{ steps.calculate-merge-base.outputs.merge-base }}
+           sha: ${{ fromJSON(steps.get-pr-info.outputs.pr-info).head.sha }}

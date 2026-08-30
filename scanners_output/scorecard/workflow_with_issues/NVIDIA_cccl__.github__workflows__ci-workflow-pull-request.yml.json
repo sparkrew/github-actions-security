@@ -1,0 +1,124 @@
+{
+  "workflow": "NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "Dangerous-Workflow": 1,
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Dangerous-Workflow",
+      "score": 0,
+      "reason": "dangerous workflow patterns detected",
+      "lines": [
+        57
+      ],
+      "raw_details": [
+        "Warn: script injection with untrusted input ' !contains(github.event.head_commit.message, '[skip-matrix]') ': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:57",
+        "Warn: script injection with untrusted input ' !contains(github.event.head_commit.message, '[skip-vdc]') ': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:57",
+        "Warn: script injection with untrusted input ' !contains(github.event.head_commit.message, '[skip-docs]') ': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:57",
+        "Warn: script injection with untrusted input ' !contains(github.event.head_commit.message, '[skip-rapids]')  && !fromJSON(env.skip_tpt) ': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:57",
+        "Warn: script injection with untrusted input ' !contains(github.event.head_commit.message, '[skip-matx]')    && !fromJSON(env.skip_tpt) ': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:57",
+        "Warn: script injection with untrusted input ' !contains(github.event.head_commit.message, '[skip-pytorch]') && !fromJSON(env.skip_tpt) ': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:57"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#dangerous-workflow",
+        "short": "Determines if the project's GitHub Action workflows avoid dangerous patterns."
+      }
+    },
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        67,
+        72,
+        218,
+        258,
+        325,
+        344,
+        353
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:325",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:344",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:67",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:72",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:218",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:258",
+        "Warn: pipCommand not pinned by hash: .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:353",
+        "Info:   0 out of   5 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of   1 third-party GitHubAction dependencies pinned",
+        "Info:   0 out of   1 pipCommand dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 0,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1,
+        38,
+        132,
+        151,
+        170,
+        189,
+        213,
+        239,
+        255,
+        277,
+        278,
+        280,
+        281,
+        295,
+        309,
+        321
+      ],
+      "raw_details": [
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:309",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:132",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:189",
+        "Info: jobLevel 'actions' permission set to 'read': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:277",
+        "Info: jobLevel 'packages' permission set to 'read': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:278",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:280",
+        "Info: jobLevel 'pull-requests' permission set to 'read': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:281",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:321",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:38",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:151",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:170",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:213",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:239",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:255",
+        "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:295",
+        "Warn: no topLevel permission defined: .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-pull-request.yml:1",
+        "Info: no jobLevel write permissions found"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

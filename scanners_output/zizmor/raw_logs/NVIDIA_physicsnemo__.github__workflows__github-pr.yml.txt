@@ -1,0 +1,106 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_physicsnemo__.github__workflows__github-pr.yml:43:7
+   [1m[94m|[0m
+[1m[94m43 |[0m     - uses: actions/checkout@v4
+   [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_physicsnemo__.github__workflows__github-pr.yml:96:7
+   [1m[94m|[0m
+[1m[94m96 |[0m     - uses: actions/checkout@v4
+   [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_physicsnemo__.github__workflows__github-pr.yml:136:7
+    [1m[94m|[0m
+[1m[94m136 |[0m     - uses: actions/checkout@v4
+    [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_physicsnemo__.github__workflows__github-pr.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m # SPDX-FileCopyrightText: Copyright (c) 2023 - 2024 NVIDIA CORPORATION & AFFILIATES.
+[1m[94m  2 |[0m [1m[33m|[0m # SPDX-FileCopyrightText: All rights reserved.
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m196 |[0m [1m[33m|[0m         path: htmlcov/
+[1m[94m197 |[0m [1m[33m|[0m         retention-days: 7
+    [1m[94m|[0m [1m[33m|__________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_physicsnemo__.github__workflows__github-pr.yml:36:3
+   [1m[94m|[0m
+[1m[94m36 |[0m [1m[33m/[0m   build-environment:
+[1m[94m37 |[0m [1m[33m|[0m     name: Build Environment
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m86 |[0m [1m[33m|[0m
+[1m[94m87 |[0m [1m[33m|[0m   # Stage 2: Run testmon tests
+   [1m[94m|[0m [1m[33m|[0m                              [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________________|[0m
+   [1m[94m|[0m                                [1m[33mthis job[0m
+   [1m[94m|[0m                                [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_physicsnemo__.github__workflows__github-pr.yml:88:3
+    [1m[94m|[0m
+[1m[94m 88 |[0m [1m[33m/[0m   testmon:
+[1m[94m 89 |[0m [1m[33m|[0m     name: Testmon
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m126 |[0m [1m[33m|[0m
+[1m[94m127 |[0m [1m[33m|[0m   # Stage 3: Run coverage tests and upload artifacts
+    [1m[94m|[0m [1m[33m|[0m                                                    [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________________________________________|[0m
+    [1m[94m|[0m                                                      [1m[33mthis job[0m
+    [1m[94m|[0m                                                      [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_physicsnemo__.github__workflows__github-pr.yml:128:3
+    [1m[94m|[0m
+[1m[94m128 |[0m [1m[33m/[0m   coverage:
+[1m[94m129 |[0m [1m[33m|[0m     name: Coverage
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m196 |[0m [1m[33m|[0m         path: htmlcov/
+[1m[94m197 |[0m [1m[33m|[0m         retention-days: 7
+    [1m[94m|[0m [1m[33m|[0m                          [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|__________________________|[0m
+    [1m[94m|[0m                            [1m[33mthis job[0m
+    [1m[94m|[0m                            [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_physicsnemo__.github__workflows__github-pr.yml:46:7
+   [1m[94m|[0m
+[1m[94m46 |[0m       uses: nick-fields/retry@v3
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_physicsnemo__.github__workflows__github-pr.yml:99:7
+   [1m[94m|[0m
+[1m[94m99 |[0m       uses: nick-fields/retry@v3
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_physicsnemo__.github__workflows__github-pr.yml:139:7
+    [1m[94m|[0m
+[1m[94m139 |[0m       uses: nick-fields/retry@v3
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m13[39m findings ([1m[93m3[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m7[39m medium, [31m3[39m high

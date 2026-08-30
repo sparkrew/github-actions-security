@@ -1,0 +1,112 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_clarity__.github__workflows__npm-publish.yml:20:9
+   [1m[94m|[0m
+[1m[94m20 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_clarity__.github__workflows__npm-publish.yml:47:9
+   [1m[94m|[0m
+[1m[94m47 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_clarity__.github__workflows__npm-publish.yml:13:3
+   [1m[94m|[0m
+[1m[94m13 |[0m   contents: write
+   [1m[94m|[0m   [1m[91m^^^^^^^^^^^^^^^[0m [1m[91mcontents: write is overly broad at the workflow level[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_clarity__.github__workflows__npm-publish.yml:30:9
+   [1m[94m|[0m
+[1m[94m30 |[0m          - run: |
+   [1m[94m|[0m   [1m[94m_________-[0m
+   [1m[94m|[0m  [1m[94m|_________|[0m
+[1m[94m31 |[0m [1m[94m||[0m           # Run the size check script for clarity-js
+[1m[94m32 |[0m [1m[94m||[0m           ../../scripts/check-file-size.sh clarity-js ${{ vars.VERSION_FOR_SIZE_COMPARISON }} "build/clarity.min.js" 2
+   [1m[94m|[0m [1m[94m||______________________________________________________________________________________________________________________-[0m [1m[94minfo: vars.VERSION_FOR_SIZE_COMPARISON may expand into attacker-controllable code[0m
+[1m[94m33 |[0m [1m[94m|[0m          working-directory: ./packages/clarity-js
+   [1m[94m|[0m [1m[94m|_________________________________________________-[0m [1m[94minfo: this step[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_clarity__.github__workflows__npm-publish.yml:34:9
+   [1m[94m|[0m
+[1m[94m34 |[0m          - run: |
+   [1m[94m|[0m   [1m[94m_________-[0m
+   [1m[94m|[0m  [1m[94m|_________|[0m
+[1m[94m35 |[0m [1m[94m||[0m           # Run the size check script for clarity-decode
+[1m[94m36 |[0m [1m[94m||[0m           ../../scripts/check-file-size.sh clarity-decode ${{ vars.VERSION_FOR_SIZE_COMPARISON }} "build/clarity.decode.min.js" 2
+   [1m[94m|[0m [1m[94m||_________________________________________________________________________________________________________________________________-[0m [1m[94minfo: vars.VERSION_FOR_SIZE_COMPARISON may expand into attacker-controllable code[0m
+[1m[94m37 |[0m [1m[94m|[0m          working-directory: ./packages/clarity-decode
+   [1m[94m|[0m [1m[94m|_____________________________________________________-[0m [1m[94minfo: this step[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_clarity__.github__workflows__npm-publish.yml:38:9
+   [1m[94m|[0m
+[1m[94m38 |[0m          - run: |
+   [1m[94m|[0m   [1m[94m_________-[0m
+   [1m[94m|[0m  [1m[94m|_________|[0m
+[1m[94m39 |[0m [1m[94m||[0m           # Run the size check script for clarity-visualize
+[1m[94m40 |[0m [1m[94m||[0m           ../../scripts/check-file-size.sh clarity-visualize ${{ vars.VERSION_FOR_SIZE_COMPARISON }} "build/clarity.visualize.min.js" 2
+   [1m[94m|[0m [1m[94m||_______________________________________________________________________________________________________________________________________-[0m [1m[94minfo: vars.VERSION_FOR_SIZE_COMPARISON may expand into attacker-controllable code[0m
+[1m[94m41 |[0m [1m[94m|[0m          working-directory: ./packages/clarity-visualize
+   [1m[94m|[0m [1m[94m|________________________________________________________-[0m [1m[94minfo: this step[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_clarity__.github__workflows__npm-publish.yml:71:9
+   [1m[94m|[0m
+[1m[94m71 |[0m         - name: Create Git tag
+   [1m[94m|[0m           [1m[94m--------------------[0m [1m[94minfo: this step[0m
+[1m[94m72 |[0m           if: success()
+[1m[94m73 |[0m [1m[94m/[0m         run: |
+[1m[94m74 |[0m [1m[94m|[0m           git config --local user.email "action@github.com"
+[1m[94m75 |[0m [1m[94m|[0m           git config --local user.name "GitHub Action"
+[1m[94m76 |[0m [1m[94m|[0m           git tag -a "v${{ steps.version.outputs.version }}" -m "Release v${{ steps.version.outputs.version }}"
+[1m[94m77 |[0m [1m[94m|[0m           git push origin "v${{ steps.version.outputs.version }}"
+   [1m[94m|[0m [1m[94m|_________________________________________________________________-[0m [1m[94minfo: steps.version.outputs.version may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_clarity__.github__workflows__npm-publish.yml:71:9
+   [1m[94m|[0m
+[1m[94m71 |[0m         - name: Create Git tag
+   [1m[94m|[0m           [1m[94m--------------------[0m [1m[94minfo: this step[0m
+[1m[94m72 |[0m           if: success()
+[1m[94m73 |[0m [1m[94m/[0m         run: |
+[1m[94m74 |[0m [1m[94m|[0m           git config --local user.email "action@github.com"
+[1m[94m75 |[0m [1m[94m|[0m           git config --local user.name "GitHub Action"
+[1m[94m76 |[0m [1m[94m|[0m           git tag -a "v${{ steps.version.outputs.version }}" -m "Release v${{ steps.version.outputs.version }}"
+[1m[94m77 |[0m [1m[94m|[0m           git push origin "v${{ steps.version.outputs.version }}"
+   [1m[94m|[0m [1m[94m|_________________________________________________________________-[0m [1m[94minfo: steps.version.outputs.version may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_clarity__.github__workflows__npm-publish.yml:71:9
+   [1m[94m|[0m
+[1m[94m71 |[0m         - name: Create Git tag
+   [1m[94m|[0m           [1m[94m--------------------[0m [1m[94minfo: this step[0m
+[1m[94m72 |[0m           if: success()
+[1m[94m73 |[0m [1m[94m/[0m         run: |
+[1m[94m74 |[0m [1m[94m|[0m           git config --local user.email "action@github.com"
+[1m[94m75 |[0m [1m[94m|[0m           git config --local user.name "GitHub Action"
+[1m[94m76 |[0m [1m[94m|[0m           git tag -a "v${{ steps.version.outputs.version }}" -m "Release v${{ steps.version.outputs.version }}"
+[1m[94m77 |[0m [1m[94m|[0m           git push origin "v${{ steps.version.outputs.version }}"
+   [1m[94m|[0m [1m[94m|_________________________________________________________________-[0m [1m[94minfo: steps.version.outputs.version may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m15[39m findings ([1m[93m6[39m suppressed[0m): 0 unknown, [35m6[39m informational, [36m0[39m low, [33m2[39m medium, [31m1[39m high

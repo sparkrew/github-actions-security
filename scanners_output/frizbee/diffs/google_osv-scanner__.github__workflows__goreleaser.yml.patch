@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/google_osv-scanner__.github__workflows__goreleaser.yml b/.github/workflows/google_osv-scanner__.github__workflows__goreleaser.yml
+index 3811a40..e2660f5 100644
+--- a/.github/workflows/google_osv-scanner__.github__workflows__goreleaser.yml
++++ b/.github/workflows/google_osv-scanner__.github__workflows__goreleaser.yml
+@@ -73,7 +73,7 @@ jobs:
+       actions: read # To read the workflow path.
+       id-token: write # To sign the provenance.
+       contents: write # To add assets to a release.
+-    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v2.1.0
++    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@f7dd8c54c2067bafc12ca7a55595d5ee9b75204a # v2.1.0
+     with:
+       base64-subjects: "${{ needs.goreleaser.outputs.hashes }}"
+       upload-assets: true # upload to a new release

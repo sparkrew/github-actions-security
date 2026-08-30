@@ -1,0 +1,45 @@
+{
+  "workflow": "Tencent_Hippy__.github__workflows__hip_archive_artifact.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "injection": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "injection",
+      "line": 75,
+      "column": "",
+      "job": "archive_artifact",
+      "step": "3",
+      "details": "Sources: github.event.inputs.git_revision github.event.inputs.hip_artifact_path github.event.inputs.hip_domain github.event.inputs.hip_writing_mode github.event.inputs.source_type github.event.inputs.source_url",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": 51,
+      "column": "",
+      "job": "archive_artifact",
+      "step": "0",
+      "details": "Sources: github.event.inputs.git_revision github.event.inputs.hip_artifact_path github.event.inputs.source_url",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": 67,
+      "column": "",
+      "job": "archive_artifact",
+      "step": "1",
+      "details": "Sources: github.event.inputs.hip_artifact_path github.event.inputs.source_url",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

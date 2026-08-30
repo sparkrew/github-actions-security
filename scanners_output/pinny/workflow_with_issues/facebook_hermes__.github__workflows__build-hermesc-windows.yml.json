@@ -1,0 +1,27 @@
+{
+  "workflow": "facebook_hermes__.github__workflows__build-hermesc-windows.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+      "line": 17
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: microsoft/setup-msbuild@031090342aeefe171e49f3820f3b52110c66e402 # microsoft/setup-msbuild@v1.3.2",
+      "line": 23
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # actions/upload-artifact@v4.3.4",
+      "line": 67
+    }
+  ]
+}

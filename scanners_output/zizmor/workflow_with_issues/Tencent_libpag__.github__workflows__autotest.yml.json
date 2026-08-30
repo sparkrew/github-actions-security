@@ -1,0 +1,50 @@
+{
+  "workflow": "Tencent_libpag__.github__workflows__autotest.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "artipacked": 1,
+      "excessive-permissions": 1,
+      "unpinned-uses": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "Tencent_libpag__.github__workflows__autotest.yml",
+      "line": 14,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "Tencent_libpag__.github__workflows__autotest.yml",
+      "line": 10,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "Tencent_libpag__.github__workflows__autotest.yml",
+      "line": 30,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "Tencent_libpag__.github__workflows__autotest.yml",
+      "line": 58,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

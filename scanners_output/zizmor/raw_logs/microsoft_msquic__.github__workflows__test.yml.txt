@@ -1,0 +1,123 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_msquic__.github__workflows__test.yml:168:7
+    [1m[94m|[0m
+[1m[94m168 |[0m       - name: Checkout repository
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m169 |[0m [1m[33m|[0m       uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+[1m[94m170 |[0m [1m[33m|[0m       with:
+[1m[94m171 |[0m [1m[33m|[0m         fetch-depth: 0 # Don't need history.
+[1m[94m172 |[0m [1m[33m|[0m         ref: ${{ inputs.ref || '' }}
+    [1m[94m|[0m [1m[33m|____________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_msquic__.github__workflows__test.yml:235:7
+    [1m[94m|[0m
+[1m[94m235 |[0m       - name: Checkout repository
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m236 |[0m [1m[33m|[0m       uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+[1m[94m237 |[0m [1m[33m|[0m       with:
+[1m[94m238 |[0m [1m[33m|[0m         fetch-depth: 0 # Don't need history.
+[1m[94m239 |[0m [1m[33m|[0m         ref: ${{ inputs.ref || '' }}
+    [1m[94m|[0m [1m[33m|____________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_msquic__.github__workflows__test.yml:287:7
+    [1m[94m|[0m
+[1m[94m287 |[0m       - name: Checkout repository
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m288 |[0m [1m[33m|[0m       uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+[1m[94m289 |[0m [1m[33m|[0m       with:
+[1m[94m290 |[0m [1m[33m|[0m         fetch-depth: 0 # Don't need history.
+[1m[94m291 |[0m [1m[33m|[0m         ref: ${{ inputs.ref || '' }}
+    [1m[94m|[0m [1m[33m|____________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_msquic__.github__workflows__test.yml:50:3
+   [1m[94m|[0m
+[1m[94m50 |[0m   issues: write
+   [1m[94m|[0m   [1m[91m^^^^^^^^^^^^^[0m [1m[91missues: write is overly broad at the workflow level[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_msquic__.github__workflows__test.yml:200:7
+    [1m[94m|[0m
+[1m[94m200 |[0m     - name: Test
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m201 |[0m       if: matrix.vec.os == 'WinServerPrerelease'
+[1m[94m202 |[0m       shell: pwsh
+[1m[94m203 |[0m       timeout-minutes: 120
+[1m[94m204 |[0m       run: scripts/test.ps1 -Config ${{ matrix.vec.config }} -Arch ${{ matrix.vec.arch }} -Tls ${{ matrix.vec.tls }} -GHA -LogProfile ${{ matrix.vec.log || (inputs.log_level || 'Full.Light') }} -GenerateXmlResults ${{ matrix.vec.xdp }} ${{ matrix.vec.qtip }} ${{ inputs.filter && '-Filter' }} ${{ inputs.filter || '' }}
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91minputs.log_level may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_msquic__.github__workflows__test.yml:200:7
+    [1m[94m|[0m
+[1m[94m200 |[0m     - name: Test
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m201 |[0m       if: matrix.vec.os == 'WinServerPrerelease'
+[1m[94m202 |[0m       shell: pwsh
+[1m[94m203 |[0m       timeout-minutes: 120
+[1m[94m204 |[0m       run: scripts/test.ps1 -Config ${{ matrix.vec.config }} -Arch ${{ matrix.vec.arch }} -Tls ${{ matrix.vec.tls }} -GHA -LogProfile ${{ matrix.vec.log || (inputs.log_level || 'Full.Light') }} -GenerateXmlResults ${{ matrix.vec.xdp }} ${{ matrix.vec.qtip }} ${{ inputs.filter && '-Filter' }} ${{ inputs.filter || '' }}
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91minputs.filter may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_msquic__.github__workflows__test.yml:205:7
+    [1m[94m|[0m
+[1m[94m205 |[0m     - name: Test
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m206 |[0m       if: matrix.vec.os != 'WinServerPrerelease'
+[1m[94m207 |[0m       shell: pwsh
+[1m[94m208 |[0m       timeout-minutes: 120
+[1m[94m209 |[0m       run: scripts/test.ps1 -Config ${{ matrix.vec.config }} -Arch ${{ matrix.vec.arch }} -Tls ${{ matrix.vec.tls }} -OsRunner ${{ matrix.vec.os }} -GHA -LogProfile ${{ matrix.vec.log || (inputs.log_level || 'Full.Light') }} -GenerateXmlResults ${{ matrix.vec.xdp }} ${{ matrix.vec.qtip }} ${{ inputs.filter && '-Filter' }} ${{ inputs.filter || '' }}
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91minputs.log_level may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_msquic__.github__workflows__test.yml:205:7
+    [1m[94m|[0m
+[1m[94m205 |[0m     - name: Test
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m206 |[0m       if: matrix.vec.os != 'WinServerPrerelease'
+[1m[94m207 |[0m       shell: pwsh
+[1m[94m208 |[0m       timeout-minutes: 120
+[1m[94m209 |[0m       run: scripts/test.ps1 -Config ${{ matrix.vec.config }} -Arch ${{ matrix.vec.arch }} -Tls ${{ matrix.vec.tls }} -OsRunner ${{ matrix.vec.os }} -GHA -LogProfile ${{ matrix.vec.log || (inputs.log_level || 'Full.Light') }} -GenerateXmlResults ${{ matrix.vec.xdp }} ${{ matrix.vec.qtip }} ${{ inputs.filter && '-Filter' }} ${{ inputs.filter || '' }}
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91minputs.filter may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_msquic__.github__workflows__test.yml:260:7
+    [1m[94m|[0m
+[1m[94m260 |[0m     - name: Test
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m261 |[0m       shell: pwsh
+[1m[94m262 |[0m       timeout-minutes: 120
+[1m[94m263 |[0m       run: scripts/test.ps1 -Config ${{ matrix.vec.config }} -Arch ${{ matrix.vec.arch }} -Tls ${{ matrix.vec.tls }} -OsRunner ${{ matrix.vec.os }} -GHA -LogProfile ${{ matrix.vec.log || (inputs.log_level || 'Full.Light') }} -GenerateXmlResults -Kernel -Filter -*ValidateConfiguration:*ValidAlpnLengths:*ResumeRejection*:*ClientCertificate*:*LoadBalanced*
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91minputs.log_level may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_msquic__.github__workflows__test.yml:311:7
+    [1m[94m|[0m
+[1m[94m311 |[0m     - name: Interop
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m312 |[0m       shell: pwsh
+[1m[94m313 |[0m       run: scripts/interop.ps1 -Config ${{ matrix.vec.config }} -Arch ${{ matrix.vec.arch }} -Tls ${{ matrix.vec.tls }} -GHA -GenerateXmlResults -LogProfile ${{ matrix.vec.log || (inputs.log_level || 'Full.Light') }}
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91minputs.log_level may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m45[39m findings ([1m[93m35[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m3[39m medium, [31m7[39m high

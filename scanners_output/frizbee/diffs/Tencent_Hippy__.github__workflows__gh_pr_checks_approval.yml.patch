@@ -1,0 +1,28 @@
+diff --git a/.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml b/.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml
+index 200f018..b92de53 100644
+--- a/.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml
++++ b/.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml
+@@ -101,7 +101,7 @@ jobs:
+         echo "$details_message" >> $GITHUB_OUTPUT
+         echo "EOF" >> $GITHUB_OUTPUT
+     - name: Find
+-      uses: peter-evans/find-comment@v2.1.0
++      uses: peter-evans/find-comment@f4499a714d59013c74a08789b48abe4b704364a0 # v2.1.0
+       id: find_comment
+       with:
+         issue-number: ${{ needs.call_approval_checks_run.outputs.pull_request_number }}
+@@ -110,12 +110,12 @@ jobs:
+     - name: Token
+       id: get-token
+       if: steps.find_comment.outputs.comment-id == ''
+-      uses: navikt/github-app-token-generator@v1
++      uses: navikt/github-app-token-generator@b96ff604b2300989cd1105e3fad09199fca56681 # v1
+       with:
+         private-key: ${{ secrets.BOT_APP_KEY }}
+         app-id: ${{ secrets.BOT_APP_ID }}
+     - name: Comment
+-      uses: peter-evans/create-or-update-comment@v2
++      uses: peter-evans/create-or-update-comment@67dcc547d311b736a8e6c5c236542148a47adc3d # v2
+       if: steps.get-token.outputs.token != ''
+       with:
+         token: ${{ steps.get-token.outputs.token }}

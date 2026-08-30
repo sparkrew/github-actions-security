@@ -1,0 +1,55 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__website-preview.yaml:15:9
+   [1m[94m|[0m
+[1m[94m15 |[0m       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+   [1m[94m|[0m         [1m[33m------------------------------------------------------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__website-preview.yaml:26:9
+   [1m[94m|[0m
+[1m[94m26 |[0m         - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m27 |[0m [1m[33m|[0m         with:
+[1m[94m28 |[0m [1m[33m|[0m           ref: ${{ env.PR_COMMIT }}
+   [1m[94m|[0m [1m[33m|___________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+ [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__website-preview.yaml:2:1
+  [1m[94m|[0m
+[1m[94m2 |[0m [1m[91m/[0m on:
+[1m[94m3 |[0m [1m[91m|[0m   workflow_run:
+[1m[94m4 |[0m [1m[91m|[0m     workflows: [ WebsitePreviewTrigger ]
+[1m[94m5 |[0m [1m[91m|[0m     types: [ completed ]
+  [1m[94m|[0m [1m[91m|________________________^[0m [1m[91mworkflow_run is almost always used insecurely[0m
+  [1m[94m|[0m
+  [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__website-preview.yaml:38:9
+   [1m[94m|[0m
+[1m[94m38 |[0m         - name: Get preview URL
+   [1m[94m|[0m           [1m[94m---------------------[0m [1m[94minfo: this step[0m
+[1m[94m39 |[0m [1m[94m/[0m         run: |
+[1m[94m40 |[0m [1m[94m|[0m           APP_DOMAIN=$(aws amplify get-app --app-id ${{ vars.AMPLIFY_APP_ID_PREVIEW }} --query 'app.defaultDomain' --output text)
+[1m[94m41 |[0m [1m[94m|[0m           PREVIEW_URL="https://${{ env.BRANCH_NAME }}.$APP_DOMAIN"
+[1m[94m42 |[0m [1m[94m|[0m           echo PREVIEW_URL="$PREVIEW_URL" >> "$GITHUB_ENV"
+   [1m[94m|[0m [1m[94m|__________________________________________________________-[0m [1m[94minfo: vars.AMPLIFY_APP_ID_PREVIEW may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#github-env\github-env]8;;\][0m: [1mdangerous use of environment file[0m
+  [1m[94m-->[0m ../.github/workflows/aws_karpenter-provider-aws__.github__workflows__website-preview.yaml:39:9
+   [1m[94m|[0m
+[1m[94m39 |[0m [1m[91m/[0m         run: |
+[1m[94m40 |[0m [1m[91m|[0m           APP_DOMAIN=$(aws amplify get-app --app-id ${{ vars.AMPLIFY_APP_ID_PREVIEW }} --query 'app.defaultDomain' --output text)
+[1m[94m41 |[0m [1m[91m|[0m           PREVIEW_URL="https://${{ env.BRANCH_NAME }}.$APP_DOMAIN"
+[1m[94m42 |[0m [1m[91m|[0m           echo PREVIEW_URL="$PREVIEW_URL" >> "$GITHUB_ENV"
+   [1m[94m|[0m [1m[91m|__________________________________________________________^[0m [1m[91mwrite to GITHUB_ENV may allow code execution[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m8[39m findings ([1m[93m3[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m2[39m medium, [31m2[39m high

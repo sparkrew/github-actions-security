@@ -1,0 +1,19 @@
+on:
+  issues:
+    types: [opened]
+   
+jobs:
+  thank-user:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    name: Say thanks for the Issue
+    steps:
+      - name: comment on the issue
+        uses: hasura/comment-progress@146c635f3e325d478025e29e5043ec1c07c0e36c # hasura/comment-progress@v2.3.0
+        with:
+          github-token: ${{ secrets.CLI_BOT }}
+          repository: 'Azure/azure-cli'
+          number: ${{ github.event.issue.number }}
+          id: thank-you-comment
+          message: 'Thank you for opening this issue, we will look into it.'

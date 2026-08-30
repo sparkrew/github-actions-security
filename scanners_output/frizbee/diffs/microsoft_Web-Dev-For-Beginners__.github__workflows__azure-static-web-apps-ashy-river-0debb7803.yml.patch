@@ -1,0 +1,81 @@
+diff --git a/.github/workflows/microsoft_Web-Dev-For-Beginners__.github__workflows__azure-static-web-apps-ashy-river-0debb7803.yml b/.github/workflows/microsoft_Web-Dev-For-Beginners__.github__workflows__azure-static-web-apps-ashy-river-0debb7803.yml
+index d528a5d..d88fa78 100644
+--- a/.github/workflows/microsoft_Web-Dev-For-Beginners__.github__workflows__azure-static-web-apps-ashy-river-0debb7803.yml
++++ b/.github/workflows/microsoft_Web-Dev-For-Beginners__.github__workflows__azure-static-web-apps-ashy-river-0debb7803.yml
+@@ -1,38 +1,38 @@
+-name: Azure Static Web Apps CI/CD
+-
+-on: workflow_dispatch
+-
+-jobs:
+-  build_and_deploy_job:
+-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+-    runs-on: ubuntu-latest
+-    name: Build and Deploy Job
+-    steps:
+-      - uses: actions/checkout@v3
+-        with:
+-          submodules: true
+-      - name: Build And Deploy
+-        id: builddeploy
+-        uses: Azure/static-web-apps-deploy@v1
+-        with:
+-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ASHY_RIVER_0DEBB7803 }}
+-          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+-          action: "upload"
+-          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
+-          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
+-          app_location: "/quiz-app" # App source code path
+-          api_location: "" # Api source code path - optional
+-          output_location: "dist" # Built app content directory - optional
+-          ###### End of Repository/Build Configurations ######
+-
+-  close_pull_request_job:
+-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+-    runs-on: ubuntu-latest
+-    name: Close Pull Request Job
+-    steps:
+-      - name: Close Pull Request
+-        id: closepullrequest
+-        uses: Azure/static-web-apps-deploy@v1
+-        with:
+-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ASHY_RIVER_0DEBB7803 }}
+-          action: "close"
++name: Azure Static Web Apps CI/CD
++
++on: workflow_dispatch
++
++jobs:
++  build_and_deploy_job:
++    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
++    runs-on: ubuntu-latest
++    name: Build and Deploy Job
++    steps:
++      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
++        with:
++          submodules: true
++      - name: Build And Deploy
++        id: builddeploy
++        uses: Azure/static-web-apps-deploy@1a947af9992250f3bc2e68ad0754c0b0c11566c9 # v1
++        with:
++          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ASHY_RIVER_0DEBB7803 }}
++          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
++          action: "upload"
++          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
++          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
++          app_location: "/quiz-app" # App source code path
++          api_location: "" # Api source code path - optional
++          output_location: "dist" # Built app content directory - optional
++          ###### End of Repository/Build Configurations ######
++
++  close_pull_request_job:
++    if: github.event_name == 'pull_request' && github.event.action == 'closed'
++    runs-on: ubuntu-latest
++    name: Close Pull Request Job
++    steps:
++      - name: Close Pull Request
++        id: closepullrequest
++        uses: Azure/static-web-apps-deploy@1a947af9992250f3bc2e68ad0754c0b0c11566c9 # v1
++        with:
++          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ASHY_RIVER_0DEBB7803 }}
++          action: "close"

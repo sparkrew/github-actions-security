@@ -1,0 +1,25 @@
+{
+  "workflow": "facebook_hermes__.github__workflows__rn-build-hermes.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "injection": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "injection",
+      "line": 40,
+      "column": "",
+      "job": "set_release_type",
+      "step": "3",
+      "details": "Sources: github.event.inputs.release-type",
+      "event_triggers": [
+        "workflow_dispatch",
+        "pull_request",
+        "push"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+diff --git a/.github/workflows/microsoft_LLMLingua__.github__workflows__release.yml b/.github/workflows/microsoft_LLMLingua__.github__workflows__release.yml
+index 96c8722..8338935 100644
+--- a/.github/workflows/microsoft_LLMLingua__.github__workflows__release.yml
++++ b/.github/workflows/microsoft_LLMLingua__.github__workflows__release.yml
+@@ -24,9 +24,9 @@ jobs:
+       id-token: write
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v3
++        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+       - name: Set up Python ${{ matrix.python-version }}
+-        uses: actions/setup-python@v5
++        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+         with:
+           python-version: ${{ matrix.python-version }}
+ 
+@@ -41,6 +41,6 @@ jobs:
+           pip install twine wheel
+           python setup.py sdist bdist_wheel
+       - name: Publish package distributions to PyPI
+-        uses: pypa/gh-action-pypi-publish@release/v1
++        uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # release/v1
+         with:
+           print-hash: true

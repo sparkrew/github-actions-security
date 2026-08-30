@@ -1,0 +1,40 @@
+{
+  "workflow": "microsoft_TypeScript__.github__workflows__twoslash-repros.yaml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "artipacked": 2,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_TypeScript__.github__workflows__twoslash-repros.yaml",
+      "line": 53,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_TypeScript__.github__workflows__twoslash-repros.yaml",
+      "line": 58,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "microsoft_TypeScript__.github__workflows__twoslash-repros.yaml",
+      "line": 63,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

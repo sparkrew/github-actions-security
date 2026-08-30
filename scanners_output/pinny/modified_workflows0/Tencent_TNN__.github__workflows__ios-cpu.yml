@@ -1,0 +1,30 @@
+name: ios-cpu
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      CONDITION: ${{ steps.preflight.outputs.CONDITION }}
+    steps:
+    - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # actions/checkout@v2 | releases,850,v2.7.0
+    - name: Preflight
+      id: preflight
+      run: |
+        echo ::set-output name=CONDITION::0
+        ./scripts/.ci/preflight.sh ios || ret=$? && echo $ret && echo ::set-output name=CONDITION::$ret
+
+  ios-iphone-os:
+    needs: [setup]
+    if: ${{ needs.setup.outputs.CONDITION != '11' }}
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # actions/checkout@v2 | releases,850,v2.7.0
+    - name: build
+      run: ./scripts/build_framework_ios.sh

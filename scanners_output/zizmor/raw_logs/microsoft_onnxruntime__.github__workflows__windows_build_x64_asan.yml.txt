@@ -1,0 +1,28 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__windows_build_x64_asan.yml:25:9
+   [1m[94m|[0m
+[1m[94m25 |[0m         - name: Checkout repository
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m26 |[0m [1m[33m|[0m         uses: actions/checkout@v6
+[1m[94m27 |[0m [1m[33m|[0m         with:
+[1m[94m28 |[0m [1m[33m|[0m           submodules: false
+   [1m[94m|[0m [1m[33m|___________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__windows_build_x64_asan.yml:16:3
+   [1m[94m|[0m
+[1m[94m16 |[0m [1m[33m/[0m   build_x64:
+[1m[94m17 |[0m [1m[33m|[0m     runs-on: [
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m46 |[0m [1m[33m|[0m           python -m pip install -r "%GITHUB_WORKSPACE%\tools\ci_build/github/windows\python\requirements.txt"
+[1m[94m47 |[0m [1m[33m|[0m           python "%GITHUB_WORKSPACE%\tools\ci_build\build.py" --config Debug --build_dir "%RUNNER_TEMP%\build" --skip_submodule_sync --parallel --use_vcpkg --use_vcpkg_ms_internal_asset_cache --cmake_generator "Visual Studio 17 2022" --disable_memleak_checker --enable_address_sanitizer
+   [1m[94m|[0m [1m[33m|[0m                                                                                                                                                                                                                                                                                               [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                                                                                                                                                                                                                                 [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                                                                                                                                                                                                                                 [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m4[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m0[39m high

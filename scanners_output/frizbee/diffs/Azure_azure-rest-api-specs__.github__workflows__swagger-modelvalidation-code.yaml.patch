@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/Azure_azure-rest-api-specs__.github__workflows__swagger-modelvalidation-code.yaml b/.github/workflows/Azure_azure-rest-api-specs__.github__workflows__swagger-modelvalidation-code.yaml
+index 92966a6..e809145 100644
+--- a/.github/workflows/Azure_azure-rest-api-specs__.github__workflows__swagger-modelvalidation-code.yaml
++++ b/.github/workflows/Azure_azure-rest-api-specs__.github__workflows__swagger-modelvalidation-code.yaml
+@@ -20,7 +20,7 @@ jobs:
+ 
+     steps:
+       - name: Checkout repo
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           fetch-depth: 2
+ 
+@@ -36,7 +36,7 @@ jobs:
+       # Used by other workflows like set-status
+       - name: Set job-summary artifact
+         if: ${{ always() && steps.swagger-model-validation.outputs.summary }}
+-        uses: actions/upload-artifact@v7
++        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7
+         with:
+           name: job-summary
+           path: ${{ steps.swagger-model-validation.outputs.summary }}

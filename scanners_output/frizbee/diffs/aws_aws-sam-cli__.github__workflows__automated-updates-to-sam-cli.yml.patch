@@ -1,0 +1,80 @@
+diff --git a/.github/workflows/aws_aws-sam-cli__.github__workflows__automated-updates-to-sam-cli.yml b/.github/workflows/aws_aws-sam-cli__.github__workflows__automated-updates-to-sam-cli.yml
+index 5624b3f..b943b4e 100644
+--- a/.github/workflows/aws_aws-sam-cli__.github__workflows__automated-updates-to-sam-cli.yml
++++ b/.github/workflows/aws_aws-sam-cli__.github__workflows__automated-updates-to-sam-cli.yml
+@@ -24,13 +24,13 @@ jobs:
+           fi
+ 
+       - name: Checkout App Templates
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           repository: aws/aws-sam-cli-app-templates
+           path: aws-sam-cli-app-templates
+ 
+       - name: Checkout SAM CLI
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           repository: aws/aws-sam-cli
+           path: aws-sam-cli
+@@ -79,7 +79,7 @@ jobs:
+           fi
+ 
+       - name: Checkout SAM
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           repository: aws/serverless-application-model
+           path: serverless-application-model
+@@ -87,17 +87,17 @@ jobs:
+           fetch-depth: 0
+       
+       - name: Checkout SAM CLI
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           repository: aws/aws-sam-cli
+           path: aws-sam-cli
+ 
+-      - uses: actions/setup-python@v6
++      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+         with:
+           python-version: "3.11"
+ 
+       - name: Install uv
+-        uses: astral-sh/setup-uv@v7
++        uses: astral-sh/setup-uv@5a095e7a2014a4212f075830d4f7277575a9d098 # v7
+ 
+       - name: Update aws-sam-translator & commit
+         run: |
+@@ -148,7 +148,7 @@ jobs:
+           fi
+ 
+       - name: Checkout Lambda Builders
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           repository: aws/aws-lambda-builders
+           path: aws-lambda-builders
+@@ -156,17 +156,17 @@ jobs:
+           fetch-depth: 0
+ 
+       - name: Checkout SAM CLI
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           repository: aws/aws-sam-cli
+           path: aws-sam-cli
+ 
+-      - uses: actions/setup-python@v6
++      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+         with:
+           python-version: "3.11"
+ 
+       - name: Install uv
+-        uses: astral-sh/setup-uv@v7
++        uses: astral-sh/setup-uv@5a095e7a2014a4212f075830d4f7277575a9d098 # v7
+ 
+       - name: Upgrade aws_lambda_builders & commit
+         run: |

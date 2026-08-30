@@ -1,0 +1,67 @@
+name: Create Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'
+        required: true
+        default: 'MAJOR.MINOR.PATCH'
+      release_notes:
+        description: 'Release Notes'
+        required: true
+
+jobs:
+  create_draft_release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+      
+      - name: Check version has the right format
+        run: |
+          [[ "${GITHUB_EVENT_INPUTS_VERSION}" =~ ^[0-9]+[.][0-9]+[.][0-9]+$ ]]
+        env:
+          GITHUB_EVENT_INPUTS_VERSION: ${{ github.event.inputs.version }}
+
+      - name: Update version and push to tag
+        run: |
+          cd v2
+          mv manifest_base.json manifest_unversioned.json
+          jq '.version="${GITHUB_EVENT_INPUTS_VERSION}"' manifest_unversioned.json > manifest_base.json
+          git config user.name ${GITHUB_ACTOR}
+          git config user.email action@github.com
+          git add manifest_base.json
+          git commit -m "Automated commit: Bump to version ${GITHUB_EVENT_INPUTS_VERSION}"
+          git tag v${GITHUB_EVENT_INPUTS_VERSION}
+          git push origin v${GITHUB_EVENT_INPUTS_VERSION}
+        env:
+          GITHUB_EVENT_INPUTS_VERSION: ${{ github.event.inputs.version }}
+
+      - name: Install deps
+        run: sudo npm install -g @angular/cli
+
+      - name: Build the extension
+        run: cd v2 && make crx.zip
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@0cb9c9b65d5d1901c1f53e5e66eaf4afd303e70e # v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.event.inputs.version }}
+          release_name: Release ${{ github.event.inputs.version }}
+          body: ${{ github.event.inputs.release_notes }}
+          draft: true
+          prerelease: false
+
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} 
+          asset_path: v2/crx.zip
+          asset_name: crx_${{ github.event.inputs.version }}.zip
+          asset_content_type: application/zip

@@ -1,0 +1,40 @@
+{
+  "workflow": "awslabs_mountpoint-s3__.github__workflows__bench_pr.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "excessive-permissions": 2,
+      "dangerous-triggers": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "excessive-permissions",
+      "level": "error",
+      "message": "overly broad permissions",
+      "workflow": "awslabs_mountpoint-s3__.github__workflows__bench_pr.yml",
+      "line": 8,
+      "column": 3,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "error",
+      "message": "overly broad permissions",
+      "workflow": "awslabs_mountpoint-s3__.github__workflows__bench_pr.yml",
+      "line": 9,
+      "column": 3,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "dangerous-triggers",
+      "level": "error",
+      "message": "use of fundamentally insecure workflow trigger",
+      "workflow": "awslabs_mountpoint-s3__.github__workflows__bench_pr.yml",
+      "line": 3,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    }
+  ]
+}

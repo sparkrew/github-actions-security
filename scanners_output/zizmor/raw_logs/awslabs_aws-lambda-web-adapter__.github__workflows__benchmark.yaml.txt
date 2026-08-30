@@ -1,0 +1,36 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_aws-lambda-web-adapter__.github__workflows__benchmark.yaml:25:9
+   [1m[94m|[0m
+[1m[94m25 |[0m         - name: Checkout PR branch
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m26 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_aws-lambda-web-adapter__.github__workflows__benchmark.yaml:46:9
+   [1m[94m|[0m
+[1m[94m46 |[0m         - name: Checkout main branch
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m47 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m48 |[0m [1m[33m|[0m         with:
+[1m[94m49 |[0m [1m[33m|[0m           ref: main
+[1m[94m50 |[0m [1m[33m|[0m           clean: false
+   [1m[94m|[0m [1m[33m|______________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_aws-lambda-web-adapter__.github__workflows__benchmark.yaml:56:9
+   [1m[94m|[0m
+[1m[94m56 |[0m         - name: Checkout PR branch again for comparison
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m57 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m58 |[0m [1m[33m|[0m         with:
+[1m[94m59 |[0m [1m[33m|[0m           clean: false
+   [1m[94m|[0m [1m[33m|______________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m4[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m3[39m medium, [31m0[39m high

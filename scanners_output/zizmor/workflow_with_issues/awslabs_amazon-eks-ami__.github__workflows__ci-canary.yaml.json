@@ -1,0 +1,21 @@
+{
+  "workflow": "awslabs_amazon-eks-ami__.github__workflows__ci-canary.yaml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "secrets-inherit": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "secrets-inherit",
+      "level": "warning",
+      "message": "secrets unconditionally inherited by called workflow",
+      "workflow": "awslabs_amazon-eks-ami__.github__workflows__ci-canary.yaml",
+      "line": 25,
+      "column": 5,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

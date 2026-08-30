@@ -1,0 +1,42 @@
+{
+  "workflow": "facebook_lexical__.github__workflows__call-e2e-test.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 6,
+    "by_rule": {
+      "unpinned-github-actions": 6
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+      "line": 32
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | releases,v4.4.0",
+      "line": 34
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # pnpm/action-setup@v4",
+      "line": 37
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # actions/cache/restore@v4 | v4.3.0",
+      "line": 54
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # actions/cache/restore@v4 | v4.3.0",
+      "line": 62
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+      "line": 71
+    }
+  ]
+}

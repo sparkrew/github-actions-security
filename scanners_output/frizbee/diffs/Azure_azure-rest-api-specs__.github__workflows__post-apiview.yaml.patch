@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/Azure_azure-rest-api-specs__.github__workflows__post-apiview.yaml b/.github/workflows/Azure_azure-rest-api-specs__.github__workflows__post-apiview.yaml
+index 1aa1858..d4b558d 100644
+--- a/.github/workflows/Azure_azure-rest-api-specs__.github__workflows__post-apiview.yaml
++++ b/.github/workflows/Azure_azure-rest-api-specs__.github__workflows__post-apiview.yaml
+@@ -18,7 +18,7 @@ jobs:
+       contains(github.event.check_run.name, 'SDK Validation') )
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           sparse-checkout: "eng/common"
+ 

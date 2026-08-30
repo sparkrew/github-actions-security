@@ -1,0 +1,36 @@
+diff --git a/.github/workflows/google_tamperchrome__.github__workflows__post-commit.yml b/.github/workflows/google_tamperchrome__.github__workflows__post-commit.yml
+index cb05e49..56fbe95 100644
+--- a/.github/workflows/google_tamperchrome__.github__workflows__post-commit.yml
++++ b/.github/workflows/google_tamperchrome__.github__workflows__post-commit.yml
+@@ -11,13 +11,13 @@ jobs:
+     runs-on: ubuntu-latest
+ 
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       
+       - name: Install deps
+         run: sudo npm install -g @angular/cli
+ 
+       - name: Check UI e2e tests
+-        uses: nick-invision/retry@v2
++        uses: nick-invision/retry@14672906e672a08bd6eeb15720e9ed3ce869cdd4 # v2
+         with:
+           timeout_minutes: 10
+           max_attempts: 10
+@@ -27,13 +27,13 @@ jobs:
+     runs-on: ubuntu-latest
+ 
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       
+       - name: Install deps
+         run: sudo npm install -g @angular/cli
+ 
+       - name: Check background e2e tests
+-        uses: GabrielBB/xvfb-action@v1
++        uses: GabrielBB/xvfb-action@86d97bde4a65fe9b290c0b3fb92c2c4ed0e5302d # v1
+         with:
+           working-directory: ./v2
+           run: make background/test

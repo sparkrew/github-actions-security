@@ -1,0 +1,117 @@
+diff --git a/.github/workflows/google_autocxx__.github__workflows__ci.yml b/.github/workflows/google_autocxx__.github__workflows__ci.yml
+index cc91729..03d5161 100644
+--- a/.github/workflows/google_autocxx__.github__workflows__ci.yml
++++ b/.github/workflows/google_autocxx__.github__workflows__ci.yml
+@@ -45,7 +45,7 @@ jobs:
+       RUSTFLAGS: --cfg deny_warnings -Dwarnings
+ 
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+         with:
+           submodules: recursive
+       - uses: dtolnay/rust-toolchain@master
+@@ -53,7 +53,7 @@ jobs:
+           toolchain: ${{matrix.rust}}
+           components: rustfmt
+       # The `{ sharedKey: ... }` allows different actions to share the cache.
+-      - uses: Swatinem/rust-cache@v1
++      - uses: Swatinem/rust-cache@81d053bdb0871dcd3f10763c8cc60d0adc41762b # v1
+         with: { sharedKey: fullBuild }
+       # For operating systems that have it packaged, install creduce
+       - name: Install creduce (Linux)
+@@ -104,14 +104,14 @@ jobs:
+       CXXFLAGS: ${{matrix.flags}}
+       RUSTFLAGS: --cfg deny_warnings -Dwarnings
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+         with:
+           submodules: recursive
+       - uses: dtolnay/rust-toolchain@master
+         with:
+           toolchain: ${{matrix.rust}}
+           components: rustfmt
+-      - uses: Swatinem/rust-cache@v1
++      - uses: Swatinem/rust-cache@81d053bdb0871dcd3f10763c8cc60d0adc41762b # v1
+         with: { sharedKey: fullBuild }
+       - name: Set LIBCLANG_PATH (Windows)
+         # Windows github action doesn't set the path for clang, so set it
+@@ -152,13 +152,13 @@ jobs:
+     name: Address Sanitizer
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       # Need nightly rust.
+-      - uses: hecrj/setup-rust-action@v1
++      - uses: hecrj/setup-rust-action@50a120e4d34903c2c1383dec0e9b1d349a9cc2b1 # v1
+         with:
+           rust-version: nightly
+           components: rust-src
+-      - uses: Swatinem/rust-cache@v1
++      - uses: Swatinem/rust-cache@81d053bdb0871dcd3f10763c8cc60d0adc41762b # v1
+       - name: Tests with asan
+         env:
+           AUTOCXX_ASAN: 1
+@@ -176,8 +176,8 @@ jobs:
+     name: Test forcing wrapper generation
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v2
+-      - uses: Swatinem/rust-cache@v1
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
++      - uses: Swatinem/rust-cache@81d053bdb0871dcd3f10763c8cc60d0adc41762b # v1
+       - name: Tests generating all possible shims
+         env:
+           AUTOCXX_FORCE_WRAPPER_GENERATION: 1
+@@ -190,11 +190,11 @@ jobs:
+     env:
+       CARGO_TERM_COLOR: always
+     steps:
+-      - uses: actions/checkout@v2
+-      - uses: hecrj/setup-rust-action@v1
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
++      - uses: hecrj/setup-rust-action@50a120e4d34903c2c1383dec0e9b1d349a9cc2b1 # v1
+         with:
+           components: clippy
+-      - uses: Swatinem/rust-cache@v1
++      - uses: Swatinem/rust-cache@81d053bdb0871dcd3f10763c8cc60d0adc41762b # v1
+       - run: cargo clippy --workspace --tests -- -Dclippy::all
+ 
+   # Mention outdated dependencies
+@@ -204,8 +204,8 @@ jobs:
+     env:
+       CARGO_TERM_COLOR: always
+     steps:
+-      - uses: actions/checkout@v2
+-      - uses: dtolnay/install@cargo-outdated
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
++      - uses: dtolnay/install@f0761f7aa894742cde7dec05963ea54ae2dfc4b5 # cargo-outdated
+       - run: cargo outdated -R -w
+ 
+   # Check rustfmt is good
+@@ -213,8 +213,8 @@ jobs:
+     name: Format
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v2
+-      - uses: hecrj/setup-rust-action@v1
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
++      - uses: hecrj/setup-rust-action@50a120e4d34903c2c1383dec0e9b1d349a9cc2b1 # v1
+         with:
+           components: rustfmt
+       - run: cargo fmt --all -- --check
+@@ -224,9 +224,9 @@ jobs:
+     name: Docs
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v2
+-      - uses: hecrj/setup-rust-action@v1
+-      - uses: Swatinem/rust-cache@v1
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
++      - uses: hecrj/setup-rust-action@50a120e4d34903c2c1383dec0e9b1d349a9cc2b1 # v1
++      - uses: Swatinem/rust-cache@81d053bdb0871dcd3f10763c8cc60d0adc41762b # v1
+         with: { sharedKey: fullBuild }
+       - run: |
+           for package in $(cargo metadata --no-deps --format-version=1 | jq -r '.packages[] | .name'); do

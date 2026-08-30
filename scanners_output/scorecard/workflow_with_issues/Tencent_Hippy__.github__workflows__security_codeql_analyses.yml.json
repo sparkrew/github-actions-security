@@ -1,0 +1,59 @@
+{
+  "workflow": "Tencent_Hippy__.github__workflows__security_codeql_analyses.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        35,
+        102,
+        106,
+        111,
+        125,
+        138
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_Hippy__.github__workflows__security_codeql_analyses.yml:35",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_Hippy__.github__workflows__security_codeql_analyses.yml:102",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_Hippy__.github__workflows__security_codeql_analyses.yml:106",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_Hippy__.github__workflows__security_codeql_analyses.yml:111",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_Hippy__.github__workflows__security_codeql_analyses.yml:125",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_Hippy__.github__workflows__security_codeql_analyses.yml:138",
+        "Info:   0 out of   6 GitHub-owned GitHubAction dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 9,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        22,
+        23,
+        24
+      ],
+      "raw_details": [
+        "Info: topLevel 'actions' permission set to 'read': .github/workflows/Tencent_Hippy__.github__workflows__security_codeql_analyses.yml:22",
+        "Info: topLevel 'contents' permission set to 'read': .github/workflows/Tencent_Hippy__.github__workflows__security_codeql_analyses.yml:23",
+        "Warn: topLevel 'security-events' permission set to 'write': .github/workflows/Tencent_Hippy__.github__workflows__security_codeql_analyses.yml:24",
+        "Info: no jobLevel write permissions found"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

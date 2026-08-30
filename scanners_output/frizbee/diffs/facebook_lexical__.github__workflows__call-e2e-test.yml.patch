@@ -1,0 +1,47 @@
+diff --git a/.github/workflows/facebook_lexical__.github__workflows__call-e2e-test.yml b/.github/workflows/facebook_lexical__.github__workflows__call-e2e-test.yml
+index 3f369d4..5c4e972 100644
+--- a/.github/workflows/facebook_lexical__.github__workflows__call-e2e-test.yml
++++ b/.github/workflows/facebook_lexical__.github__workflows__call-e2e-test.yml
+@@ -29,12 +29,12 @@ jobs:
+       test_results_path: 'test-results/'
+       test_script: test-e2e-${{ inputs.editor-mode == 'rich-text-with-collab' && 'collab-' || '' }}${{ inputs.prod && 'prod-' || '' }}ci-${{ inputs.browser }}
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+       - name: Use Node.js ${{ inputs.node-version }}
+-        uses: actions/setup-node@v4
++        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+         with:
+           node-version: ${{ inputs.node-version }}
+-      - uses: pnpm/action-setup@v4
++      - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
+         with:
+           version: 9
+       - name: Install required ubuntu-latest packages
+@@ -51,7 +51,7 @@ jobs:
+           node ./scripts/override-react.js --version=${{ inputs.override-react-version }}
+           grep version node_modules/{react,react-dom}/package.json
+       - name: Restore playwright from cache
+-        uses: actions/cache/restore@v4
++        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+         id: playwright-cache
+         with:
+           path: ${{ env.cache_playwright_path }}
+@@ -59,7 +59,7 @@ jobs:
+       - name: Install playwright
+         run: pnpm exec playwright install
+       - name: Save playwright to cache
+-        uses: actions/cache/save@v4
++        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+         if: steps.playwright-cache.outputs.cache-hit != 'true'
+         with:
+           path: ${{ env.cache_playwright_path }}
+@@ -68,7 +68,7 @@ jobs:
+         run: pnpm run ${{ env.test_script }}
+       - name: Upload Artifacts
+         if: failure()
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: Test Results ${{ inputs.os }}-${{ inputs.browser }}-${{ inputs.editor-mode }}-${{ inputs.events-mode }}-${{ inputs.prod && 'prod' || 'dev' }}-${{ inputs.node-version }}-${{ inputs.override-react-version }}-${{ inputs.flaky && 'flaky' || ''}}
+           path: ${{ env.test_results_path }}

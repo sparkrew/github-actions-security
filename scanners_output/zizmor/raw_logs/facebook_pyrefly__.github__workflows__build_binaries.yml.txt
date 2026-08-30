@@ -1,0 +1,128 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_pyrefly__.github__workflows__build_binaries.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: Build binaries
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m199 |[0m [1m[33m|[0m         with:
+[1m[94m200 |[0m [1m[33m|[0m           name: dist
+    [1m[94m|[0m [1m[33m|_____________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_pyrefly__.github__workflows__build_binaries.yml:18:3
+   [1m[94m|[0m
+[1m[94m18 |[0m [1m[33m/[0m   sdist:
+[1m[94m19 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m44 |[0m [1m[33m|[0m           name: wheels-sdist
+[1m[94m45 |[0m [1m[33m|[0m           path: pyrefly/dist
+   [1m[94m|[0m [1m[33m|[0m                            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________|[0m
+   [1m[94m|[0m                              [1m[33mthis job[0m
+   [1m[94m|[0m                              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_pyrefly__.github__workflows__build_binaries.yml:47:3
+   [1m[94m|[0m
+[1m[94m47 |[0m [1m[33m/[0m   macos:
+[1m[94m48 |[0m [1m[33m|[0m     runs-on: macos-14
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m82 |[0m [1m[33m|[0m           name: wheels-macos-${{ matrix.platform.target }}
+[1m[94m83 |[0m [1m[33m|[0m           path: pyrefly/dist
+   [1m[94m|[0m [1m[33m|[0m                            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________|[0m
+   [1m[94m|[0m                              [1m[33mthis job[0m
+   [1m[94m|[0m                              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_pyrefly__.github__workflows__build_binaries.yml:85:3
+    [1m[94m|[0m
+[1m[94m 85 |[0m [1m[33m/[0m   windows:
+[1m[94m 86 |[0m [1m[33m|[0m     runs-on: windows-latest
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m127 |[0m [1m[33m|[0m           name: wheels-${{ matrix.platform.target }}
+[1m[94m128 |[0m [1m[33m|[0m           path: pyrefly/dist
+    [1m[94m|[0m [1m[33m|[0m                            [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________________|[0m
+    [1m[94m|[0m                              [1m[33mthis job[0m
+    [1m[94m|[0m                              [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_pyrefly__.github__workflows__build_binaries.yml:130:3
+    [1m[94m|[0m
+[1m[94m130 |[0m [1m[33m/[0m   linux:
+[1m[94m131 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m185 |[0m [1m[33m|[0m           name: wheels-${{ matrix.target }}
+[1m[94m186 |[0m [1m[33m|[0m           path: pyrefly/dist
+    [1m[94m|[0m [1m[33m|[0m                            [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________________|[0m
+    [1m[94m|[0m                              [1m[33mthis job[0m
+    [1m[94m|[0m                              [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_pyrefly__.github__workflows__build_binaries.yml:188:3
+    [1m[94m|[0m
+[1m[94m188 |[0m [1m[33m/[0m   merge:
+[1m[94m189 |[0m [1m[33m|[0m     name: Merge artifacts
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m199 |[0m [1m[33m|[0m         with:
+[1m[94m200 |[0m [1m[33m|[0m           name: dist
+    [1m[94m|[0m [1m[33m|[0m                     [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_____________________|[0m
+    [1m[94m|[0m                       [1m[33mthis job[0m
+    [1m[94m|[0m                       [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_pyrefly__.github__workflows__build_binaries.yml:29:9
+   [1m[94m|[0m
+[1m[94m29 |[0m         uses: PyO3/maturin-action@v1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_pyrefly__.github__workflows__build_binaries.yml:66:9
+   [1m[94m|[0m
+[1m[94m66 |[0m         uses: PyO3/maturin-action@v1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_pyrefly__.github__workflows__build_binaries.yml:110:9
+    [1m[94m|[0m
+[1m[94m110 |[0m         uses: PyO3/maturin-action@v1
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_pyrefly__.github__workflows__build_binaries.yml:149:9
+    [1m[94m|[0m
+[1m[94m149 |[0m         uses: PyO3/maturin-action@v1
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_pyrefly__.github__workflows__build_binaries.yml:157:9
+    [1m[94m|[0m
+[1m[94m157 |[0m         uses: PyO3/maturin-action@v1
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m11[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m6[39m medium, [31m5[39m high

@@ -1,0 +1,37 @@
+{
+  "workflow": "aws_aws-lambda-rust-runtime__.github__workflows__run-integration-test.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "unpinned-github-actions": 5
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: jaxxstorm/action-install-gh-release@6096f2a2bbfee498ced520b6922ac2c06e990ed2 # jaxxstorm/action-install-gh-release@v2.1.0",
+      "line": 18
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: mlugg/setup-zig@d1434d08867e3ee9daa34448df10607b98908d29 # mlugg/setup-zig@v2 | main,v2.2.1",
+      "line": 24
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: aws-actions/setup-sam@d78e1a4a9656d3b223e59b80676a797f20093133 # aws-actions/setup-sam@v2 | main",
+      "line": 28
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+      "line": 31
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7 # aws-actions/configure-aws-credentials@v6.0.0",
+      "line": 33
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_yapf__.github__workflows__pre-commit-autoupdate.yml:22:9
+   [1m[94m|[0m
+[1m[94m22 |[0m       - uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871  # v4.2.1
+   [1m[94m|[0m         [1m[33m-------------------------------------------------------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/google_yapf__.github__workflows__pre-commit-autoupdate.yml:60:9
+   [1m[94m|[0m
+[1m[94m60 |[0m         - name: Log pull request URL
+   [1m[94m|[0m           [1m[94m--------------------------[0m [1m[94minfo: this step[0m
+[1m[94m61 |[0m           if: "${{ steps.create-pull-request.outputs.pull-request-url }}"
+[1m[94m62 |[0m [1m[94m/[0m         run: |
+[1m[94m63 |[0m [1m[94m|[0m           echo "Pull request URL is: ${{ steps.create-pull-request.outputs.pull-request-url }}"
+   [1m[94m|[0m [1m[94m|________________________________________________________________________________________________-[0m [1m[94minfo: steps.create-pull-request.outputs.pull-request-url may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m5[39m findings ([1m[93m3[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m1[39m medium, [31m0[39m high

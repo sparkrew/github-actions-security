@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/facebookresearch_audiocraft__.github__workflows__audiocraft_linter.yml b/.github/workflows/facebookresearch_audiocraft__.github__workflows__audiocraft_linter.yml
+index 60479fa..572156f 100644
+--- a/.github/workflows/facebookresearch_audiocraft__.github__workflows__audiocraft_linter.yml
++++ b/.github/workflows/facebookresearch_audiocraft__.github__workflows__audiocraft_linter.yml
+@@ -10,7 +10,7 @@ jobs:
+     name: Run linter
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       - uses: ./.github/actions/audiocraft_build
+       - run: |
+           . env/bin/activate

@@ -1,0 +1,94 @@
+diff --git a/.github/workflows/awslabs_aws-lambda-web-adapter__.github__workflows__examples.yaml b/.github/workflows/awslabs_aws-lambda-web-adapter__.github__workflows__examples.yaml
+index 2d8586c..d482957 100644
+--- a/.github/workflows/awslabs_aws-lambda-web-adapter__.github__workflows__examples.yaml
++++ b/.github/workflows/awslabs_aws-lambda-web-adapter__.github__workflows__examples.yaml
+@@ -23,13 +23,13 @@ jobs:
+   validate:
+     runs-on: ubuntu-24.04
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+-      - uses: actions/setup-python@v4
++      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+         with:
+           python-version: "3.13"
+ 
+-      - uses: aws-actions/setup-sam@v2
++      - uses: aws-actions/setup-sam@d78e1a4a9656d3b223e59b80676a797f20093133 # v2
+         with:
+           use-installer: true
+           token: ${{ secrets.GITHUB_TOKEN }}
+@@ -53,7 +53,7 @@ jobs:
+   build-layer:
+     runs-on: ubuntu-24.04
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       - name: Install stable toolchain
+         run: rustup target add x86_64-unknown-linux-musl
+@@ -62,7 +62,7 @@ jobs:
+         run: pip3 install cargo-lambda
+ 
+       - name: Configure Rust cache
+-        uses: Swatinem/rust-cache@v2
++        uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # v2
+ 
+       - name: Build x86_64 layer
+         run: |
+@@ -71,7 +71,7 @@ jobs:
+           cp layer/bootstrap layer-x86_64/
+           cp target/lambda/extensions/lambda-adapter layer-x86_64/
+ 
+-      - uses: actions/upload-artifact@v4
++      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: layer-x86_64
+           path: layer-x86_64/
+@@ -95,18 +95,18 @@ jobs:
+           - remix
+           - springboot
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+-      - uses: actions/setup-python@v4
++      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+         with:
+           python-version: "3.13"
+ 
+-      - uses: aws-actions/setup-sam@v2
++      - uses: aws-actions/setup-sam@d78e1a4a9656d3b223e59b80676a797f20093133 # v2
+         with:
+           use-installer: true
+           token: ${{ secrets.GITHUB_TOKEN }}
+ 
+-      - uses: actions/download-artifact@v4
++      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+         with:
+           name: layer-x86_64
+           path: /tmp/layer-x86_64
+@@ -177,18 +177,18 @@ jobs:
+           - remix-zip
+           - springboot-zip
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+-      - uses: actions/setup-python@v4
++      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+         with:
+           python-version: "3.13"
+ 
+-      - uses: aws-actions/setup-sam@v2
++      - uses: aws-actions/setup-sam@d78e1a4a9656d3b223e59b80676a797f20093133 # v2
+         with:
+           use-installer: true
+           token: ${{ secrets.GITHUB_TOKEN }}
+ 
+-      - uses: actions/download-artifact@v4
++      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+         with:
+           name: layer-x86_64
+           path: /tmp/layer-x86_64

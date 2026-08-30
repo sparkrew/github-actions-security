@@ -1,0 +1,28 @@
+name: Snyk
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: "0 9 * * 1"  # runs each Monday at 9:00 UTC
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/python-3.12@9adf32b1121593767fc3c057af55b55db032dc04 # snyk/actions/python-3.12@master | v1,v1.0.0
+        continue-on-error: true  # To make sure that SARIF upload gets called
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high --sarif-file-output=snyk.sarif
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@c793b717bc78562f491db7b0e93a3a178b099162 # github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: snyk.sarif

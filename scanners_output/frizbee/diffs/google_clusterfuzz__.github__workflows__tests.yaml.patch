@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/google_clusterfuzz__.github__workflows__tests.yaml b/.github/workflows/google_clusterfuzz__.github__workflows__tests.yaml
+index c198442..e3374d4 100644
+--- a/.github/workflows/google_clusterfuzz__.github__workflows__tests.yaml
++++ b/.github/workflows/google_clusterfuzz__.github__workflows__tests.yaml
+@@ -22,7 +22,7 @@ jobs:
+     runs-on: ubuntu-24.04
+ 
+     steps:
+-      - uses: actions/checkout@v3
++      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+       - run: |  # Needed for git diff to work.
+           git fetch origin master --depth 1
+           git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/master

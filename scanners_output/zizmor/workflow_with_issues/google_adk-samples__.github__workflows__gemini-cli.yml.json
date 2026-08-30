@@ -1,0 +1,40 @@
+{
+  "workflow": "google_adk-samples__.github__workflows__gemini-cli.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "artipacked": 2,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "google_adk-samples__.github__workflows__gemini-cli.yml",
+      "line": 116,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "google_adk-samples__.github__workflows__gemini-cli.yml",
+      "line": 126,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "google_adk-samples__.github__workflows__gemini-cli.yml",
+      "line": 191,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

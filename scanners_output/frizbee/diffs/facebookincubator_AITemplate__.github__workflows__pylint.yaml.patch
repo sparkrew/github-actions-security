@@ -1,0 +1,16 @@
+diff --git a/.github/workflows/facebookincubator_AITemplate__.github__workflows__pylint.yaml b/.github/workflows/facebookincubator_AITemplate__.github__workflows__pylint.yaml
+index 2a74d5b..446d062 100644
+--- a/.github/workflows/facebookincubator_AITemplate__.github__workflows__pylint.yaml
++++ b/.github/workflows/facebookincubator_AITemplate__.github__workflows__pylint.yaml
+@@ -15,9 +15,9 @@ jobs:
+       matrix:
+         python-version: ["3.8"]
+     steps:
+-    - uses: actions/checkout@v2
++    - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+     - name: Set up Python ${{ matrix.python-version }}
+-      uses: actions/setup-python@v2
++      uses: actions/setup-python@e9aba2c848f5ebd159c070c61ea2c4e2b122355e # v2
+       with:
+         python-version: ${{ matrix.python-version }}
+     - name: Install dependencies

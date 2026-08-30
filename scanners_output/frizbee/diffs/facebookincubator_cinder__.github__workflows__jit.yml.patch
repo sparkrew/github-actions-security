@@ -1,0 +1,39 @@
+diff --git a/.github/workflows/facebookincubator_cinder__.github__workflows__jit.yml b/.github/workflows/facebookincubator_cinder__.github__workflows__jit.yml
+index 22e1a16..6d14219 100644
+--- a/.github/workflows/facebookincubator_cinder__.github__workflows__jit.yml
++++ b/.github/workflows/facebookincubator_cinder__.github__workflows__jit.yml
+@@ -34,7 +34,7 @@ jobs:
+     runs-on: ubuntu-24.04
+     timeout-minutes: 90
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           persist-credentials: false
+       - name: Build tier two interpreter
+@@ -88,10 +88,10 @@ jobs:
+             architecture: aarch64
+             runner: ubuntu-24.04-arm
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           persist-credentials: false
+-      - uses: actions/setup-python@v6
++      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+         with:
+           python-version: '3.11'
+ 
+@@ -163,10 +163,10 @@ jobs:
+         llvm:
+           - 19
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           persist-credentials: false
+-      - uses: actions/setup-python@v6
++      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+         with:
+           python-version: '3.11'
+       - name: Build with JIT and tailcall

@@ -1,0 +1,73 @@
+diff --git a/.github/workflows/google_differential-privacy__.github__workflows__bazel.yml b/.github/workflows/google_differential-privacy__.github__workflows__bazel.yml
+index 94b71ec..b20d695 100644
+--- a/.github/workflows/google_differential-privacy__.github__workflows__bazel.yml
++++ b/.github/workflows/google_differential-privacy__.github__workflows__bazel.yml
+@@ -8,9 +8,9 @@ jobs:
+     runs-on: ubuntu-latest
+     timeout-minutes: 60
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: Mount Cache
+-        uses: actions/cache@v5
++        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+         with:
+           path: ~/.cache/bazel/
+           key: bazel-cc-cache
+@@ -36,9 +36,9 @@ jobs:
+     runs-on: ubuntu-latest
+     timeout-minutes: 60
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: Mount Cache
+-        uses: actions/cache@v5
++        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+         with:
+           path: ~/.cache/bazel/
+           key: bazel-java-cache
+@@ -59,9 +59,9 @@ jobs:
+     runs-on: ubuntu-latest
+     timeout-minutes: 60
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: Mount Cache
+-        uses: actions/cache@v5
++        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+         with:
+           path: ~/.cache/bazel/
+           key: bazel-pipelinedp4j-cache
+@@ -99,9 +99,9 @@ jobs:
+     runs-on: ubuntu-latest
+     timeout-minutes: 60
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: Mount Cache
+-        uses: actions/cache@v5
++        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+         with:
+           path: ~/.cache/bazel/
+           key: bazel-zetasql-examples-cache
+@@ -116,9 +116,9 @@ jobs:
+     runs-on: ubuntu-latest
+     timeout-minutes: 60
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: Set up Python 3.10
+-        uses: actions/setup-python@v6
++        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+         with:
+           python-version: '3.10'
+       - name: Install Python dependencies
+@@ -126,7 +126,7 @@ jobs:
+           python -m pip install --upgrade pip
+           python -m pip install --upgrade setuptools
+       - name: Mount Cache
+-        uses: actions/cache@v5
++        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+         with:
+           path: ~/.cache/bazel/
+           key: bazel-python-cache

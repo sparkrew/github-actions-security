@@ -1,0 +1,57 @@
+diff --git a/.github/workflows/google_gts__.github__workflows__ci.yaml b/.github/workflows/google_gts__.github__workflows__ci.yaml
+index c402764..d3d27c6 100644
+--- a/.github/workflows/google_gts__.github__workflows__ci.yaml
++++ b/.github/workflows/google_gts__.github__workflows__ci.yaml
+@@ -12,7 +12,7 @@ jobs:
+         node: [18, 20, 22]
+     steps:
+       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+-      - uses: actions/setup-node@v6
++      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+         with:
+           node-version: ${{ matrix.node }}
+       - run: npm i --production --engine-strict --ignore-scripts
+@@ -20,14 +20,14 @@ jobs:
+       - run: npm ci
+       - run: npm test
+       - name: coverage
+-        uses: codecov/codecov-action@v5
++        uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5
+         with:
+           name: actions ${{ matrix.node }}
+   windows:
+     runs-on: windows-latest
+     steps:
+       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+-      - uses: actions/setup-node@v6
++      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+         with:
+           node-version: 18
+       - run: npm ci
+@@ -36,7 +36,7 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+-      - uses: actions/setup-node@v6
++      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+         with:
+           node-version: 18
+       - run: npm ci
+@@ -45,7 +45,7 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+-      - uses: actions/setup-node@v6
++      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+         with:
+           node-version: 18
+       - run: npm ci
+@@ -54,7 +54,7 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+-      - uses: actions/setup-node@v6
++      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+         with:
+           node-version: 18
+       - run: npm ci

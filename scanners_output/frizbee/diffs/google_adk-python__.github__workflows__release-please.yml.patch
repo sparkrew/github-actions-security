@@ -1,0 +1,19 @@
+diff --git a/.github/workflows/google_adk-python__.github__workflows__release-please.yml b/.github/workflows/google_adk-python__.github__workflows__release-please.yml
+index 41d8d86..0ba4df2 100644
+--- a/.github/workflows/google_adk-python__.github__workflows__release-please.yml
++++ b/.github/workflows/google_adk-python__.github__workflows__release-please.yml
+@@ -27,12 +27,12 @@ jobs:
+             echo "exists=false" >> $GITHUB_OUTPUT
+           fi
+ 
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         if: steps.check.outputs.exists == 'true'
+         with:
+           ref: release/candidate
+ 
+-      - uses: googleapis/release-please-action@v4
++      - uses: googleapis/release-please-action@16a9c90856f42705d54a6fda1823352bdc62cf38 # v4
+         if: steps.check.outputs.exists == 'true'
+         with:
+           token: ${{ secrets.RELEASE_PAT }}

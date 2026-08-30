@@ -1,0 +1,29 @@
+diff --git a/.github/workflows/facebookresearch_habitat-lab__.github__workflows__deploy_pypi.yml b/.github/workflows/facebookresearch_habitat-lab__.github__workflows__deploy_pypi.yml
+index 2d49d4a..ee0a2d8 100644
+--- a/.github/workflows/facebookresearch_habitat-lab__.github__workflows__deploy_pypi.yml
++++ b/.github/workflows/facebookresearch_habitat-lab__.github__workflows__deploy_pypi.yml
+@@ -17,13 +17,13 @@ jobs:
+       # IMPORTANT: this permission is mandatory for trusted publishing
+       id-token: write
+     steps:
+-      - uses: actions/checkout@v4.1.1
++      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+         with:
+           path: "./habitat-lab"
+       - uses: "./habitat-lab/.github/actions/install_ubuntu_deps"
+       - uses: "./habitat-lab/.github/actions/install_ubuntu_gpu_deps"
+       - name: Setup build env
+-        uses: conda-incubator/setup-miniconda@v3.0.1
++        uses: conda-incubator/setup-miniconda@11b562958363ec5770fef326fe8ef0366f8cbf8a # v3.0.1
+         with:
+           miniconda-version: "latest"
+           python-version: "3.9"
+@@ -41,7 +41,7 @@ jobs:
+           mv habitat-lab/dist/* ../dist/
+           mv habitat-baselines/dist/* ../dist/
+       - name: Publish package distributions to PyPI
+-        uses: pypa/gh-action-pypi-publish@release/v1
++        uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # release/v1
+     #NOTE: use the below to debug with ssh: simply move this "job" just before the crashing job to intercept the workflow
+     #- name: Debugging with tmate
+     #  uses: mxschmitt/action-tmate@v3.18

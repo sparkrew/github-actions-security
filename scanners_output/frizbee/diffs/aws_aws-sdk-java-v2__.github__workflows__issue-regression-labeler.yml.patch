@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/aws_aws-sdk-java-v2__.github__workflows__issue-regression-labeler.yml b/.github/workflows/aws_aws-sdk-java-v2__.github__workflows__issue-regression-labeler.yml
+index d84d55f..0f8a8d6 100644
+--- a/.github/workflows/aws_aws-sdk-java-v2__.github__workflows__issue-regression-labeler.yml
++++ b/.github/workflows/aws_aws-sdk-java-v2__.github__workflows__issue-regression-labeler.yml
+@@ -12,7 +12,7 @@ jobs:
+     steps:
+     - name: Fetch template body
+       id: check_regression
+-      uses: actions/github-script@v8
++      uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+       env: 
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         TEMPLATE_BODY: ${{ github.event.issue.body }}

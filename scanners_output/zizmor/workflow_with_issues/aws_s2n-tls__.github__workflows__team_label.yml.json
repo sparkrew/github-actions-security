@@ -1,0 +1,31 @@
+{
+  "workflow": "aws_s2n-tls__.github__workflows__team_label.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "dangerous-triggers": 1,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "dangerous-triggers",
+      "level": "error",
+      "message": "use of fundamentally insecure workflow trigger",
+      "workflow": "aws_s2n-tls__.github__workflows__team_label.yml",
+      "line": 1,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "aws_s2n-tls__.github__workflows__team_label.yml",
+      "line": 17,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

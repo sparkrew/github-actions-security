@@ -1,0 +1,24 @@
+name: cffconvert
+
+on:
+  push:
+    paths:
+      - CITATION.cff
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: "validate"
+    runs-on: [
+        "self-hosted",
+        "1ES.Pool=onnxruntime-github-Ubuntu2204-AMD-CPU",
+        "JobId=cffconvert-${{ github.run_id }}-${{ github.run_number }}-${{ github.run_attempt }}"
+        ]
+    steps:
+      - name: Check out a copy of the repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+
+      - name: Check whether the citation metadata from CITATION.cff is valid
+        uses: citation-file-format/cffconvert-github-action@4cf11baa70a673bfdf9dad0acc7ee33b3f4b6084 # citation-file-format/cffconvert-github-action@2.0.0
+        with:
+          args: "--validate"

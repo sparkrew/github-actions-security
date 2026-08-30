@@ -1,0 +1,29 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_boringssl__.github__workflows__branch-time.yml:33:9
+   [1m[94m|[0m
+[1m[94m33 |[0m         - name: Checkout GitHub Repository
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m34 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m35 |[0m [1m[33m|[0m         with:
+[1m[94m36 |[0m [1m[33m|[0m           ref: 'main'
+[1m[94m37 |[0m [1m[33m|[0m           fetch-depth:  0 # Required to accurately count commits and find ancestors
+   [1m[94m|[0m [1m[33m|___________________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_boringssl__.github__workflows__branch-time.yml:29:3
+   [1m[94m|[0m
+[1m[94m29 |[0m [1m[33m/[0m   check-mirror:
+[1m[94m30 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m31 |[0m [1m[33m|[0m     permissions: read-all
+   [1m[94m|[0m [1m[33m|[0m     [1m[33m---------------------[0m [1m[33muses read-all permissions[0m
+[1m[94m32 |[0m [1m[33m|[0m     steps:
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m63 |[0m [1m[33m|[0m             exit 1
+[1m[94m64 |[0m [1m[33m|[0m           fi
+   [1m[94m|[0m [1m[33m|_____________-[0m [1m[33mthis job[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m9[39m findings ([1m[93m7[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m0[39m high

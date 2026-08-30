@@ -1,0 +1,27 @@
+diff --git a/.github/workflows/facebook_pyrefly__.github__workflows__test_extension.yml b/.github/workflows/facebook_pyrefly__.github__workflows__test_extension.yml
+index 271047a..d78c045 100644
+--- a/.github/workflows/facebook_pyrefly__.github__workflows__test_extension.yml
++++ b/.github/workflows/facebook_pyrefly__.github__workflows__test_extension.yml
+@@ -50,11 +50,11 @@ jobs:
+     runs-on: ${{ matrix.os }}
+     steps:
+       - name: Checkout repo (to see version.bzl in next step)
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           fetch-depth: 0  # Get all history for all branches and tags
+       - name: download built vsix
+-        uses: actions/download-artifact@v7
++        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+         with:
+           name: pyrefly-${{ matrix.platform }}-${{ matrix.arch }}
+       - name: Rename .vsix to .zip
+@@ -74,7 +74,7 @@ jobs:
+           mkdir -p lsp/bin && mv extracted/extension/bin/* lsp/bin/
+         shell: bash
+       # Now run the test
+-      - uses: actions/setup-node@v6
++      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+         with:
+           node-version: 22
+           cache: npm

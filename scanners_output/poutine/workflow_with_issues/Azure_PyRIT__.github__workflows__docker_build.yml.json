@@ -1,0 +1,116 @@
+{
+  "workflow": "Azure_PyRIT__.github__workflows__docker_build.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 8,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 8
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 64,
+      "column": "",
+      "job": "build-production-local",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 116,
+      "column": "",
+      "job": "build-production-pypi",
+      "step": "2",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 175,
+      "column": "",
+      "job": "test-local-gui",
+      "step": "0",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 158,
+      "column": "",
+      "job": "test-local-import",
+      "step": "0",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 212,
+      "column": "",
+      "job": "test-local-jupyter",
+      "step": "0",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 261,
+      "column": "",
+      "job": "test-pypi-gui",
+      "step": "0",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 244,
+      "column": "",
+      "job": "test-pypi-import",
+      "step": "0",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 296,
+      "column": "",
+      "job": "test-pypi-jupyter",
+      "step": "0",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/Tencent_ncnn__.github__workflows__linux-x64-cpu-gcc-musl.yml b/.github/workflows/Tencent_ncnn__.github__workflows__linux-x64-cpu-gcc-musl.yml
+index dacf4d4..848c25b 100644
+--- a/.github/workflows/Tencent_ncnn__.github__workflows__linux-x64-cpu-gcc-musl.yml
++++ b/.github/workflows/Tencent_ncnn__.github__workflows__linux-x64-cpu-gcc-musl.yml
+@@ -38,7 +38,7 @@ jobs:
+   linux-gcc-musl:
+     runs-on: ubuntu-latest
+     steps:
+-    - uses: jirutka/setup-alpine@v1
++    - uses: jirutka/setup-alpine@ae3b3ddba35054804fc4a3507b519fa7e8152050 # v1
+       with:
+         packages: >
+           cmake
+@@ -50,7 +50,7 @@ jobs:
+           libc-dev
+           linux-headers
+ 
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+     - name: build
+       shell: alpine.sh {0}
+       run: |

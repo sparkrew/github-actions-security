@@ -1,0 +1,66 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_faiss__.github__workflows__retry_build.yml:8:3
+   [1m[94m|[0m
+[1m[94m 8 |[0m [1m[91m/[0m   rerun-on-failure:
+[1m[94m 9 |[0m [1m[91m|[0m     permissions: write-all
+   [1m[94m|[0m [1m[91m|[0m     [1m[91m^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91muses write-all permissions[0m
+[1m[94m10 |[0m [1m[91m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m32 |[0m [1m[91m|[0m             gh run rerun ${{ inputs.run_id }} --failed
+[1m[94m33 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|_____________^[0m [1m[91mthis job[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_faiss__.github__workflows__retry_build.yml:12:9
+   [1m[94m|[0m
+[1m[94m12 |[0m         - name: rerun ${{ inputs.run_id }}
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m13 |[0m           env:
+[1m[94m...[0m
+[1m[94m16 |[0m             GH_DEBUG: api
+[1m[94m17 |[0m [1m[91m/[0m         run: |
+[1m[94m18 |[0m [1m[91m|[0m           # status can be one of "queued", "in_progress", "completed", "waiting", "requested", "pending"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m32 |[0m [1m[91m|[0m             gh run rerun ${{ inputs.run_id }} --failed
+[1m[94m33 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|_____________^[0m [1m[91minputs.run_id may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_faiss__.github__workflows__retry_build.yml:12:9
+   [1m[94m|[0m
+[1m[94m12 |[0m         - name: rerun ${{ inputs.run_id }}
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m13 |[0m           env:
+[1m[94m...[0m
+[1m[94m16 |[0m             GH_DEBUG: api
+[1m[94m17 |[0m [1m[91m/[0m         run: |
+[1m[94m18 |[0m [1m[91m|[0m           # status can be one of "queued", "in_progress", "completed", "waiting", "requested", "pending"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m32 |[0m [1m[91m|[0m             gh run rerun ${{ inputs.run_id }} --failed
+[1m[94m33 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|_____________^[0m [1m[91minputs.run_id may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_faiss__.github__workflows__retry_build.yml:12:9
+   [1m[94m|[0m
+[1m[94m12 |[0m         - name: rerun ${{ inputs.run_id }}
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m13 |[0m           env:
+[1m[94m...[0m
+[1m[94m16 |[0m             GH_DEBUG: api
+[1m[94m17 |[0m [1m[91m/[0m         run: |
+[1m[94m18 |[0m [1m[91m|[0m           # status can be one of "queued", "in_progress", "completed", "waiting", "requested", "pending"
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m32 |[0m [1m[91m|[0m             gh run rerun ${{ inputs.run_id }} --failed
+[1m[94m33 |[0m [1m[91m|[0m           fi
+   [1m[94m|[0m [1m[91m|_____________^[0m [1m[91minputs.run_id may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m8[39m findings ([1m[93m4[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m0[39m medium, [31m4[39m high

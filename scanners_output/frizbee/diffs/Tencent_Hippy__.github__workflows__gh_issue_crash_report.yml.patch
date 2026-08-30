@@ -1,0 +1,57 @@
+diff --git a/.github/workflows/Tencent_Hippy__.github__workflows__gh_issue_crash_report.yml b/.github/workflows/Tencent_Hippy__.github__workflows__gh_issue_crash_report.yml
+index 68b01c7..11665ed 100644
+--- a/.github/workflows/Tencent_Hippy__.github__workflows__gh_issue_crash_report.yml
++++ b/.github/workflows/Tencent_Hippy__.github__workflows__gh_issue_crash_report.yml
+@@ -42,7 +42,7 @@ jobs:
+       repository_owner: ${{ steps.triage-result.outputs.repository_owner }}
+     steps:
+     - name: Greetings
+-      uses: actions/github-script@v6.3.3
++      uses: actions/github-script@d556feaca394842dc55e4734bf3bb9f685482fa0 # v6.3.3
+       with:
+         script: |
+           const { owner, repo } = context.repo;
+@@ -63,7 +63,7 @@ jobs:
+     - run: npm install markdown-it
+     - name: Triage
+       id: triage-result
+-      uses: actions/github-script@v6.3.3
++      uses: actions/github-script@d556feaca394842dc55e4734bf3bb9f685482fa0 # v6.3.3
+       env:
+         issue_body: ${{ github.event.issue.body }}
+       with:
+@@ -139,14 +139,14 @@ jobs:
+       image: ghcr.io/${{ needs.triage.outputs.repository_owner }}/android-release:latest
+     steps:
+     - name: Token
+-      uses: navikt/github-app-token-generator@v1
++      uses: navikt/github-app-token-generator@b96ff604b2300989cd1105e3fad09199fca56681 # v1
+       id: get-token
+       with:
+         private-key: ${{ secrets.BOT_APP_KEY }}
+         app-id: ${{ secrets.BOT_APP_ID }}
+     - name: Backtrace
+       id: backtrace_parsed
+-      uses: actions/github-script@v6.3.3
++      uses: actions/github-script@d556feaca394842dc55e4734bf3bb9f685482fa0 # v6.3.3
+       env:
+         triage_logs: ${{ needs.triage.outputs.logs }}
+       with:
+@@ -199,7 +199,7 @@ jobs:
+         unzip -d symbols $ZIP_FILE
+         rm $ZIP_FILE
+         echo "success=1" >> $GITHUB_OUTPUT
+-    - uses: actions/github-script@v6.3.3
++    - uses: actions/github-script@d556feaca394842dc55e4734bf3bb9f685482fa0 # v6.3.3
+       if: steps.symbols_fetched.result == 'success' && !steps.symbols_fetched.outputs.success
+       with:
+         github-token: ${{ steps.get-token.outputs.token }}
+@@ -216,7 +216,7 @@ jobs:
+           });
+     - name: Translates
+       if: steps.symbols_fetched.outputs.success
+-      uses: actions/github-script@v6.3.3
++      uses: actions/github-script@d556feaca394842dc55e4734bf3bb9f685482fa0 # v6.3.3
+       with:
+         github-token: ${{ steps.get-token.outputs.token }}
+         script: |

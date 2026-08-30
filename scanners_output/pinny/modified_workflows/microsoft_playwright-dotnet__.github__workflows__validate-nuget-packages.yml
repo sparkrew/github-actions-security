@@ -1,0 +1,23 @@
+name: Validate NuGet Packages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # actions/checkout@v5 | releases,v5.0.1
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@baa11fbfe1d6520db94683bd5c7a3818018e4309 # actions/setup-dotnet@v5 | v5.1.0
+      with:
+        dotnet-version: 8.0.x
+    - name: Download driver
+      run: ./build.sh --download-driver
+    - name: Validate NuGet packages
+      run: dotnet pack ./src/Playwright.sln

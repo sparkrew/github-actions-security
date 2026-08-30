@@ -1,0 +1,35 @@
+name: Codecov Collect
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  collect:
+    name: Collect Coverage
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+
+      - name: Set up Node
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # actions/setup-node@v6 | main,v6.3.0
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build Library
+        run: npx lerna run build --scope=aws-cdk-lib
+
+      - name: Run Core tests
+        run: cd packages/aws-cdk-lib && yarn test core
+
+      - name: Upload Coverage and PR Info
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # actions/upload-artifact@v6 | v6.0.0
+        with:
+          name: coverage-artifacts
+          path: |
+            packages/aws-cdk-lib/coverage/cobertura-coverage.xml

@@ -1,0 +1,24 @@
+diff --git a/.github/workflows/microsoft_UFO__.github__workflows__document_deploy.yml b/.github/workflows/microsoft_UFO__.github__workflows__document_deploy.yml
+index 60e46bb..8b01945 100644
+--- a/.github/workflows/microsoft_UFO__.github__workflows__document_deploy.yml
++++ b/.github/workflows/microsoft_UFO__.github__workflows__document_deploy.yml
+@@ -16,10 +16,10 @@ jobs:
+ 
+     steps:
+       - name: Checkout repository
+-        uses: actions/checkout@v2
++        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+ 
+       - name: Set up Python
+-        uses: actions/setup-python@v2
++        uses: actions/setup-python@e9aba2c848f5ebd159c070c61ea2c4e2b122355e # v2
+         with:
+           python-version: '3.9'
+ 
+@@ -32,4 +32,4 @@ jobs:
+           cd documents
+           mkdocs gh-deploy --config-file mkdocs.yml --force
+         env:
+-          github_token: ${{ secrets.GITHUB_TOKEN }}
+\ No newline at end of file
++          github_token: ${{ secrets.GITHUB_TOKEN }}

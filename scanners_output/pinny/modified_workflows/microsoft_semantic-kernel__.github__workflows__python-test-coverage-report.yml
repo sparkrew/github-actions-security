@@ -1,0 +1,52 @@
+name: Python Test Coverage Report
+
+on:
+  workflow_run:
+    workflows: ["Python Test Coverage"]
+    types:
+      - completed
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  python-test-coverage-report:
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success'
+    continue-on-error: false
+    defaults:
+      run:
+        working-directory: python
+    steps:
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # actions/checkout@v5 | releases,v5.0.1
+      - name: Download coverage report
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # actions/download-artifact@v5 | v5.0.0
+        with:
+          github-token: ${{ secrets.GH_ACTIONS_PR_WRITE }}
+          run-id: ${{ github.event.workflow_run.id }}
+          path: ./python
+          merge-multiple: true
+      - name: Display structure of downloaded files
+        run: ls
+      - name: Read and set PR number
+        # Need to read the PR number from the file saved in the previous workflow
+        # because the workflow_run event does not have access to the PR number
+        # The PR number is needed to post the comment on the PR
+        run: |
+          PR_NUMBER=$(cat pr_number)
+          echo "PR number: $PR_NUMBER"
+          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
+      - name: Pytest coverage comment
+        id: coverageComment
+        uses: MishaKav/pytest-coverage-comment@1bdbba85fb74a2fdc1ec66383acec1091610f82b # MishaKav/pytest-coverage-comment@v1.1.57
+        with:
+          github-token: ${{ secrets.GH_ACTIONS_PR_WRITE }}
+          issue-number: ${{ env.PR_NUMBER }}
+          pytest-xml-coverage-path: python/python-coverage.xml
+          title: "Python Test Coverage Report"
+          badge-title: "Python Test Coverage"
+          junitxml-title: "Python Unit Test Overview"
+          junitxml-path: python/pytest.xml
+          default-branch: "main"
+          report-only-changed-files: true

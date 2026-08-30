@@ -1,0 +1,166 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:48:9
+   [1m[94m|[0m
+[1m[94m48 |[0m         - name: Checkout repo content (sparse - only check-submission.py)
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m49 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m54 |[0m [1m[33m|[0m             kernelctf/utils.py
+[1m[94m55 |[0m [1m[33m|[0m           sparse-checkout-cone-mode: false
+   [1m[94m|[0m [1m[33m|__________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:57:9
+   [1m[94m|[0m
+[1m[94m57 |[0m         - name: Checkout PR content (full)
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m58 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m61 |[0m [1m[33m|[0m           ref: ${{ env.PR_REF }}
+[1m[94m62 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:84:9
+   [1m[94m|[0m
+[1m[94m84 |[0m         - name: Checkout PR content (full)
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m85 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m86 |[0m [1m[33m|[0m         with:
+[1m[94m87 |[0m [1m[33m|[0m           ref: ${{ env.PR_REF }}
+[1m[94m88 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:90:9
+   [1m[94m|[0m
+[1m[94m90 |[0m         - name: Checkout Android scripts (sparse) - Android only
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m91 |[0m [1m[33m|[0m         if: startsWith(matrix.target, 'android')
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m97 |[0m [1m[33m|[0m             kernelctf/server/get_android_dependencies.sh
+[1m[94m98 |[0m [1m[33m|[0m           sparse-checkout-cone-mode: false
+   [1m[94m|[0m [1m[33m|__________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:167:9
+    [1m[94m|[0m
+[1m[94m167 |[0m         - name: Checkout PR content (full)
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m168 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m169 |[0m [1m[33m|[0m         with:
+[1m[94m170 |[0m [1m[33m|[0m           ref: ${{ env.PR_REF }}
+[1m[94m171 |[0m [1m[33m|[0m           fetch-depth: 0
+    [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:173:9
+    [1m[94m|[0m
+[1m[94m173 |[0m         - name: Checkout Android scripts (sparse) - Android only
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m174 |[0m [1m[33m|[0m         if: startsWith(matrix.target, 'android')
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m180 |[0m [1m[33m|[0m             kernelctf/server/get_android_dependencies.sh
+[1m[94m181 |[0m [1m[33m|[0m           sparse-checkout-cone-mode: false
+    [1m[94m|[0m [1m[33m|__________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:244:9
+    [1m[94m|[0m
+[1m[94m244 |[0m         - name: Checkout repo content (sparse - repro and server only)
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m245 |[0m [1m[33m|[0m         uses: actions/checkout@v4
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m250 |[0m [1m[33m|[0m             kernelctf/server
+[1m[94m251 |[0m [1m[33m|[0m           sparse-checkout-cone-mode: true
+    [1m[94m|[0m [1m[33m|_________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+  [1m[94m-->[0m ../.github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:2:1
+   [1m[94m|[0m
+[1m[94m 2 |[0m [1m[91m/[0m on:
+[1m[94m 3 |[0m [1m[91m|[0m   pull_request_target:
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m29 |[0m [1m[91m|[0m         required: false
+[1m[94m30 |[0m [1m[91m|[0m         default: false
+   [1m[94m|[0m [1m[91m|______________________^[0m [1m[91mpull_request_target is almost always used insecurely[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:146:9
+    [1m[94m|[0m
+[1m[94m146 |[0m [1m[94m...[0m - name: Summarize result (success)
+    [1m[94m|[0m       [1m[96m--------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m147 |[0m [1m[94m...[0m   if: success()
+[1m[94m148 |[0m [1m[94m...[0m   run: printf '✅ Exploit was built successfully.\n\nIt can be found under the artifacts (`exploit_${{ env.RELEASE_ID }}`).\n' >> $GITHUB_STEP_SUMMA[1m[94m...[0m
+    [1m[94m|[0m       [1m[96m----------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.RELEASE_ID may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:150:9
+    [1m[94m|[0m
+[1m[94m150 |[0m [1m[94m...[0m - name: Summarize result (failure)
+    [1m[94m|[0m       [1m[96m--------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m151 |[0m [1m[94m...[0m   if: failure() && steps.build_exploit.outcome == 'failure'
+[1m[94m152 |[0m [1m[94m...[0m   run: printf '❌ The exploit compilation failed.\n\nPlease fix it.\n\nYou can see the build logs by clicking on `...` here and then on "View job logs". Or by selecting `exploit_build (${{ env.RELEASE_ID }})` under Jobs in the left menubar.\n' >> $GITHUB_STEP_SUMMA[1m[94m...[0m
+    [1m[94m|[0m       [1m[96m-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.RELEASE_ID may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:479:9
+    [1m[94m|[0m
+[1m[94m479 |[0m         uses: google-github-actions/auth@v2
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:484:9
+    [1m[94m|[0m
+[1m[94m484 |[0m         uses: 'google-github-actions/upload-cloud-storage@v2'
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#github-env\github-env]8;;\][0m: [1mdangerous use of environment file[0m
+   [1m[94m-->[0m ../.github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:391:9
+    [1m[94m|[0m
+[1m[94m391 |[0m [1m[91m/[0m         run: |
+[1m[94m392 |[0m [1m[91m|[0m           # Use the APK we saved during cleanup
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m396 |[0m [1m[91m|[0m           
+[1m[94m397 |[0m [1m[91m|[0m           echo "ANDROID_RELEASE_PATH=$(realpath android_release)" >> $GITHUB_ENV
+    [1m[94m|[0m [1m[91m|________________________________________________________________________________^[0m [1m[91mwrite to GITHUB_ENV may allow code execution[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#github-env\github-env]8;;\][0m: [1mdangerous use of environment file[0m
+   [1m[94m-->[0m ../.github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:391:9
+    [1m[94m|[0m
+[1m[94m391 |[0m [1m[91m/[0m         run: |
+[1m[94m392 |[0m [1m[91m|[0m           # Use the APK we saved during cleanup
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m396 |[0m [1m[91m|[0m           
+[1m[94m397 |[0m [1m[91m|[0m           echo "ANDROID_RELEASE_PATH=$(realpath android_release)" >> $GITHUB_ENV
+    [1m[94m|[0m [1m[91m|________________________________________________________________________________^[0m [1m[91mwrite to GITHUB_ENV may allow code execution[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m18[39m findings ([1m[93m4[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m2[39m low, [33m7[39m medium, [31m5[39m high

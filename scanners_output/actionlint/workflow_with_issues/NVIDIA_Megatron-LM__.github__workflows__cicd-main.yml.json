@@ -1,0 +1,29 @@
+{
+  "workflow": "NVIDIA_Megatron-LM__.github__workflows__cicd-main.yml",
+  "tool": "actionlint",
+  "summary": {
+    "total_findings": 4
+  },
+  "findings": [
+    {
+      "line": 714,
+      "column": 14,
+      "message": "\"object\" value cannot be compared to \"string\" value with \"==\" operator [expression]"
+    },
+    {
+      "line": 722,
+      "column": 15,
+      "message": "the runner of \"actions/github-script@v6\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]"
+    },
+    {
+      "line": 739,
+      "column": 12,
+      "message": "property \"pre-flight\" is not defined in object type {nemo_cicd_test: {outputs: {}; result: string}} [expression]"
+    },
+    {
+      "line": 828,
+      "column": 13,
+      "message": "property \"pre-flight\" is not defined in object type {cicd-container-build: {outputs: {}; result: string}; cicd-integration-tests-latest: {outputs: {}; result: string}; cicd-unit-tests-latest: {outputs: {}; result: string}; coverage: {outputs: {}; result: string}; coverage_fake: {outputs: {}; result: string}; is-not-external-contributor: {outputs: {is_external_contributor: string; is_maintainer: string; selected_runner: string}; result: string}} [expression]"
+    }
+  ]
+}

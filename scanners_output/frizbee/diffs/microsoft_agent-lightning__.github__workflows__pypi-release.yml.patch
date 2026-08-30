@@ -1,0 +1,43 @@
+diff --git a/.github/workflows/microsoft_agent-lightning__.github__workflows__pypi-release.yml b/.github/workflows/microsoft_agent-lightning__.github__workflows__pypi-release.yml
+index 8d81cb7..b43da63 100644
+--- a/.github/workflows/microsoft_agent-lightning__.github__workflows__pypi-release.yml
++++ b/.github/workflows/microsoft_agent-lightning__.github__workflows__pypi-release.yml
+@@ -16,7 +16,7 @@ jobs:
+       tag_version: ${{ steps.get_tag.outputs.tag_version }}
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       - name: Get version from pyproject.toml
+         id: get_version
+@@ -48,19 +48,19 @@ jobs:
+       contents: read
+ 
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           fetch-depth: 0
+-      - uses: actions/setup-python@v6
++      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+         with:
+           python-version: '3.12'
+-      - uses: astral-sh/setup-uv@v7
++      - uses: astral-sh/setup-uv@5a095e7a2014a4212f075830d4f7277575a9d098 # v7
+         with:
+           enable-cache: true
+       - name: Sync dependencies
+         run: uv sync --frozen --no-default-groups --group dev
+ 
+-      - uses: actions/setup-node@v6
++      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+         with:
+           node-version: '22'
+       - name: Install JavaScript dependencies
+@@ -78,4 +78,4 @@ jobs:
+           uv run --locked --no-sync python -m zipfile -l dist/*.whl
+ 
+       - name: Publish to PyPI
+-        uses: pypa/gh-action-pypi-publish@release/v1
++        uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # release/v1

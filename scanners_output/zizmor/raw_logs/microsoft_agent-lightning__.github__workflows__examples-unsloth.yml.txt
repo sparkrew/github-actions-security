@@ -1,0 +1,20 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_agent-lightning__.github__workflows__examples-unsloth.yml:47:9
+   [1m[94m|[0m
+[1m[94m47 |[0m   [1m[94m...[0m - uses: actions/checkout@v6
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m48 |[0m [1m[33m|[0m [1m[94m...[0m   with:
+[1m[94m49 |[0m [1m[33m|[0m [1m[94m...[0m     ref: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.pr_ref || (github.event.pull_request.number && format('refs/pull/{0}/merge', github.event.pull_request.number)) || github.ref }}
+   [1m[94m|[0m [1m[33m|___________________________________________________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_agent-lightning__.github__workflows__examples-unsloth.yml:50:9
+   [1m[94m|[0m
+[1m[94m50 |[0m       - uses: astral-sh/setup-uv@v7
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m3[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m1[39m high

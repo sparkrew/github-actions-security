@@ -1,0 +1,187 @@
+diff --git a/.github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml b/.github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml
+index ccd260a..687a308 100644
+--- a/.github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml
++++ b/.github/workflows/Tencent_WeKnora__.github__workflows__docker-image.yml
+@@ -15,25 +15,25 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v3
++        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+ 
+       - name: Set up Docker Buildx
+-        uses: docker/setup-buildx-action@v3
++        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+ 
+       - name: Login to Docker Hub
+-        uses: docker/login-action@v3
++        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+         with:
+           username: ${{ secrets.DOCKERHUB_USERNAME }}
+           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+ 
+       - name: Docker meta
+         id: meta
+-        uses: docker/metadata-action@v5
++        uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # v5
+         with:
+           images: ${{ secrets.DOCKERHUB_USERNAME }}/weknora-ui
+ 
+       - name: Build ui Image
+-        uses: docker/build-push-action@v3
++        uses: docker/build-push-action@1104d471370f9806843c095c1db02b5a90c5f8b6 # v3
+         with:
+           push: true
+           platforms: linux/amd64,linux/arm64
+@@ -64,25 +64,25 @@ jobs:
+           swap-storage: true
+ 
+       - name: Checkout code
+-        uses: actions/checkout@v3
++        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+ 
+       - name: Set up Docker Buildx
+-        uses: docker/setup-buildx-action@v3
++        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+ 
+       - name: Login to Docker Hub
+-        uses: docker/login-action@v3
++        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+         with:
+           username: ${{ secrets.DOCKERHUB_USERNAME }}
+           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+ 
+       - name: Docker meta
+         id: meta
+-        uses: docker/metadata-action@v5
++        uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # v5
+         with:
+           images: ${{ secrets.DOCKERHUB_USERNAME }}/weknora-docreader
+ 
+       - name: Build docreader Image
+-        uses: docker/build-push-action@v3
++        uses: docker/build-push-action@1104d471370f9806843c095c1db02b5a90c5f8b6 # v3
+         with:
+           push: true
+           platforms: linux/amd64,linux/arm64
+@@ -97,25 +97,25 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v3
++        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+ 
+       - name: Set up Docker Buildx
+-        uses: docker/setup-buildx-action@v3
++        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+ 
+       - name: Login to Docker Hub
+-        uses: docker/login-action@v3
++        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+         with:
+           username: ${{ secrets.DOCKERHUB_USERNAME }}
+           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+ 
+       - name: Docker meta
+         id: meta
+-        uses: docker/metadata-action@v5
++        uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # v5
+         with:
+           images: ${{ secrets.DOCKERHUB_USERNAME }}/weknora-sandbox
+ 
+       - name: Build sandbox Image
+-        uses: docker/build-push-action@v3
++        uses: docker/build-push-action@1104d471370f9806843c095c1db02b5a90c5f8b6 # v3
+         with:
+           push: true
+           platforms: linux/amd64,linux/arm64
+@@ -139,21 +139,21 @@ jobs:
+     runs-on: ${{ matrix.runs }}
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v3
++        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+ 
+       - name: Set up Docker Buildx
+-        uses: docker/setup-buildx-action@v3
++        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+         id: setup-buildx
+ 
+       - name: Login to Docker Hub
+-        uses: docker/login-action@v3
++        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+         with:
+           username: ${{ secrets.DOCKERHUB_USERNAME }}
+           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+ 
+       - name: Docker meta
+         id: meta
+-        uses: docker/metadata-action@v5
++        uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # v5
+         with:
+           images: ${{ secrets.DOCKERHUB_USERNAME }}/weknora-app
+ 
+@@ -173,14 +173,14 @@ jobs:
+           ./scripts/get_version.sh info
+       
+       - name: Build Cache for Docker
+-        uses: actions/cache@v4
++        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+         id: cache
+         with:
+           path: go-pkg-mod
+           key: ${{ env.PLATFORM_PAIR }}-go-build-cache-${{ hashFiles('**/go.sum') }}
+ 
+       - name: Inject go-build-cache
+-        uses: reproducible-containers/buildkit-cache-dance@v3
++        uses: reproducible-containers/buildkit-cache-dance@1b8ab18fbda5ad3646e3fcc9ed9dd41ce2f297b4 # v3
+         with:
+           builder: ${{ steps.setup-buildx.outputs.name }}
+           cache-map: |
+@@ -191,7 +191,7 @@ jobs:
+ 
+       - name: Build app Image
+         id: build
+-        uses: docker/build-push-action@v3
++        uses: docker/build-push-action@1104d471370f9806843c095c1db02b5a90c5f8b6 # v3
+         with:
+           push: true
+           platforms: ${{ matrix.platform }}
+@@ -215,7 +215,7 @@ jobs:
+           touch "${{ runner.temp }}/digests/${digest#sha256:}"
+ 
+       - name: Upload digest
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: digests-${{ env.PLATFORM_PAIR }}
+           path: ${{ runner.temp }}/digests/*
+@@ -228,24 +228,24 @@ jobs:
+       - build-app
+     steps:
+       - name: Download digests
+-        uses: actions/download-artifact@v4
++        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+         with:
+           path: ${{ runner.temp }}/digests
+           pattern: digests-*
+           merge-multiple: true
+ 
+       - name: Login to Docker Hub
+-        uses: docker/login-action@v3
++        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+         with:
+           username: ${{ secrets.DOCKERHUB_USERNAME }}
+           password: ${{ secrets.DOCKERHUB_PASSWORD }}
+ 
+       - name: Set up Docker Buildx
+-        uses: docker/setup-buildx-action@v3
++        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+ 
+       - name: Docker meta
+         id: meta
+-        uses: docker/metadata-action@v5
++        uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # v5
+         with:
+           images: ${{ secrets.DOCKERHUB_USERNAME }}/weknora-app
+ 

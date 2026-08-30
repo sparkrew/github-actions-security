@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/NVIDIA_cccl__.github__workflows__docs-deploy.yml b/.github/workflows/NVIDIA_cccl__.github__workflows__docs-deploy.yml
+index bec6058..6daa96e 100644
+--- a/.github/workflows/NVIDIA_cccl__.github__workflows__docs-deploy.yml
++++ b/.github/workflows/NVIDIA_cccl__.github__workflows__docs-deploy.yml
+@@ -32,7 +32,7 @@ jobs:
+     runs-on: ${{ github.repository == 'NVIDIA/cccl' && 'linux-amd64-cpu32' || 'ubuntu-latest' }}
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           persist-credentials: false
+ 
+@@ -114,7 +114,7 @@ jobs:
+           cp -a _site/. "${root_dir}/"
+ 
+       - name: Deploy to GitHub Pages
+-        uses: peaceiris/actions-gh-pages@v3
++        uses: peaceiris/actions-gh-pages@373f7f263a76c20808c831209c920827a82a2847 # v3
+         with:
+           github_token: ${{ secrets.GITHUB_TOKEN }}
+           publish_dir: ./deploy

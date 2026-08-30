@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/facebook_rocksdb__.github__workflows__nightly-candidate.yml b/.github/workflows/facebook_rocksdb__.github__workflows__nightly-candidate.yml
+index bfc15d1..7d841b7 100644
+--- a/.github/workflows/facebook_rocksdb__.github__workflows__nightly-candidate.yml
++++ b/.github/workflows/facebook_rocksdb__.github__workflows__nightly-candidate.yml
+@@ -12,7 +12,7 @@ jobs:
+       image: ubuntu-2004:202111-02
+       options: --shm-size=16gb
+     steps:
+-    - uses: actions/checkout@v4.1.0
++    - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+     - uses: "./.github/actions/pre-steps"
+     - uses: "./.github/actions/install-gflags"
+     - run: make V=1 J=4 -j4 check

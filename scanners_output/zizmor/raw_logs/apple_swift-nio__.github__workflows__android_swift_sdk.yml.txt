@@ -1,0 +1,37 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__android_swift_sdk.yml:29:9
+   [1m[94m|[0m
+[1m[94m29 |[0m          - id: generate-matrix
+   [1m[94m|[0m  [1m[91m__________^[0m
+[1m[94m30 |[0m [1m[91m|[0m          run: |
+   [1m[94m|[0m [1m[91m|[0m [1m[91m_________^[0m
+[1m[94m31 |[0m [1m[91m||[0m           # Validate and use JSON environment variables directly
+[1m[94m...[0m  [1m[91m||[0m
+[1m[94m56 |[0m [1m[91m||[0m           }' | jq -c)
+[1m[94m57 |[0m [1m[91m||[0m           EOM
+   [1m[94m|[0m [1m[91m||[0m             [1m[91m^[0m
+   [1m[94m|[0m [1m[91m||_____________|[0m
+   [1m[94m|[0m  [1m[91m|_____________this step[0m
+   [1m[94m|[0m                [1m[91minputs.env_vars may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__android_swift_sdk.yml:29:9
+   [1m[94m|[0m
+[1m[94m29 |[0m          - id: generate-matrix
+   [1m[94m|[0m  [1m[91m__________^[0m
+[1m[94m30 |[0m [1m[91m|[0m          run: |
+   [1m[94m|[0m [1m[91m|[0m [1m[91m_________^[0m
+[1m[94m31 |[0m [1m[91m||[0m           # Validate and use JSON environment variables directly
+[1m[94m...[0m  [1m[91m||[0m
+[1m[94m56 |[0m [1m[91m||[0m           }' | jq -c)
+[1m[94m57 |[0m [1m[91m||[0m           EOM
+   [1m[94m|[0m [1m[91m||[0m             [1m[91m^[0m
+   [1m[94m|[0m [1m[91m||_____________|[0m
+   [1m[94m|[0m  [1m[91m|_____________this step[0m
+   [1m[94m|[0m                [1m[91minputs.additional_command_arguments may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m4[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m0[39m medium, [31m2[39m high

@@ -1,0 +1,195 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_action_merge.yml:52:7
+   [1m[94m|[0m
+[1m[94m52 |[0m       - name: Checkout
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m53 |[0m [1m[33m|[0m       if: needs.call_classify_commits.outputs.normal_commits_count > 1
+[1m[94m54 |[0m [1m[33m|[0m       uses: actions/checkout@v3
+[1m[94m55 |[0m [1m[33m|[0m       with:
+[1m[94m56 |[0m [1m[33m|[0m         fetch-depth: 0
+   [1m[94m|[0m [1m[33m|______________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_action_merge.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: '[gh] action merge'
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m354 |[0m [1m[33m|[0m
+[1m[94m355 |[0m [1m[33m|[0m           await Promise.all(p);
+    [1m[94m|[0m [1m[33m|________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_action_merge.yml:29:3
+   [1m[94m|[0m
+[1m[94m29 |[0m [1m[33m/[0m   call_classify_commits:
+[1m[94m30 |[0m [1m[33m|[0m     if: github.repository == 'Tencent/Hippy' && (github.event.label.name == 'action(squash-merge)' || github.event.label.name == 'ac[1m[94m...[0m
+[1m[94m31 |[0m [1m[33m|[0m     uses: ./.github/workflows/reuse_classify_commits.yml
+[1m[94m32 |[0m [1m[33m|[0m     with:
+[1m[94m33 |[0m [1m[33m|[0m       pull_request_number: ${{ github.event.pull_request.number }}
+   [1m[94m|[0m [1m[33m|[0m                                                                  [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|__________________________________________________________________|[0m
+   [1m[94m|[0m                                                                    [1m[33mthis job[0m
+   [1m[94m|[0m                                                                    [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_action_merge.yml:35:3
+    [1m[94m|[0m
+[1m[94m 35 |[0m [1m[33m/[0m   squash_merge_action:
+[1m[94m 36 |[0m [1m[33m|[0m     needs: call_classify_commits
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m145 |[0m [1m[33m|[0m           }
+[1m[94m146 |[0m [1m[33m|[0m           await Promise.all(p);
+    [1m[94m|[0m [1m[33m|[0m                               [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_______________________________|[0m
+    [1m[94m|[0m                                 [1m[33mthis job[0m
+    [1m[94m|[0m                                 [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_action_merge.yml:148:3
+    [1m[94m|[0m
+[1m[94m148 |[0m [1m[33m/[0m   rebase_merge_action_preparation:
+[1m[94m149 |[0m [1m[33m|[0m     needs: call_classify_commits
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m245 |[0m [1m[33m|[0m
+[1m[94m246 |[0m [1m[33m|[0m           await Promise.all(p);
+    [1m[94m|[0m [1m[33m|[0m                               [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_______________________________|[0m
+    [1m[94m|[0m                                 [1m[33mthis job[0m
+    [1m[94m|[0m                                 [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_action_merge.yml:248:3
+    [1m[94m|[0m
+[1m[94m248 |[0m [1m[33m/[0m   rebase_merge_action:
+[1m[94m249 |[0m [1m[33m|[0m     needs: [ rebase_merge_action_preparation, call_classify_commits ]
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m319 |[0m [1m[33m|[0m           }
+[1m[94m320 |[0m [1m[33m|[0m           await Promise.all(p);
+    [1m[94m|[0m [1m[33m|[0m                               [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_______________________________|[0m
+    [1m[94m|[0m                                 [1m[33mthis job[0m
+    [1m[94m|[0m                                 [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_action_merge.yml:322:3
+    [1m[94m|[0m
+[1m[94m322 |[0m [1m[33m/[0m   rebase_merge_action_rejected:
+[1m[94m323 |[0m [1m[33m|[0m     needs: [ rebase_merge_action ]
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m354 |[0m [1m[33m|[0m
+[1m[94m355 |[0m [1m[33m|[0m           await Promise.all(p);
+    [1m[94m|[0m [1m[33m|[0m                                [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|________________________________|[0m
+    [1m[94m|[0m                                  [1m[33mthis job[0m
+    [1m[94m|[0m                                  [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_action_merge.yml:3:1
+   [1m[94m|[0m
+[1m[94m 3 |[0m [1m[91m/[0m on:
+[1m[94m 4 |[0m [1m[91m|[0m   pull_request_target:
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m10 |[0m [1m[91m|[0m     types:
+[1m[94m11 |[0m [1m[91m|[0m       - labeled
+   [1m[94m|[0m [1m[91m|_______________^[0m [1m[91mpull_request_target is almost always used insecurely[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_action_merge.yml:68:7
+   [1m[94m|[0m
+[1m[94m68 |[0m       - name: Commitlint
+   [1m[94m|[0m         [1m[94m----------------[0m [1m[94minfo: this step[0m
+[1m[94m69 |[0m         id: commitlint
+[1m[94m...[0m
+[1m[94m72 |[0m         shell: bash {0}
+[1m[94m73 |[0m [1m[94m/[0m       run: |
+[1m[94m74 |[0m [1m[94m|[0m         ${{ env.OUTPUT_FUNCTION }}
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m77 |[0m [1m[94m|[0m           output $? "$result"
+[1m[94m78 |[0m [1m[94m|[0m         fi
+   [1m[94m|[0m [1m[94m|__________-[0m [1m[94minfo: needs.call_classify_commits.outputs.normal_commits_count may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_action_merge.yml:155:7
+    [1m[94m|[0m
+[1m[94m155 |[0m       - name: Permission
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m156 |[0m         id: get-permission
+[1m[94m157 |[0m         uses: actions/github-script@v6.3.3
+[1m[94m158 |[0m         with:
+[1m[94m159 |[0m [1m[91m/[0m         script: |
+[1m[94m160 |[0m [1m[91m|[0m           const { repos } = github.rest;
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m167 |[0m [1m[91m|[0m           });
+[1m[94m168 |[0m [1m[91m|[0m           fs.appendFileSync(process.env.GITHUB_OUTPUT, `permission=${permission}${os.EOL}`, { encoding: 'utf8' });
+    [1m[94m|[0m [1m[91m|__________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.sender.login may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_action_merge.yml:41:7
+   [1m[94m|[0m
+[1m[94m41 |[0m       uses: navikt/github-app-token-generator@v1
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_action_merge.yml:48:7
+   [1m[94m|[0m
+[1m[94m48 |[0m       uses: actions-ecosystem/action-remove-labels@v1.3.0
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_action_merge.yml:170:7
+    [1m[94m|[0m
+[1m[94m170 |[0m       uses: navikt/github-app-token-generator@v1
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_action_merge.yml:254:7
+    [1m[94m|[0m
+[1m[94m254 |[0m       uses: navikt/github-app-token-generator@v1
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_action_merge.yml:261:7
+    [1m[94m|[0m
+[1m[94m261 |[0m       uses: actions-ecosystem/action-remove-labels@v1.3.0
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_action_merge.yml:328:7
+    [1m[94m|[0m
+[1m[94m328 |[0m       uses: navikt/github-app-token-generator@v1
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m27[39m findings ([1m[93m11[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m7[39m medium, [31m8[39m high

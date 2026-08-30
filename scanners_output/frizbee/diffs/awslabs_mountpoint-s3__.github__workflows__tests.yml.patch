@@ -1,0 +1,284 @@
+diff --git a/.github/workflows/awslabs_mountpoint-s3__.github__workflows__tests.yml b/.github/workflows/awslabs_mountpoint-s3__.github__workflows__tests.yml
+index 9fb13e2..522d963 100644
+--- a/.github/workflows/awslabs_mountpoint-s3__.github__workflows__tests.yml
++++ b/.github/workflows/awslabs_mountpoint-s3__.github__workflows__tests.yml
+@@ -27,7 +27,7 @@ jobs:
+ 
+     steps:
+     - name: Checkout code
+-      uses: actions/checkout@v6
++      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         submodules: true
+     - name: Install operating system dependencies
+@@ -35,17 +35,17 @@ jobs:
+       with:
+         fuseVersion: ${{ matrix.fuseVersion }}
+     - name: Set up Rust toolchain
+-      uses: actions-rust-lang/setup-rust-toolchain@v1
++      uses: actions-rust-lang/setup-rust-toolchain@1780873c7b576612439a134613cc4cc74ce5538c # v1
+       with:
+         # setup-rust-toolchain sets "-D warnings" by default, and Rust treats any warning as compile error.
+         # We need to do this currently because `mountpoint-s3-fuser` contains some warnings and it breaks the build.
+         rustflags: ""
+     - name: Install nextest
+-      uses: taiki-e/install-action@v2
++      uses: taiki-e/install-action@2dc1234c293fde032a8e34c74501c7d6403e92ae # v2
+       with:
+         tool: nextest
+     - name: Cargo cache
+-      uses: actions/cache@v5
++      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+       with:
+         path: |
+           ~/.cargo/bin/
+@@ -65,7 +65,7 @@ jobs:
+ 
+     steps:
+     - name: Checkout code
+-      uses: actions/checkout@v6
++      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         submodules: true
+     - name: Install operating system dependencies
+@@ -73,11 +73,11 @@ jobs:
+       with:
+         fuseVersion: 2
+     - name: Set up Rust toolchain
+-      uses: actions-rust-lang/setup-rust-toolchain@v1
++      uses: actions-rust-lang/setup-rust-toolchain@1780873c7b576612439a134613cc4cc74ce5538c # v1
+       with:
+         rustflags: ""
+     - name: Cargo cache
+-      uses: actions/cache@v5
++      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+       with:
+         path: |
+           ~/.cargo/bin/
+@@ -99,7 +99,7 @@ jobs:
+ 
+     steps:
+     - name: Checkout code
+-      uses: actions/checkout@v6
++      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         submodules: true
+     - name: Install dependencies
+@@ -109,17 +109,17 @@ jobs:
+       run: |
+         brew install --cask macfuse
+     - name: Set up Rust toolchain
+-      uses: actions-rust-lang/setup-rust-toolchain@v1
++      uses: actions-rust-lang/setup-rust-toolchain@1780873c7b576612439a134613cc4cc74ce5538c # v1
+       with:
+         # setup-rust-toolchain sets "-D warnings" by default, and Rust treats any warning as compile error.
+         # We need to do this currently because `mountpoint-s3-fuser` contains some warnings and it breaks the build.
+         rustflags: ""
+     - name: Install nextest
+-      uses: taiki-e/install-action@v2
++      uses: taiki-e/install-action@2dc1234c293fde032a8e34c74501c7d6403e92ae # v2
+       with:
+         tool: nextest
+     - name: Cargo cache
+-      uses: actions/cache@v5
++      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+       with:
+         path: |
+           ~/.cargo/bin/
+@@ -140,7 +140,7 @@ jobs:
+ 
+     steps:
+     - name: Checkout code
+-      uses: actions/checkout@v6
++      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         submodules: true
+     - name: Install operating system dependencies
+@@ -148,13 +148,13 @@ jobs:
+       with:
+         fuseVersion: 2
+     - name: Set up Rust toolchain
+-      uses: actions-rust-lang/setup-rust-toolchain@v1
++      uses: actions-rust-lang/setup-rust-toolchain@1780873c7b576612439a134613cc4cc74ce5538c # v1
+       with:
+         # setup-rust-toolchain sets "-D warnings" by default, and Rust treats any warning as compile error.
+         # We need to do this currently because `mountpoint-s3-fuser` contains some warnings and it breaks the build.
+         rustflags: ""
+     - name: Cargo cache
+-      uses: actions/cache@v5
++      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+       with:
+         path: |
+           ~/.cargo/bin/
+@@ -172,7 +172,7 @@ jobs:
+ 
+     steps:
+     - name: Checkout code
+-      uses: actions/checkout@v6
++      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         submodules: true
+     - name: Install operating system dependencies
+@@ -180,13 +180,13 @@ jobs:
+       with:
+         fuseVersion: 2
+     - name: Set up Rust toolchain
+-      uses: actions-rust-lang/setup-rust-toolchain@v1
++      uses: actions-rust-lang/setup-rust-toolchain@1780873c7b576612439a134613cc4cc74ce5538c # v1
+       with:
+         # setup-rust-toolchain sets "-D warnings" by default, and Rust treats any warning as compile error.
+         # We need to do this currently because `mountpoint-s3-fuser` contains some warnings and it breaks the build.
+         rustflags: ""
+     - name: Cargo cache
+-      uses: actions/cache@v5
++      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+       with:
+         path: |
+           ~/.cargo/bin/
+@@ -204,17 +204,17 @@ jobs:
+ 
+     steps:
+     - name: Checkout code
+-      uses: actions/checkout@v6
++      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         submodules: true
+     - name: Set up Rust toolchain
+-      uses: actions-rust-lang/setup-rust-toolchain@v1
++      uses: actions-rust-lang/setup-rust-toolchain@1780873c7b576612439a134613cc4cc74ce5538c # v1
+       with:
+         # setup-rust-toolchain sets "-D warnings" by default, and Rust treats any warning as compile error.
+         # We need to do this currently because `mountpoint-s3-fuser` contains some warnings and it breaks the build.
+         rustflags: ""
+     - name: Install nextest
+-      uses: taiki-e/install-action@v2
++      uses: taiki-e/install-action@2dc1234c293fde032a8e34c74501c7d6403e92ae # v2
+       with:
+         tool: nextest
+     - name: Install operating system dependencies
+@@ -222,7 +222,7 @@ jobs:
+       with:
+         fuseVersion: 2
+     - name: Cargo cache
+-      uses: actions/cache@v5
++      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+       with:
+         path: |
+           ~/.cargo/bin/
+@@ -240,9 +240,9 @@ jobs:
+ 
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: Set up Rust toolchain
+-        uses: actions-rust-lang/setup-rust-toolchain@v1
++        uses: actions-rust-lang/setup-rust-toolchain@1780873c7b576612439a134613cc4cc74ce5538c # v1
+         with:
+           # setup-rust-toolchain sets "-D warnings" by default, and Rust treats any warning as compile error.
+           # We need to do this currently because `mountpoint-s3-fuser` contains some warnings and it breaks the build.
+@@ -257,7 +257,7 @@ jobs:
+ 
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           submodules: true
+       - name: Install operating system dependencies
+@@ -265,14 +265,14 @@ jobs:
+         with:
+           fuseVersion: 2
+       - name: Set up Rust toolchain
+-        uses: actions-rust-lang/setup-rust-toolchain@v1
++        uses: actions-rust-lang/setup-rust-toolchain@1780873c7b576612439a134613cc4cc74ce5538c # v1
+         with:
+           # setup-rust-toolchain sets "-D warnings" by default, and Rust treats any warning as compile error.
+           # We need to do this currently because `mountpoint-s3-fuser` contains some warnings and it breaks the build.
+           rustflags: ""
+           components: clippy
+       - name: Cargo cache
+-        uses: actions/cache@v5
++        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+         with:
+           path: |
+             ~/.cargo/bin/
+@@ -290,18 +290,18 @@ jobs:
+ 
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           submodules: true
+       - name: Set up Rust toolchain
+-        uses: actions-rust-lang/setup-rust-toolchain@v1
++        uses: actions-rust-lang/setup-rust-toolchain@1780873c7b576612439a134613cc4cc74ce5538c # v1
+         with:
+           # setup-rust-toolchain sets "-D warnings" by default, and Rust treats any warning as compile error.
+           # We need to do this currently because `mountpoint-s3-fuser` contains some warnings and it breaks the build.
+           rustflags: ""
+           components: rust-docs
+       - name: Cargo cache
+-        uses: actions/cache@v5
++        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+         with:
+           path: |
+             ~/.cargo/bin/
+@@ -319,9 +319,9 @@ jobs:
+ 
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: Run cargo deny
+-        uses: EmbarkStudios/cargo-deny-action@v2
++        uses: EmbarkStudios/cargo-deny-action@3fd3802e88374d3fe9159b834c7714ec57d6c979 # v2
+ 
+ 
+   benchmark-script-checks:
+@@ -333,11 +333,11 @@ jobs:
+ 
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: Install uv
+-        uses: astral-sh/setup-uv@v7
++        uses: astral-sh/setup-uv@5a095e7a2014a4212f075830d4f7277575a9d098 # v7
+       - name: Set up Python
+-        uses: actions/setup-python@v6
++        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+         with:
+           python-version-file: "./benchmark/.python-version"
+       - name: Format check
+@@ -355,11 +355,11 @@ jobs:
+ 
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: Install uv
+-        uses: astral-sh/setup-uv@v7
++        uses: astral-sh/setup-uv@5a095e7a2014a4212f075830d4f7277575a9d098 # v7
+       - name: Set up Python
+-        uses: actions/setup-python@v6
++        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+       - name: Format check
+         run: uvx ruff format --diff .
+       - name: Lint check
+@@ -371,12 +371,12 @@ jobs:
+ 
+     steps:
+       - name: Build Dockerfile using official release binaries
+-        uses: docker/build-push-action@v6
++        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
+         with:
+           push: false
+           file: docker/Dockerfile
+       - name: Build Dockerfile using Mountpoint source code
+-        uses: docker/build-push-action@v6
++        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
+         with:
+           push: false
+           file: docker/Dockerfile.source

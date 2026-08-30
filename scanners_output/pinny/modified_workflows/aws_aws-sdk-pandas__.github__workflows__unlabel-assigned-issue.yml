@@ -1,0 +1,19 @@
+name: Unlabel Assigned Issues
+on:
+  issues:
+    types:
+      - assigned
+permissions:
+  contents: read
+
+jobs:
+  unlabel-issue:
+    permissions:
+      issues: write  # for andymckay/labeler to label issues
+      pull-requests: write  # for andymckay/labeler to label PRs
+    runs-on: ubuntu-latest
+    steps:
+      - name: unlabel-issues
+        uses: andymckay/labeler@3a4296e9dcdf9576b0456050db78cfd34853f260 # andymckay/labeler@master
+        with:
+          remove-labels: "needs-triage"

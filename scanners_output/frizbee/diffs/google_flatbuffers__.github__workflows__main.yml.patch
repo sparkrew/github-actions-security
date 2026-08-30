@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/google_flatbuffers__.github__workflows__main.yml b/.github/workflows/google_flatbuffers__.github__workflows__main.yml
+index 9a90095..e1b7c4f 100644
+--- a/.github/workflows/google_flatbuffers__.github__workflows__main.yml
++++ b/.github/workflows/google_flatbuffers__.github__workflows__main.yml
+@@ -27,7 +27,7 @@ jobs:
+        language: c++
+        fuzz-seconds: 60
+    - name: Upload Crash
+-     uses: actions/upload-artifact@v4
++     uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+      if: failure() && steps.build.outcome == 'success'
+      with:
+        name: artifacts

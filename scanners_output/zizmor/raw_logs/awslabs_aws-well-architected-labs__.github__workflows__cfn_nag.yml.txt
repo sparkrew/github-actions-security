@@ -1,0 +1,77 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml:11:9
+   [1m[94m|[0m
+[1m[94m11 |[0m         - name: Checkout
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m12 |[0m [1m[33m|[0m         uses: actions/checkout@v2
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m16 |[0m [1m[33m|[0m       #   with:
+[1m[94m17 |[0m [1m[33m|[0m       #     args: "static/**/*.yaml"
+   [1m[94m|[0m [1m[33m|____________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml:7:3
+   [1m[94m|[0m
+[1m[94m 7 |[0m [1m[33m/[0m   Cloudformation-checker:
+[1m[94m 8 |[0m [1m[33m|[0m     name: Check CFN security concerns
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m55 |[0m [1m[33m|[0m       #   with:
+[1m[94m56 |[0m [1m[33m|[0m       #     args: '--input-path cloudformation/
+   [1m[94m|[0m [1m[33m|[0m                                                [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________________________________________|[0m
+   [1m[94m|[0m                                                  [1m[33mthis job[0m
+   [1m[94m|[0m                                                  [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml:23:9
+   [1m[94m|[0m
+[1m[94m23 |[0m         - name: cfn-lint-notification
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m24 |[0m           if: failure()
+[1m[94m...[0m
+[1m[94m30 |[0m             fields: workflow,job,commit,repo,ref,author,took
+[1m[94m31 |[0m [1m[91m/[0m           custom_payload: |
+[1m[94m32 |[0m [1m[91m|[0m                           {
+[1m[94m33 |[0m [1m[91m|[0m                             Content: ":rotating_light: \n ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repo[1m[94m...[0m
+[1m[94m34 |[0m [1m[91m|[0m                           }
+   [1m[94m|[0m [1m[91m|___________________________^[0m [1m[91mgithub.workflow may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml:23:9
+   [1m[94m|[0m
+[1m[94m23 |[0m         - name: cfn-lint-notification
+   [1m[94m|[0m           [1m[94m---------------------------[0m [1m[94minfo: this step[0m
+[1m[94m24 |[0m           if: failure()
+[1m[94m...[0m
+[1m[94m30 |[0m             fields: workflow,job,commit,repo,ref,author,took
+[1m[94m31 |[0m [1m[94m/[0m           custom_payload: |
+[1m[94m32 |[0m [1m[94m|[0m                           {
+[1m[94m33 |[0m [1m[94m|[0m                             Content: ":rotating_light: \n ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repo[1m[94m...[0m
+[1m[94m34 |[0m [1m[94m|[0m                           }
+   [1m[94m|[0m [1m[94m|___________________________-[0m [1m[94minfo: job.status may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml:19:9
+   [1m[94m|[0m
+[1m[94m19 |[0m         uses: stelligent/cfn_nag@master
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml:25:9
+   [1m[94m|[0m
+[1m[94m25 |[0m         uses: 8398a7/action-slack@v3
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m13[39m findings ([1m[93m7[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m2[39m medium, [31m3[39m high

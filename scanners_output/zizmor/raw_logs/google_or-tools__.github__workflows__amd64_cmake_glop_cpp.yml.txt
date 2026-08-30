@@ -1,0 +1,59 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_or-tools__.github__workflows__amd64_cmake_glop_cpp.yml:21:9
+   [1m[94m|[0m
+[1m[94m21 |[0m       - uses: actions/checkout@v6
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_or-tools__.github__workflows__amd64_cmake_glop_cpp.yml:85:9
+   [1m[94m|[0m
+[1m[94m85 |[0m       - uses: actions/checkout@v6
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_or-tools__.github__workflows__amd64_cmake_glop_cpp.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m # ref: https://github.com/actions/runner-images
+[1m[94m  2 |[0m [1m[33m|[0m name: amd64 CMake Glop C++
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m106 |[0m [1m[33m|[0m           --target ${{matrix.cmake.install_target}}
+[1m[94m107 |[0m [1m[33m|[0m           -v
+    [1m[94m|[0m [1m[33m|_____________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_or-tools__.github__workflows__amd64_cmake_glop_cpp.yml:17:3
+   [1m[94m|[0m
+[1m[94m17 |[0m [1m[33m/[0m   docker:
+[1m[94m18 |[0m [1m[33m|[0m     name: amd64•Docker•CMake•Glop
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m38 |[0m [1m[33m|[0m
+[1m[94m39 |[0m [1m[33m|[0m   # ref: https://github.com/actions/runner-images
+   [1m[94m|[0m [1m[33m|[0m                                                 [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_________________________________________________|[0m
+   [1m[94m|[0m                                                   [1m[33mthis job[0m
+   [1m[94m|[0m                                                   [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_or-tools__.github__workflows__amd64_cmake_glop_cpp.yml:40:3
+    [1m[94m|[0m
+[1m[94m 40 |[0m [1m[33m/[0m   native:
+[1m[94m 41 |[0m [1m[33m|[0m     strategy:
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m106 |[0m [1m[33m|[0m           --target ${{matrix.cmake.install_target}}
+[1m[94m107 |[0m [1m[33m|[0m           -v
+    [1m[94m|[0m [1m[33m|[0m             [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_____________|[0m
+    [1m[94m|[0m               [1m[33mthis job[0m
+    [1m[94m|[0m               [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m11[39m findings ([1m[93m6[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m5[39m medium, [31m0[39m high

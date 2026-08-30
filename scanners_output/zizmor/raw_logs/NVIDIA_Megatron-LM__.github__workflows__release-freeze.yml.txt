@@ -1,0 +1,16 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_Megatron-LM__.github__workflows__release-freeze.yml:36:3
+   [1m[94m|[0m
+[1m[94m36 |[0m [1m[33m/[0m   code-freeze:
+[1m[94m37 |[0m [1m[33m|[0m     uses: NVIDIA-NeMo/FW-CI-templates/.github/workflows/_code_freeze.yml@v0.22.5
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m45 |[0m [1m[33m|[0m       SLACK_WEBHOOK: ${{ secrets.SLACK_MAIN_CHANNEL_WEBHOOK }}
+[1m[94m46 |[0m [1m[33m|[0m       SLACK_WEBHOOK_ADMIN: ${{ secrets.SLACK_TEAM_GROUP_ID }}
+   [1m[94m|[0m [1m[33m|[0m                                                              [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________________________________________________|[0m
+   [1m[94m|[0m                                                                [1m[33mthis job[0m
+   [1m[94m|[0m                                                                [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m2[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m0[39m high

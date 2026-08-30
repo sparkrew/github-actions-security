@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/facebookresearch_detectron2__.github__workflows__needs-reply.yml b/.github/workflows/facebookresearch_detectron2__.github__workflows__needs-reply.yml
+index 4b113d8..5d93cca 100644
+--- a/.github/workflows/facebookresearch_detectron2__.github__workflows__needs-reply.yml
++++ b/.github/workflows/facebookresearch_detectron2__.github__workflows__needs-reply.yml
+@@ -10,7 +10,7 @@ jobs:
+     if: ${{ github.repository_owner == 'facebookresearch' }}
+     steps:
+       - name: Close old issues that need reply
+-        uses: actions/github-script@v3
++        uses: actions/github-script@ffc2c79a5b2490bd33e0a41c1de74b877714d736 # v3
+         with:
+           github-token: ${{secrets.GITHUB_TOKEN}}
+           # Modified from https://github.com/dwieeb/needs-reply
+@@ -90,7 +90,7 @@ jobs:
+     if: ${{ github.repository_owner == 'facebookresearch' }}
+     steps:
+       - name: Lock closed issues that have no activity for a while
+-        uses: dessant/lock-threads@v2
++        uses: dessant/lock-threads@f1a42f0f44eb83361d617a014663e1a76cf282d2 # v2
+         with:
+           github-token: ${{ github.token }}
+           issue-lock-inactive-days: '300'

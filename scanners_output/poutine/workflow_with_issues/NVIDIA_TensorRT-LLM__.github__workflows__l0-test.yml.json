@@ -1,0 +1,45 @@
+{
+  "workflow": "NVIDIA_TensorRT-LLM__.github__workflows__l0-test.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "injection": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "injection",
+      "line": 65,
+      "column": "",
+      "job": "Upload-Test",
+      "step": "3",
+      "details": "Sources: github.event.inputs.sha",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": 39,
+      "column": "",
+      "job": "Upload-Test",
+      "step": "0",
+      "details": "Sources: github.event.inputs.sha github.event.inputs.test_result",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": 56,
+      "column": "",
+      "job": "Upload-Test",
+      "step": "1",
+      "details": "Sources: github.event.inputs.test_results_url",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

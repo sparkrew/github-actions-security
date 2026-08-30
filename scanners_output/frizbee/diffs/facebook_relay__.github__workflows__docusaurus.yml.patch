@@ -1,0 +1,66 @@
+diff --git a/.github/workflows/facebook_relay__.github__workflows__docusaurus.yml b/.github/workflows/facebook_relay__.github__workflows__docusaurus.yml
+index b49dc58..985c2bc 100644
+--- a/.github/workflows/facebook_relay__.github__workflows__docusaurus.yml
++++ b/.github/workflows/facebook_relay__.github__workflows__docusaurus.yml
+@@ -18,8 +18,8 @@ jobs:
+     name: Build Compiler Explorer
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v6
+-      - uses: actions-rs/toolchain@v1
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
++      - uses: actions-rs/toolchain@16499b5e05bf2e26879000db0c1d13f7e13fa3af # v1
+         with:
+           # Should stay in sync with fbcode/buck2/rust-toolchain
+           # And other similar references in this file and
+@@ -31,7 +31,7 @@ jobs:
+       - name: "Build Compiler Playground Wasm NPM package"
+         run: wasm-pack build --target web
+         working-directory: ./compiler/crates/relay-compiler-playground
+-      - uses: actions/upload-artifact@v6
++      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+         with:
+           name: compiler-playground-package
+           path: compiler/crates/relay-compiler-playground/pkg/
+@@ -41,12 +41,12 @@ jobs:
+     needs: [build-compiler-explorer]
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           persist-credentials: false
+ 
+       - name: Setup Node
+-        uses: actions/setup-node@v6
++        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+         with:
+           node-version: "20"
+           cache: "yarn"
+@@ -54,7 +54,7 @@ jobs:
+ 
+       - name: Set up Docusaurus Build Cache
+         id: cache-docusaurus
+-        uses: actions/cache@v5
++        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+         with:
+           path: |
+             website/node_modules/.cache
+@@ -62,7 +62,7 @@ jobs:
+           key: "docusaurus-build-${{ hashFiles('website/yarn.lock') }}"
+ 
+       - name: Download Compiler Explorer
+-        uses: actions/download-artifact@v7
++        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+         with:
+           name: compiler-playground-package
+           path: tmp/compiler-playground-package
+@@ -79,7 +79,7 @@ jobs:
+         working-directory: website/
+ 
+       - name: Deploy
+-        uses: JamesIves/github-pages-deploy-action@v4
++        uses: JamesIves/github-pages-deploy-action@d92aa235d04922e8f08b40ce78cc5442fcfbfa2f # v4
+         with:
+           branch: gh-pages
+           folder: website/build

@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/NVIDIA_TensorRT-LLM__.github__workflows__waiting_for_feedback.yml b/.github/workflows/NVIDIA_TensorRT-LLM__.github__workflows__waiting_for_feedback.yml
+index e0542c0..667fa76 100644
+--- a/.github/workflows/NVIDIA_TensorRT-LLM__.github__workflows__waiting_for_feedback.yml
++++ b/.github/workflows/NVIDIA_TensorRT-LLM__.github__workflows__waiting_for_feedback.yml
+@@ -16,7 +16,7 @@ jobs:
+     if: github.repository == 'NVIDIA/TensorRT-LLM'
+     steps:
+       - name: Check membership and manage label
+-        uses: actions/github-script@v8
++        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+         with:
+           script: |
+             const commenter = context.payload.comment.user.login;

@@ -1,0 +1,24 @@
+{
+  "workflow": "NVIDIA_NeMo-Retriever__.github__workflows__docker-build.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 16,
+      "column": "",
+      "job": "build",
+      "step": "",
+      "details": "runs-on: linux-large-disk",
+      "event_triggers": [
+        "pull_request",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

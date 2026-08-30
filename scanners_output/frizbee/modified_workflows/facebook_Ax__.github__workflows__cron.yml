@@ -1,0 +1,83 @@
+name: Nightly Cron
+
+on:
+  schedule:
+    # midnight EST
+    - cron:  '0 5 * * *'
+  # allow this to be scheduled manually in addition to cron
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - "tutorials/**"
+
+jobs:
+
+  tests-and-coverage-minimal:
+    name: Tests with latest BoTorch & minimal dependencies
+    uses: ./.github/workflows/reusable_test.yml
+    with:
+      pinned_botorch: false
+      minimal_dependencies: true
+    secrets: inherit
+
+  tests-and-coverage-full:
+    name: Tests with latest BoTorch & full dependencies
+    uses: ./.github/workflows/reusable_test.yml
+    with:
+      pinned_botorch: false
+      minimal_dependencies: false
+    secrets: inherit
+
+  publish-latest-website:
+    name: Publish latest website
+    uses: ./.github/workflows/publish_website.yml
+    permissions:
+      pages: write
+      id-token: write
+      contents: write
+    with:
+      run_tutorials: true
+      pinned_botorch: false
+
+  deploy-test-pypi:
+
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # This is required for PyPI OIDC authentication.
+    env:
+      # `uv pip ...` requires venv by default. This skips that requirement.
+      UV_SYSTEM_PYTHON: 1
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+    - name: Fetch all history for all tags and branches
+      run: git fetch --prune --unshallow
+    - name: Install uv
+      uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5
+    - name: Set up Python
+      uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+      with:
+        python-version: "3.14"
+    - name: Install dependencies
+      run: |
+        # use latest BoTorch
+        uv pip install git+https://github.com/cornellius-gp/linear_operator.git
+        uv pip install git+https://github.com/cornellius-gp/gpytorch.git
+        uv pip install git+https://github.com/pytorch/botorch.git
+        uv pip install -e ".[dev,mysql,notebook]"
+        uv pip install --upgrade build setuptools setuptools_scm wheel
+    - name: Extract reduced version and save to env var
+      # strip the commit hash from the version to enable upload to pypi
+      # env var will persist for subsequent steps
+      run: |
+        no_local_version=$(python -m setuptools_scm | cut -d "+" -f 1)
+        echo "SETUPTOOLS_SCM_PRETEND_VERSION=${no_local_version}" >> $GITHUB_ENV
+    - name: Build wheel
+      run: |
+        python -m build --sdist --wheel
+    - name: Deploy to Test PyPI
+      uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e  # release/v1.13
+      with:
+        repository-url: https://test.pypi.org/legacy/
+        skip-existing: true
+        verbose: true

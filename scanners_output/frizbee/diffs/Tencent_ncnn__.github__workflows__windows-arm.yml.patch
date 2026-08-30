@@ -1,0 +1,35 @@
+diff --git a/.github/workflows/Tencent_ncnn__.github__workflows__windows-arm.yml b/.github/workflows/Tencent_ncnn__.github__workflows__windows-arm.yml
+index b31d5ab..ca518cf 100644
+--- a/.github/workflows/Tencent_ncnn__.github__workflows__windows-arm.yml
++++ b/.github/workflows/Tencent_ncnn__.github__workflows__windows-arm.yml
+@@ -50,10 +50,10 @@ jobs:
+       NCNN_CMAKE_OPTIONS: -DNCNN_BUILD_TESTS=OFF -DNCNN_BUILD_TOOLS=OFF -DNCNN_BUILD_EXAMPLES=OFF -DNCNN_VULKAN=ON
+ 
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         submodules: true
+-    - uses: GuillaumeFalourd/setup-windows10-sdk-action@v2.4
++    - uses: GuillaumeFalourd/setup-windows10-sdk-action@9979bedbf6ae74f038cc338622ba015942ed2408 # v2.4
+       with:
+         sdk-version: ${{ matrix.windows-sdk-version }}
+     - name: arm64
+@@ -72,7 +72,7 @@ jobs:
+     runs-on: ubuntu-latest
+     container: linaro/wine-arm64
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+     - name: msvc-wine
+       env:
+         WINEPREFIX: /tmp/wine-x64-prefix/
+@@ -105,7 +105,7 @@ jobs:
+       UseMultiToolTask: true
+ 
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         submodules: true
+     - name: build

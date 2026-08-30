@@ -1,0 +1,115 @@
+diff --git a/.github/workflows/facebook_folly__.github__workflows__oss-build-and-test.yml b/.github/workflows/facebook_folly__.github__workflows__oss-build-and-test.yml
+index 4b74ec6..6594cd4 100644
+--- a/.github/workflows/facebook_folly__.github__workflows__oss-build-and-test.yml
++++ b/.github/workflows/facebook_folly__.github__workflows__oss-build-and-test.yml
+@@ -4,10 +4,10 @@ jobs:
+   get-toolchains-to-install:
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           submodules: 'true'
+-      - uses: facebook/install-dotslash@latest
++      - uses: facebook/install-dotslash@1e4e7b3e07eaca387acb98f1d4720e0bee8dbb6a # latest
+       - name: get_buck_graph
+         run: |
+           BUCK_GRAPH=$(./buck2 cquery ... --output-attribute '^buck.type$|^name$')
+@@ -55,15 +55,15 @@ jobs:
+       needs: get-toolchains-to-install
+       runs-on: ubuntu-latest
+       steps:
+-        - uses: actions/checkout@v4
++        - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+           with:
+             submodules: 'true'
+         - run: sudo apt-get update
+           shell: bash
+-        - uses: facebook/install-dotslash@latest
++        - uses: facebook/install-dotslash@1e4e7b3e07eaca387acb98f1d4720e0bee8dbb6a # latest
+         - name: Install Rust toolchain
+           if: needs.get-toolchains-to-install.outputs.uses_rust == 'true'
+-          uses: dtolnay/rust-toolchain@stable
++          uses: dtolnay/rust-toolchain@631a55b12751854ce901bb631d5902ceb48146f7 # stable
+         - name: Install C++ toolchain
+           if: needs.get-toolchains-to-install.outputs.uses_cxx == 'true'
+           run: |
+@@ -72,12 +72,12 @@ jobs:
+           shell: bash
+         - name: Install OCaml toolchain
+           if: needs.get-toolchains-to-install.outputs.uses_ocaml == 'true'
+-          uses: ocaml/setup-ocaml@v2
++          uses: ocaml/setup-ocaml@8cc6339f55862749298d198ef84788b8d6acdacc # v2
+           with:
+             ocaml-compiler: "5.1"
+         - name: Install Python toolchain
+           if: needs.get-toolchains-to-install.outputs.uses_python == 'true'
+-          uses: actions/setup-python@v5
++          uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+           with:
+             python-version: '3.10'
+         - name: buck2 build and test
+@@ -86,13 +86,13 @@ jobs:
+       needs: get-toolchains-to-install
+       runs-on: windows-latest
+       steps:
+-        - uses: actions/checkout@v4
++        - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+           with:
+             submodules: 'true'
+-        - uses: facebook/install-dotslash@latest
++        - uses: facebook/install-dotslash@1e4e7b3e07eaca387acb98f1d4720e0bee8dbb6a # latest
+         - name: Install Rust toolchain
+           if: needs.get-toolchains-to-install.outputs.uses_rust == 'true'
+-          uses: dtolnay/rust-toolchain@stable
++          uses: dtolnay/rust-toolchain@631a55b12751854ce901bb631d5902ceb48146f7 # stable
+         - name: Install C++ toolchain
+           if: needs.get-toolchains-to-install.outputs.uses_cxx == 'true'
+           run: |
+@@ -101,12 +101,12 @@ jobs:
+           shell: pwsh
+         - name: Install OCaml toolchain
+           if: needs.get-toolchains-to-install.outputs.uses_ocaml == 'true'
+-          uses: ocaml/setup-ocaml@v2
++          uses: ocaml/setup-ocaml@8cc6339f55862749298d198ef84788b8d6acdacc # v2
+           with:
+             ocaml-compiler: "4.12.0"
+         - name: Install Python toolchain
+           if: needs.get-toolchains-to-install.outputs.uses_python == 'true'
+-          uses: actions/setup-python@v5
++          uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+           with:
+             python-version: '3.10'
+         - name: buck2 build and test
+@@ -115,13 +115,13 @@ jobs:
+       needs: get-toolchains-to-install
+       runs-on: macos-latest
+       steps:
+-        - uses: actions/checkout@v4
++        - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+           with:
+             submodules: 'true'
+-        - uses: facebook/install-dotslash@latest
++        - uses: facebook/install-dotslash@1e4e7b3e07eaca387acb98f1d4720e0bee8dbb6a # latest
+         - name: Install Rust toolchain
+           if: needs.get-toolchains-to-install.outputs.uses_rust == 'true'
+-          uses: dtolnay/rust-toolchain@stable
++          uses: dtolnay/rust-toolchain@631a55b12751854ce901bb631d5902ceb48146f7 # stable
+         - name: Install C++ toolchain
+           if: needs.get-toolchains-to-install.outputs.uses_cxx == 'true'
+           run: |
+@@ -129,12 +129,12 @@ jobs:
+           shell: bash
+         - name: Install OCaml toolchain
+           if: needs.get-toolchains-to-install.outputs.uses_ocaml == 'true'
+-          uses: ocaml/setup-ocaml@v2
++          uses: ocaml/setup-ocaml@8cc6339f55862749298d198ef84788b8d6acdacc # v2
+           with:
+             ocaml-compiler: "5.1"
+         - name: Install Python toolchain
+           if: needs.get-toolchains-to-install.outputs.uses_python == 'true'
+-          uses: actions/setup-python@v5
++          uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+           with:
+             python-version: '3.10'
+         - name: Install homebrew deps

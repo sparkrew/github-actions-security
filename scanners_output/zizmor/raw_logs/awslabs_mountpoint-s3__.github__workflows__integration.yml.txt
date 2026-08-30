@@ -1,0 +1,278 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:248:7
+    [1m[94m|[0m
+[1m[94m248 |[0m       - name: Checkout code
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m249 |[0m [1m[33m|[0m       uses: actions/checkout@v6
+[1m[94m250 |[0m [1m[33m|[0m       with:
+[1m[94m251 |[0m [1m[33m|[0m         ref: ${{ inputs.ref }}
+[1m[94m252 |[0m [1m[33m|[0m         submodules: true
+    [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:110:7
+    [1m[94m|[0m
+[1m[94m110 |[0m     - name: Build tests
+    [1m[94m|[0m       [1m[96m-----------------[0m [1m[96mhelp: this step[0m
+[1m[94m111 |[0m       run: cargo nextest run --profile ci ${{ env.packages }} --features '${{ env.features }}' --no-run
+    [1m[94m|[0m       [1m[96m-------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.features may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:112:7
+    [1m[94m|[0m
+[1m[94m112 |[0m     - name: Run tests
+    [1m[94m|[0m       [1m[96m---------------[0m [1m[96mhelp: this step[0m
+[1m[94m113 |[0m       run: cargo nextest run --profile ci ${{ env.packages }} --features '${{ env.features }}'
+    [1m[94m|[0m       [1m[96m----------------------------------------------------------------------------------------[0m [1m[96mhelp: env.features may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:175:7
+    [1m[94m|[0m
+[1m[94m175 |[0m     - name: Build tests
+    [1m[94m|[0m       [1m[96m-----------------[0m [1m[96mhelp: this step[0m
+[1m[94m176 |[0m       run: cargo nextest run --profile ci ${{ env.packages }} --features '${{ env.features }}' --no-run
+    [1m[94m|[0m       [1m[96m-------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.features may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:177:7
+    [1m[94m|[0m
+[1m[94m177 |[0m     - name: Run tests
+    [1m[94m|[0m       [1m[96m---------------[0m [1m[96mhelp: this step[0m
+[1m[94m178 |[0m       run: cargo nextest run --profile ci ${{ env.packages }} --features '${{ env.features }}'
+    [1m[94m|[0m       [1m[96m----------------------------------------------------------------------------------------[0m [1m[96mhelp: env.features may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:409:7
+    [1m[94m|[0m
+[1m[94m409 |[0m       - name: Test RPM build with Mock in Amazon Linux 2023 chroot
+    [1m[94m|[0m         [1m[94m----------------------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m410 |[0m [1m[94m/[0m       run: |
+[1m[94m411 |[0m [1m[94m|[0m         VERSION_TAG="${{ needs.build-srpm.outputs.version-tag }}"
+[1m[94m412 |[0m [1m[94m|[0m         sudo mock -r amazonlinux-2023-${{ matrix.arch }} --rebuild /tmp/srpms/mount-s3-${VERSION_TAG}.src.rpm
+    [1m[94m|[0m [1m[94m|_____________________________________________________________________________________________________________-[0m [1m[94minfo: needs.build-srpm.outputs.version-tag may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:420:7
+    [1m[94m|[0m
+[1m[94m420 |[0m       - name: Test RPM installation
+    [1m[94m|[0m         [1m[94m---------------------------[0m [1m[94minfo: this step[0m
+[1m[94m421 |[0m [1m[94m/[0m       run: |
+[1m[94m422 |[0m [1m[94m|[0m         VERSION_TAG="${{ needs.build-srpm.outputs.version-tag }}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m425 |[0m [1m[94m|[0m         mount-s3 --version
+[1m[94m426 |[0m [1m[94m|[0m         mount-s3 --help
+    [1m[94m|[0m [1m[94m|_______________________-[0m [1m[94minfo: needs.build-srpm.outputs.version-tag may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:428:7
+    [1m[94m|[0m
+[1m[94m428 |[0m       - name: Basic Functionality Tests
+    [1m[94m|[0m         [1m[96m-------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m429 |[0m [1m[96m/[0m       run: |
+[1m[94m430 |[0m [1m[96m|[0m         mkdir -p /mnt/s3-test
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m440 |[0m [1m[96m|[0m
+[1m[94m441 |[0m [1m[96m|[0m         sudo umount /mnt/s3-test
+    [1m[94m|[0m [1m[96m|________________________________-[0m [1m[96mhelp: env.test-prefix may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:428:7
+    [1m[94m|[0m
+[1m[94m428 |[0m       - name: Basic Functionality Tests
+    [1m[94m|[0m         [1m[96m-------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m429 |[0m [1m[96m/[0m       run: |
+[1m[94m430 |[0m [1m[96m|[0m         mkdir -p /mnt/s3-test
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m440 |[0m [1m[96m|[0m
+[1m[94m441 |[0m [1m[96m|[0m         sudo umount /mnt/s3-test
+    [1m[94m|[0m [1m[96m|________________________________-[0m [1m[96mhelp: env.test-prefix may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:428:7
+    [1m[94m|[0m
+[1m[94m428 |[0m       - name: Basic Functionality Tests
+    [1m[94m|[0m         [1m[96m-------------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m429 |[0m [1m[96m/[0m       run: |
+[1m[94m430 |[0m [1m[96m|[0m         mkdir -p /mnt/s3-test
+[1m[94m...[0m   [1m[96m|[0m
+[1m[94m440 |[0m [1m[96m|[0m
+[1m[94m441 |[0m [1m[96m|[0m         sudo umount /mnt/s3-test
+    [1m[94m|[0m [1m[96m|________________________________-[0m [1m[96mhelp: env.test-prefix may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:443:7
+    [1m[94m|[0m
+[1m[94m443 |[0m       - name: Cleanup test resources
+    [1m[94m|[0m         [1m[96m----------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m444 |[0m         if: always()
+[1m[94m445 |[0m [1m[96m/[0m       run: |
+[1m[94m446 |[0m [1m[96m|[0m         aws s3 rm "s3://${S3_BUCKET_NAME}/${{ env.test-prefix }}test.txt"
+[1m[94m447 |[0m [1m[96m|[0m         aws s3 rm "s3://${S3_BUCKET_NAME}/${{ env.test-prefix }}write-test.txt"
+    [1m[94m|[0m [1m[96m|_______________________________________________________________________________-[0m [1m[96mhelp: env.test-prefix may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:443:7
+    [1m[94m|[0m
+[1m[94m443 |[0m       - name: Cleanup test resources
+    [1m[94m|[0m         [1m[96m----------------------------[0m [1m[96mhelp: this step[0m
+[1m[94m444 |[0m         if: always()
+[1m[94m445 |[0m [1m[96m/[0m       run: |
+[1m[94m446 |[0m [1m[96m|[0m         aws s3 rm "s3://${S3_BUCKET_NAME}/${{ env.test-prefix }}test.txt"
+[1m[94m447 |[0m [1m[96m|[0m         aws s3 rm "s3://${S3_BUCKET_NAME}/${{ env.test-prefix }}write-test.txt"
+    [1m[94m|[0m [1m[96m|_______________________________________________________________________________-[0m [1m[96mhelp: env.test-prefix may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:461:9
+    [1m[94m|[0m
+[1m[94m461 |[0m       - name: Verify jobs succeeded
+    [1m[94m|[0m         [1m[94m---------------------------[0m [1m[94minfo: this step[0m
+[1m[94m462 |[0m         run: echo '${{ toJSON(needs) }}' | jq -e 'to_entries | all(.value.result == "success")'
+    [1m[94m|[0m         [1m[94m---------------------------------------------------------------------------------------[0m [1m[94minfo: needs may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:86:7
+   [1m[94m|[0m
+[1m[94m86 |[0m       uses: aws-actions/configure-aws-credentials@v6
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:97:7
+   [1m[94m|[0m
+[1m[94m97 |[0m       uses: actions-rust-lang/setup-rust-toolchain@v1
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:103:7
+    [1m[94m|[0m
+[1m[94m103 |[0m       uses: taiki-e/install-action@v2
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:150:7
+    [1m[94m|[0m
+[1m[94m150 |[0m       uses: aws-actions/configure-aws-credentials@v6
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:161:7
+    [1m[94m|[0m
+[1m[94m161 |[0m       uses: actions-rust-lang/setup-rust-toolchain@v1
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:167:7
+    [1m[94m|[0m
+[1m[94m167 |[0m       uses: taiki-e/install-action@v2
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:201:9
+    [1m[94m|[0m
+[1m[94m201 |[0m         uses: aws-actions/configure-aws-credentials@v6
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:212:9
+    [1m[94m|[0m
+[1m[94m212 |[0m         uses: actions-rust-lang/setup-rust-toolchain@v1
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:244:7
+    [1m[94m|[0m
+[1m[94m244 |[0m       uses: aws-actions/configure-aws-credentials@v6
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:254:7
+    [1m[94m|[0m
+[1m[94m254 |[0m       uses: actions-rust-lang/setup-rust-toolchain@v1
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:261:7
+    [1m[94m|[0m
+[1m[94m261 |[0m       uses: taiki-e/install-action@v2
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:294:9
+    [1m[94m|[0m
+[1m[94m294 |[0m         uses: aws-actions/configure-aws-credentials@v6
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:305:9
+    [1m[94m|[0m
+[1m[94m305 |[0m         uses: actions-rust-lang/setup-rust-toolchain@v1
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:339:7
+    [1m[94m|[0m
+[1m[94m339 |[0m       uses: astral-sh/setup-uv@v7
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_mountpoint-s3__.github__workflows__integration.yml:398:7
+    [1m[94m|[0m
+[1m[94m398 |[0m       uses: aws-actions/configure-aws-credentials@v6
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m56[39m findings ([1m[93m28[39m suppressed[0m): 0 unknown, [35m3[39m informational, [36m9[39m low, [33m1[39m medium, [31m15[39m high

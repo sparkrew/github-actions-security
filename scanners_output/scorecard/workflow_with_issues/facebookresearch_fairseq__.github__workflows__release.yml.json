@@ -1,0 +1,91 @@
+{
+  "workflow": "facebookresearch_fairseq__.github__workflows__release.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        17,
+        20,
+        49,
+        74,
+        79,
+        85,
+        89,
+        92,
+        105,
+        110,
+        116,
+        120,
+        134,
+        143,
+        154,
+        159
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebookresearch_fairseq__.github__workflows__release.yml:17",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebookresearch_fairseq__.github__workflows__release.yml:20",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/facebookresearch_fairseq__.github__workflows__release.yml:49",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebookresearch_fairseq__.github__workflows__release.yml:74",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebookresearch_fairseq__.github__workflows__release.yml:79",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebookresearch_fairseq__.github__workflows__release.yml:92",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebookresearch_fairseq__.github__workflows__release.yml:105",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebookresearch_fairseq__.github__workflows__release.yml:110",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebookresearch_fairseq__.github__workflows__release.yml:134",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebookresearch_fairseq__.github__workflows__release.yml:143",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/facebookresearch_fairseq__.github__workflows__release.yml:159",
+        "Warn: pipCommand not pinned by hash: .github/workflows/facebookresearch_fairseq__.github__workflows__release.yml:85",
+        "Warn: pipCommand not pinned by hash: .github/workflows/facebookresearch_fairseq__.github__workflows__release.yml:89",
+        "Warn: pipCommand not pinned by hash: .github/workflows/facebookresearch_fairseq__.github__workflows__release.yml:116",
+        "Warn: pipCommand not pinned by hash: .github/workflows/facebookresearch_fairseq__.github__workflows__release.yml:120",
+        "Warn: pipCommand not pinned by hash: .github/workflows/facebookresearch_fairseq__.github__workflows__release.yml:154",
+        "Info:   0 out of   9 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of   2 third-party GitHubAction dependencies pinned",
+        "Info:   0 out of   5 pipCommand dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 0,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1
+      ],
+      "raw_details": [
+        "Warn: no topLevel permission defined: .github/workflows/facebookresearch_fairseq__.github__workflows__release.yml:1",
+        "Info: no jobLevel write permissions found"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

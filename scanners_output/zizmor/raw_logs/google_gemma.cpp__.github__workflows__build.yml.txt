@@ -1,0 +1,70 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_gemma.cpp__.github__workflows__build.yml:36:7
+   [1m[94m|[0m
+[1m[94m36 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m37 |[0m [1m[33m|[0m
+[1m[94m38 |[0m [1m[33m|[0m     # Set up ccache
+   [1m[94m|[0m [1m[33m|___________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_gemma.cpp__.github__workflows__build.yml:72:9
+   [1m[94m|[0m
+[1m[94m72 |[0m       - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.0.0
+   [1m[94m|[0m         [1m[33m------------------------------------------------------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_gemma.cpp__.github__workflows__build.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m name: build
+[1m[94m 2 |[0m [1m[33m|[0m
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m79 |[0m [1m[33m|[0m           key: bazel-${{ runner.os }}
+[1m[94m80 |[0m [1m[33m|[0m       - run: bazel build --cxxopt=-std=c++20 //:gemma --jobs=10 --show_progress_rate_limit=1
+   [1m[94m|[0m [1m[33m|_____________________________________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_gemma.cpp__.github__workflows__build.yml:11:3
+   [1m[94m|[0m
+[1m[94m11 |[0m [1m[33m/[0m   build:
+[1m[94m12 |[0m [1m[33m|[0m     runs-on: ${{ matrix.os }}
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m61 |[0m [1m[33m|[0m           ${{ github.workspace }}/build/gemma
+[1m[94m62 |[0m [1m[33m|[0m           ${{ github.workspace }}/build/libgemma.a
+   [1m[94m|[0m [1m[33m|[0m                                                  [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|__________________________________________________|[0m
+   [1m[94m|[0m                                                    [1m[33mthis job[0m
+   [1m[94m|[0m                                                    [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_gemma.cpp__.github__workflows__build.yml:64:3
+   [1m[94m|[0m
+[1m[94m64 |[0m [1m[33m/[0m   bazel:
+[1m[94m65 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m79 |[0m [1m[33m|[0m           key: bazel-${{ runner.os }}
+[1m[94m80 |[0m [1m[33m|[0m       - run: bazel build --cxxopt=-std=c++20 //:gemma --jobs=10 --show_progress_rate_limit=1
+   [1m[94m|[0m [1m[33m|[0m                                                                                             [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                               [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                               [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/google_gemma.cpp__.github__workflows__build.yml:40:7
+   [1m[94m|[0m
+[1m[94m40 |[0m       uses: hendrikmuhs/ccache-action@v1.2
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m13[39m findings ([1m[93m7[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m5[39m medium, [31m1[39m high

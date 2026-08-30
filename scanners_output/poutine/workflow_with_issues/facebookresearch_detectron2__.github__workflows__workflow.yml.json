@@ -1,0 +1,25 @@
+{
+  "workflow": "facebookresearch_detectron2__.github__workflows__workflow.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 87,
+      "column": "",
+      "job": "linux_gpu_tests",
+      "step": "",
+      "details": "runs-on: 4-core-ubuntu-gpu-t4",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "schedule"
+      ]
+    }
+  ]
+}

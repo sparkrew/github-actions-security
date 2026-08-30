@@ -1,0 +1,228 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_issue_crash_report.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: '[gh] issue crash report'
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m281 |[0m [1m[33m|[0m             content: 'eyes'
+[1m[94m282 |[0m [1m[33m|[0m           });
+    [1m[94m|[0m [1m[33m|______________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_issue_crash_report.yml:30:3
+    [1m[94m|[0m
+[1m[94m 30 |[0m [1m[33m/[0m   triage:
+[1m[94m 31 |[0m [1m[33m|[0m     if: github.repository == 'Tencent/Hippy' && contains(github.event.issue.title, 'crash')
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m123 |[0m [1m[33m|[0m
+[1m[94m124 |[0m [1m[33m|[0m           fs.appendFileSync(process.env.GITHUB_OUTPUT, `repository_owner=${'${{ github.repository_owner }}'.toLowerCase()}${os.EOL}`, { encoding: 'utf8' });
+    [1m[94m|[0m [1m[33m|[0m                                                                                                                                                            [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________________________________________________________________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                                                                              [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                                                                              [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_issue_crash_report.yml:126:3
+    [1m[94m|[0m
+[1m[94m126 |[0m [1m[33m/[0m   android-translates-addresses:
+[1m[94m127 |[0m [1m[33m|[0m     needs:
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m281 |[0m [1m[33m|[0m             content: 'eyes'
+[1m[94m282 |[0m [1m[33m|[0m           });
+    [1m[94m|[0m [1m[33m|[0m              [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|______________|[0m
+    [1m[94m|[0m                [1m[33mthis job[0m
+    [1m[94m|[0m                [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_issue_crash_report.yml:179:7
+    [1m[94m|[0m
+[1m[94m179 |[0m       - name: Symbols
+    [1m[94m|[0m         [1m[94m-------------[0m [1m[94minfo: this step[0m
+[1m[94m180 |[0m         id: symbols_fetched
+[1m[94m...[0m
+[1m[94m183 |[0m         shell: bash
+[1m[94m184 |[0m [1m[94m/[0m       run: |
+[1m[94m185 |[0m [1m[94m|[0m         if [[ "${{ needs.triage.outputs.architecture }}" == "arm" ]]; then
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m200 |[0m [1m[94m|[0m         rm $ZIP_FILE
+[1m[94m201 |[0m [1m[94m|[0m         echo "success=1" >> $GITHUB_OUTPUT
+    [1m[94m|[0m [1m[94m|__________________________________________-[0m [1m[94minfo: needs.triage.outputs.architecture may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_issue_crash_report.yml:179:7
+    [1m[94m|[0m
+[1m[94m179 |[0m       - name: Symbols
+    [1m[94m|[0m         [1m[94m-------------[0m [1m[94minfo: this step[0m
+[1m[94m180 |[0m         id: symbols_fetched
+[1m[94m...[0m
+[1m[94m183 |[0m         shell: bash
+[1m[94m184 |[0m [1m[94m/[0m       run: |
+[1m[94m185 |[0m [1m[94m|[0m         if [[ "${{ needs.triage.outputs.architecture }}" == "arm" ]]; then
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m200 |[0m [1m[94m|[0m         rm $ZIP_FILE
+[1m[94m201 |[0m [1m[94m|[0m         echo "success=1" >> $GITHUB_OUTPUT
+    [1m[94m|[0m [1m[94m|__________________________________________-[0m [1m[94minfo: needs.triage.outputs.architecture may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_issue_crash_report.yml:179:7
+    [1m[94m|[0m
+[1m[94m179 |[0m       - name: Symbols
+    [1m[94m|[0m         [1m[94m-------------[0m [1m[94minfo: this step[0m
+[1m[94m180 |[0m         id: symbols_fetched
+[1m[94m...[0m
+[1m[94m183 |[0m         shell: bash
+[1m[94m184 |[0m [1m[94m/[0m       run: |
+[1m[94m185 |[0m [1m[94m|[0m         if [[ "${{ needs.triage.outputs.architecture }}" == "arm" ]]; then
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m200 |[0m [1m[94m|[0m         rm $ZIP_FILE
+[1m[94m201 |[0m [1m[94m|[0m         echo "success=1" >> $GITHUB_OUTPUT
+    [1m[94m|[0m [1m[94m|__________________________________________-[0m [1m[94minfo: needs.triage.outputs.architecture may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_issue_crash_report.yml:179:7
+    [1m[94m|[0m
+[1m[94m179 |[0m       - name: Symbols
+    [1m[94m|[0m         [1m[94m-------------[0m [1m[94minfo: this step[0m
+[1m[94m180 |[0m         id: symbols_fetched
+[1m[94m...[0m
+[1m[94m183 |[0m         shell: bash
+[1m[94m184 |[0m [1m[94m/[0m       run: |
+[1m[94m185 |[0m [1m[94m|[0m         if [[ "${{ needs.triage.outputs.architecture }}" == "arm" ]]; then
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m200 |[0m [1m[94m|[0m         rm $ZIP_FILE
+[1m[94m201 |[0m [1m[94m|[0m         echo "success=1" >> $GITHUB_OUTPUT
+    [1m[94m|[0m [1m[94m|__________________________________________-[0m [1m[94minfo: needs.triage.outputs.architecture may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_issue_crash_report.yml:179:7
+    [1m[94m|[0m
+[1m[94m179 |[0m       - name: Symbols
+    [1m[94m|[0m         [1m[94m-------------[0m [1m[94minfo: this step[0m
+[1m[94m180 |[0m         id: symbols_fetched
+[1m[94m...[0m
+[1m[94m183 |[0m         shell: bash
+[1m[94m184 |[0m [1m[94m/[0m       run: |
+[1m[94m185 |[0m [1m[94m|[0m         if [[ "${{ needs.triage.outputs.architecture }}" == "arm" ]]; then
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m200 |[0m [1m[94m|[0m         rm $ZIP_FILE
+[1m[94m201 |[0m [1m[94m|[0m         echo "success=1" >> $GITHUB_OUTPUT
+    [1m[94m|[0m [1m[94m|__________________________________________-[0m [1m[94minfo: needs.triage.outputs.architecture may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_issue_crash_report.yml:179:7
+    [1m[94m|[0m
+[1m[94m179 |[0m       - name: Symbols
+    [1m[94m|[0m         [1m[94m-------------[0m [1m[94minfo: this step[0m
+[1m[94m180 |[0m         id: symbols_fetched
+[1m[94m...[0m
+[1m[94m183 |[0m         shell: bash
+[1m[94m184 |[0m [1m[94m/[0m       run: |
+[1m[94m185 |[0m [1m[94m|[0m         if [[ "${{ needs.triage.outputs.architecture }}" == "arm" ]]; then
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m200 |[0m [1m[94m|[0m         rm $ZIP_FILE
+[1m[94m201 |[0m [1m[94m|[0m         echo "success=1" >> $GITHUB_OUTPUT
+    [1m[94m|[0m [1m[94m|__________________________________________-[0m [1m[94minfo: needs.triage.outputs.version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_issue_crash_report.yml:202:7
+    [1m[94m|[0m
+[1m[94m202 |[0m        - uses: actions/github-script@v6.3.3
+    [1m[94m|[0m  [1m[94m________-[0m
+[1m[94m203 |[0m [1m[94m|[0m        if: steps.symbols_fetched.result == 'success' && !steps.symbols_fetched.outputs.success
+[1m[94m204 |[0m [1m[94m|[0m        with:
+[1m[94m205 |[0m [1m[94m|[0m          github-token: ${{ steps.get-token.outputs.token }}
+[1m[94m206 |[0m [1m[94m|[0m          script: |
+    [1m[94m|[0m [1m[94m|[0m [1m[94m_________-[0m
+[1m[94m207 |[0m [1m[94m||[0m           const { owner, repo } = context.repo;
+[1m[94m...[0m   [1m[94m||[0m
+[1m[94m215 |[0m [1m[94m||[0m             body: util.format(process.env.fetch_symbol_failed_message, '${{ needs.triage.outputs.version }}', '${{ needs.triage.out[1m[94m...[0m
+[1m[94m216 |[0m [1m[94m||[0m           });
+    [1m[94m|[0m [1m[94m||[0m             [1m[94m-[0m
+    [1m[94m|[0m [1m[94m||_____________|[0m
+    [1m[94m|[0m  [1m[94m|_____________info: this step[0m
+    [1m[94m|[0m                [1m[94minfo: needs.triage.outputs.version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_issue_crash_report.yml:202:7
+    [1m[94m|[0m
+[1m[94m202 |[0m        - uses: actions/github-script@v6.3.3
+    [1m[94m|[0m  [1m[94m________-[0m
+[1m[94m203 |[0m [1m[94m|[0m        if: steps.symbols_fetched.result == 'success' && !steps.symbols_fetched.outputs.success
+[1m[94m204 |[0m [1m[94m|[0m        with:
+[1m[94m205 |[0m [1m[94m|[0m          github-token: ${{ steps.get-token.outputs.token }}
+[1m[94m206 |[0m [1m[94m|[0m          script: |
+    [1m[94m|[0m [1m[94m|[0m [1m[94m_________-[0m
+[1m[94m207 |[0m [1m[94m||[0m           const { owner, repo } = context.repo;
+[1m[94m...[0m   [1m[94m||[0m
+[1m[94m215 |[0m [1m[94m||[0m             body: util.format(process.env.fetch_symbol_failed_message, '${{ needs.triage.outputs.version }}', '${{ needs.triage.out[1m[94m...[0m
+[1m[94m216 |[0m [1m[94m||[0m           });
+    [1m[94m|[0m [1m[94m||[0m             [1m[94m-[0m
+    [1m[94m|[0m [1m[94m||_____________|[0m
+    [1m[94m|[0m  [1m[94m|_____________info: this step[0m
+    [1m[94m|[0m                [1m[94minfo: needs.triage.outputs.architecture may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_issue_crash_report.yml:217:7
+    [1m[94m|[0m
+[1m[94m217 |[0m       - name: Translates
+    [1m[94m|[0m         [1m[94m----------------[0m [1m[94minfo: this step[0m
+[1m[94m218 |[0m         if: steps.symbols_fetched.outputs.success
+[1m[94m...[0m
+[1m[94m221 |[0m           github-token: ${{ steps.get-token.outputs.token }}
+[1m[94m222 |[0m [1m[94m/[0m         script: |
+[1m[94m223 |[0m [1m[94m|[0m           const { owner, repo } = context.repo;
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m281 |[0m [1m[94m|[0m             content: 'eyes'
+[1m[94m282 |[0m [1m[94m|[0m           });
+    [1m[94m|[0m [1m[94m|______________-[0m [1m[94minfo: steps.backtrace_parsed.outputs.backtrace may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_issue_crash_report.yml:142:7
+    [1m[94m|[0m
+[1m[94m142 |[0m       uses: navikt/github-app-token-generator@v1
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_issue_crash_report.yml:34:7
+   [1m[94m|[0m
+[1m[94m34 |[0m       image: node:latest
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is pinned to latest[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_issue_crash_report.yml:139:7
+    [1m[94m|[0m
+[1m[94m139 |[0m       image: ghcr.io/${{ needs.triage.outputs.repository_owner }}/android-release:latest
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is pinned to latest[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m33[39m findings ([1m[93m18[39m suppressed[0m): 0 unknown, [35m9[39m informational, [36m0[39m low, [33m3[39m medium, [31m3[39m high

@@ -1,0 +1,28 @@
+diff --git a/.github/workflows/aws_s2n-tls__.github__workflows__codebuild.yml b/.github/workflows/aws_s2n-tls__.github__workflows__codebuild.yml
+index 748afa0..5420c7b 100644
+--- a/.github/workflows/aws_s2n-tls__.github__workflows__codebuild.yml
++++ b/.github/workflows/aws_s2n-tls__.github__workflows__codebuild.yml
+@@ -24,12 +24,12 @@ jobs:
+       source_sha: ${{ github.sha }}
+       pr_author: ${{ github.event.pull_request.user.login }}
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       - name: Get permissions
+         id: get_permission
+         if: github.event_name == 'pull_request_target'
+-        uses: octokit/request-action@v2.x
++        uses: octokit/request-action@05a2312de9f8207044c4c9e41fe19703986acc13 # v2.x
+         with:
+           route: GET /repos/{repo}/collaborators/{author}/permission
+           repo: ${{ github.repository }}
+@@ -38,7 +38,7 @@ jobs:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+ 
+       - name: Get credentials
+-        uses: aws-actions/configure-aws-credentials@v6.0.0
++        uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7 # v6.0.0
+         with:
+           role-to-assume: arn:aws:iam::024603541914:role/GitHubOIDCRole
+           role-session-name: ${{ github.run_id }}

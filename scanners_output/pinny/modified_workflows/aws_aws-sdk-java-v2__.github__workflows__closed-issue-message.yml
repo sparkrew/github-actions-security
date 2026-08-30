@@ -1,0 +1,18 @@
+name: Closed Issue Message
+on:
+    issues:
+       types: [closed]
+jobs:
+    auto_comment:
+        if: github.repository == 'aws/aws-sdk-java-v2'
+        runs-on: ubuntu-latest
+        permissions:
+          issues: write
+        steps:
+        - uses: aws-actions/closed-issue-message@10aaf6366131b673a7c8b7742f8b3849f1d44f18 # aws-actions/closed-issue-message@v2
+          with:
+            # These inputs are both required
+            repo-token: "${{ secrets.GITHUB_TOKEN }}"
+            message: |
+              This issue is now closed. Comments on closed issues are hard for our team to see.
+              If you need more assistance, please open a new issue that references this one.

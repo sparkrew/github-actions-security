@@ -1,0 +1,77 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_prophet__.github__workflows__wheel.yml:38:9
+   [1m[94m|[0m
+[1m[94m38 |[0m         - name: "Checkout repo"
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m39 |[0m [1m[33m|[0m         uses: actions/checkout@v5
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_prophet__.github__workflows__wheel.yml:75:7
+   [1m[94m|[0m
+[1m[94m75 |[0m     - uses: actions/checkout@v4
+   [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_prophet__.github__workflows__wheel.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: "Create Python distributions and upload to PyPI"
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m104 |[0m [1m[33m|[0m     - name: Upload
+[1m[94m105 |[0m [1m[33m|[0m       uses: pypa/gh-action-pypi-publish@v1.13.0
+    [1m[94m|[0m [1m[33m|________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_prophet__.github__workflows__wheel.yml:13:3
+   [1m[94m|[0m
+[1m[94m13 |[0m [1m[33m/[0m   make-wheels:
+[1m[94m14 |[0m [1m[33m|[0m     name: Make ${{ matrix.os }} ${{ matrix.cibw_arch }} wheels
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m68 |[0m [1m[33m|[0m           name: artifact-${{ matrix.os }}-${{ matrix.cibw_arch }}-wheel
+[1m[94m69 |[0m [1m[33m|[0m           path: "./**/*.whl"
+   [1m[94m|[0m [1m[33m|[0m                            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________|[0m
+   [1m[94m|[0m                              [1m[33mthis job[0m
+   [1m[94m|[0m                              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_prophet__.github__workflows__wheel.yml:71:3
+   [1m[94m|[0m
+[1m[94m71 |[0m [1m[33m/[0m   make-sdist:
+[1m[94m72 |[0m [1m[33m|[0m     name: Make source distribution
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m82 |[0m [1m[33m|[0m         name: artifact-source-dist
+[1m[94m83 |[0m [1m[33m|[0m         path: "./**/dist/*.tar.gz"
+   [1m[94m|[0m [1m[33m|[0m                                  [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|__________________________________|[0m
+   [1m[94m|[0m                                    [1m[33mthis job[0m
+   [1m[94m|[0m                                    [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_prophet__.github__workflows__wheel.yml:50:9
+   [1m[94m|[0m
+[1m[94m50 |[0m         uses: pypa/cibuildwheel@v3.2.1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/facebook_prophet__.github__workflows__wheel.yml:105:7
+    [1m[94m|[0m
+[1m[94m105 |[0m       uses: pypa/gh-action-pypi-publish@v1.13.0
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m7[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m5[39m medium, [31m2[39m high

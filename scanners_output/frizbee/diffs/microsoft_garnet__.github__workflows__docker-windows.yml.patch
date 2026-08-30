@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/microsoft_garnet__.github__workflows__docker-windows.yml b/.github/workflows/microsoft_garnet__.github__workflows__docker-windows.yml
+index 2b830ef..a573d00 100644
+--- a/.github/workflows/microsoft_garnet__.github__workflows__docker-windows.yml
++++ b/.github/workflows/microsoft_garnet__.github__workflows__docker-windows.yml
+@@ -19,7 +19,7 @@ jobs:
+     if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name != 'workflow_run' }}
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+       
+       - name: Docker meta
+         id: meta

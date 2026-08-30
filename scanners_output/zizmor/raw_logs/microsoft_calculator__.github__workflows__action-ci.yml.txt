@@ -1,0 +1,221 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_calculator__.github__workflows__action-ci.yml:61:7
+   [1m[94m|[0m
+[1m[94m61 |[0m     - uses: actions/checkout@v4
+   [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_calculator__.github__workflows__action-ci.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: Windows Calculator Continuous Integration Pipeline
+[1m[94m  2 |[0m [1m[33m|[0m run-name: WinCalc-CI-0.${{ github.run_number }}
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m168 |[0m [1m[33m|[0m       shell: pwsh
+[1m[94m169 |[0m [1m[33m|[0m       name: Run UI tests
+    [1m[94m|[0m [1m[33m|_________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_calculator__.github__workflows__action-ci.yml:10:3
+   [1m[94m|[0m
+[1m[94m10 |[0m [1m[33m/[0m   defineBuilds:
+[1m[94m11 |[0m [1m[33m|[0m     name: Define builds
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m48 |[0m [1m[33m|[0m           }
+[1m[94m49 |[0m [1m[33m|[0m         shell: pwsh
+   [1m[94m|[0m [1m[33m|[0m                   [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|___________________|[0m
+   [1m[94m|[0m                     [1m[33mthis job[0m
+   [1m[94m|[0m                     [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_calculator__.github__workflows__action-ci.yml:51:3
+   [1m[94m|[0m
+[1m[94m51 |[0m [1m[33m/[0m   build:
+[1m[94m52 |[0m [1m[33m|[0m     needs: defineBuilds
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m96 |[0m [1m[33m|[0m         name: Tools-${{ matrix.platform }}
+[1m[94m97 |[0m [1m[33m|[0m         path: ${{ github.workspace }}/build/scripts/SignTestApp.ps1
+   [1m[94m|[0m [1m[33m|[0m                                                                   [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|___________________________________________________________________|[0m
+   [1m[94m|[0m                                                                     [1m[33mthis job[0m
+   [1m[94m|[0m                                                                     [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_calculator__.github__workflows__action-ci.yml:99:3
+    [1m[94m|[0m
+[1m[94m 99 |[0m [1m[33m/[0m   unitTests:
+[1m[94m100 |[0m [1m[33m|[0m     needs: [defineBuilds, build]
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m125 |[0m [1m[33m|[0m     - run: vstest.console.exe ${{ env.testDir }}/CalculatorUnitTests.msix /Platform:${{ matrix.platform }}
+[1m[94m126 |[0m [1m[33m|[0m       name: Run unit tests
+    [1m[94m|[0m [1m[33m|[0m                          [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|__________________________|[0m
+    [1m[94m|[0m                            [1m[33mthis job[0m
+    [1m[94m|[0m                            [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_calculator__.github__workflows__action-ci.yml:128:3
+    [1m[94m|[0m
+[1m[94m128 |[0m [1m[33m/[0m   uiTests:
+[1m[94m129 |[0m [1m[33m|[0m     needs: build
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m168 |[0m [1m[33m|[0m       shell: pwsh
+[1m[94m169 |[0m [1m[33m|[0m       name: Run UI tests
+    [1m[94m|[0m [1m[33m|[0m                         [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_________________________|[0m
+    [1m[94m|[0m                           [1m[33mthis job[0m
+    [1m[94m|[0m                           [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_calculator__.github__workflows__action-ci.yml:75:7
+   [1m[94m|[0m
+[1m[94m70 |[0m       - run: |
+   [1m[94m|[0m  [1m[96m_______-[0m
+[1m[94m71 |[0m [1m[96m|[0m         ./build/scripts/UpdateAppxManifestVersion.ps1 `
+[1m[94m72 |[0m [1m[96m|[0m           -AppxManifest ./src/Calculator/Package.appxmanifest `
+[1m[94m73 |[0m [1m[96m|[0m           -Version ${{ env.buildVersion }}
+   [1m[94m|[0m [1m[96m|__________________________________________-[0m [1m[96mhelp: env.buildVersion may expand into attacker-controllable code[0m
+[1m[94m74 |[0m         shell: pwsh
+[1m[94m75 |[0m         name: Set version number in AppxManifest
+   [1m[94m|[0m         [1m[96m----------------------------------------[0m [1m[96mhelp: this step[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_calculator__.github__workflows__action-ci.yml:88:7
+   [1m[94m|[0m
+[1m[94m76 |[0m       - run: |
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m77 |[0m [1m[33m|[0m         msbuild ./src/Calculator.sln `
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m85 |[0m [1m[33m|[0m           -t:Publish `
+[1m[94m86 |[0m [1m[33m|[0m           -p:PublishDir=${{ github.workspace }}\output\publish\
+   [1m[94m|[0m [1m[33m|_______________________________________________________________-[0m [1m[33mmatrix.platform may expand into attacker-controllable code[0m
+[1m[94m87 |[0m         shell: pwsh
+[1m[94m88 |[0m         name: Build calculator.sln
+   [1m[94m|[0m         [1m[33m--------------------------[0m [1m[33mthis step[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_calculator__.github__workflows__action-ci.yml:88:7
+   [1m[94m|[0m
+[1m[94m76 |[0m       - run: |
+   [1m[94m|[0m  [1m[96m_______-[0m
+[1m[94m77 |[0m [1m[96m|[0m         msbuild ./src/Calculator.sln `
+[1m[94m...[0m  [1m[96m|[0m
+[1m[94m85 |[0m [1m[96m|[0m           -t:Publish `
+[1m[94m86 |[0m [1m[96m|[0m           -p:PublishDir=${{ github.workspace }}\output\publish\
+   [1m[94m|[0m [1m[96m|_______________________________________________________________-[0m [1m[96mhelp: env.buildVersion may expand into attacker-controllable code[0m
+[1m[94m87 |[0m         shell: pwsh
+[1m[94m88 |[0m         name: Build calculator.sln
+   [1m[94m|[0m         [1m[96m--------------------------[0m [1m[96mhelp: this step[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_calculator__.github__workflows__action-ci.yml:122:7
+    [1m[94m|[0m
+[1m[94m119 |[0m       - run: |
+    [1m[94m|[0m  [1m[96m_______-[0m
+[1m[94m120 |[0m [1m[96m|[0m         ${{ github.workspace }}/download/tools/SignTestApp.ps1 -AppToSign ${{ env.testDir }}/CalculatorUnitTests.msix
+    [1m[94m|[0m [1m[96m|_____________________________________________________________________________________________________________________-[0m [1m[96mhelp: env.testDir may expand into attacker-controllable code[0m
+[1m[94m121 |[0m         shell: pwsh
+[1m[94m122 |[0m         name: Install test certificate
+    [1m[94m|[0m         [1m[96m------------------------------[0m [1m[96mhelp: this step[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_calculator__.github__workflows__action-ci.yml:126:7
+    [1m[94m|[0m
+[1m[94m125 |[0m     - run: vstest.console.exe ${{ env.testDir }}/CalculatorUnitTests.msix /Platform:${{ matrix.platform }}
+    [1m[94m|[0m       [1m[96m----------------------------------------------------------------------------------------------------[0m [1m[96mhelp: env.testDir may expand into attacker-controllable code[0m
+[1m[94m126 |[0m       name: Run unit tests
+    [1m[94m|[0m       [1m[96m--------------------[0m [1m[96mhelp: this step[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_calculator__.github__workflows__action-ci.yml:126:7
+    [1m[94m|[0m
+[1m[94m125 |[0m     - run: vstest.console.exe ${{ env.testDir }}/CalculatorUnitTests.msix /Platform:${{ matrix.platform }}
+    [1m[94m|[0m       [1m[33m----------------------------------------------------------------------------------------------------[0m [1m[33mmatrix.platform may expand into attacker-controllable code[0m
+[1m[94m126 |[0m       name: Run unit tests
+    [1m[94m|[0m       [1m[33m--------------------[0m [1m[33mthis step[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_calculator__.github__workflows__action-ci.yml:154:7
+    [1m[94m|[0m
+[1m[94m150 |[0m       - run: |
+    [1m[94m|[0m  [1m[96m_______-[0m
+[1m[94m151 |[0m [1m[96m|[0m         ${{ github.workspace }}/download/tools/SignTestApp.ps1 -AppToSign '${{ env.appDir }}/Calculator_*.msixbundle'
+[1m[94m152 |[0m [1m[96m|[0m         ${{ env.appDir }}/Add-AppDevPackage.ps1 -Force
+    [1m[94m|[0m [1m[96m|______________________________________________________-[0m [1m[96mhelp: env.appDir may expand into attacker-controllable code[0m
+[1m[94m153 |[0m         shell: powershell
+[1m[94m154 |[0m         name: Install app
+    [1m[94m|[0m         [1m[96m-----------------[0m [1m[96mhelp: this step[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_calculator__.github__workflows__action-ci.yml:154:7
+    [1m[94m|[0m
+[1m[94m150 |[0m       - run: |
+    [1m[94m|[0m  [1m[96m_______-[0m
+[1m[94m151 |[0m [1m[96m|[0m         ${{ github.workspace }}/download/tools/SignTestApp.ps1 -AppToSign '${{ env.appDir }}/Calculator_*.msixbundle'
+[1m[94m152 |[0m [1m[96m|[0m         ${{ env.appDir }}/Add-AppDevPackage.ps1 -Force
+    [1m[94m|[0m [1m[96m|______________________________________________________-[0m [1m[96mhelp: env.appDir may expand into attacker-controllable code[0m
+[1m[94m153 |[0m         shell: powershell
+[1m[94m154 |[0m         name: Install app
+    [1m[94m|[0m         [1m[96m-----------------[0m [1m[96mhelp: this step[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_calculator__.github__workflows__action-ci.yml:62:7
+   [1m[94m|[0m
+[1m[94m62 |[0m     - uses: microsoft/setup-msbuild@v2
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_calculator__.github__workflows__action-ci.yml:64:7
+   [1m[94m|[0m
+[1m[94m64 |[0m     - uses: nuget/setup-nuget@v2
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_calculator__.github__workflows__action-ci.yml:123:7
+    [1m[94m|[0m
+[1m[94m123 |[0m     - uses: ilammy/msvc-dev-cmd@v1  # this is a workaround because microsoft/vstest-action is broken.
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_calculator__.github__workflows__action-ci.yml:162:7
+    [1m[94m|[0m
+[1m[94m162 |[0m     - uses: ilammy/msvc-dev-cmd@v1  # this is a workaround because microsoft/vstest-action is broken.
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m37[39m findings ([1m[93m19[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m6[39m low, [33m8[39m medium, [31m4[39m high

@@ -1,0 +1,40 @@
+{
+  "workflow": "google_langextract__.github__workflows__ci.yaml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "dangerous-triggers": 1,
+      "unpinned-uses": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "dangerous-triggers",
+      "level": "error",
+      "message": "use of fundamentally insecure workflow trigger",
+      "workflow": "google_langextract__.github__workflows__ci.yaml",
+      "line": 17,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "google_langextract__.github__workflows__ci.yaml",
+      "line": 171,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "google_langextract__.github__workflows__ci.yaml",
+      "line": 219,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "workflow": "microsoft_semantic-kernel__.github__workflows__python-integration-tests.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "unverified_script_exec": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": 402,
+      "column": "",
+      "job": "python-integration-tests",
+      "step": "3",
+      "details": "Command: curl -fsSL https://ollama.com/install.sh | sh",
+      "event_triggers": [
+        "workflow_dispatch",
+        "pull_request",
+        "merge_group",
+        "schedule"
+      ]
+    },
+    {
+      "rule_id": "unverified_script_exec",
+      "line": 279,
+      "column": "",
+      "job": "python-merge-gate-ollama",
+      "step": "3",
+      "details": "Command: curl -fsSL https://ollama.com/install.sh | sh",
+      "event_triggers": [
+        "workflow_dispatch",
+        "pull_request",
+        "merge_group",
+        "schedule"
+      ]
+    }
+  ]
+}

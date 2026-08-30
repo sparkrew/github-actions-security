@@ -1,0 +1,49 @@
+{
+  "workflow": "aws_aws-lambda-rust-runtime__.github__workflows__build-runtime.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "artipacked": 2,
+      "unpinned-uses": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "aws_aws-lambda-rust-runtime__.github__workflows__build-runtime.yml",
+      "line": 32,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "aws_aws-lambda-rust-runtime__.github__workflows__build-runtime.yml",
+      "line": 53,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "aws_aws-lambda-rust-runtime__.github__workflows__build-runtime.yml",
+      "line": 55,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "aws_aws-lambda-rust-runtime__.github__workflows__build-runtime.yml",
+      "line": 61,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

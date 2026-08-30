@@ -1,0 +1,91 @@
+diff --git a/.github/workflows/facebookresearch_fairseq__.github__workflows__release.yml b/.github/workflows/facebookresearch_fairseq__.github__workflows__release.yml
+index 241b74b..9309a6d 100644
+--- a/.github/workflows/facebookresearch_fairseq__.github__workflows__release.yml
++++ b/.github/workflows/facebookresearch_fairseq__.github__workflows__release.yml
+@@ -14,10 +14,10 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: checkout-repo-content
+-        uses: actions/checkout@v2
++        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+ 
+       - name: setup-python
+-        uses: actions/setup-python@v2
++        uses: actions/setup-python@e9aba2c848f5ebd159c070c61ea2c4e2b122355e # v2
+         with:
+           python-version: 3.8
+ 
+@@ -46,7 +46,7 @@ jobs:
+           output=$(python3 release_utils.py --release-type ${{ github.event.inputs.name }} --update-version)
+ 
+       - name: add and commit
+-        uses: EndBug/add-and-commit@v9
++        uses: EndBug/add-and-commit@a94899bca583c204427a224a7af87c02f9b325d5 # v9
+         with:
+           author_name: ${{ secrets.AUTHOR_NAME }}
+           author_email: ${{ secrets.AUTHOR_EMAIL }}
+@@ -71,12 +71,12 @@ jobs:
+     name: Create Source Distribution
+     needs: get_next_version
+     steps:
+-      - uses: actions/checkout@v3
++      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+         with:
+           ref: ${{ needs.get_next_version.outputs.branch_name }}
+ 
+       - name: Install Python
+-        uses: actions/setup-python@v2
++        uses: actions/setup-python@e9aba2c848f5ebd159c070c61ea2c4e2b122355e # v2
+         with:
+           python-version: '3.8'
+ 
+@@ -89,7 +89,7 @@ jobs:
+           python3 -m pip install setuptools wheel twine torch
+           python3 setup.py sdist
+  
+-      - uses: actions/upload-artifact@v2
++      - uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2
+         with:
+           path: dist/*.tar.gz
+ 
+@@ -102,12 +102,12 @@ jobs:
+         os: [ubuntu-latest, macos-latest]
+ 
+     steps:
+-      - uses: actions/checkout@v3
++      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+         with:
+           ref: ${{ needs.get_next_version.outputs.branch_name }}
+ 
+       - name: Install Python
+-        uses: actions/setup-python@v2
++        uses: actions/setup-python@e9aba2c848f5ebd159c070c61ea2c4e2b122355e # v2
+         with:
+           python-version: '3.8'
+ 
+@@ -131,7 +131,7 @@ jobs:
+           CIBW_ENVIRONMENT: "PIP_ONLY_BINARY=numpy"
+           CIBW_SKIP: "*musllinux*"
+ 
+-      - uses: actions/upload-artifact@v2
++      - uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2
+         with:
+           path: dist
+ 
+@@ -140,7 +140,7 @@ jobs:
+     runs-on: ubuntu-latest
+     needs: [build_wheels, create_sdist, get_next_version]
+     steps:
+-      - uses: actions/download-artifact@v2
++      - uses: actions/download-artifact@cbed621e49e4c01b044d60f6c80ea4ed6328b281 # v2
+         with:
+           name: artifact
+           path: dist
+@@ -156,6 +156,6 @@ jobs:
+ 
+       # create the release on github
+       - name: create release on github
+-        uses: ncipollo/release-action@v1
++        uses: ncipollo/release-action@b7eabc95ff50cbeeedec83973935c8f306dfcd0b # v1
+         with:
+           tag: '${{ needs.get_next_version.outputs.new_tag }}'

@@ -1,0 +1,65 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_azure-rest-api-specs__.github__workflows___reusable-set-check-status.yaml:47:9
+   [1m[94m|[0m
+[1m[94m47 |[0m         - uses: actions/checkout@v6
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m48 |[0m [1m[33m|[0m         with:
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m54 |[0m [1m[33m|[0m           sparse-checkout: |
+[1m[94m55 |[0m [1m[33m|[0m             .github
+   [1m[94m|[0m [1m[33m|___________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_azure-rest-api-specs__.github__workflows___reusable-set-check-status.yaml:57:9
+   [1m[94m|[0m
+[1m[94m57 |[0m         - name: "Set Status"
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m58 |[0m           uses: actions/github-script@v8
+[1m[94m59 |[0m           id: set-status
+[1m[94m60 |[0m           with:
+[1m[94m61 |[0m [1m[91m/[0m           script: |
+[1m[94m62 |[0m [1m[91m|[0m             const { default: setStatus } =
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m68 |[0m [1m[91m|[0m               '${{ inputs.overriding_label }}'
+[1m[94m69 |[0m [1m[91m|[0m             );
+   [1m[94m|[0m [1m[91m|______________^[0m [1m[91minputs.monitored_workflow_name may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_azure-rest-api-specs__.github__workflows___reusable-set-check-status.yaml:57:9
+   [1m[94m|[0m
+[1m[94m57 |[0m         - name: "Set Status"
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m58 |[0m           uses: actions/github-script@v8
+[1m[94m59 |[0m           id: set-status
+[1m[94m60 |[0m           with:
+[1m[94m61 |[0m [1m[91m/[0m           script: |
+[1m[94m62 |[0m [1m[91m|[0m             const { default: setStatus } =
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m68 |[0m [1m[91m|[0m               '${{ inputs.overriding_label }}'
+[1m[94m69 |[0m [1m[91m|[0m             );
+   [1m[94m|[0m [1m[91m|______________^[0m [1m[91minputs.required_check_name may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Azure_azure-rest-api-specs__.github__workflows___reusable-set-check-status.yaml:57:9
+   [1m[94m|[0m
+[1m[94m57 |[0m         - name: "Set Status"
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m58 |[0m           uses: actions/github-script@v8
+[1m[94m59 |[0m           id: set-status
+[1m[94m60 |[0m           with:
+[1m[94m61 |[0m [1m[91m/[0m           script: |
+[1m[94m62 |[0m [1m[91m|[0m             const { default: setStatus } =
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m68 |[0m [1m[91m|[0m               '${{ inputs.overriding_label }}'
+[1m[94m69 |[0m [1m[91m|[0m             );
+   [1m[94m|[0m [1m[91m|______________^[0m [1m[91minputs.overriding_label may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m9[39m findings ([1m[93m5[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m3[39m high

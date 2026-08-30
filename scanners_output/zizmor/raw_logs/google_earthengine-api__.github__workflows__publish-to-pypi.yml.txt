@@ -1,0 +1,102 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_earthengine-api__.github__workflows__publish-to-pypi.yml:14:9
+   [1m[94m|[0m
+[1m[94m14 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_earthengine-api__.github__workflows__publish-to-pypi.yml:49:9
+   [1m[94m|[0m
+[1m[94m49 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_earthengine-api__.github__workflows__publish-to-pypi.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: Publish to PyPi
+[1m[94m  2 |[0m [1m[33m|[0m on:
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m 99 |[0m [1m[33m|[0m           python -m pip install --upgrade --pre earthengine-api
+[1m[94m100 |[0m [1m[33m|[0m           python -c "import ee; print(ee.__version__)"
+    [1m[94m|[0m [1m[33m|_______________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_earthengine-api__.github__workflows__publish-to-pypi.yml:45:3
+   [1m[94m|[0m
+[1m[94m45 |[0m [1m[33m/[0m   build-artifacts:
+[1m[94m46 |[0m [1m[33m|[0m     needs: smoke-test
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m65 |[0m [1m[33m|[0m           name: releases
+[1m[94m66 |[0m [1m[33m|[0m           path: ./python/dist
+   [1m[94m|[0m [1m[33m|[0m                             [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________________________|[0m
+   [1m[94m|[0m                               [1m[33mthis job[0m
+   [1m[94m|[0m                               [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_earthengine-api__.github__workflows__publish-to-pypi.yml:68:3
+   [1m[94m|[0m
+[1m[94m68 |[0m [1m[33m/[0m   pypi-upload:
+[1m[94m69 |[0m [1m[33m|[0m     needs: build-artifacts
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m84 |[0m [1m[33m|[0m           password: ${{ secrets.PYPI_API_TOKEN }}
+[1m[94m85 |[0m [1m[33m|[0m           verbose: true
+   [1m[94m|[0m [1m[33m|[0m                       [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________|[0m
+   [1m[94m|[0m                         [1m[33mthis job[0m
+   [1m[94m|[0m                         [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_earthengine-api__.github__workflows__publish-to-pypi.yml:87:3
+    [1m[94m|[0m
+[1m[94m 87 |[0m [1m[33m/[0m   check-pypi-package:
+[1m[94m 88 |[0m [1m[33m|[0m     needs: pypi-upload
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m 99 |[0m [1m[33m|[0m           python -m pip install --upgrade --pre earthengine-api
+[1m[94m100 |[0m [1m[33m|[0m           python -c "import ee; print(ee.__version__)"
+    [1m[94m|[0m [1m[33m|[0m                                                       [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_______________________________________________________|[0m
+    [1m[94m|[0m                                                         [1m[33mthis job[0m
+    [1m[94m|[0m                                                         [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#use-trusted-publishing\use-trusted-publishing]8;;\][0m: [1mprefer trusted publishing for authentication[0m
+  [1m[94m-->[0m ../.github/workflows/google_earthengine-api__.github__workflows__publish-to-pypi.yml:81:9
+   [1m[94m|[0m
+[1m[94m81 |[0m         uses: pypa/gh-action-pypi-publish@v1.13.0
+   [1m[94m|[0m         [1m[94m-----------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m82 |[0m         with:
+[1m[94m83 |[0m           user: __token__
+[1m[94m84 |[0m           password: ${{ secrets.PYPI_API_TOKEN }}
+   [1m[94m|[0m           [1m[94m---------------------------------------[0m [1m[94minfo: uses a manually-configured credential instead of Trusted Publishing[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/google_earthengine-api__.github__workflows__publish-to-pypi.yml:20:9
+   [1m[94m|[0m
+[1m[94m20 |[0m         uses: 'google-github-actions/auth@v2'
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/google_earthengine-api__.github__workflows__publish-to-pypi.yml:81:9
+   [1m[94m|[0m
+[1m[94m81 |[0m         uses: pypa/gh-action-pypi-publish@v1.13.0
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m9[39m findings: 0 unknown, [35m1[39m informational, [36m0[39m low, [33m6[39m medium, [31m2[39m high

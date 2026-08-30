@@ -1,0 +1,17 @@
+name: Lock closed issue
+
+on: 
+  issues:
+    types: [closed]
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  lock:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: OSDKDev/lock-issues@937111af12ed1714d689c114a6675dfdea98bf42 # OSDKDev/lock-issues@v1.2
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"

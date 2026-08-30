@@ -1,0 +1,26 @@
+diff --git a/.github/workflows/microsoft_Generative-AI-for-beginners-dotnet__.github__workflows__squad-issue-assign.yml b/.github/workflows/microsoft_Generative-AI-for-beginners-dotnet__.github__workflows__squad-issue-assign.yml
+index ad140f4..b666308 100644
+--- a/.github/workflows/microsoft_Generative-AI-for-beginners-dotnet__.github__workflows__squad-issue-assign.yml
++++ b/.github/workflows/microsoft_Generative-AI-for-beginners-dotnet__.github__workflows__squad-issue-assign.yml
+@@ -14,10 +14,10 @@ jobs:
+     if: startsWith(github.event.label.name, 'squad:')
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+ 
+       - name: Identify assigned member and trigger work
+-        uses: actions/github-script@v7
++        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+         with:
+           script: |
+             const fs = require('fs');
+@@ -116,7 +116,7 @@ jobs:
+       # Separate step: assign @copilot using PAT (required for coding agent)
+       - name: Assign @copilot coding agent
+         if: github.event.label.name == 'squad:copilot'
+-        uses: actions/github-script@v7
++        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+         with:
+           github-token: ${{ secrets.COPILOT_ASSIGN_TOKEN }}
+           script: |

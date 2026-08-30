@@ -1,0 +1,20 @@
+diff --git a/.github/workflows/Tencent_ncnn__.github__workflows__tvos.yml b/.github/workflows/Tencent_ncnn__.github__workflows__tvos.yml
+index 7bb9608..0899749 100644
+--- a/.github/workflows/Tencent_ncnn__.github__workflows__tvos.yml
++++ b/.github/workflows/Tencent_ncnn__.github__workflows__tvos.yml
+@@ -69,13 +69,13 @@ jobs:
+         -DNCNN_VULKAN=ON \
+ 
+     steps:
+-    - uses: actions/checkout@v6
++    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       with:
+         submodules: true
+ 
+     - name: cache-openmp
+       id: cache-openmp
+-      uses: actions/cache@v5
++      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+       with:
+         path: openmp-install
+         key: openmp-tvos-install-20251004

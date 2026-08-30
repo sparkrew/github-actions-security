@@ -1,0 +1,32 @@
+{
+  "workflow": "awslabs_amazon-bedrock-agentcore-samples__.github__workflows__ash-security-scan.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+      "line": 14
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: tj-actions/changed-files@ed68ef82c095e0d48ec87eccea555d944a631a4c # tj-actions/changed-files@v46 | v46.0.5",
+      "line": 20
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # actions/setup-python@v4 | restore-v4-release,v4.9.1",
+      "line": 50
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+      "line": 208
+    }
+  ]
+}

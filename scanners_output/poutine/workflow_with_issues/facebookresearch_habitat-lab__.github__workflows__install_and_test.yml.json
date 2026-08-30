@@ -1,0 +1,25 @@
+{
+  "workflow": "facebookresearch_habitat-lab__.github__workflows__install_and_test.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 60,
+      "column": "",
+      "job": "install_and_test_lab_ubuntu",
+      "step": "",
+      "details": "runs-on: 4-core-ubuntu-gpu-t4",
+      "event_triggers": [
+        "pull_request",
+        "push",
+        "schedule"
+      ]
+    }
+  ]
+}

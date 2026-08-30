@@ -1,0 +1,40 @@
+diff --git a/.github/workflows/NVIDIA_cccl__.github__workflows__release-update-rc.yml b/.github/workflows/NVIDIA_cccl__.github__workflows__release-update-rc.yml
+index 1095e24..021600c 100644
+--- a/.github/workflows/NVIDIA_cccl__.github__workflows__release-update-rc.yml
++++ b/.github/workflows/NVIDIA_cccl__.github__workflows__release-update-rc.yml
+@@ -32,7 +32,7 @@ jobs:
+       tag_name: ${{ steps.prepare.outputs.tag_name }}
+     steps:
+       - name: Checkout the repository
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           persist-credentials: false
+ 
+@@ -102,7 +102,7 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout the repository
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       - name: Tag the release candidate
+         run: |
+@@ -121,7 +121,7 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Notify Slack
+-        uses: slackapi/slack-github-action@v1.26.0
++        uses: slackapi/slack-github-action@70cd7be8e40a46e8b0eced40b0de447bdb42f68e # v1.26.0
+         env:
+           SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFIER_BOT_TOKEN }}
+           SUMMARY_URL: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
+@@ -141,7 +141,7 @@ jobs:
+     steps:
+     - name: Notify Slack (failure)
+       if: ${{ failure() }}
+-      uses: slackapi/slack-github-action@v1.26.0
++      uses: slackapi/slack-github-action@70cd7be8e40a46e8b0eced40b0de447bdb42f68e # v1.26.0
+       env:
+         SLACK_BOT_TOKEN: ${{ secrets.SLACK_NOTIFIER_BOT_TOKEN }}
+         SUMMARY_URL: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}

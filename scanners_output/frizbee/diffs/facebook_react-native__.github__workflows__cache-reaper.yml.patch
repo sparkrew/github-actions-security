@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/facebook_react-native__.github__workflows__cache-reaper.yml b/.github/workflows/facebook_react-native__.github__workflows__cache-reaper.yml
+index 59feda5..cc3f7d9 100644
+--- a/.github/workflows/facebook_react-native__.github__workflows__cache-reaper.yml
++++ b/.github/workflows/facebook_react-native__.github__workflows__cache-reaper.yml
+@@ -13,7 +13,7 @@ jobs:
+     env:
+       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: Setup Node.js
+         uses: ./.github/actions/setup-node
+       - name: Trim the cache

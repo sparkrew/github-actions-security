@@ -1,0 +1,26 @@
+{
+  "workflow": "Azure_Azurite__.github__workflows__PrValidation.yml",
+  "tool": "ggshield",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "Secrets detection": 2
+    }
+  },
+  "findings": [
+    {
+      "rule": "Secrets detection",
+      "line": 108,
+      "code": "my-******-pw",
+      "note": "Generic Password",
+      "documentation": "https://docs.gitguardian.com/secrets-detection/secrets-detection-engine/detectors/generics/generic_password"
+    },
+    {
+      "rule": "Secrets detection",
+      "line": 124,
+      "code": "my-******-pw",
+      "note": "Generic Password",
+      "documentation": "https://docs.gitguardian.com/secrets-detection/secrets-detection-engine/detectors/generics/generic_password"
+    }
+  ]
+}

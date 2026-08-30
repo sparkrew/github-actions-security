@@ -1,0 +1,67 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_benchmark__.github__workflows__wheels.yml:17:9
+   [1m[94m|[0m
+[1m[94m17 |[0m         - name: Check out repo
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m18 |[0m [1m[33m|[0m         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+[1m[94m19 |[0m [1m[33m|[0m         with:
+[1m[94m20 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_benchmark__.github__workflows__wheels.yml:40:9
+   [1m[94m|[0m
+[1m[94m40 |[0m         - name: Check out Google Benchmark
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m41 |[0m [1m[33m|[0m         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+[1m[94m42 |[0m [1m[33m|[0m         with:
+[1m[94m43 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_benchmark__.github__workflows__wheels.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m name: Build and upload Python wheels
+[1m[94m 2 |[0m [1m[33m|[0m
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m83 |[0m [1m[33m|[0m           merge-multiple: true
+[1m[94m84 |[0m [1m[33m|[0m       - uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # release/v1
+   [1m[94m|[0m [1m[33m|________________________________________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_benchmark__.github__workflows__wheels.yml:13:3
+   [1m[94m|[0m
+[1m[94m13 |[0m [1m[33m/[0m   build_sdist:
+[1m[94m14 |[0m [1m[33m|[0m     name: Build source distribution
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m30 |[0m [1m[33m|[0m           name: dist-sdist
+[1m[94m31 |[0m [1m[33m|[0m           path: dist/*.tar.gz
+   [1m[94m|[0m [1m[33m|[0m                             [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________________________|[0m
+   [1m[94m|[0m                               [1m[33mthis job[0m
+   [1m[94m|[0m                               [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_benchmark__.github__workflows__wheels.yml:33:3
+   [1m[94m|[0m
+[1m[94m33 |[0m [1m[33m/[0m   build_wheels:
+[1m[94m34 |[0m [1m[33m|[0m     name: Build Google Benchmark wheels on ${{ matrix.os }}
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m69 |[0m [1m[33m|[0m           name: dist-${{ matrix.os }}
+[1m[94m70 |[0m [1m[33m|[0m           path: wheelhouse/*.whl
+   [1m[94m|[0m [1m[33m|[0m                                [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________________________|[0m
+   [1m[94m|[0m                                  [1m[33mthis job[0m
+   [1m[94m|[0m                                  [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m5[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m5[39m medium, [31m0[39m high

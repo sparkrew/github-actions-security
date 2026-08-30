@@ -1,0 +1,25 @@
+{
+  "workflow": "facebook_flow__.github__workflows__build_and_test.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 112,
+      "column": "",
+      "job": "build_linux_arm64",
+      "step": "",
+      "details": "runs-on: 4-core-ubuntu-arm",
+      "event_triggers": [
+        "workflow_dispatch",
+        "pull_request",
+        "push"
+      ]
+    }
+  ]
+}

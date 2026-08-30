@@ -1,0 +1,196 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_tarpc__.github__workflows__main.yml:45:9
+   [1m[94m|[0m
+[1m[94m45 |[0m       - uses: actions/checkout@v6
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_tarpc__.github__workflows__main.yml:59:9
+   [1m[94m|[0m
+[1m[94m59 |[0m       - uses: actions/checkout@v6
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_tarpc__.github__workflows__main.yml:82:9
+   [1m[94m|[0m
+[1m[94m82 |[0m       - uses: actions/checkout@v6
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_tarpc__.github__workflows__main.yml:91:9
+   [1m[94m|[0m
+[1m[94m91 |[0m       - uses: actions/checkout@v6
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/google_tarpc__.github__workflows__main.yml:101:9
+    [1m[94m|[0m
+[1m[94m101 |[0m       - uses: actions/checkout@v6
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_tarpc__.github__workflows__main.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m on:
+[1m[94m  2 |[0m [1m[33m|[0m   push:
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m119 |[0m [1m[33m|[0m         if: ${{ contains(needs.*.result, 'failure') }}
+[1m[94m120 |[0m [1m[33m|[0m         run: exit 1
+    [1m[94m|[0m [1m[33m|____________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_tarpc__.github__workflows__main.yml:19:3
+   [1m[94m|[0m
+[1m[94m19 |[0m [1m[33m/[0m   test:
+[1m[94m20 |[0m [1m[33m|[0m     name: Test
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m50 |[0m [1m[33m|[0m           ${{ matrix.serde-transport-json }} ${{ matrix.serde-transport-bincode }}
+[1m[94m51 |[0m [1m[33m|[0m           ${{ matrix.tcp }} ${{ matrix.unix }}
+   [1m[94m|[0m [1m[33m|[0m                                              [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________________________________|[0m
+   [1m[94m|[0m                                                [1m[33mthis job[0m
+   [1m[94m|[0m                                                [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_tarpc__.github__workflows__main.yml:53:3
+   [1m[94m|[0m
+[1m[94m53 |[0m [1m[33m/[0m   list-examples:
+[1m[94m54 |[0m [1m[33m|[0m     name: List Examples
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m71 |[0m [1m[33m|[0m           )
+[1m[94m72 |[0m [1m[33m|[0m           echo "examples=$examples" | tee -a $GITHUB_OUTPUT
+   [1m[94m|[0m [1m[33m|[0m                                                           [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|___________________________________________________________|[0m
+   [1m[94m|[0m                                                             [1m[33mthis job[0m
+   [1m[94m|[0m                                                             [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_tarpc__.github__workflows__main.yml:74:3
+   [1m[94m|[0m
+[1m[94m74 |[0m [1m[33m/[0m   run-example:
+[1m[94m75 |[0m [1m[33m|[0m     name: Run Example
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m84 |[0m [1m[33m|[0m       - run: |
+[1m[94m85 |[0m [1m[33m|[0m           cargo run --example "${{ matrix.example }}"
+   [1m[94m|[0m [1m[33m|[0m                                                     [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________________________________________________|[0m
+   [1m[94m|[0m                                                       [1m[33mthis job[0m
+   [1m[94m|[0m                                                       [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_tarpc__.github__workflows__main.yml:87:3
+   [1m[94m|[0m
+[1m[94m87 |[0m [1m[33m/[0m   fmt:
+[1m[94m88 |[0m [1m[33m|[0m     name: Rustfmt
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m94 |[0m [1m[33m|[0m           components: rustfmt
+[1m[94m95 |[0m [1m[33m|[0m       - run: cargo fmt --all -- --check
+   [1m[94m|[0m [1m[33m|[0m                                       [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________________________|[0m
+   [1m[94m|[0m                                         [1m[33mthis job[0m
+   [1m[94m|[0m                                         [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_tarpc__.github__workflows__main.yml:97:3
+    [1m[94m|[0m
+[1m[94m 97 |[0m [1m[33m/[0m   clippy:
+[1m[94m 98 |[0m [1m[33m|[0m     name: Clippy
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m107 |[0m [1m[33m|[0m   # This job succeeds if all other tests and examples succeed. Otherwise, it fails. It is for use in
+[1m[94m108 |[0m [1m[33m|[0m   # branch protection rules.
+    [1m[94m|[0m [1m[33m|[0m                            [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________________|[0m
+    [1m[94m|[0m                              [1m[33mthis job[0m
+    [1m[94m|[0m                              [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_tarpc__.github__workflows__main.yml:109:3
+    [1m[94m|[0m
+[1m[94m109 |[0m [1m[33m/[0m   test-suite:
+[1m[94m110 |[0m [1m[33m|[0m     name: Test Suite
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m119 |[0m [1m[33m|[0m         if: ${{ contains(needs.*.result, 'failure') }}
+[1m[94m120 |[0m [1m[33m|[0m         run: exit 1
+    [1m[94m|[0m [1m[33m|[0m                    [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________|[0m
+    [1m[94m|[0m                      [1m[33mthis job[0m
+    [1m[94m|[0m                      [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/google_tarpc__.github__workflows__main.yml:84:9
+   [1m[94m|[0m
+[1m[94m84 |[0m         - run: |
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m85 |[0m [1m[33m|[0m           cargo run --example "${{ matrix.example }}"
+   [1m[94m|[0m [1m[33m|[0m                                                     [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________________________________________________|[0m
+   [1m[94m|[0m                                                       [1m[33mthis step[0m
+   [1m[94m|[0m                                                       [1m[33mmatrix.example may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/google_tarpc__.github__workflows__main.yml:46:9
+   [1m[94m|[0m
+[1m[94m46 |[0m       - uses: dtolnay/rust-toolchain@stable
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/google_tarpc__.github__workflows__main.yml:60:9
+   [1m[94m|[0m
+[1m[94m60 |[0m       - uses: dtolnay/rust-toolchain@stable
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/google_tarpc__.github__workflows__main.yml:83:9
+   [1m[94m|[0m
+[1m[94m83 |[0m       - uses: dtolnay/rust-toolchain@stable
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/google_tarpc__.github__workflows__main.yml:92:9
+   [1m[94m|[0m
+[1m[94m92 |[0m       - uses: dtolnay/rust-toolchain@stable
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/google_tarpc__.github__workflows__main.yml:102:9
+    [1m[94m|[0m
+[1m[94m102 |[0m       - uses: dtolnay/rust-toolchain@stable
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m26[39m findings ([1m[93m8[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m13[39m medium, [31m5[39m high

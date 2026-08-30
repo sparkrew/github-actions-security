@@ -1,0 +1,147 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_fluentui-system-icons__.github__workflows__pr.yml:15:9
+   [1m[94m|[0m
+[1m[94m15 |[0m       - uses: actions/checkout@v6
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_fluentui-system-icons__.github__workflows__pr.yml:36:9
+   [1m[94m|[0m
+[1m[94m36 |[0m       - uses: actions/checkout@v6
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_fluentui-system-icons__.github__workflows__pr.yml:56:9
+   [1m[94m|[0m
+[1m[94m56 |[0m       - uses: actions/checkout@v6
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_fluentui-system-icons__.github__workflows__pr.yml:73:9
+   [1m[94m|[0m
+[1m[94m73 |[0m       - uses: actions/checkout@v6
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_fluentui-system-icons__.github__workflows__pr.yml:141:9
+    [1m[94m|[0m
+[1m[94m141 |[0m         - uses: actions/checkout@v6
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m142 |[0m [1m[33m|[0m         with:
+[1m[94m143 |[0m [1m[33m|[0m           fetch-depth: 0
+    [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_fluentui-system-icons__.github__workflows__pr.yml:199:9
+    [1m[94m|[0m
+[1m[94m199 |[0m         - uses: actions/checkout@v6
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m200 |[0m [1m[33m|[0m         with:
+[1m[94m201 |[0m [1m[33m|[0m           fetch-depth: 0
+    [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_fluentui-system-icons__.github__workflows__pr.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: Pull request validation
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m248 |[0m [1m[33m|[0m           path: packages/icon-app/dist/
+[1m[94m249 |[0m [1m[33m|[0m           retention-days: 7
+    [1m[94m|[0m [1m[33m|____________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_fluentui-system-icons__.github__workflows__pr.yml:10:3
+   [1m[94m|[0m
+[1m[94m10 |[0m [1m[33m/[0m   valid-asset-names:
+[1m[94m11 |[0m [1m[33m|[0m     name: Validate Asset Names
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m30 |[0m [1m[33m|[0m             exit(1)
+[1m[94m31 |[0m [1m[33m|[0m           """
+   [1m[94m|[0m [1m[33m|[0m             [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________|[0m
+   [1m[94m|[0m               [1m[33mthis job[0m
+   [1m[94m|[0m               [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_fluentui-system-icons__.github__workflows__pr.yml:32:3
+   [1m[94m|[0m
+[1m[94m32 |[0m [1m[33m/[0m   valid-asset-fills:
+[1m[94m33 |[0m [1m[33m|[0m     name: Validate Asset Fills
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m48 |[0m [1m[33m|[0m             exit 1
+[1m[94m49 |[0m [1m[33m|[0m           fi
+   [1m[94m|[0m [1m[33m|[0m            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________|[0m
+   [1m[94m|[0m              [1m[33mthis job[0m
+   [1m[94m|[0m              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_fluentui-system-icons__.github__workflows__pr.yml:51:3
+   [1m[94m|[0m
+[1m[94m51 |[0m [1m[33m/[0m   build-ios:
+[1m[94m52 |[0m [1m[33m|[0m     name: Build iOS library
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m65 |[0m [1m[33m|[0m         run: npm run deploy:ios
+[1m[94m66 |[0m [1m[33m|[0m         working-directory: importer
+   [1m[94m|[0m [1m[33m|[0m                                   [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|___________________________________|[0m
+   [1m[94m|[0m                                     [1m[33mthis job[0m
+   [1m[94m|[0m                                     [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_fluentui-system-icons__.github__workflows__pr.yml:68:3
+    [1m[94m|[0m
+[1m[94m 68 |[0m [1m[33m/[0m   build-android:
+[1m[94m 69 |[0m [1m[33m|[0m     name: Build Android library
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m129 |[0m [1m[33m|[0m   #       accessToken: "placeholder"
+[1m[94m130 |[0m [1m[33m|[0m   #       refreshToken: "placeholder"
+    [1m[94m|[0m [1m[33m|[0m                                     [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_____________________________________|[0m
+    [1m[94m|[0m                                       [1m[33mthis job[0m
+    [1m[94m|[0m                                       [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_fluentui-system-icons__.github__workflows__pr.yml:239:9
+    [1m[94m|[0m
+[1m[94m239 |[0m         - name: Bundle-Size
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m240 |[0m [1m[91m/[0m         run: |
+[1m[94m241 |[0m [1m[91m|[0m           npx nx affected -t bundle-size --exclude='svg-icons,svg-sprites'
+[1m[94m242 |[0m [1m[91m|[0m           npx monosize compare-reports --branch=${{ github.event.pull_request.base.ref }}
+    [1m[94m|[0m [1m[91m|_________________________________________________________________________________________^[0m [1m[91mgithub.event.pull_request.base.ref may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_fluentui-system-icons__.github__workflows__pr.yml:92:9
+   [1m[94m|[0m
+[1m[94m92 |[0m         uses: eskatos/gradle-command-action@v1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m24[39m findings ([1m[93m11[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m11[39m medium, [31m2[39m high

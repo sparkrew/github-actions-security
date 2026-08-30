@@ -1,0 +1,40 @@
+{
+  "workflow": "microsoft_msquic__.github__workflows__cargo.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "artipacked": 2,
+      "excessive-permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_msquic__.github__workflows__cargo.yml",
+      "line": 36,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_msquic__.github__workflows__cargo.yml",
+      "line": 138,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "error",
+      "message": "overly broad permissions",
+      "workflow": "microsoft_msquic__.github__workflows__cargo.yml",
+      "line": 16,
+      "column": 3,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

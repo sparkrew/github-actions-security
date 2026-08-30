@@ -1,0 +1,24 @@
+{
+  "workflow": "google_earthengine-api__.github__workflows__publish-to-pypi.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 76,
+      "column": "",
+      "job": "pypi-upload",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "release",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

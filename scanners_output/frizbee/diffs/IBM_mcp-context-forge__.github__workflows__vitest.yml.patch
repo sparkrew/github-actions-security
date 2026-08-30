@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/IBM_mcp-context-forge__.github__workflows__vitest.yml b/.github/workflows/IBM_mcp-context-forge__.github__workflows__vitest.yml
+index 2b5717d..1112b8f 100644
+--- a/.github/workflows/IBM_mcp-context-forge__.github__workflows__vitest.yml
++++ b/.github/workflows/IBM_mcp-context-forge__.github__workflows__vitest.yml
+@@ -47,7 +47,7 @@ jobs:
+       # 0️⃣  Checkout
+       # -----------------------------------------------------------
+       - name: ⬇️  Checkout source
+-        uses: actions/checkout@v5
++        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+         with:
+           fetch-depth: 1
+ 
+@@ -55,7 +55,7 @@ jobs:
+       # 1️⃣  Node.js Setup
+       # -----------------------------------------------------------
+       - name: 📦  Set up Node.js
+-        uses: actions/setup-node@v5
++        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+         with:
+           node-version: '20'
+           cache: npm

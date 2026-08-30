@@ -1,0 +1,25 @@
+diff --git a/.github/workflows/microsoft_FLAML__.github__workflows__openai.yml b/.github/workflows/microsoft_FLAML__.github__workflows__openai.yml
+index e85569e..c3c1dd8 100644
+--- a/.github/workflows/microsoft_FLAML__.github__workflows__openai.yml
++++ b/.github/workflows/microsoft_FLAML__.github__workflows__openai.yml
+@@ -25,9 +25,9 @@ jobs:
+     runs-on: ${{ matrix.os }}
+     environment: openai
+     steps:
+-      - uses: actions/checkout@v3
++      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+       - name: Set up Python ${{ matrix.python-version }}
+-        uses: actions/setup-python@v4
++        uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # v4
+         with:
+           python-version: ${{ matrix.python-version }}
+       - name: Install packages and dependencies
+@@ -73,7 +73,7 @@ jobs:
+           coverage xml
+           cat "$(pwd)/test/autogen/executed_openai_notebook_output.txt"
+       - name: Upload coverage to Codecov
+-        uses: codecov/codecov-action@v3
++        uses: codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457 # v3
+         with:
+           file: ./coverage.xml
+           flags: unittests

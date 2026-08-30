@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/NVIDIA_Megatron-LM__.github__workflows__release-docs.yml b/.github/workflows/NVIDIA_Megatron-LM__.github__workflows__release-docs.yml
+index 6d619a8..4248e0d 100644
+--- a/.github/workflows/NVIDIA_Megatron-LM__.github__workflows__release-docs.yml
++++ b/.github/workflows/NVIDIA_Megatron-LM__.github__workflows__release-docs.yml
+@@ -73,7 +73,7 @@ on:
+ 
+ jobs:
+   build-docs:
+-    uses: NVIDIA-NeMo/FW-CI-templates/.github/workflows/_build_docs.yml@v0.67.0
++    uses: NVIDIA-NeMo/FW-CI-templates/.github/workflows/_build_docs.yml@3ab507cd035df3ae37cce8808ed3210ff6e7062b # v0.67.0
+     with:
+       ref: ${{ inputs.build-docs-ref }}
+ 
+@@ -81,7 +81,7 @@ jobs:
+     runs-on: ubuntu-latest
+     needs: [build-docs]
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+         with:
+           repository: NVIDIA-NeMo/FW-CI-templates
+           ref: v0.74.0

@@ -1,0 +1,98 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__release-update-rc.yml:104:9
+    [1m[94m|[0m
+[1m[94m104 |[0m         - name: Checkout the repository
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m105 |[0m [1m[33m|[0m         uses: actions/checkout@v6
+    [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__release-update-rc.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m # SPDX-FileCopyrightText: Copyright (c) 2024, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+[1m[94m  2 |[0m [1m[33m|[0m # SPDX-License-Identifier: Apache-2.0
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m152 |[0m [1m[33m|[0m
+[1m[94m153 |[0m [1m[33m|[0m           Details: ${{ env.SUMMARY_URL }}
+    [1m[94m|[0m [1m[33m|__________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__release-update-rc.yml:29:3
+   [1m[94m|[0m
+[1m[94m29 |[0m [1m[33m/[0m   prepare:
+[1m[94m30 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m94 |[0m [1m[33m|[0m   # TODO:
+[1m[94m95 |[0m [1m[33m|[0m   #  - Kick off CI for repo before tagging release
+   [1m[94m|[0m [1m[33m|[0m                                                  [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|__________________________________________________|[0m
+   [1m[94m|[0m                                                    [1m[33mthis job[0m
+   [1m[94m|[0m                                                    [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__release-update-rc.yml:116:3
+    [1m[94m|[0m
+[1m[94m116 |[0m [1m[33m/[0m   notify-success:
+[1m[94m117 |[0m [1m[33m|[0m     if: ${{ success() }}
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m132 |[0m [1m[33m|[0m
+[1m[94m133 |[0m [1m[33m|[0m             Workflow summary: ${{ env.SUMMARY_URL }}
+    [1m[94m|[0m [1m[33m|[0m                                                    [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________________________________________|[0m
+    [1m[94m|[0m                                                      [1m[33mthis job[0m
+    [1m[94m|[0m                                                      [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__release-update-rc.yml:135:3
+    [1m[94m|[0m
+[1m[94m135 |[0m [1m[33m/[0m   notify-failure:
+[1m[94m136 |[0m [1m[33m|[0m     if: ${{ failure() }}
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m152 |[0m [1m[33m|[0m
+[1m[94m153 |[0m [1m[33m|[0m           Details: ${{ env.SUMMARY_URL }}
+    [1m[94m|[0m [1m[33m|[0m                                          [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|__________________________________________|[0m
+    [1m[94m|[0m                                            [1m[33mthis job[0m
+    [1m[94m|[0m                                            [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__release-update-rc.yml:107:9
+    [1m[94m|[0m
+[1m[94m107 |[0m         - name: Tag the release candidate
+    [1m[94m|[0m           [1m[94m-------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m108 |[0m [1m[94m/[0m         run: |
+[1m[94m109 |[0m [1m[94m|[0m           rc_tag=${{ needs.prepare.outputs.tag_name }}
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m113 |[0m [1m[94m|[0m           git push origin ${rc_tag}
+[1m[94m114 |[0m [1m[94m|[0m           echo "Tagged release candidate ${rc_tag}."
+    [1m[94m|[0m [1m[94m|____________________________________________________-[0m [1m[94minfo: needs.prepare.outputs.tag_name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__release-update-rc.yml:124:9
+    [1m[94m|[0m
+[1m[94m124 |[0m         uses: slackapi/slack-github-action@v1.26.0
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__release-update-rc.yml:144:7
+    [1m[94m|[0m
+[1m[94m144 |[0m       uses: slackapi/slack-github-action@v1.26.0
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m9[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m5[39m medium, [31m2[39m high

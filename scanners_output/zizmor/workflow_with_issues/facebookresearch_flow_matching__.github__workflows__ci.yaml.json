@@ -1,0 +1,50 @@
+{
+  "workflow": "facebookresearch_flow_matching__.github__workflows__ci.yaml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "artipacked": 1,
+      "excessive-permissions": 1,
+      "unpinned-uses": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "facebookresearch_flow_matching__.github__workflows__ci.yaml",
+      "line": 14,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "facebookresearch_flow_matching__.github__workflows__ci.yaml",
+      "line": 7,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "facebookresearch_flow_matching__.github__workflows__ci.yaml",
+      "line": 16,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "facebookresearch_flow_matching__.github__workflows__ci.yaml",
+      "line": 57,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

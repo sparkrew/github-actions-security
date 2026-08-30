@@ -1,0 +1,23 @@
+{
+  "workflow": "microsoft_promptflow__.github__workflows__build_msi_installer.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "injection": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "injection",
+      "line": 198,
+      "column": "",
+      "job": "build_msi_installer",
+      "step": "16",
+      "details": "Sources: github.event.inputs.uploadAsLatest",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

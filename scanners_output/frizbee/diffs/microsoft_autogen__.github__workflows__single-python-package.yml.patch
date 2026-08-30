@@ -1,0 +1,25 @@
+diff --git a/.github/workflows/microsoft_autogen__.github__workflows__single-python-package.yml b/.github/workflows/microsoft_autogen__.github__workflows__single-python-package.yml
+index 4d46ed5..ce283c8 100644
+--- a/.github/workflows/microsoft_autogen__.github__workflows__single-python-package.yml
++++ b/.github/workflows/microsoft_autogen__.github__workflows__single-python-package.yml
+@@ -28,17 +28,17 @@ jobs:
+       id-token: write
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           ref: ${{ github.event.inputs.ref }}
+       # Require ref to be a tag
+       - run: git show-ref --verify refs/tags/${{ github.event.inputs.ref }}
+-      - uses: astral-sh/setup-uv@v5
++      - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5
+         with:
+           enable-cache: true
+       - run: uv build --package ${{ github.event.inputs.package }} --out-dir dist/
+         working-directory: python
+       - name: Publish package to PyPI
+-        uses: pypa/gh-action-pypi-publish@release/v1
++        uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # release/v1
+         with:
+           packages-dir: python/dist/

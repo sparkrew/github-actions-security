@@ -1,0 +1,59 @@
+diff --git a/.github/workflows/google_tarpc__.github__workflows__main.yml b/.github/workflows/google_tarpc__.github__workflows__main.yml
+index bfb542f..99e1cb6 100644
+--- a/.github/workflows/google_tarpc__.github__workflows__main.yml
++++ b/.github/workflows/google_tarpc__.github__workflows__main.yml
+@@ -42,8 +42,8 @@ jobs:
+           - unix: "--features unix"
+             serde-transport: ""
+     steps:
+-      - uses: actions/checkout@v6
+-      - uses: dtolnay/rust-toolchain@stable
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
++      - uses: dtolnay/rust-toolchain@631a55b12751854ce901bb631d5902ceb48146f7 # stable
+       - run: >
+           cargo test --manifest-path tarpc/Cargo.toml
+           ${{ matrix.serde }} ${{ matrix.tokio }} ${{ matrix.serde-transport }}
+@@ -56,8 +56,8 @@ jobs:
+     outputs:
+       examples: ${{ steps.matrix.outputs.examples }}
+     steps:
+-      - uses: actions/checkout@v6
+-      - uses: dtolnay/rust-toolchain@stable
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
++      - uses: dtolnay/rust-toolchain@631a55b12751854ce901bb631d5902ceb48146f7 # stable
+       - id: matrix
+         run: |
+           examples=$(
+@@ -79,8 +79,8 @@ jobs:
+       matrix:
+         example: ${{ fromJSON(needs.list-examples.outputs.examples) }}
+     steps:
+-      - uses: actions/checkout@v6
+-      - uses: dtolnay/rust-toolchain@stable
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
++      - uses: dtolnay/rust-toolchain@631a55b12751854ce901bb631d5902ceb48146f7 # stable
+       - run: |
+           cargo run --example "${{ matrix.example }}"
+ 
+@@ -88,8 +88,8 @@ jobs:
+     name: Rustfmt
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v6
+-      - uses: dtolnay/rust-toolchain@stable
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
++      - uses: dtolnay/rust-toolchain@631a55b12751854ce901bb631d5902ceb48146f7 # stable
+         with:
+           components: rustfmt
+       - run: cargo fmt --all -- --check
+@@ -98,8 +98,8 @@ jobs:
+     name: Clippy
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v6
+-      - uses: dtolnay/rust-toolchain@stable
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
++      - uses: dtolnay/rust-toolchain@631a55b12751854ce901bb631d5902ceb48146f7 # stable
+         with:
+           components: clippy
+       - run: cargo clippy --all-features --all-targets -- -D warnings

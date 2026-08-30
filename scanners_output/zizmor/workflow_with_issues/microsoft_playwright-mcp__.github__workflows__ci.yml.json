@@ -1,0 +1,105 @@
+{
+  "workflow": "microsoft_playwright-mcp__.github__workflows__ci.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 10,
+    "by_rule": {
+      "artipacked": 3,
+      "excessive-permissions": 4,
+      "unpinned-uses": 2,
+      "cache-poisoning": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_playwright-mcp__.github__workflows__ci.yml",
+      "line": 17,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_playwright-mcp__.github__workflows__ci.yml",
+      "line": 35,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_playwright-mcp__.github__workflows__ci.yml",
+      "line": 63,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "microsoft_playwright-mcp__.github__workflows__ci.yml",
+      "line": 1,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "microsoft_playwright-mcp__.github__workflows__ci.yml",
+      "line": 14,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "microsoft_playwright-mcp__.github__workflows__ci.yml",
+      "line": 28,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "microsoft_playwright-mcp__.github__workflows__ci.yml",
+      "line": 60,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "microsoft_playwright-mcp__.github__workflows__ci.yml",
+      "line": 74,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "microsoft_playwright-mcp__.github__workflows__ci.yml",
+      "line": 76,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "cache-poisoning",
+      "level": "error",
+      "message": "runtime artifacts potentially vulnerable to a cache poisoning attack",
+      "workflow": "microsoft_playwright-mcp__.github__workflows__ci.yml",
+      "line": 76,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    }
+  ]
+}

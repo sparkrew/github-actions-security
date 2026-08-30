@@ -1,0 +1,155 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_review_notification.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: '[gh] pull review notification'
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m195 |[0m [1m[33m|[0m             });
+[1m[94m196 |[0m [1m[33m|[0m           }));
+    [1m[94m|[0m [1m[33m|_______________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_review_notification.yml:16:3
+   [1m[94m|[0m
+[1m[94m16 |[0m [1m[33m/[0m   request_notification:
+[1m[94m17 |[0m [1m[33m|[0m     if: github.repository == 'Tencent/Hippy' && github.event.action == 'review_requested' && github.event.requested_reviewer.type ==[1m[94m...[0m
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m72 |[0m [1m[33m|[0m             }
+[1m[94m73 |[0m [1m[33m|[0m           });
+   [1m[94m|[0m [1m[33m|[0m             [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________|[0m
+   [1m[94m|[0m               [1m[33mthis job[0m
+   [1m[94m|[0m               [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_review_notification.yml:75:3
+   [1m[94m|[0m
+[1m[94m75 |[0m [1m[33m/[0m   call_get_workflow_output:
+[1m[94m76 |[0m [1m[33m|[0m     if: github.repository == 'Tencent/Hippy' && github.event.action == 'completed' && github.event.workflow_run.conclusion == 'success'
+[1m[94m77 |[0m [1m[33m|[0m     uses: ./.github/workflows/reuse_get_workflow_output.yml
+[1m[94m78 |[0m [1m[33m|[0m     with:
+[1m[94m79 |[0m [1m[33m|[0m       workflow_run: ${{ github.event.workflow_run.id }}
+   [1m[94m|[0m [1m[33m|[0m                                                       [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________________________________________|[0m
+   [1m[94m|[0m                                                         [1m[33mthis job[0m
+   [1m[94m|[0m                                                         [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_review_notification.yml:81:3
+    [1m[94m|[0m
+[1m[94m 81 |[0m [1m[33m/[0m   changes_requested_comment:
+[1m[94m 82 |[0m [1m[33m|[0m     needs: call_get_workflow_output
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m126 |[0m [1m[33m|[0m         body: ${{ format(env.MESSAGE, steps.parse_workflow_output.outputs.pull_request_user) }}
+[1m[94m127 |[0m [1m[33m|[0m         reactions: eyes
+    [1m[94m|[0m [1m[33m|[0m                       [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_______________________|[0m
+    [1m[94m|[0m                         [1m[33mthis job[0m
+    [1m[94m|[0m                         [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_review_notification.yml:129:3
+    [1m[94m|[0m
+[1m[94m129 |[0m [1m[33m/[0m   requested_reviewers_notification:
+[1m[94m130 |[0m [1m[33m|[0m     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m195 |[0m [1m[33m|[0m             });
+[1m[94m196 |[0m [1m[33m|[0m           }));
+    [1m[94m|[0m [1m[33m|[0m               [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_______________|[0m
+    [1m[94m|[0m                 [1m[33mthis job[0m
+    [1m[94m|[0m                 [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_review_notification.yml:3:1
+   [1m[94m|[0m
+[1m[94m 3 |[0m [1m[91m/[0m on:
+[1m[94m 4 |[0m [1m[91m|[0m   pull_request_target:
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m12 |[0m [1m[91m|[0m     # Run every day at 23:30 UTC(07:30 UTC+08:00).
+[1m[94m13 |[0m [1m[91m|[0m     - cron: '30 23 * * *'
+   [1m[94m|[0m [1m[91m|_________________________^[0m [1m[91mpull_request_target is almost always used insecurely[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_review_notification.yml:3:1
+   [1m[94m|[0m
+[1m[94m 3 |[0m [1m[91m/[0m on:
+[1m[94m 4 |[0m [1m[91m|[0m   pull_request_target:
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m12 |[0m [1m[91m|[0m     # Run every day at 23:30 UTC(07:30 UTC+08:00).
+[1m[94m13 |[0m [1m[91m|[0m     - cron: '30 23 * * *'
+   [1m[94m|[0m [1m[91m|_________________________^[0m [1m[91mworkflow_run is almost always used insecurely[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_review_notification.yml:20:7
+   [1m[94m|[0m
+[1m[94m20 |[0m       - name: Notice
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m21 |[0m         uses: actions/github-script@v6.3.3
+[1m[94m...[0m
+[1m[94m31 |[0m         with:
+[1m[94m32 |[0m [1m[91m/[0m         script: |
+[1m[94m33 |[0m [1m[91m|[0m           const { format } = require("util");
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m72 |[0m [1m[91m|[0m             }
+[1m[94m73 |[0m [1m[91m|[0m           });
+   [1m[94m|[0m [1m[91m|_____________^[0m [1m[91mgithub.event.requested_reviewer.login may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_review_notification.yml:20:7
+   [1m[94m|[0m
+[1m[94m20 |[0m       - name: Notice
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m21 |[0m         uses: actions/github-script@v6.3.3
+[1m[94m...[0m
+[1m[94m31 |[0m         with:
+[1m[94m32 |[0m [1m[91m/[0m         script: |
+[1m[94m33 |[0m [1m[91m|[0m           const { format } = require("util");
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m72 |[0m [1m[91m|[0m             }
+[1m[94m73 |[0m [1m[91m|[0m           });
+   [1m[94m|[0m [1m[91m|_____________^[0m [1m[91mgithub.event.requested_reviewer.login may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_review_notification.yml:109:7
+    [1m[94m|[0m
+[1m[94m109 |[0m       uses: peter-evans/find-comment@v2.1.0
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_review_notification.yml:116:7
+    [1m[94m|[0m
+[1m[94m116 |[0m       uses: navikt/github-app-token-generator@v1
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__gh_pr_review_notification.yml:121:7
+    [1m[94m|[0m
+[1m[94m121 |[0m       uses: peter-evans/create-or-update-comment@v2
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m21[39m findings ([1m[93m9[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m5[39m medium, [31m7[39m high

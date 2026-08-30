@@ -1,0 +1,31 @@
+{
+  "workflow": "facebookresearch_vjepa2__.github__workflows__linters.yaml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "artipacked": 1,
+      "excessive-permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "facebookresearch_vjepa2__.github__workflows__linters.yaml",
+      "line": 28,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "facebookresearch_vjepa2__.github__workflows__linters.yaml",
+      "line": 23,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    }
+  ]
+}

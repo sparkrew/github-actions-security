@@ -1,0 +1,27 @@
+{
+  "workflow": "NVIDIA_Model-Optimizer__.github__workflows__example_tests.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+      "line": 23
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: nv-gha-runners/get-pr-info@090577647b8ddc4e06e809e264f7881650ecdccf # nv-gha-runners/get-pr-info@main",
+      "line": 27
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: step-security/changed-files@95b56dadb92a30ca9036f16423fd3c088a71ee94 # step-security/changed-files@v46.0.5 | v46",
+      "line": 37
+    }
+  ]
+}

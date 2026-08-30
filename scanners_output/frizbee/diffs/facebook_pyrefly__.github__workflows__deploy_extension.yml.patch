@@ -1,0 +1,21 @@
+diff --git a/.github/workflows/facebook_pyrefly__.github__workflows__deploy_extension.yml b/.github/workflows/facebook_pyrefly__.github__workflows__deploy_extension.yml
+index e1c8827..84bf799 100644
+--- a/.github/workflows/facebook_pyrefly__.github__workflows__deploy_extension.yml
++++ b/.github/workflows/facebook_pyrefly__.github__workflows__deploy_extension.yml
+@@ -21,7 +21,7 @@ jobs:
+         if: ${{ success() }}
+         steps:
+             - name: upload
+-              uses: actions/download-artifact@v7
++              uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+             - name: publish
+               run: npx vsce publish --packagePath $(find . -iname *.vsix)
+               env:
+@@ -35,6 +35,6 @@ jobs:
+         if: ${{ success() }}
+         steps:
+             - name: upload
+-              uses: actions/download-artifact@v7
++              uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+             - name: publish
+               run: npx ovsx publish --packagePath $(find . -iname *.vsix) --pat ${{ secrets.OPENVSX_TOKEN }}

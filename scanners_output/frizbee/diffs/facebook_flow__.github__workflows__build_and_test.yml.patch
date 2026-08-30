@@ -1,0 +1,384 @@
+diff --git a/.github/workflows/facebook_flow__.github__workflows__build_and_test.yml b/.github/workflows/facebook_flow__.github__workflows__build_and_test.yml
+index 4d58abe..00f9957 100644
+--- a/.github/workflows/facebook_flow__.github__workflows__build_and_test.yml
++++ b/.github/workflows/facebook_flow__.github__workflows__build_and_test.yml
+@@ -20,7 +20,7 @@ jobs:
+       TERM: dumb
+       OPAMYES: true
+     steps:
+-    - uses: actions/checkout@v3.6.0
++    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+     - name: Install OPAM
+       uses: ./.github/actions/install-opam-linux
+       with:
+@@ -29,7 +29,7 @@ jobs:
+       run: .circleci/make_opam_cachebreaker.sh > .circleci/opamcachebreaker
+       shell: bash
+     - name: opam cache
+-      uses: actions/cache@v4
++      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+       with:
+         path: |-
+           ~/.opam
+@@ -53,15 +53,15 @@ jobs:
+         mkdir -p dist
+         cp src/parser/flow_parser.js dist/flow_parser.js
+         cp src/parser/flow_parser.js packages/flow-parser/flow_parser.js
+-    - uses: actions/upload-artifact@v4.4.0
++    - uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+       with:
+         name: build_js_bin
+         path: bin/flow.js
+-    - uses: actions/upload-artifact@v4.4.0
++    - uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+       with:
+         name: build_js_dist
+         path: dist/flow_parser.js
+-    - uses: actions/upload-artifact@v4.4.0
++    - uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+       with:
+         name: build_js_packages
+         path: packages/flow-parser/flow_parser.js
+@@ -71,7 +71,7 @@ jobs:
+       TERM: dumb
+       OPAMYES: true
+     steps:
+-    - uses: actions/checkout@v3.6.0
++    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+     - name: Install OPAM
+       uses: ./.github/actions/install-opam-linux
+       with:
+@@ -80,7 +80,7 @@ jobs:
+       run: .circleci/make_opam_cachebreaker.sh > .circleci/opamcachebreaker
+       shell: bash
+     - name: opam cache
+-      uses: actions/cache@v4
++      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+       with:
+         path: |-
+           ~/.opam
+@@ -99,11 +99,11 @@ jobs:
+         mkdir -p bin/linux && cp bin/flow bin/linux/flow
+     - name: Create artifacts
+       run: cp dist/flow.zip dist/flow-linux64.zip
+-    - uses: actions/upload-artifact@v4.4.0
++    - uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+       with:
+         name: build_linux_bin
+         path: bin/linux/flow
+-    - uses: actions/upload-artifact@v4.4.0
++    - uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+       with:
+         name: build_linux_dist
+         path: |
+@@ -114,7 +114,7 @@ jobs:
+       TERM: dumb
+       OPAMYES: true
+     steps:
+-    - uses: actions/checkout@v3.6.0
++    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+     - name: Install Missing Tools
+       run: |
+         sudo apt-get update
+@@ -127,7 +127,7 @@ jobs:
+       run: .circleci/make_opam_cachebreaker.sh > .circleci/opamcachebreaker
+       shell: bash
+     - name: opam cache
+-      uses: actions/cache@v4
++      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+       with:
+         path: |-
+           ~/.opam
+@@ -144,7 +144,7 @@ jobs:
+         mkdir -p bin/linux && cp bin/flow bin/linux/flow
+     - name: Create artifacts
+       run: cp dist/flow.zip dist/flow-linux64-arm64.zip
+-    - uses: actions/upload-artifact@v4.4.0
++    - uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+       with:
+         name: build_linux_arm64_dist
+         path: |
+@@ -152,8 +152,8 @@ jobs:
+   build_macos_arm64:
+     runs-on: macos-15
+     steps:
+-    - uses: actions/checkout@v3.6.0
+-    - uses: maxim-lobanov/setup-xcode@v1.6.0
++    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
++    - uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1.6.0
+       with:
+         xcode-version: '16.4.0'
+     - name: Update curl cacerts
+@@ -165,7 +165,7 @@ jobs:
+       run: .circleci/make_opam_cachebreaker.sh > .circleci/opamcachebreaker
+       shell: bash
+     - name: opam cache
+-      uses: actions/cache@v4
++      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+       with:
+         path: |-
+           ~/.opam
+@@ -182,11 +182,11 @@ jobs:
+         mkdir -p bin/macos-arm64 && cp bin/flow bin/macos-arm64/flow
+     - name: Create artifacts
+       run: cp dist/flow.zip dist/flow-osx-arm64.zip
+-    - uses: actions/upload-artifact@v4.4.0
++    - uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+       with:
+         name: build_macos_arm64_bin
+         path: bin/macos-arm64/flow
+-    - uses: actions/upload-artifact@v4.4.0
++    - uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+       with:
+         name: build_macos_arm64_dist
+         path: |
+@@ -196,7 +196,7 @@ jobs:
+     env:
+       OPAMDOWNLOADJOBS: 1
+     steps:
+-    - uses: actions/checkout@v3.6.0
++    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+     - name: Install dependencies
+       run: |
+         choco install --no-progress -y --source https://chocolatey.org/api/v2/ 7zip
+@@ -260,13 +260,13 @@ jobs:
+       shell: D:\cygwin\bin\bash.exe -leo pipefail '{0}'
+       env:
+         PATH: /usr/local/bin:/usr/bin:/cygdrive/bin:/cygdrive/c/Windows/system32:/cygdrive/c/Windows:/cygdrive/c/Windows/System32/Wbem:/cygdrive/c/Windows/System32/WindowsPowerShell/v1.0
+-    - uses: actions/upload-artifact@v4.4.0
++    - uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+       with:
+         name: build_win_bin
+         path: |
+           bin/win64/flow.exe
+           bin/win64/run_parser_tests.exe
+-    - uses: actions/upload-artifact@v4.4.0
++    - uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+       with:
+         name: build_win_dist
+         path: |
+@@ -278,8 +278,8 @@ jobs:
+     env:
+       FLOW_RUNTESTS_PARALLELISM: 8
+     steps:
+-    - uses: actions/checkout@v3.6.0
+-    - uses: actions/download-artifact@v4.1.7
++    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
++    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+       with:
+         name: build_linux_bin
+         path: bin/linux
+@@ -291,11 +291,11 @@ jobs:
+     needs:
+     - build_macos_arm64
+     steps:
+-    - uses: maxim-lobanov/setup-xcode@v1.6.0
++    - uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1.6.0
+       with:
+         xcode-version: '16.4.0'
+-    - uses: actions/checkout@v3.6.0
+-    - uses: actions/download-artifact@v4.1.7
++    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
++    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+       with:
+         name: build_macos_arm64_bin
+         path: bin/macos
+@@ -307,8 +307,8 @@ jobs:
+     needs:
+     - build_linux
+     steps:
+-    - uses: actions/checkout@v3.6.0
+-    - uses: actions/download-artifact@v4.1.7
++    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
++    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+       with:
+         name: build_linux_bin
+         path: bin/linux
+@@ -322,11 +322,11 @@ jobs:
+     needs:
+     - build_macos_arm64
+     steps:
+-    - uses: maxim-lobanov/setup-xcode@v1.6.0
++    - uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1.6.0
+       with:
+         xcode-version: '16.4.0'
+-    - uses: actions/checkout@v3.6.0
+-    - uses: actions/download-artifact@v4.1.7
++    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
++    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+       with:
+         name: build_macos_arm64_bin
+         path: bin/macos
+@@ -340,8 +340,8 @@ jobs:
+     needs:
+     - build_win
+     steps:
+-    - uses: actions/checkout@v3.6.0
+-    - uses: actions/download-artifact@v4.1.7
++    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
++    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+       with:
+         name: build_win_bin
+         path: bin/win64
+@@ -361,7 +361,7 @@ jobs:
+       TERM: dumb
+       OPAMYES: true
+     steps:
+-    - uses: actions/checkout@v3.6.0
++    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+     - name: Install OPAM
+       uses: ./.github/actions/install-opam-linux
+       with:
+@@ -370,7 +370,7 @@ jobs:
+       run: .circleci/make_opam_cachebreaker.sh > .circleci/opamcachebreaker
+       shell: bash
+     - name: opam cache
+-      uses: actions/cache@v4
++      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+       with:
+         path: |-
+           ~/.opam
+@@ -388,8 +388,8 @@ jobs:
+   ounit_test_macos:
+     runs-on: macos-15
+     steps:
+-    - uses: actions/checkout@v3.6.0
+-    - uses: maxim-lobanov/setup-xcode@v1.6.0
++    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
++    - uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1.6.0
+       with:
+         xcode-version: '16.4.0'
+     - name: Update curl cacerts
+@@ -401,7 +401,7 @@ jobs:
+       run: .circleci/make_opam_cachebreaker.sh > .circleci/opamcachebreaker
+       shell: bash
+     - name: opam cache
+-      uses: actions/cache@v4
++      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+       with:
+         path: |-
+           ~/.opam
+@@ -421,8 +421,8 @@ jobs:
+     needs:
+     - build_win
+     steps:
+-    - uses: actions/checkout@v3.6.0
+-    - uses: actions/download-artifact@v4.1.7
++    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
++    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+       with:
+         name: build_win_bin
+         path: bin/win64
+@@ -441,16 +441,16 @@ jobs:
+     needs:
+     - build_js
+     steps:
+-    - uses: actions/checkout@v3.6.0
+-    - uses: actions/download-artifact@v4.1.7
++    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
++    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+       with:
+         name: build_js_bin
+         path: bin
+-    - uses: actions/download-artifact@v4.1.7
++    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+       with:
+         name: build_js_dist
+         path: dist
+-    - uses: actions/download-artifact@v4.1.7
++    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+       with:
+         name: build_js_packages
+         path: packages/flow-parser
+@@ -476,7 +476,7 @@ jobs:
+         yarn test
+         cd ../..
+         make dist/npm-flow-upgrade.tgz
+-    - uses: actions/upload-artifact@v4.4.0
++    - uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+       with:
+         name: npm_pack
+         path: |
+@@ -494,21 +494,21 @@ jobs:
+     - build_linux
+     - build_js
+     steps:
+-    - uses: actions/checkout@v3.6.0
+-    - uses: actions/download-artifact@v4.1.7
++    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
++    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+       with:
+         name: build_linux_bin
+         path: bin/linux
+-    - uses: actions/download-artifact@v4.1.7
++    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+       with:
+         name: build_js_bin
+         path: dist
+     - run: chmod +x bin/linux/flow
+-    - uses: actions/setup-node@v4
++    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+       with:
+         node-version: '22.x'
+     - name: Node cache
+-      uses: actions/cache@v4
++      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+       with:
+         key: v2-website-${{ github.ref_name }}-${{ hashFiles('website/yarn.lock') }}
+         path: website/node_modules
+@@ -531,26 +531,26 @@ jobs:
+     - build_macos_arm64
+     - build_win
+     steps:
+-    - uses: actions/checkout@v3.6.0
+-    - uses: actions/download-artifact@v4.1.7
++    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
++    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+       with:
+         name: build_linux_dist
+         path: dist
+     - name: Upload Linux binary (x86_64)
+       run: .circleci/github_upload.sh dist/flow-linux64.zip "flow-linux64-${{ github.ref_name }}.zip"
+-    - uses: actions/download-artifact@v4.1.7
++    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+       with:
+         name: build_linux_arm64_dist
+         path: dist
+     - name: Upload Linux binary (arm64)
+       run: .circleci/github_upload.sh dist/flow-linux64-arm64.zip "flow-linux-arm64-${{ github.ref_name }}.zip"
+-    - uses: actions/download-artifact@v4.1.7
++    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+       with:
+         name: build_macos_arm64_dist
+         path: dist
+     - name: Upload Mac binary (arm64)
+       run: .circleci/github_upload.sh dist/flow-osx-arm64.zip "flow-osx-arm64-${{ github.ref_name }}.zip"
+-    - uses: actions/download-artifact@v4.1.7
++    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+       with:
+         name: build_win_dist
+         path: dist
+@@ -562,10 +562,10 @@ jobs:
+     needs:
+     - github_upload
+     steps:
+-    - uses: actions/checkout@v3.6.0
++    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
+     - name: Deploy flow-bin
+       run: .circleci/deploy_flow_bin.sh
+-    - uses: facebook/dotslash-publish-release@v1
++    - uses: facebook/dotslash-publish-release@2539c4d8ae00a42773306c8731d2dd3724d979d2 # v1
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       with:
+@@ -577,8 +577,8 @@ jobs:
+     needs:
+     - build_js
+     steps:
+-    - uses: actions/checkout@v3.6.0
+-    - uses: actions/download-artifact@v4.1.7
++    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
++    - uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+       with:
+         name: build_js_bin
+         path: dist

@@ -1,0 +1,82 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/IBM_mcp-context-forge__.github__workflows__rust-tools.yml:36:9
+   [1m[94m|[0m
+[1m[94m36 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/IBM_mcp-context-forge__.github__workflows__rust-tools.yml:80:9
+   [1m[94m|[0m
+[1m[94m80 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/IBM_mcp-context-forge__.github__workflows__rust-tools.yml:99:9
+   [1m[94m|[0m
+[1m[94m99 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/IBM_mcp-context-forge__.github__workflows__rust-tools.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: Rust Tools CI/CD
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m110 |[0m [1m[33m|[0m         working-directory: tools_rust/wrapper
+[1m[94m111 |[0m [1m[33m|[0m         run: make coverage
+    [1m[94m|[0m [1m[33m|___________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/IBM_mcp-context-forge__.github__workflows__rust-tools.yml:25:3
+   [1m[94m|[0m
+[1m[94m25 |[0m [1m[33m/[0m   rust-checks:
+[1m[94m26 |[0m [1m[33m|[0m     if: github.event_name != 'pull_request' || !github.event.pull_request.draft
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m70 |[0m [1m[33m|[0m         working-directory: tools_rust/wrapper
+[1m[94m71 |[0m [1m[33m|[0m         run: make build-release
+   [1m[94m|[0m [1m[33m|[0m                               [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________________|[0m
+   [1m[94m|[0m                                 [1m[33mthis job[0m
+   [1m[94m|[0m                                 [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/IBM_mcp-context-forge__.github__workflows__rust-tools.yml:73:3
+   [1m[94m|[0m
+[1m[94m73 |[0m [1m[33m/[0m   security-audit:
+[1m[94m74 |[0m [1m[33m|[0m     if: github.event_name != 'pull_request' || !github.event.pull_request.draft
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m89 |[0m [1m[33m|[0m         working-directory: tools_rust/wrapper
+[1m[94m90 |[0m [1m[33m|[0m         run: make licenses
+   [1m[94m|[0m [1m[33m|[0m                          [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|__________________________|[0m
+   [1m[94m|[0m                            [1m[33mthis job[0m
+   [1m[94m|[0m                            [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/IBM_mcp-context-forge__.github__workflows__rust-tools.yml:92:3
+    [1m[94m|[0m
+[1m[94m 92 |[0m [1m[33m/[0m   coverage:
+[1m[94m 93 |[0m [1m[33m|[0m     if: github.event_name != 'pull_request' || !github.event.pull_request.draft
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m110 |[0m [1m[33m|[0m         working-directory: tools_rust/wrapper
+[1m[94m111 |[0m [1m[33m|[0m         run: make coverage
+    [1m[94m|[0m [1m[33m|[0m                           [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|___________________________|[0m
+    [1m[94m|[0m                             [1m[33mthis job[0m
+    [1m[94m|[0m                             [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m7[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m7[39m medium, [31m0[39m high

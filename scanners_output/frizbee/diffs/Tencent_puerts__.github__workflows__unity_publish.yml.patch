@@ -1,0 +1,174 @@
+diff --git a/.github/workflows/Tencent_puerts__.github__workflows__unity_publish.yml b/.github/workflows/Tencent_puerts__.github__workflows__unity_publish.yml
+index 96ac997..424e1ca 100644
+--- a/.github/workflows/Tencent_puerts__.github__workflows__unity_publish.yml
++++ b/.github/workflows/Tencent_puerts__.github__workflows__unity_publish.yml
+@@ -14,7 +14,7 @@ jobs:
+   android:
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v3
++      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+       - name: Install NDK
+         shell: bash
+         run: |
+@@ -58,7 +58,7 @@ jobs:
+   ohos:
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v3
++      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+       - name: Install NDK
+         shell: bash
+         run: |
+@@ -97,7 +97,7 @@ jobs:
+   ios:
+     runs-on: macos-14
+     steps:
+-      - uses: actions/checkout@v3
++      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+       - name: puerts
+         uses: ./.github/workflows/composites/unity-build-plugins/ios/
+         with:
+@@ -133,7 +133,7 @@ jobs:
+   osx:
+     runs-on: macos-latest
+     steps:
+-      - uses: actions/checkout@v3
++      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+       - name: puerts
+         uses: ./.github/workflows/composites/unity-build-plugins/osx/
+         with:
+@@ -175,7 +175,7 @@ jobs:
+   windows:
+     runs-on: windows-2022
+     steps:
+-      - uses: actions/checkout@v3
++      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+       - name: puerts
+         uses: ./.github/workflows/composites/unity-build-plugins/windows/
+         with:
+@@ -206,7 +206,7 @@ jobs:
+           github_token: ${{ secrets.GITHUB_TOKEN }}
+           backend: papi-nodejs
+           arch: x64
+-      - uses: actions/setup-python@v6
++      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+         with:
+           python-version: '3.14' 
+       - name: papi-python
+@@ -226,7 +226,7 @@ jobs:
+   linux64:
+     runs-on: ubuntu-22.04
+     steps:
+-      - uses: actions/checkout@v3
++      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+       - name: Install LibC++
+         run: |
+           sudo apt-get update
+@@ -259,7 +259,7 @@ jobs:
+         with:
+           github_token: ${{ secrets.GITHUB_TOKEN }}
+           backend: papi-nodejs
+-      - uses: actions/setup-python@v6
++      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+         with:
+           python-version: '3.14' 
+       - name: papi-python
+@@ -277,7 +277,7 @@ jobs:
+   wasm:
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v3
++      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+       - name: puerts
+         uses: ./.github/workflows/composites/unity-build-plugins/wasm/
+         with:
+@@ -298,14 +298,14 @@ jobs:
+     runs-on: ubuntu-latest
+     needs: [windows,osx,ios,android,linux64,ohos,wasm]
+     steps:
+-      - uses: actions/checkout@v3
++      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+       
+       - name: Retrieve version
+         run: |
+           echo "PESAPI_VERSION=$(cat unity/native/puerts/include/pesapi.h | grep -Po '(?<=PESAPI_VERSION\s)(\d+)')" >> $GITHUB_ENV
+ #          node -e "const pjson = JSON.parse(fs.readFileSync('$GITHUB_WORKSPACE/unity/Assets/core/upm/package.json', 'utf-8')); pjson.version = '${{ github.event.inputs.tag_name }}' ; fs.writeFileSync('$GITHUB_WORKSPACE/unity/Assets/core/upm/package.json', JSON.stringify(pjson))"
+ 
+-      - uses: actions/download-artifact@v4
++      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+         with:
+           pattern: Unity_Plugins_*
+           path: unity/upms/
+@@ -344,7 +344,7 @@ jobs:
+           
+       - name: Create Release
+         id: create_release
+-        uses: actions/create-release@v1
++        uses: actions/create-release@0cb9c9b65d5d1901c1f53e5e66eaf4afd303e70e # v1
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         with:
+@@ -359,7 +359,7 @@ jobs:
+           
+       - name: Upload Core
+         #id: upload-release-asset 
+-        uses: actions/upload-release-asset@v1
++        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         with:
+@@ -370,7 +370,7 @@ jobs:
+ 
+       - name: Upload V8 Backend
+         #id: upload-release-asset 
+-        uses: actions/upload-release-asset@v1
++        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         with:
+@@ -381,7 +381,7 @@ jobs:
+ 
+       - name: Upload Quickjs Backend
+         #id: upload-release-asset
+-        uses: actions/upload-release-asset@v1
++        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         with:
+@@ -392,7 +392,7 @@ jobs:
+ 
+       - name: Upload Lua Backend
+         #id: upload-release-asset
+-        uses: actions/upload-release-asset@v1
++        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         with:
+@@ -403,7 +403,7 @@ jobs:
+ 
+       - name: Upload Nodejs Backend
+         #id: upload-release-asset
+-        uses: actions/upload-release-asset@v1
++        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         with:
+@@ -413,7 +413,7 @@ jobs:
+           asset_content_type: application/tgz
+       - name: Upload Python Backend
+         #id: upload-release-asset
+-        uses: actions/upload-release-asset@v1
++        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         with:
+@@ -423,7 +423,7 @@ jobs:
+           asset_content_type: application/tgz
+       - name: Upload Webgl Backend
+         #id: upload-release-asset
+-        uses: actions/upload-release-asset@v1
++        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         with:

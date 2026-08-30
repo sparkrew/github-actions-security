@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/microsoft_azurelinux__.github__workflows__spec-review-stub.yml b/.github/workflows/microsoft_azurelinux__.github__workflows__spec-review-stub.yml
+index 0606a44..6c6fd66 100644
+--- a/.github/workflows/microsoft_azurelinux__.github__workflows__spec-review-stub.yml
++++ b/.github/workflows/microsoft_azurelinux__.github__workflows__spec-review-stub.yml
+@@ -38,7 +38,7 @@ jobs:
+     if: github.repository == 'microsoft/azurelinux'
+     # Intentionally branch-pinned to our own repo so the
+     # reusable workflow picks up prompt/script/agent updates automatically.
+-    uses: microsoft/azurelinux/.github/workflows/spec-review.yml@tomls/base/main # zizmor: ignore[unpinned-uses]
++    uses: microsoft/azurelinux/.github/workflows/spec-review.yml@f285749159206dc388a6de22082d0b8284f37e68 # tomls/base/main # zizmor: ignore[unpinned-uses]
+     permissions:
+       contents: read
+       pull-requests: write # Post review comments and inline annotations on PRs

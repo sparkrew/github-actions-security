@@ -1,0 +1,31 @@
+{
+  "workflow": "awslabs_agent-squad__.github__workflows__ts-run-security-checks.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "artipacked": 1,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "awslabs_agent-squad__.github__workflows__ts-run-security-checks.yml",
+      "line": 19,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "awslabs_agent-squad__.github__workflows__ts-run-security-checks.yml",
+      "line": 34,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

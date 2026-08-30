@@ -1,0 +1,72 @@
+name: Package
+
+permissions:
+  contents: read
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: macos-latest
+            arch: arm64
+            artifact-name: inshellisense-darwin-arm64
+          - os: macos-15-intel
+            arch: x64
+            artifact-name: inshellisense-darwin-x64
+          - os: ubuntu-latest
+            arch: x64
+            artifact-name: inshellisense-linux-x64
+          - os: ubuntu-24.04-arm
+            arch: arm64
+            artifact-name: inshellisense-linux-arm64
+          - os: windows-latest
+            arch: x64
+            artifact-name: inshellisense-win32-x64
+          - os: windows-11-arm
+            arch: arm64
+            artifact-name: inshellisense-win32-arm64
+
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # actions/setup-node@v3 | releases,v3.9.1
+        with:
+          node-version: 22
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - run: npm run package
+
+      - name: Upload binary artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2
+        with:
+          name: ${{ matrix.artifact-name }}
+          path: pkg/*.tgz
+          if-no-files-found: error
+
+  combine:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: Upload combined artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2
+        with:
+          name: inshellisense-all
+          path: artifacts/*.tgz
+          if-no-files-found: error

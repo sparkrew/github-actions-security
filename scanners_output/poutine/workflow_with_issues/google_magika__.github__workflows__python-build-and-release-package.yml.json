@@ -1,0 +1,178 @@
+{
+  "workflow": "google_magika__.github__workflows__python-build-and-release-package.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 11,
+    "by_rule": {
+      "unverified_script_exec": 6,
+      "known_vulnerability_in_build_component": 5
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": 195,
+      "column": "",
+      "job": "build-pure-python-wheel-and-sdist",
+      "step": "1",
+      "details": "Command: curl -LsSf https://astral.sh/uv/${{ env.UV_VERSION }}/install.sh | sh",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request",
+        "schedule",
+        "release"
+      ]
+    },
+    {
+      "rule_id": "unverified_script_exec",
+      "line": 91,
+      "column": "",
+      "job": "build-wheels",
+      "step": "2",
+      "details": "Command: curl -LsSf https://astral.sh/uv/${{ env.UV_VERSION }}/install.sh | sh",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request",
+        "schedule",
+        "release"
+      ]
+    },
+    {
+      "rule_id": "unverified_script_exec",
+      "line": 49,
+      "column": "",
+      "job": "pre-release-checks",
+      "step": "2",
+      "details": "Command: curl -LsSf https://astral.sh/uv/${{ env.UV_VERSION }}/install.sh | sh",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request",
+        "schedule",
+        "release"
+      ]
+    },
+    {
+      "rule_id": "unverified_script_exec",
+      "line": 240,
+      "column": "",
+      "job": "test-pure-python-wheel",
+      "step": "3",
+      "details": "Command: curl -LsSf https://astral.sh/uv/${{ env.UV_VERSION }}/install.sh | sh",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request",
+        "schedule",
+        "release"
+      ]
+    },
+    {
+      "rule_id": "unverified_script_exec",
+      "line": 312,
+      "column": "",
+      "job": "test-sdist",
+      "step": "3",
+      "details": "Command: curl -LsSf https://astral.sh/uv/${{ env.UV_VERSION }}/install.sh | sh",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request",
+        "schedule",
+        "release"
+      ]
+    },
+    {
+      "rule_id": "unverified_script_exec",
+      "line": 147,
+      "column": "",
+      "job": "test-wheels",
+      "step": "3",
+      "details": "Command: curl -LsSf https://astral.sh/uv/${{ env.UV_VERSION }}/install.sh | sh",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request",
+        "schedule",
+        "release"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 374,
+      "column": "",
+      "job": "publish-to-pypi",
+      "step": "0",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request",
+        "schedule",
+        "release"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 414,
+      "column": "",
+      "job": "publish-to-testpypi",
+      "step": "0",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request",
+        "schedule",
+        "release"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 231,
+      "column": "",
+      "job": "test-pure-python-wheel",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request",
+        "schedule",
+        "release"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 303,
+      "column": "",
+      "job": "test-sdist",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request",
+        "schedule",
+        "release"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 138,
+      "column": "",
+      "job": "test-wheels",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request",
+        "schedule",
+        "release"
+      ]
+    }
+  ]
+}

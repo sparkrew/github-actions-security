@@ -1,0 +1,24 @@
+{
+  "workflow": "facebook_pyrefly__.github__workflows__deploy_website.yml",
+  "tool": "actionlint",
+  "summary": {
+    "total_findings": 3
+  },
+  "findings": [
+    {
+      "line": 31,
+      "column": 11,
+      "message": "could not read reusable workflow file for \"./.github/workflows/build_and_test_website.yml\": open /home/huawei/github-actions-security/.github/workflows/build_and_test_website.yml: no such file or directory [workflow-call]"
+    },
+    {
+      "line": 40,
+      "column": 16,
+      "message": "property \"deployment\" is not defined in object type {date: {conclusion: string; outcome: string; outputs: {string => string}}} [expression]"
+    },
+    {
+      "line": 43,
+      "column": 9,
+      "message": "if: condition \"${{ !inputs.is_rollback && success() }} || ${{ inputs.is_rollback }}\" is always evaluated to true because extra characters are around ${{ }} [if-cond]"
+    }
+  ]
+}

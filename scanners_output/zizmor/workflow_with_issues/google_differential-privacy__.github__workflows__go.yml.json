@@ -1,0 +1,31 @@
+{
+  "workflow": "google_differential-privacy__.github__workflows__go.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "artipacked": 1,
+      "excessive-permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "google_differential-privacy__.github__workflows__go.yml",
+      "line": 20,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "google_differential-privacy__.github__workflows__go.yml",
+      "line": 15,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    }
+  ]
+}

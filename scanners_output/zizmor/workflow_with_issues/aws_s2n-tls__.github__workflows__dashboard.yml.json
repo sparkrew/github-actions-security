@@ -1,0 +1,49 @@
+{
+  "workflow": "aws_s2n-tls__.github__workflows__dashboard.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "artipacked": 2,
+      "unpinned-uses": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "aws_s2n-tls__.github__workflows__dashboard.yml",
+      "line": 14,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "aws_s2n-tls__.github__workflows__dashboard.yml",
+      "line": 16,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "aws_s2n-tls__.github__workflows__dashboard.yml",
+      "line": 22,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "aws_s2n-tls__.github__workflows__dashboard.yml",
+      "line": 103,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

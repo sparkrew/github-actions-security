@@ -1,0 +1,38 @@
+{
+  "workflow": "NVIDIA_NeMo-Retriever__.github__workflows__conda-publish.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "injection": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "injection",
+      "line": 36,
+      "column": "",
+      "job": "build",
+      "step": "1",
+      "details": "Sources: github.event.inputs.CONDA_CHANNEL",
+      "event_triggers": [
+        "schedule",
+        "push",
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": 47,
+      "column": "",
+      "job": "build",
+      "step": "2",
+      "details": "Sources: github.event.inputs.VERSION",
+      "event_triggers": [
+        "schedule",
+        "push",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

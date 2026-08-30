@@ -1,0 +1,64 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_xformers__.github__workflows__rocm_ci.yml:20:7
+   [1m[94m|[0m
+[1m[94m20 |[0m       - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m21 |[0m [1m[33m|[0m       with:
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m24 |[0m [1m[33m|[0m         set-safe-directory: true
+[1m[94m25 |[0m [1m[33m|[0m         fetch-depth: 0
+   [1m[94m|[0m [1m[33m|______________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebookresearch_xformers__.github__workflows__rocm_ci.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: rocm-ci
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m105 |[0m [1m[33m|[0m         run: |
+[1m[94m106 |[0m [1m[33m|[0m           docker images -q -f dangling=true | xargs --no-run-if-empty docker rmi
+    [1m[94m|[0m [1m[33m|_________________________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_xformers__.github__workflows__rocm_ci.yml:13:3
+   [1m[94m|[0m
+[1m[94m13 |[0m [1m[33m/[0m   build:
+[1m[94m14 |[0m [1m[33m|[0m     if: github.repository == 'rocm/xformers'
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m96 |[0m [1m[33m|[0m         git clean -ffdx
+[1m[94m97 |[0m [1m[33m|[0m         cd ..
+   [1m[94m|[0m [1m[33m|[0m             [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_____________|[0m
+   [1m[94m|[0m               [1m[33mthis job[0m
+   [1m[94m|[0m               [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/facebookresearch_xformers__.github__workflows__rocm_ci.yml:99:3
+    [1m[94m|[0m
+[1m[94m 99 |[0m [1m[33m/[0m   clean:
+[1m[94m100 |[0m [1m[33m|[0m     runs-on: self-hosted-rocm-ci
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m105 |[0m [1m[33m|[0m         run: |
+[1m[94m106 |[0m [1m[33m|[0m           docker images -q -f dangling=true | xargs --no-run-if-empty docker rmi
+    [1m[94m|[0m [1m[33m|[0m                                                                                 [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                   [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                   [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+  [1m[94m-->[0m ../.github/workflows/facebookresearch_xformers__.github__workflows__rocm_ci.yml:17:7
+   [1m[94m|[0m
+[1m[94m17 |[0m       image: 'rocm/pytorch-nightly:latest'
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is pinned to latest[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m5[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m4[39m medium, [31m1[39m high

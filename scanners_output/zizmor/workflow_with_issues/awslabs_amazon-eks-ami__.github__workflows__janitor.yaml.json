@@ -1,0 +1,40 @@
+{
+  "workflow": "awslabs_amazon-eks-ami__.github__workflows__janitor.yaml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "artipacked": 2,
+      "excessive-permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "awslabs_amazon-eks-ami__.github__workflows__janitor.yaml",
+      "line": 16,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "awslabs_amazon-eks-ami__.github__workflows__janitor.yaml",
+      "line": 29,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "error",
+      "message": "overly broad permissions",
+      "workflow": "awslabs_amazon-eks-ami__.github__workflows__janitor.yaml",
+      "line": 8,
+      "column": 3,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

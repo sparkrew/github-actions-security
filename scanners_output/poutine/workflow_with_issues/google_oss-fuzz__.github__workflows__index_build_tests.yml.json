@@ -1,0 +1,23 @@
+{
+  "workflow": "google_oss-fuzz__.github__workflows__index_build_tests.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "unverified_script_exec": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": 33,
+      "column": "",
+      "job": "indexer",
+      "step": "3",
+      "details": "Command: curl -O https://clusterfuzz-builds.storage.googleapis.com/oss-fuzz-artifacts/indexer && chmod +x",
+      "event_triggers": [
+        "pull_request"
+      ]
+    }
+  ]
+}

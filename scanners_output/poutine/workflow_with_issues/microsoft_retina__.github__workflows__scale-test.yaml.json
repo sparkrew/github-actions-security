@@ -1,0 +1,24 @@
+{
+  "workflow": "microsoft_retina__.github__workflows__scale-test.yaml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "unverified_script_exec": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "unverified_script_exec",
+      "line": 103,
+      "column": "",
+      "job": "scale-test",
+      "step": "4",
+      "details": "Command: curl -s https://api.github.com/repos/microsoft/retina/commits | jq -r '.[0].sh",
+      "event_triggers": [
+        "workflow_dispatch",
+        "workflow_call"
+      ]
+    }
+  ]
+}

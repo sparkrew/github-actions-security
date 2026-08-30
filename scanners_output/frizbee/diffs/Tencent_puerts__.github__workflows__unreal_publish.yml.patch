@@ -1,0 +1,73 @@
+diff --git a/.github/workflows/Tencent_puerts__.github__workflows__unreal_publish.yml b/.github/workflows/Tencent_puerts__.github__workflows__unreal_publish.yml
+index 8fe2ad1..06994d2 100644
+--- a/.github/workflows/Tencent_puerts__.github__workflows__unreal_publish.yml
++++ b/.github/workflows/Tencent_puerts__.github__workflows__unreal_publish.yml
+@@ -20,7 +20,7 @@ jobs:
+   publish:
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v3
++      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+           
+       - name: Create Release Asset
+         run: |
+@@ -77,7 +77,7 @@ jobs:
+           
+       - name: Create Release
+         id: create_release
+-        uses: actions/create-release@v1
++        uses: actions/create-release@0cb9c9b65d5d1901c1f53e5e66eaf4afd303e70e # v1
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         with:
+@@ -94,7 +94,7 @@ jobs:
+           
+       - name: Upload Puerts Plugins default
+         #id: upload-release-asset 
+-        uses: actions/upload-release-asset@v1
++        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         with:
+@@ -105,7 +105,7 @@ jobs:
+           
+       - name: Upload Puerts Plugins with v8 9.4.146.24
+         #id: upload-release-asset 
+-        uses: actions/upload-release-asset@v1
++        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         with:
+@@ -116,7 +116,7 @@ jobs:
+         
+       - name: Upload Puerts Plugins UE424 Or Below
+         #id: upload-release-asset
+-        uses: actions/upload-release-asset@v1
++        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         with:
+@@ -127,7 +127,7 @@ jobs:
+           
+       - name: Upload Puerts Plugins With Quickjs Backend
+         #id: upload-release-asset
+-        uses: actions/upload-release-asset@v1
++        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         with:
+@@ -138,11 +138,11 @@ jobs:
+ 
+       - name: Upload Puerts Plugins With Nodejs Backend
+         #id: upload-release-asset
+-        uses: actions/upload-release-asset@v1
++        uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         with:
+           upload_url: ${{ steps.create_release.outputs.upload_url }}
+           asset_path: ./puerts_nodejs.tgz
+           asset_name: puerts_nodejs.tgz
+-          asset_content_type: application/tgz
+\ No newline at end of file
++          asset_content_type: application/tgz

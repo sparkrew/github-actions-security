@@ -1,0 +1,57 @@
+name: Lexical Core Tests
+
+on:
+  workflow_call:
+
+permissions: {}
+
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22.x]
+    env:
+      CI: true
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
+        with:
+          version: 9
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - run: pnpm run ci-check
+      - run: pnpm run build
+      - run: pnpm run build-www
+      - run: pnpm run --filter @lexical/website build
+
+  unit:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22.x]
+        override-react-version: ['', 'beta']
+    env:
+      CI: true
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4
+        with:
+          version: 9
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Install React ${{ matrix.override-react-version }}
+        if: matrix.override-react-version != ''
+        # This should be safe since we are caching pnpm store and not node_modules
+        run: |
+          node ./scripts/override-react.js --version=${{ matrix.override-react-version }}
+          grep version node_modules/{react,react-dom}/package.json
+      - run: pnpm run test-unit

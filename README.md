@@ -1,36 +1,39 @@
-# GitHub Actions Security Analysis
+# GitHub Actions Security
 
 ## Overview
-This repository hosts a systematic, comparative study of security risks in GitHub Actions (GHA) workflows. It contains curated datasets of real workflow files, a normalized mapping of tool capabilities to issue categories, and scripts and notebooks used to collect, analyze, and summarize results.
 
-## Repository Structure
-- **`dataset/`** and **`workflows/`**: raw GHA workflow files used as data, kept here so they are not executed by this repository. Paths mirror the original repos, for example `dataset/workflows/<owner>/<repo>/.github/workflows/<file>.yml`.
-- **`weakness/`**: rule and capability metadata.
-  - `rules_mapping.csv`: mapping from tool rule identifiers to the study taxonomy.
-- **`results/`**: directory contains summary CSV files.
-  - `coverage_matrix.csv`, `detection_volume_matrix.csv`, `merged_rules_detections.csv`, `execution_time.csv`.
-- **`tools/`**: scripts or wrappers for running scanners and utilities used in the study.
-- **`scripts/`**: Jupyter notebooks that orchestrate collection and analysis.
-  - `fetch_workflows.ipynb`, `run_tools.ipynb`, `results.ipynb`.
-- **`tools_output/`**: selected outputs only.
-  - `*/workflow_with_issues/`: per tool, only workflows where issues were found.
-- **`biblio.md`**: annotated bibliography and links.
-- **`tools.csv`**: list of scanners considered in the study.
+This repository contains the reproducibility package for the paper
+[Unpacking Security Scanners for GitHub Actions Workflows](https://arxiv.org/abs/2601.14455).
 
-> Safety note: workflow files are treated as data, not automation. They live under `dataset/workflows/`  so that GitHub does not run them for this repository.
+It includes the dataset, scanner outputs, processing scripts, normalized results, and artifacts used to compare GitHub Actions workflow security scanners.
 
-## Study Objective
-Identify and compare security risks in GitHub Actions workflows, with focus on:
-- Common misconfigurations and weaknesses in CI contexts (privilege scope, untrusted inputs, caches, dependency and action trust, secret handling).
-- Practical mitigation strategies and recommended defaults.
-- A capability based comparison of open source scanners for GHA.
+## Repository structure
 
-## Quick Start
-```bash
-git clone https://github.com/Madjda32-del/github-actions-security.git
-cd github-actions-security
-# Optional environment
-# python -m venv .venv && source .venv/bin/activate
-# pip install -r requirements.txt
-# Open notebooks in your environment:
-# jupyter lab scripts/fetch_workflows.ipynb
+- `dataset/` — workflow metadata and dataset manifests (`workflow_list.csv`, `workflow_metadata.csv`).
+- `workflows/` — collected GitHub Actions workflow files used as data. Paths mirror the original repositories. Stored here so GitHub does not execute them.
+- `scanners/` — scanner binaries and local installations used in the study (one subdirectory per tool).
+- `scanners_output/` — raw output produced by each scanner (one subdirectory per tool).
+- `scanners_under_study.csv` — full list of scanners considered in the study with repository and source links.
+- `scripts/` — Jupyter notebooks for data collection and analysis (`fetch_workflows.ipynb`, `run_tools.ipynb`, `results.ipynb`, `execution_time.ipynb`).
+- `results/` — summary CSV files and execution time measurements used in the paper (`coverage_matrix.csv`, `detection_volume_matrix.csv`, `tools_findings_summary.csv`, `execution_time/`).
+- `weakness/` — weakness taxonomy, per-scanner rule-to-weakness mappings, and maintainer validation documentation.
+- `biblio.md` — annotated bibliography of related work.
+
+## Reproducing the results
+
+The main notebooks are in `scripts/`.
+
+Run them in this order:
+
+1. `fetch_workflows.ipynb` collects the workflow dataset.
+2. `run_tools.ipynb` runs the scanners on the collected workflows.
+3. `results.ipynb` normalizes scanner outputs and generates the detection matrices.
+4. `execution_time.ipynb` processes runtime measurements.
+
+Generated outputs are stored in `results/`.
+
+## Notes
+
+The collected workflows are stored under `workflows/` instead of `.github/workflows/` to prevent GitHub from executing them in this repository.
+
+Scanner outputs are kept raw in `scanners_output/`; processed and normalized results are stored in `results/normalized_workflows/`.

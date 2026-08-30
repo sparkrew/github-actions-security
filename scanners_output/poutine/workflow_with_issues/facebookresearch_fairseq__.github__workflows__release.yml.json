@@ -1,0 +1,34 @@
+{
+  "workflow": "facebookresearch_fairseq__.github__workflows__release.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "injection": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "injection",
+      "line": 26,
+      "column": "",
+      "job": "get_next_version",
+      "step": "2",
+      "details": "Sources: github.event.inputs.name",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "injection",
+      "line": 43,
+      "column": "",
+      "job": "get_next_version",
+      "step": "3",
+      "details": "Sources: github.event.inputs.name",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

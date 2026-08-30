@@ -1,0 +1,57 @@
+name: JSR Manual Publish
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # actions/setup-node@v6 | main,v6.3.0
+        with:
+          node-version: 24
+          cache: 'npm'
+      - run: npm ci
+      - run: npm test
+        env:
+          FORCE_COLOR: 3
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # actions/upload-artifact@v6 | v6.0.0
+        with:
+          name: build-${{ github.run_id }}
+          path: |
+            build
+            jsr.json
+          retention-days: 1
+
+  jsr-publish:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # actions/setup-node@v6 | main,v6.3.0
+        with:
+          node-version: 24
+          cache: 'npm'
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # actions/download-artifact@v7 | v7.0.0
+        with:
+          name: build-${{ github.run_id }}
+
+      - name: Get zx version info
+        run: |
+          echo SHA_SHORT=$(git rev-parse --short HEAD) >> $GITHUB_ENV
+          echo ZX_VERSION=$(jq -r '.version' jsr.json) >> $GITHUB_ENV
+
+      - name: pushing to jsr.io
+        run: |
+          cat <<< $(jq '.version="${ZX_VERSION}-dev.${SHA_SHORT}"' jsr.json) > jsr.json
+          npx jsr publish --allow-dirty

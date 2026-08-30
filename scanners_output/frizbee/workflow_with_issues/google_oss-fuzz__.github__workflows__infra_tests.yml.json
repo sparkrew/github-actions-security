@@ -1,0 +1,36 @@
+{
+  "workflow": "google_oss-fuzz__.github__workflows__infra_tests.yml",
+  "tool": "frizbee",
+  "summary": {
+    "total_findings": 4,
+    "by_rule": {
+      "unpinned-github-actions": 4
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "original": "actions/checkout@v6",
+      "pinned": "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+      "line": 21
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "original": "actions/setup-python@v6",
+      "pinned": "actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405",
+      "line": 28
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "original": "actions/setup-java@v5",
+      "pinned": "actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654",
+      "line": 34
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "original": "google-github-actions/setup-gcloud@v3",
+      "pinned": "google-github-actions/setup-gcloud@aa5489c8933f4cc7a4f7d45035b3b1440c9c10db",
+      "line": 46
+    }
+  ]
+}

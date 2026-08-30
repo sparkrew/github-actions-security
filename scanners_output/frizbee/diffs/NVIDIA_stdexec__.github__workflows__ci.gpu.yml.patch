@@ -1,0 +1,31 @@
+diff --git a/.github/workflows/NVIDIA_stdexec__.github__workflows__ci.gpu.yml b/.github/workflows/NVIDIA_stdexec__.github__workflows__ci.gpu.yml
+index 17adc9d..6d04c9b 100644
+--- a/.github/workflows/NVIDIA_stdexec__.github__workflows__ci.gpu.yml
++++ b/.github/workflows/NVIDIA_stdexec__.github__workflows__ci.gpu.yml
+@@ -42,7 +42,7 @@ jobs:
+       - name: Run nvidia-smi to make sure GPU is working
+         run: nvidia-smi
+       - name: Checkout stdexec
+-        uses: actions/checkout@v4
++        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           path: stdexec
+           persist-credentials: false
+@@ -52,7 +52,7 @@ jobs:
+           echo "ARTIFACT_SUFFIX=${{github.run_id}}-${{github.run_attempt}}-$RANDOM" >> "${GITHUB_ENV}"
+       - if: github.repository_owner == 'NVIDIA'
+         name: Get AWS credentials for sccache bucket
+-        uses: aws-actions/configure-aws-credentials@v4
++        uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # v4
+         with:
+           aws-region: us-east-2
+           role-duration-seconds: 28800 # 8 hours
+@@ -120,7 +120,7 @@ jobs:
+           ./build/examples/nvexec/maxwell_gpu_s --iterations=1000 --N=512 --run-cuda --run-stdpar --run-stream-scheduler;
+       - if: ${{ !cancelled() }}
+         name: Upload sccache logs
+-        uses: actions/upload-artifact@v4
++        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+         with:
+           name: sccache-client-logs-${{env.ARTIFACT_PREFIX}}-${{env.ARTIFACT_SUFFIX}}
+           path: /tmp/sccache*.log

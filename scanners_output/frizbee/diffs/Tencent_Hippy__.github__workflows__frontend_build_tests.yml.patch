@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/Tencent_Hippy__.github__workflows__frontend_build_tests.yml b/.github/workflows/Tencent_Hippy__.github__workflows__frontend_build_tests.yml
+index b21a6b1..bccaa01 100644
+--- a/.github/workflows/Tencent_Hippy__.github__workflows__frontend_build_tests.yml
++++ b/.github/workflows/Tencent_Hippy__.github__workflows__frontend_build_tests.yml
+@@ -23,9 +23,9 @@ jobs:
+       matrix:
+         node: [ 16.x, 17.x ]
+     steps:
+-      - uses: actions/checkout@v3
++      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+       - name: setup-node
+-        uses: actions/setup-node@v3
++        uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3
+         with:
+           node-version: ${{ matrix.node }}
+           registry-url: https://npm.pkg.github.com
+@@ -40,4 +40,4 @@ jobs:
+         run: npm run coverage
+       - name: coverage
+         if: matrix.node == '16.x'
+-        uses: codecov/codecov-action@v2
++        uses: codecov/codecov-action@f32b3a3741e1053eb607407145bc9619351dc93b # v2

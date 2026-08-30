@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/facebook_openzl__.github__workflows__cross-platform-ci.yml b/.github/workflows/facebook_openzl__.github__workflows__cross-platform-ci.yml
+index b5316ec..8ad5396 100644
+--- a/.github/workflows/facebook_openzl__.github__workflows__cross-platform-ci.yml
++++ b/.github/workflows/facebook_openzl__.github__workflows__cross-platform-ci.yml
+@@ -61,7 +61,7 @@ jobs:
+       EXEC_PREFIX: ${{ matrix.qemu }}
+       LDFLAGS: "-static"
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+       - name: Install dependencies
+         run: |
+           sudo apt-get update

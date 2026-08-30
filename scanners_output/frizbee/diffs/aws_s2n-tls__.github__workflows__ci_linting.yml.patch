@@ -1,0 +1,95 @@
+diff --git a/.github/workflows/aws_s2n-tls__.github__workflows__ci_linting.yml b/.github/workflows/aws_s2n-tls__.github__workflows__ci_linting.yml
+index 0899f2e..bd35852 100644
+--- a/.github/workflows/aws_s2n-tls__.github__workflows__ci_linting.yml
++++ b/.github/workflows/aws_s2n-tls__.github__workflows__ci_linting.yml
+@@ -17,14 +17,14 @@ jobs:
+     env:
+       CPPCHECK_INSTALL_DIR: test-deps/cppcheck
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       - name: Setup
+         run: source ./codebuild/bin/s2n_setup_env.sh
+ 
+       - name: Cache
+         id: cache
+-        uses: actions/cache@v5
++        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+         continue-on-error: true
+         with:
+           path: ${{ env.CPPCHECK_INSTALL_DIR }}
+@@ -40,7 +40,7 @@ jobs:
+   headers:
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       - name: Setup
+         run: source ./codebuild/bin/s2n_setup_env.sh
+@@ -51,7 +51,7 @@ jobs:
+   simple-mistakes:
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       - name: Setup
+         run: source ./codebuild/bin/s2n_setup_env.sh
+@@ -62,7 +62,7 @@ jobs:
+   comments:
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       - name: Setup
+         run: source ./codebuild/bin/s2n_setup_env.sh
+@@ -79,10 +79,10 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: checkout
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       - name: Set up uv
+-        uses: astral-sh/setup-uv@v7
++        uses: astral-sh/setup-uv@5a095e7a2014a4212f075830d4f7277575a9d098 # v7
+ 
+       - name: Run Ruff formatting check
+         working-directory: tests/integrationv2
+@@ -111,9 +111,9 @@ jobs:
+   clang-format:
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v6
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: clang-format check
+-        uses: jidicula/clang-format-action@v4.16.0
++        uses: jidicula/clang-format-action@6cd220de46c89139a0365edae93eee8eb30ca8fe # v4.16.0
+         with:
+           clang-format-version: '18'
+           include-regex: '^(\.\/)?(api|bin|crypto|stuffer|error|tls|utils|tests\/unit|tests\/testlib|docs\/examples).*\.(c|h)$'
+@@ -121,8 +121,8 @@ jobs:
+     # The nix develop changes contain broken nixpkg dependenecies; the allow/impure flags workaround this.
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v6
+-      - uses: nixbuild/nix-quick-install-action@v34
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
++      - uses: nixbuild/nix-quick-install-action@2c9db80fb984ceb1bcaa77cdda3fdf8cfba92035 # v34
+         with:
+           nix_conf: experimental-features = nix-command flakes
+       - name: nix flake check
+@@ -130,8 +130,8 @@ jobs:
+   nixfmt:
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v6
+-      - uses: nixbuild/nix-quick-install-action@v34
++      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
++      - uses: nixbuild/nix-quick-install-action@2c9db80fb984ceb1bcaa77cdda3fdf8cfba92035 # v34
+         with:
+           nix_conf: experimental-features = nix-command flakes
+       - name: nix fmt

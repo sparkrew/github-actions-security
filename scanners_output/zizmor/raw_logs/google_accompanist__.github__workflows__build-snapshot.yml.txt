@@ -1,0 +1,98 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_accompanist__.github__workflows__build-snapshot.yml:23:9
+   [1m[94m|[0m
+[1m[94m23 |[0m         - uses: actions/checkout@v2
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m24 |[0m [1m[33m|[0m         with:
+[1m[94m25 |[0m [1m[33m|[0m           # Fetch expanded history, which is needed for affected module detection
+[1m[94m26 |[0m [1m[33m|[0m           fetch-depth: '500'
+   [1m[94m|[0m [1m[33m|____________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/google_accompanist__.github__workflows__build-snapshot.yml:94:9
+   [1m[94m|[0m
+[1m[94m94 |[0m         - uses: actions/checkout@v2
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m95 |[0m [1m[33m|[0m         with:
+[1m[94m96 |[0m [1m[33m|[0m           # Fetch expanded history, which is needed for affected module detection
+[1m[94m97 |[0m [1m[33m|[0m           fetch-depth: '500'
+   [1m[94m|[0m [1m[33m|____________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/google_accompanist__.github__workflows__build-snapshot.yml:172:9
+    [1m[94m|[0m
+[1m[94m172 |[0m       - uses: actions/checkout@v2
+    [1m[94m|[0m         [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_accompanist__.github__workflows__build-snapshot.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: Build & test (snapshot)
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m203 |[0m [1m[33m|[0m         if: always()
+[1m[94m204 |[0m [1m[33m|[0m         run: release/signing-cleanup.sh
+    [1m[94m|[0m [1m[33m|________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/google_accompanist__.github__workflows__build-snapshot.yml:15:3
+   [1m[94m|[0m
+[1m[94m15 |[0m [1m[33m/[0m   build:
+[1m[94m16 |[0m [1m[33m|[0m     # Skip build if head commit contains 'skip ci'
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m75 |[0m [1m[33m|[0m         if: always()
+[1m[94m76 |[0m [1m[33m|[0m         run: release/signing-cleanup.sh
+   [1m[94m|[0m [1m[33m|[0m                                       [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________________________|[0m
+   [1m[94m|[0m                                         [1m[33mthis job[0m
+   [1m[94m|[0m                                         [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_accompanist__.github__workflows__build-snapshot.yml:78:3
+    [1m[94m|[0m
+[1m[94m 78 |[0m [1m[33m/[0m   test:
+[1m[94m 79 |[0m [1m[33m|[0m     runs-on: macos-latest
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m159 |[0m [1m[33m|[0m             **/build/reports/*
+[1m[94m160 |[0m [1m[33m|[0m             **/build/outputs/*/connected/*
+    [1m[94m|[0m [1m[33m|[0m                                          [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|__________________________________________|[0m
+    [1m[94m|[0m                                            [1m[33mthis job[0m
+    [1m[94m|[0m                                            [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/google_accompanist__.github__workflows__build-snapshot.yml:162:3
+    [1m[94m|[0m
+[1m[94m162 |[0m [1m[33m/[0m   deploy:
+[1m[94m163 |[0m [1m[33m|[0m     if: github.event_name == 'push' # only deploy for pushed commits (not PRs)
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m203 |[0m [1m[33m|[0m         if: always()
+[1m[94m204 |[0m [1m[33m|[0m         run: release/signing-cleanup.sh
+    [1m[94m|[0m [1m[33m|[0m                                        [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|________________________________________|[0m
+    [1m[94m|[0m                                          [1m[33mthis job[0m
+    [1m[94m|[0m                                          [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/google_accompanist__.github__workflows__build-snapshot.yml:135:9
+    [1m[94m|[0m
+[1m[94m135 |[0m         uses: reactivecircus/android-emulator-runner@v2
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m11[39m findings ([1m[93m3[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m7[39m medium, [31m1[39m high

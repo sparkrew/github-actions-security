@@ -1,0 +1,28 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_rocksdb__.github__workflows__clang-tidy.yml:16:7
+   [1m[94m|[0m
+[1m[94m16 |[0m       - uses: actions/checkout@v4.1.0
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m17 |[0m [1m[33m|[0m       with:
+[1m[94m18 |[0m [1m[33m|[0m         fetch-depth: 2
+   [1m[94m|[0m [1m[33m|______________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/facebook_rocksdb__.github__workflows__clang-tidy.yml:49:7
+   [1m[94m|[0m
+[1m[94m49 |[0m       - name: Run clang-tidy on changed files
+   [1m[94m|[0m         [1m[94m-------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m50 |[0m         id: clang-tidy
+[1m[94m51 |[0m         if: steps.diff-base.outputs.skip != 'true'
+[1m[94m52 |[0m [1m[94m/[0m       run: |
+[1m[94m53 |[0m [1m[94m|[0m         python3 tools/run_clang_tidy.py \
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m57 |[0m [1m[94m|[0m           --github-step-summary \
+[1m[94m58 |[0m [1m[94m|[0m           --comment-output clang-tidy-comment.md
+   [1m[94m|[0m [1m[94m|________________________________________________-[0m [1m[94minfo: steps.diff-base.outputs.ref may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m9[39m findings ([1m[93m7[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m1[39m medium, [31m0[39m high

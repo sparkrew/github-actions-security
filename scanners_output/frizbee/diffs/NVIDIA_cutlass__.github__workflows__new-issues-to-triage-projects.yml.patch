@@ -1,0 +1,29 @@
+diff --git a/.github/workflows/NVIDIA_cutlass__.github__workflows__new-issues-to-triage-projects.yml b/.github/workflows/NVIDIA_cutlass__.github__workflows__new-issues-to-triage-projects.yml
+index a963cb2..04124d7 100644
+--- a/.github/workflows/NVIDIA_cutlass__.github__workflows__new-issues-to-triage-projects.yml
++++ b/.github/workflows/NVIDIA_cutlass__.github__workflows__new-issues-to-triage-projects.yml
+@@ -13,21 +13,21 @@ jobs:
+     name: Assign to New Issues to Triage Project
+     steps:
+     - name: Process bug issues
+-      uses: docker://takanabe/github-actions-automate-projects:v0.0.1
++      uses: docker://index.docker.io/takanabe/github-actions-automate-projects@sha256:16a589147dec088f73735a477f274135595ab90d414aba76b6c1e0d65df8f73c # v0.0.1
+       if: contains(github.event.issue.labels.*.name, 'bug') && contains(github.event.issue.labels.*.name, '? - Needs Triage')
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         GITHUB_PROJECT_URL: https://github.com/NVIDIA/cutlass
+         GITHUB_PROJECT_COLUMN_NAME: 'Needs prioritizing'
+     - name: Process feature issues
+-      uses: docker://takanabe/github-actions-automate-projects:v0.0.1
++      uses: docker://index.docker.io/takanabe/github-actions-automate-projects@sha256:16a589147dec088f73735a477f274135595ab90d414aba76b6c1e0d65df8f73c # v0.0.1
+       if: contains(github.event.issue.labels.*.name, 'feature request') && contains(github.event.issue.labels.*.name, '? - Needs Triage')
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         GITHUB_PROJECT_URL: https://github.com/NVIDIA/cutlass
+         GITHUB_PROJECT_COLUMN_NAME: 'Needs prioritizing'
+     - name: Process other issues
+-      uses: docker://takanabe/github-actions-automate-projects:v0.0.1
++      uses: docker://index.docker.io/takanabe/github-actions-automate-projects@sha256:16a589147dec088f73735a477f274135595ab90d414aba76b6c1e0d65df8f73c # v0.0.1
+       if: contains(github.event.issue.labels.*.name, '? - Needs Triage') && (!contains(github.event.issue.labels.*.name, 'bug') && !contains(github.event.issue.labels.*.name, 'feature request'))
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,75 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/apple_swift-protobuf__.github__workflows__update_protobuf.yml:22:7
+   [1m[94m|[0m
+[1m[94m22 |[0m       - name: Checkout
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m23 |[0m [1m[33m|[0m       uses: actions/checkout@v6
+[1m[94m24 |[0m [1m[33m|[0m       with:
+[1m[94m25 |[0m [1m[33m|[0m         submodules: true
+[1m[94m26 |[0m [1m[33m|[0m         token: ${{ secrets.GITHUB_TOKEN }}
+   [1m[94m|[0m [1m[33m|__________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/apple_swift-protobuf__.github__workflows__update_protobuf.yml:81:7
+   [1m[94m|[0m
+[1m[94m81 |[0m       - name: Update protobuf submodule
+   [1m[94m|[0m         [1m[94m-------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m82 |[0m         if: steps.check_release.outputs.needs_update == 'true'
+[1m[94m83 |[0m [1m[94m/[0m       run: |
+[1m[94m84 |[0m [1m[94m|[0m         cd Sources/protobuf/protobuf
+[1m[94m85 |[0m [1m[94m|[0m         git checkout ${{ steps.check_release.outputs.latest_tag }}
+[1m[94m86 |[0m [1m[94m|[0m         cd ../../..
+   [1m[94m|[0m [1m[94m|___________________-[0m [1m[94minfo: steps.check_release.outputs.latest_tag may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/apple_swift-protobuf__.github__workflows__update_protobuf.yml:103:7
+    [1m[94m|[0m
+[1m[94m103 |[0m       - name: Update abseil submodule
+    [1m[94m|[0m         [1m[94m-----------------------------[0m [1m[94minfo: this step[0m
+[1m[94m104 |[0m         if: steps.check_release.outputs.needs_update == 'true'
+[1m[94m105 |[0m [1m[94m/[0m       run: |
+[1m[94m106 |[0m [1m[94m|[0m         cd Sources/protobuf/abseil
+[1m[94m107 |[0m [1m[94m|[0m         git fetch
+[1m[94m108 |[0m [1m[94m|[0m         git checkout ${{ steps.check_abseil.outputs.abseil_commit }}
+[1m[94m109 |[0m [1m[94m|[0m         cd ../../..
+    [1m[94m|[0m [1m[94m|___________________-[0m [1m[94minfo: steps.check_abseil.outputs.abseil_commit may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/apple_swift-protobuf__.github__workflows__update_protobuf.yml:119:7
+    [1m[94m|[0m
+[1m[94m119 |[0m       - name: Get abseil version info
+    [1m[94m|[0m         [1m[94m-----------------------------[0m [1m[94minfo: this step[0m
+[1m[94m120 |[0m         if: steps.check_release.outputs.needs_update == 'true'
+[1m[94m121 |[0m         id: abseil_info
+[1m[94m122 |[0m [1m[94m/[0m       run: |
+[1m[94m123 |[0m [1m[94m|[0m         cd Sources/protobuf/abseil
+[1m[94m124 |[0m [1m[94m|[0m         ABSEIL_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "commit ${{ steps.check_abseil.outputs.abseil_commit }}")
+[1m[94m125 |[0m [1m[94m|[0m         echo "abseil_version=$ABSEIL_TAG" >> $GITHUB_OUTPUT
+[1m[94m126 |[0m [1m[94m|[0m         cd ../../..
+    [1m[94m|[0m [1m[94m|___________________-[0m [1m[94minfo: steps.check_abseil.outputs.abseil_commit may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/apple_swift-protobuf__.github__workflows__update_protobuf.yml:142:7
+    [1m[94m|[0m
+[1m[94m142 |[0m       uses: peter-evans/create-pull-request@v8
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+  [1m[94m-->[0m ../.github/workflows/apple_swift-protobuf__.github__workflows__update_protobuf.yml:20:7
+   [1m[94m|[0m
+[1m[94m20 |[0m       image: swift:latest
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is pinned to latest[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m11[39m findings ([1m[93m5[39m suppressed[0m): 0 unknown, [35m3[39m informational, [36m0[39m low, [33m1[39m medium, [31m2[39m high

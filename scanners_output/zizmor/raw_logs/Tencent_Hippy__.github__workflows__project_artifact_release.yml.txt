@@ -1,0 +1,284 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__project_artifact_release.yml:80:7
+   [1m[94m|[0m
+[1m[94m80 |[0m       - name: Checkout (${{ github.event.inputs.git_ref }})
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m81 |[0m [1m[33m|[0m       uses: actions/checkout@v3
+[1m[94m82 |[0m [1m[33m|[0m       with:
+[1m[94m83 |[0m [1m[33m|[0m         ref: ${{ github.event.inputs.git_ref }}
+[1m[94m84 |[0m [1m[33m|[0m         lfs: true
+   [1m[94m|[0m [1m[33m|_________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__project_artifact_release.yml:160:9
+    [1m[94m|[0m
+[1m[94m160 |[0m         - name: Checkout (${{ github.event.inputs.git_ref }})
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m161 |[0m [1m[33m|[0m         uses: actions/checkout@v3
+[1m[94m162 |[0m [1m[33m|[0m         with:
+[1m[94m163 |[0m [1m[33m|[0m           ref: ${{ github.event.inputs.git_ref }}
+[1m[94m164 |[0m [1m[33m|[0m           lfs: true
+    [1m[94m|[0m [1m[33m|___________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__project_artifact_release.yml:176:9
+    [1m[94m|[0m
+[1m[94m176 |[0m         - name: Checkout (${{ github.event.inputs.git_ref }})
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m177 |[0m [1m[33m|[0m         uses: actions/checkout@v3
+[1m[94m178 |[0m [1m[33m|[0m         with:
+[1m[94m179 |[0m [1m[33m|[0m           ref: ${{ github.event.inputs.git_ref }}
+[1m[94m180 |[0m [1m[33m|[0m           lfs: true
+    [1m[94m|[0m [1m[33m|___________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__project_artifact_release.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: '[project] artifact release'
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m212 |[0m [1m[33m|[0m         
+[1m[94m213 |[0m [1m[33m|[0m         
+    [1m[94m|[0m [1m[33m|_________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__project_artifact_release.yml:53:3
+   [1m[94m|[0m
+[1m[94m53 |[0m [1m[33m/[0m   context_in_lowercase:
+[1m[94m54 |[0m [1m[33m|[0m     if: github.event.inputs.is_release_for_android == 'true'
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m62 |[0m [1m[33m|[0m         with:
+[1m[94m63 |[0m [1m[33m|[0m           string: ${{ github.repository_owner }}
+   [1m[94m|[0m [1m[33m|[0m                                                [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________________________________________|[0m
+   [1m[94m|[0m                                                  [1m[33mthis job[0m
+   [1m[94m|[0m                                                  [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__project_artifact_release.yml:65:3
+    [1m[94m|[0m
+[1m[94m 65 |[0m [1m[33m/[0m   android_release:
+[1m[94m 66 |[0m [1m[33m|[0m     if: github.event.inputs.is_release_for_android == 'true'
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m153 |[0m [1m[33m|[0m       run: |
+[1m[94m154 |[0m [1m[33m|[0m         ./gradlew publish -PVERSION_NAME=${{ github.event.inputs.version_name }} -PPUBLISH_ARTIFACT_ID=${{ matrix.artifact_id }} -PINCLUDE_ABI_X86=true -PINCLUDE_ABI_X86_64=true
+    [1m[94m|[0m [1m[33m|[0m                                                                                                                                                                                 [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_________________________________________________________________________________________________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                                                                                                   [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                                                                                                   [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__project_artifact_release.yml:156:3
+    [1m[94m|[0m
+[1m[94m156 |[0m [1m[33m/[0m   ios_release:
+[1m[94m157 |[0m [1m[33m|[0m     if: github.event.inputs.is_release_for_ios == 'true'
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m169 |[0m [1m[33m|[0m         run: |
+[1m[94m170 |[0m [1m[33m|[0m           pod trunk push hippy.podspec --allow-warnings --use-libraries --verbose --skip-import-validation
+    [1m[94m|[0m [1m[33m|[0m                                                                                                          [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|__________________________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                            [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                            [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__project_artifact_release.yml:172:3
+    [1m[94m|[0m
+[1m[94m172 |[0m [1m[33m/[0m   js_release:
+[1m[94m173 |[0m [1m[33m|[0m     if: github.event.inputs.is_release_for_js == 'true'
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m212 |[0m [1m[33m|[0m         
+[1m[94m213 |[0m [1m[33m|[0m         
+    [1m[94m|[0m [1m[33m|[0m         [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_________|[0m
+    [1m[94m|[0m           [1m[33mthis job[0m
+    [1m[94m|[0m           [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__project_artifact_release.yml:85:7
+   [1m[94m|[0m
+[1m[94m85 |[0m       - name: ${{ matrix.build_type }} build
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m86 |[0m         env:
+[1m[94m...[0m
+[1m[94m89 |[0m           SIGNING_SECRET_KEY: ${{ secrets.ANDROID_SIGNING_SECRET_KEY }}
+[1m[94m90 |[0m [1m[91m/[0m       run: |
+[1m[94m91 |[0m [1m[91m|[0m         ./gradlew assemble${{ matrix.build_type }} -PVERSION_NAME=${{ github.event.inputs.version_name }} -PPUBLISH_ARTIFACT_ID=${{ [1m[94m...[0m
+[1m[94m92 |[0m [1m[91m|[0m         ./gradlew signMavenAarPublication
+   [1m[94m|[0m [1m[91m|_________________________________________^[0m [1m[91mgithub.event.inputs.version_name may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__project_artifact_release.yml:97:7
+    [1m[94m|[0m
+[1m[94m 97 |[0m       - name: Archive artifacts
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m 98 |[0m         working-directory: ./framework/android/build
+[1m[94m 99 |[0m         shell: python3 {0}
+[1m[94m100 |[0m [1m[91m/[0m       run: |
+[1m[94m101 |[0m [1m[91m|[0m         from qcloud_cos import CosConfig
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m132 |[0m [1m[91m|[0m           )
+[1m[94m133 |[0m [1m[91m|[0m           print("Archived %s" % artifact[1])
+    [1m[94m|[0m [1m[91m|____________________________________________^[0m [1m[91mgithub.event.inputs.version_name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__project_artifact_release.yml:97:7
+    [1m[94m|[0m
+[1m[94m 97 |[0m       - name: Archive artifacts
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m 98 |[0m         working-directory: ./framework/android/build
+[1m[94m 99 |[0m         shell: python3 {0}
+[1m[94m100 |[0m [1m[91m/[0m       run: |
+[1m[94m101 |[0m [1m[91m|[0m         from qcloud_cos import CosConfig
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m132 |[0m [1m[91m|[0m           )
+[1m[94m133 |[0m [1m[91m|[0m           print("Archived %s" % artifact[1])
+    [1m[94m|[0m [1m[91m|____________________________________________^[0m [1m[91mgithub.event.inputs.version_name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__project_artifact_release.yml:97:7
+    [1m[94m|[0m
+[1m[94m 97 |[0m       - name: Archive artifacts
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m 98 |[0m         working-directory: ./framework/android/build
+[1m[94m 99 |[0m         shell: python3 {0}
+[1m[94m100 |[0m [1m[91m/[0m       run: |
+[1m[94m101 |[0m [1m[91m|[0m         from qcloud_cos import CosConfig
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m132 |[0m [1m[91m|[0m           )
+[1m[94m133 |[0m [1m[91m|[0m           print("Archived %s" % artifact[1])
+    [1m[94m|[0m [1m[91m|____________________________________________^[0m [1m[91mgithub.event.sender.login may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__project_artifact_release.yml:97:7
+    [1m[94m|[0m
+[1m[94m 97 |[0m       - name: Archive artifacts
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m 98 |[0m         working-directory: ./framework/android/build
+[1m[94m 99 |[0m         shell: python3 {0}
+[1m[94m100 |[0m [1m[91m/[0m       run: |
+[1m[94m101 |[0m [1m[91m|[0m         from qcloud_cos import CosConfig
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m132 |[0m [1m[91m|[0m           )
+[1m[94m133 |[0m [1m[91m|[0m           print("Archived %s" % artifact[1])
+    [1m[94m|[0m [1m[91m|____________________________________________^[0m [1m[91mgithub.event.inputs.git_ref may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__project_artifact_release.yml:134:7
+    [1m[94m|[0m
+[1m[94m134 |[0m       - name: Publish to Github Packages
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m135 |[0m         if: github.event.inputs.registry_choice == 'Both' || github.event.inputs.registry_choice == 'Github'
+[1m[94m...[0m
+[1m[94m142 |[0m           MAVEN_URL: https://maven.pkg.github.com/${{ github.repository }}
+[1m[94m143 |[0m [1m[91m/[0m       run: |
+[1m[94m144 |[0m [1m[91m|[0m         ./gradlew publish -PVERSION_NAME=${{ github.event.inputs.version_name }} -PPUBLISH_ARTIFACT_ID=${{ matrix.artifact_id }} -PINCLUDE_ABI_X86=true -PINCLUDE_ABI_X86_64=true
+    [1m[94m|[0m [1m[91m|_________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.inputs.version_name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__project_artifact_release.yml:145:7
+    [1m[94m|[0m
+[1m[94m145 |[0m       - name: Publish to OSSRH
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m146 |[0m         if: github.event.inputs.registry_choice == 'Both' || github.event.inputs.registry_choice == 'Default'
+[1m[94m...[0m
+[1m[94m152 |[0m           MAVEN_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+[1m[94m153 |[0m [1m[91m/[0m       run: |
+[1m[94m154 |[0m [1m[91m|[0m         ./gradlew publish -PVERSION_NAME=${{ github.event.inputs.version_name }} -PPUBLISH_ARTIFACT_ID=${{ matrix.artifact_id }} -PINCLUDE_ABI_X86=true -PINCLUDE_ABI_X86_64=true
+    [1m[94m|[0m [1m[91m|_________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.inputs.version_name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__project_artifact_release.yml:197:9
+    [1m[94m|[0m
+[1m[94m197 |[0m         - name: Publish to NPM
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m198 |[0m           if: github.event.inputs.js_npm_dist_tag_name != null && (github.event.inputs.registry_choice == 'Both' || github.event.inpu[1m[94m...[0m
+[1m[94m199 |[0m           env:
+[1m[94m200 |[0m             NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+[1m[94m201 |[0m [1m[91m/[0m         run: |
+[1m[94m202 |[0m [1m[91m|[0m           pushd driver/js
+[1m[94m203 |[0m [1m[91m|[0m           echo "released js_npm_dist_tag_name is '${{ github.event.inputs.js_npm_dist_tag_name }}'"
+[1m[94m204 |[0m [1m[91m|[0m           npx lerna publish from-package --ignore-scripts --yes --dist-tag ${{ github.event.inputs.js_npm_dist_tag_name }}
+    [1m[94m|[0m [1m[91m|__________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.inputs.js_npm_dist_tag_name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__project_artifact_release.yml:197:9
+    [1m[94m|[0m
+[1m[94m197 |[0m         - name: Publish to NPM
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m198 |[0m           if: github.event.inputs.js_npm_dist_tag_name != null && (github.event.inputs.registry_choice == 'Both' || github.event.inpu[1m[94m...[0m
+[1m[94m199 |[0m           env:
+[1m[94m200 |[0m             NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+[1m[94m201 |[0m [1m[91m/[0m         run: |
+[1m[94m202 |[0m [1m[91m|[0m           pushd driver/js
+[1m[94m203 |[0m [1m[91m|[0m           echo "released js_npm_dist_tag_name is '${{ github.event.inputs.js_npm_dist_tag_name }}'"
+[1m[94m204 |[0m [1m[91m|[0m           npx lerna publish from-package --ignore-scripts --yes --dist-tag ${{ github.event.inputs.js_npm_dist_tag_name }}
+    [1m[94m|[0m [1m[91m|__________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.inputs.js_npm_dist_tag_name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__project_artifact_release.yml:205:9
+    [1m[94m|[0m
+[1m[94m205 |[0m         - name: Change tag to latest
+    [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m206 |[0m           if: github.event.inputs.is_npm_version_to_latest_tag == 'true'
+[1m[94m207 |[0m           env:
+[1m[94m208 |[0m             NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+[1m[94m209 |[0m [1m[91m/[0m         run: |
+[1m[94m210 |[0m [1m[91m|[0m           pushd driver/js
+[1m[94m211 |[0m [1m[91m|[0m           npm run release:tag-to-latest ${{ github.event.inputs.version_name }}  
+[1m[94m212 |[0m [1m[91m|[0m         
+[1m[94m213 |[0m [1m[91m|[0m         
+    [1m[94m|[0m [1m[91m|_________^[0m [1m[91mgithub.event.inputs.version_name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__project_artifact_release.yml:61:9
+   [1m[94m|[0m
+[1m[94m61 |[0m         uses: ASzc/change-string-case-action@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__project_artifact_release.yml:78:7
+   [1m[94m|[0m
+[1m[94m78 |[0m       image: ghcr.io/${{ needs.context_in_lowercase.outputs.repository_owner }}/android-release:latest
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is pinned to latest[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m44[39m findings ([1m[93m24[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m8[39m medium, [31m12[39m high

@@ -1,0 +1,24 @@
+{
+  "workflow": "facebookincubator_velox__.github__workflows__breeze.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 86,
+      "column": "",
+      "job": "ubuntu-gpu-relwithdebinfo",
+      "step": "",
+      "details": "runs-on: 4-core-ubuntu-gpu-t4",
+      "event_triggers": [
+        "push",
+        "pull_request"
+      ]
+    }
+  ]
+}

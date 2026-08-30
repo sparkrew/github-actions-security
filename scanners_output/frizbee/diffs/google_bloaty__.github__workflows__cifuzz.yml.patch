@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/google_bloaty__.github__workflows__cifuzz.yml b/.github/workflows/google_bloaty__.github__workflows__cifuzz.yml
+index c1efa4f..b06427d 100644
+--- a/.github/workflows/google_bloaty__.github__workflows__cifuzz.yml
++++ b/.github/workflows/google_bloaty__.github__workflows__cifuzz.yml
+@@ -22,7 +22,7 @@ jobs:
+        dry-run: false
+        sanitizer: ${{ matrix.sanitizer }}
+    - name: Upload Crash
+-     uses: actions/upload-artifact@v4
++     uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+      if: failure()
+      with:
+        name: ${{ matrix.sanitizer }}-artifacts

@@ -1,0 +1,15 @@
+diff --git a/.github/workflows/microsoft_DirectXShaderCompiler__.github__workflows__pr-description-checker.yml b/.github/workflows/microsoft_DirectXShaderCompiler__.github__workflows__pr-description-checker.yml
+index e7cfb91..9482a99 100644
+--- a/.github/workflows/microsoft_DirectXShaderCompiler__.github__workflows__pr-description-checker.yml
++++ b/.github/workflows/microsoft_DirectXShaderCompiler__.github__workflows__pr-description-checker.yml
+@@ -11,8 +11,8 @@ jobs:
+   check-pr-description:
+     runs-on: ubuntu-latest
+     steps:
+-      - uses: actions/checkout@v2
+-      - uses: jadrol/pr-description-checker-action@v1.0.0
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
++      - uses: jadrol/pr-description-checker-action@c659fed338a52d657d34462c8bc7fc1f65d25758 # v1.0.0
+         id: description-checker
+         with:
+           repo-token: ${{ secrets.GITHUB_TOKEN }}

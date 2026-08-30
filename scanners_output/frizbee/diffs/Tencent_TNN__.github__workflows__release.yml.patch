@@ -1,0 +1,434 @@
+diff --git a/.github/workflows/Tencent_TNN__.github__workflows__release.yml b/.github/workflows/Tencent_TNN__.github__workflows__release.yml
+index 63ea33b..3e9a135 100644
+--- a/.github/workflows/Tencent_TNN__.github__workflows__release.yml
++++ b/.github/workflows/Tencent_TNN__.github__workflows__release.yml
+@@ -26,7 +26,7 @@ jobs:
+     outputs:
+       ASSET_NAME: ${{ env.ASSET_NAME }}
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       - name: Compress
+         env:
+           ASSET_PATH: /tmp/${{ env.ASSET_NAME }}.zip
+@@ -36,7 +36,7 @@ jobs:
+           rm -f ${ASSET_PATH}
+           zip -9r ${ASSET_PATH} .
+       - name: Upload_asset
+-        uses: actions/upload-artifact@v2
++        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2
+         with:
+           name: ${{ env.ASSET_NAME }}
+           path: /tmp/${{ env.ASSET_NAME }}.zip
+@@ -50,7 +50,7 @@ jobs:
+     outputs:
+       ASSET_NAME: ${{ env.ASSET_NAME }}
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       - name: Configure
+         run: sudo apt-get install attr
+       - name: Build
+@@ -62,7 +62,7 @@ jobs:
+           cd ./release
+           zip -9r ${ASSET_PATH} .
+       - name: Upload_asset
+-        uses: actions/upload-artifact@v2
++        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2
+         with:
+           name: ${{ env.ASSET_NAME }}
+           path: ./scripts/release/${{ env.ASSET_NAME }}.zip
+@@ -76,14 +76,14 @@ jobs:
+     outputs:
+       ASSET_NAME: ${{ env.ASSET_NAME }}
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       - name: Build
+         run: |
+           ./scripts/build_framework_ios.sh
+           cd ./platforms/ios
+           zip -9r ${{ env.ASSET_NAME }}.zip ./tnn.bundle ./tnn.framework
+       - name: Upload_asset
+-        uses: actions/upload-artifact@v2
++        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2
+         with:
+           name: ${{ env.ASSET_NAME }}
+           path: ./platforms/ios/${{ env.ASSET_NAME }}.zip
+@@ -99,7 +99,7 @@ jobs:
+     outputs:
+       ASSET_NAME: ${{ env.ASSET_NAME }}
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       - name: Build
+         env:
+             ASSET_PATH: ${{ env.ASSET_NAME }}.tar.gz
+@@ -110,7 +110,7 @@ jobs:
+           cd ./x86_linux_release
+           tar -zcvf ${ASSET_PATH} lib include bin
+       - name: Upload_asset
+-        uses: actions/upload-artifact@v2
++        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2
+         with:
+           name: ${{ env.ASSET_NAME }}
+           path: ./scripts/x86_linux_release/${{ env.ASSET_NAME }}.tar.gz
+@@ -126,7 +126,7 @@ jobs:
+     outputs:
+       ASSET_NAME: ${{ env.ASSET_NAME }}
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       - name: Build
+         env:
+             ASSET_PATH: ${{ env.ASSET_NAME }}.tar.gz
+@@ -139,7 +139,7 @@ jobs:
+           cd cuda_linux_release
+           tar -zcvf ${ASSET_PATH} lib include bin
+       - name: Upload_asset
+-        uses: actions/upload-artifact@v2
++        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2
+         with:
+           name: ${{ env.ASSET_NAME }}
+           path: ./scripts/cuda_linux_release/${{ env.ASSET_NAME }}.tar.gz
+@@ -155,7 +155,7 @@ jobs:
+     outputs:
+       ASSET_NAME: ${{ env.ASSET_NAME }}
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       - name: Build
+         env:
+             ASSET_PATH: ${{ env.ASSET_NAME }}.tar.gz
+@@ -168,7 +168,7 @@ jobs:
+           cd linux_release
+           tar -zcvf ${ASSET_PATH} lib include bin
+       - name: Upload_asset
+-        uses: actions/upload-artifact@v2
++        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2
+         with:
+           name: ${{ env.ASSET_NAME }}
+           path: ./scripts/linux_release/${{ env.ASSET_NAME }}.tar.gz
+@@ -184,7 +184,7 @@ jobs:
+     outputs:
+       ASSET_NAME: ${{ env.ASSET_NAME }}
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       - name: Build
+         env:
+             ASSET_PATH: ${{ env.ASSET_NAME }}.tar.gz
+@@ -195,7 +195,7 @@ jobs:
+           cd ./x86_linux_release
+           tar -zcvf ${ASSET_PATH} lib include bin
+       - name: Upload_asset
+-        uses: actions/upload-artifact@v2
++        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2
+         with:
+           name: ${{ env.ASSET_NAME }}
+           path: ./scripts/x86_linux_release/${{ env.ASSET_NAME }}.tar.gz
+@@ -209,7 +209,7 @@ jobs:
+     outputs:
+       ASSET_NAME: ${{ env.ASSET_NAME }}
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       - name: Configure
+         run: sudo apt-get install attr
+       - name: Build
+@@ -221,7 +221,7 @@ jobs:
+           cd ./x86_linux_release
+           tar -zcvf ${ASSET_PATH} lib include bin
+       - name: Upload_asset
+-        uses: actions/upload-artifact@v2
++        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2
+         with:
+           name: ${{ env.ASSET_NAME }}
+           path: ./scripts/x86_linux_release/${{ env.ASSET_NAME }}.tar.gz
+@@ -237,7 +237,7 @@ jobs:
+     outputs:
+       ASSET_NAME: ${{ env.ASSET_NAME }}
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       - name: Build
+         env:
+             ASSET_PATH: ${{ env.ASSET_NAME }}.tar.gz
+@@ -250,7 +250,7 @@ jobs:
+           cd cuda_linux_release
+           tar -zcvf ${ASSET_PATH} lib include bin
+       - name: Upload_asset
+-        uses: actions/upload-artifact@v2
++        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2
+         with:
+           name: ${{ env.ASSET_NAME }}
+           path: ./scripts/cuda_linux_release/${{ env.ASSET_NAME }}.tar.gz
+@@ -266,7 +266,7 @@ jobs:
+     outputs:
+       ASSET_NAME: ${{ env.ASSET_NAME }}
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       - name: Build
+         env:
+             ASSET_PATH: ${{ env.ASSET_NAME }}.tar.gz
+@@ -280,7 +280,7 @@ jobs:
+           cd linux_release
+           tar -zcvf ${ASSET_PATH} lib include bin
+       - name: Upload_asset
+-        uses: actions/upload-artifact@v2
++        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2
+         with:
+           name: ${{ env.ASSET_NAME }}
+           path: ./scripts/linux_release/${{ env.ASSET_NAME }}.tar.gz
+@@ -294,7 +294,7 @@ jobs:
+     outputs:
+       ASSET_NAME: ${{ env.ASSET_NAME }}
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       - name: Configure
+         run: sudo apt-get install attr
+       - name: Build
+@@ -306,7 +306,7 @@ jobs:
+           cd ./x86_linux_release
+           tar -zcvf ${ASSET_PATH} lib include bin
+       - name: Upload_asset
+-        uses: actions/upload-artifact@v2
++        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2
+         with:
+           name: ${{ env.ASSET_NAME }}
+           path: ./scripts/x86_linux_release/${{ env.ASSET_NAME }}.tar.gz
+@@ -322,7 +322,7 @@ jobs:
+     outputs:
+       ASSET_NAME: ${{ env.ASSET_NAME }}
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       - name: Build
+         env:
+             ASSET_PATH: ${{ env.ASSET_NAME }}.tar.gz
+@@ -340,7 +340,7 @@ jobs:
+           cd cuda_linux_release
+           tar -zcvf ${ASSET_PATH} lib include bin
+       - name: Upload_asset
+-        uses: actions/upload-artifact@v2
++        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2
+         with:
+           name: ${{ env.ASSET_NAME }}
+           path: ./scripts/cuda_linux_release/${{ env.ASSET_NAME }}.tar.gz
+@@ -356,7 +356,7 @@ jobs:
+     outputs:
+       ASSET_NAME: ${{ env.ASSET_NAME }}
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       - name: Build
+         env:
+             ASSET_PATH: ${{ env.ASSET_NAME }}.tar.gz
+@@ -374,7 +374,7 @@ jobs:
+           cd linux_release
+           tar -zcvf ${ASSET_PATH} lib include bin
+       - name: Upload_asset
+-        uses: actions/upload-artifact@v2
++        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2
+         with:
+           name: ${{ env.ASSET_NAME }}
+           path: ./scripts/linux_release/${{ env.ASSET_NAME }}.tar.gz
+@@ -388,7 +388,7 @@ jobs:
+     outputs:
+       ASSET_NAME: ${{ env.ASSET_NAME }}
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       - name: Configure
+         run: sudo apt-get install attr
+       - name: Build
+@@ -400,7 +400,7 @@ jobs:
+           cd ./x86_linux_release
+           tar -zcvf ${ASSET_PATH} lib include bin
+       - name: Upload_asset
+-        uses: actions/upload-artifact@v2
++        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2
+         with:
+           name: ${{ env.ASSET_NAME }}
+           path: ./scripts/x86_linux_release/${{ env.ASSET_NAME }}.tar.gz
+@@ -414,7 +414,7 @@ jobs:
+     outputs:
+       ASSET_NAME: ${{ env.ASSET_NAME }}
+     steps:
+-      - uses: actions/checkout@v2
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       - name: Build
+         env:
+             ASSET_PATH: ${{ env.ASSET_NAME }}.zip
+@@ -424,7 +424,7 @@ jobs:
+           cd ./macos_release
+           zip -9r ${ASSET_PATH} .
+       - name: Upload_asset
+-        uses: actions/upload-artifact@v2
++        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2
+         with:
+           name: ${{ env.ASSET_NAME }}
+           path: ./scripts/macos_release/${{ env.ASSET_NAME }}.zip
+@@ -438,8 +438,8 @@ jobs:
+     outputs:
+       ASSET_NAME: ${{ env.ASSET_NAME }}
+     steps:
+-      - uses: actions/checkout@v2
+-      - uses: ilammy/msvc-dev-cmd@v1
++      - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
++      - uses: ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756 # v1
+       - uses: seanmiddleditch/gha-setup-ninja@master
+       - name: Build
+         run: |
+@@ -448,7 +448,7 @@ jobs:
+           cd .\msvc_release
+           7z a -r ${{ env.ASSET_NAME }}.zip .
+       - name: Upload_asset
+-        uses: actions/upload-artifact@v2
++        uses: actions/upload-artifact@82c141cc518b40d92cc801eee768e7aafc9c2fa2 # v2
+         with:
+           name: ${{ env.ASSET_NAME }}
+           path: .\scripts\msvc_release\${{ env.ASSET_NAME }}.zip
+@@ -462,12 +462,12 @@ jobs:
+     steps:
+     - name: Download
+       id: download_artifacts
+-      uses: actions/download-artifact@v4.1.7
++      uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # v4.1.7
+       with:
+         path: ${{ env.ARTIFACTS_PATH }}
+     - name: Create-release
+       id: create_release
+-      uses: actions/create-release@v1
++      uses: actions/create-release@0cb9c9b65d5d1901c1f53e5e66eaf4afd303e70e # v1
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       with:
+@@ -476,7 +476,7 @@ jobs:
+         draft: true
+         prerelease: false
+     - name: Upload-full-source
+-      uses: actions/upload-release-asset@v1
++      uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         ASSET_NAME: ${{ needs.full-source.outputs.ASSET_NAME }}
+@@ -486,7 +486,7 @@ jobs:
+         asset_name: ${{ env.ASSET_NAME }}.zip
+         asset_content_type: application/zip
+     - name: Upload-android
+-      uses: actions/upload-release-asset@v1
++      uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         ASSET_NAME: ${{ needs.android.outputs.ASSET_NAME }}
+@@ -496,7 +496,7 @@ jobs:
+         asset_name: ${{ env.ASSET_NAME }}.zip
+         asset_content_type: application/zip
+     - name: Upload-ios
+-      uses: actions/upload-release-asset@v1
++      uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         ASSET_NAME: ${{ needs.ios.outputs.ASSET_NAME }}
+@@ -506,7 +506,7 @@ jobs:
+         asset_name: ${{ env.ASSET_NAME }}.zip
+         asset_content_type: application/zip
+     - name: Upload-centos7-x86
+-      uses: actions/upload-release-asset@v1
++      uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         ASSET_NAME: ${{ needs.centos7-x86.outputs.ASSET_NAME }}
+@@ -516,7 +516,7 @@ jobs:
+         asset_name: ${{ env.ASSET_NAME }}.tar.gz
+         asset_content_type: application/tar+gzip
+     - name: Upload-centos8-x86
+-      uses: actions/upload-release-asset@v1
++      uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         ASSET_NAME: ${{ needs.centos8-x86.outputs.ASSET_NAME }}
+@@ -526,7 +526,7 @@ jobs:
+         asset_name: ${{ env.ASSET_NAME }}.tar.gz
+         asset_content_type: application/tar+gzip
+     - name: Upload-ubuntu-16.04-x86
+-      uses: actions/upload-release-asset@v1
++      uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         ASSET_NAME: ${{ needs.ubuntu-1604-x86.outputs.ASSET_NAME }}
+@@ -536,7 +536,7 @@ jobs:
+         asset_name: ${{ env.ASSET_NAME }}.tar.gz
+         asset_content_type: application/tar+gzip
+     - name: Upload-ubuntu-16.04-cuda
+-      uses: actions/upload-release-asset@v1
++      uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         ASSET_NAME: ${{ needs.ubuntu-1604-cuda.outputs.ASSET_NAME }}
+@@ -546,7 +546,7 @@ jobs:
+         asset_name: ${{ env.ASSET_NAME }}.tar.gz
+         asset_content_type: application/tar+gzip
+     - name: Upload-ubuntu-16.04-x86-cuda
+-      uses: actions/upload-release-asset@v1
++      uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         ASSET_NAME: ${{ needs.ubuntu-1604-x86-cuda.outputs.ASSET_NAME }}
+@@ -556,7 +556,7 @@ jobs:
+         asset_name: ${{ env.ASSET_NAME }}.tar.gz
+         asset_content_type: application/tar+gzip
+     - name: Upload-ubuntu-18.04-x86
+-      uses: actions/upload-release-asset@v1
++      uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         ASSET_NAME: ${{ needs.ubuntu-1804-x86.outputs.ASSET_NAME }}
+@@ -566,7 +566,7 @@ jobs:
+         asset_name: ${{ env.ASSET_NAME }}.tar.gz
+         asset_content_type: application/tar+gzip
+     - name: Upload-ubuntu-18.04-cuda
+-      uses: actions/upload-release-asset@v1
++      uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         ASSET_NAME: ${{ needs.ubuntu-1804-cuda.outputs.ASSET_NAME }}
+@@ -576,7 +576,7 @@ jobs:
+         asset_name: ${{ env.ASSET_NAME }}.tar.gz
+         asset_content_type: application/tar+gzip
+     - name: Upload-ubuntu-18.04-x86-cuda
+-      uses: actions/upload-release-asset@v1
++      uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         ASSET_NAME: ${{ needs.ubuntu-1804-x86-cuda.outputs.ASSET_NAME }}
+@@ -586,7 +586,7 @@ jobs:
+         asset_name: ${{ env.ASSET_NAME }}.tar.gz
+         asset_content_type: application/tar+gzip
+     - name: Upload-ubuntu-20.04-x86
+-      uses: actions/upload-release-asset@v1
++      uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         ASSET_NAME: ${{ needs.ubuntu-2004-x86.outputs.ASSET_NAME }}
+@@ -596,7 +596,7 @@ jobs:
+         asset_name: ${{ env.ASSET_NAME }}.tar.gz
+         asset_content_type: application/tar+gzip
+     - name: Upload-macos
+-      uses: actions/upload-release-asset@v1
++      uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         ASSET_NAME: ${{ needs.macos.outputs.ASSET_NAME }}
+@@ -606,7 +606,7 @@ jobs:
+         asset_name: ${{ env.ASSET_NAME }}.zip
+         asset_content_type: application/zip
+     - name: Upload-windows
+-      uses: actions/upload-release-asset@v1
++      uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # v1
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         ASSET_NAME: ${{ needs.windows.outputs.ASSET_NAME }}

@@ -1,0 +1,66 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_pyright__.github__workflows__build.yml:20:9
+   [1m[94m|[0m
+[1m[94m20 |[0m         - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m21 |[0m [1m[33m|[0m         with:
+[1m[94m22 |[0m [1m[33m|[0m           fetch-depth: 0
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_pyright__.github__workflows__build.yml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m name: 'Build'
+[1m[94m 2 |[0m [1m[33m|[0m
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m68 |[0m [1m[33m|[0m           artifacts: ./artifacts/${{ env.ARTIFACT_NAME_VSIX }}/${{ env.VSIX_NAME }}
+[1m[94m69 |[0m [1m[33m|[0m           artifactContentType: application/zip
+   [1m[94m|[0m [1m[33m|_______________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_pyright__.github__workflows__build.yml:14:3
+   [1m[94m|[0m
+[1m[94m14 |[0m [1m[33m/[0m   build:
+[1m[94m15 |[0m [1m[33m|[0m     if: github.repository == 'microsoft/pyright'
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m42 |[0m [1m[33m|[0m           name: ${{ env.ARTIFACT_NAME_VSIX }}
+[1m[94m43 |[0m [1m[33m|[0m           path: packages/vscode-pyright/${{ env.VSIX_NAME }}
+   [1m[94m|[0m [1m[33m|[0m                                                            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________________________________________|[0m
+   [1m[94m|[0m                                                              [1m[33mthis job[0m
+   [1m[94m|[0m                                                              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_pyright__.github__workflows__build.yml:62:9
+   [1m[94m|[0m
+[1m[94m62 |[0m         uses: ncipollo/release-action@v1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#cache-poisoning\cache-poisoning]8;;\][0m: [1mruntime artifacts potentially vulnerable to a cache poisoning attack[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_pyright__.github__workflows__build.yml:8:1
+   [1m[94m|[0m
+[1m[94m 8 |[0m [1m[91m/[0m on:
+[1m[94m 9 |[0m [1m[91m|[0m   push:
+[1m[94m10 |[0m [1m[91m|[0m     tags:
+[1m[94m11 |[0m [1m[91m|[0m       - '1.1.[0-9][0-9][0-9]'
+   [1m[94m|[0m [1m[91m|_____________________________^[0m [1m[91mgenerally used when publishing artifacts generated at runtime[0m
+[1m[94m12 |[0m
+[1m[94m...[0m
+[1m[94m24 |[0m         - uses: actions/setup-node@v6
+[1m[94m25 |[0m [1m[91m/[0m         with:
+[1m[94m26 |[0m [1m[91m|[0m           node-version: ${{ env.NODE_VERSION }}
+[1m[94m27 |[0m [1m[91m|[0m           cache: 'npm'
+[1m[94m28 |[0m [1m[91m|[0m           cache-dependency-path: '**/package-lock.json'
+   [1m[94m|[0m [1m[91m|_______________________________________________________^[0m [1m[91mopt-in for caching here[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m6[39m findings ([1m[93m1[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m3[39m medium, [31m2[39m high

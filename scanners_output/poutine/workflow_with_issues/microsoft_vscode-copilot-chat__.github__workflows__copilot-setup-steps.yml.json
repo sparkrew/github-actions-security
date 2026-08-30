@@ -1,0 +1,25 @@
+{
+  "workflow": "microsoft_vscode-copilot-chat__.github__workflows__copilot-setup-steps.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 17,
+      "column": "",
+      "job": "copilot-setup-steps",
+      "step": "",
+      "details": "runs-on: vscode-large-runners",
+      "event_triggers": [
+        "workflow_dispatch",
+        "push",
+        "pull_request"
+      ]
+    }
+  ]
+}

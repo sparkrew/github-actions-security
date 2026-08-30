@@ -1,0 +1,58 @@
+{
+  "workflow": "google_XNNPACK__.github__workflows__build-linux-windows.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "artipacked": 2,
+      "unpinned-uses": 3
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "google_XNNPACK__.github__workflows__build-linux-windows.yml",
+      "line": 18,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "google_XNNPACK__.github__workflows__build-linux-windows.yml",
+      "line": 45,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "google_XNNPACK__.github__workflows__build-linux-windows.yml",
+      "line": 24,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "google_XNNPACK__.github__workflows__build-linux-windows.yml",
+      "line": 47,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "google_XNNPACK__.github__workflows__build-linux-windows.yml",
+      "line": 53,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

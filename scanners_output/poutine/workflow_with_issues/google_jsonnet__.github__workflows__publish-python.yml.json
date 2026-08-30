@@ -1,0 +1,34 @@
+{
+  "workflow": "google_jsonnet__.github__workflows__publish-python.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "known_vulnerability_in_build_component": 2
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 87,
+      "column": "",
+      "job": "upload_to_pypi",
+      "step": "0",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    },
+    {
+      "rule_id": "known_vulnerability_in_build_component",
+      "line": 91,
+      "column": "",
+      "job": "upload_to_pypi",
+      "step": "1",
+      "details": "Package: actions/download-artifact",
+      "event_triggers": [
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

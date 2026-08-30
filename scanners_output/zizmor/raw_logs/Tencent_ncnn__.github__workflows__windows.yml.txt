@@ -1,0 +1,33 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__windows.yml:62:7
+   [1m[94m|[0m
+[1m[94m62 |[0m       - uses: actions/checkout@v6
+   [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m63 |[0m [1m[33m|[0m       with:
+[1m[94m64 |[0m [1m[33m|[0m         submodules: true
+   [1m[94m|[0m [1m[33m|________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__windows.yml:114:7
+    [1m[94m|[0m
+[1m[94m114 |[0m       - name: checkout-swiftshader
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m115 |[0m [1m[33m|[0m       if: matrix.vs-version != 'vs2015' && matrix.vs-version != 'vs2017' && steps.cache-swiftshader.outputs.cache-hit != 'true'
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m119 |[0m [1m[33m|[0m         path: swiftshader
+[1m[94m120 |[0m [1m[33m|[0m         ref: de870ac7518fe2b6bb651ecc22fc36647cf7b986
+    [1m[94m|[0m [1m[33m|_____________________________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_ncnn__.github__workflows__windows.yml:87:7
+   [1m[94m|[0m
+[1m[94m87 |[0m     - uses: GuillaumeFalourd/setup-windows10-sdk-action@v2.4
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m19[39m findings ([1m[93m16[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m1[39m high

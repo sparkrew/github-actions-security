@@ -1,0 +1,60 @@
+# This workflows will upload a Python Package using Twine when a release is created
+# For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
+
+name: Deploy
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  tests-and-coverage-pinned:
+    name: Tests with pinned BoTorch
+    uses: ./.github/workflows/reusable_test.yml
+    with:
+      pinned_botorch: true
+    secrets: inherit
+
+  version-and-publish-website:
+    name: Version and Publish website
+    uses: ./.github/workflows/publish_website.yml
+    with:
+      new_version: ${{ github.event.release.tag_name }}
+      run_tutorials: true
+      pinned_botorch: true
+    permissions:
+      pages: write
+      id-token: write
+      contents: write
+
+  deploy:
+    needs: tests-and-coverage-pinned # only run if test step succeeds
+    runs-on: ubuntu-latest
+    env:
+      # `uv pip ...` requires venv by default. This skips that requirement.
+      UV_SYSTEM_PYTHON: 1
+    steps:
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+    - name: Install uv
+      uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5
+    - name: Set up Python
+      uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+      with:
+        python-version: "3.14"
+    - name: Install dependencies
+      run: |
+        # use stable Botorch
+        uv pip install -e ".[dev,mysql,notebook]"
+        uv pip install --upgrade build setuptools setuptools_scm wheel
+    - name: Fetch all history for all tags and branches
+      run: git fetch --prune --unshallow
+    - name: Build wheel
+      run: |
+        python -m build --sdist --wheel
+    - name: Deploy to PyPI
+      uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e  # release/v1.13
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_TOKEN }}
+        verbose: true

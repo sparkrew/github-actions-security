@@ -1,0 +1,24 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/aws_s2n-tls__.github__workflows__seccomp.yml:29:9
+   [1m[94m|[0m
+[1m[94m29 |[0m         - name: checkout s2n-tls
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m30 |[0m [1m[33m|[0m         uses: actions/checkout@v6
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/aws_s2n-tls__.github__workflows__seccomp.yml:32:9
+   [1m[94m|[0m
+[1m[94m32 |[0m         - name: checkout aws-lc
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m33 |[0m [1m[33m|[0m         uses: actions/checkout@v6
+[1m[94m34 |[0m [1m[33m|[0m         with:
+[1m[94m35 |[0m [1m[33m|[0m           repository: aws/aws-lc
+[1m[94m36 |[0m [1m[33m|[0m           path: awslc
+   [1m[94m|[0m [1m[33m|_____________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m2[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m2[39m medium, [31m0[39m high

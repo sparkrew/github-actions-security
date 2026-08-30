@@ -1,0 +1,33 @@
+name: golangci-lint
+on:
+  push:
+    tags:
+      - v*
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  golangci:
+    name: lint
+    runs-on: ubuntu-latest
+    permissions:
+      # contents required to read the change
+      contents: read
+      # allow read access to any pull request
+      pull-requests: read
+      # golangci-lint does annotations, not comments, which needs `checks` to annotate the code.
+      # These are hidden in the code, and not visible as comments in the PR.
+      # https://github.com/golangci/golangci-lint-action/issues/5
+      # No-one knows what an annotation is, but I suspect it's printing file:line: msg to stdout.
+      # https://github.community/t/what-are-annotations/16173/2
+      checks: write
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1
+      - uses: golangci/golangci-lint-action@55c2c1448f86e01eaae002a5a3a9624417608d84 # golangci/golangci-lint-action@v6
+        with:
+          # Required: the version of golangci-lint is required and must be
+          # specified without patch version: we always use the latest patch
+          # version.
+          version: v1.59
+          only-new-issues: ${{ github.event_name == 'pull_request' }}

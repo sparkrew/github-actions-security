@@ -1,0 +1,139 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__react_native.yml:26:9
+   [1m[94m|[0m
+[1m[94m26 |[0m         - name: Checkout repository
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m27 |[0m [1m[33m|[0m         uses: actions/checkout@v6
+[1m[94m28 |[0m [1m[33m|[0m         with:
+[1m[94m29 |[0m [1m[33m|[0m           submodules: false
+   [1m[94m|[0m [1m[33m|___________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__react_native.yml:85:9
+   [1m[94m|[0m
+[1m[94m85 |[0m         - name: Checkout repository
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m86 |[0m [1m[33m|[0m         uses: actions/checkout@v6
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__react_native.yml:185:9
+    [1m[94m|[0m
+[1m[94m185 |[0m         - name: Checkout repository
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m186 |[0m [1m[33m|[0m         uses: actions/checkout@v6
+    [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__react_native.yml:228:9
+    [1m[94m|[0m
+[1m[94m228 |[0m         - name: Checkout repository
+    [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m229 |[0m [1m[33m|[0m         uses: actions/checkout@v6
+    [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__react_native.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: React Native CI Pipeline
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m293 |[0m [1m[33m|[0m             ${{ github.workspace }}/js/react_native/e2e/ios-test-results.xml
+[1m[94m294 |[0m [1m[33m|[0m             ${{ github.workspace }}/js/react_native/e2e/artifacts
+    [1m[94m|[0m [1m[33m|__________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__react_native.yml:15:3
+   [1m[94m|[0m
+[1m[94m15 |[0m [1m[33m/[0m   build_android_packages:
+[1m[94m16 |[0m [1m[33m|[0m     name: Build Android AAR Packages
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m69 |[0m [1m[33m|[0m           name: onnxruntime-android-full-aar
+[1m[94m70 |[0m [1m[33m|[0m           path: ${{ runner.temp }}/artifacts
+   [1m[94m|[0m [1m[33m|[0m                                            [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|____________________________________________|[0m
+   [1m[94m|[0m                                              [1m[33mthis job[0m
+   [1m[94m|[0m                                              [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__react_native.yml:72:3
+    [1m[94m|[0m
+[1m[94m 72 |[0m [1m[33m/[0m   react_native_ci_android:
+[1m[94m 73 |[0m [1m[33m|[0m     name: React Native CI Android
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m177 |[0m [1m[33m|[0m             ${{ github.workspace }}/js/react_native/e2e/android-test-results.xml
+[1m[94m178 |[0m [1m[33m|[0m             ${{ github.workspace }}/js/react_native/e2e/artifacts
+    [1m[94m|[0m [1m[33m|[0m                                                                 [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_________________________________________________________________|[0m
+    [1m[94m|[0m                                                                   [1m[33mthis job[0m
+    [1m[94m|[0m                                                                   [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__react_native.yml:180:3
+    [1m[94m|[0m
+[1m[94m180 |[0m [1m[33m/[0m   react_native_ci_ios_build:
+[1m[94m181 |[0m [1m[33m|[0m     name: React Native CI iOS Build
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m219 |[0m [1m[33m|[0m           name: ios_pod
+[1m[94m220 |[0m [1m[33m|[0m           path: ${{ runner.temp }}/ios_pod
+    [1m[94m|[0m [1m[33m|[0m                                          [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|__________________________________________|[0m
+    [1m[94m|[0m                                            [1m[33mthis job[0m
+    [1m[94m|[0m                                            [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__react_native.yml:222:3
+    [1m[94m|[0m
+[1m[94m222 |[0m [1m[33m/[0m   react_native_ci_ios_e2e_tests:
+[1m[94m223 |[0m [1m[33m|[0m     name: React Native CI iOS E2E Tests
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m293 |[0m [1m[33m|[0m             ${{ github.workspace }}/js/react_native/e2e/ios-test-results.xml
+[1m[94m294 |[0m [1m[33m|[0m             ${{ github.workspace }}/js/react_native/e2e/artifacts
+    [1m[94m|[0m [1m[33m|[0m                                                                  [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|__________________________________________________________________|[0m
+    [1m[94m|[0m                                                                    [1m[33mthis job[0m
+    [1m[94m|[0m                                                                    [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__react_native.yml:43:9
+   [1m[94m|[0m
+[1m[94m43 |[0m       - uses: microsoft/onnxruntime-github-actions/setup-build-tools@v0.0.9
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__react_native.yml:200:9
+    [1m[94m|[0m
+[1m[94m200 |[0m       - uses: microsoft/onnxruntime-github-actions/setup-build-tools@v0.0.9
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/microsoft_onnxruntime__.github__workflows__react_native.yml:245:9
+    [1m[94m|[0m
+[1m[94m245 |[0m       - uses: microsoft/onnxruntime-github-actions/setup-build-tools@v0.0.9
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m35[39m findings ([1m[93m23[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m9[39m medium, [31m3[39m high

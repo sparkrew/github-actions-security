@@ -1,0 +1,26 @@
+{
+  "workflow": "microsoft_onnxruntime__.github__workflows__codeql.yml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 26,
+      "column": "",
+      "job": "analyze",
+      "step": "",
+      "details": "runs-on: self-hosted, 1ES.Pool=onnxruntime-github-Ubuntu2204-AMD-CPU, JobId=codeql-${{ github.run_id }}-${{ github.run_number }}-${{ github.run_attempt }}",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "schedule",
+        "workflow_dispatch"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+name: clang-format Check
+on: [push, pull_request]
+jobs:
+  formatting-check:
+    name: Formatting Check
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+    - name: Run clang-format style check for C/C++ programs.
+      uses: jidicula/clang-format-action@aecc1901f080e23c1bab6ccb1b2daa8d50eda274 # v4.4.1
+      with:
+        clang-format-version: '11'
+        check-path: '.'
+        exclude-regex: 'AirLib\/include\/common\/common_utils\/json\.hpp'

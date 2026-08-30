@@ -1,0 +1,27 @@
+{
+  "workflow": "facebookincubator_velox__.github__workflows__macos.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # actions/checkout@v5 | releases,v5.0.1",
+      "line": 65
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: apache/infrastructure-actions/stash/restore@3354c1565d4b0e335b78a76aedd82153a9e144d4",
+      "line": 92
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "- uses: apache/infrastructure-actions/stash/restore@3354c1565d4b0e335b78a76aedd82153a9e144d4 # apache/infrastructure-actions/stash/restore@3354c1565d4b0e335b78a76aedd82153a9e144d4",
+      "line": 120
+    }
+  ]
+}

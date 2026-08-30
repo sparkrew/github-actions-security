@@ -1,0 +1,49 @@
+diff --git a/.github/workflows/Tencent_cherry-markdown__.github__workflows__pr_preview-publish.yml b/.github/workflows/Tencent_cherry-markdown__.github__workflows__pr_preview-publish.yml
+index 7d19e14..3bde762 100644
+--- a/.github/workflows/Tencent_cherry-markdown__.github__workflows__pr_preview-publish.yml
++++ b/.github/workflows/Tencent_cherry-markdown__.github__workflows__pr_preview-publish.yml
+@@ -15,7 +15,7 @@ jobs:
+       pr_id: ${{ steps.pr.outputs.id }}
+     steps:
+       - name: download pr id
+-        uses: dawidd6/action-download-artifact@v8
++        uses: dawidd6/action-download-artifact@20319c5641d495c8a52e688b7dc5fada6c3a9fbc # v8
+         with:
+           workflow: ${{ github.event.workflow_run.workflow_id }}
+           run_id: ${{ github.event.workflow_run.id }}
+@@ -26,7 +26,7 @@ jobs:
+         run: echo "id=$(<pr-id.txt)" >> $GITHUB_OUTPUT
+ 
+       - name: Download playground
+-        uses: dawidd6/action-download-artifact@v8
++        uses: dawidd6/action-download-artifact@20319c5641d495c8a52e688b7dc5fada6c3a9fbc # v8
+         with:
+           workflow: ${{ github.event.workflow_run.workflow_id }}
+           run_id: ${{ github.event.workflow_run.id }}
+@@ -38,7 +38,7 @@ jobs:
+           npx surge --project ./ --domain $DEPLOY_DOMAIN --token ${{ secrets.SURGE_TOKEN }}
+           echo "url=$DEPLOY_DOMAIN" >> $GITHUB_OUTPUT
+ 
+-      - uses: actions-cool/maintain-one-comment@v3
++      - uses: actions-cool/maintain-one-comment@4b2dbf086015f892dcb5e8c1106f5fccd6c1476b # v3
+         with:
+           token: ${{ secrets.BOT_TOKEN }}
+           body: |
+@@ -68,7 +68,7 @@ jobs:
+     if: github.event.workflow_run.conclusion == 'failure'
+     steps:
+       - name: download pr id
+-        uses: dawidd6/action-download-artifact@v6
++        uses: dawidd6/action-download-artifact@bf251b5aa9c2f7eeb574a96ee720e24f801b7c11 # v6
+         with:
+           workflow: ${{ github.event.workflow_run.workflow_id }}
+           run_id: ${{ github.event.workflow_run.id }}
+@@ -79,7 +79,7 @@ jobs:
+         run: echo "id=$(<pr-id.txt)" >> $GITHUB_OUTPUT
+ 
+       - name: The job failed
+-        uses: actions-cool/maintain-one-comment@v3
++        uses: actions-cool/maintain-one-comment@4b2dbf086015f892dcb5e8c1106f5fccd6c1476b # v3
+         with:
+           token: ${{ secrets.BOT_TOKEN }}
+           body: |

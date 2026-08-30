@@ -1,0 +1,114 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__ci.yaml:1:1
+   [1m[94m|[0m
+[1m[94m 1 |[0m [1m[33m/[0m # Copyright 2025 NVIDIA CORPORATION
+[1m[94m 2 |[0m [1m[33m|[0m #
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m53 |[0m [1m[33m|[0m     with:
+[1m[94m54 |[0m [1m[33m|[0m       version: ${{ needs.variables.outputs.version }}
+   [1m[94m|[0m [1m[33m|______________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__ci.yaml:25:3
+   [1m[94m|[0m
+[1m[94m25 |[0m [1m[33m/[0m   code-scanning:
+[1m[94m26 |[0m [1m[33m|[0m     uses: ./.github/workflows/code_scanning.yaml
+   [1m[94m|[0m [1m[33m|[0m                                                [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________________________________________|[0m
+   [1m[94m|[0m                                                  [1m[33mthis job[0m
+   [1m[94m|[0m                                                  [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__ci.yaml:28:3
+   [1m[94m|[0m
+[1m[94m28 |[0m [1m[33m/[0m   variables:
+[1m[94m29 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m34 |[0m [1m[33m|[0m         id: version
+[1m[94m35 |[0m [1m[33m|[0m         run: echo "version=$(echo $GITHUB_SHA | cut -c1-8)" >> "$GITHUB_OUTPUT"
+   [1m[94m|[0m [1m[33m|[0m                                                                               [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_______________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                 [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                 [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__ci.yaml:37:3
+   [1m[94m|[0m
+[1m[94m37 |[0m [1m[33m/[0m   golang:
+[1m[94m38 |[0m [1m[33m|[0m     secrets: inherit
+[1m[94m39 |[0m [1m[33m|[0m     uses: ./.github/workflows/golang.yaml
+   [1m[94m|[0m [1m[33m|[0m                                         [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|_________________________________________|[0m
+   [1m[94m|[0m                                           [1m[33mthis job[0m
+   [1m[94m|[0m                                           [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__ci.yaml:41:3
+   [1m[94m|[0m
+[1m[94m41 |[0m [1m[33m/[0m   image:
+[1m[94m42 |[0m [1m[33m|[0m     uses: ./.github/workflows/image.yaml
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m46 |[0m [1m[33m|[0m       version: ${{ needs.variables.outputs.version }}
+[1m[94m47 |[0m [1m[33m|[0m       build_multi_arch_images: ${{ github.ref_name == 'main' || startsWith(github.ref_name, 'release-') }}
+   [1m[94m|[0m [1m[33m|[0m                                                                                                          [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|__________________________________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                                            [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                                            [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__ci.yaml:49:3
+   [1m[94m|[0m
+[1m[94m49 |[0m [1m[33m/[0m   e2e-test:
+[1m[94m50 |[0m [1m[33m|[0m     needs: [image, variables]
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m53 |[0m [1m[33m|[0m     with:
+[1m[94m54 |[0m [1m[33m|[0m       version: ${{ needs.variables.outputs.version }}
+   [1m[94m|[0m [1m[33m|[0m                                                      [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________________________________________|[0m
+   [1m[94m|[0m                                                        [1m[33mthis job[0m
+   [1m[94m|[0m                                                        [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__ci.yaml:39:5
+   [1m[94m|[0m
+[1m[94m38 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+[1m[94m39 |[0m     uses: ./.github/workflows/golang.yaml
+   [1m[94m|[0m     [1m[33m-------------------------------------[0m [1m[33mthis reusable workflow[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__ci.yaml:42:5
+   [1m[94m|[0m
+[1m[94m42 |[0m     uses: ./.github/workflows/image.yaml
+   [1m[94m|[0m     [1m[33m------------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m43 |[0m     needs: [variables, golang, code-scanning]
+[1m[94m44 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__ci.yaml:52:5
+   [1m[94m|[0m
+[1m[94m51 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+[1m[94m52 |[0m     uses: ./.github/workflows/e2e.yaml
+   [1m[94m|[0m     [1m[33m----------------------------------[0m [1m[33mthis reusable workflow[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m9[39m findings: 0 unknown, [35m0[39m informational, [36m0[39m low, [33m9[39m medium, [31m0[39m high

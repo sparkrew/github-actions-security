@@ -1,0 +1,40 @@
+{
+  "workflow": "microsoft_garnet__.github__workflows__nightly.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "artipacked": 2,
+      "excessive-permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_garnet__.github__workflows__nightly.yml",
+      "line": 43,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_garnet__.github__workflows__nightly.yml",
+      "line": 171,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "error",
+      "message": "overly broad permissions",
+      "workflow": "microsoft_garnet__.github__workflows__nightly.yml",
+      "line": 12,
+      "column": 3,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

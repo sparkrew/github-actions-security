@@ -1,0 +1,186 @@
+name: Build VSCode extension
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+  merge_group:
+
+permissions:
+  contents: read
+
+jobs:
+  checksecret:
+    name: check if SONAR_TOKEN is set in github secrets
+    runs-on: ubuntu-latest
+    outputs:
+      is_SONAR_TOKEN_set: ${{ steps.checksecret_job.outputs.is_SONAR_TOKEN_set }}
+    steps:
+      - name: Check whether unity activation requests should be done
+        id: checksecret_job
+        run: |
+          echo "is_SONAR_TOKEN_set=${{ env.SONAR_TOKEN != '' }}" >> $GITHUB_OUTPUT
+
+  test_and_generate_binaries:
+    needs: [checksecret]
+    strategy:
+      fail-fast: false
+      matrix:
+        binaries:
+          - architecture: win-x64
+            os: windows-latest
+          - architecture: win-arm64
+            os: windows-11-arm #preview image
+          - architecture: linux-x64
+            os: ubuntu-latest
+          - architecture: linux-arm64
+            os: ubuntu-24.04-arm #preview image
+          - architecture: osx-arm64
+            os: macOS-latest
+    runs-on: ${{ matrix.binaries.os }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # actions/setup-node@v6 | main,v6.3.0
+        with:
+          node-version: 20.x
+
+      - name: Use .NET 10
+        uses: actions/setup-dotnet@baa11fbfe1d6520db94683bd5c7a3818018e4309 # actions/setup-dotnet@v5 | v5.1.0
+        with:
+          dotnet-version: "10.0.x"
+
+      - id: last_release
+        run: |
+          $releaseVersion = gh release list --exclude-drafts --exclude-pre-releases --json tagName,isLatest | ConvertFrom-Json | ? {$_.isLatest -eq $true} | select -first 1 -ExpandProperty tagName
+          $releaseVersion = "$releaseVersion" -replace '^v', ''
+          Write-Output "RELEASE_VERSION=$releaseVersion" >> $Env:GITHUB_OUTPUT
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: scripts/update-vscode-releases.ps1 -version "v${{ steps.last_release.outputs.RELEASE_VERSION }}" -packageJsonFilePath "./vscode/packages/microsoft-kiota/package.json" -runtimeFilePath "./vscode/packages/npm-package/runtime.json" -online
+        shell: pwsh
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: vscode
+
+      - name: Publish kiota for testing - ${{ matrix.binaries.os }} - ${{ matrix.binaries.architecture }}
+        run: |
+          dotnet publish src/kiota/kiota.csproj -c Release --runtime ${{ matrix.binaries.architecture }} -p:PublishSingleFile=true --self-contained --output vscode/packages/npm-package/.kiotabin/${{ steps.last_release.outputs.RELEASE_VERSION }}/${{ matrix.binaries.architecture }} -f net10.0
+        shell: pwsh
+
+      - name: Lint
+        run: npm run lint
+        working-directory: vscode
+
+      - name: Run tests - package
+        run: |
+          if [[ "${{ matrix.binaries.os }}" == "ubuntu-latest" ]]; then
+            xvfb-run -a npm run test:package:coverage
+          else
+            npm run test:package:coverage
+          fi
+        shell: bash
+        working-directory: vscode
+
+      - name: Run tests - vscode
+        run: |
+          if [[ "${{ matrix.binaries.os }}" == "ubuntu-latest" ]]; then
+            xvfb-run -a npm run test:vscode:coverage
+          else
+            npm run test:vscode:coverage
+          fi
+        shell: bash
+        working-directory: vscode
+
+      - name: Run sonar cloud analysis
+        if: needs.checksecret.outputs.is_SONAR_TOKEN_set == 'true'
+        uses: SonarSource/sonarqube-scan-action@a31c9398be7ace6bbfaf30c0bd5d415f843d45e9 # SonarSource/sonarqube-scan-action@v7 | v7.0,v7.0.0
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          projectBaseDir: vscode
+          args: >
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info,../npm-package/coverage/lcov.info
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # actions/upload-artifact@v7 | main,v7.0.0
+        with:
+          name: ${{ matrix.binaries.architecture }}
+          path: vscode/packages/npm-package/.kiotabin/${{ steps.last_release.outputs.RELEASE_VERSION }}/${{ matrix.binaries.architecture }}
+          retention-days: 3
+
+  build:
+    needs: [test_and_generate_binaries]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        builds:
+          - name: "VS Code Extension"
+            path: "microsoft-kiota"
+            id: "vscode"
+            item: "vsix"
+          - name: "Npm Package"
+            path: "npm-package"
+            id: "package"
+            item: "tgz"
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # actions/setup-node@v6 | main,v6.3.0
+        with:
+          node-version: 20.x
+
+      - id: last_release
+        run: |
+          $releaseVersion = gh release list --exclude-drafts --exclude-pre-releases --json tagName,isLatest | ConvertFrom-Json | ? {$_.isLatest -eq $true} | select -first 1 -ExpandProperty tagName
+          Write-Output "RELEASE_VERSION=$releaseVersion" >> $Env:GITHUB_OUTPUT
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: scripts/update-vscode-releases.ps1 -version "${{ steps.last_release.outputs.RELEASE_VERSION }}" -packageJsonFilePath "./vscode/packages/microsoft-kiota/package.json" -runtimeFilePath "./vscode/packages/npm-package/runtime.json" -online
+        shell: pwsh
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: vscode
+
+      - run: npm run package:${{ matrix.builds.id }}
+        if: matrix.builds.id == 'package'
+        name: "Package - ${{ matrix.builds.id }}"
+        working-directory: vscode
+
+      - run: |
+          npm i
+          npm run build
+        working-directory: vscode/packages/
+        name: "Package - ${{ matrix.builds.id }}"
+        if: matrix.builds.id == 'vscode'
+      - run: |
+          npm i -g @vscode/vsce
+          vsce package
+        working-directory: vscode/packages/${{ matrix.builds.path }}
+        name: "Package - ${{ matrix.builds.id }}"
+        if: matrix.builds.id == 'vscode'
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # actions/upload-artifact@v7 | main,v7.0.0
+        with:
+          name: ${{ matrix.builds.name }}
+          path: vscode/packages/${{ matrix.builds.path }}/*.${{ matrix.builds.item }}
+
+  build_extension:
+    runs-on: ubuntu-latest
+    needs: build
+    if: always()
+    steps:
+      - name: All build matrix options are successful
+        if: ${{ !(contains(needs.*.result, 'failure')) }}
+        run: exit 0
+      - name: One or more build matrix options failed
+        if: ${{ contains(needs.*.result, 'failure') }}
+        run: exit 1

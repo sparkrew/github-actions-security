@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/google_adk-python__.github__workflows__upload-adk-docs-to-vertex-ai-search.yml b/.github/workflows/google_adk-python__.github__workflows__upload-adk-docs-to-vertex-ai-search.yml
+index f29adbe..45c2da6 100644
+--- a/.github/workflows/google_adk-python__.github__workflows__upload-adk-docs-to-vertex-ai-search.yml
++++ b/.github/workflows/google_adk-python__.github__workflows__upload-adk-docs-to-vertex-ai-search.yml
+@@ -14,7 +14,7 @@ jobs:
+ 
+     steps:
+       - name: Checkout repository
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+ 
+       - name: Clone adk-docs repository
+         run: git clone https://github.com/google/adk-docs.git /tmp/adk-docs
+@@ -23,7 +23,7 @@ jobs:
+         run: git clone https://github.com/google/adk-python.git /tmp/adk-python
+ 
+       - name: Set up Python
+-        uses: actions/setup-python@v6
++        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
+         with:
+           python-version: '3.11'
+ 

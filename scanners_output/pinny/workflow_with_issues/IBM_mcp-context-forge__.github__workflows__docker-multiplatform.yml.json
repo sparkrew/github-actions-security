@@ -1,0 +1,72 @@
+{
+  "workflow": "IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 12,
+    "by_rule": {
+      "unpinned-github-actions": 12
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # actions/checkout@v5 | releases,v5.0.1",
+      "line": 101
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # docker/setup-qemu-action@v3 | releases,v3.7.0",
+      "line": 111
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # docker/setup-buildx-action@v3 | v3.12.0",
+      "line": 117
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # docker/login-action@v3 | releases,v3.7.0",
+      "line": 121
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # docker/metadata-action@v5 | v5.10.0",
+      "line": 130
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # docker/build-push-action@v6 | v6.19.2",
+      "line": 139
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+      "line": 164
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # docker/setup-buildx-action@v3 | v3.12.0",
+      "line": 188
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # docker/login-action@v3 | releases,v3.7.0",
+      "line": 191
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: sigstore/cosign-installer@398d4b0eeef1380460a10c8013a76f728fb906ac # sigstore/cosign-installer@v3",
+      "line": 246
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # docker/login-action@v3 | releases,v3.7.0",
+      "line": 249
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: anchore/sbom-action@17ae1740179002c89186b61233e0f892c3118b11 # anchore/sbom-action@v0 | main,latest,v0.23.0",
+      "line": 260
+    }
+  ]
+}

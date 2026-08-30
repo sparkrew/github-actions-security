@@ -1,0 +1,27 @@
+{
+  "workflow": "microsoft_WindowsAppSDK__.github__workflows__build.yml",
+  "tool": "pinny",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "unpinned-github-actions": 3
+    }
+  },
+  "findings": [
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # actions/checkout@v2 | releases,850,v2.7.0",
+      "line": 19
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: microsoft/setup-msbuild@ede762b26a2de8d110bb5a3db4d7e0e080c0e917 # microsoft/setup-msbuild@v1",
+      "line": 22
+    },
+    {
+      "rule": "unpinned-github-actions",
+      "pinned": "uses: NuGet/setup-nuget@255f46e14d51fbc603743e2aa2907954463fbeb9 # NuGet/setup-nuget@v1.0.2",
+      "line": 25
+    }
+  ]
+}

@@ -1,0 +1,444 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:183:7
+    [1m[94m|[0m
+[1m[94m183 |[0m       - name: Fetch patch
+    [1m[94m|[0m  [1m[33m_______-[0m
+[1m[94m184 |[0m [1m[33m|[0m       uses: actions/checkout@v2
+[1m[94m185 |[0m [1m[33m|[0m       with:
+[1m[94m186 |[0m [1m[33m|[0m         path: ${{ github.repository }}
+    [1m[94m|[0m [1m[33m|______________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: '[3rd] prebuilt v8'
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m531 |[0m [1m[33m|[0m         v8_head: ${{ steps.release_package.outputs.head_full }}
+[1m[94m532 |[0m [1m[33m|[0m       run: ${{ env.publish_package_script }}
+    [1m[94m|[0m [1m[33m|_____________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:141:3
+    [1m[94m|[0m
+[1m[94m141 |[0m [1m[33m/[0m   context_in_lowercase:
+[1m[94m142 |[0m [1m[33m|[0m     if: github.event.inputs.is_build_for_android == 'true' || github.event.inputs.is_build_for_linux == 'true'
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m150 |[0m [1m[33m|[0m         with:
+[1m[94m151 |[0m [1m[33m|[0m           string: ${{ github.repository_owner }}
+    [1m[94m|[0m [1m[33m|[0m                                                [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|________________________________________________|[0m
+    [1m[94m|[0m                                                  [1m[33mthis job[0m
+    [1m[94m|[0m                                                  [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:153:3
+    [1m[94m|[0m
+[1m[94m153 |[0m [1m[33m/[0m   android_prebuilt:
+[1m[94m154 |[0m [1m[33m|[0m     if: github.event.inputs.is_build_for_android == 'true'
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m261 |[0m [1m[33m|[0m         v8_head: ${{ steps.release_package.outputs.head_full }}
+[1m[94m262 |[0m [1m[33m|[0m       run: ${{ env.publish_package_script }}
+    [1m[94m|[0m [1m[33m|[0m                                            [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________________________________|[0m
+    [1m[94m|[0m                                              [1m[33mthis job[0m
+    [1m[94m|[0m                                              [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:264:3
+    [1m[94m|[0m
+[1m[94m264 |[0m [1m[33m/[0m   windows_prebuilt:
+[1m[94m265 |[0m [1m[33m|[0m     if: github.event.inputs.is_build_for_windows == 'true'
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m336 |[0m [1m[33m|[0m         v8_head: ${{ steps.release_package.outputs.head_full }}
+[1m[94m337 |[0m [1m[33m|[0m       run: ${{ env.publish_package_script }}
+    [1m[94m|[0m [1m[33m|[0m                                            [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________________________________|[0m
+    [1m[94m|[0m                                              [1m[33mthis job[0m
+    [1m[94m|[0m                                              [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:339:3
+    [1m[94m|[0m
+[1m[94m339 |[0m [1m[33m/[0m   macos_prebuilt:
+[1m[94m340 |[0m [1m[33m|[0m     if: github.event.inputs.is_build_for_macos == 'true'
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m397 |[0m [1m[33m|[0m         v8_head: ${{ steps.release_package.outputs.head_full }}
+[1m[94m398 |[0m [1m[33m|[0m       run: ${{ env.publish_package_script }}
+    [1m[94m|[0m [1m[33m|[0m                                            [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________________________________|[0m
+    [1m[94m|[0m                                              [1m[33mthis job[0m
+    [1m[94m|[0m                                              [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:400:3
+    [1m[94m|[0m
+[1m[94m400 |[0m [1m[33m/[0m   linux_prebuilt:
+[1m[94m401 |[0m [1m[33m|[0m     if: github.event.inputs.is_build_for_linux == 'true'
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m459 |[0m [1m[33m|[0m         v8_head: ${{ steps.release_package.outputs.head_full }}
+[1m[94m460 |[0m [1m[33m|[0m       run: ${{ env.publish_package_script }}
+    [1m[94m|[0m [1m[33m|[0m                                            [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________________________________|[0m
+    [1m[94m|[0m                                              [1m[33mthis job[0m
+    [1m[94m|[0m                                              [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:462:3
+    [1m[94m|[0m
+[1m[94m462 |[0m [1m[33m/[0m   ios_prebuilt:
+[1m[94m463 |[0m [1m[33m|[0m     if: github.event.inputs.is_build_for_ios == 'true'
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m531 |[0m [1m[33m|[0m         v8_head: ${{ steps.release_package.outputs.head_full }}
+[1m[94m532 |[0m [1m[33m|[0m       run: ${{ env.publish_package_script }}
+    [1m[94m|[0m [1m[33m|[0m                                             [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_____________________________________________|[0m
+    [1m[94m|[0m                                               [1m[33mthis job[0m
+    [1m[94m|[0m                                               [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:177:7
+    [1m[94m|[0m
+[1m[94m177 |[0m       - name: Fetch v8
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m178 |[0m [1m[91m/[0m       run: |
+[1m[94m179 |[0m [1m[91m|[0m         export PATH=/usr/local/opt/depot_tools:$PATH
+[1m[94m180 |[0m [1m[91m|[0m         fetch v8
+[1m[94m181 |[0m [1m[91m|[0m         cd v8
+[1m[94m182 |[0m [1m[91m|[0m         git checkout ${{ github.event.inputs.v8_revision }}
+    [1m[94m|[0m [1m[91m|___________________________________________________________^[0m [1m[91mgithub.event.inputs.v8_revision may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:220:7
+    [1m[94m|[0m
+[1m[94m220 |[0m       - name: Generate ${{ matrix.arch }}
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m221 |[0m         working-directory: ./v8
+[1m[94m222 |[0m [1m[91m/[0m       run: |
+[1m[94m223 |[0m [1m[91m|[0m         export PATH=/usr/local/opt/depot_tools:$PATH
+[1m[94m224 |[0m [1m[91m|[0m         gn gen out --args="target_os=\"android\" target_cpu=\"${{ matrix.cpu }}\" v8_target_cpu=\"${{ matrix.cpu }}\" android_ndk_root=\"${ANDROID_NDK_HOME}\" is_component_build=false v8_monolithic=true android32_ndk_api_level=21 android64_ndk_api_level=21 clang_use_chrome_plugins=false use_thin_lto=false use_custom_libcxx=false ${{ github.event.inputs.build_type == 'release' && 'is_debug=false is_official_build=true' || 'is_debug=true' }} ${{ github.event.inputs.build_args }}"
+    [1m[94m|[0m [1m[91m|__________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.inputs.build_args may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:256:7
+    [1m[94m|[0m
+[1m[94m256 |[0m     - name: Publish package
+    [1m[94m|[0m       [1m[96m---------------------[0m [1m[96mhelp: this step[0m
+[1m[94m257 |[0m       shell: python3 {0}
+[1m[94m...[0m
+[1m[94m261 |[0m         v8_head: ${{ steps.release_package.outputs.head_full }}
+[1m[94m262 |[0m       run: ${{ env.publish_package_script }}
+    [1m[94m|[0m       [1m[96m--------------------------------------[0m [1m[96mhelp: env.publish_package_script may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:283:7
+    [1m[94m|[0m
+[1m[94m283 |[0m       - name: Checkout v8
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m284 |[0m [1m[91m/[0m       run: |
+[1m[94m285 |[0m [1m[91m|[0m         $env:DEPOT_TOOLS_WIN_TOOLCHAIN = 0
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m289 |[0m [1m[91m|[0m         git checkout ${{ github.event.inputs.v8_revision }}
+[1m[94m290 |[0m [1m[91m|[0m         gclient sync -D
+    [1m[94m|[0m [1m[91m|_______________________^[0m [1m[91mgithub.event.inputs.v8_revision may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:291:7
+    [1m[94m|[0m
+[1m[94m291 |[0m       - name: Generate ${{ matrix.arch }}
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m292 |[0m         working-directory: ./v8
+[1m[94m293 |[0m [1m[91m/[0m       run: |
+[1m[94m294 |[0m [1m[91m|[0m         $env:DEPOT_TOOLS_WIN_TOOLCHAIN = 0
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m299 |[0m [1m[91m|[0m         gn gen out --args="target_cpu=""""""${{ matrix.arch }}"""""" v8_target_cpu=""""""${{ matrix.arch }}"""""" is_component_buil[1m[94m...[0m
+[1m[94m300 |[0m [1m[91m|[0m         type out/args.gn
+    [1m[94m|[0m [1m[91m|________________________^[0m [1m[91mgithub.event.inputs.build_args may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:331:7
+    [1m[94m|[0m
+[1m[94m331 |[0m     - name: Publish package
+    [1m[94m|[0m       [1m[96m---------------------[0m [1m[96mhelp: this step[0m
+[1m[94m332 |[0m       shell: python
+[1m[94m...[0m
+[1m[94m336 |[0m         v8_head: ${{ steps.release_package.outputs.head_full }}
+[1m[94m337 |[0m       run: ${{ env.publish_package_script }}
+    [1m[94m|[0m       [1m[96m--------------------------------------[0m [1m[96mhelp: env.publish_package_script may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:350:7
+    [1m[94m|[0m
+[1m[94m350 |[0m       - name: Checkout v8
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m351 |[0m [1m[91m/[0m       run: |
+[1m[94m352 |[0m [1m[91m|[0m         export PATH=/usr/local/opt/depot_tools:$PATH
+[1m[94m...[0m   [1m[91m|[0m
+[1m[94m355 |[0m [1m[91m|[0m         git checkout ${{ github.event.inputs.v8_revision }}
+[1m[94m356 |[0m [1m[91m|[0m         gclient sync -D
+    [1m[94m|[0m [1m[91m|_______________________^[0m [1m[91mgithub.event.inputs.v8_revision may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:357:7
+    [1m[94m|[0m
+[1m[94m357 |[0m       - name: Generate ${{ matrix.arch }}
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m358 |[0m         working-directory: ./v8
+[1m[94m359 |[0m [1m[91m/[0m       run: |
+[1m[94m360 |[0m [1m[91m|[0m         export PATH=/usr/local/opt/depot_tools:$PATH
+[1m[94m361 |[0m [1m[91m|[0m         gn gen out --args="target_cpu=\"${{ matrix.arch }}\" v8_target_cpu=\"${{ matrix.arch }}\" chrome_pgo_phase=0 is_component_build=false v8_monolithic=true ${{ github.event.inputs.build_type == 'release' && 'is_debug=false is_official_build=true' || 'is_debug=true' }} ${{ github.event.inputs.build_args }}"
+    [1m[94m|[0m [1m[91m|________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.inputs.build_args may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:392:7
+    [1m[94m|[0m
+[1m[94m392 |[0m     - name: Publish package
+    [1m[94m|[0m       [1m[96m---------------------[0m [1m[96mhelp: this step[0m
+[1m[94m393 |[0m       shell: python
+[1m[94m...[0m
+[1m[94m397 |[0m         v8_head: ${{ steps.release_package.outputs.head_full }}
+[1m[94m398 |[0m       run: ${{ env.publish_package_script }}
+    [1m[94m|[0m       [1m[96m--------------------------------------[0m [1m[96mhelp: env.publish_package_script may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:410:7
+    [1m[94m|[0m
+[1m[94m410 |[0m       - name: Checkout v8
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m411 |[0m [1m[91m/[0m       run: |
+[1m[94m412 |[0m [1m[91m|[0m         fetch v8
+[1m[94m413 |[0m [1m[91m|[0m         cd v8
+[1m[94m414 |[0m [1m[91m|[0m         git checkout ${{ github.event.inputs.v8_revision }}
+[1m[94m415 |[0m [1m[91m|[0m         gclient sync -D
+    [1m[94m|[0m [1m[91m|_______________________^[0m [1m[91mgithub.event.inputs.v8_revision may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:421:7
+    [1m[94m|[0m
+[1m[94m421 |[0m       - name: Generate ${{ matrix.arch }}
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m422 |[0m         working-directory: ./v8
+[1m[94m423 |[0m [1m[91m/[0m       run: |
+[1m[94m424 |[0m [1m[91m|[0m         gn gen out --args="target_cpu=\"${{ matrix.arch }}\" v8_target_cpu=\"${{ matrix.arch }}\" chrome_pgo_phase=0 is_component_build=false v8_monolithic=true ${{ github.event.inputs.build_type == 'release' && 'is_debug=false is_official_build=true' || 'is_debug=true' }} ${{ github.event.inputs.build_args }}"
+    [1m[94m|[0m [1m[91m|________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.inputs.build_args may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:454:7
+    [1m[94m|[0m
+[1m[94m454 |[0m     - name: Publish package
+    [1m[94m|[0m       [1m[96m---------------------[0m [1m[96mhelp: this step[0m
+[1m[94m455 |[0m       shell: python3 {0}
+[1m[94m...[0m
+[1m[94m459 |[0m         v8_head: ${{ steps.release_package.outputs.head_full }}
+[1m[94m460 |[0m       run: ${{ env.publish_package_script }}
+    [1m[94m|[0m       [1m[96m--------------------------------------[0m [1m[96mhelp: env.publish_package_script may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:473:7
+    [1m[94m|[0m
+[1m[94m473 |[0m       - name: Checkout v8
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m474 |[0m [1m[91m/[0m       run: |
+[1m[94m475 |[0m [1m[91m|[0m         export PATH=/usr/local/opt/depot_tools:$PATH
+[1m[94m476 |[0m [1m[91m|[0m         fetch v8
+[1m[94m477 |[0m [1m[91m|[0m         cd v8
+[1m[94m478 |[0m [1m[91m|[0m         git checkout ${{ github.event.inputs.v8_revision }}
+    [1m[94m|[0m [1m[91m|___________________________________________________________^[0m [1m[91mgithub.event.inputs.v8_revision may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:491:7
+    [1m[94m|[0m
+[1m[94m491 |[0m       - name: Generate ${{ matrix.arch }}
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m492 |[0m         working-directory: ./v8
+[1m[94m493 |[0m [1m[91m/[0m       run: |
+[1m[94m494 |[0m [1m[91m|[0m         export PATH=/usr/local/opt/depot_tools:$PATH
+[1m[94m495 |[0m [1m[91m|[0m         gn gen out --args="target_os=\"ios\" target_cpu=\"${{ matrix.arch }}\" v8_target_cpu=\"${{ matrix.arch }}\" is_component_build=false v8_monolithic=true chrome_pgo_phase=0 enable_ios_bitcode=true ios_deployment_target=10 v8_enable_pointer_compression=false use_custom_libcxx=false ios_enable_code_signing=false ${{ github.event.inputs.build_type == 'release' && 'is_debug=false is_official_build=true' || 'is_debug=true' }} ${{ github.event.inputs.build_args }}"
+    [1m[94m|[0m [1m[91m|_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________^[0m [1m[91mgithub.event.inputs.build_args may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:526:7
+    [1m[94m|[0m
+[1m[94m526 |[0m     - name: Publish package
+    [1m[94m|[0m       [1m[96m---------------------[0m [1m[96mhelp: this step[0m
+[1m[94m527 |[0m       shell: python
+[1m[94m...[0m
+[1m[94m531 |[0m         v8_head: ${{ steps.release_package.outputs.head_full }}
+[1m[94m532 |[0m       run: ${{ env.publish_package_script }}
+    [1m[94m|[0m       [1m[96m--------------------------------------[0m [1m[96mhelp: env.publish_package_script may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:149:9
+    [1m[94m|[0m
+[1m[94m149 |[0m         uses: ASzc/change-string-case-action@v2
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:240:7
+    [1m[94m|[0m
+[1m[94m240 |[0m       uses: DamianReeves/write-file-action@v1.0
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:279:7
+    [1m[94m|[0m
+[1m[94m279 |[0m       uses: KyleMayes/install-llvm-action@v1
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:315:7
+    [1m[94m|[0m
+[1m[94m315 |[0m       uses: DamianReeves/write-file-action@v1.0
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:376:7
+    [1m[94m|[0m
+[1m[94m376 |[0m       uses: DamianReeves/write-file-action@v1.0
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:438:7
+    [1m[94m|[0m
+[1m[94m438 |[0m       uses: DamianReeves/write-file-action@v1.0
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:510:7
+    [1m[94m|[0m
+[1m[94m510 |[0m       uses: DamianReeves/write-file-action@v1.0
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#obfuscation\obfuscation]8;;\][0m: [1mobfuscated usage of GitHub Actions features[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:124:17
+    [1m[94m|[0m
+[1m[94m124 |[0m     add_library(${{ '${{PROJECT_NAME}}' }} INTERFACE)
+    [1m[94m|[0m                 [1m[96m--------------------------[0m [1m[96mhelp: expression can be replaced by its static evaluation[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#obfuscation\obfuscation]8;;\][0m: [1mobfuscated usage of GitHub Actions features[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:125:32
+    [1m[94m|[0m
+[1m[94m125 |[0m     target_include_directories(${{ '${{PROJECT_NAME}}' }}
+    [1m[94m|[0m                                [1m[96m--------------------------[0m [1m[96mhelp: expression can be replaced by its static evaluation[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#obfuscation\obfuscation]8;;\][0m: [1mobfuscated usage of GitHub Actions features[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:129:32
+    [1m[94m|[0m
+[1m[94m129 |[0m     target_compile_definitions(${{ '${{PROJECT_NAME}}' }}
+    [1m[94m|[0m                                [1m[96m--------------------------[0m [1m[96mhelp: expression can be replaced by its static evaluation[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#obfuscation\obfuscation]8;;\][0m: [1mobfuscated usage of GitHub Actions features[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:134:17
+    [1m[94m|[0m
+[1m[94m134 |[0m     add_library(${{ '${{PROJECT_NAME}}' }}_library STATIC IMPORTED)
+    [1m[94m|[0m                 [1m[96m--------------------------[0m [1m[96mhelp: expression can be replaced by its static evaluation[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#obfuscation\obfuscation]8;;\][0m: [1mobfuscated usage of GitHub Actions features[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:135:25
+    [1m[94m|[0m
+[1m[94m135 |[0m     set_property(TARGET ${{ '${{PROJECT_NAME}}' }}_library PROPERTY
+    [1m[94m|[0m                         [1m[96m--------------------------[0m [1m[96mhelp: expression can be replaced by its static evaluation[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#obfuscation\obfuscation]8;;\][0m: [1mobfuscated usage of GitHub Actions features[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:137:27
+    [1m[94m|[0m
+[1m[94m137 |[0m     target_link_libraries(${{ '${{PROJECT_NAME}}' }}
+    [1m[94m|[0m                           [1m[96m--------------------------[0m [1m[96mhelp: expression can be replaced by its static evaluation[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[96mhelp[]8;;https://docs.zizmor.sh/audits/#obfuscation\obfuscation]8;;\][0m: [1mobfuscated usage of GitHub Actions features[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:138:19
+    [1m[94m|[0m
+[1m[94m138 |[0m         INTERFACE ${{ '${{PROJECT_NAME}}' }}_library)
+    [1m[94m|[0m                   [1m[96m--------------------------[0m [1m[96mhelp: expression can be replaced by its static evaluation[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:158:7
+    [1m[94m|[0m
+[1m[94m158 |[0m       image: ghcr.io/${{ needs.context_in_lowercase.outputs.repository_owner }}/android-release:latest
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is pinned to latest[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-images\unpinned-images]8;;\][0m: [1munpinned image references[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_Hippy__.github__workflows__3rd_prebuilt_v8.yml:405:7
+    [1m[94m|[0m
+[1m[94m405 |[0m       image: ghcr.io/${{ needs.context_in_lowercase.outputs.repository_owner }}/linux-release:latest
+    [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mcontainer image is pinned to latest[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m79[39m findings ([1m[93m40[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m12[39m low, [33m8[39m medium, [31m19[39m high

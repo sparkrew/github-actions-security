@@ -1,0 +1,89 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign__.github__workflows__publish.yml:16:9
+   [1m[94m|[0m
+[1m[94m16 |[0m         - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m17 |[0m [1m[33m|[0m         with:
+[1m[94m18 |[0m [1m[33m|[0m           submodules: recursive
+   [1m[94m|[0m [1m[33m|_______________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign__.github__workflows__publish.yml:62:9
+   [1m[94m|[0m
+[1m[94m62 |[0m         - uses: actions/checkout@v4
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m63 |[0m [1m[33m|[0m         with:
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m66 |[0m [1m[33m|[0m           token: ${{ secrets.PERSONAL_TOKEN }}
+[1m[94m67 |[0m [1m[33m|[0m           submodules: recursive
+   [1m[94m|[0m [1m[33m|_______________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign__.github__workflows__publish.yml:35:9
+   [1m[94m|[0m
+[1m[94m35 |[0m         - name: upload surge service
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m36 |[0m           id: deploy
+[1m[94m37 |[0m [1m[91m/[0m         run: |
+[1m[94m38 |[0m [1m[91m|[0m           repository=${{github.repository}}
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m43 |[0m [1m[91m|[0m           npx surge --project _site --domain $DEPLOY_DOMAIN --token ${{ secrets.TDESIGN_SURGE_TOKEN }}
+[1m[94m44 |[0m [1m[91m|[0m           echo $DEPLOY_DOMAIN
+   [1m[94m|[0m [1m[91m|_____________________________^[0m [1m[91mgithub.ref_name may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign__.github__workflows__publish.yml:45:9
+   [1m[94m|[0m
+[1m[94m45 |[0m       - run: echo "🍏 This job's status is ${{ job.status }}."
+   [1m[94m|[0m         [1m[94m------------------------------------------------------[0m
+   [1m[94m|[0m         [1m[94m|[0m
+   [1m[94m|[0m         [1m[94minfo: this step[0m
+   [1m[94m|[0m         [1m[94minfo: job.status may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign__.github__workflows__publish.yml:55:9
+   [1m[94m|[0m
+[1m[94m55 |[0m          - if: steps.publish.outputs.type != 'none'
+   [1m[94m|[0m  [1m[94m__________-[0m
+[1m[94m56 |[0m [1m[94m|[0m          run: |
+   [1m[94m|[0m [1m[94m|[0m [1m[94m_________-[0m
+[1m[94m57 |[0m [1m[94m||[0m           echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
+   [1m[94m|[0m [1m[94m||[0m                                                                                                                  [1m[94m-[0m
+   [1m[94m|[0m [1m[94m||__________________________________________________________________________________________________________________|[0m
+   [1m[94m|[0m  [1m[94m|__________________________________________________________________________________________________________________info: this step[0m
+   [1m[94m|[0m                                                                                                                     [1m[94minfo: steps.publish.outputs.old-version may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign__.github__workflows__publish.yml:55:9
+   [1m[94m|[0m
+[1m[94m55 |[0m          - if: steps.publish.outputs.type != 'none'
+   [1m[94m|[0m  [1m[94m__________-[0m
+[1m[94m56 |[0m [1m[94m|[0m          run: |
+   [1m[94m|[0m [1m[94m|[0m [1m[94m_________-[0m
+[1m[94m57 |[0m [1m[94m||[0m           echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
+   [1m[94m|[0m [1m[94m||[0m                                                                                                                  [1m[94m-[0m
+   [1m[94m|[0m [1m[94m||__________________________________________________________________________________________________________________|[0m
+   [1m[94m|[0m  [1m[94m|__________________________________________________________________________________________________________________info: this step[0m
+   [1m[94m|[0m                                                                                                                     [1m[94minfo: steps.publish.outputs.version may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign__.github__workflows__publish.yml:52:9
+   [1m[94m|[0m
+[1m[94m52 |[0m         uses: JS-DevTools/npm-publish@v4
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m16[39m findings ([1m[93m9[39m suppressed[0m): 0 unknown, [35m3[39m informational, [36m0[39m low, [33m2[39m medium, [31m2[39m high

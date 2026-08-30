@@ -1,0 +1,42 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__release-create-new.yml:44:9
+   [1m[94m|[0m
+[1m[94m44 |[0m         - name: Checkout the repository
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m45 |[0m [1m[33m|[0m         uses: actions/checkout@v6
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__release-create-new.yml:47:9
+   [1m[94m|[0m
+[1m[94m47 |[0m         - name: Prepare environment
+   [1m[94m|[0m           [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91mthis step[0m
+[1m[94m48 |[0m           id: prepare-env
+[1m[94m49 |[0m [1m[91m/[0m         run: |
+[1m[94m50 |[0m [1m[91m|[0m           log_and_export_vars() {
+[1m[94m...[0m  [1m[91m|[0m
+[1m[94m85 |[0m [1m[91m|[0m           echo "Branch SHA: $GITHUB_SHA" | tee -a $GITHUB_STEP_SUMMARY
+[1m[94m86 |[0m [1m[91m|[0m           echo "Branch commit: $(git show --oneline --no-patch ${GITHUB_SHA})" | tee -a $GITHUB_STEP_SUMMARY
+   [1m[94m|[0m [1m[91m|____________________________________________________________________________________________________________^[0m [1m[91minputs.main_version may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__release-create-new.yml:117:9
+    [1m[94m|[0m
+[1m[94m117 |[0m         uses: slackapi/slack-github-action@v1.26.0
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/NVIDIA_cccl__.github__workflows__release-create-new.yml:136:9
+    [1m[94m|[0m
+[1m[94m136 |[0m         uses: slackapi/slack-github-action@v1.26.0
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m6[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m1[39m medium, [31m3[39m high

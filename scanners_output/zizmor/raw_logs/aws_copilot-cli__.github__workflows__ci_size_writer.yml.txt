@@ -1,0 +1,61 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/aws_copilot-cli__.github__workflows__ci_size_writer.yml:10:3
+    [1m[94m|[0m
+[1m[94m 10 |[0m [1m[33m/[0m   comment_bin_size:
+[1m[94m 11 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m109 |[0m [1m[33m|[0m           body: ${{ steps.diff.outputs.result }}
+[1m[94m110 |[0m [1m[33m|[0m           edit-mode: replace
+    [1m[94m|[0m [1m[33m|[0m                            [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|____________________________|[0m
+    [1m[94m|[0m                              [1m[33mthis job[0m
+    [1m[94m|[0m                              [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#dangerous-triggers\dangerous-triggers]8;;\][0m: [1muse of fundamentally insecure workflow trigger[0m
+ [1m[94m-->[0m ../.github/workflows/aws_copilot-cli__.github__workflows__ci_size_writer.yml:3:1
+  [1m[94m|[0m
+[1m[94m3 |[0m [1m[91m/[0m on:
+[1m[94m4 |[0m [1m[91m|[0m   workflow_run:
+[1m[94m5 |[0m [1m[91m|[0m     workflows: ["Compute bin sizes"]
+[1m[94m6 |[0m [1m[91m|[0m     types:
+[1m[94m7 |[0m [1m[91m|[0m       - completed
+  [1m[94m|[0m [1m[91m|_________________^[0m [1m[91mworkflow_run is almost always used insecurely[0m
+  [1m[94m|[0m
+  [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/aws_copilot-cli__.github__workflows__ci_size_writer.yml:37:9
+   [1m[94m|[0m
+[1m[94m37 |[0m         - name: Calculate size change
+   [1m[94m|[0m           [1m[94m---------------------------[0m [1m[94minfo: this step[0m
+[1m[94m38 |[0m           id: diff
+[1m[94m...[0m
+[1m[94m41 |[0m             result-encoding: string
+[1m[94m42 |[0m [1m[94m/[0m           script: |
+[1m[94m43 |[0m [1m[94m|[0m             let fs = require('fs');
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m88 |[0m [1m[94m|[0m             }
+[1m[94m89 |[0m [1m[94m|[0m             return msg;
+   [1m[94m|[0m [1m[94m|_______________________-[0m [1m[94minfo: steps.latestrelease.outputs.VERSION_TAG may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/aws_copilot-cli__.github__workflows__ci_size_writer.yml:97:9
+   [1m[94m|[0m
+[1m[94m97 |[0m         uses: peter-evans/find-comment@v2
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/aws_copilot-cli__.github__workflows__ci_size_writer.yml:105:9
+    [1m[94m|[0m
+[1m[94m105 |[0m         uses: peter-evans/create-or-update-comment@v2
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m7[39m findings ([1m[93m2[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m1[39m medium, [31m3[39m high

@@ -1,0 +1,36 @@
+diff --git a/.github/workflows/google_adk-samples__.github__workflows__test_templated_agent.yaml b/.github/workflows/google_adk-samples__.github__workflows__test_templated_agent.yaml
+index bd08350..6f162b2 100644
+--- a/.github/workflows/google_adk-samples__.github__workflows__test_templated_agent.yaml
++++ b/.github/workflows/google_adk-samples__.github__workflows__test_templated_agent.yaml
+@@ -14,13 +14,13 @@ jobs:
+ 
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v5
++        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+         with:
+           fetch-depth: 0
+ 
+       - name: Get changed files
+         id: changed_files
+-        uses: tj-actions/changed-files@v47
++        uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62 # v47
+         with:
+           files: python/agents/**
+ 
+@@ -84,7 +84,7 @@ jobs:
+ 
+     steps:
+       - name: Checkout code
+-        uses: actions/checkout@v5
++        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+ 
+       - id: 'auth'
+         name: 'Authenticate to Google Cloud'
+@@ -154,4 +154,4 @@ jobs:
+             else
+               echo \"--- Unknown task: ${{ matrix.task }} ---\"
+               exit 1
+-            fi
+\ No newline at end of file
++            fi

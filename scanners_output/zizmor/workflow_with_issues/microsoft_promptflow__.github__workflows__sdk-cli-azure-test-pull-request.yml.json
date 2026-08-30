@@ -1,0 +1,59 @@
+{
+  "workflow": "microsoft_promptflow__.github__workflows__sdk-cli-azure-test-pull-request.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 5,
+    "by_rule": {
+      "artipacked": 2,
+      "excessive-permissions": 2,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_promptflow__.github__workflows__sdk-cli-azure-test-pull-request.yml",
+      "line": 43,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "microsoft_promptflow__.github__workflows__sdk-cli-azure-test-pull-request.yml",
+      "line": 98,
+      "column": 7,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "microsoft_promptflow__.github__workflows__sdk-cli-azure-test-pull-request.yml",
+      "line": 1,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "excessive-permissions",
+      "level": "warning",
+      "message": "overly broad permissions",
+      "workflow": "microsoft_promptflow__.github__workflows__sdk-cli-azure-test-pull-request.yml",
+      "line": 33,
+      "column": 3,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "microsoft_promptflow__.github__workflows__sdk-cli-azure-test-pull-request.yml",
+      "line": 52,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

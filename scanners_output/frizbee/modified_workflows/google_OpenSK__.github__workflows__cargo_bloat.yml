@@ -1,0 +1,40 @@
+name: Binary size report
+on: pull_request
+
+jobs:
+  cargo_bloat:
+    runs-on: ubuntu-latest
+    steps:
+      # Setup
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.10"
+      - uses: actions-rs/cargo@844f36862e911db73fe0815f00a4a2602c279505 # v1
+        with:
+          command: install
+          args: cargo-bloat
+
+      # First run: PR
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          submodules: true
+      - name: Set up OpenSK
+        run: ./setup.sh
+      - name: Run bloat on the PR
+        run: RUSTFLAGS="-C link-arg=-icf=all -C force-frame-pointers=no -C link-arg=-Tnrf52840_layout.ld" cargo bloat --release --target=thumbv7em-none-eabi --features=config_command,with_ctap1 --crates >> .github/workflows/bloat_output_new.txt
+
+      # Second run: PR
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          submodules: true
+          ref: ${{ github.base_ref }}
+          path: OpenSK_base
+      - name: Set up OpenSK
+        working-directory: ./OpenSK_base
+        run: ./setup.sh
+      - name: Run bloat on base
+        working-directory: ./OpenSK_base
+        run: RUSTFLAGS="-C link-arg=-icf=all -C force-frame-pointers=no -C link-arg=-Tnrf52840_layout.ld" cargo bloat --release --target=thumbv7em-none-eabi --features=config_command,with_ctap1 --crates >> "$GITHUB_WORKSPACE/.github/workflows/bloat_output_old.txt"
+
+      - name: Run output formatter to echo workflow command
+        run: ./.github/workflows/bloat_formatter.sh bloat_output_new.txt bloat_output_old.txt bloat_comment.md

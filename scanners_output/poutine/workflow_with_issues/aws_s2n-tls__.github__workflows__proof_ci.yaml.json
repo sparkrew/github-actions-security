@@ -1,0 +1,25 @@
+{
+  "workflow": "aws_s2n-tls__.github__workflows__proof_ci.yaml",
+  "tool": "poutine",
+  "summary": {
+    "total_findings": 1,
+    "by_rule": {
+      "pr_runs_on_self_hosted": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "pr_runs_on_self_hosted",
+      "line": 27,
+      "column": "",
+      "job": "run_cbmc_proofs",
+      "step": "",
+      "details": "runs-on: cbmc_ubuntu-latest_64-core",
+      "event_triggers": [
+        "push",
+        "pull_request",
+        "merge_group"
+      ]
+    }
+  ]
+}

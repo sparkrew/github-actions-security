@@ -1,0 +1,31 @@
+{
+  "workflow": "Tencent_Hippy__.github__workflows__gh_pr_labeler.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 2,
+    "by_rule": {
+      "dangerous-triggers": 1,
+      "unpinned-uses": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "dangerous-triggers",
+      "level": "error",
+      "message": "use of fundamentally insecure workflow trigger",
+      "workflow": "Tencent_Hippy__.github__workflows__gh_pr_labeler.yml",
+      "line": 3,
+      "column": 1,
+      "note": "audit confidence \u2192 Medium"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "Tencent_Hippy__.github__workflows__gh_pr_labeler.yml",
+      "line": 31,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

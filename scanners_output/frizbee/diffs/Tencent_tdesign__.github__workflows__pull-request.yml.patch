@@ -1,0 +1,28 @@
+diff --git a/.github/workflows/Tencent_tdesign__.github__workflows__pull-request.yml b/.github/workflows/Tencent_tdesign__.github__workflows__pull-request.yml
+index d34a027..413b9bb 100644
+--- a/.github/workflows/Tencent_tdesign__.github__workflows__pull-request.yml
++++ b/.github/workflows/Tencent_tdesign__.github__workflows__pull-request.yml
+@@ -13,10 +13,10 @@ jobs:
+     outputs:
+       services-changed: ${{ steps.services-changed.outputs.changed }}
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+         with:
+           fetch-depth: 100
+-      - uses: marceloprado/has-changed-path@v1
++      - uses: marceloprado/has-changed-path@0ffbcfc95a9a2976ba454d8e8687bb49f989f721 # v1
+         id: services-changed
+         with:
+           paths: services
+@@ -27,8 +27,8 @@ jobs:
+     needs: modify-services
+     if: needs.modify-services.outputs.services-changed == 'true'
+     steps:
+-      - uses: actions/checkout@v4
+-      - uses: actions/setup-node@v4
++      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
++      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+         with:
+           node-version-file: .node-version
+       - run: node ./services/update-components-notice.js

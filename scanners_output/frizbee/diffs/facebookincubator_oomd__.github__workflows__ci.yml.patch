@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/facebookincubator_oomd__.github__workflows__ci.yml b/.github/workflows/facebookincubator_oomd__.github__workflows__ci.yml
+index 40a96b5..5959ece 100644
+--- a/.github/workflows/facebookincubator_oomd__.github__workflows__ci.yml
++++ b/.github/workflows/facebookincubator_oomd__.github__workflows__ci.yml
+@@ -38,7 +38,7 @@ jobs:
+           meson
+           g++
+       - name: Checkout code
+-        uses: actions/checkout@v2
++        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+       - run: meson build/
+       - run: ninja -C build/
+       - run: ninja -C build/ test

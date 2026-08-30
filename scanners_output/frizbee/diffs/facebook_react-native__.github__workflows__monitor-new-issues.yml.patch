@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/facebook_react-native__.github__workflows__monitor-new-issues.yml b/.github/workflows/facebook_react-native__.github__workflows__monitor-new-issues.yml
+index 36abe0b..6eee1d3 100644
+--- a/.github/workflows/facebook_react-native__.github__workflows__monitor-new-issues.yml
++++ b/.github/workflows/facebook_react-native__.github__workflows__monitor-new-issues.yml
+@@ -15,7 +15,7 @@ jobs:
+     if: github.repository == 'facebook/react-native'
+     steps:
+       - name: Checkout
+-        uses: actions/checkout@v6
++        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+       - name: Set up Node.js
+         uses: ./.github/actions/setup-node
+       - name: Install dependencies
+@@ -28,7 +28,7 @@ jobs:
+           echo "oncall1=$ONCALL1" >> $GITHUB_ENV
+           echo "oncall2=$ONCALL2" >> $GITHUB_ENV
+       - name: Monitor New Issues
+-        uses: react-native-community/repo-monitor@v1.0.1
++        uses: react-native-community/repo-monitor@d58266a4f198b830ccaa495b853d251ad3aa8cc8 # v1.0.1
+         with:
+           task: "monitor-issues"
+           git_secret: ${{ secrets.GITHUB_TOKEN }}

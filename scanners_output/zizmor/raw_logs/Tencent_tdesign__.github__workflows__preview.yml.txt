@@ -1,0 +1,64 @@
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign__.github__workflows__preview.yml:34:9
+   [1m[94m|[0m
+[1m[94m34 |[0m         - name: Upload surge service and generate preview URL
+   [1m[94m|[0m           [1m[94m---------------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m35 |[0m           id: deploy
+[1m[94m36 |[0m [1m[94m/[0m         run: |
+[1m[94m37 |[0m [1m[94m|[0m           repository=${{github.repository}}
+[1m[94m...[0m  [1m[94m|[0m
+[1m[94m41 |[0m [1m[94m|[0m           echo the preview URL is $DEPLOY_DOMAIN
+[1m[94m42 |[0m [1m[94m|[0m           echo "url=$DEPLOY_DOMAIN" >> $GITHUB_OUTPUT
+   [1m[94m|[0m [1m[94m|_____________________________________________________-[0m [1m[94minfo: steps.pr.outputs.id may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign__.github__workflows__preview.yml:17:9
+   [1m[94m|[0m
+[1m[94m17 |[0m         uses: dawidd6/action-download-artifact@v6
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign__.github__workflows__preview.yml:26:9
+   [1m[94m|[0m
+[1m[94m26 |[0m         uses: dawidd6/action-download-artifact@v6
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign__.github__workflows__preview.yml:44:9
+   [1m[94m|[0m
+[1m[94m44 |[0m         uses: actions-cool/maintain-one-comment@v3
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign__.github__workflows__preview.yml:59:9
+   [1m[94m|[0m
+[1m[94m59 |[0m         uses: actions-cool/maintain-one-comment@v3
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign__.github__workflows__preview.yml:75:9
+   [1m[94m|[0m
+[1m[94m75 |[0m         uses: dawidd6/action-download-artifact@v6
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_tdesign__.github__workflows__preview.yml:84:9
+   [1m[94m|[0m
+[1m[94m84 |[0m         uses: actions-cool/maintain-one-comment@v3
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m13[39m findings ([1m[93m6[39m suppressed[0m): 0 unknown, [35m1[39m informational, [36m0[39m low, [33m0[39m medium, [31m6[39m high

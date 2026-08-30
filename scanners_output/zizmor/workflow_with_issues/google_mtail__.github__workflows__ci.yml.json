@@ -1,0 +1,105 @@
+{
+  "workflow": "google_mtail__.github__workflows__ci.yml",
+  "tool": "zizmor",
+  "summary": {
+    "total_findings": 10,
+    "by_rule": {
+      "artipacked": 4,
+      "unpinned-uses": 2,
+      "cache-poisoning": 3,
+      "unpinned-images": 1
+    }
+  },
+  "findings": [
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "google_mtail__.github__workflows__ci.yml",
+      "line": 29,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "google_mtail__.github__workflows__ci.yml",
+      "line": 63,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "google_mtail__.github__workflows__ci.yml",
+      "line": 75,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "artipacked",
+      "level": "warning",
+      "message": "credential persistence through GitHub Actions artifacts",
+      "workflow": "google_mtail__.github__workflows__ci.yml",
+      "line": 91,
+      "column": 9,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "google_mtail__.github__workflows__ci.yml",
+      "line": 50,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "unpinned-uses",
+      "level": "error",
+      "message": "unpinned action reference",
+      "workflow": "google_mtail__.github__workflows__ci.yml",
+      "line": 76,
+      "column": 9,
+      "note": "audit confidence \u2192 High"
+    },
+    {
+      "rule_id": "cache-poisoning",
+      "level": "error",
+      "message": "runtime artifacts potentially vulnerable to a cache poisoning attack",
+      "workflow": "google_mtail__.github__workflows__ci.yml",
+      "line": 2,
+      "column": 1,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "cache-poisoning",
+      "level": "error",
+      "message": "runtime artifacts potentially vulnerable to a cache poisoning attack",
+      "workflow": "google_mtail__.github__workflows__ci.yml",
+      "line": 2,
+      "column": 1,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "cache-poisoning",
+      "level": "error",
+      "message": "runtime artifacts potentially vulnerable to a cache poisoning attack",
+      "workflow": "google_mtail__.github__workflows__ci.yml",
+      "line": 2,
+      "column": 1,
+      "note": "audit confidence \u2192 Low"
+    },
+    {
+      "rule_id": "unpinned-images",
+      "level": "error",
+      "message": "unpinned image references",
+      "workflow": "google_mtail__.github__workflows__ci.yml",
+      "line": 89,
+      "column": 7,
+      "note": "audit confidence \u2192 High"
+    }
+  ]
+}

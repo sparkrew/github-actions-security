@@ -1,0 +1,68 @@
+name: Validate Pyinstaller Build
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+env:
+  CI_OVERRIDE: "1"
+
+jobs:
+  build-for-linux:
+    name: build-pyinstaller-linux
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'aws'
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+      - name: Make installer script executable
+        run: chmod +x ./installer/pyinstaller/build-linux.sh
+      - name: Build PyInstaller in manylinux container
+        run: |
+          docker run --rm -v .:/samcli -w /samcli -e CI_OVERRIDE='1' \
+          quay.io/pypa/manylinux2014_x86_64:latest /samcli/installer/pyinstaller/build-linux.sh aws-sam-cli-linux-x86_64.zip
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # actions/setup-python@v6 | main,v6.2.0
+        with:
+          python-version: 3.11
+      - name: Basic tests for PyInstaller
+        run: |
+          unzip .build/output/aws-sam-cli-linux-x86_64.zip -d sam-installation
+          sudo ./sam-installation/install
+          sam-beta --version
+          ./tests/sanity-check.sh
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # actions/upload-artifact@v7 | main,v7.0.0
+        with:
+          name: pyinstaller-linux-zip
+          path: .build/output/aws-sam-cli-linux-x86_64.zip
+          retention-days: 15
+
+  build-for-mac:
+    name: build-pyinstaller-macos
+    runs-on: macos-latest
+    if: github.repository_owner == 'aws'
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # actions/setup-python@v6 | main,v6.2.0
+        with:
+          python-version: "3.11"
+      - name: Build PyInstaller
+        run: |
+          chmod +x ./installer/pyinstaller/build-mac.sh
+          ./installer/pyinstaller/build-mac.sh aws-sam-cli-macos-x86_64.zip
+      - name: Basic tests for PyInstaller
+        env:
+          SAM_INIT_RUNTIME: "python3.11"
+        run: |
+          unzip .build/output/aws-sam-cli-macos-x86_64.zip -d sam-installation
+          sudo ./sam-installation/install
+          sam-beta --version
+          ./tests/sanity-check.sh
+      - uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # actions/upload-artifact@v7 | main,v7.0.0
+        with:
+          name: pyinstaller-macos-zip
+          path: .build/output/aws-sam-cli-macos-x86_64.zip
+          retention-days: 15

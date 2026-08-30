@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/facebook_rocksdb__.github__workflows__clang-tidy-comment.yml b/.github/workflows/facebook_rocksdb__.github__workflows__clang-tidy-comment.yml
+index f8d1a46..9924463 100644
+--- a/.github/workflows/facebook_rocksdb__.github__workflows__clang-tidy-comment.yml
++++ b/.github/workflows/facebook_rocksdb__.github__workflows__clang-tidy-comment.yml
+@@ -14,7 +14,7 @@ jobs:
+     steps:
+     - name: Download clang-tidy results
+       id: download
+-      uses: actions/download-artifact@v4.0.0
++      uses: actions/download-artifact@7a1cd3216ca9260cd8022db641d960b1db4d1be4 # v4.0.0
+       with:
+         name: clang-tidy-result
+         run-id: ${{ github.event.workflow_run.id }}
+@@ -22,7 +22,7 @@ jobs:
+       continue-on-error: true
+     - name: Post or update PR comment
+       if: steps.download.outcome == 'success'
+-      uses: actions/github-script@v7
++      uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
+       with:
+         script: |
+           const fs = require('fs');

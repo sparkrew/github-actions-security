@@ -1,0 +1,113 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unreal_ci.yml:50:7
+   [1m[94m|[0m
+[1m[94m50 |[0m     - uses: actions/checkout@v3
+   [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unreal_ci.yml:80:7
+   [1m[94m|[0m
+[1m[94m80 |[0m     - uses: actions/checkout@v3
+   [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unreal_ci.yml:114:7
+    [1m[94m|[0m
+[1m[94m114 |[0m     - uses: actions/checkout@v3
+    [1m[94m|[0m       [1m[33m-------------------------[0m [1m[33mdoes not set persist-credentials: false[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unreal_ci.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: unreal ci
+[1m[94m  2 |[0m [1m[33m|[0m
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m130 |[0m [1m[33m|[0m     #  run: |
+[1m[94m131 |[0m [1m[33m|[0m     #    cat "/Users/runner/Library/Logs/Unreal Engine/LocalBuildLogs/UBT-UE4Editor-Mac-Development.txt"
+    [1m[94m|[0m [1m[33m|_________________________________________________________________________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unreal_ci.yml:23:3
+   [1m[94m|[0m
+[1m[94m23 |[0m [1m[33m/[0m   urls:
+[1m[94m24 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m33 |[0m [1m[33m|[0m            echo "qjs=${{env.QJS_URL}}" >> $GITHUB_OUTPUT
+[1m[94m34 |[0m [1m[33m|[0m            echo "node=${{env.NODE_URL}}" >> $GITHUB_OUTPUT
+   [1m[94m|[0m [1m[33m|[0m                                                          [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|__________________________________________________________|[0m
+   [1m[94m|[0m                                                            [1m[33mthis job[0m
+   [1m[94m|[0m                                                            [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unreal_ci.yml:36:3
+   [1m[94m|[0m
+[1m[94m36 |[0m [1m[33m/[0m   window_ci:
+[1m[94m37 |[0m [1m[33m|[0m     needs: urls
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m62 |[0m [1m[33m|[0m       run: |
+[1m[94m63 |[0m [1m[33m|[0m         Engine\Build\BatchFiles\RunUAT.bat BuildPlugin -Plugin="unreal\Puerts\Puerts.uplugin" -Package="output" -Rocket -TargetPlatforms=Win64 -VS2019
+   [1m[94m|[0m [1m[33m|[0m                                                                                                                                                      [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|______________________________________________________________________________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                                                                                        [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                                                                                        [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unreal_ci.yml:66:3
+   [1m[94m|[0m
+[1m[94m66 |[0m [1m[33m/[0m   android_ci:
+[1m[94m67 |[0m [1m[33m|[0m     needs: urls
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m97 |[0m [1m[33m|[0m       run: |
+[1m[94m98 |[0m [1m[33m|[0m         Engine\Build\BatchFiles\RunUAT.bat BuildPlugin -Plugin="unreal\Puerts\Puerts.uplugin" -Package="output" -Rocket -TargetPlatforms=Android -VS2019
+   [1m[94m|[0m [1m[33m|[0m                                                                                                                                                        [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|________________________________________________________________________________________________________________________________________________________|[0m
+   [1m[94m|[0m                                                                                                                                                          [1m[33mthis job[0m
+   [1m[94m|[0m                                                                                                                                                          [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unreal_ci.yml:100:3
+    [1m[94m|[0m
+[1m[94m100 |[0m [1m[33m/[0m   mac_ios_ci:
+[1m[94m101 |[0m [1m[33m|[0m     needs: urls
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m130 |[0m [1m[33m|[0m     #  run: |
+[1m[94m131 |[0m [1m[33m|[0m     #    cat "/Users/runner/Library/Logs/Unreal Engine/LocalBuildLogs/UBT-UE4Editor-Mac-Development.txt"
+    [1m[94m|[0m [1m[33m|[0m                                                                                                         [1m[33m-[0m
+    [1m[94m|[0m [1m[33m|_________________________________________________________________________________________________________|[0m
+    [1m[94m|[0m                                                                                                           [1m[33mthis job[0m
+    [1m[94m|[0m                                                                                                           [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unreal_ci.yml:51:7
+   [1m[94m|[0m
+[1m[94m51 |[0m     - uses: msys2/setup-msys2@v2
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/Tencent_puerts__.github__workflows__unreal_ci.yml:81:7
+   [1m[94m|[0m
+[1m[94m81 |[0m     - uses: msys2/setup-msys2@v2
+   [1m[94m|[0m       [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m22[39m findings ([1m[93m12[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m8[39m medium, [31m2[39m high

@@ -1,0 +1,225 @@
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_amazon-eks-ami__.github__workflows__ci-manual.yaml:45:3
+   [1m[94m|[0m
+[1m[94m45 |[0m   pull-requests: write
+   [1m[94m|[0m   [1m[91m^^^^^^^^^^^^^^^^^^^^[0m [1m[91mpull-requests: write is overly broad at the workflow level[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_amazon-eks-ami__.github__workflows__ci-manual.yaml:46:3
+   [1m[94m|[0m
+[1m[94m46 |[0m   issues: write
+   [1m[94m|[0m   [1m[91m^^^^^^^^^^^^^[0m [1m[91missues: write is overly broad at the workflow level[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_amazon-eks-ami__.github__workflows__ci-manual.yaml:48:3
+   [1m[94m|[0m
+[1m[94m48 |[0m   id-token: write
+   [1m[94m|[0m   [1m[91m^^^^^^^^^^^^^^^[0m [1m[91mid-token: write is overly broad at the workflow level[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_amazon-eks-ami__.github__workflows__ci-manual.yaml:57:7
+   [1m[94m|[0m
+[1m[94m57 |[0m        - id: variables
+   [1m[94m|[0m  [1m[91m________^[0m
+[1m[94m58 |[0m [1m[91m|[0m        run: |
+   [1m[94m|[0m [1m[91m|[0m [1m[91m_______^[0m
+[1m[94m59 |[0m [1m[91m||[0m         echo "git_sha_short=$(echo ${{ inputs.git_sha }} | rev | cut -c-7 | rev)" >> $GITHUB_OUTPUT
+[1m[94m60 |[0m [1m[91m||[0m         echo "workflow_run_url=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_OUTPUT
+   [1m[94m|[0m [1m[91m||[0m                                                                                                                               [1m[91m^[0m
+   [1m[94m|[0m [1m[91m||_______________________________________________________________________________________________________________________________|[0m
+   [1m[94m|[0m  [1m[91m|_______________________________________________________________________________________________________________________________this step[0m
+   [1m[94m|[0m                                                                                                                                  [1m[91minputs.git_sha may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_amazon-eks-ami__.github__workflows__ci-manual.yaml:67:9
+   [1m[94m|[0m
+[1m[94m67 |[0m          - uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # 8.0.0
+   [1m[94m|[0m  [1m[91m__________^[0m
+[1m[94m68 |[0m [1m[91m|[0m          with:
+[1m[94m69 |[0m [1m[91m|[0m            script: |
+   [1m[94m|[0m [1m[91m|[0m [1m[91m___________^[0m
+[1m[94m70 |[0m [1m[91m||[0m             github.rest.issues.createComment({
+[1m[94m...[0m  [1m[91m||[0m
+[1m[94m74 |[0m [1m[91m||[0m               body: `@${{ inputs.requester }} roger [that](${{ inputs.comment_url }})! I've dispatched a [workflow](${{ needs.setup.[1m[94m...[0m
+[1m[94m75 |[0m [1m[91m||[0m             });
+   [1m[94m|[0m [1m[91m||[0m               [1m[91m^[0m
+   [1m[94m|[0m [1m[91m||_______________|[0m
+   [1m[94m|[0m  [1m[91m|_______________this step[0m
+   [1m[94m|[0m                  [1m[91minputs.pr_number may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_amazon-eks-ami__.github__workflows__ci-manual.yaml:67:9
+   [1m[94m|[0m
+[1m[94m67 |[0m          - uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # 8.0.0
+   [1m[94m|[0m  [1m[91m__________^[0m
+[1m[94m68 |[0m [1m[91m|[0m          with:
+[1m[94m69 |[0m [1m[91m|[0m            script: |
+   [1m[94m|[0m [1m[91m|[0m [1m[91m___________^[0m
+[1m[94m70 |[0m [1m[91m||[0m             github.rest.issues.createComment({
+[1m[94m...[0m  [1m[91m||[0m
+[1m[94m74 |[0m [1m[91m||[0m               body: `@${{ inputs.requester }} roger [that](${{ inputs.comment_url }})! I've dispatched a [workflow](${{ needs.setup.[1m[94m...[0m
+[1m[94m75 |[0m [1m[91m||[0m             });
+   [1m[94m|[0m [1m[91m||[0m               [1m[91m^[0m
+   [1m[94m|[0m [1m[91m||_______________|[0m
+   [1m[94m|[0m  [1m[91m|_______________this step[0m
+   [1m[94m|[0m                  [1m[91minputs.requester may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_amazon-eks-ami__.github__workflows__ci-manual.yaml:67:9
+   [1m[94m|[0m
+[1m[94m67 |[0m          - uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # 8.0.0
+   [1m[94m|[0m  [1m[91m__________^[0m
+[1m[94m68 |[0m [1m[91m|[0m          with:
+[1m[94m69 |[0m [1m[91m|[0m            script: |
+   [1m[94m|[0m [1m[91m|[0m [1m[91m___________^[0m
+[1m[94m70 |[0m [1m[91m||[0m             github.rest.issues.createComment({
+[1m[94m...[0m  [1m[91m||[0m
+[1m[94m74 |[0m [1m[91m||[0m               body: `@${{ inputs.requester }} roger [that](${{ inputs.comment_url }})! I've dispatched a [workflow](${{ needs.setup.[1m[94m...[0m
+[1m[94m75 |[0m [1m[91m||[0m             });
+   [1m[94m|[0m [1m[91m||[0m               [1m[91m^[0m
+   [1m[94m|[0m [1m[91m||_______________|[0m
+   [1m[94m|[0m  [1m[91m|_______________this step[0m
+   [1m[94m|[0m                  [1m[91minputs.comment_url may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_amazon-eks-ami__.github__workflows__ci-manual.yaml:67:9
+   [1m[94m|[0m
+[1m[94m67 |[0m          - uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # 8.0.0
+   [1m[94m|[0m  [1m[94m__________-[0m
+[1m[94m68 |[0m [1m[94m|[0m          with:
+[1m[94m69 |[0m [1m[94m|[0m            script: |
+   [1m[94m|[0m [1m[94m|[0m [1m[94m___________-[0m
+[1m[94m70 |[0m [1m[94m||[0m             github.rest.issues.createComment({
+[1m[94m...[0m  [1m[94m||[0m
+[1m[94m74 |[0m [1m[94m||[0m               body: `@${{ inputs.requester }} roger [that](${{ inputs.comment_url }})! I've dispatched a [workflow](${{ needs.setup.[1m[94m...[0m
+[1m[94m75 |[0m [1m[94m||[0m             });
+   [1m[94m|[0m [1m[94m||[0m               [1m[94m-[0m
+   [1m[94m|[0m [1m[94m||_______________|[0m
+   [1m[94m|[0m  [1m[94m|_______________info: this step[0m
+   [1m[94m|[0m                  [1m[94minfo: needs.setup.outputs.workflow_run_url may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_amazon-eks-ami__.github__workflows__ci-manual.yaml:99:9
+    [1m[94m|[0m
+[1m[94m 99 |[0m          - uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # 8.0.0
+    [1m[94m|[0m  [1m[94m__________-[0m
+[1m[94m100 |[0m [1m[94m|[0m          with:
+[1m[94m101 |[0m [1m[94m|[0m            script: |
+    [1m[94m|[0m [1m[94m|[0m [1m[94m___________-[0m
+[1m[94m102 |[0m [1m[94m||[0m             const { data } = await github.rest.actions.listJobsForWorkflowRun({
+[1m[94m...[0m   [1m[94m||[0m
+[1m[94m165 |[0m [1m[94m||[0m               body: commentBody
+[1m[94m166 |[0m [1m[94m||[0m             });
+    [1m[94m|[0m [1m[94m||[0m                [1m[94m-[0m
+    [1m[94m|[0m [1m[94m||________________|[0m
+    [1m[94m|[0m  [1m[94m|________________info: this step[0m
+    [1m[94m|[0m                   [1m[94minfo: needs.ci.outputs.ci_step_name_prefix may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_amazon-eks-ami__.github__workflows__ci-manual.yaml:99:9
+    [1m[94m|[0m
+[1m[94m 99 |[0m          - uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # 8.0.0
+    [1m[94m|[0m  [1m[91m__________^[0m
+[1m[94m100 |[0m [1m[91m|[0m          with:
+[1m[94m101 |[0m [1m[91m|[0m            script: |
+    [1m[94m|[0m [1m[91m|[0m [1m[91m___________^[0m
+[1m[94m102 |[0m [1m[91m||[0m             const { data } = await github.rest.actions.listJobsForWorkflowRun({
+[1m[94m...[0m   [1m[91m||[0m
+[1m[94m165 |[0m [1m[91m||[0m               body: commentBody
+[1m[94m166 |[0m [1m[91m||[0m             });
+    [1m[94m|[0m [1m[91m||[0m                [1m[91m^[0m
+    [1m[94m|[0m [1m[91m||________________|[0m
+    [1m[94m|[0m  [1m[91m|________________this step[0m
+    [1m[94m|[0m                   [1m[91minputs.requester may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_amazon-eks-ami__.github__workflows__ci-manual.yaml:99:9
+    [1m[94m|[0m
+[1m[94m 99 |[0m          - uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # 8.0.0
+    [1m[94m|[0m  [1m[94m__________-[0m
+[1m[94m100 |[0m [1m[94m|[0m          with:
+[1m[94m101 |[0m [1m[94m|[0m            script: |
+    [1m[94m|[0m [1m[94m|[0m [1m[94m___________-[0m
+[1m[94m102 |[0m [1m[94m||[0m             const { data } = await github.rest.actions.listJobsForWorkflowRun({
+[1m[94m...[0m   [1m[94m||[0m
+[1m[94m165 |[0m [1m[94m||[0m               body: commentBody
+[1m[94m166 |[0m [1m[94m||[0m             });
+    [1m[94m|[0m [1m[94m||[0m                [1m[94m-[0m
+    [1m[94m|[0m [1m[94m||________________|[0m
+    [1m[94m|[0m  [1m[94m|________________info: this step[0m
+    [1m[94m|[0m                   [1m[94minfo: needs.setup.outputs.workflow_run_url may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_amazon-eks-ami__.github__workflows__ci-manual.yaml:99:9
+    [1m[94m|[0m
+[1m[94m 99 |[0m          - uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # 8.0.0
+    [1m[94m|[0m  [1m[91m__________^[0m
+[1m[94m100 |[0m [1m[91m|[0m          with:
+[1m[94m101 |[0m [1m[91m|[0m            script: |
+    [1m[94m|[0m [1m[91m|[0m [1m[91m___________^[0m
+[1m[94m102 |[0m [1m[91m||[0m             const { data } = await github.rest.actions.listJobsForWorkflowRun({
+[1m[94m...[0m   [1m[91m||[0m
+[1m[94m165 |[0m [1m[91m||[0m               body: commentBody
+[1m[94m166 |[0m [1m[91m||[0m             });
+    [1m[94m|[0m [1m[91m||[0m                [1m[91m^[0m
+    [1m[94m|[0m [1m[91m||________________|[0m
+    [1m[94m|[0m  [1m[91m|________________this step[0m
+    [1m[94m|[0m                   [1m[91minputs.comment_url may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/awslabs_amazon-eks-ami__.github__workflows__ci-manual.yaml:99:9
+    [1m[94m|[0m
+[1m[94m 99 |[0m          - uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # 8.0.0
+    [1m[94m|[0m  [1m[91m__________^[0m
+[1m[94m100 |[0m [1m[91m|[0m          with:
+[1m[94m101 |[0m [1m[91m|[0m            script: |
+    [1m[94m|[0m [1m[91m|[0m [1m[91m___________^[0m
+[1m[94m102 |[0m [1m[91m||[0m             const { data } = await github.rest.actions.listJobsForWorkflowRun({
+[1m[94m...[0m   [1m[91m||[0m
+[1m[94m165 |[0m [1m[91m||[0m               body: commentBody
+[1m[94m166 |[0m [1m[91m||[0m             });
+    [1m[94m|[0m [1m[91m||[0m                [1m[91m^[0m
+    [1m[94m|[0m [1m[91m||________________|[0m
+    [1m[94m|[0m  [1m[91m|________________this step[0m
+    [1m[94m|[0m                   [1m[91minputs.pr_number may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#secrets-inherit\secrets-inherit]8;;\][0m: [1msecrets unconditionally inherited by called workflow[0m
+  [1m[94m-->[0m ../.github/workflows/awslabs_amazon-eks-ami__.github__workflows__ci-manual.yaml:77:5
+   [1m[94m|[0m
+[1m[94m77 |[0m     uses: ./.github/workflows/ci.yaml
+   [1m[94m|[0m     [1m[33m---------------------------------[0m [1m[33mthis reusable workflow[0m
+[1m[94m78 |[0m     needs:
+[1m[94m79 |[0m       - setup
+[1m[94m80 |[0m       - notify-start
+[1m[94m81 |[0m     secrets: inherit
+   [1m[94m|[0m     [1m[33m----------------[0m [1m[33minherits all parent secrets[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m26[39m findings ([1m[93m12[39m suppressed[0m): 0 unknown, [35m3[39m informational, [36m0[39m low, [33m1[39m medium, [31m10[39m high

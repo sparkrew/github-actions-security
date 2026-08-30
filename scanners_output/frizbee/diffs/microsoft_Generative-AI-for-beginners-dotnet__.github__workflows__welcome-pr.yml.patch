@@ -1,0 +1,22 @@
+diff --git a/.github/workflows/microsoft_Generative-AI-for-beginners-dotnet__.github__workflows__welcome-pr.yml b/.github/workflows/microsoft_Generative-AI-for-beginners-dotnet__.github__workflows__welcome-pr.yml
+index 0f7e2ff..1763e7d 100644
+--- a/.github/workflows/microsoft_Generative-AI-for-beginners-dotnet__.github__workflows__welcome-pr.yml
++++ b/.github/workflows/microsoft_Generative-AI-for-beginners-dotnet__.github__workflows__welcome-pr.yml
+@@ -11,7 +11,7 @@ jobs:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Add Label and thanks comment to Pull request
+-        uses: actions/github-script@v6
++        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6
+         with:
+           script: |
+             const issueAuthor = context.payload.sender.login
+@@ -28,7 +28,7 @@ jobs:
+               body: `👋 Thanks for contributing @${ issueAuthor }! We will review the pull request and get back to you soon.`
+             })
+       - name: Auto-assign issue
+-        uses: pozil/auto-assign-issue@v1
++        uses: pozil/auto-assign-issue@d11e715efc663fe323c3d8d4d3cbbfdddd539baf # v1
+         with:
+           repo-token:  ${{ secrets.GITHUB_TOKEN }}
+           assignees: elbruno

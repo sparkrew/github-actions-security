@@ -1,0 +1,17 @@
+diff --git a/.github/workflows/microsoft_WSL__.github__workflows__new_issue.yml b/.github/workflows/microsoft_WSL__.github__workflows__new_issue.yml
+index 4e81edf..b5aa035 100644
+--- a/.github/workflows/microsoft_WSL__.github__workflows__new_issue.yml
++++ b/.github/workflows/microsoft_WSL__.github__workflows__new_issue.yml
+@@ -13,9 +13,9 @@ jobs:
+       issues: write
+     steps: 
+     - name: Checkout repo
+-      uses: actions/checkout@v4
++      uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+     
+     - uses: ./.github/actions/triage
+       with: 
+         issue: "${{ github.event.issue.number }}"
+-        token: ${{ secrets.GITHUB_TOKEN }}
+\ No newline at end of file
++        token: ${{ secrets.GITHUB_TOKEN }}

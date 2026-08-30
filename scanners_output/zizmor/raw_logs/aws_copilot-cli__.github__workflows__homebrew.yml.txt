@@ -1,0 +1,128 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/aws_copilot-cli__.github__workflows__homebrew.yml:78:9
+   [1m[94m|[0m
+[1m[94m78 |[0m         - name: Checkout bottle repo
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m79 |[0m [1m[33m|[0m         uses: actions/checkout@v2
+[1m[94m80 |[0m [1m[33m|[0m         with:
+[1m[94m81 |[0m [1m[33m|[0m           repository: 'aws/homebrew-tap'
+[1m[94m82 |[0m [1m[33m|[0m           path: 'homebrew-tap'
+   [1m[94m|[0m [1m[33m|______________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+   [1m[94m-->[0m ../.github/workflows/aws_copilot-cli__.github__workflows__homebrew.yml:1:1
+    [1m[94m|[0m
+[1m[94m  1 |[0m [1m[33m/[0m name: homebrew
+[1m[94m  2 |[0m [1m[33m|[0m on:
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m144 |[0m [1m[33m|[0m           branch: "upgrade-copilot-${{ steps.vars.outputs.version }}"
+[1m[94m145 |[0m [1m[33m|[0m           token: ${{ secrets.ECS_CICD_BOT }}
+    [1m[94m|[0m [1m[33m|_____________________________________________-[0m [1m[33mdefault permissions used due to no permissions: block[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/aws_copilot-cli__.github__workflows__homebrew.yml:7:3
+   [1m[94m|[0m
+[1m[94m 7 |[0m [1m[33m/[0m   download-and-archive:
+[1m[94m 8 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m50 |[0m [1m[33m|[0m           path: '*.tar.gz'
+[1m[94m51 |[0m [1m[33m|[0m           retention-days: 7
+   [1m[94m|[0m [1m[33m|[0m                           [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|___________________________|[0m
+   [1m[94m|[0m                             [1m[33mthis job[0m
+   [1m[94m|[0m                             [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#excessive-permissions\excessive-permissions]8;;\][0m: [1moverly broad permissions[0m
+  [1m[94m-->[0m ../.github/workflows/aws_copilot-cli__.github__workflows__homebrew.yml:53:3
+   [1m[94m|[0m
+[1m[94m53 |[0m [1m[33m/[0m   update-release:
+[1m[94m54 |[0m [1m[33m|[0m     runs-on: ubuntu-latest
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m64 |[0m [1m[33m|[0m         with:
+[1m[94m65 |[0m [1m[33m|[0m           files: '*.tar.gz'
+   [1m[94m|[0m [1m[33m|[0m                           [1m[33m-[0m
+   [1m[94m|[0m [1m[33m|___________________________|[0m
+   [1m[94m|[0m                             [1m[33mthis job[0m
+   [1m[94m|[0m                             [1m[33mdefault permissions used due to no permissions: block[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_copilot-cli__.github__workflows__homebrew.yml:95:9
+    [1m[94m|[0m
+[1m[94m 95 |[0m   [1m[94m...[0m - name: Update sierra
+    [1m[94m|[0m         [1m[94m-------------------[0m [1m[94minfo: this step[0m
+[1m[94m 96 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m 97 |[0m [1m[94m|[0m [1m[94m...[0m     version="${GITHUB_REF##*/}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m100 |[0m [1m[94m|[0m [1m[94m...[0m     tmp=$(mktemp)
+[1m[94m101 |[0m [1m[94m|[0m [1m[94m...[0m     jq --arg sha "$sha" '.bottle.sha256.sierra = "'$sha'"' homebrew-tap/bottle-configs/copilot-cli.json > "$tmp" && mv "$tmp" homebrew-tap/bottle-configs/copilot-cli.json
+    [1m[94m|[0m [1m[94m|______________________________________________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.download.outputs.download-path may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_copilot-cli__.github__workflows__homebrew.yml:102:9
+    [1m[94m|[0m
+[1m[94m102 |[0m   [1m[94m...[0m - name: Update arm64_big_sur
+    [1m[94m|[0m         [1m[94m--------------------------[0m [1m[94minfo: this step[0m
+[1m[94m103 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m104 |[0m [1m[94m|[0m [1m[94m...[0m     version="${GITHUB_REF##*/}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m107 |[0m [1m[94m|[0m [1m[94m...[0m     tmp=$(mktemp)
+[1m[94m108 |[0m [1m[94m|[0m [1m[94m...[0m     jq --arg sha "$sha" '.bottle.sha256.arm64_big_sur = "'$sha'"' homebrew-tap/bottle-configs/copilot-cli.json > "$tmp" && mv "$tmp" homebrew-tap/bottle-configs/copilot-cli.json
+    [1m[94m|[0m [1m[94m|_____________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.download.outputs.download-path may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_copilot-cli__.github__workflows__homebrew.yml:109:9
+    [1m[94m|[0m
+[1m[94m109 |[0m   [1m[94m...[0m - name: Update linux
+    [1m[94m|[0m         [1m[94m------------------[0m [1m[94minfo: this step[0m
+[1m[94m110 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m111 |[0m [1m[94m|[0m [1m[94m...[0m     version="${GITHUB_REF##*/}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m114 |[0m [1m[94m|[0m [1m[94m...[0m     tmp=$(mktemp)
+[1m[94m115 |[0m [1m[94m|[0m [1m[94m...[0m     jq --arg sha "$sha" '.bottle.sha256.linux = "'$sha'"' homebrew-tap/bottle-configs/copilot-cli.json > "$tmp" && mv "$tmp" homebrew-tap/bottle-configs/copilot-cli.json
+    [1m[94m|[0m [1m[94m|_____________________________________________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.download.outputs.download-path may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_copilot-cli__.github__workflows__homebrew.yml:116:9
+    [1m[94m|[0m
+[1m[94m116 |[0m   [1m[94m...[0m - name: Update linux_arm
+    [1m[94m|[0m         [1m[94m----------------------[0m [1m[94minfo: this step[0m
+[1m[94m117 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m118 |[0m [1m[94m|[0m [1m[94m...[0m     version="${GITHUB_REF##*/}"
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m121 |[0m [1m[94m|[0m [1m[94m...[0m     tmp=$(mktemp)
+[1m[94m122 |[0m [1m[94m|[0m [1m[94m...[0m     jq --arg sha "$sha" '.bottle.sha256.linux_arm = "'$sha'"' homebrew-tap/bottle-configs/copilot-cli.json > "$tmp" && mv "$tmp" homebrew-tap/bottle-configs/copilot-cli.json
+    [1m[94m|[0m [1m[94m|_________________________________________________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: steps.download.outputs.download-path may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+  [1m[94m-->[0m ../.github/workflows/aws_copilot-cli__.github__workflows__homebrew.yml:62:9
+   [1m[94m|[0m
+[1m[94m62 |[0m         uses: softprops/action-gh-release@v1
+   [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[1m[91merror[]8;;https://docs.zizmor.sh/audits/#unpinned-uses\unpinned-uses]8;;\][0m: [1munpinned action reference[0m
+   [1m[94m-->[0m ../.github/workflows/aws_copilot-cli__.github__workflows__homebrew.yml:137:9
+    [1m[94m|[0m
+[1m[94m137 |[0m         uses: peter-evans/create-pull-request@v3
+    [1m[94m|[0m         [1m[91m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[91maction is not pinned to a hash (required by blanket policy)[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → High
+
+[32m14[39m findings ([1m[93m4[39m suppressed[0m): 0 unknown, [35m4[39m informational, [36m0[39m low, [33m4[39m medium, [31m2[39m high

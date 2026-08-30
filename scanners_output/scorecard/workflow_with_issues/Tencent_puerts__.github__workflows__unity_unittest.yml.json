@@ -1,0 +1,105 @@
+{
+  "workflow": "Tencent_puerts__.github__workflows__unity_unittest.yml",
+  "tool": "scorecard",
+  "summary": {
+    "total_findings": 3,
+    "by_rule": {
+      "Pinned-Dependencies": 1,
+      "SAST": 1,
+      "Token-Permissions": 1
+    }
+  },
+  "findings": [
+    {
+      "rule": "Pinned-Dependencies",
+      "score": 0,
+      "reason": "dependency not pinned by hash detected -- score normalized to 0",
+      "lines": [
+        124,
+        125,
+        132,
+        155,
+        161,
+        170,
+        207,
+        216,
+        217,
+        226,
+        231,
+        233,
+        245,
+        359,
+        362,
+        365,
+        389,
+        392,
+        396,
+        416,
+        419,
+        422,
+        433
+      ],
+      "raw_details": [
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:124",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:125",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:155",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:161",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:207",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:216",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:217",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:226",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:231",
+        "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:233",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:245",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:359",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:362",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:365",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:389",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:392",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:416",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:419",
+        "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:422",
+        "Warn: npmCommand not pinned by hash: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:433",
+        "Warn: npmCommand not pinned by hash: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:132",
+        "Warn: npmCommand not pinned by hash: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:170",
+        "Warn: npmCommand not pinned by hash: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:396",
+        "Info:   0 out of  15 GitHub-owned GitHubAction dependencies pinned",
+        "Info:   0 out of   4 third-party GitHubAction dependencies pinned",
+        "Info:   0 out of   4 npmCommand dependencies pinned"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+        "short": "Determines if the project has declared and pinned the dependencies of its build process."
+      }
+    },
+    {
+      "rule": "SAST",
+      "score": 0,
+      "reason": "no SAST tool detected",
+      "lines": [],
+      "raw_details": [
+        "Warn: no pull requests merged into dev branch"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+        "short": "Determines if the project uses static code analysis."
+      }
+    },
+    {
+      "rule": "Token-Permissions",
+      "score": 0,
+      "reason": "detected GitHub workflow tokens with excessive permissions",
+      "lines": [
+        1
+      ],
+      "raw_details": [
+        "Warn: no topLevel permission defined: .github/workflows/Tencent_puerts__.github__workflows__unity_unittest.yml:1",
+        "Info: no jobLevel write permissions found"
+      ],
+      "documentation": {
+        "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+        "short": "Determines if the project's workflows follow the principle of least privilege."
+      }
+    }
+  ]
+}

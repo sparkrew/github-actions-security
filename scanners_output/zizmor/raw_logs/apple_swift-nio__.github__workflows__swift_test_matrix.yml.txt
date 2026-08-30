@@ -1,0 +1,236 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__swift_test_matrix.yml:52:9
+   [1m[94m|[0m
+[1m[94m52 |[0m       - name: Pull Docker image
+   [1m[94m|[0m         [1m[33m-----------------------[0m [1m[33mthis step[0m
+[1m[94m53 |[0m         run: docker pull ${{ matrix.config.image }}
+   [1m[94m|[0m         [1m[33m-------------------------------------------[0m [1m[33mmatrix.config.image may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__swift_test_matrix.yml:54:9
+   [1m[94m|[0m
+[1m[94m54 |[0m         - name: Run matrix job
+   [1m[94m|[0m           [1m[33m--------------------[0m [1m[33mthis step[0m
+[1m[94m55 |[0m           if: ${{ matrix.config.platform != 'Windows' }}
+[1m[94m56 |[0m [1m[33m/[0m         run: |
+[1m[94m57 |[0m [1m[33m|[0m           if [[ -n '${{ matrix.config.setup_command }}' ]]; then
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m85 |[0m [1m[33m|[0m           echo "Executing Docker command: docker ${docker_args[*]}"
+[1m[94m86 |[0m [1m[33m|[0m           docker "${docker_args[@]}"
+   [1m[94m|[0m [1m[33m|____________________________________-[0m [1m[33mmatrix.config.setup_command may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__swift_test_matrix.yml:54:9
+   [1m[94m|[0m
+[1m[94m54 |[0m         - name: Run matrix job
+   [1m[94m|[0m           [1m[33m--------------------[0m [1m[33mthis step[0m
+[1m[94m55 |[0m           if: ${{ matrix.config.platform != 'Windows' }}
+[1m[94m56 |[0m [1m[33m/[0m         run: |
+[1m[94m57 |[0m [1m[33m|[0m           if [[ -n '${{ matrix.config.setup_command }}' ]]; then
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m85 |[0m [1m[33m|[0m           echo "Executing Docker command: docker ${docker_args[*]}"
+[1m[94m86 |[0m [1m[33m|[0m           docker "${docker_args[@]}"
+   [1m[94m|[0m [1m[33m|____________________________________-[0m [1m[33mmatrix.config.setup_command may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__swift_test_matrix.yml:54:9
+   [1m[94m|[0m
+[1m[94m54 |[0m         - name: Run matrix job
+   [1m[94m|[0m           [1m[33m--------------------[0m [1m[33mthis step[0m
+[1m[94m55 |[0m           if: ${{ matrix.config.platform != 'Windows' }}
+[1m[94m56 |[0m [1m[33m/[0m         run: |
+[1m[94m57 |[0m [1m[33m|[0m           if [[ -n '${{ matrix.config.setup_command }}' ]]; then
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m85 |[0m [1m[33m|[0m           echo "Executing Docker command: docker ${docker_args[*]}"
+[1m[94m86 |[0m [1m[33m|[0m           docker "${docker_args[@]}"
+   [1m[94m|[0m [1m[33m|____________________________________-[0m [1m[33mmatrix.config.swift_version may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__swift_test_matrix.yml:54:9
+   [1m[94m|[0m
+[1m[94m54 |[0m         - name: Run matrix job
+   [1m[94m|[0m           [1m[33m--------------------[0m [1m[33mthis step[0m
+[1m[94m55 |[0m           if: ${{ matrix.config.platform != 'Windows' }}
+[1m[94m56 |[0m [1m[33m/[0m         run: |
+[1m[94m57 |[0m [1m[33m|[0m           if [[ -n '${{ matrix.config.setup_command }}' ]]; then
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m85 |[0m [1m[33m|[0m           echo "Executing Docker command: docker ${docker_args[*]}"
+[1m[94m86 |[0m [1m[33m|[0m           docker "${docker_args[@]}"
+   [1m[94m|[0m [1m[33m|____________________________________-[0m [1m[33mmatrix.config.env may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__swift_test_matrix.yml:54:9
+   [1m[94m|[0m
+[1m[94m54 |[0m         - name: Run matrix job
+   [1m[94m|[0m           [1m[33m--------------------[0m [1m[33mthis step[0m
+[1m[94m55 |[0m           if: ${{ matrix.config.platform != 'Windows' }}
+[1m[94m56 |[0m [1m[33m/[0m         run: |
+[1m[94m57 |[0m [1m[33m|[0m           if [[ -n '${{ matrix.config.setup_command }}' ]]; then
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m85 |[0m [1m[33m|[0m           echo "Executing Docker command: docker ${docker_args[*]}"
+[1m[94m86 |[0m [1m[33m|[0m           docker "${docker_args[@]}"
+   [1m[94m|[0m [1m[33m|____________________________________-[0m [1m[33mmatrix.config.env may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__swift_test_matrix.yml:54:9
+   [1m[94m|[0m
+[1m[94m54 |[0m         - name: Run matrix job
+   [1m[94m|[0m           [1m[33m--------------------[0m [1m[33mthis step[0m
+[1m[94m55 |[0m           if: ${{ matrix.config.platform != 'Windows' }}
+[1m[94m56 |[0m [1m[33m/[0m         run: |
+[1m[94m57 |[0m [1m[33m|[0m           if [[ -n '${{ matrix.config.setup_command }}' ]]; then
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m85 |[0m [1m[33m|[0m           echo "Executing Docker command: docker ${docker_args[*]}"
+[1m[94m86 |[0m [1m[33m|[0m           docker "${docker_args[@]}"
+   [1m[94m|[0m [1m[33m|____________________________________-[0m [1m[33mmatrix.config.image may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__swift_test_matrix.yml:54:9
+   [1m[94m|[0m
+[1m[94m54 |[0m         - name: Run matrix job
+   [1m[94m|[0m           [1m[33m--------------------[0m [1m[33mthis step[0m
+[1m[94m55 |[0m           if: ${{ matrix.config.platform != 'Windows' }}
+[1m[94m56 |[0m [1m[33m/[0m         run: |
+[1m[94m57 |[0m [1m[33m|[0m           if [[ -n '${{ matrix.config.setup_command }}' ]]; then
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m85 |[0m [1m[33m|[0m           echo "Executing Docker command: docker ${docker_args[*]}"
+[1m[94m86 |[0m [1m[33m|[0m           docker "${docker_args[@]}"
+   [1m[94m|[0m [1m[33m|____________________________________-[0m [1m[33mmatrix.config.command may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+  [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__swift_test_matrix.yml:54:9
+   [1m[94m|[0m
+[1m[94m54 |[0m         - name: Run matrix job
+   [1m[94m|[0m           [1m[33m--------------------[0m [1m[33mthis step[0m
+[1m[94m55 |[0m           if: ${{ matrix.config.platform != 'Windows' }}
+[1m[94m56 |[0m [1m[33m/[0m         run: |
+[1m[94m57 |[0m [1m[33m|[0m           if [[ -n '${{ matrix.config.setup_command }}' ]]; then
+[1m[94m...[0m  [1m[33m|[0m
+[1m[94m85 |[0m [1m[33m|[0m           echo "Executing Docker command: docker ${docker_args[*]}"
+[1m[94m86 |[0m [1m[33m|[0m           docker "${docker_args[@]}"
+   [1m[94m|[0m [1m[33m|____________________________________-[0m [1m[33mmatrix.config.command_arguments may expand into attacker-controllable code[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__swift_test_matrix.yml:87:9
+    [1m[94m|[0m
+[1m[94m 87 |[0m         - name: Run matrix job (Windows)
+    [1m[94m|[0m           [1m[33m------------------------------[0m [1m[33mthis step[0m
+[1m[94m 88 |[0m           if: ${{ matrix.config.platform == 'Windows' }}
+[1m[94m 89 |[0m [1m[33m/[0m         run: |
+[1m[94m 90 |[0m [1m[33m|[0m           if (-not [string]::IsNullOrEmpty("${{ matrix.config.setup_command }}")) {
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m118 |[0m [1m[33m|[0m           Write-Host "Executing Docker command: docker $($docker_args -join ' ')"
+[1m[94m119 |[0m [1m[33m|[0m           & docker @docker_args
+    [1m[94m|[0m [1m[33m|_______________________________-[0m [1m[33mmatrix.config.setup_command may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__swift_test_matrix.yml:87:9
+    [1m[94m|[0m
+[1m[94m 87 |[0m         - name: Run matrix job (Windows)
+    [1m[94m|[0m           [1m[33m------------------------------[0m [1m[33mthis step[0m
+[1m[94m 88 |[0m           if: ${{ matrix.config.platform == 'Windows' }}
+[1m[94m 89 |[0m [1m[33m/[0m         run: |
+[1m[94m 90 |[0m [1m[33m|[0m           if (-not [string]::IsNullOrEmpty("${{ matrix.config.setup_command }}")) {
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m118 |[0m [1m[33m|[0m           Write-Host "Executing Docker command: docker $($docker_args -join ' ')"
+[1m[94m119 |[0m [1m[33m|[0m           & docker @docker_args
+    [1m[94m|[0m [1m[33m|_______________________________-[0m [1m[33mmatrix.config.setup_command may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__swift_test_matrix.yml:87:9
+    [1m[94m|[0m
+[1m[94m 87 |[0m         - name: Run matrix job (Windows)
+    [1m[94m|[0m           [1m[33m------------------------------[0m [1m[33mthis step[0m
+[1m[94m 88 |[0m           if: ${{ matrix.config.platform == 'Windows' }}
+[1m[94m 89 |[0m [1m[33m/[0m         run: |
+[1m[94m 90 |[0m [1m[33m|[0m           if (-not [string]::IsNullOrEmpty("${{ matrix.config.setup_command }}")) {
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m118 |[0m [1m[33m|[0m           Write-Host "Executing Docker command: docker $($docker_args -join ' ')"
+[1m[94m119 |[0m [1m[33m|[0m           & docker @docker_args
+    [1m[94m|[0m [1m[33m|_______________________________-[0m [1m[33mmatrix.config.swift_version may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__swift_test_matrix.yml:87:9
+    [1m[94m|[0m
+[1m[94m 87 |[0m         - name: Run matrix job (Windows)
+    [1m[94m|[0m           [1m[33m------------------------------[0m [1m[33mthis step[0m
+[1m[94m 88 |[0m           if: ${{ matrix.config.platform == 'Windows' }}
+[1m[94m 89 |[0m [1m[33m/[0m         run: |
+[1m[94m 90 |[0m [1m[33m|[0m           if (-not [string]::IsNullOrEmpty("${{ matrix.config.setup_command }}")) {
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m118 |[0m [1m[33m|[0m           Write-Host "Executing Docker command: docker $($docker_args -join ' ')"
+[1m[94m119 |[0m [1m[33m|[0m           & docker @docker_args
+    [1m[94m|[0m [1m[33m|_______________________________-[0m [1m[33mmatrix.config.env may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__swift_test_matrix.yml:87:9
+    [1m[94m|[0m
+[1m[94m 87 |[0m         - name: Run matrix job (Windows)
+    [1m[94m|[0m           [1m[33m------------------------------[0m [1m[33mthis step[0m
+[1m[94m 88 |[0m           if: ${{ matrix.config.platform == 'Windows' }}
+[1m[94m 89 |[0m [1m[33m/[0m         run: |
+[1m[94m 90 |[0m [1m[33m|[0m           if (-not [string]::IsNullOrEmpty("${{ matrix.config.setup_command }}")) {
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m118 |[0m [1m[33m|[0m           Write-Host "Executing Docker command: docker $($docker_args -join ' ')"
+[1m[94m119 |[0m [1m[33m|[0m           & docker @docker_args
+    [1m[94m|[0m [1m[33m|_______________________________-[0m [1m[33mmatrix.config.image may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__swift_test_matrix.yml:87:9
+    [1m[94m|[0m
+[1m[94m 87 |[0m         - name: Run matrix job (Windows)
+    [1m[94m|[0m           [1m[33m------------------------------[0m [1m[33mthis step[0m
+[1m[94m 88 |[0m           if: ${{ matrix.config.platform == 'Windows' }}
+[1m[94m 89 |[0m [1m[33m/[0m         run: |
+[1m[94m 90 |[0m [1m[33m|[0m           if (-not [string]::IsNullOrEmpty("${{ matrix.config.setup_command }}")) {
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m118 |[0m [1m[33m|[0m           Write-Host "Executing Docker command: docker $($docker_args -join ' ')"
+[1m[94m119 |[0m [1m[33m|[0m           & docker @docker_args
+    [1m[94m|[0m [1m[33m|_______________________________-[0m [1m[33mmatrix.config.command may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/apple_swift-nio__.github__workflows__swift_test_matrix.yml:87:9
+    [1m[94m|[0m
+[1m[94m 87 |[0m         - name: Run matrix job (Windows)
+    [1m[94m|[0m           [1m[33m------------------------------[0m [1m[33mthis step[0m
+[1m[94m 88 |[0m           if: ${{ matrix.config.platform == 'Windows' }}
+[1m[94m 89 |[0m [1m[33m/[0m         run: |
+[1m[94m 90 |[0m [1m[33m|[0m           if (-not [string]::IsNullOrEmpty("${{ matrix.config.setup_command }}")) {
+[1m[94m...[0m   [1m[33m|[0m
+[1m[94m118 |[0m [1m[33m|[0m           Write-Host "Executing Docker command: docker $($docker_args -join ' ')"
+[1m[94m119 |[0m [1m[33m|[0m           & docker @docker_args
+    [1m[94m|[0m [1m[33m|_______________________________-[0m [1m[33mmatrix.config.command_arguments may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Medium
+
+[32m36[39m findings ([1m[93m20[39m suppressed[0m): 0 unknown, [35m0[39m informational, [36m0[39m low, [33m16[39m medium, [31m0[39m high

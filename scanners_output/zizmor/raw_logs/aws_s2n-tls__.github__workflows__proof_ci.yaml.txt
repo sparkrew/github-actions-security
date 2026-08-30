@@ -1,0 +1,71 @@
+[1m[33mwarning[]8;;https://docs.zizmor.sh/audits/#artipacked\artipacked]8;;\][0m: [1mcredential persistence through GitHub Actions artifacts[0m
+  [1m[94m-->[0m ../.github/workflows/aws_s2n-tls__.github__workflows__proof_ci.yaml:36:9
+   [1m[94m|[0m
+[1m[94m36 |[0m         - name: Check out repository and submodules recursively
+   [1m[94m|[0m  [1m[33m_________-[0m
+[1m[94m37 |[0m [1m[33m|[0m         uses: actions/checkout@v6
+[1m[94m38 |[0m [1m[33m|[0m         with:
+[1m[94m39 |[0m [1m[33m|[0m           submodules: 'recursive'
+   [1m[94m|[0m [1m[33m|_________________________________-[0m [1m[33mdoes not set persist-credentials: false[0m
+   [1m[94m|[0m
+   [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_s2n-tls__.github__workflows__proof_ci.yaml:210:9
+    [1m[94m|[0m
+[1m[94m210 |[0m         - name: Check repository visibility
+    [1m[94m|[0m           [1m[94m---------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m211 |[0m           shell: bash
+[1m[94m212 |[0m [1m[94m/[0m         run: |
+[1m[94m213 |[0m [1m[94m|[0m           VIZ="${{ fromJson(toJson(github.event.repository)).visibility }}";
+[1m[94m214 |[0m [1m[94m|[0m           echo "REPO_VISIBILITY=${VIZ}" | tee -a "${GITHUB_ENV}";
+    [1m[94m|[0m [1m[94m|_________________________________________________________________-[0m [1m[94minfo: fromJson(toJson(github.event.repository)).visibility may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_s2n-tls__.github__workflows__proof_ci.yaml:215:9
+    [1m[94m|[0m
+[1m[94m215 |[0m   [1m[94m...[0m - name: Set name for zip artifact with CBMC proof results
+    [1m[94m|[0m         [1m[94m-------------------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m216 |[0m   [1m[94m...[0m   id: artifact
+[1m[94m217 |[0m   [1m[94m...[0m   if: ${{ env.REPO_VISIBILITY == 'public' }}
+[1m[94m218 |[0m [1m[94m/[0m [1m[94m...[0m   run: |
+[1m[94m219 |[0m [1m[94m|[0m [1m[94m...[0m     echo "name=cbmc_proof_results_${{ fromJson(toJson(github.event.repository)).name }}_$(date +%Y_%m_%d_%H_%M_%S)" >> $GITHUB_OUTPUT
+    [1m[94m|[0m [1m[94m|_________________________________________________________________________________________________________________________________________-[0m [1m[94minfo: fromJson(toJson(github.event.repository)).name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_s2n-tls__.github__workflows__proof_ci.yaml:220:9
+    [1m[94m|[0m
+[1m[94m220 |[0m         - name: Create zip artifact with CBMC proof results
+    [1m[94m|[0m           [1m[94m-------------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m221 |[0m           if: ${{ env.REPO_VISIBILITY == 'public' }}
+[1m[94m222 |[0m           shell: bash
+[1m[94m223 |[0m [1m[94m/[0m         run: |
+[1m[94m224 |[0m [1m[94m|[0m           FINAL_REPORT_DIR=$PROOFS_DIR/output/latest/html
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m227 |[0m [1m[94m|[0m             && popd \
+[1m[94m228 |[0m [1m[94m|[0m             && mv $FINAL_REPORT_DIR/${{ steps.artifact.outputs.name }}.zip .
+    [1m[94m|[0m [1m[94m|____________________________________________________________________________-[0m [1m[94minfo: steps.artifact.outputs.name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[1m[94minfo[]8;;https://docs.zizmor.sh/audits/#template-injection\template-injection]8;;\][0m: [1mcode injection via template expansion[0m
+   [1m[94m-->[0m ../.github/workflows/aws_s2n-tls__.github__workflows__proof_ci.yaml:220:9
+    [1m[94m|[0m
+[1m[94m220 |[0m         - name: Create zip artifact with CBMC proof results
+    [1m[94m|[0m           [1m[94m-------------------------------------------------[0m [1m[94minfo: this step[0m
+[1m[94m221 |[0m           if: ${{ env.REPO_VISIBILITY == 'public' }}
+[1m[94m222 |[0m           shell: bash
+[1m[94m223 |[0m [1m[94m/[0m         run: |
+[1m[94m224 |[0m [1m[94m|[0m           FINAL_REPORT_DIR=$PROOFS_DIR/output/latest/html
+[1m[94m...[0m   [1m[94m|[0m
+[1m[94m227 |[0m [1m[94m|[0m             && popd \
+[1m[94m228 |[0m [1m[94m|[0m             && mv $FINAL_REPORT_DIR/${{ steps.artifact.outputs.name }}.zip .
+    [1m[94m|[0m [1m[94m|____________________________________________________________________________-[0m [1m[94minfo: steps.artifact.outputs.name may expand into attacker-controllable code[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1m[92mnote[0m: audit confidence → Low
+
+[32m38[39m findings ([1m[93m33[39m suppressed[0m): 0 unknown, [35m4[39m informational, [36m0[39m low, [33m1[39m medium, [31m0[39m high
