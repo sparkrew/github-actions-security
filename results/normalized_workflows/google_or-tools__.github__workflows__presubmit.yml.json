@@ -1,0 +1,424 @@
+{
+  "workflow": "google_or-tools__.github__workflows__presubmit.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "google_or-tools__.github__workflows__presubmit.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 9,
+        "by_rule": {
+          "unpinned-github-actions": 9
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v6",
+          "pinned": "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+          "line": 23,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "jidicula/clang-format-action@v4.16.0",
+          "pinned": "jidicula/clang-format-action@6cd220de46c89139a0365edae93eee8eb30ca8fe",
+          "line": 24,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v6",
+          "pinned": "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+          "line": 35,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-java@v5",
+          "pinned": "actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654",
+          "line": 36,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-python@v6",
+          "pinned": "actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405",
+          "line": 40,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "bazel-contrib/setup-bazel@0.18.0",
+          "pinned": "bazel-contrib/setup-bazel@083175551ceeceebc757ebee2127fde78840ca77",
+          "line": 43,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v6",
+          "pinned": "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+          "line": 79,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-java@v5",
+          "pinned": "actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654",
+          "line": 80,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-python@v6",
+          "pinned": "actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405",
+          "line": 85,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "google_or-tools__.github__workflows__presubmit.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 9,
+        "by_rule": {
+          "unpinned-github-actions": 9
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 23,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: jidicula/clang-format-action@6cd220de46c89139a0365edae93eee8eb30ca8fe # jidicula/clang-format-action@v4.16.0",
+          "line": 24,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 35,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # actions/setup-java@v5 | v5.2.0",
+          "line": 36,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # actions/setup-python@v6 | main,v6.2.0",
+          "line": 40,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: bazel-contrib/setup-bazel@083175551ceeceebc757ebee2127fde78840ca77 # bazel-contrib/setup-bazel@0.18.0",
+          "line": 43,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 79,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # actions/setup-java@v5 | v5.2.0",
+          "line": 80,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # actions/setup-python@v6 | main,v6.2.0",
+          "line": 85,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "google_or-tools__.github__workflows__presubmit.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            23,
+            24,
+            35,
+            36,
+            40,
+            43,
+            79,
+            80,
+            85,
+            104
+          ],
+          "raw_details": [
+            "Info: Possibly incomplete results: error parsing shell code: not a valid arithmetic operator: ~: .github/workflows/google_or-tools__.github__workflows__presubmit.yml:104",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_or-tools__.github__workflows__presubmit.yml:23",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_or-tools__.github__workflows__presubmit.yml:24",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_or-tools__.github__workflows__presubmit.yml:35",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_or-tools__.github__workflows__presubmit.yml:36",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_or-tools__.github__workflows__presubmit.yml:40",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_or-tools__.github__workflows__presubmit.yml:43",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_or-tools__.github__workflows__presubmit.yml:79",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_or-tools__.github__workflows__presubmit.yml:80",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_or-tools__.github__workflows__presubmit.yml:85",
+            "Info:   0 out of   7 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   2 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/google_or-tools__.github__workflows__presubmit.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "google_or-tools__.github__workflows__presubmit.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 9,
+        "by_rule": {
+          "unpinned-github-actions": 9
+        }
+      },
+      "findings": [
+        {
+          "line": 23,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 24,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `jidicula/clang-format-action@v4.16.0`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 35,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 36,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/setup-java@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 40,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 43,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `bazel-contrib/setup-bazel@0.18.0`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 79,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 80,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/setup-java@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 85,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v6`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "google_or-tools__.github__workflows__presubmit.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 9,
+        "by_rule": {
+          "artipacked": 3,
+          "excessive-permissions": 4,
+          "unpinned-uses": 2
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_or-tools__.github__workflows__presubmit.yml",
+          "line": 23,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_or-tools__.github__workflows__presubmit.yml",
+          "line": 35,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_or-tools__.github__workflows__presubmit.yml",
+          "line": 79,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "google_or-tools__.github__workflows__presubmit.yml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "google_or-tools__.github__workflows__presubmit.yml",
+          "line": 20,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "google_or-tools__.github__workflows__presubmit.yml",
+          "line": 28,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "google_or-tools__.github__workflows__presubmit.yml",
+          "line": 48,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "google_or-tools__.github__workflows__presubmit.yml",
+          "line": 24,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "google_or-tools__.github__workflows__presubmit.yml",
+          "line": 43,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "google_or-tools__.github__workflows__presubmit.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 3
+      },
+      "findings": [
+        {
+          "line": 32,
+          "column": 29,
+          "message": "label \"macos-15-intel\" is unknown. available labels are \"windows-latest\", \"windows-latest-8-cores\", \"windows-2025\", \"windows-2022\", \"windows-2019\", \"ubuntu-latest\", \"ubuntu-latest-4-cores\", \"ubuntu-latest-8-cores\", \"ubuntu-latest-16-cores\", \"ubuntu-24.04\", \"ubuntu-24.04-arm\", \"ubuntu-22.04\", \"ubuntu-22.04-arm\", \"ubuntu-20.04\", \"macos-latest\", \"macos-latest-xl\", \"macos-latest-xlarge\", \"macos-latest-large\", \"macos-15-xlarge\", \"macos-15-large\", \"macos-15\", \"macos-14-xl\", \"macos-14-xlarge\", \"macos-14-large\", \"macos-14\", \"macos-13-xl\", \"macos-13-xlarge\", \"macos-13-large\", \"macos-13\", \"self-hosted\", \"x64\", \"arm\", \"arm64\", \"linux\", \"macos\", \"windows\". if it is a custom label for self-hosted runner, set list of labels in actionlint.yaml config file [runner-label]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 52,
+          "column": 29,
+          "message": "label \"macos-15-intel\" is unknown. available labels are \"windows-latest\", \"windows-latest-8-cores\", \"windows-2025\", \"windows-2022\", \"windows-2019\", \"ubuntu-latest\", \"ubuntu-latest-4-cores\", \"ubuntu-latest-8-cores\", \"ubuntu-latest-16-cores\", \"ubuntu-24.04\", \"ubuntu-24.04-arm\", \"ubuntu-22.04\", \"ubuntu-22.04-arm\", \"ubuntu-20.04\", \"macos-latest\", \"macos-latest-xl\", \"macos-latest-xlarge\", \"macos-latest-large\", \"macos-15-xlarge\", \"macos-15-large\", \"macos-15\", \"macos-14-xl\", \"macos-14-xlarge\", \"macos-14-large\", \"macos-14\", \"macos-13-xl\", \"macos-13-xlarge\", \"macos-13-large\", \"macos-13\", \"self-hosted\", \"x64\", \"arm\", \"arm64\", \"linux\", \"macos\", \"windows\". if it is a custom label for self-hosted runner, set list of labels in actionlint.yaml config file [runner-label]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 68,
+          "column": 17,
+          "message": "label \"macos-15-intel\" is unknown. available labels are \"windows-latest\", \"windows-latest-8-cores\", \"windows-2025\", \"windows-2022\", \"windows-2019\", \"ubuntu-latest\", \"ubuntu-latest-4-cores\", \"ubuntu-latest-8-cores\", \"ubuntu-latest-16-cores\", \"ubuntu-24.04\", \"ubuntu-24.04-arm\", \"ubuntu-22.04\", \"ubuntu-22.04-arm\", \"ubuntu-20.04\", \"macos-latest\", \"macos-latest-xl\", \"macos-latest-xlarge\", \"macos-latest-large\", \"macos-15-xlarge\", \"macos-15-large\", \"macos-15\", \"macos-14-xl\", \"macos-14-xlarge\", \"macos-14-large\", \"macos-14\", \"macos-13-xl\", \"macos-13-xlarge\", \"macos-13-large\", \"macos-13\", \"self-hosted\", \"x64\", \"arm\", \"arm64\", \"linux\", \"macos\", \"windows\". if it is a custom label for self-hosted runner, set list of labels in actionlint.yaml config file [runner-label]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

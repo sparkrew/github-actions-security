@@ -1,0 +1,341 @@
+{
+  "workflow": "awslabs_aws-sdk-rust__.github__workflows__ci.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "awslabs_aws-sdk-rust__.github__workflows__ci.yaml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v3",
+          "pinned": "actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744",
+          "line": 24,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v3",
+          "pinned": "actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744",
+          "line": 46,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v3",
+          "pinned": "actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744",
+          "line": 77,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v3",
+          "pinned": "actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744",
+          "line": 78,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "awslabs_aws-sdk-rust__.github__workflows__ci.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 9,
+        "by_rule": {
+          "unpinned-github-actions": 9
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0",
+          "line": 24,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0",
+          "line": 46,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: dtolnay/rust-toolchain@efa25f7f19611383d5b0ccf2d1c8914531636bf9 # dtolnay/rust-toolchain@master",
+          "line": 47,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: Swatinem/rust-cache@b894d59a8d236e2979b247b80dac8d053ab340dd",
+          "line": 51,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: re-actors/alls-green@05ac9388f0aebcb5727afa17fcccfecd6f8ec5fe",
+          "line": 70,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0",
+          "line": 77,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0",
+          "line": 78,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: dtolnay/rust-toolchain@efa25f7f19611383d5b0ccf2d1c8914531636bf9 # dtolnay/rust-toolchain@master",
+          "line": 82,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: Swatinem/rust-cache@b894d59a8d236e2979b247b80dac8d053ab340dd",
+          "line": 86,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "awslabs_aws-sdk-rust__.github__workflows__ci.yaml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 5,
+          "reason": "dependency not pinned by hash detected -- score normalized to 5",
+          "lines": [
+            24,
+            46,
+            47,
+            77,
+            78,
+            82
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/awslabs_aws-sdk-rust__.github__workflows__ci.yaml:24",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/awslabs_aws-sdk-rust__.github__workflows__ci.yaml:46",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/awslabs_aws-sdk-rust__.github__workflows__ci.yaml:47",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/awslabs_aws-sdk-rust__.github__workflows__ci.yaml:77",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/awslabs_aws-sdk-rust__.github__workflows__ci.yaml:78",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/awslabs_aws-sdk-rust__.github__workflows__ci.yaml:82",
+            "Info:   0 out of   4 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   3 out of   5 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "awslabs_aws-sdk-rust__.github__workflows__ci.yaml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "unpinned-github-actions": 6
+        }
+      },
+      "findings": [
+        {
+          "line": 24,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 46,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 47,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `dtolnay/rust-toolchain@master`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 77,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 78,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 82,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `dtolnay/rust-toolchain@master`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "awslabs_aws-sdk-rust__.github__workflows__ci.yaml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 8,
+        "by_rule": {
+          "artipacked": 4,
+          "template-injection": 2,
+          "unpinned-uses": 2
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "awslabs_aws-sdk-rust__.github__workflows__ci.yaml",
+          "line": 24,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "awslabs_aws-sdk-rust__.github__workflows__ci.yaml",
+          "line": 46,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "awslabs_aws-sdk-rust__.github__workflows__ci.yaml",
+          "line": 77,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "awslabs_aws-sdk-rust__.github__workflows__ci.yaml",
+          "line": 78,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "awslabs_aws-sdk-rust__.github__workflows__ci.yaml",
+          "line": 54,
+          "column": 9,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "awslabs_aws-sdk-rust__.github__workflows__ci.yaml",
+          "line": 56,
+          "column": 9,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "awslabs_aws-sdk-rust__.github__workflows__ci.yaml",
+          "line": 47,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "awslabs_aws-sdk-rust__.github__workflows__ci.yaml",
+          "line": 82,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "awslabs_aws-sdk-rust__.github__workflows__ci.yaml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 4
+      },
+      "findings": [
+        {
+          "line": 24,
+          "column": 15,
+          "message": "the runner of \"actions/checkout@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 46,
+          "column": 15,
+          "message": "the runner of \"actions/checkout@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 77,
+          "column": 15,
+          "message": "the runner of \"actions/checkout@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 78,
+          "column": 15,
+          "message": "the runner of \"actions/checkout@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

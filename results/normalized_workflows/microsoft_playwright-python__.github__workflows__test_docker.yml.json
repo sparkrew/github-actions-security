@@ -1,0 +1,159 @@
+{
+  "workflow": "microsoft_playwright-python__.github__workflows__test_docker.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "microsoft_playwright-python__.github__workflows__test_docker.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # actions/checkout@v5 | releases,v5.0.1",
+          "line": 33,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # actions/setup-python@v6 | main,v6.2.0",
+          "line": 35,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_playwright-python__.github__workflows__test_docker.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            33,
+            35,
+            40,
+            41,
+            42,
+            43
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_playwright-python__.github__workflows__test_docker.yml:33",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_playwright-python__.github__workflows__test_docker.yml:35",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_playwright-python__.github__workflows__test_docker.yml:40",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_playwright-python__.github__workflows__test_docker.yml:41",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_playwright-python__.github__workflows__test_docker.yml:42",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_playwright-python__.github__workflows__test_docker.yml:43",
+            "Info:   0 out of   2 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   4 pipCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/microsoft_playwright-python__.github__workflows__test_docker.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_playwright-python__.github__workflows__test_docker.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "line": 33,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 35,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v6`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_playwright-python__.github__workflows__test_docker.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "artipacked": 1,
+          "excessive-permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_playwright-python__.github__workflows__test_docker.yml",
+          "line": 33,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "microsoft_playwright-python__.github__workflows__test_docker.yml",
+          "line": 20,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    }
+  }
+}

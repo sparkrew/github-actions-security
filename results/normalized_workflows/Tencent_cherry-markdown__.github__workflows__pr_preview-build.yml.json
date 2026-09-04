@@ -1,0 +1,218 @@
+{
+  "workflow": "Tencent_cherry-markdown__.github__workflows__pr_preview-build.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "Tencent_cherry-markdown__.github__workflows__pr_preview-build.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4",
+          "pinned": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "line": 13,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+          "line": 19,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-node@v4",
+          "pinned": "actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "line": 21,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4",
+          "pinned": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "line": 37,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "Tencent_cherry-markdown__.github__workflows__pr_preview-build.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+          "line": 13,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+          "line": 19,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | releases,v4.4.0",
+          "line": 21,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+          "line": 37,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "Tencent_cherry-markdown__.github__workflows__pr_preview-build.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            13,
+            19,
+            21,
+            37
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_cherry-markdown__.github__workflows__pr_preview-build.yml:13",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_cherry-markdown__.github__workflows__pr_preview-build.yml:19",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_cherry-markdown__.github__workflows__pr_preview-build.yml:21",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_cherry-markdown__.github__workflows__pr_preview-build.yml:37",
+            "Info:   0 out of   4 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/Tencent_cherry-markdown__.github__workflows__pr_preview-build.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "Tencent_cherry-markdown__.github__workflows__pr_preview-build.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "line": 13,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 19,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 21,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 37,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "Tencent_cherry-markdown__.github__workflows__pr_preview-build.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "artipacked": 1,
+          "excessive-permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "Tencent_cherry-markdown__.github__workflows__pr_preview-build.yml",
+          "line": 19,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "Tencent_cherry-markdown__.github__workflows__pr_preview-build.yml",
+          "line": 9,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    }
+  }
+}

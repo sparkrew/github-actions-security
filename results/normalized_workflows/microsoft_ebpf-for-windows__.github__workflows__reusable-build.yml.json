@@ -1,0 +1,210 @@
+{
+  "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 17,
+        "by_rule": {
+          "unpinned-github-actions": 17
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: step-security/harden-runner@5ef0c079ce82195b2a36a210272d6b661572d83e  # v2.14.2",
+          "line": 102,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: fkirc/skip-duplicate-actions@f75f66ce1886f00957d99748a42c724f4330bdcf  # v5.3.1",
+          "line": 108,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98",
+          "line": 122,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@89a39a4e59826350b863aa6b6252a07ad50cf83e",
+          "line": 140,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: microsoft/setup-msbuild@6fb02220983dee41ce7ae257b6f4d8f9bf5ed4ce",
+          "line": 145,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306",
+          "line": 152,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306",
+          "line": 217,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306",
+          "line": 227,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "line": 294,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "line": 314,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "line": 322,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "line": 334,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "line": 353,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "line": 360,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: andstor/file-existence-action@076e0072799f4942c8bc574a82233e1e4d13e9d6",
+          "line": 368,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "line": 376,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@89a39a4e59826350b863aa6b6252a07ad50cf83e # github/codeql-action/init@89a39a4e59826350b863aa6b6252a07ad50cf83e",
+          "line": 385,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "semgrep": {
+      "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml",
+      "tool": "semgrep",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "run-shell-injection": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "run-shell-injection",
+          "line": 251,
+          "code": "requires login",
+          "note": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+          "documentation": null,
+          "capability": "injection-weakness"
+        },
+        {
+          "rule": "run-shell-injection",
+          "line": 257,
+          "code": "requires login",
+          "note": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+          "documentation": null,
+          "capability": "injection-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "artipacked": 1,
+          "template-injection": 4
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml",
+          "line": 243,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml",
+          "line": 248,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml",
+          "line": 299,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml",
+          "line": 306,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-build.yml",
+          "line": 344,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        }
+      ]
+    }
+  }
+}

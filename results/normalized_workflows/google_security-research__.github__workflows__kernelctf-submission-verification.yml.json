@@ -1,0 +1,443 @@
+{
+  "workflow": "google_security-research__.github__workflows__kernelctf-submission-verification.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "google_security-research__.github__workflows__kernelctf-submission-verification.yaml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 15,
+        "by_rule": {
+          "unpinned-github-actions": 15
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+          "line": 49,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+          "line": 58,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+          "line": 85,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+          "line": 92,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4",
+          "pinned": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "line": 132,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4",
+          "pinned": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "line": 140,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+          "line": 168,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+          "line": 175,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4",
+          "pinned": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "line": 219,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+          "line": 245,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/download-artifact@v4",
+          "pinned": "actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093",
+          "line": 254,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4",
+          "pinned": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "line": 450,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4",
+          "pinned": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "line": 463,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/download-artifact@v4",
+          "pinned": "actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093",
+          "line": 474,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "google-github-actions/auth@v2",
+          "pinned": "google-github-actions/auth@c200f3691d83b41bf9bbd8638997a462592937ed",
+          "line": 479,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "google_security-research__.github__workflows__kernelctf-submission-verification.yaml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            47,
+            49,
+            58,
+            85,
+            92,
+            132,
+            140,
+            168,
+            175,
+            219,
+            245,
+            254,
+            450,
+            463,
+            474,
+            479,
+            484
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:168",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:175",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:219",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:245",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:254",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:450",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:463",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:474",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:479",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:484",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:49",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:58",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:85",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:92",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:132",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:140",
+            "Warn: pipCommand not pinned by hash: .github/workflows/google_security-research__.github__workflows__kernelctf-submission-verification.yaml:47",
+            "Info:   0 out of  14 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   2 third-party GitHubAction dependencies pinned",
+            "Info:   0 out of   1 pipCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "google_security-research__.github__workflows__kernelctf-submission-verification.yaml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 16,
+        "by_rule": {
+          "unpinned-github-actions": 16
+        }
+      },
+      "findings": [
+        {
+          "line": 49,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 58,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 85,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 92,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 132,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 140,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 168,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 175,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 219,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 245,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 254,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/download-artifact@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 450,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 463,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 474,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/download-artifact@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 479,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `google-github-actions/auth@v2`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 484,
+          "column": 16,
+          "message": "Unpinned GitHub Action: uses `google-github-actions/upload-cloud-storage@v2`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "google_security-research__.github__workflows__kernelctf-submission-verification.yaml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 12,
+        "by_rule": {
+          "artipacked": 7,
+          "dangerous-triggers": 1,
+          "unpinned-uses": 2,
+          "github-env": 2
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_security-research__.github__workflows__kernelctf-submission-verification.yaml",
+          "line": 48,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_security-research__.github__workflows__kernelctf-submission-verification.yaml",
+          "line": 57,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_security-research__.github__workflows__kernelctf-submission-verification.yaml",
+          "line": 84,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_security-research__.github__workflows__kernelctf-submission-verification.yaml",
+          "line": 90,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_security-research__.github__workflows__kernelctf-submission-verification.yaml",
+          "line": 167,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_security-research__.github__workflows__kernelctf-submission-verification.yaml",
+          "line": 173,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_security-research__.github__workflows__kernelctf-submission-verification.yaml",
+          "line": 244,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "dangerous-triggers",
+          "level": "error",
+          "message": "use of fundamentally insecure workflow trigger",
+          "workflow": "google_security-research__.github__workflows__kernelctf-submission-verification.yaml",
+          "line": 150,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "privileged-trigger-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "google_security-research__.github__workflows__kernelctf-submission-verification.yaml",
+          "line": 479,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "google_security-research__.github__workflows__kernelctf-submission-verification.yaml",
+          "line": 484,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "github-env",
+          "level": "error",
+          "message": "dangerous use of environment file",
+          "workflow": "google_security-research__.github__workflows__kernelctf-submission-verification.yaml",
+          "line": 391,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "github-env",
+          "level": "error",
+          "message": "dangerous use of environment file",
+          "workflow": "google_security-research__.github__workflows__kernelctf-submission-verification.yaml",
+          "line": 391,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        }
+      ]
+    }
+  }
+}

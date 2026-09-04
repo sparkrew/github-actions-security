@@ -1,0 +1,67 @@
+{
+  "workflow": "google_brotli__.github__workflows__fuzz.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "google_brotli__.github__workflows__fuzz.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2",
+          "line": 25,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: google/oss-fuzz/infra/cifuzz/actions/build_fuzzers@3e6a7fd7bcd631647ab9beed1fe0897498e6af39 # 22.09.2025",
+          "line": 30,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: google/oss-fuzz/infra/cifuzz/actions/build_fuzzers@3e6a7fd7bcd631647ab9beed1fe0897498e6af39 # google/oss-fuzz/infra/cifuzz/actions/build_fuzzers@3e6a7fd7bcd631647ab9beed1fe0897498e6af39",
+          "line": 36,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2",
+          "line": 43,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "google_brotli__.github__workflows__fuzz.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    }
+  }
+}

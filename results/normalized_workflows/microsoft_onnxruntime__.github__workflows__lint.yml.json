@@ -1,0 +1,384 @@
+{
+  "workflow": "microsoft_onnxruntime__.github__workflows__lint.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "microsoft_onnxruntime__.github__workflows__lint.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 9,
+        "by_rule": {
+          "unpinned-github-actions": 9
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 20,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: reviewdog/action-misspell@d6429416b12b09b4e2768307d53bef58d172e962 # reviewdog/action-misspell@v1",
+          "line": 22,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: reviewdog/action-shellcheck@1bb9751763fdfbee4b5043772c37374f103bff9e # reviewdog/action-shellcheck@v1.31.0",
+          "line": 30,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 49,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # actions/setup-python@v6 | main,v6.2.0",
+          "line": 51,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions-rs/toolchain@16499b5e05bf2e26879000db0c1d13f7e13fa3af # actions-rs/toolchain@v1",
+          "line": 56,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/upload-sarif@ae9ef3a1d2e3413523c3741725c30064970cc0d4 # github/codeql-action/upload-sarif@v3",
+          "line": 83,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 94,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: reviewdog/action-cpplint@7cb9115f5a9c592ac60ac7acc17e1d8a8ece864d # reviewdog/action-cpplint@master",
+          "line": 110,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_onnxruntime__.github__workflows__lint.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            20,
+            22,
+            30,
+            49,
+            51,
+            56,
+            66,
+            83,
+            94,
+            101,
+            110
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__lint.yml:49",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__lint.yml:51",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__lint.yml:56",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__lint.yml:83",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__lint.yml:94",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__lint.yml:110",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__lint.yml:20",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__lint.yml:22",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__lint.yml:30",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__lint.yml:66",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__lint.yml:101",
+            "Info:   0 out of   5 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   4 third-party GitHubAction dependencies pinned",
+            "Info:   0 out of   2 pipCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            46
+          ],
+          "raw_details": [
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/microsoft_onnxruntime__.github__workflows__lint.yml:46",
+            "Warn: no topLevel permission defined: .github/workflows/microsoft_onnxruntime__.github__workflows__lint.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "poutine": {
+      "workflow": "microsoft_onnxruntime__.github__workflows__lint.yml",
+      "tool": "poutine",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "pr_runs_on_self_hosted": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "pr_runs_on_self_hosted",
+          "line": 40,
+          "column": "",
+          "job": "lint-python-format",
+          "step": "",
+          "details": "runs-on: self-hosted, 1ES.Pool=onnxruntime-github-Ubuntu2204-AMD-CPU, JobId=lint-python-format-${{ github.run_id }}-${{ github.run_number }}-${{ github.run_attempt }}",
+          "event_triggers": [
+            "push",
+            "pull_request",
+            "workflow_dispatch"
+          ],
+          "capability": "privileged-trigger-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_onnxruntime__.github__workflows__lint.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 9,
+        "by_rule": {
+          "unpinned-github-actions": 9
+        }
+      },
+      "findings": [
+        {
+          "line": 20,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 22,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `reviewdog/action-misspell@v1`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 30,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `reviewdog/action-shellcheck@v1.31.0`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 49,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 51,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 56,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions-rs/toolchain@v1`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 83,
+          "column": 22,
+          "message": "Unpinned GitHub Action: uses `codeql-action/upload-sarif@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 94,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 110,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `reviewdog/action-cpplint@master`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_onnxruntime__.github__workflows__lint.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 10,
+        "by_rule": {
+          "artipacked": 3,
+          "excessive-permissions": 3,
+          "unpinned-uses": 4
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_onnxruntime__.github__workflows__lint.yml",
+          "line": 20,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_onnxruntime__.github__workflows__lint.yml",
+          "line": 49,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_onnxruntime__.github__workflows__lint.yml",
+          "line": 94,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "microsoft_onnxruntime__.github__workflows__lint.yml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "microsoft_onnxruntime__.github__workflows__lint.yml",
+          "line": 16,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "microsoft_onnxruntime__.github__workflows__lint.yml",
+          "line": 90,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_onnxruntime__.github__workflows__lint.yml",
+          "line": 22,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_onnxruntime__.github__workflows__lint.yml",
+          "line": 30,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_onnxruntime__.github__workflows__lint.yml",
+          "line": 56,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_onnxruntime__.github__workflows__lint.yml",
+          "line": 110,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "microsoft_onnxruntime__.github__workflows__lint.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 2
+      },
+      "findings": [
+        {
+          "line": 42,
+          "column": 9,
+          "message": "label \"1ES.Pool=onnxruntime-github-Ubuntu2204-AMD-CPU\" is unknown. available labels are \"windows-latest\", \"windows-latest-8-cores\", \"windows-2025\", \"windows-2022\", \"windows-2019\", \"ubuntu-latest\", \"ubuntu-latest-4-cores\", \"ubuntu-latest-8-cores\", \"ubuntu-latest-16-cores\", \"ubuntu-24.04\", \"ubuntu-24.04-arm\", \"ubuntu-22.04\", \"ubuntu-22.04-arm\", \"ubuntu-20.04\", \"macos-latest\", \"macos-latest-xl\", \"macos-latest-xlarge\", \"macos-latest-large\", \"macos-15-xlarge\", \"macos-15-large\", \"macos-15\", \"macos-14-xl\", \"macos-14-xlarge\", \"macos-14-large\", \"macos-14\", \"macos-13-xl\", \"macos-13-xlarge\", \"macos-13-large\", \"macos-13\", \"self-hosted\", \"x64\", \"arm\", \"arm64\", \"linux\", \"macos\", \"windows\". if it is a custom label for self-hosted runner, set list of labels in actionlint.yaml config file [runner-label]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 56,
+          "column": 15,
+          "message": "the runner of \"actions-rs/toolchain@v1\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

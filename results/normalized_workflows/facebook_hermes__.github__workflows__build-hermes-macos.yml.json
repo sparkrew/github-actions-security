@@ -1,0 +1,288 @@
+{
+  "workflow": "facebook_hermes__.github__workflows__build-hermes-macos.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "facebook_hermes__.github__workflows__build-hermes-macos.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "unpinned-github-actions": 6
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+          "line": 17,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/download-artifact@v4",
+          "pinned": "actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093",
+          "line": 25,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4.3.4",
+          "pinned": "actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b",
+          "line": 122,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4.3.4",
+          "pinned": "actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b",
+          "line": 127,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4.3.4",
+          "pinned": "actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b",
+          "line": 132,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/cache/save@v4",
+          "pinned": "actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830",
+          "line": 137,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "facebook_hermes__.github__workflows__build-hermes-macos.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "unpinned-github-actions": 6
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+          "line": 17,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0",
+          "line": 25,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # actions/upload-artifact@v4.3.4",
+          "line": 122,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # actions/upload-artifact@v4.3.4",
+          "line": 127,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # actions/upload-artifact@v4.3.4",
+          "line": 132,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # actions/cache/save@v4 | v4.3.0",
+          "line": 137,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "facebook_hermes__.github__workflows__build-hermes-macos.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            17,
+            25,
+            122,
+            127,
+            132,
+            137
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_hermes__.github__workflows__build-hermes-macos.yml:17",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_hermes__.github__workflows__build-hermes-macos.yml:25",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_hermes__.github__workflows__build-hermes-macos.yml:122",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_hermes__.github__workflows__build-hermes-macos.yml:127",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_hermes__.github__workflows__build-hermes-macos.yml:132",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_hermes__.github__workflows__build-hermes-macos.yml:137",
+            "Info:   0 out of   6 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/facebook_hermes__.github__workflows__build-hermes-macos.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "poutine": {
+      "workflow": "facebook_hermes__.github__workflows__build-hermes-macos.yml",
+      "tool": "poutine",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "known_vulnerability_in_build_component": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "known_vulnerability_in_build_component",
+          "line": 25,
+          "column": "",
+          "job": "build-hermes-macos",
+          "step": "4",
+          "details": "Package: actions/download-artifact",
+          "event_triggers": [
+            "workflow_call"
+          ],
+          "capability": "known-vulnerable-component-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "facebook_hermes__.github__workflows__build-hermes-macos.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "unpinned-github-actions": 6
+        }
+      },
+      "findings": [
+        {
+          "line": 17,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 25,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/download-artifact@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 122,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4.3.4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 127,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4.3.4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 132,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4.3.4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 137,
+          "column": 23,
+          "message": "Unpinned GitHub Action: uses `cache/save@v4`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "facebook_hermes__.github__workflows__build-hermes-macos.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "facebook_hermes__.github__workflows__build-hermes-macos.yml",
+          "line": 16,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "facebook_hermes__.github__workflows__build-hermes-macos.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 1
+      },
+      "findings": [
+        {
+          "line": 140,
+          "column": 61,
+          "message": "property \"hermes-version\" is not defined in object type {flavor: string} [expression]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

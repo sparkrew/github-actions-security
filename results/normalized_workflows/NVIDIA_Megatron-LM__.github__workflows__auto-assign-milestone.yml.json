@@ -1,0 +1,162 @@
+{
+  "workflow": "NVIDIA_Megatron-LM__.github__workflows__auto-assign-milestone.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "NVIDIA_Megatron-LM__.github__workflows__auto-assign-milestone.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: nv-gha-runners/get-pr-info@090577647b8ddc4e06e809e264f7881650ecdccf # nv-gha-runners/get-pr-info@main",
+          "line": 21,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "NVIDIA_Megatron-LM__.github__workflows__auto-assign-milestone.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            21,
+            27,
+            69
+          ],
+          "raw_details": [
+            "Info: Possibly incomplete results: error parsing shell code: invalid parameter name: .github/workflows/NVIDIA_Megatron-LM__.github__workflows__auto-assign-milestone.yml:27",
+            "Info: Possibly incomplete results: error parsing shell code: invalid parameter name: .github/workflows/NVIDIA_Megatron-LM__.github__workflows__auto-assign-milestone.yml:69",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_Megatron-LM__.github__workflows__auto-assign-milestone.yml:21",
+            "Info:   0 out of   1 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "NVIDIA_Megatron-LM__.github__workflows__auto-assign-milestone.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "line": 21,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `nv-gha-runners/get-pr-info@main`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "NVIDIA_Megatron-LM__.github__workflows__auto-assign-milestone.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "template-injection": 5,
+          "unpinned-uses": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "NVIDIA_Megatron-LM__.github__workflows__auto-assign-milestone.yml",
+          "line": 23,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "NVIDIA_Megatron-LM__.github__workflows__auto-assign-milestone.yml",
+          "line": 65,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "NVIDIA_Megatron-LM__.github__workflows__auto-assign-milestone.yml",
+          "line": 65,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "NVIDIA_Megatron-LM__.github__workflows__auto-assign-milestone.yml",
+          "line": 65,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "NVIDIA_Megatron-LM__.github__workflows__auto-assign-milestone.yml",
+          "line": 65,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "NVIDIA_Megatron-LM__.github__workflows__auto-assign-milestone.yml",
+          "line": 21,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    }
+  }
+}

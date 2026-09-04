@@ -1,0 +1,189 @@
+{
+  "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml",
+  "tools": {
+    "scorecard": {
+      "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 13,
+        "by_rule": {
+          "artipacked": 3,
+          "template-injection": 10
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml",
+          "line": 110,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml",
+          "line": 118,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml",
+          "line": 197,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "warning",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml",
+          "line": 255,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml",
+          "line": 255,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml",
+          "line": 262,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml",
+          "line": 304,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml",
+          "line": 304,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml",
+          "line": 311,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml",
+          "line": 343,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml",
+          "line": 343,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml",
+          "line": 351,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml",
+          "line": 438,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "microsoft_ebpf-for-windows__.github__workflows__reusable-test.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 1
+      },
+      "findings": [
+        {
+          "line": 424,
+          "column": 23,
+          "message": "property \"test\" is not defined in object type {check_coverage: {conclusion: string; outcome: string; outputs: {string => string}}; check_reusable_test_locally: {conclusion: string; outcome: string; outputs: {string => string}}; choco-cache: {conclusion: string; outcome: string; outputs: {string => string}}; configure_ebpf_store: {conclusion: string; outcome: string; outputs: {string => string}}; configure_ebpf_store_test: {conclusion: string; outcome: string; outputs: {string => string}}; configure_ebpf_store_undocked: {conclusion: string; outcome: string; outputs: {string => string}}; configure_windows_error_reporting: {conclusion: string; outcome: string; outputs: {string => string}}; download_artifact: {conclusion: string; outcome: string; outputs: {string => string}}; install_procdump: {conclusion: string; outcome: string; outputs: {string => string}}; run_post_test_command: {conclusion: string; outcome: string; outputs: {string => string}}; run_post_test_command_1es: {conclusion: string; outcome: string; outputs: {string => string}}; run_post_test_command_self_hosted: {conclusion: string; outcome: string; outputs: {string => string}}; run_pre_test_command: {conclusion: string; outcome: string; outputs: {string => string}}; run_pre_test_command_1es: {conclusion: string; outcome: string; outputs: {string => string}}; run_pre_test_command_self_hosted: {conclusion: string; outcome: string; outputs: {string => string}}; run_test_1es: {conclusion: string; outcome: string; outputs: {string => string}}; run_test_github_runner: {conclusion: string; outcome: string; outputs: {string => string}}; run_test_self_hosted: {conclusion: string; outcome: string; outputs: {string => string}}; run_test_with_code_coverage: {conclusion: string; outcome: string; outputs: {string => string}}; run_test_with_code_coverage_in_fault_injection: {conclusion: string; outcome: string; outputs: {string => string}}; run_test_with_code_coverage_in_vs_dev: {conclusion: string; outcome: string; outputs: {string => string}}; run_test_with_fault_injection: {conclusion: string; outcome: string; outputs: {string => string}}; run_test_without_code_coverage: {conclusion: string; outcome: string; outputs: {string => string}}; set_asan_env_var: {conclusion: string; outcome: string; outputs: {string => string}}; set_up_opencppcoverage: {conclusion: string; outcome: string; outputs: {string => string}}; skip_check: {conclusion: string; outcome: string; outputs: {string => string}}; start_etw_tracing: {conclusion: string; outcome: string; outputs: {string => string}}; upload_code_coverage_report_1: {conclusion: string; outcome: string; outputs: {string => string}}; upload_code_coverage_report_2: {conclusion: string; outcome: string; outputs: {string => string}}; upload_code_coverage_report_3: {conclusion: string; outcome: string; outputs: {string => string}}; upload_code_coverage_report_4: {conclusion: string; outcome: string; outputs: {string => string}}} [expression]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

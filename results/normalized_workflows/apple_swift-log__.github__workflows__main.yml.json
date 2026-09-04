@@ -1,0 +1,97 @@
+{
+  "workflow": "apple_swift-log__.github__workflows__main.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "apple_swift-log__.github__workflows__main.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 9,
+        "by_rule": {
+          "unpinned-github-actions": 9
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: apple/swift-nio/.github/workflows/unit_tests.yml@ada5f7690b9579a1cefb1c3757b65a3e561f7db4 # apple/swift-nio/.github/workflows/unit_tests.yml@main",
+          "line": 15,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: apple/swift-nio/.github/workflows/unit_tests.yml@ada5f7690b9579a1cefb1c3757b65a3e561f7db4 # apple/swift-nio/.github/workflows/unit_tests.yml@main",
+          "line": 35,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: apple/swift-nio/.github/workflows/unit_tests.yml@ada5f7690b9579a1cefb1c3757b65a3e561f7db4 # apple/swift-nio/.github/workflows/unit_tests.yml@main",
+          "line": 44,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: apple/swift-nio/.github/workflows/unit_tests.yml@ada5f7690b9579a1cefb1c3757b65a3e561f7db4 # apple/swift-nio/.github/workflows/unit_tests.yml@main",
+          "line": 51,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: apple/swift-nio/.github/workflows/unit_tests.yml@ada5f7690b9579a1cefb1c3757b65a3e561f7db4 # apple/swift-nio/.github/workflows/unit_tests.yml@main",
+          "line": 56,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: apple/swift-nio/.github/workflows/unit_tests.yml@ada5f7690b9579a1cefb1c3757b65a3e561f7db4 # apple/swift-nio/.github/workflows/unit_tests.yml@main",
+          "line": 60,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: apple/swift-nio/.github/workflows/unit_tests.yml@ada5f7690b9579a1cefb1c3757b65a3e561f7db4 # apple/swift-nio/.github/workflows/unit_tests.yml@main",
+          "line": 68,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: apple/swift-nio/.github/workflows/unit_tests.yml@ada5f7690b9579a1cefb1c3757b65a3e561f7db4 # apple/swift-nio/.github/workflows/unit_tests.yml@main",
+          "line": 73,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: apple/swift-nio/.github/workflows/unit_tests.yml@ada5f7690b9579a1cefb1c3757b65a3e561f7db4 # apple/swift-nio/.github/workflows/unit_tests.yml@main",
+          "line": 77,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "apple_swift-log__.github__workflows__main.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    }
+  }
+}

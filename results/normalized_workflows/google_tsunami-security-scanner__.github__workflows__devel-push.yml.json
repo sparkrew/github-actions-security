@@ -1,0 +1,262 @@
+{
+  "workflow": "google_tsunami-security-scanner__.github__workflows__devel-push.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "google_tsunami-security-scanner__.github__workflows__devel-push.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+          "line": 24,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/login-action@v3",
+          "pinned": "docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9",
+          "line": 27,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/metadata-action@v5",
+          "pinned": "docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051",
+          "line": 35,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/build-push-action@v6",
+          "pinned": "docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8",
+          "line": 41,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/attest-build-provenance@v2",
+          "pinned": "actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be",
+          "line": 50,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "google_tsunami-security-scanner__.github__workflows__devel-push.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+          "line": 24,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # docker/login-action@v3 | releases,v3.7.0",
+          "line": 27,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # docker/metadata-action@v5 | v5.10.0",
+          "line": 35,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # docker/build-push-action@v6 | v6.19.2",
+          "line": 41,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # actions/attest-build-provenance@v2",
+          "line": 50,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "google_tsunami-security-scanner__.github__workflows__devel-push.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            24,
+            27,
+            35,
+            41,
+            50
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_tsunami-security-scanner__.github__workflows__devel-push.yml:24",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_tsunami-security-scanner__.github__workflows__devel-push.yml:27",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_tsunami-security-scanner__.github__workflows__devel-push.yml:35",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_tsunami-security-scanner__.github__workflows__devel-push.yml:41",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_tsunami-security-scanner__.github__workflows__devel-push.yml:50",
+            "Info:   0 out of   2 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   3 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            17
+          ],
+          "raw_details": [
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/google_tsunami-security-scanner__.github__workflows__devel-push.yml:17",
+            "Warn: no topLevel permission defined: .github/workflows/google_tsunami-security-scanner__.github__workflows__devel-push.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "google_tsunami-security-scanner__.github__workflows__devel-push.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "line": 24,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 27,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/login-action@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 35,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/metadata-action@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 41,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/build-push-action@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 50,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/attest-build-provenance@v2`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "google_tsunami-security-scanner__.github__workflows__devel-push.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "artipacked": 1,
+          "unpinned-uses": 3
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_tsunami-security-scanner__.github__workflows__devel-push.yml",
+          "line": 23,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "google_tsunami-security-scanner__.github__workflows__devel-push.yml",
+          "line": 27,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "google_tsunami-security-scanner__.github__workflows__devel-push.yml",
+          "line": 35,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "google_tsunami-security-scanner__.github__workflows__devel-push.yml",
+          "line": 41,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "workflow": "microsoft_genaiscript__.github__workflows__genai-pr-review.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "microsoft_genaiscript__.github__workflows__genai-pr-review.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+          "line": 23,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | releases,v4.4.0",
+          "line": 27,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+          "line": 49,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_genaiscript__.github__workflows__genai-pr-review.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            23,
+            27,
+            49
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_genaiscript__.github__workflows__genai-pr-review.yml:23",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_genaiscript__.github__workflows__genai-pr-review.yml:27",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_genaiscript__.github__workflows__genai-pr-review.yml:49",
+            "Info:   0 out of   3 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            21
+          ],
+          "raw_details": [
+            "Info: jobLevel 'models' permission set to 'read': .github/workflows/microsoft_genaiscript__.github__workflows__genai-pr-review.yml:21",
+            "Warn: no topLevel permission defined: .github/workflows/microsoft_genaiscript__.github__workflows__genai-pr-review.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_genaiscript__.github__workflows__genai-pr-review.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "line": 23,
+          "column": 21,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 27,
+          "column": 21,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 49,
+          "column": 21,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_genaiscript__.github__workflows__genai-pr-review.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_genaiscript__.github__workflows__genai-pr-review.yml",
+          "line": 23,
+          "column": 15,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "microsoft_genaiscript__.github__workflows__genai-pr-review.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 1
+      },
+      "findings": [
+        {
+          "line": 21,
+          "column": 13,
+          "message": "unknown permission scope \"models\". all available permission scopes are \"actions\", \"attestations\", \"checks\", \"contents\", \"deployments\", \"discussions\", \"id-token\", \"issues\", \"packages\", \"pages\", \"pull-requests\", \"repository-projects\", \"security-events\", \"statuses\" [permissions]",
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    }
+  }
+}

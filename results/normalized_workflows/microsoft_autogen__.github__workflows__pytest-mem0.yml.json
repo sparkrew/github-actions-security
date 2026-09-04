@@ -1,0 +1,253 @@
+{
+  "workflow": "microsoft_autogen__.github__workflows__pytest-mem0.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "microsoft_autogen__.github__workflows__pytest-mem0.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v3",
+          "pinned": "actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744",
+          "line": 38,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-python@v4",
+          "pinned": "actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c",
+          "line": 41,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "codecov/codecov-action@v3",
+          "pinned": "codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457",
+          "line": 90,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "microsoft_autogen__.github__workflows__pytest-mem0.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0",
+          "line": 38,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # actions/setup-python@v4 | restore-v4-release,v4.9.1",
+          "line": 41,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457 # codecov/codecov-action@v3 | v3",
+          "line": 90,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_autogen__.github__workflows__pytest-mem0.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            38,
+            41,
+            54,
+            58,
+            61,
+            65,
+            68,
+            69,
+            72,
+            73,
+            90
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__pytest-mem0.yml:38",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__pytest-mem0.yml:41",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__pytest-mem0.yml:90",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__pytest-mem0.yml:54",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__pytest-mem0.yml:58",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__pytest-mem0.yml:61",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__pytest-mem0.yml:65",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__pytest-mem0.yml:68",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__pytest-mem0.yml:69",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__pytest-mem0.yml:72",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__pytest-mem0.yml:73",
+            "Info:   0 out of   2 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   1 third-party GitHubAction dependencies pinned",
+            "Info:   0 out of   8 pipCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/microsoft_autogen__.github__workflows__pytest-mem0.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_autogen__.github__workflows__pytest-mem0.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "line": 38,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 41,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 90,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `codecov/codecov-action@v3`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_autogen__.github__workflows__pytest-mem0.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "artipacked": 1,
+          "excessive-permissions": 1,
+          "unpinned-uses": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_autogen__.github__workflows__pytest-mem0.yml",
+          "line": 37,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "microsoft_autogen__.github__workflows__pytest-mem0.yml",
+          "line": 12,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_autogen__.github__workflows__pytest-mem0.yml",
+          "line": 90,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "microsoft_autogen__.github__workflows__pytest-mem0.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 3
+      },
+      "findings": [
+        {
+          "line": 38,
+          "column": 15,
+          "message": "the runner of \"actions/checkout@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 41,
+          "column": 15,
+          "message": "the runner of \"actions/setup-python@v4\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 90,
+          "column": 15,
+          "message": "the runner of \"codecov/codecov-action@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

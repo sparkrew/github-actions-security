@@ -1,0 +1,213 @@
+{
+  "workflow": "microsoft_promptflow__.github__workflows__samples_flexflows_basic_flexflowquickstartazure.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "microsoft_promptflow__.github__workflows__samples_flexflows_basic_flexflowquickstartazure.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+          "line": 29,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c # actions/setup-python@v4 | restore-v4-release,v4.9.1",
+          "line": 37,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: AliSajid/random-wait-action@f29cf2934c1b6affb1a2562035d5ad22eb314488 # AliSajid/random-wait-action@main",
+          "line": 48,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: azure/login@a457da9ea143d694b1b9c7c869ebb04ebe844ef5 # azure/login@v2",
+          "line": 53,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@ff15f0306b3f739f7b6fd43fb5d26cd321bd4de5 # actions/upload-artifact@v3 | v3,v3.2.1",
+          "line": 75,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_promptflow__.github__workflows__samples_flexflows_basic_flexflowquickstartazure.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            29,
+            37,
+            42,
+            43,
+            44,
+            48,
+            53,
+            75
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__samples_flexflows_basic_flexflowquickstartazure.yml:29",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__samples_flexflows_basic_flexflowquickstartazure.yml:37",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__samples_flexflows_basic_flexflowquickstartazure.yml:48",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__samples_flexflows_basic_flexflowquickstartazure.yml:53",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__samples_flexflows_basic_flexflowquickstartazure.yml:75",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__samples_flexflows_basic_flexflowquickstartazure.yml:42",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__samples_flexflows_basic_flexflowquickstartazure.yml:43",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__samples_flexflows_basic_flexflowquickstartazure.yml:44",
+            "Info:   0 out of   3 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   2 third-party GitHubAction dependencies pinned",
+            "Info:   0 out of   3 pipCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_promptflow__.github__workflows__samples_flexflows_basic_flexflowquickstartazure.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "line": 29,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 37,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 48,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `AliSajid/random-wait-action@main`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 53,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `azure/login@v2`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 75,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v3`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_promptflow__.github__workflows__samples_flexflows_basic_flexflowquickstartazure.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "artipacked": 1,
+          "unpinned-uses": 2
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_promptflow__.github__workflows__samples_flexflows_basic_flexflowquickstartazure.yml",
+          "line": 28,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_promptflow__.github__workflows__samples_flexflows_basic_flexflowquickstartazure.yml",
+          "line": 48,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_promptflow__.github__workflows__samples_flexflows_basic_flexflowquickstartazure.yml",
+          "line": 53,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "microsoft_promptflow__.github__workflows__samples_flexflows_basic_flexflowquickstartazure.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 2
+      },
+      "findings": [
+        {
+          "line": 37,
+          "column": 15,
+          "message": "the runner of \"actions/setup-python@v4\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 75,
+          "column": 15,
+          "message": "the runner of \"actions/upload-artifact@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,322 @@
+{
+  "workflow": "google_highway__.github__workflows__meson_build_test.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "google_highway__.github__workflows__meson_build_test.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v6.0.2",
+          "pinned": "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+          "line": 218,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "uraimo/run-on-arch-action@v3.0.1",
+          "pinned": "uraimo/run-on-arch-action@d94c13912ea685de38fccc1109385b83fd79427d",
+          "line": 220,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "google_highway__.github__workflows__meson_build_test.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 10,
+        "by_rule": {
+          "unpinned-github-actions": 10
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: step-security/harden-runner@a90bcbc6539c36a85cdfeb73f7e2f433735f215b # v2.15.0",
+          "line": 33,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v4.0.0",
+          "line": 37,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: step-security/harden-runner@a90bcbc6539c36a85cdfeb73f7e2f433735f215b # v2.15.0",
+          "line": 85,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v4.0.0",
+          "line": 89,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: step-security/harden-runner@a90bcbc6539c36a85cdfeb73f7e2f433735f215b # v2.15.0",
+          "line": 131,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v4.0.0",
+          "line": 135,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: step-security/harden-runner@a90bcbc6539c36a85cdfeb73f7e2f433735f215b # v2.15.0",
+          "line": 178,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v4.0.0",
+          "line": 182,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6.0.2 | v6",
+          "line": 218,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: uraimo/run-on-arch-action@d94c13912ea685de38fccc1109385b83fd79427d # uraimo/run-on-arch-action@v3.0.1",
+          "line": 220,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "google_highway__.github__workflows__meson_build_test.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 8,
+          "reason": "dependency not pinned by hash detected -- score normalized to 8",
+          "lines": [
+            218,
+            220
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_highway__.github__workflows__meson_build_test.yml:218",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_highway__.github__workflows__meson_build_test.yml:220",
+            "Info:   4 out of   5 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   4 out of   5 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    },
+    "poutine": {
+      "workflow": "google_highway__.github__workflows__meson_build_test.yml",
+      "tool": "poutine",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "pr_runs_on_self_hosted": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "pr_runs_on_self_hosted",
+          "line": 116,
+          "column": "",
+          "job": "ubuntu_noble_arm",
+          "step": "",
+          "details": "runs-on: ubuntu-24.04-arm",
+          "event_triggers": [
+            "push",
+            "pull_request"
+          ],
+          "capability": "privileged-trigger-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "google_highway__.github__workflows__meson_build_test.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "line": 218,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6.0.2`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 220,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `uraimo/run-on-arch-action@v3.0.1`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "google_highway__.github__workflows__meson_build_test.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 7,
+        "by_rule": {
+          "artipacked": 5,
+          "excessive-permissions": 1,
+          "unpinned-uses": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_highway__.github__workflows__meson_build_test.yml",
+          "line": 37,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_highway__.github__workflows__meson_build_test.yml",
+          "line": 89,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_highway__.github__workflows__meson_build_test.yml",
+          "line": 135,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_highway__.github__workflows__meson_build_test.yml",
+          "line": 182,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_highway__.github__workflows__meson_build_test.yml",
+          "line": 217,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "google_highway__.github__workflows__meson_build_test.yml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 High",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "google_highway__.github__workflows__meson_build_test.yml",
+          "line": 220,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "google_highway__.github__workflows__meson_build_test.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 5
+      },
+      "findings": [
+        {
+          "line": 47,
+          "column": 114,
+          "message": "property \"extra_setup_args\" is not defined in object type {c_compiler: string; compiler: string; cxx_compiler: string; cxx_flags: string; cxx_standard: number; extra_deps: string} [expression]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 96,
+          "column": 100,
+          "message": "property \"extra_setup_args\" is not defined in object type {c_compiler: string; compiler: string; cxx_compiler: string; cxx_flags: string; cxx_standard: number; extra_deps: string} [expression]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 141,
+          "column": 100,
+          "message": "property \"extra_setup_args\" is not defined in object type {c_compiler: string; compiler: string; cxx_compiler: string; cxx_flags: string; cxx_standard: number; extra_deps: string} [expression]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 157,
+          "column": 59,
+          "message": "property \"extra_test_args\" is not defined in object type {c_compiler: string; compiler: string; cxx_compiler: string; cxx_flags: string; cxx_standard: number; extra_deps: string} [expression]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 235,
+          "column": 27,
+          "message": "property \"cxx_flags\" is not defined in object type {arch: string; distro: string} [expression]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

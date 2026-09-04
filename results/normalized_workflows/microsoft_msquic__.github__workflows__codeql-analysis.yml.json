@@ -1,0 +1,57 @@
+{
+  "workflow": "microsoft_msquic__.github__workflows__codeql-analysis.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "microsoft_msquic__.github__workflows__codeql-analysis.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+          "line": 30,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@89a39a4e59826350b863aa6b6252a07ad50cf83e",
+          "line": 50,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@89a39a4e59826350b863aa6b6252a07ad50cf83e # github/codeql-action/init@89a39a4e59826350b863aa6b6252a07ad50cf83e",
+          "line": 61,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_msquic__.github__workflows__codeql-analysis.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_msquic__.github__workflows__codeql-analysis.yml",
+          "line": 29,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    }
+  }
+}

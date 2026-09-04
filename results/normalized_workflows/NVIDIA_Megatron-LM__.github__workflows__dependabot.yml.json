@@ -1,0 +1,96 @@
+{
+  "workflow": "NVIDIA_Megatron-LM__.github__workflows__dependabot.yml",
+  "tools": {
+    "scorecard": {
+      "workflow": "NVIDIA_Megatron-LM__.github__workflows__dependabot.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            9
+          ],
+          "raw_details": [
+            "Warn: topLevel 'contents' permission set to 'write': .github/workflows/NVIDIA_Megatron-LM__.github__workflows__dependabot.yml:9",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "NVIDIA_Megatron-LM__.github__workflows__dependabot.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "excessive-permissions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "excessive-permissions",
+          "level": "error",
+          "message": "overly broad permissions",
+          "workflow": "NVIDIA_Megatron-LM__.github__workflows__dependabot.yml",
+          "line": 8,
+          "column": 3,
+          "note": "audit confidence \u2192 High",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "error",
+          "message": "overly broad permissions",
+          "workflow": "NVIDIA_Megatron-LM__.github__workflows__dependabot.yml",
+          "line": 9,
+          "column": 3,
+          "note": "audit confidence \u2192 High",
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "NVIDIA_Megatron-LM__.github__workflows__dependabot.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 1
+      },
+      "findings": [
+        {
+          "line": 38,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/_update_dependencies.yml\": open /home/huawei/github-actions-security/.github/workflows/_update_dependencies.yml: no such file or directory [workflow-call]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

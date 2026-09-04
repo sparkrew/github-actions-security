@@ -1,0 +1,224 @@
+{
+  "workflow": "microsoft_vscode__.github__workflows__pr-win32-test.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "microsoft_vscode__.github__workflows__pr-win32-test.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 7,
+        "by_rule": {
+          "unpinned-github-actions": 7
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 27,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # actions/setup-node@v6 | main,v6.3.0",
+          "line": 30,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/cache/restore@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # actions/cache/restore@v5 | v5.0.3",
+          "line": 41,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/cache/restore@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # actions/cache/restore@v5 | v5.0.3",
+          "line": 101,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # actions/upload-artifact@v6 | v6.0.0",
+          "line": 252,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # actions/upload-artifact@v6 | v6.0.0",
+          "line": 263,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # actions/upload-artifact@v6 | v6.0.0",
+          "line": 272,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_vscode__.github__workflows__pr-win32-test.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            27,
+            30,
+            41,
+            101,
+            252,
+            263,
+            272
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode__.github__workflows__pr-win32-test.yml:27",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode__.github__workflows__pr-win32-test.yml:30",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode__.github__workflows__pr-win32-test.yml:41",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode__.github__workflows__pr-win32-test.yml:101",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode__.github__workflows__pr-win32-test.yml:252",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode__.github__workflows__pr-win32-test.yml:263",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode__.github__workflows__pr-win32-test.yml:272",
+            "Info:   0 out of   7 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/microsoft_vscode__.github__workflows__pr-win32-test.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_vscode__.github__workflows__pr-win32-test.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 7,
+        "by_rule": {
+          "unpinned-github-actions": 7
+        }
+      },
+      "findings": [
+        {
+          "line": 27,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 30,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 41,
+          "column": 23,
+          "message": "Unpinned GitHub Action: uses `cache/restore@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 101,
+          "column": 23,
+          "message": "Unpinned GitHub Action: uses `cache/restore@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 252,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 263,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 272,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v6`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_vscode__.github__workflows__pr-win32-test.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_vscode__.github__workflows__pr-win32-test.yml",
+          "line": 26,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "microsoft_vscode__.github__workflows__pr-win32-test.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 1
+      },
+      "findings": [
+        {
+          "line": 20,
+          "column": 29,
+          "message": "label \"1ES.Pool=1es-vscode-oss-windows-2022-x64\" is unknown. available labels are \"windows-latest\", \"windows-latest-8-cores\", \"windows-2025\", \"windows-2022\", \"windows-2019\", \"ubuntu-latest\", \"ubuntu-latest-4-cores\", \"ubuntu-latest-8-cores\", \"ubuntu-latest-16-cores\", \"ubuntu-24.04\", \"ubuntu-24.04-arm\", \"ubuntu-22.04\", \"ubuntu-22.04-arm\", \"ubuntu-20.04\", \"macos-latest\", \"macos-latest-xl\", \"macos-latest-xlarge\", \"macos-latest-large\", \"macos-15-xlarge\", \"macos-15-large\", \"macos-15\", \"macos-14-xl\", \"macos-14-xlarge\", \"macos-14-large\", \"macos-14\", \"macos-13-xl\", \"macos-13-xlarge\", \"macos-13-large\", \"macos-13\", \"self-hosted\", \"x64\", \"arm\", \"arm64\", \"linux\", \"macos\", \"windows\". if it is a custom label for self-hosted runner, set list of labels in actionlint.yaml config file [runner-label]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

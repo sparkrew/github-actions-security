@@ -1,0 +1,90 @@
+{
+  "workflow": "facebook_docusaurus__.github__workflows__codeql-analysis.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "facebook_docusaurus__.github__workflows__codeql-analysis.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2",
+          "line": 36,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@4e94bd11f71e507f7f87df81788dff88d1dacbfb # 4.31.0",
+          "line": 39,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@4e94bd11f71e507f7f87df81788dff88d1dacbfb # github/codeql-action/init@4e94bd11f71e507f7f87df81788dff88d1dacbfb",
+          "line": 44,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "facebook_docusaurus__.github__workflows__codeql-analysis.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            24,
+            25
+          ],
+          "raw_details": [
+            "Info: jobLevel 'actions' permission set to 'read': .github/workflows/facebook_docusaurus__.github__workflows__codeql-analysis.yml:24",
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/facebook_docusaurus__.github__workflows__codeql-analysis.yml:25",
+            "Warn: no topLevel permission defined: .github/workflows/facebook_docusaurus__.github__workflows__codeql-analysis.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "facebook_docusaurus__.github__workflows__codeql-analysis.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "facebook_docusaurus__.github__workflows__codeql-analysis.yml",
+          "line": 35,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    }
+  }
+}

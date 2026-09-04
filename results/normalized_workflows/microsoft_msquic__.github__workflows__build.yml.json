@@ -1,0 +1,122 @@
+{
+  "workflow": "microsoft_msquic__.github__workflows__build.yml",
+  "tools": {
+    "scorecard": {
+      "workflow": "microsoft_msquic__.github__workflows__build.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_msquic__.github__workflows__build.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_msquic__.github__workflows__build.yml",
+          "line": 248,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "microsoft_msquic__.github__workflows__build.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 10
+      },
+      "findings": [
+        {
+          "line": 26,
+          "column": 12,
+          "message": "\"needs\" section should not be empty [syntax-check]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 48,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/build-reuse-win.yml\": open /home/huawei/github-actions-security/.github/workflows/build-reuse-win.yml: no such file or directory [expression]",
+          "capability": "control-flow-weakness"
+        },
+        {
+          "line": 60,
+          "column": 12,
+          "message": "\"needs\" section should not be empty [syntax-check]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 77,
+          "column": 12,
+          "message": "\"needs\" section should not be empty [syntax-check]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 86,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/build-reuse-winkernel.yml\": open /home/huawei/github-actions-security/.github/workflows/build-reuse-winkernel.yml: no such file or directory [expression]",
+          "capability": "control-flow-weakness"
+        },
+        {
+          "line": 97,
+          "column": 12,
+          "message": "\"needs\" section should not be empty [syntax-check]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 119,
+          "column": 12,
+          "message": "\"needs\" section should not be empty [syntax-check]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 214,
+          "column": 12,
+          "message": "\"needs\" section should not be empty [syntax-check]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 224,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/build-reuse-unix.yml\": open /home/huawei/github-actions-security/.github/workflows/build-reuse-unix.yml: no such file or directory [workflow-call]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 268,
+          "column": 69,
+          "message": "property \"arg\" is not defined in object type {plat: string; tls: string} [expression]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,185 @@
+{
+  "workflow": "google_re2__.github__workflows__ci-bazel.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "google_re2__.github__workflows__ci-bazel.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4.2.2",
+          "pinned": "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "line": 19,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "bazel-contrib/setup-bazel@0.15.0",
+          "pinned": "bazel-contrib/setup-bazel@4fd964a13a440a8aeb0be47350db2fc640f19ca8",
+          "line": 20,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-python@v5.6.0",
+          "pinned": "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "line": 23,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "google_re2__.github__workflows__ci-bazel.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # actions/checkout@v4.2.2",
+          "line": 19,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: bazel-contrib/setup-bazel@4fd964a13a440a8aeb0be47350db2fc640f19ca8 # bazel-contrib/setup-bazel@0.15.0",
+          "line": 20,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # actions/setup-python@v5.6.0 | releases,v5",
+          "line": 23,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "google_re2__.github__workflows__ci-bazel.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            19,
+            20,
+            23,
+            28,
+            29
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_re2__.github__workflows__ci-bazel.yml:19",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_re2__.github__workflows__ci-bazel.yml:20",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_re2__.github__workflows__ci-bazel.yml:23",
+            "Warn: pipCommand not pinned by hash: .github/workflows/google_re2__.github__workflows__ci-bazel.yml:28",
+            "Warn: pipCommand not pinned by hash: .github/workflows/google_re2__.github__workflows__ci-bazel.yml:29",
+            "Info:   0 out of   2 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   1 third-party GitHubAction dependencies pinned",
+            "Info:   0 out of   2 pipCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "google_re2__.github__workflows__ci-bazel.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "line": 19,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4.2.2`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 20,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `bazel-contrib/setup-bazel@0.15.0`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 23,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v5.6.0`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "google_re2__.github__workflows__ci-bazel.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "artipacked": 1,
+          "unpinned-uses": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_re2__.github__workflows__ci-bazel.yml",
+          "line": 19,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "google_re2__.github__workflows__ci-bazel.yml",
+          "line": 20,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    }
+  }
+}

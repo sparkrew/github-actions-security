@@ -1,0 +1,306 @@
+{
+  "workflow": "NVIDIA_k8s-device-plugin__.github__workflows__image.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "NVIDIA_k8s-device-plugin__.github__workflows__image.yaml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v6",
+          "pinned": "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+          "line": 37,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/login-action@v3",
+          "pinned": "docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9",
+          "line": 40,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v6",
+          "pinned": "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+          "line": 63,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/login-action@v3",
+          "pinned": "docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9",
+          "line": 66,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "NVIDIA_k8s-device-plugin__.github__workflows__image.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 37,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # docker/login-action@v3 | releases,v3.7.0",
+          "line": 40,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: nv-gha-runners/setup-artifactory-go-proxy@a15ec16ff434e8ca3b0f76919f902080e66ebc14 # nv-gha-runners/setup-artifactory-go-proxy@main",
+          "line": 47,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 63,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # docker/login-action@v3 | releases,v3.7.0",
+          "line": 66,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "semgrep": {
+      "workflow": "NVIDIA_k8s-device-plugin__.github__workflows__image.yaml",
+      "tool": "semgrep",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "run-shell-injection": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "run-shell-injection",
+          "line": 74,
+          "code": "requires login",
+          "note": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+          "documentation": null,
+          "capability": "injection-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "NVIDIA_k8s-device-plugin__.github__workflows__image.yaml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            37,
+            40,
+            47,
+            63,
+            66
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_k8s-device-plugin__.github__workflows__image.yaml:37",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_k8s-device-plugin__.github__workflows__image.yaml:40",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_k8s-device-plugin__.github__workflows__image.yaml:47",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_k8s-device-plugin__.github__workflows__image.yaml:63",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_k8s-device-plugin__.github__workflows__image.yaml:66",
+            "Info:   0 out of   2 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   3 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            33
+          ],
+          "raw_details": [
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_k8s-device-plugin__.github__workflows__image.yaml:33",
+            "Warn: no topLevel permission defined: .github/workflows/NVIDIA_k8s-device-plugin__.github__workflows__image.yaml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "NVIDIA_k8s-device-plugin__.github__workflows__image.yaml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "line": 37,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 40,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/login-action@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 47,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `nv-gha-runners/setup-artifactory-go-proxy@main`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 63,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 66,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/login-action@v3`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "NVIDIA_k8s-device-plugin__.github__workflows__image.yaml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 7,
+        "by_rule": {
+          "artipacked": 2,
+          "template-injection": 2,
+          "unpinned-uses": 3
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "NVIDIA_k8s-device-plugin__.github__workflows__image.yaml",
+          "line": 37,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "NVIDIA_k8s-device-plugin__.github__workflows__image.yaml",
+          "line": 63,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "NVIDIA_k8s-device-plugin__.github__workflows__image.yaml",
+          "line": 71,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "NVIDIA_k8s-device-plugin__.github__workflows__image.yaml",
+          "line": 71,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "NVIDIA_k8s-device-plugin__.github__workflows__image.yaml",
+          "line": 40,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "NVIDIA_k8s-device-plugin__.github__workflows__image.yaml",
+          "line": 47,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "NVIDIA_k8s-device-plugin__.github__workflows__image.yaml",
+          "line": 66,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    }
+  }
+}

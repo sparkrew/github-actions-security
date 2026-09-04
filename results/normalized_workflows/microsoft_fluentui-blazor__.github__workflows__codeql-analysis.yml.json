@@ -1,0 +1,211 @@
+{
+  "workflow": "microsoft_fluentui-blazor__.github__workflows__codeql-analysis.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "microsoft_fluentui-blazor__.github__workflows__codeql-analysis.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v3",
+          "pinned": "actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744",
+          "line": 39,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-dotnet@v4",
+          "pinned": "actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9",
+          "line": 47,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/init@v3",
+          "pinned": "github/codeql-action/init@45580472a5bb82c4681c4ac726cfdb60060c2ee1",
+          "line": 52,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/analyze@v3",
+          "pinned": "github/codeql-action/analyze@45580472a5bb82c4681c4ac726cfdb60060c2ee1",
+          "line": 62,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "microsoft_fluentui-blazor__.github__workflows__codeql-analysis.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0",
+          "line": 39,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # actions/setup-dotnet@v4 | releases,v4.3.1",
+          "line": 47,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@ae9ef3a1d2e3413523c3741725c30064970cc0d4 # github/codeql-action/init@v3",
+          "line": 52,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@ae9ef3a1d2e3413523c3741725c30064970cc0d4 # github/codeql-action/init@v3",
+          "line": 62,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_fluentui-blazor__.github__workflows__codeql-analysis.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            39,
+            47,
+            52,
+            62
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_fluentui-blazor__.github__workflows__codeql-analysis.yml:39",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_fluentui-blazor__.github__workflows__codeql-analysis.yml:47",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_fluentui-blazor__.github__workflows__codeql-analysis.yml:52",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_fluentui-blazor__.github__workflows__codeql-analysis.yml:62",
+            "Info:   0 out of   4 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            28,
+            29
+          ],
+          "raw_details": [
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/microsoft_fluentui-blazor__.github__workflows__codeql-analysis.yml:29",
+            "Info: jobLevel 'actions' permission set to 'read': .github/workflows/microsoft_fluentui-blazor__.github__workflows__codeql-analysis.yml:28",
+            "Warn: no topLevel permission defined: .github/workflows/microsoft_fluentui-blazor__.github__workflows__codeql-analysis.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_fluentui-blazor__.github__workflows__codeql-analysis.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "line": 39,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 47,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/setup-dotnet@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 52,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/init@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 62,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/analyze@v3`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_fluentui-blazor__.github__workflows__codeql-analysis.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_fluentui-blazor__.github__workflows__codeql-analysis.yml",
+          "line": 38,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "microsoft_fluentui-blazor__.github__workflows__codeql-analysis.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 1
+      },
+      "findings": [
+        {
+          "line": 39,
+          "column": 13,
+          "message": "the runner of \"actions/checkout@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,266 @@
+{
+  "workflow": "facebookresearch_xformers__.github__workflows__wheels_upload_pip.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "facebookresearch_xformers__.github__workflows__wheels_upload_pip.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v3",
+          "pinned": "actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744",
+          "line": 41,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/download-artifact@v4",
+          "pinned": "actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093",
+          "line": 59,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "facebookresearch_xformers__.github__workflows__wheels_upload_pip.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0",
+          "line": 41,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # actions/download-artifact@v4 | v4.3.0",
+          "line": 59,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "semgrep": {
+      "workflow": "facebookresearch_xformers__.github__workflows__wheels_upload_pip.yml",
+      "tool": "semgrep",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "run-shell-injection": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "run-shell-injection",
+          "line": 55,
+          "code": "requires login",
+          "note": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+          "documentation": null,
+          "capability": "injection-weakness"
+        },
+        {
+          "rule": "run-shell-injection",
+          "line": 66,
+          "code": "requires login",
+          "note": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+          "documentation": null,
+          "capability": "injection-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "facebookresearch_xformers__.github__workflows__wheels_upload_pip.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            41,
+            59,
+            81
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebookresearch_xformers__.github__workflows__wheels_upload_pip.yml:41",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebookresearch_xformers__.github__workflows__wheels_upload_pip.yml:59",
+            "Warn: pipCommand not pinned by hash: .github/workflows/facebookresearch_xformers__.github__workflows__wheels_upload_pip.yml:81",
+            "Info:   0 out of   2 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   1 pipCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/facebookresearch_xformers__.github__workflows__wheels_upload_pip.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "poutine": {
+      "workflow": "facebookresearch_xformers__.github__workflows__wheels_upload_pip.yml",
+      "tool": "poutine",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "known_vulnerability_in_build_component": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "known_vulnerability_in_build_component",
+          "line": 59,
+          "column": "",
+          "job": "wheels_upload_pip",
+          "step": "3",
+          "details": "Package: actions/download-artifact",
+          "event_triggers": [
+            "workflow_call"
+          ],
+          "capability": "known-vulnerable-component-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "facebookresearch_xformers__.github__workflows__wheels_upload_pip.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "line": 41,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 59,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/download-artifact@v4`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "facebookresearch_xformers__.github__workflows__wheels_upload_pip.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "artipacked": 1,
+          "template-injection": 3
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "facebookresearch_xformers__.github__workflows__wheels_upload_pip.yml",
+          "line": 40,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "facebookresearch_xformers__.github__workflows__wheels_upload_pip.yml",
+          "line": 53,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "facebookresearch_xformers__.github__workflows__wheels_upload_pip.yml",
+          "line": 65,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "facebookresearch_xformers__.github__workflows__wheels_upload_pip.yml",
+          "line": 65,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "facebookresearch_xformers__.github__workflows__wheels_upload_pip.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 1
+      },
+      "findings": [
+        {
+          "line": 41,
+          "column": 15,
+          "message": "the runner of \"actions/checkout@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "workflow": "microsoft_promptflow__.github__workflows__tools_tests.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "microsoft_promptflow__.github__workflows__tools_tests.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0",
+          "line": 34,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: azure/login@cb79c773a3cfa27f31f25eb3f677781210c9ce3d # azure/login@v1",
+          "line": 60,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_promptflow__.github__workflows__tools_tests.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            34,
+            39,
+            40,
+            41,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            53,
+            54,
+            55,
+            60
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__tools_tests.yml:34",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__tools_tests.yml:60",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__tools_tests.yml:39",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__tools_tests.yml:40",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__tools_tests.yml:41",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__tools_tests.yml:44",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__tools_tests.yml:45",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__tools_tests.yml:46",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__tools_tests.yml:47",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__tools_tests.yml:48",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__tools_tests.yml:49",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__tools_tests.yml:50",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__tools_tests.yml:51",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__tools_tests.yml:53",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__tools_tests.yml:54",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_promptflow__.github__workflows__tools_tests.yml:55",
+            "Info:   0 out of   1 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   1 third-party GitHubAction dependencies pinned",
+            "Info:   0 out of  14 pipCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_promptflow__.github__workflows__tools_tests.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "line": 34,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 60,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `azure/login@v1`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_promptflow__.github__workflows__tools_tests.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "artipacked": 1,
+          "excessive-permissions": 1,
+          "unpinned-uses": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_promptflow__.github__workflows__tools_tests.yml",
+          "line": 33,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "error",
+          "message": "overly broad permissions",
+          "workflow": "microsoft_promptflow__.github__workflows__tools_tests.yml",
+          "line": 4,
+          "column": 3,
+          "note": "audit confidence \u2192 High",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_promptflow__.github__workflows__tools_tests.yml",
+          "line": 60,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "microsoft_promptflow__.github__workflows__tools_tests.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 2
+      },
+      "findings": [
+        {
+          "line": 34,
+          "column": 15,
+          "message": "the runner of \"actions/checkout@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 60,
+          "column": 15,
+          "message": "the runner of \"azure/login@v1\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

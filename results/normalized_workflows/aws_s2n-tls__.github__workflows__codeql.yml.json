@@ -1,0 +1,235 @@
+{
+  "workflow": "aws_s2n-tls__.github__workflows__codeql.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "aws_s2n-tls__.github__workflows__codeql.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v6",
+          "pinned": "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+          "line": 31,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/init@v4",
+          "pinned": "github/codeql-action/init@89a39a4e59826350b863aa6b6252a07ad50cf83e",
+          "line": 34,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/autobuild@v4",
+          "pinned": "github/codeql-action/autobuild@89a39a4e59826350b863aa6b6252a07ad50cf83e",
+          "line": 41,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/analyze@v4",
+          "pinned": "github/codeql-action/analyze@89a39a4e59826350b863aa6b6252a07ad50cf83e",
+          "line": 45,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "ewega/code-scanning-status-checker@v2",
+          "pinned": "ewega/code-scanning-status-checker@9ad4ff437f4da13a824f21a902a89a7241966fcd",
+          "line": 64,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "aws_s2n-tls__.github__workflows__codeql.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 31,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@c793b717bc78562f491db7b0e93a3a178b099162 # github/codeql-action/init@v4",
+          "line": 34,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@c793b717bc78562f491db7b0e93a3a178b099162 # github/codeql-action/init@v4",
+          "line": 41,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@c793b717bc78562f491db7b0e93a3a178b099162 # github/codeql-action/init@v4",
+          "line": 45,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: ewega/code-scanning-status-checker@9ad4ff437f4da13a824f21a902a89a7241966fcd # ewega/code-scanning-status-checker@v2",
+          "line": 64,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "aws_s2n-tls__.github__workflows__codeql.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            31,
+            34,
+            41,
+            45,
+            64
+          ],
+          "raw_details": [
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/aws_s2n-tls__.github__workflows__codeql.yml:64",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_s2n-tls__.github__workflows__codeql.yml:31",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_s2n-tls__.github__workflows__codeql.yml:34",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_s2n-tls__.github__workflows__codeql.yml:41",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_s2n-tls__.github__workflows__codeql.yml:45",
+            "Info:   0 out of   4 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   1 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            19,
+            20,
+            57,
+            58,
+            59
+          ],
+          "raw_details": [
+            "Info: jobLevel 'actions' permission set to 'read': .github/workflows/aws_s2n-tls__.github__workflows__codeql.yml:19",
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/aws_s2n-tls__.github__workflows__codeql.yml:20",
+            "Info: jobLevel 'pull-requests' permission set to 'read': .github/workflows/aws_s2n-tls__.github__workflows__codeql.yml:59",
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/aws_s2n-tls__.github__workflows__codeql.yml:57",
+            "Info: jobLevel 'checks' permission set to 'read': .github/workflows/aws_s2n-tls__.github__workflows__codeql.yml:58",
+            "Warn: no topLevel permission defined: .github/workflows/aws_s2n-tls__.github__workflows__codeql.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "aws_s2n-tls__.github__workflows__codeql.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "line": 31,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 34,
+          "column": 22,
+          "message": "Unpinned GitHub Action: uses `codeql-action/init@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 41,
+          "column": 22,
+          "message": "Unpinned GitHub Action: uses `codeql-action/autobuild@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 45,
+          "column": 22,
+          "message": "Unpinned GitHub Action: uses `codeql-action/analyze@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 64,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `ewega/code-scanning-status-checker@v2`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "aws_s2n-tls__.github__workflows__codeql.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "artipacked": 1,
+          "unpinned-uses": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "aws_s2n-tls__.github__workflows__codeql.yml",
+          "line": 30,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "aws_s2n-tls__.github__workflows__codeql.yml",
+          "line": 64,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    }
+  }
+}

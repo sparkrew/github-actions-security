@@ -1,0 +1,195 @@
+{
+  "workflow": "microsoft_react-native-macos__.github__workflows__codeql-analysis.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "microsoft_react-native-macos__.github__workflows__codeql-analysis.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # actions/checkout@v2 | releases,850,v2.7.0",
+          "line": 41,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@b8d3b6e8af63cde30bdc382c0bc28114f4346c88 # github/codeql-action/init@v2",
+          "line": 45,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/autobuild@231aa2c8a89117b126725a0e11897209b7118144 # github/codeql-action/autobuild@v1",
+          "line": 56,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@b8d3b6e8af63cde30bdc382c0bc28114f4346c88 # github/codeql-action/init@v2",
+          "line": 70,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_react-native-macos__.github__workflows__codeql-analysis.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            41,
+            45,
+            56,
+            70
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_react-native-macos__.github__workflows__codeql-analysis.yml:41",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_react-native-macos__.github__workflows__codeql-analysis.yml:45",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_react-native-macos__.github__workflows__codeql-analysis.yml:56",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_react-native-macos__.github__workflows__codeql-analysis.yml:70",
+            "Info:   0 out of   4 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            28,
+            29
+          ],
+          "raw_details": [
+            "Info: jobLevel 'actions' permission set to 'read': .github/workflows/microsoft_react-native-macos__.github__workflows__codeql-analysis.yml:28",
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/microsoft_react-native-macos__.github__workflows__codeql-analysis.yml:29",
+            "Warn: no topLevel permission defined: .github/workflows/microsoft_react-native-macos__.github__workflows__codeql-analysis.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_react-native-macos__.github__workflows__codeql-analysis.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "line": 41,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v2`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 45,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/init@v2`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 51,
+          "column": 52,
+          "message": "Unpinned GitHub Action: uses `your-repo/queries@main`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 56,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/autobuild@v1`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 70,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/analyze@v2`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_react-native-macos__.github__workflows__codeql-analysis.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_react-native-macos__.github__workflows__codeql-analysis.yml",
+          "line": 40,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "microsoft_react-native-macos__.github__workflows__codeql-analysis.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 4
+      },
+      "findings": [
+        {
+          "line": 41,
+          "column": 13,
+          "message": "the runner of \"actions/checkout@v2\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 45,
+          "column": 13,
+          "message": "the runner of \"github/codeql-action/init@v2\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 56,
+          "column": 13,
+          "message": "the runner of \"github/codeql-action/autobuild@v1\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 70,
+          "column": 13,
+          "message": "the runner of \"github/codeql-action/analyze@v2\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

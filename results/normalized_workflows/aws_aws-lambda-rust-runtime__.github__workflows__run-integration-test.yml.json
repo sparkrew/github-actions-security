@@ -1,0 +1,252 @@
+{
+  "workflow": "aws_aws-lambda-rust-runtime__.github__workflows__run-integration-test.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "aws_aws-lambda-rust-runtime__.github__workflows__run-integration-test.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "jaxxstorm/action-install-gh-release@v2.1.0",
+          "pinned": "jaxxstorm/action-install-gh-release@6096f2a2bbfee498ced520b6922ac2c06e990ed2",
+          "line": 18,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "mlugg/setup-zig@v2",
+          "pinned": "mlugg/setup-zig@d1434d08867e3ee9daa34448df10607b98908d29",
+          "line": 24,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "aws-actions/setup-sam@v2",
+          "pinned": "aws-actions/setup-sam@d78e1a4a9656d3b223e59b80676a797f20093133",
+          "line": 28,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v6",
+          "pinned": "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+          "line": 31,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "aws-actions/configure-aws-credentials@v6.0.0",
+          "pinned": "aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7",
+          "line": 33,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "aws_aws-lambda-rust-runtime__.github__workflows__run-integration-test.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: jaxxstorm/action-install-gh-release@6096f2a2bbfee498ced520b6922ac2c06e990ed2 # jaxxstorm/action-install-gh-release@v2.1.0",
+          "line": 18,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: mlugg/setup-zig@d1434d08867e3ee9daa34448df10607b98908d29 # mlugg/setup-zig@v2 | main,v2.2.1",
+          "line": 24,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: aws-actions/setup-sam@d78e1a4a9656d3b223e59b80676a797f20093133 # aws-actions/setup-sam@v2 | main",
+          "line": 28,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 31,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7 # aws-actions/configure-aws-credentials@v6.0.0",
+          "line": 33,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "aws_aws-lambda-rust-runtime__.github__workflows__run-integration-test.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            18,
+            24,
+            28,
+            31,
+            33
+          ],
+          "raw_details": [
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/aws_aws-lambda-rust-runtime__.github__workflows__run-integration-test.yml:18",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/aws_aws-lambda-rust-runtime__.github__workflows__run-integration-test.yml:24",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/aws_aws-lambda-rust-runtime__.github__workflows__run-integration-test.yml:28",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_aws-lambda-rust-runtime__.github__workflows__run-integration-test.yml:31",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/aws_aws-lambda-rust-runtime__.github__workflows__run-integration-test.yml:33",
+            "Info:   0 out of   1 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   4 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "aws_aws-lambda-rust-runtime__.github__workflows__run-integration-test.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "line": 18,
+          "column": 17,
+          "message": "Unpinned GitHub Action: uses `jaxxstorm/action-install-gh-release@v2.1.0`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 24,
+          "column": 17,
+          "message": "Unpinned GitHub Action: uses `mlugg/setup-zig@v2`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 28,
+          "column": 17,
+          "message": "Unpinned GitHub Action: uses `aws-actions/setup-sam@v2`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 31,
+          "column": 17,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 33,
+          "column": 17,
+          "message": "Unpinned GitHub Action: uses `aws-actions/configure-aws-credentials@v6.0.0`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "aws_aws-lambda-rust-runtime__.github__workflows__run-integration-test.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "artipacked": 1,
+          "unpinned-uses": 4
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "aws_aws-lambda-rust-runtime__.github__workflows__run-integration-test.yml",
+          "line": 31,
+          "column": 11,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "aws_aws-lambda-rust-runtime__.github__workflows__run-integration-test.yml",
+          "line": 18,
+          "column": 11,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "aws_aws-lambda-rust-runtime__.github__workflows__run-integration-test.yml",
+          "line": 24,
+          "column": 11,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "aws_aws-lambda-rust-runtime__.github__workflows__run-integration-test.yml",
+          "line": 28,
+          "column": 11,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "aws_aws-lambda-rust-runtime__.github__workflows__run-integration-test.yml",
+          "line": 33,
+          "column": 11,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    }
+  }
+}

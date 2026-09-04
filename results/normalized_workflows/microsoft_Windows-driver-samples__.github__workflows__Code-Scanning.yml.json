@@ -1,0 +1,219 @@
+{
+  "workflow": "microsoft_Windows-driver-samples__.github__workflows__Code-Scanning.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "microsoft_Windows-driver-samples__.github__workflows__Code-Scanning.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+          "line": 44,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "tj-actions/changed-files@v41",
+          "pinned": "tj-actions/changed-files@716b1e13042866565e00e85fd4ec490e186c4a2f",
+          "line": 51,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/init@v3",
+          "pinned": "github/codeql-action/init@45580472a5bb82c4681c4ac726cfdb60060c2ee1",
+          "line": 55,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/analyze@v3",
+          "pinned": "github/codeql-action/analyze@45580472a5bb82c4681c4ac726cfdb60060c2ee1",
+          "line": 75,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "microsoft_Windows-driver-samples__.github__workflows__Code-Scanning.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+          "line": 44,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: tj-actions/changed-files@716b1e13042866565e00e85fd4ec490e186c4a2f # tj-actions/changed-files@v41 | v41.0.1",
+          "line": 51,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@ae9ef3a1d2e3413523c3741725c30064970cc0d4 # github/codeql-action/init@v3",
+          "line": 55,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@ae9ef3a1d2e3413523c3741725c30064970cc0d4 # github/codeql-action/init@v3",
+          "line": 75,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_Windows-driver-samples__.github__workflows__Code-Scanning.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            44,
+            51,
+            55,
+            75
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_Windows-driver-samples__.github__workflows__Code-Scanning.yml:44",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_Windows-driver-samples__.github__workflows__Code-Scanning.yml:51",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_Windows-driver-samples__.github__workflows__Code-Scanning.yml:55",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_Windows-driver-samples__.github__workflows__Code-Scanning.yml:75",
+            "Info:   0 out of   3 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   1 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            31,
+            32
+          ],
+          "raw_details": [
+            "Info: jobLevel 'actions' permission set to 'read': .github/workflows/microsoft_Windows-driver-samples__.github__workflows__Code-Scanning.yml:31",
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/microsoft_Windows-driver-samples__.github__workflows__Code-Scanning.yml:32",
+            "Warn: no topLevel permission defined: .github/workflows/microsoft_Windows-driver-samples__.github__workflows__Code-Scanning.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_Windows-driver-samples__.github__workflows__Code-Scanning.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "line": 44,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 51,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `tj-actions/changed-files@v41`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 55,
+          "column": 22,
+          "message": "Unpinned GitHub Action: uses `codeql-action/init@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 75,
+          "column": 22,
+          "message": "Unpinned GitHub Action: uses `codeql-action/analyze@v3`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_Windows-driver-samples__.github__workflows__Code-Scanning.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "artipacked": 1,
+          "template-injection": 1,
+          "unpinned-uses": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_Windows-driver-samples__.github__workflows__Code-Scanning.yml",
+          "line": 43,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_Windows-driver-samples__.github__workflows__Code-Scanning.yml",
+          "line": 60,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_Windows-driver-samples__.github__workflows__Code-Scanning.yml",
+          "line": 73,
+          "column": 28,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    }
+  }
+}

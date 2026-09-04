@@ -1,0 +1,63 @@
+{
+  "workflow": "google_trillian__.github__workflows__codeql.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "google_trillian__.github__workflows__codeql.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2",
+          "line": 44,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@b20883b0cd1f46c72ae0ba6d1090936928f9fa30 # v4.32.0",
+          "line": 48,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@b20883b0cd1f46c72ae0ba6d1090936928f9fa30 # github/codeql-action/init@b20883b0cd1f46c72ae0ba6d1090936928f9fa30",
+          "line": 62,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@b20883b0cd1f46c72ae0ba6d1090936928f9fa30 # github/codeql-action/init@b20883b0cd1f46c72ae0ba6d1090936928f9fa30",
+          "line": 75,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "google_trillian__.github__workflows__codeql.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_trillian__.github__workflows__codeql.yml",
+          "line": 43,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    }
+  }
+}

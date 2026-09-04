@@ -1,0 +1,160 @@
+{
+  "workflow": "microsoft_SynapseML__.github__workflows__codeql.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "microsoft_SynapseML__.github__workflows__codeql.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+          "line": 45,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/init@v3",
+          "pinned": "github/codeql-action/init@45580472a5bb82c4681c4ac726cfdb60060c2ee1",
+          "line": 49,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/autobuild@v3",
+          "pinned": "github/codeql-action/autobuild@45580472a5bb82c4681c4ac726cfdb60060c2ee1",
+          "line": 63,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/analyze@v3",
+          "pinned": "github/codeql-action/analyze@45580472a5bb82c4681c4ac726cfdb60060c2ee1",
+          "line": 76,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_SynapseML__.github__workflows__codeql.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            45,
+            49,
+            63,
+            76
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_SynapseML__.github__workflows__codeql.yml:45",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_SynapseML__.github__workflows__codeql.yml:49",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_SynapseML__.github__workflows__codeql.yml:63",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_SynapseML__.github__workflows__codeql.yml:76",
+            "Info:   0 out of   4 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            30,
+            31
+          ],
+          "raw_details": [
+            "Info: jobLevel 'actions' permission set to 'read': .github/workflows/microsoft_SynapseML__.github__workflows__codeql.yml:30",
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/microsoft_SynapseML__.github__workflows__codeql.yml:31",
+            "Warn: no topLevel permission defined: .github/workflows/microsoft_SynapseML__.github__workflows__codeql.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_SynapseML__.github__workflows__codeql.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "line": 45,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 49,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/init@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 63,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/autobuild@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 76,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/analyze@v3`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_SynapseML__.github__workflows__codeql.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_SynapseML__.github__workflows__codeql.yml",
+          "line": 44,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    }
+  }
+}

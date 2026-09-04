@@ -1,0 +1,287 @@
+{
+  "workflow": "microsoft_autogen__.github__workflows__single-python-package.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "microsoft_autogen__.github__workflows__single-python-package.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+          "line": 31,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "astral-sh/setup-uv@v5",
+          "pinned": "astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86",
+          "line": 36,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "pypa/gh-action-pypi-publish@release/v1",
+          "pinned": "pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e",
+          "line": 42,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "microsoft_autogen__.github__workflows__single-python-package.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+          "line": 31,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # astral-sh/setup-uv@v5",
+          "line": 36,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # pypa/gh-action-pypi-publish@release/v1 | release",
+          "line": 42,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "semgrep": {
+      "workflow": "microsoft_autogen__.github__workflows__single-python-package.yml",
+      "tool": "semgrep",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "run-shell-injection": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "run-shell-injection",
+          "line": 35,
+          "code": "requires login",
+          "note": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+          "documentation": null,
+          "capability": "injection-weakness"
+        },
+        {
+          "rule": "run-shell-injection",
+          "line": 39,
+          "code": "requires login",
+          "note": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+          "documentation": null,
+          "capability": "injection-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_autogen__.github__workflows__single-python-package.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            31,
+            36,
+            42
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__single-python-package.yml:31",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__single-python-package.yml:36",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__single-python-package.yml:42",
+            "Info:   0 out of   1 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   2 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/microsoft_autogen__.github__workflows__single-python-package.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "poutine": {
+      "workflow": "microsoft_autogen__.github__workflows__single-python-package.yml",
+      "tool": "poutine",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "injection": 2
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "injection",
+          "line": 39,
+          "column": "",
+          "job": "deploy-package",
+          "step": "3",
+          "details": "Sources: github.event.inputs.package",
+          "event_triggers": [
+            "workflow_dispatch"
+          ],
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "injection",
+          "line": 35,
+          "column": "",
+          "job": "deploy-package",
+          "step": "1",
+          "details": "Sources: github.event.inputs.ref",
+          "event_triggers": [
+            "workflow_dispatch"
+          ],
+          "capability": "injection-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_autogen__.github__workflows__single-python-package.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "line": 31,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 36,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `astral-sh/setup-uv@v5`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_autogen__.github__workflows__single-python-package.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "artipacked": 1,
+          "template-injection": 2,
+          "unpinned-uses": 2
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_autogen__.github__workflows__single-python-package.yml",
+          "line": 30,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_autogen__.github__workflows__single-python-package.yml",
+          "line": 35,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_autogen__.github__workflows__single-python-package.yml",
+          "line": 39,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_autogen__.github__workflows__single-python-package.yml",
+          "line": 36,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_autogen__.github__workflows__single-python-package.yml",
+          "line": 42,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    }
+  }
+}

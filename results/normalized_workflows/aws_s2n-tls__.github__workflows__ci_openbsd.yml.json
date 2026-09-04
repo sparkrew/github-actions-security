@@ -1,0 +1,173 @@
+{
+  "workflow": "aws_s2n-tls__.github__workflows__ci_openbsd.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "aws_s2n-tls__.github__workflows__ci_openbsd.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v6",
+          "pinned": "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+          "line": 20,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "cross-platform-actions/action@v0.32.0",
+          "pinned": "cross-platform-actions/action@492b0c80085400348c599edace11141a4ee73524",
+          "line": 23,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "aws_s2n-tls__.github__workflows__ci_openbsd.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 20,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: cross-platform-actions/action@492b0c80085400348c599edace11141a4ee73524 # cross-platform-actions/action@v0.32.0",
+          "line": 23,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@0c366cb4fc8897159c94880f94b55bc716ad6a66 # actions/upload-artifact@master",
+          "line": 37,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "aws_s2n-tls__.github__workflows__ci_openbsd.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            20,
+            23,
+            37
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_s2n-tls__.github__workflows__ci_openbsd.yml:20",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/aws_s2n-tls__.github__workflows__ci_openbsd.yml:23",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_s2n-tls__.github__workflows__ci_openbsd.yml:37",
+            "Info:   0 out of   2 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   1 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "aws_s2n-tls__.github__workflows__ci_openbsd.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "line": 20,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 23,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `cross-platform-actions/action@v0.32.0`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 37,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@master`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "aws_s2n-tls__.github__workflows__ci_openbsd.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "artipacked": 1,
+          "unpinned-uses": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "aws_s2n-tls__.github__workflows__ci_openbsd.yml",
+          "line": 20,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "aws_s2n-tls__.github__workflows__ci_openbsd.yml",
+          "line": 23,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "workflow": "google_draco__.github__workflows__gemini-issue-automated-triage.yml",
+  "tools": {
+    "scorecard": {
+      "workflow": "google_draco__.github__workflows__gemini-issue-automated-triage.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 4,
+          "reason": "dependency not pinned by hash detected -- score normalized to 4",
+          "lines": [
+            59
+          ],
+          "raw_details": [
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_draco__.github__workflows__gemini-issue-automated-triage.yml:59",
+            "Info:   3 out of   3 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   1 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            27,
+            30
+          ],
+          "raw_details": [
+            "Info: topLevel 'contents' permission set to 'read': .github/workflows/google_draco__.github__workflows__gemini-issue-automated-triage.yml:27",
+            "Warn: topLevel 'statuses' permission set to 'write': .github/workflows/google_draco__.github__workflows__gemini-issue-automated-triage.yml:30",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "google_draco__.github__workflows__gemini-issue-automated-triage.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "line": 47,
+          "column": 85,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 53,
+          "column": 100,
+          "message": "Unpinned GitHub Action: uses `actions/create-github-app-token@v2`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 59,
+          "column": 16,
+          "message": "Unpinned GitHub Action: uses `google-github-actions/run-gemini-cli@v0`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "google_draco__.github__workflows__gemini-issue-automated-triage.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "artipacked": 1,
+          "unpinned-uses": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_draco__.github__workflows__gemini-issue-automated-triage.yml",
+          "line": 46,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "google_draco__.github__workflows__gemini-issue-automated-triage.yml",
+          "line": 59,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "workflow": "microsoft_Security-101__.github__workflows__co-op-translator.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "microsoft_Security-101__.github__workflows__co-op-translator.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+          "line": 18,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-python@v4",
+          "pinned": "actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c",
+          "line": 23,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "tibdex/github-app-token@v1",
+          "pinned": "tibdex/github-app-token@32691ba7c9e7063bd457bd8f2a5703138591fa58",
+          "line": 70,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "peter-evans/create-pull-request@v5",
+          "pinned": "peter-evans/create-pull-request@4e1beaa7521e8b457b572c090b25bd3db56bf1c5",
+          "line": 76,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_Security-101__.github__workflows__co-op-translator.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            18,
+            23,
+            29,
+            30,
+            70,
+            76
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_Security-101__.github__workflows__co-op-translator.yml:18",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_Security-101__.github__workflows__co-op-translator.yml:23",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_Security-101__.github__workflows__co-op-translator.yml:70",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_Security-101__.github__workflows__co-op-translator.yml:76",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_Security-101__.github__workflows__co-op-translator.yml:29",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_Security-101__.github__workflows__co-op-translator.yml:30",
+            "Info:   0 out of   2 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   2 third-party GitHubAction dependencies pinned",
+            "Info:   0 out of   2 pipCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            13
+          ],
+          "raw_details": [
+            "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/microsoft_Security-101__.github__workflows__co-op-translator.yml:13",
+            "Warn: no topLevel permission defined: .github/workflows/microsoft_Security-101__.github__workflows__co-op-translator.yml:1"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_Security-101__.github__workflows__co-op-translator.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "line": 18,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 23,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 70,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `tibdex/github-app-token@v1`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 76,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `peter-evans/create-pull-request@v5`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_Security-101__.github__workflows__co-op-translator.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "artipacked": 1,
+          "unpinned-uses": 2
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_Security-101__.github__workflows__co-op-translator.yml",
+          "line": 17,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_Security-101__.github__workflows__co-op-translator.yml",
+          "line": 70,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_Security-101__.github__workflows__co-op-translator.yml",
+          "line": 76,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "microsoft_Security-101__.github__workflows__co-op-translator.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 2
+      },
+      "findings": [
+        {
+          "line": 23,
+          "column": 15,
+          "message": "the runner of \"actions/setup-python@v4\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 76,
+          "column": 15,
+          "message": "the runner of \"peter-evans/create-pull-request@v5\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,230 @@
+{
+  "workflow": "aws_sagemaker-python-sdk__.github__workflows__ci-health.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "aws_sagemaker-python-sdk__.github__workflows__ci-health.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "aws-actions/configure-aws-credentials@v4",
+          "pinned": "aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a",
+          "line": 15,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "aws-actions/aws-codebuild-run-build@v1",
+          "pinned": "aws-actions/aws-codebuild-run-build@4d15a47425739ac2296ba5e7eee3bdd4bfbdd767",
+          "line": 21,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "aws-actions/configure-aws-credentials@v4",
+          "pinned": "aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a",
+          "line": 29,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "aws-actions/aws-codebuild-run-build@v1",
+          "pinned": "aws-actions/aws-codebuild-run-build@4d15a47425739ac2296ba5e7eee3bdd4bfbdd767",
+          "line": 35,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "aws_sagemaker-python-sdk__.github__workflows__ci-health.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # aws-actions/configure-aws-credentials@v4",
+          "line": 15,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: aws-actions/aws-codebuild-run-build@4d15a47425739ac2296ba5e7eee3bdd4bfbdd767 # aws-actions/aws-codebuild-run-build@v1 | v1.0,v1.0.18",
+          "line": 21,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: aws-actions/configure-aws-credentials@7474bc4690e29a8392af63c5b98e7449536d5c3a # aws-actions/configure-aws-credentials@v4",
+          "line": 29,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: aws-actions/aws-codebuild-run-build@4d15a47425739ac2296ba5e7eee3bdd4bfbdd767 # aws-actions/aws-codebuild-run-build@v1 | v1.0,v1.0.18",
+          "line": 35,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "aws_sagemaker-python-sdk__.github__workflows__ci-health.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            15,
+            21,
+            29,
+            35
+          ],
+          "raw_details": [
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/aws_sagemaker-python-sdk__.github__workflows__ci-health.yml:15",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/aws_sagemaker-python-sdk__.github__workflows__ci-health.yml:21",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/aws_sagemaker-python-sdk__.github__workflows__ci-health.yml:29",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/aws_sagemaker-python-sdk__.github__workflows__ci-health.yml:35",
+            "Info:   0 out of   4 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "aws_sagemaker-python-sdk__.github__workflows__ci-health.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "line": 15,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `aws-actions/configure-aws-credentials@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 21,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `aws-actions/aws-codebuild-run-build@v1`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 29,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `aws-actions/configure-aws-credentials@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 35,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `aws-actions/aws-codebuild-run-build@v1`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "aws_sagemaker-python-sdk__.github__workflows__ci-health.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "excessive-permissions": 1,
+          "unpinned-uses": 4
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "excessive-permissions",
+          "level": "error",
+          "message": "overly broad permissions",
+          "workflow": "aws_sagemaker-python-sdk__.github__workflows__ci-health.yml",
+          "line": 8,
+          "column": 5,
+          "note": "audit confidence \u2192 High",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "aws_sagemaker-python-sdk__.github__workflows__ci-health.yml",
+          "line": 15,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "aws_sagemaker-python-sdk__.github__workflows__ci-health.yml",
+          "line": 21,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "aws_sagemaker-python-sdk__.github__workflows__ci-health.yml",
+          "line": 29,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "aws_sagemaker-python-sdk__.github__workflows__ci-health.yml",
+          "line": 35,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    }
+  }
+}

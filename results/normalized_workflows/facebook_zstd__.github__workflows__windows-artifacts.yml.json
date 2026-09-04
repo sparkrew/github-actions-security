@@ -1,0 +1,164 @@
+{
+  "workflow": "facebook_zstd__.github__workflows__windows-artifacts.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "facebook_zstd__.github__workflows__windows-artifacts.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # tag=v6.0.2",
+          "line": 31,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: msys2/setup-msys2@4f806de0a5a7294ffabaff804b38a9b435a73bda # tag=v2.30.0",
+          "line": 34,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # tag=v6.0.0",
+          "line": 96,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "facebook_zstd__.github__workflows__windows-artifacts.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "facebook_zstd__.github__workflows__windows-artifacts.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 9,
+        "by_rule": {
+          "artipacked": 1,
+          "template-injection": 8
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "facebook_zstd__.github__workflows__windows-artifacts.yml",
+          "line": 31,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "facebook_zstd__.github__workflows__windows-artifacts.yml",
+          "line": 82,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "facebook_zstd__.github__workflows__windows-artifacts.yml",
+          "line": 88,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "facebook_zstd__.github__workflows__windows-artifacts.yml",
+          "line": 103,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "facebook_zstd__.github__workflows__windows-artifacts.yml",
+          "line": 103,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "facebook_zstd__.github__workflows__windows-artifacts.yml",
+          "line": 108,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "facebook_zstd__.github__workflows__windows-artifacts.yml",
+          "line": 108,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "facebook_zstd__.github__workflows__windows-artifacts.yml",
+          "line": 113,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "facebook_zstd__.github__workflows__windows-artifacts.yml",
+          "line": 113,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        }
+      ]
+    }
+  }
+}

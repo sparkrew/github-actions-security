@@ -1,0 +1,284 @@
+{
+  "workflow": "awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v2",
+          "pinned": "actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5",
+          "line": 12,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "8398a7/action-slack@v3",
+          "pinned": "8398a7/action-slack@77eaa4f1c608a7d68b38af4e3f739dcd8cba273e",
+          "line": 25,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "unpinned-github-actions": 5,
+          "unpinned-docker-image": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # actions/checkout@v2 | releases,850,v2.7.0",
+          "line": 12,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-docker-image",
+          "pinned": "#   uses: docker://ghcr.io/scottbrenner/cfn-lint-action@sha256:359405ee3a03ae20eab66d5bbf7047f8a016d571dd1b696f68ba3fe8f632cee8 # docker://ghcr.io/scottbrenner/cfn-lint-action:master",
+          "line": 15
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: stelligent/cfn_nag@8b5f03da74202ba323a145e9d037ddce6cab9dec # stelligent/cfn_nag@master",
+          "line": 19,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: 8398a7/action-slack@77eaa4f1c608a7d68b38af4e3f739dcd8cba273e # 8398a7/action-slack@v3 | v3.19.0",
+          "line": 25,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "#   - uses: 8398a7/action-slack@77eaa4f1c608a7d68b38af4e3f739dcd8cba273e # 8398a7/action-slack@v3 | v3.19.0",
+          "line": 40,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "#   uses: stelligent/cfn_nag@fe42d1c6af19fb6a37b2c2e4dacffa89d2f7db4c # stelligent/cfn_nag@v0.5.48",
+          "line": 54,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            12,
+            19,
+            25
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml:12",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml:19",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml:25",
+            "Info:   0 out of   1 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   2 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "line": 12,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v2`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 19,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `stelligent/cfn_nag@master`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 25,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `8398a7/action-slack@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 40,
+          "column": 17,
+          "message": "Unpinned GitHub Action: uses `8398a7/action-slack@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 54,
+          "column": 17,
+          "message": "Unpinned GitHub Action: uses `stelligent/cfn_nag@v0.5.48`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "artipacked": 1,
+          "excessive-permissions": 1,
+          "template-injection": 2,
+          "unpinned-uses": 2
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml",
+          "line": 11,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml",
+          "line": 7,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml",
+          "line": 23,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml",
+          "line": 23,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml",
+          "line": 19,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml",
+          "line": 25,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "awslabs_aws-well-architected-labs__.github__workflows__cfn_nag.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 2
+      },
+      "findings": [
+        {
+          "line": 12,
+          "column": 15,
+          "message": "the runner of \"actions/checkout@v2\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 35,
+          "column": 11,
+          "message": "input \"webhook\" is not defined in action \"8398a7/action-slack@v3\". available inputs are \"author_name\", \"channel\", \"custom_payload\", \"fields\", \"github_base_url\", \"github_token\", \"icon_emoji\", \"icon_url\", \"if_mention\", \"job_name\", \"mention\", \"status\", \"text\", \"username\" [action]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "workflow": "microsoft_WPF-Samples__.github__workflows__codeql.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "microsoft_WPF-Samples__.github__workflows__codeql.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+          "line": 26,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-dotnet@v4",
+          "pinned": "actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9",
+          "line": 29,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/init@v4",
+          "pinned": "github/codeql-action/init@89a39a4e59826350b863aa6b6252a07ad50cf83e",
+          "line": 34,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/analyze@v4",
+          "pinned": "github/codeql-action/analyze@89a39a4e59826350b863aa6b6252a07ad50cf83e",
+          "line": 47,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "microsoft_WPF-Samples__.github__workflows__codeql.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+          "line": 26,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # actions/setup-dotnet@v4 | releases,v4.3.1",
+          "line": 29,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@c793b717bc78562f491db7b0e93a3a178b099162 # github/codeql-action/init@v4",
+          "line": 34,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@c793b717bc78562f491db7b0e93a3a178b099162 # github/codeql-action/init@v4",
+          "line": 47,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_WPF-Samples__.github__workflows__codeql.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            26,
+            29,
+            34,
+            47
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_WPF-Samples__.github__workflows__codeql.yml:26",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_WPF-Samples__.github__workflows__codeql.yml:29",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_WPF-Samples__.github__workflows__codeql.yml:34",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_WPF-Samples__.github__workflows__codeql.yml:47",
+            "Info:   0 out of   4 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            17,
+            18
+          ],
+          "raw_details": [
+            "Info: jobLevel 'actions' permission set to 'read': .github/workflows/microsoft_WPF-Samples__.github__workflows__codeql.yml:17",
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/microsoft_WPF-Samples__.github__workflows__codeql.yml:18",
+            "Warn: no topLevel permission defined: .github/workflows/microsoft_WPF-Samples__.github__workflows__codeql.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_WPF-Samples__.github__workflows__codeql.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "line": 26,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 29,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/setup-dotnet@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 34,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/init@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 47,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/analyze@v4`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_WPF-Samples__.github__workflows__codeql.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_WPF-Samples__.github__workflows__codeql.yml",
+          "line": 25,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    }
+  }
+}

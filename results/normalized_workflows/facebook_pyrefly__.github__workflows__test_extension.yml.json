@@ -1,0 +1,233 @@
+{
+  "workflow": "facebook_pyrefly__.github__workflows__test_extension.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "facebook_pyrefly__.github__workflows__test_extension.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v6",
+          "pinned": "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+          "line": 53,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/download-artifact@v7",
+          "pinned": "actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+          "line": 57,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-node@v6",
+          "pinned": "actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238",
+          "line": 77,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "facebook_pyrefly__.github__workflows__test_extension.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 53,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # actions/download-artifact@v7 | v7.0.0",
+          "line": 57,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # actions/setup-node@v6 | main,v6.3.0",
+          "line": 77,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "facebook_pyrefly__.github__workflows__test_extension.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 2,
+          "reason": "dependency not pinned by hash detected -- score normalized to 2",
+          "lines": [
+            53,
+            57,
+            77
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_pyrefly__.github__workflows__test_extension.yml:53",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_pyrefly__.github__workflows__test_extension.yml:57",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebook_pyrefly__.github__workflows__test_extension.yml:77",
+            "Info:   0 out of   3 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   1 out of   1 npmCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/facebook_pyrefly__.github__workflows__test_extension.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "facebook_pyrefly__.github__workflows__test_extension.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "line": 53,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 57,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/download-artifact@v7`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 77,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v6`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "facebook_pyrefly__.github__workflows__test_extension.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "artipacked": 1,
+          "excessive-permissions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "facebook_pyrefly__.github__workflows__test_extension.yml",
+          "line": 52,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "facebook_pyrefly__.github__workflows__test_extension.yml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "facebook_pyrefly__.github__workflows__test_extension.yml",
+          "line": 13,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "facebook_pyrefly__.github__workflows__test_extension.yml",
+          "line": 16,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "facebook_pyrefly__.github__workflows__test_extension.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 1
+      },
+      "findings": [
+        {
+          "line": 14,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/build_extension.yml\": open /home/huawei/github-actions-security/.github/workflows/build_extension.yml: no such file or directory [workflow-call]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

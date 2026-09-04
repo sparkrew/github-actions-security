@@ -1,0 +1,211 @@
+{
+  "workflow": "IBM_plex__.github__workflows__publish-cdn.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "IBM_plex__.github__workflows__publish-cdn.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-node@v4",
+          "pinned": "actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "line": 21,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "IBM_plex__.github__workflows__publish-cdn.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7",
+          "line": 17,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | releases,v4.4.0",
+          "line": 21,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: jakejarvis/s3-sync-action@7ed8b112447abb09f1da74f3466e4194fc7a6311 # jakejarvis/s3-sync-action@master",
+          "line": 29,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: jakejarvis/s3-sync-action@7ed8b112447abb09f1da74f3466e4194fc7a6311 # jakejarvis/s3-sync-action@master",
+          "line": 40,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "IBM_plex__.github__workflows__publish-cdn.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 1,
+          "reason": "dependency not pinned by hash detected -- score normalized to 1",
+          "lines": [
+            21,
+            29,
+            40
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/IBM_plex__.github__workflows__publish-cdn.yml:21",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/IBM_plex__.github__workflows__publish-cdn.yml:29",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/IBM_plex__.github__workflows__publish-cdn.yml:40",
+            "Info:   1 out of   2 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   2 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/IBM_plex__.github__workflows__publish-cdn.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "IBM_plex__.github__workflows__publish-cdn.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "line": 21,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 29,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `jakejarvis/s3-sync-action@master`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 40,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `jakejarvis/s3-sync-action@master`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "IBM_plex__.github__workflows__publish-cdn.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "artipacked": 1,
+          "excessive-permissions": 1,
+          "unpinned-uses": 2
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "IBM_plex__.github__workflows__publish-cdn.yml",
+          "line": 17,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "IBM_plex__.github__workflows__publish-cdn.yml",
+          "line": 12,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "IBM_plex__.github__workflows__publish-cdn.yml",
+          "line": 29,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "IBM_plex__.github__workflows__publish-cdn.yml",
+          "line": 40,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    }
+  }
+}

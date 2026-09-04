@@ -1,0 +1,209 @@
+{
+  "workflow": "Azure_bicep__.github__workflows__slash-command-dispatch.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "Azure_bicep__.github__workflows__slash-command-dispatch.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "raven-actions/bot-details@v1",
+          "pinned": "raven-actions/bot-details@ee8966a9ff6e7e42cbfc4a56b4ddb60a9d1b40a6",
+          "line": 26,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "xt0rted/pull-request-comment-branch@v3",
+          "pinned": "xt0rted/pull-request-comment-branch@e8b8daa837e8ea7331c0003c9c316a64c6d8b0b1",
+          "line": 29,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "peter-evans/slash-command-dispatch@v5",
+          "pinned": "peter-evans/slash-command-dispatch@9bdcd7914ec1b75590b790b844aa3b8eee7c683a",
+          "line": 38,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "Azure_bicep__.github__workflows__slash-command-dispatch.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: raven-actions/bot-details@ee8966a9ff6e7e42cbfc4a56b4ddb60a9d1b40a6 # raven-actions/bot-details@v1 | main,v1.2.0",
+          "line": 26,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: xt0rted/pull-request-comment-branch@e8b8daa837e8ea7331c0003c9c316a64c6d8b0b1 # xt0rted/pull-request-comment-branch@v3 | releases,v3.0.0",
+          "line": 29,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: peter-evans/slash-command-dispatch@0683e68ce8b375f2dc24214e065a3ae1ef93040e # peter-evans/slash-command-dispatch@v5 | 431",
+          "line": 38,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "Azure_bicep__.github__workflows__slash-command-dispatch.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            26,
+            29,
+            38
+          ],
+          "raw_details": [
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Azure_bicep__.github__workflows__slash-command-dispatch.yml:26",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Azure_bicep__.github__workflows__slash-command-dispatch.yml:29",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Azure_bicep__.github__workflows__slash-command-dispatch.yml:38",
+            "Info:   0 out of   3 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            20,
+            21
+          ],
+          "raw_details": [
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/Azure_bicep__.github__workflows__slash-command-dispatch.yml:21",
+            "Warn: jobLevel 'actions' permission set to 'write': .github/workflows/Azure_bicep__.github__workflows__slash-command-dispatch.yml:20",
+            "Warn: no topLevel permission defined: .github/workflows/Azure_bicep__.github__workflows__slash-command-dispatch.yml:1"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "Azure_bicep__.github__workflows__slash-command-dispatch.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "line": 26,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `raven-actions/bot-details@v1`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 29,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `xt0rted/pull-request-comment-branch@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 38,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `peter-evans/slash-command-dispatch@v5`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "Azure_bicep__.github__workflows__slash-command-dispatch.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-uses": 3
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "Azure_bicep__.github__workflows__slash-command-dispatch.yml",
+          "line": 26,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "Azure_bicep__.github__workflows__slash-command-dispatch.yml",
+          "line": 29,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "Azure_bicep__.github__workflows__slash-command-dispatch.yml",
+          "line": 38,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    }
+  }
+}

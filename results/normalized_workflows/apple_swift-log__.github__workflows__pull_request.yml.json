@@ -1,0 +1,122 @@
+{
+  "workflow": "apple_swift-log__.github__workflows__pull_request.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "apple_swift-log__.github__workflows__pull_request.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "swiftlang/github-workflows/.github/workflows/soundness.yml@0.0.7",
+          "pinned": "swiftlang/github-workflows/.github/workflows/soundness.yml@e96b1ad30d9a253d7bd9d253b2e4ef189965dd3d",
+          "line": 13,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "apple_swift-log__.github__workflows__pull_request.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 10,
+        "by_rule": {
+          "unpinned-github-actions": 10
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: swiftlang/github-workflows/.github/workflows/soundness.yml@e96b1ad30d9a253d7bd9d253b2e4ef189965dd3d # swiftlang/github-workflows/.github/workflows/soundness.yml@0.0.7",
+          "line": 13,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: apple/swift-nio/.github/workflows/unit_tests.yml@ada5f7690b9579a1cefb1c3757b65a3e561f7db4 # apple/swift-nio/.github/workflows/unit_tests.yml@main",
+          "line": 19,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: apple/swift-nio/.github/workflows/unit_tests.yml@ada5f7690b9579a1cefb1c3757b65a3e561f7db4 # apple/swift-nio/.github/workflows/unit_tests.yml@main",
+          "line": 39,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: apple/swift-nio/.github/workflows/unit_tests.yml@ada5f7690b9579a1cefb1c3757b65a3e561f7db4 # apple/swift-nio/.github/workflows/unit_tests.yml@main",
+          "line": 50,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: apple/swift-nio/.github/workflows/unit_tests.yml@ada5f7690b9579a1cefb1c3757b65a3e561f7db4 # apple/swift-nio/.github/workflows/unit_tests.yml@main",
+          "line": 58,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: apple/swift-nio/.github/workflows/unit_tests.yml@ada5f7690b9579a1cefb1c3757b65a3e561f7db4 # apple/swift-nio/.github/workflows/unit_tests.yml@main",
+          "line": 63,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: apple/swift-nio/.github/workflows/unit_tests.yml@ada5f7690b9579a1cefb1c3757b65a3e561f7db4 # apple/swift-nio/.github/workflows/unit_tests.yml@main",
+          "line": 67,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: apple/swift-nio/.github/workflows/unit_tests.yml@ada5f7690b9579a1cefb1c3757b65a3e561f7db4 # apple/swift-nio/.github/workflows/unit_tests.yml@main",
+          "line": 76,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: apple/swift-nio/.github/workflows/unit_tests.yml@ada5f7690b9579a1cefb1c3757b65a3e561f7db4 # apple/swift-nio/.github/workflows/unit_tests.yml@main",
+          "line": 80,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: apple/swift-nio/.github/workflows/unit_tests.yml@ada5f7690b9579a1cefb1c3757b65a3e561f7db4 # apple/swift-nio/.github/workflows/unit_tests.yml@main",
+          "line": 90,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "apple_swift-log__.github__workflows__pull_request.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    }
+  }
+}

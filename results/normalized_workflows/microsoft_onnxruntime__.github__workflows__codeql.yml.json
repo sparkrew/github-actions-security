@@ -1,0 +1,226 @@
+{
+  "workflow": "microsoft_onnxruntime__.github__workflows__codeql.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "microsoft_onnxruntime__.github__workflows__codeql.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "unpinned-github-actions": 6
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 45,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@ae9ef3a1d2e3413523c3741725c30064970cc0d4 # github/codeql-action/init@v3",
+          "line": 49,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # actions/setup-java@v5 | v5.2.0",
+          "line": 62,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # actions/setup-node@v6 | main,v6.3.0",
+          "line": 68,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@ae9ef3a1d2e3413523c3741725c30064970cc0d4 # github/codeql-action/init@v3",
+          "line": 76,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@ae9ef3a1d2e3413523c3741725c30064970cc0d4 # github/codeql-action/init@v3",
+          "line": 79,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_onnxruntime__.github__workflows__codeql.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            45,
+            49,
+            62,
+            68,
+            76,
+            79
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__codeql.yml:45",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__codeql.yml:49",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__codeql.yml:62",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__codeql.yml:68",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__codeql.yml:76",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__codeql.yml:79",
+            "Info:   0 out of   6 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            32,
+            33
+          ],
+          "raw_details": [
+            "Info: jobLevel 'actions' permission set to 'read': .github/workflows/microsoft_onnxruntime__.github__workflows__codeql.yml:32",
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/microsoft_onnxruntime__.github__workflows__codeql.yml:33",
+            "Warn: no topLevel permission defined: .github/workflows/microsoft_onnxruntime__.github__workflows__codeql.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "poutine": {
+      "workflow": "microsoft_onnxruntime__.github__workflows__codeql.yml",
+      "tool": "poutine",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "pr_runs_on_self_hosted": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "pr_runs_on_self_hosted",
+          "line": 26,
+          "column": "",
+          "job": "analyze",
+          "step": "",
+          "details": "runs-on: self-hosted, 1ES.Pool=onnxruntime-github-Ubuntu2204-AMD-CPU, JobId=codeql-${{ github.run_id }}-${{ github.run_number }}-${{ github.run_attempt }}",
+          "event_triggers": [
+            "push",
+            "pull_request",
+            "schedule",
+            "workflow_dispatch"
+          ],
+          "capability": "privileged-trigger-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_onnxruntime__.github__workflows__codeql.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "unpinned-github-actions": 6
+        }
+      },
+      "findings": [
+        {
+          "line": 45,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 49,
+          "column": 22,
+          "message": "Unpinned GitHub Action: uses `codeql-action/init@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 62,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-java@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 68,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 76,
+          "column": 22,
+          "message": "Unpinned GitHub Action: uses `codeql-action/autobuild@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 79,
+          "column": 22,
+          "message": "Unpinned GitHub Action: uses `codeql-action/analyze@v3`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_onnxruntime__.github__workflows__codeql.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_onnxruntime__.github__workflows__codeql.yml",
+          "line": 44,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "microsoft_onnxruntime__.github__workflows__codeql.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 1
+      },
+      "findings": [
+        {
+          "line": 28,
+          "column": 9,
+          "message": "label \"1ES.Pool=onnxruntime-github-Ubuntu2204-AMD-CPU\" is unknown. available labels are \"windows-latest\", \"windows-latest-8-cores\", \"windows-2025\", \"windows-2022\", \"windows-2019\", \"ubuntu-latest\", \"ubuntu-latest-4-cores\", \"ubuntu-latest-8-cores\", \"ubuntu-latest-16-cores\", \"ubuntu-24.04\", \"ubuntu-24.04-arm\", \"ubuntu-22.04\", \"ubuntu-22.04-arm\", \"ubuntu-20.04\", \"macos-latest\", \"macos-latest-xl\", \"macos-latest-xlarge\", \"macos-latest-large\", \"macos-15-xlarge\", \"macos-15-large\", \"macos-15\", \"macos-14-xl\", \"macos-14-xlarge\", \"macos-14-large\", \"macos-14\", \"macos-13-xl\", \"macos-13-xlarge\", \"macos-13-large\", \"macos-13\", \"self-hosted\", \"x64\", \"arm\", \"arm64\", \"linux\", \"macos\", \"windows\". if it is a custom label for self-hosted runner, set list of labels in actionlint.yaml config file [runner-label]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

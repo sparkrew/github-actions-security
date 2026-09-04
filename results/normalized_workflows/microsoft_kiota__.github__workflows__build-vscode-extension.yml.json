@@ -1,0 +1,267 @@
+{
+  "workflow": "microsoft_kiota__.github__workflows__build-vscode-extension.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "microsoft_kiota__.github__workflows__build-vscode-extension.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 8,
+        "by_rule": {
+          "unpinned-github-actions": 8
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 43,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # actions/setup-node@v6 | main,v6.3.0",
+          "line": 45,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-dotnet@baa11fbfe1d6520db94683bd5c7a3818018e4309 # actions/setup-dotnet@v5 | v5.1.0",
+          "line": 50,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: SonarSource/sonarqube-scan-action@a31c9398be7ace6bbfaf30c0bd5d415f843d45e9 # SonarSource/sonarqube-scan-action@v7 | v7.0,v7.0.0",
+          "line": 101,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # actions/upload-artifact@v7 | main,v7.0.0",
+          "line": 110,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 131,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # actions/setup-node@v6 | main,v6.3.0",
+          "line": 133,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # actions/upload-artifact@v7 | main,v7.0.0",
+          "line": 171,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_kiota__.github__workflows__build-vscode-extension.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            43,
+            45,
+            50,
+            68,
+            101,
+            110,
+            131,
+            133,
+            150,
+            158,
+            164,
+            171
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_kiota__.github__workflows__build-vscode-extension.yml:43",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_kiota__.github__workflows__build-vscode-extension.yml:45",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_kiota__.github__workflows__build-vscode-extension.yml:50",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_kiota__.github__workflows__build-vscode-extension.yml:101",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_kiota__.github__workflows__build-vscode-extension.yml:110",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_kiota__.github__workflows__build-vscode-extension.yml:131",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_kiota__.github__workflows__build-vscode-extension.yml:133",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_kiota__.github__workflows__build-vscode-extension.yml:171",
+            "Warn: npmCommand not pinned by hash: .github/workflows/microsoft_kiota__.github__workflows__build-vscode-extension.yml:68",
+            "Warn: npmCommand not pinned by hash: .github/workflows/microsoft_kiota__.github__workflows__build-vscode-extension.yml:150",
+            "Warn: npmCommand not pinned by hash: .github/workflows/microsoft_kiota__.github__workflows__build-vscode-extension.yml:158",
+            "Warn: npmCommand not pinned by hash: .github/workflows/microsoft_kiota__.github__workflows__build-vscode-extension.yml:164",
+            "Info:   0 out of   7 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   1 third-party GitHubAction dependencies pinned",
+            "Info:   0 out of   4 npmCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_kiota__.github__workflows__build-vscode-extension.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 8,
+        "by_rule": {
+          "unpinned-github-actions": 8
+        }
+      },
+      "findings": [
+        {
+          "line": 43,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 45,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 50,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-dotnet@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 101,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `SonarSource/sonarqube-scan-action@v7`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 110,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v7`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 131,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 133,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 171,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v7`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_kiota__.github__workflows__build-vscode-extension.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "artipacked": 2,
+          "template-injection": 3,
+          "unpinned-uses": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_kiota__.github__workflows__build-vscode-extension.yml",
+          "line": 43,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_kiota__.github__workflows__build-vscode-extension.yml",
+          "line": 131,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_kiota__.github__workflows__build-vscode-extension.yml",
+          "line": 63,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_kiota__.github__workflows__build-vscode-extension.yml",
+          "line": 70,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_kiota__.github__workflows__build-vscode-extension.yml",
+          "line": 145,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_kiota__.github__workflows__build-vscode-extension.yml",
+          "line": 101,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    }
+  }
+}

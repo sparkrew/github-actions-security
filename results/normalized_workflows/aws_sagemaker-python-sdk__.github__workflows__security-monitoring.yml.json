@@ -1,0 +1,150 @@
+{
+  "workflow": "aws_sagemaker-python-sdk__.github__workflows__security-monitoring.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "aws_sagemaker-python-sdk__.github__workflows__security-monitoring.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea",
+          "line": 22,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea",
+          "line": 48,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea",
+          "line": 75,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: aws-actions/configure-aws-credentials@12e3392609eaaceb7ae6191b3f54bbcb85b5002b",
+          "line": 97,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "aws_sagemaker-python-sdk__.github__workflows__security-monitoring.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "aws_sagemaker-python-sdk__.github__workflows__security-monitoring.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 7,
+        "by_rule": {
+          "excessive-permissions": 1,
+          "template-injection": 6
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "excessive-permissions",
+          "level": "error",
+          "message": "overly broad permissions",
+          "workflow": "aws_sagemaker-python-sdk__.github__workflows__security-monitoring.yml",
+          "line": 12,
+          "column": 3,
+          "note": "audit confidence \u2192 High",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "aws_sagemaker-python-sdk__.github__workflows__security-monitoring.yml",
+          "line": 20,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "aws_sagemaker-python-sdk__.github__workflows__security-monitoring.yml",
+          "line": 46,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "aws_sagemaker-python-sdk__.github__workflows__security-monitoring.yml",
+          "line": 73,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "aws_sagemaker-python-sdk__.github__workflows__security-monitoring.yml",
+          "line": 101,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "aws_sagemaker-python-sdk__.github__workflows__security-monitoring.yml",
+          "line": 108,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "aws_sagemaker-python-sdk__.github__workflows__security-monitoring.yml",
+          "line": 115,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        }
+      ]
+    }
+  }
+}

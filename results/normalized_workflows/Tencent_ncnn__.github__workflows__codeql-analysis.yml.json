@@ -1,0 +1,180 @@
+{
+  "workflow": "Tencent_ncnn__.github__workflows__codeql-analysis.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "Tencent_ncnn__.github__workflows__codeql-analysis.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v6",
+          "pinned": "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+          "line": 46,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/init@v4",
+          "pinned": "github/codeql-action/init@89a39a4e59826350b863aa6b6252a07ad50cf83e",
+          "line": 59,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/autobuild@v4",
+          "pinned": "github/codeql-action/autobuild@89a39a4e59826350b863aa6b6252a07ad50cf83e",
+          "line": 70,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/analyze@v4",
+          "pinned": "github/codeql-action/analyze@89a39a4e59826350b863aa6b6252a07ad50cf83e",
+          "line": 84,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "Tencent_ncnn__.github__workflows__codeql-analysis.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 46,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@c793b717bc78562f491db7b0e93a3a178b099162 # github/codeql-action/init@v4",
+          "line": 59,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@c793b717bc78562f491db7b0e93a3a178b099162 # github/codeql-action/init@v4",
+          "line": 70,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@c793b717bc78562f491db7b0e93a3a178b099162 # github/codeql-action/init@v4",
+          "line": 84,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "Tencent_ncnn__.github__workflows__codeql-analysis.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "Pinned-Dependencies": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            46,
+            59,
+            70,
+            84
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_ncnn__.github__workflows__codeql-analysis.yml:46",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_ncnn__.github__workflows__codeql-analysis.yml:59",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_ncnn__.github__workflows__codeql-analysis.yml:70",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_ncnn__.github__workflows__codeql-analysis.yml:84",
+            "Info:   0 out of   4 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "Tencent_ncnn__.github__workflows__codeql-analysis.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "line": 46,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 59,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/init@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 65,
+          "column": 52,
+          "message": "Unpinned GitHub Action: uses `your-repo/queries@main`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 70,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/autobuild@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 84,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/analyze@v4`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "Tencent_ncnn__.github__workflows__codeql-analysis.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "Tencent_ncnn__.github__workflows__codeql-analysis.yml",
+          "line": 45,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    }
+  }
+}

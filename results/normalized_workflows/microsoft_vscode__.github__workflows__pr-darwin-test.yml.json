@@ -1,0 +1,213 @@
+{
+  "workflow": "microsoft_vscode__.github__workflows__pr-darwin-test.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "microsoft_vscode__.github__workflows__pr-darwin-test.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 7,
+        "by_rule": {
+          "unpinned-github-actions": 7
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 27,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # actions/setup-node@v6 | main,v6.3.0",
+          "line": 30,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/cache/restore@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # actions/cache/restore@v5 | v5.0.3",
+          "line": 39,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/cache/restore@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # actions/cache/restore@v5 | v5.0.3",
+          "line": 92,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # actions/upload-artifact@v6 | v6.0.0",
+          "line": 215,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # actions/upload-artifact@v6 | v6.0.0",
+          "line": 226,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # actions/upload-artifact@v6 | v6.0.0",
+          "line": 235,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_vscode__.github__workflows__pr-darwin-test.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 1,
+          "reason": "dependency not pinned by hash detected -- score normalized to 1",
+          "lines": [
+            27,
+            30,
+            39,
+            54,
+            92,
+            215,
+            226,
+            235
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode__.github__workflows__pr-darwin-test.yml:27",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode__.github__workflows__pr-darwin-test.yml:30",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode__.github__workflows__pr-darwin-test.yml:39",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode__.github__workflows__pr-darwin-test.yml:92",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode__.github__workflows__pr-darwin-test.yml:215",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode__.github__workflows__pr-darwin-test.yml:226",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_vscode__.github__workflows__pr-darwin-test.yml:235",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_vscode__.github__workflows__pr-darwin-test.yml:54",
+            "Info:   0 out of   7 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   1 pipCommand dependencies pinned",
+            "Info:   1 out of   1 npmCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/microsoft_vscode__.github__workflows__pr-darwin-test.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_vscode__.github__workflows__pr-darwin-test.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 7,
+        "by_rule": {
+          "unpinned-github-actions": 7
+        }
+      },
+      "findings": [
+        {
+          "line": 27,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 30,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 39,
+          "column": 23,
+          "message": "Unpinned GitHub Action: uses `cache/restore@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 92,
+          "column": 23,
+          "message": "Unpinned GitHub Action: uses `cache/restore@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 215,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 226,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 235,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v6`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_vscode__.github__workflows__pr-darwin-test.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_vscode__.github__workflows__pr-darwin-test.yml",
+          "line": 26,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    }
+  }
+}

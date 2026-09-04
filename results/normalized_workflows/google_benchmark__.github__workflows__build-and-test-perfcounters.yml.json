@@ -1,0 +1,91 @@
+{
+  "workflow": "google_benchmark__.github__workflows__build-and-test-perfcounters.yml",
+  "tools": {
+    "scorecard": {
+      "workflow": "google_benchmark__.github__workflows__build-and-test-perfcounters.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "google_benchmark__.github__workflows__build-and-test-perfcounters.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "artipacked": 1,
+          "template-injection": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_benchmark__.github__workflows__build-and-test-perfcounters.yml",
+          "line": 26,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "google_benchmark__.github__workflows__build-and-test-perfcounters.yml",
+          "line": 33,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "google_benchmark__.github__workflows__build-and-test-perfcounters.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 3
+      },
+      "findings": [
+        {
+          "line": 34,
+          "column": 40,
+          "message": "property \"workspace\" is not defined in object type {arch: string; debug: string; environment: string; name: string; os: string; temp: string; tool_cache: string} [expression]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 38,
+          "column": 30,
+          "message": "property \"workspace\" is not defined in object type {arch: string; debug: string; environment: string; name: string; os: string; temp: string; tool_cache: string} [expression]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 47,
+          "column": 30,
+          "message": "property \"workspace\" is not defined in object type {arch: string; debug: string; environment: string; name: string; os: string; temp: string; tool_cache: string} [expression]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,281 @@
+{
+  "workflow": "microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 9,
+        "by_rule": {
+          "unpinned-github-actions": 9
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # actions/checkout@v5 | releases,v5.0.1",
+          "line": 32,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: dorny/paths-filter@4512585405083f25c027a35db413c2b3b9006d50 # dorny/paths-filter@v2 | v2.11.1",
+          "line": 35,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # actions/checkout@v5 | releases,v5.0.1",
+          "line": 72,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-dotnet@baa11fbfe1d6520db94683bd5c7a3818018e4309 # actions/setup-dotnet@v5 | v5.1.0",
+          "line": 77,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: azure/login@a457da9ea143d694b1b9c7c869ebb04ebe844ef5 # azure/login@v2",
+          "line": 129,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: danielpalme/ReportGenerator-GitHub-Action@c4c5175a441c6603ec614f5084386dabe0e2295b # danielpalme/ReportGenerator-GitHub-Action@5.4.12 | v5.4.12",
+          "line": 187,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+          "line": 194,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # actions/github-script@v6",
+          "line": 235,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # actions/github-script@v6",
+          "line": 242,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            32,
+            35,
+            72,
+            77,
+            107,
+            129,
+            187,
+            194,
+            235,
+            242
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml:235",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml:242",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml:32",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml:35",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml:72",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml:77",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml:129",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml:187",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml:194",
+            "Warn: nugetCommand not pinned by hash: .github/workflows/microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml:107: pin your dependecies by either enabling central package management (https://learn.microsoft.com/nuget/consume-packages/Central-Package-Management) or using a lockfile (https://learn.microsoft.com/nuget/consume-packages/package-references-in-project-files#locking-dependencies)",
+            "Info:   0 out of   6 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   3 third-party GitHubAction dependencies pinned",
+            "Info:   0 out of   1 nugetCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 9,
+        "by_rule": {
+          "unpinned-github-actions": 9
+        }
+      },
+      "findings": [
+        {
+          "line": 32,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 35,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `dorny/paths-filter@v2`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 72,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 77,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-dotnet@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 129,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `azure/login@v2`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 187,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `danielpalme/ReportGenerator-GitHub-Action@5.4.12`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 194,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 235,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/github-script@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 242,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/github-script@v6`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "excessive-permissions": 1,
+          "unpinned-uses": 3
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "excessive-permissions",
+          "level": "error",
+          "message": "overly broad permissions",
+          "workflow": "microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml",
+          "line": 24,
+          "column": 3,
+          "note": "audit confidence \u2192 High",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml",
+          "line": 35,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml",
+          "line": 129,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml",
+          "line": 187,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "microsoft_semantic-kernel__.github__workflows__dotnet-build-and-test.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 3
+      },
+      "findings": [
+        {
+          "line": 35,
+          "column": 15,
+          "message": "the runner of \"dorny/paths-filter@v2\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 235,
+          "column": 15,
+          "message": "the runner of \"actions/github-script@v6\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 242,
+          "column": 15,
+          "message": "the runner of \"actions/github-script@v6\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

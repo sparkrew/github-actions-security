@@ -1,0 +1,306 @@
+{
+  "workflow": "Tencent_libpag__.github__workflows__autotest.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "Tencent_libpag__.github__workflows__autotest.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 7,
+        "by_rule": {
+          "unpinned-github-actions": 7
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+          "line": 15,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/cache/restore@v4",
+          "pinned": "actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830",
+          "line": 22,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "tecolicom/actions-use-homebrew-tools@v1",
+          "pinned": "tecolicom/actions-use-homebrew-tools@b9c066b79607fa3d71e0be05d7003bb75fd9ff34",
+          "line": 30,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "codecov/codecov-action@v4",
+          "pinned": "codecov/codecov-action@b9fd7d16f6d7d1b5d2bec1a2887e65ceed900238",
+          "line": 58,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/cache/save@v4",
+          "pinned": "actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830",
+          "line": 66,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4",
+          "pinned": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "line": 75,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4",
+          "pinned": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "line": 80,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "Tencent_libpag__.github__workflows__autotest.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 7,
+        "by_rule": {
+          "unpinned-github-actions": 7
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+          "line": 15,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # actions/cache/restore@v4 | v4.3.0",
+          "line": 22,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: tecolicom/actions-use-homebrew-tools@b9c066b79607fa3d71e0be05d7003bb75fd9ff34 # tecolicom/actions-use-homebrew-tools@v1 | main,v1.3",
+          "line": 30,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: codecov/codecov-action@b9fd7d16f6d7d1b5d2bec1a2887e65ceed900238 # codecov/codecov-action@v4",
+          "line": 58,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # actions/cache/restore@v4 | v4.3.0",
+          "line": 66,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+          "line": 75,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+          "line": 80,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "Tencent_libpag__.github__workflows__autotest.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            15,
+            22,
+            30,
+            36,
+            58,
+            66,
+            75,
+            80
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_libpag__.github__workflows__autotest.yml:15",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_libpag__.github__workflows__autotest.yml:22",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_libpag__.github__workflows__autotest.yml:30",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_libpag__.github__workflows__autotest.yml:58",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_libpag__.github__workflows__autotest.yml:66",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_libpag__.github__workflows__autotest.yml:75",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_libpag__.github__workflows__autotest.yml:80",
+            "Warn: npmCommand not pinned by hash: .github/workflows/Tencent_libpag__.github__workflows__autotest.yml:36",
+            "Info:   0 out of   5 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   2 third-party GitHubAction dependencies pinned",
+            "Info:   0 out of   1 npmCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/Tencent_libpag__.github__workflows__autotest.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "Tencent_libpag__.github__workflows__autotest.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 7,
+        "by_rule": {
+          "unpinned-github-actions": 7
+        }
+      },
+      "findings": [
+        {
+          "line": 15,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 22,
+          "column": 23,
+          "message": "Unpinned GitHub Action: uses `cache/restore@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 30,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `tecolicom/actions-use-homebrew-tools@v1`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 58,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `codecov/codecov-action@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 66,
+          "column": 23,
+          "message": "Unpinned GitHub Action: uses `cache/save@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 75,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 80,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "Tencent_libpag__.github__workflows__autotest.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "artipacked": 1,
+          "excessive-permissions": 1,
+          "unpinned-uses": 2
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "Tencent_libpag__.github__workflows__autotest.yml",
+          "line": 14,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "Tencent_libpag__.github__workflows__autotest.yml",
+          "line": 10,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "Tencent_libpag__.github__workflows__autotest.yml",
+          "line": 30,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "Tencent_libpag__.github__workflows__autotest.yml",
+          "line": 58,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    }
+  }
+}

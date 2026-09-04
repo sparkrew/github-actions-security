@@ -1,0 +1,153 @@
+{
+  "workflow": "aws_aws-sdk-java-v2__.github__workflows__codeql.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "aws_aws-sdk-java-v2__.github__workflows__codeql.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v6",
+          "pinned": "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+          "line": 51,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/init@v4",
+          "pinned": "github/codeql-action/init@89a39a4e59826350b863aa6b6252a07ad50cf83e",
+          "line": 61,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/analyze@v4",
+          "pinned": "github/codeql-action/analyze@89a39a4e59826350b863aa6b6252a07ad50cf83e",
+          "line": 89,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "aws_aws-sdk-java-v2__.github__workflows__codeql.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            51,
+            61,
+            89
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_aws-sdk-java-v2__.github__workflows__codeql.yml:51",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_aws-sdk-java-v2__.github__workflows__codeql.yml:61",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/aws_aws-sdk-java-v2__.github__workflows__codeql.yml:89",
+            "Info:   0 out of   3 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            25,
+            28,
+            29
+          ],
+          "raw_details": [
+            "Info: jobLevel 'actions' permission set to 'read': .github/workflows/aws_aws-sdk-java-v2__.github__workflows__codeql.yml:28",
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/aws_aws-sdk-java-v2__.github__workflows__codeql.yml:29",
+            "Info: jobLevel 'packages' permission set to 'read': .github/workflows/aws_aws-sdk-java-v2__.github__workflows__codeql.yml:25",
+            "Warn: no topLevel permission defined: .github/workflows/aws_aws-sdk-java-v2__.github__workflows__codeql.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "aws_aws-sdk-java-v2__.github__workflows__codeql.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "line": 51,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 57,
+          "column": 17,
+          "message": "Unpinned GitHub Action: uses `actions/setup-example@v1`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 61,
+          "column": 22,
+          "message": "Unpinned GitHub Action: uses `codeql-action/init@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 89,
+          "column": 22,
+          "message": "Unpinned GitHub Action: uses `codeql-action/analyze@v4`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "aws_aws-sdk-java-v2__.github__workflows__codeql.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "aws_aws-sdk-java-v2__.github__workflows__codeql.yml",
+          "line": 50,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    }
+  }
+}

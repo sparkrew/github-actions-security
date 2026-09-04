@@ -1,0 +1,513 @@
+{
+  "workflow": "IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 12,
+        "by_rule": {
+          "unpinned-github-actions": 12
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v5",
+          "pinned": "actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd",
+          "line": 101,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/setup-qemu-action@v3",
+          "pinned": "docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130",
+          "line": 111,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/setup-buildx-action@v3",
+          "pinned": "docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f",
+          "line": 117,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/login-action@v3",
+          "pinned": "docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9",
+          "line": 121,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/metadata-action@v5",
+          "pinned": "docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051",
+          "line": 130,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/build-push-action@v6",
+          "pinned": "docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8",
+          "line": 139,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4",
+          "pinned": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "line": 164,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/setup-buildx-action@v3",
+          "pinned": "docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f",
+          "line": 188,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/login-action@v3",
+          "pinned": "docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9",
+          "line": 191,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "sigstore/cosign-installer@v3",
+          "pinned": "sigstore/cosign-installer@398d4b0eeef1380460a10c8013a76f728fb906ac",
+          "line": 246,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/login-action@v3",
+          "pinned": "docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9",
+          "line": 249,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "anchore/sbom-action@v0",
+          "pinned": "anchore/sbom-action@17ae1740179002c89186b61233e0f892c3118b11",
+          "line": 260,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 12,
+        "by_rule": {
+          "unpinned-github-actions": 12
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # actions/checkout@v5 | releases,v5.0.1",
+          "line": 101,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # docker/setup-qemu-action@v3 | releases,v3.7.0",
+          "line": 111,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # docker/setup-buildx-action@v3 | v3.12.0",
+          "line": 117,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # docker/login-action@v3 | releases,v3.7.0",
+          "line": 121,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # docker/metadata-action@v5 | v5.10.0",
+          "line": 130,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # docker/build-push-action@v6 | v6.19.2",
+          "line": 139,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+          "line": 164,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # docker/setup-buildx-action@v3 | v3.12.0",
+          "line": 188,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # docker/login-action@v3 | releases,v3.7.0",
+          "line": 191,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: sigstore/cosign-installer@398d4b0eeef1380460a10c8013a76f728fb906ac # sigstore/cosign-installer@v3",
+          "line": 246,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # docker/login-action@v3 | releases,v3.7.0",
+          "line": 249,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: anchore/sbom-action@17ae1740179002c89186b61233e0f892c3118b11 # anchore/sbom-action@v0 | main,latest,v0.23.0",
+          "line": 260,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            101,
+            111,
+            117,
+            121,
+            130,
+            139,
+            164,
+            188,
+            191,
+            246,
+            249,
+            260
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml:101",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml:111",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml:117",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml:121",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml:130",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml:139",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml:164",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml:188",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml:191",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml:246",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml:249",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml:260",
+            "Info:   0 out of   2 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of  10 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            48,
+            49,
+            50
+          ],
+          "raw_details": [
+            "Info: topLevel 'contents' permission set to 'read': .github/workflows/IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml:48",
+            "Warn: topLevel 'packages' permission set to 'write': .github/workflows/IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml:49",
+            "Info: topLevel 'actions' permission set to 'read': .github/workflows/IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml:50",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 12,
+        "by_rule": {
+          "unpinned-github-actions": 12
+        }
+      },
+      "findings": [
+        {
+          "line": 101,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 111,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/setup-qemu-action@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 117,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/setup-buildx-action@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 121,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/login-action@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 130,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/metadata-action@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 139,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/build-push-action@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 164,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 188,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/setup-buildx-action@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 191,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/login-action@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 246,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `sigstore/cosign-installer@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 249,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/login-action@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 260,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `anchore/sbom-action@v0`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 14,
+        "by_rule": {
+          "artipacked": 1,
+          "excessive-permissions": 2,
+          "template-injection": 1,
+          "unpinned-uses": 10
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml",
+          "line": 99,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "error",
+          "message": "overly broad permissions",
+          "workflow": "IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml",
+          "line": 49,
+          "column": 3,
+          "note": "audit confidence \u2192 High",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "error",
+          "message": "overly broad permissions",
+          "workflow": "IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml",
+          "line": 103,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml",
+          "line": 240,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml",
+          "line": 111,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml",
+          "line": 117,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml",
+          "line": 121,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml",
+          "line": 130,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml",
+          "line": 139,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml",
+          "line": 188,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml",
+          "line": 191,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml",
+          "line": 246,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml",
+          "line": 249,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "IBM_mcp-context-forge__.github__workflows__docker-multiplatform.yml",
+          "line": 260,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    }
+  }
+}

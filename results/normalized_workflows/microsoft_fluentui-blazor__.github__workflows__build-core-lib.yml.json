@@ -1,0 +1,327 @@
+{
+  "workflow": "microsoft_fluentui-blazor__.github__workflows__build-core-lib.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "microsoft_fluentui-blazor__.github__workflows__build-core-lib.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 7,
+        "by_rule": {
+          "unpinned-github-actions": 7
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+          "line": 43,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-dotnet@v4",
+          "pinned": "actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9",
+          "line": 52,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "dorny/test-reporter@v1",
+          "pinned": "dorny/test-reporter@d61b558e8df85cb60d09ca3e5b09653b4477cea7",
+          "line": 75,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "marocchino/sticky-pull-request-comment@v2",
+          "pinned": "marocchino/sticky-pull-request-comment@773744901bac0e8cbb5a0dc842800d45e9b2b405",
+          "line": 122,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "danielpalme/ReportGenerator-GitHub-Action@5.2.4",
+          "pinned": "danielpalme/ReportGenerator-GitHub-Action@3e39bd1b454c2bac14560547e4394f9317672705",
+          "line": 129,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v4",
+          "pinned": "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "line": 138,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "marocchino/sticky-pull-request-comment@v2",
+          "pinned": "marocchino/sticky-pull-request-comment@773744901bac0e8cbb5a0dc842800d45e9b2b405",
+          "line": 144,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "microsoft_fluentui-blazor__.github__workflows__build-core-lib.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 8,
+        "by_rule": {
+          "unpinned-github-actions": 8
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+          "line": 43,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "#   uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # actions/setup-dotnet@v4 | releases,v4.3.1",
+          "line": 46,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # actions/setup-dotnet@v4 | releases,v4.3.1",
+          "line": 52,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: dorny/test-reporter@d61b558e8df85cb60d09ca3e5b09653b4477cea7 # dorny/test-reporter@v1 | 525",
+          "line": 75,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: marocchino/sticky-pull-request-comment@773744901bac0e8cbb5a0dc842800d45e9b2b405 # marocchino/sticky-pull-request-comment@v2 | v2.9.4",
+          "line": 122,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: danielpalme/ReportGenerator-GitHub-Action@3e39bd1b454c2bac14560547e4394f9317672705 # danielpalme/ReportGenerator-GitHub-Action@5.2.4",
+          "line": 129,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+          "line": 138,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: marocchino/sticky-pull-request-comment@773744901bac0e8cbb5a0dc842800d45e9b2b405 # marocchino/sticky-pull-request-comment@v2 | v2.9.4",
+          "line": 144,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_fluentui-blazor__.github__workflows__build-core-lib.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            43,
+            52,
+            75,
+            122,
+            129,
+            138,
+            144
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_fluentui-blazor__.github__workflows__build-core-lib.yml:43",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_fluentui-blazor__.github__workflows__build-core-lib.yml:52",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_fluentui-blazor__.github__workflows__build-core-lib.yml:75",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_fluentui-blazor__.github__workflows__build-core-lib.yml:122",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_fluentui-blazor__.github__workflows__build-core-lib.yml:129",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_fluentui-blazor__.github__workflows__build-core-lib.yml:138",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_fluentui-blazor__.github__workflows__build-core-lib.yml:144",
+            "Info:   0 out of   3 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   4 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            37,
+            38
+          ],
+          "raw_details": [
+            "Warn: jobLevel 'checks' permission set to 'write': .github/workflows/microsoft_fluentui-blazor__.github__workflows__build-core-lib.yml:37",
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/microsoft_fluentui-blazor__.github__workflows__build-core-lib.yml:38",
+            "Warn: no topLevel permission defined: .github/workflows/microsoft_fluentui-blazor__.github__workflows__build-core-lib.yml:1"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_fluentui-blazor__.github__workflows__build-core-lib.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 8,
+        "by_rule": {
+          "unpinned-github-actions": 8
+        }
+      },
+      "findings": [
+        {
+          "line": 43,
+          "column": 14,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 46,
+          "column": 16,
+          "message": "Unpinned GitHub Action: uses `actions/setup-dotnet@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 52,
+          "column": 14,
+          "message": "Unpinned GitHub Action: uses `actions/setup-dotnet@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 75,
+          "column": 14,
+          "message": "Unpinned GitHub Action: uses `dorny/test-reporter@v1`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 122,
+          "column": 14,
+          "message": "Unpinned GitHub Action: uses `marocchino/sticky-pull-request-comment@v2`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 129,
+          "column": 14,
+          "message": "Unpinned GitHub Action: uses `danielpalme/ReportGenerator-GitHub-Action@5.2.4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 138,
+          "column": 14,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 144,
+          "column": 14,
+          "message": "Unpinned GitHub Action: uses `marocchino/sticky-pull-request-comment@v2`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_fluentui-blazor__.github__workflows__build-core-lib.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "artipacked": 1,
+          "unpinned-uses": 4
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_fluentui-blazor__.github__workflows__build-core-lib.yml",
+          "line": 42,
+          "column": 8,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_fluentui-blazor__.github__workflows__build-core-lib.yml",
+          "line": 75,
+          "column": 8,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_fluentui-blazor__.github__workflows__build-core-lib.yml",
+          "line": 122,
+          "column": 8,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_fluentui-blazor__.github__workflows__build-core-lib.yml",
+          "line": 129,
+          "column": 8,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_fluentui-blazor__.github__workflows__build-core-lib.yml",
+          "line": 144,
+          "column": 8,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    }
+  }
+}

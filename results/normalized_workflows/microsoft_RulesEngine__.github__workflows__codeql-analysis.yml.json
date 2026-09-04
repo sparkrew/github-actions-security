@@ -1,0 +1,230 @@
+{
+  "workflow": "microsoft_RulesEngine__.github__workflows__codeql-analysis.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "microsoft_RulesEngine__.github__workflows__codeql-analysis.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+          "line": 38,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-dotnet@v4",
+          "pinned": "actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9",
+          "line": 41,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/init@v3",
+          "pinned": "github/codeql-action/init@45580472a5bb82c4681c4ac726cfdb60060c2ee1",
+          "line": 50,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/autobuild@v3",
+          "pinned": "github/codeql-action/autobuild@45580472a5bb82c4681c4ac726cfdb60060c2ee1",
+          "line": 61,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/analyze@v3",
+          "pinned": "github/codeql-action/analyze@45580472a5bb82c4681c4ac726cfdb60060c2ee1",
+          "line": 75,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "microsoft_RulesEngine__.github__workflows__codeql-analysis.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+          "line": 38,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # actions/setup-dotnet@v4 | releases,v4.3.1",
+          "line": 41,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@ae9ef3a1d2e3413523c3741725c30064970cc0d4 # github/codeql-action/init@v3",
+          "line": 50,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@ae9ef3a1d2e3413523c3741725c30064970cc0d4 # github/codeql-action/init@v3",
+          "line": 61,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@ae9ef3a1d2e3413523c3741725c30064970cc0d4 # github/codeql-action/init@v3",
+          "line": 75,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_RulesEngine__.github__workflows__codeql-analysis.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            38,
+            41,
+            50,
+            61,
+            75
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_RulesEngine__.github__workflows__codeql-analysis.yml:38",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_RulesEngine__.github__workflows__codeql-analysis.yml:41",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_RulesEngine__.github__workflows__codeql-analysis.yml:50",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_RulesEngine__.github__workflows__codeql-analysis.yml:61",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_RulesEngine__.github__workflows__codeql-analysis.yml:75",
+            "Info:   0 out of   5 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/microsoft_RulesEngine__.github__workflows__codeql-analysis.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_RulesEngine__.github__workflows__codeql-analysis.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "unpinned-github-actions": 6
+        }
+      },
+      "findings": [
+        {
+          "line": 38,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 41,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/setup-dotnet@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 50,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/init@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 56,
+          "column": 52,
+          "message": "Unpinned GitHub Action: uses `your-repo/queries@main`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 61,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/autobuild@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 75,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/analyze@v3`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_RulesEngine__.github__workflows__codeql-analysis.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "artipacked": 1,
+          "excessive-permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_RulesEngine__.github__workflows__codeql-analysis.yml",
+          "line": 37,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "microsoft_RulesEngine__.github__workflows__codeql-analysis.yml",
+          "line": 24,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    }
+  }
+}

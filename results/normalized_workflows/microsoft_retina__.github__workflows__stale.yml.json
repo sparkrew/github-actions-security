@@ -1,0 +1,87 @@
+{
+  "workflow": "microsoft_retina__.github__workflows__stale.yml",
+  "tools": {
+    "scorecard": {
+      "workflow": "microsoft_retina__.github__workflows__stale.yaml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            12
+          ],
+          "raw_details": [
+            "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/microsoft_retina__.github__workflows__stale.yaml:12",
+            "Warn: no topLevel permission defined: .github/workflows/microsoft_retina__.github__workflows__stale.yaml:1"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_retina__.github__workflows__stale.yaml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "template-injection": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_retina__.github__workflows__stale.yaml",
+          "line": 34,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "microsoft_retina__.github__workflows__stale.yaml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 1
+      },
+      "findings": [
+        {
+          "line": 35,
+          "column": 29,
+          "message": "elements of object at receiver of object filtering `.*` must be type of object but got \"string\". the type of receiver was \"{string => string}\" [expression]",
+          "capability": "control-flow-weakness"
+        }
+      ]
+    }
+  }
+}

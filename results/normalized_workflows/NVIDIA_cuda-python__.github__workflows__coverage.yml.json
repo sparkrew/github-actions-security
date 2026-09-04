@@ -1,0 +1,186 @@
+{
+  "workflow": "NVIDIA_cuda-python__.github__workflows__coverage.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "NVIDIA_cuda-python__.github__workflows__coverage.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2",
+          "line": 52,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: nv-gha-runners/setup-proxy-cache@c5e8f6fd27b493abfd6af230e6a5d4bf43d1d766 # nv-gha-runners/setup-proxy-cache@main",
+          "line": 62,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405  # v6.2.0",
+          "line": 78,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f  # v6.0.0",
+          "line": 144,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: JamesIves/github-pages-deploy-action@d92aa235d04922e8f08b40ce78cc5442fcfbfa2f  # v4.8.0",
+          "line": 150,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "NVIDIA_cuda-python__.github__workflows__coverage.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 2,
+          "reason": "dependency not pinned by hash detected -- score normalized to 2",
+          "lines": [
+            62,
+            99,
+            104,
+            109,
+            113
+          ],
+          "raw_details": [
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_cuda-python__.github__workflows__coverage.yml:62",
+            "Warn: pipCommand not pinned by hash: .github/workflows/NVIDIA_cuda-python__.github__workflows__coverage.yml:99",
+            "Warn: pipCommand not pinned by hash: .github/workflows/NVIDIA_cuda-python__.github__workflows__coverage.yml:104",
+            "Warn: pipCommand not pinned by hash: .github/workflows/NVIDIA_cuda-python__.github__workflows__coverage.yml:109",
+            "Warn: pipCommand not pinned by hash: .github/workflows/NVIDIA_cuda-python__.github__workflows__coverage.yml:113",
+            "Info:   3 out of   3 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   1 out of   2 third-party GitHubAction dependencies pinned",
+            "Info:   0 out of   4 pipCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            31
+          ],
+          "raw_details": [
+            "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/NVIDIA_cuda-python__.github__workflows__coverage.yml:31",
+            "Warn: no topLevel permission defined: .github/workflows/NVIDIA_cuda-python__.github__workflows__coverage.yml:1"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "NVIDIA_cuda-python__.github__workflows__coverage.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unpinned-github-actions": 1
+        }
+      },
+      "findings": [
+        {
+          "line": 62,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `nv-gha-runners/setup-proxy-cache@main`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "NVIDIA_cuda-python__.github__workflows__coverage.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "artipacked": 1,
+          "unpinned-uses": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "NVIDIA_cuda-python__.github__workflows__coverage.yml",
+          "line": 51,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "NVIDIA_cuda-python__.github__workflows__coverage.yml",
+          "line": 62,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "NVIDIA_cuda-python__.github__workflows__coverage.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 1
+      },
+      "findings": [
+        {
+          "line": 28,
+          "column": 14,
+          "message": "label \"linux-amd64-gpu-a100-latest-1\" is unknown. available labels are \"windows-latest\", \"windows-latest-8-cores\", \"windows-2025\", \"windows-2022\", \"windows-2019\", \"ubuntu-latest\", \"ubuntu-latest-4-cores\", \"ubuntu-latest-8-cores\", \"ubuntu-latest-16-cores\", \"ubuntu-24.04\", \"ubuntu-24.04-arm\", \"ubuntu-22.04\", \"ubuntu-22.04-arm\", \"ubuntu-20.04\", \"macos-latest\", \"macos-latest-xl\", \"macos-latest-xlarge\", \"macos-latest-large\", \"macos-15-xlarge\", \"macos-15-large\", \"macos-15\", \"macos-14-xl\", \"macos-14-xlarge\", \"macos-14-large\", \"macos-14\", \"macos-13-xl\", \"macos-13-xlarge\", \"macos-13-large\", \"macos-13\", \"self-hosted\", \"x64\", \"arm\", \"arm64\", \"linux\", \"macos\", \"windows\". if it is a custom label for self-hosted runner, set list of labels in actionlint.yaml config file [runner-label]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

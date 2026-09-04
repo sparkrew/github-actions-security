@@ -1,0 +1,106 @@
+{
+  "workflow": "google_brotli__.github__workflows__codeql.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "google_brotli__.github__workflows__codeql.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "unpinned-github-actions": 6
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2 # v2.13.2",
+          "line": 38,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0",
+          "line": 43,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@e12f0178983d466f2f6028f5cc7a6d786fd97f4b # v3.29.5",
+          "line": 47,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@e12f0178983d466f2f6028f5cc7a6d786fd97f4b # github/codeql-action/init@e12f0178983d466f2f6028f5cc7a6d786fd97f4b",
+          "line": 59,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@e12f0178983d466f2f6028f5cc7a6d786fd97f4b # github/codeql-action/init@e12f0178983d466f2f6028f5cc7a6d786fd97f4b",
+          "line": 69,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@e12f0178983d466f2f6028f5cc7a6d786fd97f4b # github/codeql-action/init@e12f0178983d466f2f6028f5cc7a6d786fd97f4b",
+          "line": 79,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "google_brotli__.github__workflows__codeql.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "Pinned-Dependencies": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 6,
+          "reason": "dependency not pinned by hash detected -- score normalized to 6",
+          "lines": [
+            75
+          ],
+          "raw_details": [
+            "Warn: pipCommand not pinned by hash: .github/workflows/google_brotli__.github__workflows__codeql.yml:75",
+            "Info:   5 out of   5 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   1 out of   1 third-party GitHubAction dependencies pinned",
+            "Info:   0 out of   1 pipCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "google_brotli__.github__workflows__codeql.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_brotli__.github__workflows__codeql.yml",
+          "line": 42,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    }
+  }
+}

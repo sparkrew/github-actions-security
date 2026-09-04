@@ -1,0 +1,232 @@
+{
+  "workflow": "microsoft_pxt__.github__workflows__pxt-buildpush.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "microsoft_pxt__.github__workflows__pxt-buildpush.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98 # actions/checkout@main | 932",
+          "line": 32,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # actions/setup-node@main | v6,v6.3.0",
+          "line": 38,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98 # actions/checkout@main | 932",
+          "line": 67,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # actions/setup-node@main | v6,v6.3.0",
+          "line": 73,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_pxt__.github__workflows__pxt-buildpush.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            32,
+            38,
+            44,
+            48,
+            49,
+            67,
+            73,
+            79,
+            83,
+            84
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_pxt__.github__workflows__pxt-buildpush.yml:32",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_pxt__.github__workflows__pxt-buildpush.yml:38",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_pxt__.github__workflows__pxt-buildpush.yml:67",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_pxt__.github__workflows__pxt-buildpush.yml:73",
+            "Warn: npmCommand not pinned by hash: .github/workflows/microsoft_pxt__.github__workflows__pxt-buildpush.yml:44",
+            "Warn: npmCommand not pinned by hash: .github/workflows/microsoft_pxt__.github__workflows__pxt-buildpush.yml:48",
+            "Warn: npmCommand not pinned by hash: .github/workflows/microsoft_pxt__.github__workflows__pxt-buildpush.yml:49",
+            "Warn: npmCommand not pinned by hash: .github/workflows/microsoft_pxt__.github__workflows__pxt-buildpush.yml:79",
+            "Warn: npmCommand not pinned by hash: .github/workflows/microsoft_pxt__.github__workflows__pxt-buildpush.yml:83",
+            "Warn: npmCommand not pinned by hash: .github/workflows/microsoft_pxt__.github__workflows__pxt-buildpush.yml:84",
+            "Info:   0 out of   4 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   6 npmCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            14
+          ],
+          "raw_details": [
+            "Warn: topLevel 'contents' permission set to 'write': .github/workflows/microsoft_pxt__.github__workflows__pxt-buildpush.yml:14",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_pxt__.github__workflows__pxt-buildpush.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "line": 32,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@main`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 38,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@main`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 67,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@main`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 73,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@main`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_pxt__.github__workflows__pxt-buildpush.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "artipacked": 2,
+          "excessive-permissions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_pxt__.github__workflows__pxt-buildpush.yml",
+          "line": 32,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_pxt__.github__workflows__pxt-buildpush.yml",
+          "line": 67,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "error",
+          "message": "overly broad permissions",
+          "workflow": "microsoft_pxt__.github__workflows__pxt-buildpush.yml",
+          "line": 14,
+          "column": 3,
+          "note": "audit confidence \u2192 High",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "error",
+          "message": "overly broad permissions",
+          "workflow": "microsoft_pxt__.github__workflows__pxt-buildpush.yml",
+          "line": 15,
+          "column": 3,
+          "note": "audit confidence \u2192 High",
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "microsoft_pxt__.github__workflows__pxt-buildpush.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 2
+      },
+      "findings": [
+        {
+          "line": 19,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/is-vtag.yml\": open /home/huawei/github-actions-security/.github/workflows/is-vtag.yml: no such file or directory [workflow-call]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 22,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/tag-bump-commit.yml\": open /home/huawei/github-actions-security/.github/workflows/tag-bump-commit.yml: no such file or directory [workflow-call]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

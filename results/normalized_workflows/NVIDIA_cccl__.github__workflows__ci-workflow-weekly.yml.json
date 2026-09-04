@@ -1,0 +1,188 @@
+{
+  "workflow": "NVIDIA_cccl__.github__workflows__ci-workflow-weekly.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "NVIDIA_cccl__.github__workflows__ci-workflow-weekly.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v6",
+          "pinned": "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+          "line": 42,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v6",
+          "pinned": "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+          "line": 128,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "NVIDIA_cccl__.github__workflows__ci-workflow-weekly.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 42,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 128,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "NVIDIA_cccl__.github__workflows__ci-workflow-weekly.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            42,
+            128
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-weekly.yml:42",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-weekly.yml:128",
+            "Info:   0 out of   2 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            37,
+            60,
+            75,
+            90,
+            105,
+            124
+          ],
+          "raw_details": [
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-weekly.yml:37",
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-weekly.yml:60",
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-weekly.yml:75",
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-weekly.yml:90",
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-weekly.yml:105",
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-weekly.yml:124",
+            "Warn: no topLevel permission defined: .github/workflows/NVIDIA_cccl__.github__workflows__ci-workflow-weekly.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "NVIDIA_cccl__.github__workflows__ci-workflow-weekly.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "line": 42,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 128,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "NVIDIA_cccl__.github__workflows__ci-workflow-weekly.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 4
+      },
+      "findings": [
+        {
+          "line": 65,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/workflow-dispatch-two-stage-group-linux.yml\": open /home/huawei/github-actions-security/.github/workflows/workflow-dispatch-two-stage-group-linux.yml: no such file or directory [expression]",
+          "capability": "control-flow-weakness"
+        },
+        {
+          "line": 80,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/workflow-dispatch-two-stage-group-windows.yml\": open /home/huawei/github-actions-security/.github/workflows/workflow-dispatch-two-stage-group-windows.yml: no such file or directory [expression]",
+          "capability": "control-flow-weakness"
+        },
+        {
+          "line": 95,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/workflow-dispatch-standalone-group-linux.yml\": open /home/huawei/github-actions-security/.github/workflows/workflow-dispatch-standalone-group-linux.yml: no such file or directory [workflow-call]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 110,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/workflow-dispatch-standalone-group-windows.yml\": open /home/huawei/github-actions-security/.github/workflows/workflow-dispatch-standalone-group-windows.yml: no such file or directory [workflow-call]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

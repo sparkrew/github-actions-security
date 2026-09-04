@@ -1,0 +1,407 @@
+{
+  "workflow": "microsoft_onnxruntime__.github__workflows__windows_cuda.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "microsoft_onnxruntime__.github__workflows__windows_cuda.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 13,
+        "by_rule": {
+          "unpinned-github-actions": 13
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 28,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # actions/setup-python@v6 | main,v6.2.0",
+          "line": 33,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # actions/setup-node@v6 | main,v6.3.0",
+          "line": 63,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # actions/setup-java@v5 | v5.2.0",
+          "line": 67,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # actions/cache@v5 | v5.0.3",
+          "line": 73,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-dotnet@baa11fbfe1d6520db94683bd5c7a3818018e4309 # actions/setup-dotnet@v5 | v5.1.0",
+          "line": 89,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: nuget/setup-nuget@323ab0502cd38fdc493335025a96c8fdb0edc71f # nuget/setup-nuget@v2",
+          "line": 96,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # actions/upload-artifact@v6 | v6.0.0",
+          "line": 139,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 163,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # actions/download-artifact@v7 | v7.0.0",
+          "line": 169,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # actions/setup-python@v6 | main,v6.2.0",
+          "line": 174,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # actions/setup-node@v6 | main,v6.3.0",
+          "line": 179,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # actions/setup-java@v5 | v5.2.0",
+          "line": 183,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_onnxruntime__.github__workflows__windows_cuda.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            28,
+            33,
+            63,
+            67,
+            73,
+            89,
+            96,
+            139,
+            163,
+            169,
+            174,
+            179,
+            183
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__windows_cuda.yml:28",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__windows_cuda.yml:33",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__windows_cuda.yml:63",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__windows_cuda.yml:67",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__windows_cuda.yml:73",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__windows_cuda.yml:89",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__windows_cuda.yml:96",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__windows_cuda.yml:139",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__windows_cuda.yml:163",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__windows_cuda.yml:169",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__windows_cuda.yml:174",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__windows_cuda.yml:179",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_onnxruntime__.github__workflows__windows_cuda.yml:183",
+            "Info:   0 out of  12 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   1 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/microsoft_onnxruntime__.github__workflows__windows_cuda.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "poutine": {
+      "workflow": "microsoft_onnxruntime__.github__workflows__windows_cuda.yml",
+      "tool": "poutine",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "pr_runs_on_self_hosted": 2
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "pr_runs_on_self_hosted",
+          "line": 157,
+          "column": "",
+          "job": "test",
+          "step": "",
+          "details": "runs-on: self-hosted, 1ES.Pool=onnxruntime-github-Win2022-GPU-A10, JobId=windows-cuda-test-${{ github.run_id }}-${{ github.run_number }}-${{ github.run_attempt }}",
+          "event_triggers": [
+            "push",
+            "pull_request",
+            "workflow_dispatch"
+          ],
+          "capability": "privileged-trigger-weakness"
+        },
+        {
+          "rule_id": "pr_runs_on_self_hosted",
+          "line": 22,
+          "column": "",
+          "job": "build",
+          "step": "",
+          "details": "runs-on: self-hosted, 1ES.Pool=onnxruntime-github-vs2022-latest, JobId=windows-cuda-${{ github.run_id }}-${{ github.run_number }}-${{ github.run_attempt }}",
+          "event_triggers": [
+            "push",
+            "pull_request",
+            "workflow_dispatch"
+          ],
+          "capability": "privileged-trigger-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_onnxruntime__.github__workflows__windows_cuda.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 13,
+        "by_rule": {
+          "unpinned-github-actions": 13
+        }
+      },
+      "findings": [
+        {
+          "line": 28,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 33,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 63,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 67,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-java@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 73,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/cache@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 89,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-dotnet@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 96,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `nuget/setup-nuget@v2`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 139,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 163,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 169,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/download-artifact@v7`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 174,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 179,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 183,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-java@v5`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_onnxruntime__.github__workflows__windows_cuda.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "artipacked": 2,
+          "excessive-permissions": 3,
+          "unpinned-uses": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_onnxruntime__.github__workflows__windows_cuda.yml",
+          "line": 28,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_onnxruntime__.github__workflows__windows_cuda.yml",
+          "line": 163,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "microsoft_onnxruntime__.github__workflows__windows_cuda.yml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "microsoft_onnxruntime__.github__workflows__windows_cuda.yml",
+          "line": 20,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "microsoft_onnxruntime__.github__workflows__windows_cuda.yml",
+          "line": 153,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_onnxruntime__.github__workflows__windows_cuda.yml",
+          "line": 96,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "microsoft_onnxruntime__.github__workflows__windows_cuda.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 2
+      },
+      "findings": [
+        {
+          "line": 24,
+          "column": 9,
+          "message": "label \"1ES.Pool=onnxruntime-github-vs2022-latest\" is unknown. available labels are \"windows-latest\", \"windows-latest-8-cores\", \"windows-2025\", \"windows-2022\", \"windows-2019\", \"ubuntu-latest\", \"ubuntu-latest-4-cores\", \"ubuntu-latest-8-cores\", \"ubuntu-latest-16-cores\", \"ubuntu-24.04\", \"ubuntu-24.04-arm\", \"ubuntu-22.04\", \"ubuntu-22.04-arm\", \"ubuntu-20.04\", \"macos-latest\", \"macos-latest-xl\", \"macos-latest-xlarge\", \"macos-latest-large\", \"macos-15-xlarge\", \"macos-15-large\", \"macos-15\", \"macos-14-xl\", \"macos-14-xlarge\", \"macos-14-large\", \"macos-14\", \"macos-13-xl\", \"macos-13-xlarge\", \"macos-13-large\", \"macos-13\", \"self-hosted\", \"x64\", \"arm\", \"arm64\", \"linux\", \"macos\", \"windows\". if it is a custom label for self-hosted runner, set list of labels in actionlint.yaml config file [runner-label]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 159,
+          "column": 7,
+          "message": "label \"1ES.Pool=onnxruntime-github-Win2022-GPU-A10\" is unknown. available labels are \"windows-latest\", \"windows-latest-8-cores\", \"windows-2025\", \"windows-2022\", \"windows-2019\", \"ubuntu-latest\", \"ubuntu-latest-4-cores\", \"ubuntu-latest-8-cores\", \"ubuntu-latest-16-cores\", \"ubuntu-24.04\", \"ubuntu-24.04-arm\", \"ubuntu-22.04\", \"ubuntu-22.04-arm\", \"ubuntu-20.04\", \"macos-latest\", \"macos-latest-xl\", \"macos-latest-xlarge\", \"macos-latest-large\", \"macos-15-xlarge\", \"macos-15-large\", \"macos-15\", \"macos-14-xl\", \"macos-14-xlarge\", \"macos-14-large\", \"macos-14\", \"macos-13-xl\", \"macos-13-xlarge\", \"macos-13-large\", \"macos-13\", \"self-hosted\", \"x64\", \"arm\", \"arm64\", \"linux\", \"macos\", \"windows\". if it is a custom label for self-hosted runner, set list of labels in actionlint.yaml config file [runner-label]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

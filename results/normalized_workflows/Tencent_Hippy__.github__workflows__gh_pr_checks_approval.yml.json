@@ -1,0 +1,345 @@
+{
+  "workflow": "Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "peter-evans/find-comment@v2.1.0",
+          "pinned": "peter-evans/find-comment@f4499a714d59013c74a08789b48abe4b704364a0",
+          "line": 104,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "navikt/github-app-token-generator@v1",
+          "pinned": "navikt/github-app-token-generator@b96ff604b2300989cd1105e3fad09199fca56681",
+          "line": 113,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "peter-evans/create-or-update-comment@v2",
+          "pinned": "peter-evans/create-or-update-comment@67dcc547d311b736a8e6c5c236542148a47adc3d",
+          "line": 118,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: peter-evans/find-comment@f4499a714d59013c74a08789b48abe4b704364a0 # peter-evans/find-comment@v2.1.0",
+          "line": 104,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: navikt/github-app-token-generator@b96ff604b2300989cd1105e3fad09199fca56681 # navikt/github-app-token-generator@v1 | v1.2,v1.2.1",
+          "line": 113,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: peter-evans/create-or-update-comment@67dcc547d311b736a8e6c5c236542148a47adc3d # peter-evans/create-or-update-comment@v2 | v2.1.1",
+          "line": 118,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            104,
+            113,
+            118
+          ],
+          "raw_details": [
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml:104",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml:113",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml:118",
+            "Info:   0 out of   3 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "poutine": {
+      "workflow": "Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml",
+      "tool": "poutine",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "default_permissions_on_risky_events": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "default_permissions_on_risky_events",
+          "line": "",
+          "column": "",
+          "job": "",
+          "step": "",
+          "details": "",
+          "event_triggers": [
+            "pull_request_target",
+            "workflow_run"
+          ],
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "line": 104,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `peter-evans/find-comment@v2.1.0`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 113,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `navikt/github-app-token-generator@v1`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 118,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `peter-evans/create-or-update-comment@v2`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 12,
+        "by_rule": {
+          "excessive-permissions": 6,
+          "dangerous-triggers": 2,
+          "template-injection": 1,
+          "unpinned-uses": 3
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml",
+          "line": 17,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml",
+          "line": 27,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml",
+          "line": 33,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml",
+          "line": 58,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml",
+          "line": 66,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "dangerous-triggers",
+          "level": "error",
+          "message": "use of fundamentally insecure workflow trigger",
+          "workflow": "Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml",
+          "line": 3,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "privileged-trigger-weakness"
+        },
+        {
+          "rule_id": "dangerous-triggers",
+          "level": "error",
+          "message": "use of fundamentally insecure workflow trigger",
+          "workflow": "Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml",
+          "line": 3,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "privileged-trigger-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml",
+          "line": 85,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml",
+          "line": 104,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml",
+          "line": 113,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml",
+          "line": 118,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "Tencent_Hippy__.github__workflows__gh_pr_checks_approval.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 2
+      },
+      "findings": [
+        {
+          "line": 29,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/reuse_get_workflow_output.yml\": open /home/huawei/github-actions-security/.github/workflows/reuse_get_workflow_output.yml: no such file or directory [workflow-call]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 61,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/reuse_approve_checks_run.yml\": open /home/huawei/github-actions-security/.github/workflows/reuse_approve_checks_run.yml: no such file or directory [workflow-call]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

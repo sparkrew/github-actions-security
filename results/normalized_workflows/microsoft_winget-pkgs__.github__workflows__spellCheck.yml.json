@@ -1,0 +1,206 @@
+{
+  "workflow": "microsoft_winget-pkgs__.github__workflows__spellCheck.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "microsoft_winget-pkgs__.github__workflows__spellCheck.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: check-spelling/check-spelling@67debf50669c7fc76fc8f5d7f996384535a72b77 # check-spelling/check-spelling@v0.0.24",
+          "line": 70,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: check-spelling/check-spelling@d7cd2973c513e84354f9d6cf50a6417a628a78ce # check-spelling/check-spelling@v0.0.21",
+          "line": 94,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: check-spelling/check-spelling@d7cd2973c513e84354f9d6cf50a6417a628a78ce # check-spelling/check-spelling@v0.0.21",
+          "line": 110,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_winget-pkgs__.github__workflows__spellCheck.yaml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            70,
+            94,
+            110
+          ],
+          "raw_details": [
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_winget-pkgs__.github__workflows__spellCheck.yaml:70",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_winget-pkgs__.github__workflows__spellCheck.yaml:94",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_winget-pkgs__.github__workflows__spellCheck.yaml:110",
+            "Info:   0 out of   3 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            56,
+            57,
+            58,
+            90
+          ],
+          "raw_details": [
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/microsoft_winget-pkgs__.github__workflows__spellCheck.yaml:56",
+            "Info: jobLevel 'pull-requests' permission set to 'read': .github/workflows/microsoft_winget-pkgs__.github__workflows__spellCheck.yaml:57",
+            "Info: jobLevel 'actions' permission set to 'read': .github/workflows/microsoft_winget-pkgs__.github__workflows__spellCheck.yaml:58",
+            "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/microsoft_winget-pkgs__.github__workflows__spellCheck.yaml:90",
+            "Warn: no topLevel permission defined: .github/workflows/microsoft_winget-pkgs__.github__workflows__spellCheck.yaml:1"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_winget-pkgs__.github__workflows__spellCheck.yaml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "line": 70,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `check-spelling/check-spelling@v0.0.24`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 94,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `check-spelling/check-spelling@v0.0.21`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 110,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `check-spelling/check-spelling@v0.0.21`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_winget-pkgs__.github__workflows__spellCheck.yaml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "dangerous-triggers": 1,
+          "unpinned-uses": 3
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "dangerous-triggers",
+          "level": "error",
+          "message": "use of fundamentally insecure workflow trigger",
+          "workflow": "microsoft_winget-pkgs__.github__workflows__spellCheck.yaml",
+          "line": 36,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "privileged-trigger-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_winget-pkgs__.github__workflows__spellCheck.yaml",
+          "line": 70,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_winget-pkgs__.github__workflows__spellCheck.yaml",
+          "line": 94,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_winget-pkgs__.github__workflows__spellCheck.yaml",
+          "line": 110,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "microsoft_winget-pkgs__.github__workflows__spellCheck.yaml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 1
+      },
+      "findings": [
+        {
+          "line": 45,
+          "column": 5,
+          "message": "\"tags-ignore\" filter is not available for pull_request_target event. it is only for push event [events]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "workflow": "Azure_azure-rest-api-specs__.github__workflows__sdk-suppressions-test.yml",
+  "tools": {
+    "scorecard": {
+      "workflow": "Azure_azure-rest-api-specs__.github__workflows__sdk-suppressions-test.yaml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "Azure_azure-rest-api-specs__.github__workflows__sdk-suppressions-test.yaml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 1
+      },
+      "findings": [
+        {
+          "line": 27,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/_reusable-eng-tools-test.yaml\": open /home/huawei/github-actions-security/.github/workflows/_reusable-eng-tools-test.yaml: no such file or directory [workflow-call]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "workflow": "microsoft_autogen__.github__workflows__dotnet-release.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "microsoft_autogen__.github__workflows__dotnet-release.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+          "line": 29,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-python@v5",
+          "pinned": "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "line": 33,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-dotnet@v4",
+          "pinned": "actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9",
+          "line": 45,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "microsoft_autogen__.github__workflows__dotnet-release.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+          "line": 29,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # actions/setup-python@v5 | releases,v5.6.0",
+          "line": 33,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # actions/setup-dotnet@v4 | releases,v4.3.1",
+          "line": 45,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_autogen__.github__workflows__dotnet-release.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            29,
+            33,
+            38,
+            39,
+            40,
+            45,
+            50
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-release.yml:29",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-release.yml:33",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-release.yml:45",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-release.yml:38",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-release.yml:39",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-release.yml:40",
+            "Warn: nugetCommand not pinned by hash: .github/workflows/microsoft_autogen__.github__workflows__dotnet-release.yml:50: pin your dependecies by either enabling central package management (https://learn.microsoft.com/nuget/consume-packages/Central-Package-Management) or using a lockfile (https://learn.microsoft.com/nuget/consume-packages/package-references-in-project-files#locking-dependencies)",
+            "Info:   0 out of   3 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   3 pipCommand dependencies pinned",
+            "Info:   0 out of   1 nugetCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            17,
+            18
+          ],
+          "raw_details": [
+            "Info: topLevel 'contents' permission set to 'read': .github/workflows/microsoft_autogen__.github__workflows__dotnet-release.yml:17",
+            "Warn: topLevel 'packages' permission set to 'write': .github/workflows/microsoft_autogen__.github__workflows__dotnet-release.yml:18",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_autogen__.github__workflows__dotnet-release.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "line": 29,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 33,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 45,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/setup-dotnet@v4`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_autogen__.github__workflows__dotnet-release.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_autogen__.github__workflows__dotnet-release.yml",
+          "line": 29,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    }
+  }
+}

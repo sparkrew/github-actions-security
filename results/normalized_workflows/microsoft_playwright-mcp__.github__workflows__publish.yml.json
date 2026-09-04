@@ -1,0 +1,459 @@
+{
+  "workflow": "microsoft_playwright-mcp__.github__workflows__publish.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "microsoft_playwright-mcp__.github__workflows__publish.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 12,
+        "by_rule": {
+          "unpinned-github-actions": 12
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # actions/checkout@v5 | releases,v5.0.1",
+          "line": 17,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # actions/setup-node@v5 | releases,v5.0.0",
+          "line": 18,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # actions/checkout@v5 | releases,v5.0.1",
+          "line": 60,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # actions/setup-node@v5 | releases,v5.0.0",
+          "line": 61,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # actions/checkout@v5 | releases,v5.0.1",
+          "line": 84,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # docker/setup-qemu-action@v3 | releases,v3.7.0",
+          "line": 86,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # docker/setup-buildx-action@v3 | v3.12.0",
+          "line": 88,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: azure/login@a457da9ea143d694b1b9c7c869ebb04ebe844ef5 # azure/login@v2",
+          "line": 90,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # docker/build-push-action@v6 | v6.19.2",
+          "line": 99,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: oras-project/setup-oras@22ce207df3b08e061f537244349aac6ae1d214f6 # oras-project/setup-oras@v1 | v1.2,v1.2.4",
+          "line": 107,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # actions/checkout@v5 | releases,v5.0.1",
+          "line": 128,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # actions/setup-node@v5 | releases,v5.0.0",
+          "line": 129,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_playwright-mcp__.github__workflows__publish.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 2,
+          "reason": "dependency not pinned by hash detected -- score normalized to 2",
+          "lines": [
+            17,
+            18,
+            25,
+            60,
+            61,
+            68,
+            84,
+            86,
+            88,
+            90,
+            99,
+            107,
+            128,
+            129
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:17",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:18",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:60",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:61",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:84",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:86",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:88",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:90",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:99",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:107",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:128",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:129",
+            "Warn: npmCommand not pinned by hash: .github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:25",
+            "Warn: npmCommand not pinned by hash: .github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:68",
+            "Info:   0 out of   7 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   5 third-party GitHubAction dependencies pinned",
+            "Info:   3 out of   5 npmCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            14,
+            57,
+            80,
+            126
+          ],
+          "raw_details": [
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:57",
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:80",
+            "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:126",
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:14",
+            "Warn: no topLevel permission defined: .github/workflows/microsoft_playwright-mcp__.github__workflows__publish.yml:1"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_playwright-mcp__.github__workflows__publish.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 12,
+        "by_rule": {
+          "unpinned-github-actions": 12
+        }
+      },
+      "findings": [
+        {
+          "line": 17,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 18,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 60,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 61,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 84,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 86,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/setup-qemu-action@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 88,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/setup-buildx-action@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 90,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `azure/login@v2`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 99,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/build-push-action@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 107,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `oras-project/setup-oras@v1`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 128,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 129,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v5`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_playwright-mcp__.github__workflows__publish.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 16,
+        "by_rule": {
+          "artipacked": 4,
+          "template-injection": 7,
+          "unpinned-uses": 5
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_playwright-mcp__.github__workflows__publish.yml",
+          "line": 17,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_playwright-mcp__.github__workflows__publish.yml",
+          "line": 60,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_playwright-mcp__.github__workflows__publish.yml",
+          "line": 84,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_playwright-mcp__.github__workflows__publish.yml",
+          "line": 128,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_playwright-mcp__.github__workflows__publish.yml",
+          "line": 34,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_playwright-mcp__.github__workflows__publish.yml",
+          "line": 34,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_playwright-mcp__.github__workflows__publish.yml",
+          "line": 38,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_playwright-mcp__.github__workflows__publish.yml",
+          "line": 108,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_playwright-mcp__.github__workflows__publish.yml",
+          "line": 142,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_playwright-mcp__.github__workflows__publish.yml",
+          "line": 148,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "info",
+          "message": "code injection via template expansion",
+          "workflow": "microsoft_playwright-mcp__.github__workflows__publish.yml",
+          "line": 148,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_playwright-mcp__.github__workflows__publish.yml",
+          "line": 86,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_playwright-mcp__.github__workflows__publish.yml",
+          "line": 88,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_playwright-mcp__.github__workflows__publish.yml",
+          "line": 90,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_playwright-mcp__.github__workflows__publish.yml",
+          "line": 99,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_playwright-mcp__.github__workflows__publish.yml",
+          "line": 107,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "microsoft_playwright-mcp__.github__workflows__publish.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 1
+      },
+      "findings": [
+        {
+          "line": 109,
+          "column": 484,
+          "message": "index access operand must be type of object or array but got \"string\" [expression]",
+          "capability": "control-flow-weakness"
+        }
+      ]
+    }
+  }
+}

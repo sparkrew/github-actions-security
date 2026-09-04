@@ -1,0 +1,77 @@
+{
+  "workflow": "Azure_azure-cli__.github__workflows__AddPRComment.yml",
+  "tools": {
+    "scorecard": {
+      "workflow": "Azure_azure-cli__.github__workflows__AddPRComment.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    },
+    "poutine": {
+      "workflow": "Azure_azure-cli__.github__workflows__AddPRComment.yml",
+      "tool": "poutine",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "default_permissions_on_risky_events": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "default_permissions_on_risky_events",
+          "line": "",
+          "column": "",
+          "job": "",
+          "step": "",
+          "details": "",
+          "event_triggers": [
+            "pull_request_target"
+          ],
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "Azure_azure-cli__.github__workflows__AddPRComment.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "dangerous-triggers": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "dangerous-triggers",
+          "level": "error",
+          "message": "use of fundamentally insecure workflow trigger",
+          "workflow": "Azure_azure-cli__.github__workflows__AddPRComment.yml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "privileged-trigger-weakness"
+        }
+      ]
+    }
+  }
+}

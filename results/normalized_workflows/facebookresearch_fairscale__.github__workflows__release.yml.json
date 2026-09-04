@@ -1,0 +1,447 @@
+{
+  "workflow": "facebookresearch_fairscale__.github__workflows__release.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "facebookresearch_fairscale__.github__workflows__release.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "unpinned-github-actions": 6
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v2",
+          "pinned": "actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5",
+          "line": 16,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-python@v2",
+          "pinned": "actions/setup-python@e9aba2c848f5ebd159c070c61ea2c4e2b122355e",
+          "line": 19,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v2",
+          "pinned": "actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5",
+          "line": 47,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-python@v2",
+          "pinned": "actions/setup-python@e9aba2c848f5ebd159c070c61ea2c4e2b122355e",
+          "line": 50,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "EndBug/add-and-commit@v7.5.0",
+          "pinned": "EndBug/add-and-commit@8c12ff729a98cfbcd3fe38b49f55eceb98a5ec02",
+          "line": 64,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "ncipollo/release-action@v1",
+          "pinned": "ncipollo/release-action@b7eabc95ff50cbeeedec83973935c8f306dfcd0b",
+          "line": 92,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "facebookresearch_fairscale__.github__workflows__release.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "unpinned-github-actions": 6
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # actions/checkout@v2 | releases,850,v2.7.0",
+          "line": 16,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-python@e9aba2c848f5ebd159c070c61ea2c4e2b122355e # actions/setup-python@v2 | releases,v2.3.4",
+          "line": 19,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # actions/checkout@v2 | releases,850,v2.7.0",
+          "line": 47,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-python@e9aba2c848f5ebd159c070c61ea2c4e2b122355e # actions/setup-python@v2 | releases,v2.3.4",
+          "line": 50,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: EndBug/add-and-commit@8c12ff729a98cfbcd3fe38b49f55eceb98a5ec02 # EndBug/add-and-commit@v7.5.0 | v7",
+          "line": 64,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: ncipollo/release-action@b7eabc95ff50cbeeedec83973935c8f306dfcd0b # ncipollo/release-action@v1 | v1.20.0",
+          "line": 92,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "semgrep": {
+      "workflow": "facebookresearch_fairscale__.github__workflows__release.yml",
+      "tool": "semgrep",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "run-shell-injection": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "run-shell-injection",
+          "line": 25,
+          "code": "requires login",
+          "note": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+          "documentation": null,
+          "capability": "injection-weakness"
+        },
+        {
+          "rule": "run-shell-injection",
+          "line": 57,
+          "code": "requires login",
+          "note": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+          "documentation": null,
+          "capability": "injection-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "facebookresearch_fairscale__.github__workflows__release.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            16,
+            19,
+            47,
+            50,
+            64,
+            85,
+            86,
+            92
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebookresearch_fairscale__.github__workflows__release.yml:16",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebookresearch_fairscale__.github__workflows__release.yml:19",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebookresearch_fairscale__.github__workflows__release.yml:47",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebookresearch_fairscale__.github__workflows__release.yml:50",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/facebookresearch_fairscale__.github__workflows__release.yml:64",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/facebookresearch_fairscale__.github__workflows__release.yml:92",
+            "Warn: pipCommand not pinned by hash: .github/workflows/facebookresearch_fairscale__.github__workflows__release.yml:85",
+            "Warn: pipCommand not pinned by hash: .github/workflows/facebookresearch_fairscale__.github__workflows__release.yml:86",
+            "Info:   0 out of   4 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   2 third-party GitHubAction dependencies pinned",
+            "Info:   0 out of   2 pipCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/facebookresearch_fairscale__.github__workflows__release.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "poutine": {
+      "workflow": "facebookresearch_fairscale__.github__workflows__release.yml",
+      "tool": "poutine",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "injection": 2
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "injection",
+          "line": 25,
+          "column": "",
+          "job": "get_next_version",
+          "step": "2",
+          "details": "Sources: github.event.inputs.name",
+          "event_triggers": [
+            "workflow_dispatch"
+          ],
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "injection",
+          "line": 57,
+          "column": "",
+          "job": "pypi_package_build_and_release",
+          "step": "2",
+          "details": "Sources: github.event.inputs.name",
+          "event_triggers": [
+            "workflow_dispatch"
+          ],
+          "capability": "injection-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "facebookresearch_fairscale__.github__workflows__release.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "unpinned-github-actions": 6
+        }
+      },
+      "findings": [
+        {
+          "line": 16,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v2`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 19,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v2`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 47,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v2`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 50,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v2`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 64,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `EndBug/add-and-commit@v7.5.0`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 92,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `ncipollo/release-action@v1`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "facebookresearch_fairscale__.github__workflows__release.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 9,
+        "by_rule": {
+          "artipacked": 2,
+          "excessive-permissions": 3,
+          "template-injection": 2,
+          "unpinned-uses": 2
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "facebookresearch_fairscale__.github__workflows__release.yml",
+          "line": 15,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "facebookresearch_fairscale__.github__workflows__release.yml",
+          "line": 46,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "facebookresearch_fairscale__.github__workflows__release.yml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "facebookresearch_fairscale__.github__workflows__release.yml",
+          "line": 12,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "facebookresearch_fairscale__.github__workflows__release.yml",
+          "line": 42,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "facebookresearch_fairscale__.github__workflows__release.yml",
+          "line": 23,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "facebookresearch_fairscale__.github__workflows__release.yml",
+          "line": 55,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "facebookresearch_fairscale__.github__workflows__release.yml",
+          "line": 64,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "facebookresearch_fairscale__.github__workflows__release.yml",
+          "line": 92,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "facebookresearch_fairscale__.github__workflows__release.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 6
+      },
+      "findings": [
+        {
+          "line": 16,
+          "column": 15,
+          "message": "the runner of \"actions/checkout@v2\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 19,
+          "column": 15,
+          "message": "the runner of \"actions/setup-python@v2\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 25,
+          "column": 14,
+          "message": "workflow command \"set-output\" was deprecated. use `echo \"{name}={value}\" >> $GITHUB_OUTPUT` instead: https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions [deprecated-commands]",
+          "capability": "injection-weakness"
+        },
+        {
+          "line": 25,
+          "column": 14,
+          "message": "workflow command \"set-output\" was deprecated. use `echo \"{name}={value}\" >> $GITHUB_OUTPUT` instead: https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions [deprecated-commands]",
+          "capability": "injection-weakness"
+        },
+        {
+          "line": 47,
+          "column": 15,
+          "message": "the runner of \"actions/checkout@v2\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 50,
+          "column": 15,
+          "message": "the runner of \"actions/setup-python@v2\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

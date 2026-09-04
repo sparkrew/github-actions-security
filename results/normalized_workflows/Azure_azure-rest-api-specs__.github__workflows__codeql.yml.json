@@ -1,0 +1,153 @@
+{
+  "workflow": "Azure_azure-rest-api-specs__.github__workflows__codeql.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "Azure_azure-rest-api-specs__.github__workflows__codeql.yaml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v6",
+          "pinned": "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+          "line": 78,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/init@v4",
+          "pinned": "github/codeql-action/init@89a39a4e59826350b863aa6b6252a07ad50cf83e",
+          "line": 90,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/analyze@v4",
+          "pinned": "github/codeql-action/analyze@89a39a4e59826350b863aa6b6252a07ad50cf83e",
+          "line": 119,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "Azure_azure-rest-api-specs__.github__workflows__codeql.yaml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            78,
+            90,
+            119
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Azure_azure-rest-api-specs__.github__workflows__codeql.yaml:78",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Azure_azure-rest-api-specs__.github__workflows__codeql.yaml:90",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Azure_azure-rest-api-specs__.github__workflows__codeql.yaml:119",
+            "Info:   0 out of   3 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            42,
+            45,
+            46
+          ],
+          "raw_details": [
+            "Info: jobLevel 'packages' permission set to 'read': .github/workflows/Azure_azure-rest-api-specs__.github__workflows__codeql.yaml:42",
+            "Info: jobLevel 'actions' permission set to 'read': .github/workflows/Azure_azure-rest-api-specs__.github__workflows__codeql.yaml:45",
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/Azure_azure-rest-api-specs__.github__workflows__codeql.yaml:46",
+            "Warn: no topLevel permission defined: .github/workflows/Azure_azure-rest-api-specs__.github__workflows__codeql.yaml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "Azure_azure-rest-api-specs__.github__workflows__codeql.yaml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "line": 78,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 86,
+          "column": 17,
+          "message": "Unpinned GitHub Action: uses `actions/setup-example@v1`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 90,
+          "column": 22,
+          "message": "Unpinned GitHub Action: uses `codeql-action/init@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 119,
+          "column": 22,
+          "message": "Unpinned GitHub Action: uses `codeql-action/analyze@v4`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "Azure_azure-rest-api-specs__.github__workflows__codeql.yaml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "Azure_azure-rest-api-specs__.github__workflows__codeql.yaml",
+          "line": 77,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    }
+  }
+}

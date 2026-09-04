@@ -1,0 +1,190 @@
+{
+  "workflow": "microsoft_fluentui-system-icons__.github__workflows__bundle-size.baseline.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "microsoft_fluentui-system-icons__.github__workflows__bundle-size.baseline.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/create-github-app-token@v1",
+          "pinned": "actions/create-github-app-token@d72941d797fd3113feb6b93fd0dec494b13a2547",
+          "line": 23,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v6",
+          "pinned": "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+          "line": 28,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-node@v4",
+          "pinned": "actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "line": 32,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "microsoft_fluentui-system-icons__.github__workflows__bundle-size.baseline.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/create-github-app-token@d72941d797fd3113feb6b93fd0dec494b13a2547 # actions/create-github-app-token@v1 | v1.12.0",
+          "line": 23,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 28,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | releases,v4.4.0",
+          "line": 32,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_fluentui-system-icons__.github__workflows__bundle-size.baseline.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 2,
+          "reason": "dependency not pinned by hash detected -- score normalized to 2",
+          "lines": [
+            23,
+            28,
+            32
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_fluentui-system-icons__.github__workflows__bundle-size.baseline.yml:23",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_fluentui-system-icons__.github__workflows__bundle-size.baseline.yml:28",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_fluentui-system-icons__.github__workflows__bundle-size.baseline.yml:32",
+            "Info:   0 out of   3 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   1 out of   1 npmCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            17,
+            18
+          ],
+          "raw_details": [
+            "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/microsoft_fluentui-system-icons__.github__workflows__bundle-size.baseline.yml:17",
+            "Warn: jobLevel 'actions' permission set to 'write': .github/workflows/microsoft_fluentui-system-icons__.github__workflows__bundle-size.baseline.yml:18",
+            "Warn: no topLevel permission defined: .github/workflows/microsoft_fluentui-system-icons__.github__workflows__bundle-size.baseline.yml:1"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_fluentui-system-icons__.github__workflows__bundle-size.baseline.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "line": 23,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/create-github-app-token@v1`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 28,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 32,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v4`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_fluentui-system-icons__.github__workflows__bundle-size.baseline.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_fluentui-system-icons__.github__workflows__bundle-size.baseline.yml",
+          "line": 28,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,208 @@
+{
+  "workflow": "apple_pkl__.github__workflows__prb.yml",
+  "tools": {
+    "scorecard": {
+      "workflow": "apple_pkl__.github__workflows__prb.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    },
+    "poutine": {
+      "workflow": "apple_pkl__.github__workflows__prb.yml",
+      "tool": "poutine",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "pr_runs_on_self_hosted": 6
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "pr_runs_on_self_hosted",
+          "line": 166,
+          "column": "",
+          "job": "pkl-cli-macOS-aarch64-snapshot",
+          "step": "",
+          "details": "runs-on: self-hosted, macos",
+          "event_triggers": [
+            "pull_request"
+          ],
+          "capability": "privileged-trigger-weakness"
+        },
+        {
+          "rule_id": "pr_runs_on_self_hosted",
+          "line": 82,
+          "column": "",
+          "job": "pkl-cli-macOS-amd64-snapshot",
+          "step": "",
+          "details": "runs-on: self-hosted, macos",
+          "event_triggers": [
+            "pull_request"
+          ],
+          "capability": "privileged-trigger-weakness"
+        },
+        {
+          "rule_id": "pr_runs_on_self_hosted",
+          "line": 484,
+          "column": "",
+          "job": "pkl-doc-macOS-aarch64-snapshot",
+          "step": "",
+          "details": "runs-on: self-hosted, macos",
+          "event_triggers": [
+            "pull_request"
+          ],
+          "capability": "privileged-trigger-weakness"
+        },
+        {
+          "rule_id": "pr_runs_on_self_hosted",
+          "line": 400,
+          "column": "",
+          "job": "pkl-doc-macOS-amd64-snapshot",
+          "step": "",
+          "details": "runs-on: self-hosted, macos",
+          "event_triggers": [
+            "pull_request"
+          ],
+          "capability": "privileged-trigger-weakness"
+        },
+        {
+          "rule_id": "pr_runs_on_self_hosted",
+          "line": 205,
+          "column": "",
+          "job": "pkl-cli-linux-aarch64-snapshot",
+          "step": "",
+          "details": "runs-on: ubuntu-24.04-arm",
+          "event_triggers": [
+            "pull_request"
+          ],
+          "capability": "privileged-trigger-weakness"
+        },
+        {
+          "rule_id": "pr_runs_on_self_hosted",
+          "line": 523,
+          "column": "",
+          "job": "pkl-doc-linux-aarch64-snapshot",
+          "step": "",
+          "details": "runs-on: ubuntu-24.04-arm",
+          "event_triggers": [
+            "pull_request"
+          ],
+          "capability": "privileged-trigger-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "apple_pkl__.github__workflows__prb.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 14
+      },
+      "findings": [
+        {
+          "line": 26,
+          "column": 13,
+          "message": "\"with\" section should not be empty. please remove this section if it's unnecessary [syntax-check]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 61,
+          "column": 13,
+          "message": "\"with\" section should not be empty. please remove this section if it's unnecessary [syntax-check]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 96,
+          "column": 13,
+          "message": "\"with\" section should not be empty. please remove this section if it's unnecessary [syntax-check]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 136,
+          "column": 13,
+          "message": "\"with\" section should not be empty. please remove this section if it's unnecessary [syntax-check]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 180,
+          "column": 13,
+          "message": "\"with\" section should not be empty. please remove this section if it's unnecessary [syntax-check]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 220,
+          "column": 13,
+          "message": "\"with\" section should not be empty. please remove this section if it's unnecessary [syntax-check]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 262,
+          "column": 13,
+          "message": "\"with\" section should not be empty. please remove this section if it's unnecessary [syntax-check]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 374,
+          "column": 13,
+          "message": "\"with\" section should not be empty. please remove this section if it's unnecessary [syntax-check]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 414,
+          "column": 13,
+          "message": "\"with\" section should not be empty. please remove this section if it's unnecessary [syntax-check]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 454,
+          "column": 13,
+          "message": "\"with\" section should not be empty. please remove this section if it's unnecessary [syntax-check]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 498,
+          "column": 13,
+          "message": "\"with\" section should not be empty. please remove this section if it's unnecessary [syntax-check]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 538,
+          "column": 13,
+          "message": "\"with\" section should not be empty. please remove this section if it's unnecessary [syntax-check]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 580,
+          "column": 13,
+          "message": "\"with\" section should not be empty. please remove this section if it's unnecessary [syntax-check]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 692,
+          "column": 13,
+          "message": "\"with\" section should not be empty. please remove this section if it's unnecessary [syntax-check]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

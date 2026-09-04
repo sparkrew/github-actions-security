@@ -1,0 +1,187 @@
+{
+  "workflow": "awslabs_agent-squad__.github__workflows__ts-run-security-checks.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "awslabs_agent-squad__.github__workflows__ts-run-security-checks.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+          "line": 20,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "gitleaks/gitleaks-action@v2",
+          "pinned": "gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7",
+          "line": 34,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "awslabs_agent-squad__.github__workflows__ts-run-security-checks.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+          "line": 20,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7 # gitleaks/gitleaks-action@v2",
+          "line": 34,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "awslabs_agent-squad__.github__workflows__ts-run-security-checks.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            20,
+            26,
+            34
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/awslabs_agent-squad__.github__workflows__ts-run-security-checks.yml:20",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/awslabs_agent-squad__.github__workflows__ts-run-security-checks.yml:34",
+            "Warn: npmCommand not pinned by hash: .github/workflows/awslabs_agent-squad__.github__workflows__ts-run-security-checks.yml:26",
+            "Info:   0 out of   1 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   1 third-party GitHubAction dependencies pinned",
+            "Info:   0 out of   1 npmCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    },
+    "poutine": {
+      "workflow": "awslabs_agent-squad__.github__workflows__ts-run-security-checks.yml",
+      "tool": "poutine",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "debug_enabled": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "debug_enabled",
+          "line": 10,
+          "column": "",
+          "job": "scan",
+          "step": "",
+          "details": "ACTIONS_STEP_DEBUG",
+          "event_triggers": [
+            "workflow_call",
+            "workflow_dispatch"
+          ],
+          "capability": "injection-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "awslabs_agent-squad__.github__workflows__ts-run-security-checks.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "unpinned-github-actions": 2
+        }
+      },
+      "findings": [
+        {
+          "line": 20,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 34,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `gitleaks/gitleaks-action@v2`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "awslabs_agent-squad__.github__workflows__ts-run-security-checks.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "artipacked": 1,
+          "unpinned-uses": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "awslabs_agent-squad__.github__workflows__ts-run-security-checks.yml",
+          "line": 19,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "awslabs_agent-squad__.github__workflows__ts-run-security-checks.yml",
+          "line": 34,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "workflow": "microsoft_ebpf-for-windows__.github__workflows__cicd.yml",
+  "tools": {
+    "scorecard": {
+      "workflow": "microsoft_ebpf-for-windows__.github__workflows__cicd.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            37,
+            38,
+            39
+          ],
+          "raw_details": [
+            "Info: topLevel 'contents' permission set to 'read': .github/workflows/microsoft_ebpf-for-windows__.github__workflows__cicd.yml:37",
+            "Info: topLevel 'checks' permission set to 'read': .github/workflows/microsoft_ebpf-for-windows__.github__workflows__cicd.yml:38",
+            "Warn: topLevel 'security-events' permission set to 'write': .github/workflows/microsoft_ebpf-for-windows__.github__workflows__cicd.yml:39",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_ebpf-for-windows__.github__workflows__cicd.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "artipacked": 1,
+          "excessive-permissions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_ebpf-for-windows__.github__workflows__cicd.yml",
+          "line": 209,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "error",
+          "message": "overly broad permissions",
+          "workflow": "microsoft_ebpf-for-windows__.github__workflows__cicd.yml",
+          "line": 36,
+          "column": 3,
+          "note": "audit confidence \u2192 High",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "microsoft_ebpf-for-windows__.github__workflows__cicd.yml",
+          "line": 39,
+          "column": 3,
+          "note": "audit confidence \u2192 High",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "error",
+          "message": "overly broad permissions",
+          "workflow": "microsoft_ebpf-for-windows__.github__workflows__cicd.yml",
+          "line": 40,
+          "column": 3,
+          "note": "audit confidence \u2192 High",
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "microsoft_ebpf-for-windows__.github__workflows__cicd.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 5
+      },
+      "findings": [
+        {
+          "line": 50,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/reusable-build.yml\": open /home/huawei/github-actions-security/.github/workflows/reusable-build.yml: no such file or directory [expression]",
+          "capability": "control-flow-weakness"
+        },
+        {
+          "line": 220,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/reusable-test.yml\": open /home/huawei/github-actions-security/.github/workflows/reusable-test.yml: no such file or directory [workflow-call]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 327,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/ossar-scan.yml\": open /home/huawei/github-actions-security/.github/workflows/ossar-scan.yml: no such file or directory [workflow-call]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 695,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/netperf.yml\": open /home/huawei/github-actions-security/.github/workflows/netperf.yml: no such file or directory [expression]",
+          "capability": "control-flow-weakness"
+        },
+        {
+          "line": 706,
+          "column": 11,
+          "message": "could not read reusable workflow file for \"./.github/workflows/upload-perf-results.yml\": open /home/huawei/github-actions-security/.github/workflows/upload-perf-results.yml: no such file or directory [workflow-call]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

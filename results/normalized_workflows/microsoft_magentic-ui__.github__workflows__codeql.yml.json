@@ -1,0 +1,120 @@
+{
+  "workflow": "microsoft_magentic-ui__.github__workflows__codeql.yml",
+  "tools": {
+    "scorecard": {
+      "workflow": "microsoft_magentic-ui__.github__workflows__codeql.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            62,
+            72,
+            100
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_magentic-ui__.github__workflows__codeql.yml:62",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_magentic-ui__.github__workflows__codeql.yml:72",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_magentic-ui__.github__workflows__codeql.yml:100",
+            "Info:   0 out of   3 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            36,
+            39,
+            40
+          ],
+          "raw_details": [
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/microsoft_magentic-ui__.github__workflows__codeql.yml:40",
+            "Info: jobLevel 'packages' permission set to 'read': .github/workflows/microsoft_magentic-ui__.github__workflows__codeql.yml:36",
+            "Info: jobLevel 'actions' permission set to 'read': .github/workflows/microsoft_magentic-ui__.github__workflows__codeql.yml:39",
+            "Warn: no topLevel permission defined: .github/workflows/microsoft_magentic-ui__.github__workflows__codeql.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_magentic-ui__.github__workflows__codeql.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "line": 62,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 68,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-example@v1`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 72,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/init@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 100,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/analyze@v3`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_magentic-ui__.github__workflows__codeql.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_magentic-ui__.github__workflows__codeql.yml",
+          "line": 61,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    }
+  }
+}

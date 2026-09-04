@@ -1,0 +1,299 @@
+{
+  "workflow": "Tencent_Hippy__.github__workflows__security_codeql_analyses.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "Tencent_Hippy__.github__workflows__security_codeql_analyses.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "unpinned-github-actions": 6
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/github-script@v6.3.3",
+          "pinned": "actions/github-script@d556feaca394842dc55e4734bf3bb9f685482fa0",
+          "line": 35,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v3",
+          "pinned": "actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744",
+          "line": 102,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/init@v2",
+          "pinned": "github/codeql-action/init@b8d3b6e8af63cde30bdc382c0bc28114f4346c88",
+          "line": 106,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-node@v3",
+          "pinned": "actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610",
+          "line": 111,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/analyze@v2",
+          "pinned": "github/codeql-action/analyze@b8d3b6e8af63cde30bdc382c0bc28114f4346c88",
+          "line": 125,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/upload-sarif@v2",
+          "pinned": "github/codeql-action/upload-sarif@b8d3b6e8af63cde30bdc382c0bc28114f4346c88",
+          "line": 138,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "Tencent_Hippy__.github__workflows__security_codeql_analyses.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "unpinned-github-actions": 6
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/github-script@d556feaca394842dc55e4734bf3bb9f685482fa0 # actions/github-script@v6.3.3",
+          "line": 35,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0",
+          "line": 102,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@b8d3b6e8af63cde30bdc382c0bc28114f4346c88 # github/codeql-action/init@v2",
+          "line": 106,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # actions/setup-node@v3 | releases,v3.9.1",
+          "line": 111,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@b8d3b6e8af63cde30bdc382c0bc28114f4346c88 # github/codeql-action/init@v2",
+          "line": 125,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@b8d3b6e8af63cde30bdc382c0bc28114f4346c88 # github/codeql-action/init@v2",
+          "line": 138,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "Tencent_Hippy__.github__workflows__security_codeql_analyses.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            35,
+            102,
+            106,
+            111,
+            125,
+            138
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_Hippy__.github__workflows__security_codeql_analyses.yml:35",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_Hippy__.github__workflows__security_codeql_analyses.yml:102",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_Hippy__.github__workflows__security_codeql_analyses.yml:106",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_Hippy__.github__workflows__security_codeql_analyses.yml:111",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_Hippy__.github__workflows__security_codeql_analyses.yml:125",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Tencent_Hippy__.github__workflows__security_codeql_analyses.yml:138",
+            "Info:   0 out of   6 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            22,
+            23,
+            24
+          ],
+          "raw_details": [
+            "Info: topLevel 'actions' permission set to 'read': .github/workflows/Tencent_Hippy__.github__workflows__security_codeql_analyses.yml:22",
+            "Info: topLevel 'contents' permission set to 'read': .github/workflows/Tencent_Hippy__.github__workflows__security_codeql_analyses.yml:23",
+            "Warn: topLevel 'security-events' permission set to 'write': .github/workflows/Tencent_Hippy__.github__workflows__security_codeql_analyses.yml:24",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "Tencent_Hippy__.github__workflows__security_codeql_analyses.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "unpinned-github-actions": 6
+        }
+      },
+      "findings": [
+        {
+          "line": 35,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/github-script@v6.3.3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 102,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 106,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/init@v2`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 111,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 125,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/analyze@v2`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 138,
+          "column": 20,
+          "message": "Unpinned GitHub Action: uses `codeql-action/upload-sarif@v2`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "Tencent_Hippy__.github__workflows__security_codeql_analyses.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "artipacked": 1,
+          "excessive-permissions": 1,
+          "unpinned-images": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "Tencent_Hippy__.github__workflows__security_codeql_analyses.yml",
+          "line": 101,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "Tencent_Hippy__.github__workflows__security_codeql_analyses.yml",
+          "line": 24,
+          "column": 3,
+          "note": "audit confidence \u2192 High",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "unpinned-images",
+          "level": "error",
+          "message": "unpinned image references",
+          "workflow": "Tencent_Hippy__.github__workflows__security_codeql_analyses.yml",
+          "line": 94,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "Tencent_Hippy__.github__workflows__security_codeql_analyses.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 5
+      },
+      "findings": [
+        {
+          "line": 92,
+          "column": 67,
+          "message": "broken JSON string is passed to fromJSON() at offset 2: invalid character '\\'' looking for beginning of value [expression]",
+          "capability": "control-flow-weakness"
+        },
+        {
+          "line": 102,
+          "column": 13,
+          "message": "the runner of \"actions/checkout@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 106,
+          "column": 13,
+          "message": "the runner of \"github/codeql-action/init@v2\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 111,
+          "column": 13,
+          "message": "the runner of \"actions/setup-node@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 125,
+          "column": 13,
+          "message": "the runner of \"github/codeql-action/analyze@v2\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

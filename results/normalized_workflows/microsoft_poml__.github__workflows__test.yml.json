@@ -1,0 +1,418 @@
+{
+  "workflow": "microsoft_poml__.github__workflows__test.yml",
+  "tools": {
+    "pinny": {
+      "workflow": "microsoft_poml__.github__workflows__test.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 14,
+        "by_rule": {
+          "unpinned-github-actions": 14
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+          "line": 24,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | releases,v4.4.0",
+          "line": 28,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: nick-invision/retry@ce71cc2ab81d554ebbe88c79ab5975992d79ba08 # nick-invision/retry@v3 | v3.0.2",
+          "line": 56,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+          "line": 97,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | releases,v4.4.0",
+          "line": 99,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # actions/setup-python@v5 | releases,v5.6.0",
+          "line": 104,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: nick-invision/retry@ce71cc2ab81d554ebbe88c79ab5975992d79ba08 # nick-invision/retry@v3 | v3.0.2",
+          "line": 124,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+          "line": 137,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | releases,v4.4.0",
+          "line": 139,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # actions/setup-python@v5 | releases,v5.6.0",
+          "line": 144,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+          "line": 160,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node@v4 | releases,v4.4.0",
+          "line": 165,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # actions/setup-python@v5 | releases,v5.6.0",
+          "line": 171,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # actions/upload-artifact@v4 | v4.6.2",
+          "line": 194,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "microsoft_poml__.github__workflows__test.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 4,
+          "reason": "dependency not pinned by hash detected -- score normalized to 4",
+          "lines": [
+            24,
+            28,
+            56,
+            97,
+            99,
+            104,
+            117,
+            124,
+            137,
+            139,
+            144,
+            152,
+            160,
+            165,
+            171,
+            183,
+            194
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_poml__.github__workflows__test.yml:24",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_poml__.github__workflows__test.yml:28",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_poml__.github__workflows__test.yml:56",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_poml__.github__workflows__test.yml:97",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_poml__.github__workflows__test.yml:99",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_poml__.github__workflows__test.yml:104",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/microsoft_poml__.github__workflows__test.yml:124",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_poml__.github__workflows__test.yml:137",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_poml__.github__workflows__test.yml:139",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_poml__.github__workflows__test.yml:144",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_poml__.github__workflows__test.yml:160",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_poml__.github__workflows__test.yml:165",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_poml__.github__workflows__test.yml:171",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/microsoft_poml__.github__workflows__test.yml:194",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_poml__.github__workflows__test.yml:117",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_poml__.github__workflows__test.yml:152",
+            "Warn: pipCommand not pinned by hash: .github/workflows/microsoft_poml__.github__workflows__test.yml:183",
+            "Info:   0 out of  12 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   2 third-party GitHubAction dependencies pinned",
+            "Info:   5 out of   5 npmCommand dependencies pinned",
+            "Info:   0 out of   3 pipCommand dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/microsoft_poml__.github__workflows__test.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "microsoft_poml__.github__workflows__test.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 14,
+        "by_rule": {
+          "unpinned-github-actions": 14
+        }
+      },
+      "findings": [
+        {
+          "line": 24,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 28,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 56,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `nick-invision/retry@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 97,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 99,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 104,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 124,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `nick-invision/retry@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 137,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 139,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 144,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 160,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 165,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 171,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 194,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v4`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "microsoft_poml__.github__workflows__test.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 11,
+        "by_rule": {
+          "artipacked": 4,
+          "excessive-permissions": 5,
+          "unpinned-uses": 2
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_poml__.github__workflows__test.yml",
+          "line": 24,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_poml__.github__workflows__test.yml",
+          "line": 97,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_poml__.github__workflows__test.yml",
+          "line": 137,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "microsoft_poml__.github__workflows__test.yml",
+          "line": 160,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "microsoft_poml__.github__workflows__test.yml",
+          "line": 1,
+          "column": 1,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "microsoft_poml__.github__workflows__test.yml",
+          "line": 15,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "microsoft_poml__.github__workflows__test.yml",
+          "line": 78,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "microsoft_poml__.github__workflows__test.yml",
+          "line": 133,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "microsoft_poml__.github__workflows__test.yml",
+          "line": 155,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_poml__.github__workflows__test.yml",
+          "line": 56,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "microsoft_poml__.github__workflows__test.yml",
+          "line": 124,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "workflow": "IBM_mcp-context-forge__.github__workflows__codeql.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "IBM_mcp-context-forge__.github__workflows__codeql.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v5",
+          "pinned": "actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd",
+          "line": 64,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-python@v6",
+          "pinned": "actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405",
+          "line": 71,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-node@v5",
+          "pinned": "actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444",
+          "line": 77,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/init@v3",
+          "pinned": "github/codeql-action/init@45580472a5bb82c4681c4ac726cfdb60060c2ee1",
+          "line": 85,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/analyze@v3",
+          "pinned": "github/codeql-action/analyze@45580472a5bb82c4681c4ac726cfdb60060c2ee1",
+          "line": 105,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "IBM_mcp-context-forge__.github__workflows__codeql.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # actions/checkout@v5 | releases,v5.0.1",
+          "line": 64,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # actions/setup-python@v6 | main,v6.2.0",
+          "line": 71,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # actions/setup-node@v5 | releases,v5.0.0",
+          "line": 77,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@ae9ef3a1d2e3413523c3741725c30064970cc0d4 # github/codeql-action/init@v3",
+          "line": 85,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@ae9ef3a1d2e3413523c3741725c30064970cc0d4 # github/codeql-action/init@v3",
+          "line": 105,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "IBM_mcp-context-forge__.github__workflows__codeql.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            64,
+            71,
+            77,
+            85,
+            105
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/IBM_mcp-context-forge__.github__workflows__codeql.yml:64",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/IBM_mcp-context-forge__.github__workflows__codeql.yml:71",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/IBM_mcp-context-forge__.github__workflows__codeql.yml:77",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/IBM_mcp-context-forge__.github__workflows__codeql.yml:85",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/IBM_mcp-context-forge__.github__workflows__codeql.yml:105",
+            "Info:   0 out of   5 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            36,
+            37,
+            38,
+            39
+          ],
+          "raw_details": [
+            "Warn: topLevel 'security-events' permission set to 'write': .github/workflows/IBM_mcp-context-forge__.github__workflows__codeql.yml:37",
+            "Info: topLevel 'actions' permission set to 'read': .github/workflows/IBM_mcp-context-forge__.github__workflows__codeql.yml:38",
+            "Info: topLevel 'packages' permission set to 'read': .github/workflows/IBM_mcp-context-forge__.github__workflows__codeql.yml:39",
+            "Info: topLevel 'contents' permission set to 'read': .github/workflows/IBM_mcp-context-forge__.github__workflows__codeql.yml:36",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "IBM_mcp-context-forge__.github__workflows__codeql.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "line": 64,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 71,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 77,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-node@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 85,
+          "column": 22,
+          "message": "Unpinned GitHub Action: uses `codeql-action/init@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 105,
+          "column": 22,
+          "message": "Unpinned GitHub Action: uses `codeql-action/analyze@v3`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "IBM_mcp-context-forge__.github__workflows__codeql.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "IBM_mcp-context-forge__.github__workflows__codeql.yml",
+          "line": 63,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    }
+  }
+}

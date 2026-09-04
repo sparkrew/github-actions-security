@@ -1,0 +1,259 @@
+{
+  "workflow": "Azure_Azure-Sentinel__.github__workflows__convertKqlFunctionYamlToArmTemplate.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "Azure_Azure-Sentinel__.github__workflows__convertKqlFunctionYamlToArmTemplate.yaml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "unpinned-github-actions": 3
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-python@v3",
+          "pinned": "actions/setup-python@3542bca2639a428e1796aaa6a2ffef0c0f575566",
+          "line": 48,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "BSFishy/pip-action@v1",
+          "pinned": "BSFishy/pip-action@8f2d471d809dc20b6ada98c91910b6ae6243f318",
+          "line": 53,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "mshick/add-pr-comment@v1",
+          "pinned": "mshick/add-pr-comment@a96c578acba98b60f16c6866d5f20478dc4ef68b",
+          "line": 94,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "Azure_Azure-Sentinel__.github__workflows__convertKqlFunctionYamlToArmTemplate.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "unpinned-github-actions": 6
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/create-github-app-token@46e4a501e119d39574a54e53a06c9a705efc55c9",
+          "line": 32,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11",
+          "line": 38,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-python@3542bca2639a428e1796aaa6a2ffef0c0f575566 # actions/setup-python@v3 | releases,v3.1.4",
+          "line": 48,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: BSFishy/pip-action@8f2d471d809dc20b6ada98c91910b6ae6243f318 # BSFishy/pip-action@v1",
+          "line": 53,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: ad-m/github-push-action@57116acb309081ee57864270b0e3c4cedbe45452 # ad-m/github-push-action@master",
+          "line": 87,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: mshick/add-pr-comment@a96c578acba98b60f16c6866d5f20478dc4ef68b # mshick/add-pr-comment@v1",
+          "line": 94,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "Azure_Azure-Sentinel__.github__workflows__convertKqlFunctionYamlToArmTemplate.yaml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 1,
+          "reason": "dependency not pinned by hash detected -- score normalized to 1",
+          "lines": [
+            48,
+            53,
+            87,
+            94
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/Azure_Azure-Sentinel__.github__workflows__convertKqlFunctionYamlToArmTemplate.yaml:48",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Azure_Azure-Sentinel__.github__workflows__convertKqlFunctionYamlToArmTemplate.yaml:53",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Azure_Azure-Sentinel__.github__workflows__convertKqlFunctionYamlToArmTemplate.yaml:87",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/Azure_Azure-Sentinel__.github__workflows__convertKqlFunctionYamlToArmTemplate.yaml:94",
+            "Info:   2 out of   3 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   3 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1
+          ],
+          "raw_details": [
+            "Warn: no topLevel permission defined: .github/workflows/Azure_Azure-Sentinel__.github__workflows__convertKqlFunctionYamlToArmTemplate.yaml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "Azure_Azure-Sentinel__.github__workflows__convertKqlFunctionYamlToArmTemplate.yaml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "line": 48,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-python@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 53,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `BSFishy/pip-action@v1`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 87,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `ad-m/github-push-action@master`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 94,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `mshick/add-pr-comment@v1`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "Azure_Azure-Sentinel__.github__workflows__convertKqlFunctionYamlToArmTemplate.yaml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "excessive-permissions": 1,
+          "unpinned-uses": 3
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "excessive-permissions",
+          "level": "warning",
+          "message": "overly broad permissions",
+          "workflow": "Azure_Azure-Sentinel__.github__workflows__convertKqlFunctionYamlToArmTemplate.yaml",
+          "line": 25,
+          "column": 3,
+          "note": "audit confidence \u2192 Medium",
+          "capability": "excessive-permission-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "Azure_Azure-Sentinel__.github__workflows__convertKqlFunctionYamlToArmTemplate.yaml",
+          "line": 53,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "Azure_Azure-Sentinel__.github__workflows__convertKqlFunctionYamlToArmTemplate.yaml",
+          "line": 87,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "Azure_Azure-Sentinel__.github__workflows__convertKqlFunctionYamlToArmTemplate.yaml",
+          "line": 94,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "Azure_Azure-Sentinel__.github__workflows__convertKqlFunctionYamlToArmTemplate.yaml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 1
+      },
+      "findings": [
+        {
+          "line": 48,
+          "column": 15,
+          "message": "the runner of \"actions/setup-python@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

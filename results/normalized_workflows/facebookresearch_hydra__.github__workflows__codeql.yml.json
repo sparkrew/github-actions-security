@@ -1,0 +1,229 @@
+{
+  "workflow": "facebookresearch_hydra__.github__workflows__codeql.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "facebookresearch_hydra__.github__workflows__codeql.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v3",
+          "pinned": "actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744",
+          "line": 28,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/init@v2",
+          "pinned": "github/codeql-action/init@b8d3b6e8af63cde30bdc382c0bc28114f4346c88",
+          "line": 31,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/autobuild@v2",
+          "pinned": "github/codeql-action/autobuild@b8d3b6e8af63cde30bdc382c0bc28114f4346c88",
+          "line": 38,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "github/codeql-action/analyze@v2",
+          "pinned": "github/codeql-action/analyze@b8d3b6e8af63cde30bdc382c0bc28114f4346c88",
+          "line": 42,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "facebookresearch_hydra__.github__workflows__codeql.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # actions/checkout@v3 | releases,v3.6.0",
+          "line": 28,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@b8d3b6e8af63cde30bdc382c0bc28114f4346c88 # github/codeql-action/init@v2",
+          "line": 31,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@b8d3b6e8af63cde30bdc382c0bc28114f4346c88 # github/codeql-action/init@v2",
+          "line": 38,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: github/codeql-action/init@b8d3b6e8af63cde30bdc382c0bc28114f4346c88 # github/codeql-action/init@v2",
+          "line": 42,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "facebookresearch_hydra__.github__workflows__codeql.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            28,
+            31,
+            38,
+            42
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebookresearch_hydra__.github__workflows__codeql.yml:28",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebookresearch_hydra__.github__workflows__codeql.yml:31",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebookresearch_hydra__.github__workflows__codeql.yml:38",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/facebookresearch_hydra__.github__workflows__codeql.yml:42",
+            "Info:   0 out of   4 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            17,
+            18
+          ],
+          "raw_details": [
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/facebookresearch_hydra__.github__workflows__codeql.yml:18",
+            "Info: jobLevel 'actions' permission set to 'read': .github/workflows/facebookresearch_hydra__.github__workflows__codeql.yml:17",
+            "Warn: no topLevel permission defined: .github/workflows/facebookresearch_hydra__.github__workflows__codeql.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "facebookresearch_hydra__.github__workflows__codeql.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 4,
+        "by_rule": {
+          "unpinned-github-actions": 4
+        }
+      },
+      "findings": [
+        {
+          "line": 28,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 31,
+          "column": 22,
+          "message": "Unpinned GitHub Action: uses `codeql-action/init@v2`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 38,
+          "column": 22,
+          "message": "Unpinned GitHub Action: uses `codeql-action/autobuild@v2`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 42,
+          "column": 22,
+          "message": "Unpinned GitHub Action: uses `codeql-action/analyze@v2`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "facebookresearch_hydra__.github__workflows__codeql.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "facebookresearch_hydra__.github__workflows__codeql.yml",
+          "line": 27,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "facebookresearch_hydra__.github__workflows__codeql.yml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 4
+      },
+      "findings": [
+        {
+          "line": 28,
+          "column": 15,
+          "message": "the runner of \"actions/checkout@v3\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 31,
+          "column": 15,
+          "message": "the runner of \"github/codeql-action/init@v2\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 38,
+          "column": 15,
+          "message": "the runner of \"github/codeql-action/autobuild@v2\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        },
+        {
+          "line": 42,
+          "column": 15,
+          "message": "the runner of \"github/codeql-action/analyze@v2\" action is too old to run on GitHub Actions. update the action's version to fix this issue [action]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

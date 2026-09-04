@@ -1,0 +1,367 @@
+{
+  "workflow": "google_mtail__.github__workflows__release.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "google_mtail__.github__workflows__release.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 9,
+        "by_rule": {
+          "unpinned-github-actions": 9
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v4",
+          "pinned": "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5",
+          "line": 31,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-go@v5",
+          "pinned": "actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff",
+          "line": 35,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/login-action@v3.3.0",
+          "pinned": "docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567",
+          "line": 39,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "goreleaser/goreleaser-action@v6",
+          "pinned": "goreleaser/goreleaser-action@e435ccd777264be153ace6237001ef4d979d3a7a",
+          "line": 44,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v2.0.0",
+          "pinned": "slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@5a775b367a56d5bd118a224a811bba288150a563",
+          "line": 75,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "slsa-framework/slsa-verifier/actions/installer@v2.6.0",
+          "pinned": "slsa-framework/slsa-verifier/actions/installer@3714a2a4684014deb874a0e737dffa0ee02dd647",
+          "line": 87,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v2.0.0",
+          "pinned": "slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@5a775b367a56d5bd118a224a811bba288150a563",
+          "line": 118,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/login-action@v3.3.0",
+          "pinned": "docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567",
+          "line": 135,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "sigstore/cosign-installer@v3.7.0",
+          "pinned": "sigstore/cosign-installer@dc72c7d5c4d10cd6bcb8cf6e3fd625a9e5e537da",
+          "line": 140,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "google_mtail__.github__workflows__release.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 9,
+        "by_rule": {
+          "unpinned-github-actions": 9
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # actions/checkout@v4 | releases,v4.3.1",
+          "line": 31,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # actions/setup-go@v5 | releases,v5.6.0",
+          "line": 35,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # docker/login-action@v3.3.0",
+          "line": 39,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: goreleaser/goreleaser-action@e435ccd777264be153ace6237001ef4d979d3a7a # goreleaser/goreleaser-action@v6 | v6.4.0",
+          "line": 44,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@5a775b367a56d5bd118a224a811bba288150a563 # slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v2.0.0",
+          "line": 75,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: slsa-framework/slsa-verifier/actions/installer@3714a2a4684014deb874a0e737dffa0ee02dd647 # slsa-framework/slsa-verifier/actions/installer@v2.6.0 | v2.6.0-rc.1",
+          "line": 87,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@5a775b367a56d5bd118a224a811bba288150a563 # slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v2.0.0",
+          "line": 118,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # docker/login-action@v3.3.0",
+          "line": 135,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: sigstore/cosign-installer@dc72c7d5c4d10cd6bcb8cf6e3fd625a9e5e537da # sigstore/cosign-installer@v3.7.0",
+          "line": 140,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "google_mtail__.github__workflows__release.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            31,
+            35,
+            39,
+            44,
+            87,
+            135,
+            140
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_mtail__.github__workflows__release.yml:31",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_mtail__.github__workflows__release.yml:35",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_mtail__.github__workflows__release.yml:39",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_mtail__.github__workflows__release.yml:44",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_mtail__.github__workflows__release.yml:87",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_mtail__.github__workflows__release.yml:135",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/google_mtail__.github__workflows__release.yml:140",
+            "Info:   0 out of   2 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   5 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            72,
+            85,
+            113,
+            131
+          ],
+          "raw_details": [
+            "Info: jobLevel 'actions' permission set to 'read': .github/workflows/google_mtail__.github__workflows__release.yml:72",
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/google_mtail__.github__workflows__release.yml:85",
+            "Info: jobLevel 'actions' permission set to 'read': .github/workflows/google_mtail__.github__workflows__release.yml:113",
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/google_mtail__.github__workflows__release.yml:131",
+            "Warn: no topLevel permission defined: .github/workflows/google_mtail__.github__workflows__release.yml:1",
+            "Info: no jobLevel write permissions found"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "google_mtail__.github__workflows__release.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 7,
+        "by_rule": {
+          "unpinned-github-actions": 7
+        }
+      },
+      "findings": [
+        {
+          "line": 31,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v4`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 35,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/setup-go@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 39,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/login-action@v3.3.0`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 44,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `goreleaser/goreleaser-action@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 87,
+          "column": 44,
+          "message": "Unpinned GitHub Action: uses `actions/installer@v2.6.0`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 135,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/login-action@v3.3.0`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 140,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `sigstore/cosign-installer@v3.7.0`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "google_mtail__.github__workflows__release.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 7,
+        "by_rule": {
+          "artipacked": 1,
+          "unpinned-uses": 5,
+          "cache-poisoning": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_mtail__.github__workflows__release.yml",
+          "line": 31,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "google_mtail__.github__workflows__release.yml",
+          "line": 39,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "google_mtail__.github__workflows__release.yml",
+          "line": 44,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "google_mtail__.github__workflows__release.yml",
+          "line": 87,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "google_mtail__.github__workflows__release.yml",
+          "line": 135,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "google_mtail__.github__workflows__release.yml",
+          "line": 140,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "cache-poisoning",
+          "level": "error",
+          "message": "runtime artifacts potentially vulnerable to a cache poisoning attack",
+          "workflow": "google_mtail__.github__workflows__release.yml",
+          "line": 2,
+          "column": 1,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    }
+  }
+}

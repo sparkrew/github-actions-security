@@ -1,0 +1,175 @@
+{
+  "workflow": "apple_swift-nio__.github__workflows__swift_matrix.yml",
+  "tools": {
+    "semgrep": {
+      "workflow": "apple_swift-nio__.github__workflows__swift_matrix.yml",
+      "tool": "semgrep",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "run-shell-injection": 2
+        }
+      },
+      "findings": [
+        {
+          "rule": "run-shell-injection",
+          "line": 214,
+          "code": "requires login",
+          "note": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+          "documentation": null,
+          "capability": "injection-weakness"
+        },
+        {
+          "rule": "run-shell-injection",
+          "line": 262,
+          "code": "requires login",
+          "note": "Using variable interpolation `${{...}}` with `github` context data in a `run:` step could allow an attacker to inject their own code into the runner. This would allow them to steal secrets and code. `github` context data can have arbitrary user input and should be treated as untrusted. Instead, use an intermediate environment variable with `env:` to store the data and use the environment variable in the `run:` script. Be sure to use double-quotes the environment variable, like this: \"$ENVVAR\".",
+          "documentation": null,
+          "capability": "injection-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "apple_swift-nio__.github__workflows__swift_matrix.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 2,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 7,
+          "reason": "dependency not pinned by hash detected -- score normalized to 7",
+          "lines": [
+            171
+          ],
+          "raw_details": [
+            "Warn: downloadThenRun not pinned by hash: .github/workflows/apple_swift-nio__.github__workflows__swift_matrix.yml:171",
+            "Info:   3 out of   3 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   1 downloadThenRun dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        }
+      ]
+    },
+    "poutine": {
+      "workflow": "apple_swift-nio__.github__workflows__swift_matrix.yml",
+      "tool": "poutine",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "unverified_script_exec": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "unverified_script_exec",
+          "line": 169,
+          "column": "",
+          "job": "linux",
+          "step": "2",
+          "details": "Command: curl -s --retry 3 https://raw.githubusercontent.com/apple/swift-nio/main/scripts/check-matrix-job.sh | bash",
+          "event_triggers": [
+            "workflow_call"
+          ],
+          "capability": "injection-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "apple_swift-nio__.github__workflows__swift_matrix.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 6,
+        "by_rule": {
+          "template-injection": 5,
+          "unpinned-images": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "apple_swift-nio__.github__workflows__swift_matrix.yml",
+          "line": 212,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "apple_swift-nio__.github__workflows__swift_matrix.yml",
+          "line": 212,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "apple_swift-nio__.github__workflows__swift_matrix.yml",
+          "line": 260,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "apple_swift-nio__.github__workflows__swift_matrix.yml",
+          "line": 260,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "template-injection",
+          "level": "error",
+          "message": "code injection via template expansion",
+          "workflow": "apple_swift-nio__.github__workflows__swift_matrix.yml",
+          "line": 260,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "injection-weakness"
+        },
+        {
+          "rule_id": "unpinned-images",
+          "level": "error",
+          "message": "unpinned image references",
+          "workflow": "apple_swift-nio__.github__workflows__swift_matrix.yml",
+          "line": 147,
+          "column": 7,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    }
+  }
+}

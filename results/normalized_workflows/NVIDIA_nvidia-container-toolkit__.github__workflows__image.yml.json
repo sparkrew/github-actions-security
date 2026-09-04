@@ -1,0 +1,416 @@
+{
+  "workflow": "NVIDIA_nvidia-container-toolkit__.github__workflows__image.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 9,
+        "by_rule": {
+          "unpinned-github-actions": 9
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v6",
+          "pinned": "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+          "line": 48,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/setup-qemu-action@v3",
+          "pinned": "docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130",
+          "line": 52,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/setup-buildx-action@v3",
+          "pinned": "docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f",
+          "line": 57,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-artifact@v6",
+          "pinned": "actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+          "line": 66,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v6",
+          "pinned": "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+          "line": 85,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/setup-qemu-action@v3",
+          "pinned": "docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130",
+          "line": 89,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/setup-buildx-action@v3",
+          "pinned": "docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f",
+          "line": 94,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/download-artifact@v7",
+          "pinned": "actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131",
+          "line": 97,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "docker/login-action@v3",
+          "pinned": "docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9",
+          "line": 104,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "NVIDIA_nvidia-container-toolkit__.github__workflows__image.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 10,
+        "by_rule": {
+          "unpinned-github-actions": 10
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 48,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # docker/setup-qemu-action@v3 | releases,v3.7.0",
+          "line": 52,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # docker/setup-buildx-action@v3 | v3.12.0",
+          "line": 57,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # actions/upload-artifact@v6 | v6.0.0",
+          "line": 66,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 85,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # docker/setup-qemu-action@v3 | releases,v3.7.0",
+          "line": 89,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # docker/setup-buildx-action@v3 | v3.12.0",
+          "line": 94,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # actions/download-artifact@v7 | v7.0.0",
+          "line": 97,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # docker/login-action@v3 | releases,v3.7.0",
+          "line": 104,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: nv-gha-runners/setup-artifactory-go-proxy@a15ec16ff434e8ca3b0f76919f902080e66ebc14 # nv-gha-runners/setup-artifactory-go-proxy@main",
+          "line": 112,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            48,
+            52,
+            57,
+            66,
+            85,
+            89,
+            94,
+            97,
+            104,
+            112
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml:48",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml:52",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml:57",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml:66",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml:85",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml:89",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml:94",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml:97",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml:104",
+            "Warn: third-party GitHubAction not pinned by hash: .github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml:112",
+            "Info:   0 out of   4 GitHub-owned GitHubAction dependencies pinned",
+            "Info:   0 out of   6 third-party GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 0,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            75,
+            77
+          ],
+          "raw_details": [
+            "Info: jobLevel 'contents' permission set to 'read': .github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml:75",
+            "Warn: jobLevel 'packages' permission set to 'write': .github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml:77",
+            "Warn: no topLevel permission defined: .github/workflows/NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml:1"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 10,
+        "by_rule": {
+          "unpinned-github-actions": 10
+        }
+      },
+      "findings": [
+        {
+          "line": 48,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 52,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/setup-qemu-action@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 57,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/setup-buildx-action@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 66,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/upload-artifact@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 85,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 89,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/setup-qemu-action@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 94,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/setup-buildx-action@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 97,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `actions/download-artifact@v7`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 104,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `docker/login-action@v3`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 112,
+          "column": 15,
+          "message": "Unpinned GitHub Action: uses `nv-gha-runners/setup-artifactory-go-proxy@main`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 8,
+        "by_rule": {
+          "artipacked": 2,
+          "unpinned-uses": 6
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml",
+          "line": 48,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml",
+          "line": 85,
+          "column": 9,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml",
+          "line": 52,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml",
+          "line": 57,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml",
+          "line": 89,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml",
+          "line": 94,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml",
+          "line": 104,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule_id": "unpinned-uses",
+          "level": "error",
+          "message": "unpinned action reference",
+          "workflow": "NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml",
+          "line": 112,
+          "column": 9,
+          "note": "audit confidence \u2192 High",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "actionlint": {
+      "workflow": "NVIDIA_nvidia-container-toolkit__.github__workflows__image.yaml",
+      "tool": "actionlint",
+      "summary": {
+        "total_findings": 1
+      },
+      "findings": [
+        {
+          "line": 73,
+          "column": 14,
+          "message": "label \"linux-amd64-cpu4\" is unknown. available labels are \"windows-latest\", \"windows-latest-8-cores\", \"windows-2025\", \"windows-2022\", \"windows-2019\", \"ubuntu-latest\", \"ubuntu-latest-4-cores\", \"ubuntu-latest-8-cores\", \"ubuntu-latest-16-cores\", \"ubuntu-24.04\", \"ubuntu-24.04-arm\", \"ubuntu-22.04\", \"ubuntu-22.04-arm\", \"ubuntu-20.04\", \"macos-latest\", \"macos-latest-xl\", \"macos-latest-xlarge\", \"macos-latest-large\", \"macos-15-xlarge\", \"macos-15-large\", \"macos-15\", \"macos-14-xl\", \"macos-14-xlarge\", \"macos-14-large\", \"macos-14\", \"macos-13-xl\", \"macos-13-xlarge\", \"macos-13-large\", \"macos-13\", \"self-hosted\", \"x64\", \"arm\", \"arm64\", \"linux\", \"macos\", \"windows\". if it is a custom label for self-hosted runner, set list of labels in actionlint.yaml config file [runner-label]",
+          "capability": "github-runner-compatibility-weakness"
+        }
+      ]
+    }
+  }
+}

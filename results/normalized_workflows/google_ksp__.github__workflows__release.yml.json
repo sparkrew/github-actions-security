@@ -1,0 +1,229 @@
+{
+  "workflow": "google_ksp__.github__workflows__release.yml",
+  "tools": {
+    "frizbee": {
+      "workflow": "google_ksp__.github__workflows__release.yml",
+      "tool": "frizbee",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/setup-java@v5",
+          "pinned": "actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654",
+          "line": 20,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/checkout@v6",
+          "pinned": "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd",
+          "line": 26,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/cache@v5",
+          "pinned": "actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306",
+          "line": 30,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/cache@v5",
+          "pinned": "actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306",
+          "line": 38,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "original": "actions/upload-release-asset@v1",
+          "pinned": "actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5",
+          "line": 50,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "pinny": {
+      "workflow": "google_ksp__.github__workflows__release.yml",
+      "tool": "pinny",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # actions/setup-java@v5 | v5.2.0",
+          "line": 20,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "- uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # actions/checkout@v6 | v6.0.2",
+          "line": 26,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # actions/cache@v5 | v5.0.3",
+          "line": 30,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # actions/cache@v5 | v5.0.3",
+          "line": 38,
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "unpinned-github-actions",
+          "pinned": "uses: actions/upload-release-asset@e8f9f06c4b078e705bd2ea027f0926603fc9b4d5 # actions/upload-release-asset@v1 | latest,v1.0.2",
+          "line": 50,
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "scorecard": {
+      "workflow": "google_ksp__.github__workflows__release.yml",
+      "tool": "scorecard",
+      "summary": {
+        "total_findings": 3,
+        "by_rule": {
+          "Pinned-Dependencies": 1,
+          "SAST": 1,
+          "Token-Permissions": 1
+        }
+      },
+      "findings": [
+        {
+          "rule": "Pinned-Dependencies",
+          "score": 0,
+          "reason": "dependency not pinned by hash detected -- score normalized to 0",
+          "lines": [
+            20,
+            26,
+            30,
+            38,
+            50
+          ],
+          "raw_details": [
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_ksp__.github__workflows__release.yml:20",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_ksp__.github__workflows__release.yml:26",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_ksp__.github__workflows__release.yml:30",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_ksp__.github__workflows__release.yml:38",
+            "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/google_ksp__.github__workflows__release.yml:50",
+            "Info:   0 out of   5 GitHub-owned GitHubAction dependencies pinned"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#pinned-dependencies",
+            "short": "Determines if the project has declared and pinned the dependencies of its build process."
+          },
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "rule": "SAST",
+          "score": 0,
+          "reason": "no SAST tool detected",
+          "lines": [],
+          "raw_details": [
+            "Warn: no pull requests merged into dev branch"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#sast",
+            "short": "Determines if the project uses static code analysis."
+          },
+          "capability": "hardening-gap-weakness"
+        },
+        {
+          "rule": "Token-Permissions",
+          "score": 9,
+          "reason": "detected GitHub workflow tokens with excessive permissions",
+          "lines": [
+            1,
+            16
+          ],
+          "raw_details": [
+            "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/google_ksp__.github__workflows__release.yml:16",
+            "Warn: no topLevel permission defined: .github/workflows/google_ksp__.github__workflows__release.yml:1"
+          ],
+          "documentation": {
+            "url": "https://github.com/ossf/scorecard/blob/ab2f6e92482462fe66246d9e32f642855a691dc1/docs/checks.md#token-permissions",
+            "short": "Determines if the project's workflows follow the principle of least privilege."
+          },
+          "capability": "excessive-permission-weakness"
+        }
+      ]
+    },
+    "scharf": {
+      "workflow": "google_ksp__.github__workflows__release.yml",
+      "tool": "scharf",
+      "summary": {
+        "total_findings": 5,
+        "by_rule": {
+          "unpinned-github-actions": 5
+        }
+      },
+      "findings": [
+        {
+          "line": 20,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/setup-java@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 26,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/checkout@v6`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 30,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/cache@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 38,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/cache@v5`",
+          "capability": "unpinned-dependency-weakness"
+        },
+        {
+          "line": 50,
+          "column": 13,
+          "message": "Unpinned GitHub Action: uses `actions/upload-release-asset@v1`",
+          "capability": "unpinned-dependency-weakness"
+        }
+      ]
+    },
+    "zizmor": {
+      "workflow": "google_ksp__.github__workflows__release.yml",
+      "tool": "zizmor",
+      "summary": {
+        "total_findings": 1,
+        "by_rule": {
+          "artipacked": 1
+        }
+      },
+      "findings": [
+        {
+          "rule_id": "artipacked",
+          "level": "warning",
+          "message": "credential persistence through GitHub Actions artifacts",
+          "workflow": "google_ksp__.github__workflows__release.yml",
+          "line": 26,
+          "column": 7,
+          "note": "audit confidence \u2192 Low",
+          "capability": "artifact-integrity-weakness"
+        }
+      ]
+    }
+  }
+}
